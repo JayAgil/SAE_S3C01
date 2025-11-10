@@ -42,7 +42,7 @@ public class FenetreAjouterBatiment extends JInternalFrame
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            }
+            }//test
         });
     }
 
