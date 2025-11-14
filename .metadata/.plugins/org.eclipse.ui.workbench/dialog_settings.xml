@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+<<<<<<< HEAD
 	<section name="NewWizardAction">
 		<section name="NewWizard.dialogBounds">
 			<item key="DIALOG_X_ORIGIN" value="619"/>
@@ -9,8 +10,15 @@
 			<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
 		</section>
 	</section>
+=======
+>>>>>>> aaec9bbf4f63083fd2700dc04cdcba35b982938a
 	<section name="ImportExportAction">
 		<section name="ImportExportWizard.dialogBounds">
 		</section>
 	</section>
+<<<<<<< HEAD
+=======
+	<section name="ZipFileImportWizard">
+	</section>
+>>>>>>> aaec9bbf4f63083fd2700dc04cdcba35b982938a
 </section>
