@@ -11,8 +11,10 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class FenetreAjouterCharge extends JInternalFrame {
+public class FenetreAjouterCharge extends JInternalFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -47,7 +49,7 @@ public class FenetreAjouterCharge extends JInternalFrame {
 		setIconifiable(true);
 		setMaximizable(true);
 		setResizable(true);
-		setBounds(50, 50, 400, 300);
+		setBounds(50, 50, 400, 451);
 		setTitle("Ajouter Charge");
 
 		contentPane = new JPanel();
@@ -58,48 +60,52 @@ public class FenetreAjouterCharge extends JInternalFrame {
 		JLabel lblTitre = new JLabel("Ajouter Charge");
 		lblTitre.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitre.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblTitre.setBounds(50, 10, 300, 30);
+		lblTitre.setBounds(38, 25, 300, 30);
 		contentPane.add(lblTitre);
 
 		JLabel lblTypeCharge = new JLabel("Type charge :");
-		lblTypeCharge.setBounds(50, 60, 100, 25);
+		lblTypeCharge.setBounds(50, 88, 100, 25);
 		contentPane.add(lblTypeCharge);
 
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Eau", "Électricité", "Gaz"}));
-		comboBox.setBounds(160, 60, 150, 25);
-		contentPane.add(comboBox);
+		JComboBox comboBoxCharge = new JComboBox();
+		comboBoxCharge.setModel(new DefaultComboBoxModel(new String[] {"Eau", "Électricité", "Gaz"}));
+		comboBoxCharge.setBounds(160, 88, 150, 25);
+		contentPane.add(comboBoxCharge);
 
 		JLabel lblMontant = new JLabel("Montant :");
-		lblMontant.setBounds(50, 100, 100, 25);
+		lblMontant.setBounds(50, 147, 100, 25);
 		contentPane.add(lblMontant);
 
 		textFieldMontant = new JTextField();
-		textFieldMontant.setBounds(160, 100, 150, 25);
+		textFieldMontant.setBounds(160, 147, 150, 25);
 		contentPane.add(textFieldMontant);
 
 		JLabel lblPourcentage = new JLabel("Pourcentage :");
-		lblPourcentage.setBounds(50, 140, 100, 25);
+		lblPourcentage.setBounds(50, 203, 100, 25);
 		contentPane.add(lblPourcentage);
 
 		textFieldPourcentage = new JTextField();
-		textFieldPourcentage.setBounds(160, 140, 150, 25);
+		textFieldPourcentage.setBounds(160, 203, 150, 25);
 		contentPane.add(textFieldPourcentage);
 
 		JLabel lblQuotite = new JLabel("Quotité :");
-		lblQuotite.setBounds(50, 180, 100, 25);
+		lblQuotite.setBounds(50, 263, 100, 25);
 		contentPane.add(lblQuotite);
 
 		textFieldQuotite = new JTextField();
-		textFieldQuotite.setBounds(160, 180, 150, 25);
+		textFieldQuotite.setBounds(160, 263, 150, 25);
 		contentPane.add(textFieldQuotite);
 
 		JButton btnRetour = new JButton("Annuler");
-		btnRetour.setBounds(80, 220, 100, 30);
+		btnRetour.addActionListener(this);
+		btnRetour.setBounds(79, 342, 100, 30);
 		contentPane.add(btnRetour);
 
 		JButton btnAjouter = new JButton("Ajouter");
-		btnAjouter.setBounds(200, 220, 100, 30);
+		btnAjouter.addActionListener(this);
+		btnAjouter.setBounds(210, 342, 100, 30);
 		contentPane.add(btnAjouter);
+	}
+	public void actionPerformed(ActionEvent e) {
 	}
 }
