@@ -4,6 +4,9 @@ import java.awt.EventQueue;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controleur.GestionFenetreAjouterCharge;
+
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
@@ -11,10 +14,9 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
-public class FenetreAjouterCharge extends JInternalFrame implements ActionListener {
+
+public class FenetreAjouterCharge extends JInternalFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -25,7 +27,6 @@ public class FenetreAjouterCharge extends JInternalFrame implements ActionListen
 	public static void main(String[] args) {
 		EventQueue.invokeLater(() -> {
 			try {
-				// For testing only: you need a JFrame + JDesktopPane to show JInternalFrame
 				javax.swing.JFrame frame = new javax.swing.JFrame();
 				frame.setBounds(100, 100, 600, 400);
 				frame.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
@@ -45,6 +46,7 @@ public class FenetreAjouterCharge extends JInternalFrame implements ActionListen
 	}
 
 	public FenetreAjouterCharge() {
+		GestionFenetreAjouterCharge gestionClic = new GestionFenetreAjouterCharge(this);
 		setClosable(true);
 		setIconifiable(true);
 		setMaximizable(true);
@@ -97,15 +99,14 @@ public class FenetreAjouterCharge extends JInternalFrame implements ActionListen
 		contentPane.add(textFieldQuotite);
 
 		JButton btnRetour = new JButton("Annuler");
-		btnRetour.addActionListener(this);
+		btnRetour.addActionListener(gestionClic);
 		btnRetour.setBounds(79, 342, 100, 30);
 		contentPane.add(btnRetour);
 
 		JButton btnAjouter = new JButton("Ajouter");
-		btnAjouter.addActionListener(this);
+		btnAjouter.addActionListener(gestionClic);
 		btnAjouter.setBounds(210, 342, 100, 30);
 		contentPane.add(btnAjouter);
 	}
-	public void actionPerformed(ActionEvent e) {
-	}
+	
 }

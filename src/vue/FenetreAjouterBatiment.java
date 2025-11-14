@@ -50,11 +50,11 @@ public class FenetreAjouterBatiment extends JInternalFrame
      * Create the frame.
      */
     public FenetreAjouterBatiment() {
-        setBounds(100, 100, 309, 256);
-        getContentPane().setLayout(new BorderLayout(0, 0));
+        setBounds(100, 100, 400, 451);
+        getContentPane().setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
         JPanel panel_10 = new JPanel();
-        getContentPane().add(panel_10, BorderLayout.CENTER);
+        getContentPane().add(panel_10);
         panel_10.setLayout(new BorderLayout(0, 0));
 
         JPanel panelNorth = new JPanel();
@@ -154,73 +154,10 @@ public class FenetreAjouterBatiment extends JInternalFrame
         panel.add(spinnerNbBienLouable);
 
         JPanel panelMenuBar = new JPanel();
-        getContentPane().add(panelMenuBar, BorderLayout.NORTH);
+        getContentPane().add(panelMenuBar);
         panelMenuBar.setLayout(new GridLayout(0, 1, 0, 0));
 
-        JMenuBar menuBar = new JMenuBar();
-        menuBar.setBackground(new Color(214, 214, 214));
-        panelMenuBar.add(menuBar);
-
-        JMenu mnProfil = new JMenu("Profil");
-        menuBar.add(mnProfil);
-
-        JMenuItem mntmDeconnecter = new JMenuItem("Déconnecter");
-        mnProfil.add(mntmDeconnecter);
-
-        JMenu mnBatiment = new JMenu("Batiment");
-        menuBar.add(mnBatiment);
-
-        JMenuItem mntmAjouterBat = new JMenuItem("Ajouter bâtiment");
-        mnBatiment.add(mntmAjouterBat);
-
-        JMenuItem mntmSupprimerBat = new JMenuItem("Supprimer bâtiment");
-        mnBatiment.add(mntmSupprimerBat);
-
-        JMenuItem mntmAssurance = new JMenuItem("Assurance");
-        mnBatiment.add(mntmAssurance);
-
-        JMenuItem mntmCompteur = new JMenuItem("Compteurs");
-        mnBatiment.add(mntmCompteur);
-
-        JMenuItem mntmCharge = new JMenuItem("Charges");
-        mnBatiment.add(mntmCharge);
-
-        JMenu mnBienLouable = new JMenu("Bien louable");
-        menuBar.add(mnBienLouable);
-
-        JMenuItem mntmContratLocation = new JMenuItem("Contrat location");
-        mnBienLouable.add(mntmContratLocation);
-
-        JMenuItem mntmCompteurBL = new JMenuItem("Compteurs");
-        mnBienLouable.add(mntmCompteurBL);
-
-        JMenuItem mntmTravaux = new JMenuItem("Travaux");
-        mnBienLouable.add(mntmTravaux);
-
-        JMenuItem mntmChargesBL = new JMenuItem("Charges");
-        mnBienLouable.add(mntmChargesBL);
-
-        JMenuItem mntmDiagnostic = new JMenuItem("Diagnostics");
-        mnBienLouable.add(mntmDiagnostic);
-
-        JMenuItem mntmLocataire = new JMenuItem("Locataires");
-        mnBienLouable.add(mntmLocataire);
-
-        JPanel panelFooter = new JPanel();
-        getContentPane().add(panelFooter, BorderLayout.SOUTH);
-        panelFooter.setLayout(new GridLayout(0, 1, 0, 0));
-
-        JPanel footerPanel = new JPanel();
-        footerPanel.setPreferredSize(new Dimension(584, 30));
-        footerPanel.setBorder(
-            BorderFactory.createMatteBorder(1, 0, 0, 0, Color.LIGHT_GRAY));
-        footerPanel.setBackground(new Color(214, 214, 214));
-        panelFooter.add(footerPanel);
-
-        JLabel footerLabel = new JLabel(
-            "Developpé par Koshua, Jay, Aneesa, Luca et Franck");
-        footerPanel.add(footerLabel);
-
+       
     }
 
     @Override

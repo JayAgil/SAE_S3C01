@@ -17,8 +17,6 @@ import modele.Entreprise;
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class FenetreAjouterTravaux extends JInternalFrame {
 

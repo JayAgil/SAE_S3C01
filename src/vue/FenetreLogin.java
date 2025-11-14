@@ -105,7 +105,7 @@ public class FenetreLogin extends JFrame {
         lblMessage.setHorizontalAlignment(SwingConstants.CENTER);
 
         JButton btnLogin = new JButton("Se connecter");
-        btnLogin.setBounds(132, 146, 196, 34);
+        btnLogin.setBounds(133, 177, 196, 34);
         panelLogin.add(btnLogin);
         btnLogin.setForeground(Color.BLACK);
         btnLogin.setFont(new Font("Segoe UI", Font.BOLD, 13));

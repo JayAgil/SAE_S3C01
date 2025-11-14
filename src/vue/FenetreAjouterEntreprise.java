@@ -4,15 +4,17 @@ import java.awt.EventQueue;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controleur.GestionFenetreAjouterEntreprise;
+
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
-public class FenetreAjouterEntreprise extends JInternalFrame implements ActionListener {
+
+public class FenetreAjouterEntreprise extends JInternalFrame  {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -46,6 +48,7 @@ public class FenetreAjouterEntreprise extends JInternalFrame implements ActionLi
 	}
 
 	public FenetreAjouterEntreprise() {
+		GestionFenetreAjouterEntreprise gestionClic = new GestionFenetreAjouterEntreprise(this);
 		setClosable(true);
 		setIconifiable(true);
 		setMaximizable(true);
@@ -121,15 +124,14 @@ public class FenetreAjouterEntreprise extends JInternalFrame implements ActionLi
 		contentPane.add(textFieldSpecialite);
 
 		JButton btnAnnuler = new JButton("Annuler");
-		btnAnnuler.addActionListener(this);
+		btnAnnuler.addActionListener(gestionClic);
 		btnAnnuler.setBounds(65, 357, 100, 30);
 		contentPane.add(btnAnnuler);
 
 		JButton btnAjouter = new JButton("Ajouter");
-		btnAjouter.addActionListener(this);
+		btnAjouter.addActionListener(gestionClic);
 		btnAjouter.setBounds(211, 357, 100, 30);
 		contentPane.add(btnAjouter);
 	}
-	public void actionPerformed(ActionEvent e) {
-	}
+	
 }

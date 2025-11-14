@@ -66,7 +66,7 @@ public class FenetrePrincipale extends JFrame
     public FenetrePrincipale() {
         this.gestionClic = new GestionFenetrePrincipale(this);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 844, 565);
+        setBounds(100, 100, 834,537);
         contentPane = new JPanel();
 
         setContentPane(contentPane);
@@ -84,7 +84,8 @@ public class FenetrePrincipale extends JFrame
         panelNorth.add(panelNorthCenter);
         panelNorthCenter.setLayout(new GridLayout(0, 6, 0, 0));
 
-        Component horizontalStrut = Box.createHorizontalStrut(20);
+        Component horizontalStrut = Box.createHorizontalStrut(10);
+        horizontalStrut.setPreferredSize(new Dimension(10, 0));
         panelNorthCenter.add(horizontalStrut);
 
         JPanel panelRevenu = new JPanel();
