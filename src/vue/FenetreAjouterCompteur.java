@@ -5,6 +5,12 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import java.awt.BorderLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import java.awt.FlowLayout;
+import javax.swing.JTextField;
+import java.awt.GridLayout;
 
 public class FenetreAjouterCompteur extends JFrame {
 
@@ -32,11 +38,25 @@ public class FenetreAjouterCompteur extends JFrame {
 	 */
 	public FenetreAjouterCompteur() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 643, 527);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
+		contentPane.setLayout(new BorderLayout(0, 0));
+		
+		JPanel panelInformation = new JPanel();
+		contentPane.add(panelInformation, BorderLayout.CENTER);
+		panelInformation.setLayout(new GridLayout(0, 2, 0, 0));
+		
+		JPanel panelButton = new JPanel();
+		contentPane.add(panelButton, BorderLayout.SOUTH);
+		
+		JButton btnAnnuler = new JButton("Annuler");
+		panelButton.add(btnAnnuler);
+		
+		JButton btnAjouter = new JButton("Ajouter");
+		panelButton.add(btnAjouter);
 	}
 
 }
