@@ -4,6 +4,9 @@ import java.awt.EventQueue;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controleur.GestionFenetreAjouterLocataire;
+
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
@@ -12,7 +15,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class FenetreAjouterLocataire extends JInternalFrame implements ActionListener {
+public class FenetreAjouterLocataire extends JInternalFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -57,6 +60,7 @@ public class FenetreAjouterLocataire extends JInternalFrame implements ActionLis
 	}
 
 	public FenetreAjouterLocataire() {
+		GestionFenetreAjouterLocataire gestionClic = new GestionFenetreAjouterLocataire(this);
 		setClosable(true);
 		setIconifiable(true);
 		setMaximizable(true);
@@ -83,7 +87,7 @@ public class FenetreAjouterLocataire extends JInternalFrame implements ActionLis
 
 		// Locataire
 		JLabel lblNom = new JLabel("Nom :");
-		lblNom.setBounds(23, 29, 120, 25);
+		lblNom.setBounds(23, 29, 40, 25);
 		contentPane.add(lblNom);
 		textFieldNom = new JTextField();
 		textFieldNom.setBounds(85, 29, 105, 25);
@@ -125,10 +129,10 @@ public class FenetreAjouterLocataire extends JInternalFrame implements ActionLis
 		contentPane.add(textFieldCodePostal);
 
 		JLabel lblVille = new JLabel("Ville :");
-		lblVille.setBounds(200, 29, 120, 25);
+		lblVille.setBounds(200, 29, 40, 25);
 		contentPane.add(lblVille);
 		textFieldVille = new JTextField();
-		textFieldVille.setBounds(234, 29, 86, 25);
+		textFieldVille.setBounds(274, 29, 86, 25);
 		contentPane.add(textFieldVille);
 
 		JLabel lblDateNaissance = new JLabel("Date Naissance :");
@@ -197,15 +201,14 @@ public class FenetreAjouterLocataire extends JInternalFrame implements ActionLis
 
 		// Buttons
 		JButton btnAjouter = new JButton("Ajouter");
-		btnAjouter.addActionListener(this);
+		btnAjouter.addActionListener(gestionClic);
 		btnAjouter.setBounds(62, 380, 98, 30);
 		contentPane.add(btnAjouter);
 
 		JButton btnRetour = new JButton("Annuler");
-		btnRetour.addActionListener(this);
+		btnRetour.addActionListener(gestionClic);
 		btnRetour.setBounds(234, 380, 98, 30);
 		contentPane.add(btnRetour);
 	}
-	public void actionPerformed(ActionEvent e) {
-	}
+	
 }
