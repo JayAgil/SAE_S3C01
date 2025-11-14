@@ -23,11 +23,16 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 
 public class FenetreSupprimerBatiment extends JInternalFrame
     implements ActionListener {
 
     private static final long serialVersionUID = 1L;
+    private JTextField textField;
+    private JTextField textField_1;
+    private JTextField textField_2;
 
     /**
      * Launch the application.
@@ -50,7 +55,7 @@ public class FenetreSupprimerBatiment extends JInternalFrame
      * Create the frame.
      */
     public FenetreSupprimerBatiment() {
-        setBounds(100, 100, 309, 256);
+        setBounds(100, 100, 400, 451);
         getContentPane().setLayout(new BorderLayout(0, 0));
 
         JPanel panel_10 = new JPanel();
@@ -94,12 +99,61 @@ public class FenetreSupprimerBatiment extends JInternalFrame
 
         JPanel panel = new JPanel();
         panelCenterCenter.add(panel, BorderLayout.CENTER);
-
+        panel.setLayout(new GridLayout(2, 1, 0, 0));
+        
+        JPanel panel_2 = new JPanel();
+        panel.add(panel_2);
+        
         JComboBox<String> cbBatiment = new JComboBox<String>();
         cbBatiment.setModel(new DefaultComboBoxModel(
             new String[] { "bat 1", "bat2", "bat3", "batman" }));
         cbBatiment.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        panel.add(cbBatiment);
+        panel_2.add(cbBatiment);
+        
+        JPanel panel_1 = new JPanel();
+        panel.add(panel_1);
+        panel_1.setLayout(new GridLayout(2, 1, 0, 0));
+        
+        JPanel panel_4 = new JPanel();
+        panel_1.add(panel_4);
+        
+        JLabel lblTitre = new JLabel("Informations batiment");
+        lblTitre.setFont(new Font("Tahoma", Font.BOLD, 14));
+        panel_4.add(lblTitre);
+        
+        JPanel panel_3 = new JPanel();
+        panel_1.add(panel_3);
+        panel_3.setLayout(new GridLayout(3, 2, 0, 0));
+        
+        JLabel lblAdresse = new JLabel("Adresse :");
+        panel_3.add(lblAdresse);
+        
+        JPanel panel_5 = new JPanel();
+        panel_3.add(panel_5);
+        
+        textField = new JTextField();
+        panel_5.add(textField);
+        textField.setColumns(10);
+        
+        JLabel lblDatedeConstruction = new JLabel("Date de construction :");
+        panel_3.add(lblDatedeConstruction);
+        
+        JPanel panel_6 = new JPanel();
+        panel_3.add(panel_6);
+        
+        textField_1 = new JTextField();
+        panel_6.add(textField_1);
+        textField_1.setColumns(10);
+        
+        JLabel lblNbBienLouable = new JLabel("Nombre de bien louable :");
+        panel_3.add(lblNbBienLouable);
+        
+        JPanel panel_7 = new JPanel();
+        panel_3.add(panel_7);
+        
+        textField_2 = new JTextField();
+        panel_7.add(textField_2);
+        textField_2.setColumns(10);
 
         JPanel panelCenterNorth = new JPanel();
         panelCenter.add(panelCenterNorth, BorderLayout.NORTH);
@@ -112,83 +166,6 @@ public class FenetreSupprimerBatiment extends JInternalFrame
             "L'action de supprimer est définitive");
         lblVerification.setHorizontalAlignment(SwingConstants.CENTER);
         panelCenter.add(lblVerification, BorderLayout.SOUTH);
-
-        JPanel panelMenuBar = new JPanel();
-        getContentPane().add(panelMenuBar, BorderLayout.NORTH);
-        panelMenuBar.setLayout(new GridLayout(0, 1, 0, 0));
-
-        JMenuBar menuBar = new JMenuBar();
-        menuBar.setBackground(new Color(214, 214, 214));
-        panelMenuBar.add(menuBar);
-
-        JMenu mnProfil = new JMenu("Profil");
-        menuBar.add(mnProfil);
-
-        JMenuItem mntmDeconnecter = new JMenuItem("Déconnecter");
-        mnProfil.add(mntmDeconnecter);
-
-        JMenu mnBatiment = new JMenu("Batiment");
-        menuBar.add(mnBatiment);
-
-        JMenuItem mntmAjouterBat = new JMenuItem("Ajouter bâtiment");
-        mnBatiment.add(mntmAjouterBat);
-
-        JMenuItem mntmSupprimerBat = new JMenuItem("Supprimer bâtiment");
-        mnBatiment.add(mntmSupprimerBat);
-
-        JMenuItem mntmAssurance = new JMenuItem("Assurance");
-        mnBatiment.add(mntmAssurance);
-
-        JMenuItem mntmCompteur = new JMenuItem("Compteurs");
-        mnBatiment.add(mntmCompteur);
-
-        JMenuItem mntmCharge = new JMenuItem("Charges");
-        mnBatiment.add(mntmCharge);
-
-        JMenu mnBienLouable = new JMenu("Bien louable");
-        menuBar.add(mnBienLouable);
-
-        JMenuItem mntmContratLocation = new JMenuItem("Contrat location");
-        mnBienLouable.add(mntmContratLocation);
-
-        JMenuItem mntmCompteurBL = new JMenuItem("Compteurs");
-        mnBienLouable.add(mntmCompteurBL);
-
-        JMenuItem mntmTravaux = new JMenuItem("Travaux");
-        mnBienLouable.add(mntmTravaux);
-
-        JMenuItem mntmChargesBL = new JMenuItem("Charges");
-        mnBienLouable.add(mntmChargesBL);
-
-        JMenuItem mntmDiagnostic = new JMenuItem("Diagnostics");
-        mnBienLouable.add(mntmDiagnostic);
-
-        JMenuItem mntmLocataire = new JMenuItem("Locataires");
-        mnBienLouable.add(mntmLocataire);
-
-        JMenu mnPaiement = new JMenu("Paiement");
-        menuBar.add(mnPaiement);
-
-        JMenuItem mntmHistorique = new JMenuItem("Historique De Paiements");
-        mnPaiement.add(mntmHistorique);
-
-        JMenuItem mntmAjout = new JMenuItem("Ajouter Paiement");
-        mnPaiement.add(mntmAjout);
-
-        JPanel panelFooter = new JPanel();
-        getContentPane().add(panelFooter, BorderLayout.SOUTH);
-        panelFooter.setLayout(new GridLayout(0, 1, 0, 0));
-
-        JPanel footerPanel = new JPanel();
-        footerPanel.setPreferredSize(new Dimension(584, 30));
-        footerPanel.setBorder(
-            BorderFactory.createMatteBorder(1, 0, 0, 0, Color.LIGHT_GRAY));
-        footerPanel.setBackground(new Color(214, 214, 214));
-        panelFooter.add(footerPanel);
-
-        JLabel footerLabel = new JLabel(
-            "Developpé par Koshua, Jay, Aneesa, Luca et Franck");
-        footerPanel.add(footerLabel);
 
     }
 

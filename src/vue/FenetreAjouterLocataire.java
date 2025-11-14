@@ -132,7 +132,7 @@ public class FenetreAjouterLocataire extends JInternalFrame {
 		lblVille.setBounds(23, 159, 40, 25);
 		contentPane.add(lblVille);
 		textFieldVille = new JTextField();
-		textFieldVille.setBounds(234, 29, 126, 25);
+		textFieldVille.setBounds(250, 29, 110, 25);
 		contentPane.add(textFieldVille);
 
 		JLabel lblDateNaissance = new JLabel("Date Naissance :");

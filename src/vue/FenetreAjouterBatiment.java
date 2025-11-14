@@ -50,11 +50,11 @@ public class FenetreAjouterBatiment extends JInternalFrame
      * Create the frame.
      */
     public FenetreAjouterBatiment() {
-        setBounds(100, 100, 400, 451);
-        getContentPane().setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+        setBounds(100, 100, 400, 256);
+        getContentPane().setLayout(new BorderLayout(0, 0));
 
         JPanel panel_10 = new JPanel();
-        getContentPane().add(panel_10);
+        getContentPane().add(panel_10, BorderLayout.CENTER);
         panel_10.setLayout(new BorderLayout(0, 0));
 
         JPanel panelNorth = new JPanel();
@@ -153,11 +153,6 @@ public class FenetreAjouterBatiment extends JInternalFrame
         spinnerNbBienLouable.setBounds(5, 5, 100, 20);
         panel.add(spinnerNbBienLouable);
 
-        JPanel panelMenuBar = new JPanel();
-        getContentPane().add(panelMenuBar);
-        panelMenuBar.setLayout(new GridLayout(0, 1, 0, 0));
-
-       
     }
 
     @Override
