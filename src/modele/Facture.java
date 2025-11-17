@@ -68,13 +68,6 @@ public class Facture {
 	public LocalDate getDatePaiement() {
 		return datePaiement;
 	}
-	@Override
-	public String toString() {
-		return "Facture [numeroFacture=" + numeroFacture + ", montant=" + montant + ", dateDeFacture=" + dateDeFacture
-				+ ", compteBancaire=" + compteBancaire + ", montantDevis=" + montantDevis + ", datePaiement="
-				+ datePaiement + ", designationDeTravaux=" + designationDeTravaux + ", bienLoauble=" + bienLoauble
-				+ ", entreprise=" + entreprise + "]";
-	}
 	public String getDesignationDeTravaux() {
 		return designationDeTravaux;
 	}
