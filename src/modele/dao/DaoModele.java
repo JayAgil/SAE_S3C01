@@ -6,12 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import Connection.UtOracleDataSource;
+import modele.UtOracleDataSource;
 import modele.dao.requetes.Requete;
 
 public abstract class DaoModele<T> implements Dao<T> {
-	protected Connection connexion = UtOracleDataSource.getConnexionBD();
+	protected Connection connexion = UtOracleDataSource.getConnectionBD();
 
 	protected abstract T creerInstance(ResultSet curseur) throws SQLException;
 
