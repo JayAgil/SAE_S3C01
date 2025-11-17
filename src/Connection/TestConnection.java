@@ -1,6 +1,6 @@
-package DAO;
+package Connection;
+
 import java.sql.*;
-import MVC.Connector;
 public class TestConnection {
 	public static void main(String[]args) throws SQLException{
 		Connection con = Connector.getConnection();
