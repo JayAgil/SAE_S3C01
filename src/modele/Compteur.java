@@ -1,6 +1,6 @@
 package modele;
 
-import java.time.LocalDate;
+import java.sql.Date;
 import java.util.Objects;
 
 public class Compteur {
@@ -9,14 +9,14 @@ public class Compteur {
 	private double partieFixe;
 	private double partieVariable;
 	private double total;
-	private LocalDate dataDernierChangement;
+	private Date dataDernierChangement;
 	private BienLouable bienLouable;
 	private double indexAncien;
 	private double indexNouveau;
 	private String type;
 
 	public Compteur(String idCompteur, double partieFixe, double partieVariable, double total,
-			LocalDate dataDernierChangement, BienLouable bienLouable, double indexAncien, double indexNouveau,
+			Date dataDernierChangement, BienLouable bienLouable, double indexAncien, double indexNouveau,
 			String type) {
 		super();
 		this.idCompteur = idCompteur;
@@ -62,11 +62,11 @@ public class Compteur {
 		this.total = total;
 	}
 
-	public LocalDate getDataDernierChangement() {
+	public Date getDataDernierChangement() {
 		return dataDernierChangement;
 	}
 
-	public void setDataDernierChangement(LocalDate dataDernierChangement) {
+	public void setDataDernierChangement(Date dataDernierChangement) {
 		this.dataDernierChangement = dataDernierChangement;
 	}
 

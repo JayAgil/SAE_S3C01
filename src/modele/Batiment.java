@@ -1,15 +1,17 @@
 package modele;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Objects;
 import java.time.Period;
+import java.time.ZoneId;
 
 public class Batiment {
 	
     private String adresse;
-    private LocalDate dateConstruction;
+    private Date dateConstruction;
     
-    public Batiment(String adresse, LocalDate dateConstruction) {
+    public Batiment(String adresse, Date dateConstruction) {
         this.adresse = adresse;
         this.dateConstruction = dateConstruction;
     }
@@ -22,11 +24,11 @@ public class Batiment {
         this.adresse = adresse;
     }
 
-    public LocalDate getDateConstruction() {
+    public Date getDateConstruction() {
         return dateConstruction;
     }
 
-    public void setDateConstruction(LocalDate dateConstruction) {
+    public void setDateConstruction(Date dateConstruction) {
         this.dateConstruction = dateConstruction;
     }
 
@@ -55,6 +57,9 @@ public class Batiment {
     }
     
     public int calculerAge() {
-        return Period.between(dateConstruction, LocalDate.now()).getYears();
+    	return Period.between(
+    		    dateConstruction.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
+    		    LocalDate.now()
+    		).getYears();
     }
 }

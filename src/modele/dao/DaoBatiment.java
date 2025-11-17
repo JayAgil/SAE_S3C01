@@ -1,10 +1,14 @@
 package modele.dao;
 
+import java.sql.Date;
+import java.sql.ResultSet;
+import modele.dao.requetes.*;
+import java.sql.SQLException;
 import java.util.List;
 
 import modele.Batiment;
 
-public class DaoBatiment implements Dao<Batiment> {
+public class DaoBatiment extends DaoModele<Batiment> implements Dao<Batiment> {
 
 	@Override
 	public void create(Batiment t) {
@@ -24,16 +28,20 @@ public class DaoBatiment implements Dao<Batiment> {
 	}
 
 	@Override
-	public Batiment findById(String... id) {
-		if (DaoTest.selectBatiment(id).size()==0) {
-			return null;
-		}
-		return DaoTest.selectBatiment(id).get(0);
+	public Batiment findById(String... id) throws SQLException {
+		return this.findById(new RequeteSelectBatimentById(), id);
 	}
 
 	@Override
-	public List<Batiment> findAll() {
-		return DaoTest.selectBatiment();
+	public List<Batiment> findAll() throws SQLException {
+		return this.find(new RequeteSelectBatiment());
+	}
+
+	@Override
+	protected Batiment creerInstance(ResultSet curseur) throws SQLException {
+		String adresse = curseur.getString(1);
+		Date dateConstruction = curseur.getDate(2);
+		return new Batiment(adresse,dateConstruction);
 	}
 
 }
