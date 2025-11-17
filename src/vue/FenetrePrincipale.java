@@ -37,7 +37,7 @@ public class FenetrePrincipale extends JFrame
     private JPanel contentPane;
 
     public JTable getTableBienLouable() {
-        return getTableBienLouable();
+        return table; 
     }
 
     private GestionFenetrePrincipale gestionClic;
@@ -66,9 +66,8 @@ public class FenetrePrincipale extends JFrame
     public FenetrePrincipale() {
         this.gestionClic = new GestionFenetrePrincipale(this);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 834,537);
-        contentPane = new JPanel();
 
+        contentPane = new JPanel();
         setContentPane(contentPane);
         contentPane.setLayout(new BorderLayout(0, 0));
 
@@ -82,10 +81,9 @@ public class FenetrePrincipale extends JFrame
 
         JPanel panelNorthCenter = new JPanel();
         panelNorth.add(panelNorthCenter);
-        panelNorthCenter.setLayout(new GridLayout(0, 6, 0, 0));
+        panelNorthCenter.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
         Component horizontalStrut = Box.createHorizontalStrut(10);
-        horizontalStrut.setPreferredSize(new Dimension(10, 0));
         panelNorthCenter.add(horizontalStrut);
 
         JPanel panelRevenu = new JPanel();
@@ -113,21 +111,21 @@ public class FenetrePrincipale extends JFrame
         panelNorthCenter.add(horizontalStrut_3);
 
         Component verticalStrut = Box.createVerticalStrut(20);
-        verticalStrut.setPreferredSize(new Dimension(0, 50));
+        verticalStrut.setPreferredSize(new Dimension(0, 10));
         panelNorth.add(verticalStrut, BorderLayout.NORTH);
 
         JPanel panel = new JPanel();
         panelNorth.add(panel, BorderLayout.SOUTH);
         panel.setLayout(new BorderLayout(0, 0));
 
-        Component verticalStrut_1 = Box.createVerticalStrut(37);
+        Component verticalStrut_1 = Box.createVerticalStrut(10);
         panel.add(verticalStrut_1, BorderLayout.NORTH);
 
         JPanel panelNorthCenter_1 = new JPanel();
         panel.add(panelNorthCenter_1, BorderLayout.CENTER);
-        panelNorthCenter_1.setLayout(new GridLayout(0, 6, 0, 0));
+        panelNorthCenter_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-        Component horizontalStrut_6 = Box.createHorizontalStrut(20);
+        Component horizontalStrut_6 = Box.createHorizontalStrut(10);
         panelNorthCenter_1.add(horizontalStrut_6);
 
         JPanel panelRevenu_1 = new JPanel();
@@ -155,7 +153,7 @@ public class FenetrePrincipale extends JFrame
         panelNorthCenter_1.add(horizontalStrut_3_1);
 
         Component verticalStrut_2 = Box.createVerticalStrut(20);
-        verticalStrut_2.setPreferredSize(new Dimension(0, 50));
+        verticalStrut_2.setPreferredSize(new Dimension(0, 10));
         panel.add(verticalStrut_2, BorderLayout.SOUTH);
 
         JPanel panelSouth = new JPanel();
@@ -205,7 +203,7 @@ public class FenetrePrincipale extends JFrame
                 { null, null, null, null }, { null, null, null, null },
                 { null, null, null, null }, },
             new String[] { "Contrat Location", "Date", "Bien Louable",
-                "Locataire R\u00E9f\u00E9rent" }) {
+                "Locataire Référent" }) {
             Class[] columnTypes = new Class[] { String.class, String.class,
                 String.class, String.class };
 
@@ -334,33 +332,34 @@ public class FenetrePrincipale extends JFrame
         Component horizontalStrut_5 = Box.createHorizontalStrut(20);
         horizontalStrut_5.setPreferredSize(new Dimension(10, 0));
         contentPane.add(horizontalStrut_5, BorderLayout.EAST);
+        this.setPreferredSize(new Dimension(726, 442));
+        this.setMinimumSize(new Dimension(726, 442));
+        this.setMaximumSize(new Dimension(726, 442));
+        this.setSize(new Dimension(726, 442));
+
+        this.pack();
+        this.setLocationRelativeTo(null);
+       
     }
 
     @Override
-    public void actionPerformed(ActionEvent arg0) {
-        gestionClic.actionPerformed(arg0);
+    public void actionPerformed(ActionEvent arg) {
+        gestionClic.actionPerformed(arg);
     }
 
     @Override
-    public void mouseClicked(MouseEvent arg0) {
-        gestionClic.mouseClicked(arg0);
+    public void mouseClicked(MouseEvent arg) {
+        gestionClic.mouseClicked(arg);
     }
 
     @Override
-    public void mouseEntered(MouseEvent arg0) {
-    }
-
+    public void mouseEntered(MouseEvent arg) {}
     @Override
-    public void mouseExited(MouseEvent arg0) {
-    }
-
+    public void mouseExited(MouseEvent arg) {}
     @Override
-    public void mousePressed(MouseEvent arg0) {
-    }
-
+    public void mousePressed(MouseEvent arg) {}
     @Override
-    public void mouseReleased(MouseEvent arg0) {
-    }
+    public void mouseReleased(MouseEvent arg) {}
 
     public JTable getTable() {
         return table;
