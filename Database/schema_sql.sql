@@ -1,18 +1,18 @@
 -- Oracle SQL Schema (suivant exactement le modèle fourni)
 
-CREATE TABLE Garant (
+CREATE TABLE SAE_Garant (
     Id_Garant NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     Nom VARCHAR2(50),
     Adresse VARCHAR2(50),
     Tel VARCHAR2(14)
 );
 
-CREATE TABLE Batiment (
+CREATE TABLE SAE_Batiment (
     Adresse VARCHAR2(50) PRIMARY KEY,
     Date_construction DATE
 );
 
-CREATE TABLE BienLouable (
+CREATE TABLE SAE_BienLouable (
     Id_BienLouable NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     NumeroFiscale VARCHAR2(50),
     Adresse VARCHAR2(50),
@@ -21,10 +21,10 @@ CREATE TABLE BienLouable (
     Type_bien_louable VARCHAR2(50),
     Id_BienLouable_2 NUMBER,
     fk_Adresse_Bat VARCHAR2(50),
-    CONSTRAINT fk_bien_bat FOREIGN KEY (fk_Adresse_Bat) REFERENCES Batiment(Adresse)
+    CONSTRAINT fk_bien_bat FOREIGN KEY (fk_Adresse_Bat) REFERENCES SAE_Batiment(Adresse)
 );
 
-CREATE TABLE Locataire (
+CREATE TABLE SAE_Locataire (
     Id_Locataire NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     Nom VARCHAR2(50),
     Prenom VARCHAR2(50),
@@ -40,10 +40,10 @@ CREATE TABLE Locataire (
     Situation_Familiale VARCHAR2(50),
     Image_Locataire VARCHAR2(),
     fk_Id_Garant NUMBER,
-    CONSTRAINT fk_loc_garant FOREIGN KEY (fk_Id_Garant) REFERENCES Garant(Id_Garant)
+    CONSTRAINT fk_loc_garant FOREIGN KEY (fk_Id_Garant) REFERENCES SAE_Garant(Id_Garant)
 );
 
-CREATE TABLE ContratLocation (
+CREATE TABLE SAE_ContratLocation (
     Numero_de_contrat NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     Date_debut DATE,
     Date_Fin DATE,
@@ -56,43 +56,43 @@ CREATE TABLE ContratLocation (
     Index_Compteur_Electrcite NUMBER,
     Index_Compteur_Gaz NUMBER,
     fk_Id_BienLouable NUMBER,
-    CONSTRAINT fk_contrat_bien FOREIGN KEY (fk_Id_BienLouable) REFERENCES BienLouable(Id_BienLouable)
+    CONSTRAINT fk_contrat_bien FOREIGN KEY (fk_Id_BienLouable) REFERENCES SAE_BienLouable(Id_BienLouable)
 );
 
-CREATE TABLE Charges_Generale (
+CREATE TABLE SAE_Charges_Generale (
     Id_Charges_Generale NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     Type_Charge VARCHAR2(50),
     Montant_Caution NUMBER,
     Pourcentage NUMBER,
     Quotite NUMBER(3,1),
     fk_Id_BienLouable NUMBER,
-    CONSTRAINT fk_chg_bien FOREIGN KEY (fk_Id_BienLouable) REFERENCES BienLouable(Id_BienLouable)
+    CONSTRAINT fk_chg_bien FOREIGN KEY (fk_Id_BienLouable) REFERENCES SAE_BienLouable(Id_BienLouable)
 );
 
-CREATE TABLE Diagnostics (
+CREATE TABLE SAE_Diagnostics (
     Id_Diagnostics NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     Type_Diagnostic VARCHAR2(50),
     Date_Realisation DATE,
     Date_Validite DATE,
     Fichier VARCHAR25(),
     fk_Id_BienLouable NUMBER,
-    CONSTRAINT fk_diag_bien FOREIGN KEY (fk_Id_BienLouable) REFERENCES BienLouable(Id_BienLouable)
+    CONSTRAINT fk_diag_bien FOREIGN KEY (fk_Id_BienLouable) REFERENCES SAE_BienLouable(Id_BienLouable)
 );
 
-CREATE TABLE IRL (
+CREATE TABLE SAE_IRL (
     Annee NUMBER PRIMARY KEY,
     IRL NUMBER
 );
 
-CREATE TABLE Paiement (
+CREATE TABLE SAE_Paiement (
     Id_Paiement NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     Montant NUMBER,
     Date_Paiement DATE,
     fk_Numero_de_contrat NUMBER,
-    CONSTRAINT fk_paiement_contrat FOREIGN KEY (fk_Numero_de_contrat) REFERENCES ContratLocation(Numero_de_contrat)
+    CONSTRAINT fk_paiement_contrat FOREIGN KEY (fk_Numero_de_contrat) REFERENCES SAE_ContratLocation(Numero_de_contrat)
 );
 
-CREATE TABLE Entreprise (
+CREATE TABLE SAE_Entreprise (
     Numero_Siret VARCHAR2(50) PRIMARY KEY,
     Adresse VARCHAR2(50),
     Ville VARCHAR2(50),
@@ -102,7 +102,7 @@ CREATE TABLE Entreprise (
     Specialite VARCHAR2(50)
 );
 
-CREATE TABLE Assurance (
+CREATE TABLE SAE_Assurance (
     Numero_d_assurance NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     Prime NUMBER,
     Montant NUMBER,
@@ -111,10 +111,10 @@ CREATE TABLE Assurance (
     Adresse_agence VARCHAR2(50),
     Tel_agence VARCHAR2(50),
     fk_Adresse VARCHAR2(50),
-    CONSTRAINT fk_assur_bat FOREIGN KEY (fk_Adresse) REFERENCES Batiment(Adresse)
+    CONSTRAINT fk_assur_bat FOREIGN KEY (fk_Adresse) REFERENCES SAE_Batiment(Adresse)
 );
 
-CREATE TABLE Compteur (
+CREATE TABLE SAE_Compteur (
     Id_Compteur NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     Partie_Fixe NUMBER,
     Partie_Variable NUMBER,
@@ -124,10 +124,10 @@ CREATE TABLE Compteur (
     Index_ancien NUMBER,
     Index_nouveau NUMBER,
     fk_Id_BienLouable NUMBER,
-    CONSTRAINT fk_comp_bien FOREIGN KEY (fk_Id_BienLouable) REFERENCES BienLouable(Id_BienLouable)
+    CONSTRAINT fk_comp_bien FOREIGN KEY (fk_Id_BienLouable) REFERENCES SAE_BienLouable(Id_BienLouable)
 );
 
-CREATE TABLE Facture (
+CREATE TABLE SAE_Facture (
     Numero_Facture NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     Montant NUMBER,
     Date_de_facture DATE,
@@ -137,14 +137,14 @@ CREATE TABLE Facture (
     Designation_de_travaux VARCHAR2(50),
     fk_Id_BienLouable NUMBER,
     fk_Numero_Siret VARCHAR2(50),
-    CONSTRAINT fk_fact_bien FOREIGN KEY (fk_Id_BienLouable) REFERENCES BienLouable(Id_BienLouable),
-    CONSTRAINT fk_fact_ent FOREIGN KEY (fk_Numero_Siret) REFERENCES Entreprise(Numero_Siret)
+    CONSTRAINT fk_fact_bien FOREIGN KEY (fk_Id_BienLouable) REFERENCES SAE_BienLouable(Id_BienLouable),
+    CONSTRAINT fk_fact_ent FOREIGN KEY (fk_Numero_Siret) REFERENCES SAE_Entreprise(Numero_Siret)
 );
 
-CREATE TABLE Contrat_Locataire (
+CREATE TABLE SAE_Contrat_Locataire (
     Id_Locataire NUMBER,
     Numero_de_contrat NUMBER,
     PRIMARY KEY (Id_Locataire, Numero_de_contrat),
-    CONSTRAINT fk_cl_loc FOREIGN KEY (Id_Locataire) REFERENCES Locataire(Id_Locataire),
-    CONSTRAINT fk_cl_con FOREIGN KEY (Numero_de_contrat) REFERENCES ContratLocation(Numero_de_contrat)
+    CONSTRAINT fk_cl_loc FOREIGN KEY (Id_Locataire) REFERENCES SAE_Locataire(Id_Locataire),
+    CONSTRAINT fk_cl_con FOREIGN KEY (Numero_de_contrat) REFERENCES SAE_ContratLocation(Numero_de_contrat)
 );
