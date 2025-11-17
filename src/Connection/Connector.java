@@ -1,6 +1,6 @@
-package MVC;
-import java.sql.*;
+package Connection;
 
+import java.sql.*;
 public class Connector {
 	private static String URL = "jdbc:mysql://srv2000.hstgr.io/u994043709_SAE_DB";
 	private static String user ="u994043709_SAE_User";
