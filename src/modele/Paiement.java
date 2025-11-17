@@ -1,22 +1,23 @@
 package modele;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Objects;
 
 public class Paiement {
-	
+
 	private String id_paiement;
 	private double montant;
-	private LocalDate datepaiement;
+	private Date datepaiement;
 	private ContratLocation contratLocation;
-	
-	public Paiement(String id_paiement,double montant,LocalDate datepaiement, ContratLocation cl) {
+
+	public Paiement(String id_paiement, double montant, Date datepaiement, ContratLocation cl) {
 		this.id_paiement = id_paiement;
 		this.montant = montant;
 		this.datepaiement = datepaiement;
 		this.contratLocation = cl;
 	}
-	
+
 	public ContratLocation getContratLocation() {
 		return contratLocation;
 	}
@@ -41,11 +42,11 @@ public class Paiement {
 		this.montant = montant;
 	}
 
-	public LocalDate getDatepaiement() {
+	public Date getDatepaiement() {
 		return datepaiement;
 	}
 
-	public void setDatepaiement(LocalDate datepaiement) {
+	public void setDatepaiement(Date datepaiement) {
 		this.datepaiement = datepaiement;
 	}
 
@@ -66,12 +67,4 @@ public class Paiement {
 		return Objects.equals(id_paiement, other.id_paiement);
 	}
 
-	@Override
-	public String toString() {
-		return "Paiement [id_paiement=" + id_paiement + ", montant=" + montant + ", datepaiement=" + datepaiement
-				+ ", contratLocation=" + contratLocation + "]";
-	}
-
-	
-	
 }

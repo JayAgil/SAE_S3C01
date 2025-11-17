@@ -1,6 +1,8 @@
 package modele;
 
+import java.sql.Date;
 import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Objects;
 
 public class Locataire {
@@ -13,7 +15,7 @@ public class Locataire {
 	private String email;
 	private String codePostale;
 	private String ville;
-	private LocalDate dateDeNaissance;
+	private Date dateDeNaissance;
 	private String lieuDeNaissance;
 	private double salaire;
 	private String profession;
@@ -22,7 +24,7 @@ public class Locataire {
 	private Garant garant;
 
 	public Locataire(String idLocataire, String nom, String prenom, String adresse, String tel, String email,
-			String codePostale, String ville, LocalDate dateDeNaissance, String lieuDeNaissance, double salaire,
+			String codePostale, String ville, Date dateDeNaissance, String lieuDeNaissance, double salaire,
 			String profession, String situationFamiliale, String image, Garant garant) {
 		super();
 		this.idLocataire = idLocataire;
@@ -106,11 +108,11 @@ public class Locataire {
 		this.ville = ville;
 	}
 
-	public LocalDate getDateDeNaissance() {
+	public Date getDateDeNaissance() {
 		return dateDeNaissance;
 	}
 
-	public void setDateDeNaissance(LocalDate dateDeNaissance) {
+	public void setDateDeNaissance(Date dateDeNaissance) {
 		this.dateDeNaissance = dateDeNaissance;
 	}
 
@@ -163,8 +165,16 @@ public class Locataire {
 	}
 
 	public boolean estMajeur() {
-		return dateDeNaissance != null && dateDeNaissance.plusYears(18).isBefore(LocalDate.now());
+	    if (dateDeNaissance == null) return false;
+	    java.sql.Date today = new java.sql.Date(System.currentTimeMillis());
+	    Calendar cal = Calendar.getInstance();
+	    cal.setTime(dateDeNaissance);
+	    cal.add(Calendar.YEAR, 18);
+	    java.sql.Date eighteenthBirthday =
+	            new java.sql.Date(cal.getTimeInMillis());
+	    return eighteenthBirthday.before(today);
 	}
+
 
 	public boolean aUnGarant() {
 		return garant != null;
