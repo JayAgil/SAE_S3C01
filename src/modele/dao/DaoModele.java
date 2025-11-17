@@ -6,7 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import modele.UtOracleDataSource;
+
+import Connection.UtOracleDataSource;
 import modele.dao.requetes.Requete;
 
 public abstract class DaoModele<T> implements Dao<T> {
