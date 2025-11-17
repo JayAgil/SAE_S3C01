@@ -22,14 +22,16 @@ import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.table.TableModel;
 import javax.swing.JScrollBar;
+import java.awt.Component;
+import javax.swing.Box;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class FenetreCompteurs extends JFrame {
+public class FenetreCompteurs extends JFrame implements ActionListener {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
     private JTable tableCompteurs;
-    private JTable table;
-
     /**
      * Launch the application.
      */
@@ -52,7 +54,7 @@ public class FenetreCompteurs extends JFrame {
      */
     public FenetreCompteurs() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 618, 323);
+        setBounds(100, 100, 726, 442);
 
         JMenuBar menuBar = new JMenuBar();
         menuBar.setBackground(new Color(214, 214, 214));
@@ -136,7 +138,7 @@ public class FenetreCompteurs extends JFrame {
         panel.setLayout(new BorderLayout(0, 0));
 
         
-        DefaultTableModel model = new DefaultTableModel(
+        new DefaultTableModel(
             new Object[][] {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
@@ -187,21 +189,35 @@ public class FenetreCompteurs extends JFrame {
         panel.add(scrollPane, BorderLayout.CENTER);
         scrollPane.setPreferredSize(new Dimension(700, 300));
         
-    
-        JLabel Titre = new JLabel("Fenêtre Compteurs");
-        Titre.setHorizontalAlignment(SwingConstants.CENTER);
-        Titre.setFont(new Font("Tahoma", Font.BOLD, 14));
-        panel.add(Titre, BorderLayout.NORTH);
-        
         JPanel panel_butons = new JPanel();
         panel.add(panel_butons, BorderLayout.SOUTH);
         panel_butons.setLayout(new GridLayout(0, 2, 0, 0));
         
         JButton btnRetour = new JButton("Retour");
+        btnRetour.addActionListener(this);
         panel_butons.add(btnRetour);
         
-        JButton btnAjouterCompteur = new JButton("Ajouter Compteur");
+        JButton btnAjouterCompteur = new JButton("Ajouter compteur");
+        btnAjouterCompteur.addActionListener(this);
         panel_butons.add(btnAjouterCompteur);
+        
+        JPanel panel_1 = new JPanel();
+        contentPane.add(panel_1, BorderLayout.NORTH);
+        
+        Component verticalStrut = Box.createVerticalStrut(60);
+        panel_1.add(verticalStrut);
+        
+        JLabel lblTitre = new JLabel("Compteurs");
+        lblTitre.setFont(new Font("Tahoma", Font.BOLD, 15));
+        panel_1.add(lblTitre);
 
     }
+	public void actionPerformed(ActionEvent e) {
+		switch (((JButton) e.getSource()).getText()) {
+		case "Retour" :
+			break;
+		case "Ajouter compteur" :
+			break;
+		}
+	}
 }

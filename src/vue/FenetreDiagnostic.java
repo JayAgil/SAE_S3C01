@@ -21,13 +21,14 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import java.awt.Font;
 
 public class FenetreDiagnostic extends JInternalFrame
     implements ActionListener {
 
     private static final long serialVersionUID = 1L;
-    private JTextField textFieldDateValidite;
-    private JTextField textFieldTypeDiagnostique;
+    private JTextField textFieldDateValide;
+    private JTextField textFieldType;
 
     /**
      * Launch the application.
@@ -50,7 +51,7 @@ public class FenetreDiagnostic extends JInternalFrame
      * Create the frame.
      */
     public FenetreDiagnostic() {
-        setBounds(100, 100, 539, 446);
+        setBounds(100, 100, 726, 442);
         getContentPane().setLayout(new BorderLayout(0, 0));
 
         JPanel panelMenuBar = new JPanel();
@@ -130,112 +131,81 @@ public class FenetreDiagnostic extends JInternalFrame
         JLabel footerLabel = new JLabel(
             "Developpé par Koshua, Jay, Aneesa, Luca et Franck");
         footerPanel.add(footerLabel);
-
-        JPanel panelContent = new JPanel();
-        getContentPane().add(panelContent, BorderLayout.CENTER);
-        panelContent.setLayout(new BorderLayout(0, 0));
-
-        JPanel panelNorth = new JPanel();
-        panelContent.add(panelNorth, BorderLayout.NORTH);
-        panelNorth.setLayout(new GridLayout(0, 2, 0, 0));
-
-        JPanel panelLigneRealisation = new JPanel();
-        panelNorth.add(panelLigneRealisation);
-        panelLigneRealisation.setLayout(new GridLayout(0, 2, 0, 0));
-
-        JPanel panelLblDateRealisation = new JPanel();
-        FlowLayout fl_panelLblDateRealisation = (FlowLayout) panelLblDateRealisation
-            .getLayout();
-        fl_panelLblDateRealisation.setAlignment(FlowLayout.RIGHT);
-        panelLigneRealisation.add(panelLblDateRealisation);
-
-        JLabel lblRealisation = new JLabel("Date Realisation : ");
-        lblRealisation.setHorizontalAlignment(SwingConstants.RIGHT);
-        panelLblDateRealisation.add(lblRealisation);
-
-        JPanel panelChoixDateRealisation = new JPanel();
-        panelLigneRealisation.add(panelChoixDateRealisation);
-        panelChoixDateRealisation
-            .setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
-
-        JComboBox comboBoxDateRealisation = new JComboBox();
-        comboBoxDateRealisation.setModel(new DefaultComboBoxModel(
-            new String[] { "Date1", "Date2", "9/11", "476 ap. J.-C." }));
-        panelChoixDateRealisation.add(comboBoxDateRealisation);
-
-        JPanel panelVide = new JPanel();
-        panelNorth.add(panelVide);
-
-        JPanel panelValidite = new JPanel();
-        panelNorth.add(panelValidite);
-        panelValidite.setLayout(new GridLayout(0, 2, 0, 0));
-
-        JPanel panelLblDateValidite = new JPanel();
-        FlowLayout fl_panelLblDateValidite = (FlowLayout) panelLblDateValidite
-            .getLayout();
-        fl_panelLblDateValidite.setAlignment(FlowLayout.RIGHT);
-        panelValidite.add(panelLblDateValidite);
-
-        JLabel lblDateValidite = new JLabel("Date de validite : ");
-        lblDateValidite.setHorizontalAlignment(SwingConstants.RIGHT);
-        panelLblDateValidite.add(lblDateValidite);
-
-        JPanel panelTxtDateValidite = new JPanel();
-        panelTxtDateValidite.setLayout(null);
-        panelValidite.add(panelTxtDateValidite);
-
-        textFieldDateValidite = new JTextField();
-        textFieldDateValidite.setColumns(10);
-        textFieldDateValidite.setBounds(5, 5, 101, 19);
-        panelTxtDateValidite.add(textFieldDateValidite);
-
-        JPanel panelVide2 = new JPanel();
-        panelNorth.add(panelVide2);
-
-        JPanel panelType = new JPanel();
-        panelNorth.add(panelType);
-        panelType.setLayout(new GridLayout(0, 2, 0, 0));
-
-        JPanel panelLblType = new JPanel();
-        FlowLayout fl_panelLblType = (FlowLayout) panelLblType.getLayout();
-        fl_panelLblType.setAlignment(FlowLayout.RIGHT);
-        panelType.add(panelLblType);
-
-        JLabel lblTypeDiagnostique = new JLabel("Type de diagnostique : ");
-        lblTypeDiagnostique.setHorizontalAlignment(SwingConstants.RIGHT);
-        panelLblType.add(lblTypeDiagnostique);
-
-        JPanel panelTxtType = new JPanel();
-        panelType.add(panelTxtType);
-        panelTxtType.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
-
-        textFieldTypeDiagnostique = new JTextField();
-        textFieldTypeDiagnostique.setColumns(10);
-        panelTxtType.add(textFieldTypeDiagnostique);
-
-        JPanel panelBtnObtenir = new JPanel();
-        FlowLayout fl_panelBtnObtenir = (FlowLayout) panelBtnObtenir
-            .getLayout();
-        fl_panelBtnObtenir.setAlignment(FlowLayout.RIGHT);
-        panelNorth.add(panelBtnObtenir);
-
-        JButton btnObtenir = new JButton("Obtenir");
-        panelBtnObtenir.add(btnObtenir);
-
-        JPanel panelCenter = new JPanel();
-        panelContent.add(panelCenter, BorderLayout.CENTER);
-
-        JPanel panelSouth = new JPanel();
-        FlowLayout flowLayout = (FlowLayout) panelSouth.getLayout();
-        flowLayout.setAlignment(FlowLayout.LEFT);
-        panelContent.add(panelSouth, BorderLayout.SOUTH);
-
+        
+        JPanel panel = new JPanel();
+        getContentPane().add(panel, BorderLayout.CENTER);
+        panel.setLayout(new BorderLayout(0, 0));
+        
+        JLabel lblTitre = new JLabel("Diagnostic");
+        lblTitre.setFont(new Font("Tahoma", Font.BOLD, 15));
+        panel.add(lblTitre, BorderLayout.NORTH);
+        
+        JPanel panel_1 = new JPanel();
+        panel.add(panel_1, BorderLayout.SOUTH);
+        
         JButton btnRetour = new JButton("Retour");
-        panelSouth.add(btnRetour);
+        btnRetour.addActionListener(this);
+        panel_1.add(btnRetour);
+        
+        JPanel panel_2 = new JPanel();
+        panel.add(panel_2, BorderLayout.CENTER);
+        panel_2.setLayout(new BorderLayout(0, 0));
+        
+        JPanel panel_3 = new JPanel();
+        panel_2.add(panel_3, BorderLayout.NORTH);
+        panel_3.setLayout(new GridLayout(4, 0, 0, 0));
+        
+        JPanel panel_4 = new JPanel();
+        panel_3.add(panel_4);
+        panel_4.setLayout(new GridLayout(1, 2, 0, 0));
+        
+        JLabel lbldateRealisation = new JLabel("Date de realisation :");
+        panel_4.add(lbldateRealisation);
+        
+        JPanel panel_8 = new JPanel();
+        panel_4.add(panel_8);
+        
+        JComboBox comboBoxDateRealise = new JComboBox();
+        panel_8.add(comboBoxDateRealise);
+        
+        JPanel panel_5 = new JPanel();
+        panel_3.add(panel_5);
+        panel_5.setLayout(new GridLayout(1, 2, 0, 0));
+        
+        JLabel lblDateValide = new JLabel("Date de validite :");
+        panel_5.add(lblDateValide);
+        
+        JPanel panel_9 = new JPanel();
+        panel_5.add(panel_9);
+        
+        textFieldDateValide = new JTextField();
+        panel_9.add(textFieldDateValide);
+        textFieldDateValide.setColumns(10);
+        
+        JPanel panel_6 = new JPanel();
+        panel_3.add(panel_6);
+        panel_6.setLayout(new GridLayout(1, 2, 0, 0));
+        
+        JLabel lblType = new JLabel("Type diagnostic :");
+        panel_6.add(lblType);
+        
+        JPanel panel_10 = new JPanel();
+        panel_6.add(panel_10);
+        
+        textFieldType = new JTextField();
+        panel_10.add(textFieldType);
+        textFieldType.setColumns(10);
+        
+        JPanel panel_7 = new JPanel();
+        panel_3.add(panel_7);
+        
+        JButton btnObtenir = new JButton("Obtenir");
+        btnObtenir.addActionListener(this);
+        panel_7.add(btnObtenir);
 
     }
 
     @Override
-    public void actionPerformed(ActionEvent arg0) {
+    public void actionPerformed(ActionEvent e) {
     }
 }

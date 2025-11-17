@@ -3,7 +3,6 @@ package vue;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -25,18 +24,19 @@ import java.awt.event.ActionEvent;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import java.awt.Panel;
+import java.awt.Font;
+import java.awt.Component;
+import javax.swing.Box;
+import java.awt.event.ActionListener;
 
-public class FenetreCharges extends JFrame {
+public class FenetreCharges extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable table;
-	private GestionFenetreCharges gestionClicCharges;
-	private JButton btnQuitter;
+	
+
 	/**
 	 * Launch the application.
 	 */
@@ -116,19 +116,13 @@ public class FenetreCharges extends JFrame {
 		mnPaiement.add(mntmAjout);
 		
 		/*---------------------------------------------------*/
-		
-		
-		this.gestionClicCharges = new GestionFenetreCharges(this);
+	
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 726, 442);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
-		
-		
-		
-		
         
         JPanel panel_1 = new JPanel();
         contentPane.add(panel_1, BorderLayout.CENTER);
@@ -150,26 +144,57 @@ public class FenetreCharges extends JFrame {
         		{null, null, null, null},
         		{null, null, null, null},
         		{null, null, null, null},
+        		{null, null, null, null},
+        		{null, null, null, null},
+        		{null, null, null, null},
+        		{null, null, null, null},
+        		{null, null, null, null},
+        		{null, null, null, null},
+        		{null, null, null, null},
         	},
         	new String[] {
-        		"types charges", "Montant", "Pourcentage", "Quottite"
+        		"Types charges", "Montant", "Pourcentage", "Quotite"
         	}
-        ));
+        ) {
+        	Class[] columnTypes = new Class[] {
+        		String.class, Float.class, Float.class, String.class
+        	};
+        	public Class getColumnClass(int columnIndex) {
+        		return columnTypes[columnIndex];
+        	}
+        	boolean[] columnEditables = new boolean[] {
+        		false, false, false, false
+        	};
+        	public boolean isCellEditable(int row, int column) {
+        		return columnEditables[column];
+        	}
+        });
+        table.getColumnModel().getColumn(0).setPreferredWidth(92);
         table.setEnabled(false);
         
         JPanel panel_2 = new JPanel();
         panel_1.add(panel_2, BorderLayout.SOUTH);
         
-        	
-        btnQuitter = new JButton("Quitter");
+        JButton btnQuitter = new JButton("Quitter");
+        btnQuitter.addActionListener(this);
         panel_2.add(btnQuitter);
-        btnQuitter.addActionListener(gestionClicCharges);
+        
+        JButton btnRetour = new JButton("Retour");
+        btnRetour.addActionListener(this);
+        panel_2.add(btnRetour);
+        
+        Component verticalStrut_1 = Box.createVerticalStrut(70);
+        panel_2.add(verticalStrut_1);
         
         Panel Title = new Panel();
         panel_1.add(Title, BorderLayout.NORTH);
         
-        JLabel lblNewLabel_1_1 = new JLabel("Charges");
-        Title.add(lblNewLabel_1_1);
+        JLabel lblTitre = new JLabel("Charges");
+        lblTitre.setFont(new Font("Tahoma", Font.BOLD, 15));
+        Title.add(lblTitre);
+        
+        Component verticalStrut = Box.createVerticalStrut(70);
+        Title.add(verticalStrut);
         
         JPanel contentPane_1 = new JPanel();
         contentPane_1.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -184,11 +209,15 @@ public class FenetreCharges extends JFrame {
         
         JLabel footerLabel = new JLabel("Developpé par Koshua, Jay, Aneesa, Luca et Franck");
         footerPanel.add(footerLabel);
-        btnQuitter.addActionListener(gestionClicCharges);
 	}
 	
-		public void actionPerformed(ActionEvent e) {
-	        this.gestionClicCharges.actionPerformed(e);
+	public void actionPerformed(ActionEvent e) {
+		switch (((JButton) e.getSource()).getText()) {
+		case "Retour" :
+			break;
+		case "Quitter" :
+			break;
 		}
 		
 	}
+}

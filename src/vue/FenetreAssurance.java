@@ -26,6 +26,8 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import controleur.GestionFenetreAssurance;
+import java.awt.Component;
+import javax.swing.Box;
 
 public class FenetreAssurance extends JInternalFrame implements ActionListener {
 
@@ -60,7 +62,7 @@ public class FenetreAssurance extends JInternalFrame implements ActionListener {
     public FenetreAssurance() {
         this.gestionClic = new GestionFenetreAssurance(this);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 308, 347);
+        setBounds(100, 100, 400, 451);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -80,6 +82,9 @@ public class FenetreAssurance extends JInternalFrame implements ActionListener {
         panelNorth.add(comboBox);
         comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {
             "Assurance1", "Assurance2", "Assurance3", "THE_ASSURANCE" }));
+        
+        Component verticalStrut_1 = Box.createVerticalStrut(70);
+        panelNorth.add(verticalStrut_1);
 
         JPanel panelCenter = new JPanel();
         panel.add(panelCenter);
@@ -184,6 +189,9 @@ public class FenetreAssurance extends JInternalFrame implements ActionListener {
         JButton btnRetour = new JButton("Retour");
         btnRetour.addActionListener(this);
         panelSouth.add(btnRetour);
+        
+        Component verticalStrut = Box.createVerticalStrut(60);
+        panelSouth.add(verticalStrut);
 
         JPanel panelMenuBar = new JPanel();
         contentPane.add(panelMenuBar, BorderLayout.NORTH);

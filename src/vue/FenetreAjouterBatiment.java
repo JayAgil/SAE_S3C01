@@ -21,6 +21,8 @@ import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import java.awt.Component;
+import javax.swing.Box;
 
 public class FenetreAjouterBatiment extends JInternalFrame
     implements ActionListener {
@@ -42,7 +44,7 @@ public class FenetreAjouterBatiment extends JInternalFrame
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            }//test
+            }
         });
     }
 
@@ -50,7 +52,7 @@ public class FenetreAjouterBatiment extends JInternalFrame
      * Create the frame.
      */
     public FenetreAjouterBatiment() {
-        setBounds(100, 100, 400, 256);
+        setBounds(100, 100, 400, 451);
         getContentPane().setLayout(new BorderLayout(0, 0));
 
         JPanel panel_10 = new JPanel();
@@ -61,10 +63,13 @@ public class FenetreAjouterBatiment extends JInternalFrame
         panel_10.add(panelNorth, BorderLayout.NORTH);
         panelNorth.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-        JLabel lblNewLabel = new JLabel("Ajout d'un batiment");
-        panelNorth.add(lblNewLabel);
-        lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+        JLabel lblTitre = new JLabel("Ajout d'un bâtiment");
+        panelNorth.add(lblTitre);
+        lblTitre.setHorizontalAlignment(SwingConstants.CENTER);
+        lblTitre.setFont(new Font("Tahoma", Font.BOLD, 14));
+        
+        Component verticalStrut = Box.createVerticalStrut(100);
+        panelNorth.add(verticalStrut);
 
         JPanel panelSouth = new JPanel();
         panel_10.add(panelSouth, BorderLayout.SOUTH);
@@ -76,7 +81,11 @@ public class FenetreAjouterBatiment extends JInternalFrame
         panelSouth.add(btnAnnuler);
         
         JButton btnRetour = new JButton("Retour");
+        btnRetour.addActionListener(this);
         panelSouth.add(btnRetour);
+        
+        Component verticalStrut_1 = Box.createVerticalStrut(100);
+        panelSouth.add(verticalStrut_1);
         btnAnnuler.addActionListener(this);
         btnValider.addActionListener(this);
 
@@ -164,6 +173,9 @@ public class FenetreAjouterBatiment extends JInternalFrame
         case "Annuler":
             this.dispose();
             break;
+        case "Retour" :
+        	this.dispose();
+        	break;
         }
     }
 }

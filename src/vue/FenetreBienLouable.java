@@ -31,8 +31,11 @@ import javax.swing.SwingConstants;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import java.awt.Panel;
+import java.awt.Font;
+import java.awt.Component;
+import javax.swing.Box;
 	
-public class FenetreBienLouable extends JFrame {
+public class FenetreBienLouable extends JFrame implements ActionListener {
 	private GestionFenetreBienLouable gestionClicBienLouable;
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -120,7 +123,7 @@ public class FenetreBienLouable extends JFrame {
 		/*--------------------------*/
 		this.gestionClicBienLouable = new GestionFenetreBienLouable(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 600, 450);
+		setBounds(100, 100, 726, 442);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -143,16 +146,20 @@ public class FenetreBienLouable extends JFrame {
         JPanel panel = new JPanel();
         panel_2.add(panel, BorderLayout.SOUTH);
         
-        JButton btnNewButtonQuitter = new JButton("Quitter");
-        panel.add(btnNewButtonQuitter);
-        btnNewButtonQuitter.addActionListener(gestionClicBienLouable);
+        JButton btnQuitter = new JButton("Quitter");
+        panel.add(btnQuitter);
+        btnQuitter.addActionListener(gestionClicBienLouable);
         
-        JButton btnNewButtonRevaloriser = new JButton("Revaloriser");
-        panel.add(btnNewButtonRevaloriser);
+        JButton btnRevaloriser = new JButton("Revaloriser");
+        btnRevaloriser.addActionListener(this);
+        panel.add(btnRevaloriser);
         
-        JButton btnNewButtonCompteur = new JButton("Compteur");
-        panel.add(btnNewButtonCompteur);
-        btnNewButtonCompteur.addActionListener(gestionClicBienLouable);
+        JButton btnCompteur = new JButton("Compteur");
+        panel.add(btnCompteur);
+        
+        Component verticalStrut_1 = Box.createVerticalStrut(40);
+        panel.add(verticalStrut_1);
+        btnCompteur.addActionListener(gestionClicBienLouable);
         
         JScrollPane scrollPane = new JScrollPane();
         panel_2.add(scrollPane);
@@ -162,6 +169,11 @@ public class FenetreBienLouable extends JFrame {
         scrollPane.setRowHeaderView(table);
         table.setModel(new DefaultTableModel(
         	new Object[][] {
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
         		{null, null, null, null, null, null},
         		{null, null, null, null, null, null},
         		{null, null, null, null, null, null},
@@ -189,74 +201,6 @@ public class FenetreBienLouable extends JFrame {
         		return columnEditables[column];
         	}
         });
-        
-        JPanel panel_1 = new JPanel();
-        scrollPane.setViewportView(panel_1);
-        GridBagLayout gbl_panel_1 = new GridBagLayout();
-        gbl_panel_1.columnWidths = new int[]{83, 0, 0};
-        gbl_panel_1.rowHeights = new int[]{21, 21, 0, 0, 21, 0, 0};
-        gbl_panel_1.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
-        gbl_panel_1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE, 0.0};
-        panel_1.setLayout(gbl_panel_1);
-        
-        
-        JButton btnNewButton_1_1 = new JButton("Diagnostics");
-        GridBagConstraints gbc_btnNewButton_1_1 = new GridBagConstraints();
-        gbc_btnNewButton_1_1.gridwidth = 3;
-        gbc_btnNewButton_1_1.gridheight = 7;
-        gbc_btnNewButton_1_1.anchor = GridBagConstraints.NORTH;
-        gbc_btnNewButton_1_1.weighty = 1.0;
-        gbc_btnNewButton_1_1.weightx = 1.0;
-        gbc_btnNewButton_1_1.fill = GridBagConstraints.HORIZONTAL;
-        gbc_btnNewButton_1_1.gridx = 0;
-        gbc_btnNewButton_1_1.gridy = 0;
-        panel_1.add(btnNewButton_1_1, gbc_btnNewButton_1_1);
-        btnNewButton_1_1.addActionListener(gestionClicBienLouable);
-        
-        JButton btnNewButton_1 = new JButton("Travaux");
-        GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
-        gbc_btnNewButton_1.gridheight = 6;
-        gbc_btnNewButton_1.gridwidth = 3;
-        gbc_btnNewButton_1.weighty = 1.0;
-        gbc_btnNewButton_1.weightx = 1.0;
-        gbc_btnNewButton_1.anchor = GridBagConstraints.NORTH;
-        gbc_btnNewButton_1.fill = GridBagConstraints.HORIZONTAL;
-        gbc_btnNewButton_1.gridx = 0;
-        gbc_btnNewButton_1.gridy = 1;
-        panel_1.add(btnNewButton_1, gbc_btnNewButton_1);
-        btnNewButton_1.addActionListener(gestionClicBienLouable);
-        
-        JButton btnNewButton_2 = new JButton("Charges");
-        GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
-        gbc_btnNewButton_2.gridheight = 6;
-        gbc_btnNewButton_2.gridwidth = 3;
-        gbc_btnNewButton_2.weighty = 1.0;
-        gbc_btnNewButton_2.weightx = 1.0;
-        gbc_btnNewButton_2.anchor = GridBagConstraints.NORTH;
-        gbc_btnNewButton_2.fill = GridBagConstraints.HORIZONTAL;
-        gbc_btnNewButton_2.gridx = 0;
-        gbc_btnNewButton_2.gridy = 2;
-        panel_1.add(btnNewButton_2, gbc_btnNewButton_2);
-        btnNewButton_2.addActionListener(gestionClicBienLouable);
-        
-        JButton btnNewButton = new JButton("Contrat");
-        GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-        gbc_btnNewButton.gridwidth = 3;
-        gbc_btnNewButton.gridheight = 0;
-        gbc_btnNewButton.weighty = 1.0;
-        gbc_btnNewButton.weightx = 1.0;
-        gbc_btnNewButton.fill = GridBagConstraints.HORIZONTAL;
-        gbc_btnNewButton.anchor = GridBagConstraints.NORTH;
-        gbc_btnNewButton.gridx = 0;
-        gbc_btnNewButton.gridy = 3;
-        panel_1.add(btnNewButton, gbc_btnNewButton);
-        
-        Panel Title = new Panel();
-        panel_2.add(Title, BorderLayout.NORTH);
-        
-        JLabel lblNewLabel_1_1 = new JLabel("Biens louables :");
-        Title.add(lblNewLabel_1_1);
-        btnNewButton.addActionListener(gestionClicBienLouable);
         table.getColumnModel().getColumn(0).setResizable(false);
         table.getColumnModel().getColumn(0).setPreferredWidth(40);
         table.getColumnModel().getColumn(1).setResizable(false);
@@ -269,6 +213,80 @@ public class FenetreBienLouable extends JFrame {
         table.getColumnModel().getColumn(4).setPreferredWidth(60);
         table.getColumnModel().getColumn(5).setResizable(false);
         table.getColumnModel().getColumn(5).setPreferredWidth(245);
+        
+        JPanel panel_1 = new JPanel();
+        scrollPane.setViewportView(panel_1);
+        GridBagLayout gbl_panel_1 = new GridBagLayout();
+        gbl_panel_1.columnWidths = new int[]{83, 0, 0};
+        gbl_panel_1.rowHeights = new int[]{21, 21, 0, 0, 21, 0, 0};
+        gbl_panel_1.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+        gbl_panel_1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE, 0.0};
+        panel_1.setLayout(gbl_panel_1);
+        
+        
+        JButton btnDiagnostic = new JButton("Diagnostics");
+        GridBagConstraints gbc_btnDiagnostic = new GridBagConstraints();
+        gbc_btnDiagnostic.gridwidth = 3;
+        gbc_btnDiagnostic.gridheight = 7;
+        gbc_btnDiagnostic.anchor = GridBagConstraints.NORTH;
+        gbc_btnDiagnostic.weighty = 1.0;
+        gbc_btnDiagnostic.weightx = 1.0;
+        gbc_btnDiagnostic.fill = GridBagConstraints.HORIZONTAL;
+        gbc_btnDiagnostic.gridx = 0;
+        gbc_btnDiagnostic.gridy = 0;
+        panel_1.add(btnDiagnostic, gbc_btnDiagnostic);
+        btnDiagnostic.addActionListener(gestionClicBienLouable);
+        
+        JButton btnTravaux = new JButton("Travaux");
+        GridBagConstraints gbc_btnTravaux = new GridBagConstraints();
+        gbc_btnTravaux.gridheight = 6;
+        gbc_btnTravaux.gridwidth = 3;
+        gbc_btnTravaux.weighty = 1.0;
+        gbc_btnTravaux.weightx = 1.0;
+        gbc_btnTravaux.anchor = GridBagConstraints.NORTH;
+        gbc_btnTravaux.fill = GridBagConstraints.HORIZONTAL;
+        gbc_btnTravaux.gridx = 0;
+        gbc_btnTravaux.gridy = 1;
+        panel_1.add(btnTravaux, gbc_btnTravaux);
+        btnTravaux.addActionListener(gestionClicBienLouable);
+        
+        JButton btnCharge = new JButton("Charges");
+        GridBagConstraints gbc_btnCharge = new GridBagConstraints();
+        gbc_btnCharge.gridheight = 6;
+        gbc_btnCharge.gridwidth = 3;
+        gbc_btnCharge.weighty = 1.0;
+        gbc_btnCharge.weightx = 1.0;
+        gbc_btnCharge.anchor = GridBagConstraints.NORTH;
+        gbc_btnCharge.fill = GridBagConstraints.HORIZONTAL;
+        gbc_btnCharge.gridx = 0;
+        gbc_btnCharge.gridy = 2;
+        panel_1.add(btnCharge, gbc_btnCharge);
+        btnCharge.addActionListener(gestionClicBienLouable);
+        
+        JButton btnContrat = new JButton("Contrat");
+        GridBagConstraints gbc_btnContrat = new GridBagConstraints();
+        gbc_btnContrat.gridwidth = 3;
+        gbc_btnContrat.gridheight = 0;
+        gbc_btnContrat.weighty = 1.0;
+        gbc_btnContrat.weightx = 1.0;
+        gbc_btnContrat.fill = GridBagConstraints.HORIZONTAL;
+        gbc_btnContrat.anchor = GridBagConstraints.NORTH;
+        gbc_btnContrat.gridx = 0;
+        gbc_btnContrat.gridy = 3;
+        panel_1.add(btnContrat, gbc_btnContrat);
+        
+        Panel Title = new Panel();
+        panel_2.add(Title, BorderLayout.NORTH);
+        
+        JLabel lblTitre = new JLabel("Biens louables ");
+        lblTitre.setFont(new Font("Tahoma", Font.BOLD, 15));
+        Title.add(lblTitre);
+        
+        Component verticalStrut = Box.createVerticalStrut(60);
+        Title.add(verticalStrut);
+        btnContrat.addActionListener(gestionClicBienLouable);
 
+	}
+	public void actionPerformed(ActionEvent e) {
 	}
 }

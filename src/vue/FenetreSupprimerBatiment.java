@@ -18,164 +18,133 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.JSpinner;
 
-public class FenetreSupprimerBatiment extends JInternalFrame
-    implements ActionListener {
+public class FenetreSupprimerBatiment extends JInternalFrame implements ActionListener {
 
     private static final long serialVersionUID = 1L;
-    private JTextField textField;
-    private JTextField textField_1;
-    private JTextField textField_2;
+    private JTextField textFieldAdresse;
+    private JTextField textFieldDate;
 
-    /**
-     * Launch the application.
-     */
     public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    FenetreSupprimerBatiment frame = new FenetreSupprimerBatiment();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        EventQueue.invokeLater(() -> {
+            try {
+                FenetreSupprimerBatiment frame = new FenetreSupprimerBatiment();
+                frame.setVisible(true);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         });
     }
 
-    /**
-     * Create the frame.
-     */
     public FenetreSupprimerBatiment() {
+
         setBounds(100, 100, 400, 451);
         getContentPane().setLayout(new BorderLayout(0, 0));
 
         JPanel panel_10 = new JPanel();
-        getContentPane().add(panel_10, BorderLayout.CENTER);
         panel_10.setLayout(new BorderLayout(0, 0));
+        getContentPane().add(panel_10, BorderLayout.CENTER);
 
-        JPanel panelNorth = new JPanel();
+        JPanel panelNorth = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 10));
+        panelNorth.setBorder(BorderFactory.createEmptyBorder(10, 0, 5, 0));
         panel_10.add(panelNorth, BorderLayout.NORTH);
-        panelNorth.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-        JLabel lblNewLabel = new JLabel("Suprimer un batiment");
-        panelNorth.add(lblNewLabel);
-        lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+        JLabel lblTitre1 = new JLabel("Supprimer un bâtiment");
+        lblTitre1.setHorizontalAlignment(SwingConstants.CENTER);
+        lblTitre1.setFont(new Font("Tahoma", Font.BOLD, 14));
+        panelNorth.add(lblTitre1);
+        
+        Component verticalStrut = Box.createVerticalStrut(20);
+        panelNorth.add(verticalStrut);
 
-        JPanel panelSouth = new JPanel();
+        JPanel panelSouth = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 10));
+        panelSouth.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
         panel_10.add(panelSouth, BorderLayout.SOUTH);
 
         JButton btnAnnuler = new JButton("Annuler");
         panelSouth.add(btnAnnuler);
 
-        JButton btnSuprimer = new JButton("Suprimer");
-        btnSuprimer.setBackground(new Color(220, 20, 60));
-        btnSuprimer.setFont(new Font("Tahoma", Font.BOLD, 12));
+        JButton btnSuprimer = new JButton("Supprimer");
+        btnSuprimer.setBackground(Color.WHITE);
+        btnSuprimer.setFont(new Font("Tahoma", Font.PLAIN, 11));
         panelSouth.add(btnSuprimer);
+
         btnSuprimer.addActionListener(this);
         btnAnnuler.addActionListener(this);
 
-        JPanel panelCenter = new JPanel();
-        panel_10.add(panelCenter);
-        panelCenter.setLayout(new BorderLayout(0, 0));
+        JPanel panelCenter = new JPanel(new BorderLayout(0, 0));
+        panelCenter.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+        panel_10.add(panelCenter, BorderLayout.CENTER);
 
-        JPanel panelCenterCenter = new JPanel();
-        panelCenter.add(panelCenterCenter);
-        panelCenterCenter.setLayout(new BorderLayout(0, 0));
+        JLabel lblTitre2 = new JLabel("Quel bâtiment voulez-vous supprimer ?");
+        lblTitre2.setHorizontalAlignment(SwingConstants.CENTER);
+        lblTitre2.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
+        panelCenter.add(lblTitre2, BorderLayout.NORTH);
 
-        JLabel lblNewLabel_1 = new JLabel(
-            "Quel batiment voulez-vous supprimer ?");
-        lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-        panelCenterCenter.add(lblNewLabel_1, BorderLayout.NORTH);
+        JPanel panelCenterCenter = new JPanel(new GridLayout(2, 1, 0, 10));
+        panelCenterCenter.setBorder(BorderFactory.createEmptyBorder(5, 20, 5, 20));
+        panelCenter.add(panelCenterCenter, BorderLayout.CENTER);
 
-        JPanel panel = new JPanel();
-        panelCenterCenter.add(panel, BorderLayout.CENTER);
-        panel.setLayout(new GridLayout(2, 1, 0, 0));
-        
-        JPanel panel_2 = new JPanel();
-        panel.add(panel_2);
-        
-        JComboBox<String> cbBatiment = new JComboBox<String>();
-        cbBatiment.setModel(new DefaultComboBoxModel(
-            new String[] { "bat 1", "bat2", "bat3", "batman" }));
+        JPanel panel_2 = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 5));
+        panelCenterCenter.add(panel_2);
+
+        JComboBox<String> cbBatiment = new JComboBox<>();
+        cbBatiment.setModel(new DefaultComboBoxModel<>(new String[]{"bat 1", "bat2", "bat3", "batman"}));
         cbBatiment.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        cbBatiment.setPreferredSize(new Dimension(150, 28));
         panel_2.add(cbBatiment);
-        
-        JPanel panel_1 = new JPanel();
-        panel.add(panel_1);
-        panel_1.setLayout(new GridLayout(2, 1, 0, 0));
-        
-        JPanel panel_4 = new JPanel();
-        panel_1.add(panel_4);
-        
-        JLabel lblTitre = new JLabel("Informations batiment");
+
+        JPanel panel_1 = new JPanel(new GridLayout(2, 1, 0, 5));
+        panelCenterCenter.add(panel_1);
+
+        JPanel panel_4 = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 5));
+        JLabel lblTitre = new JLabel("Informations bâtiment");
         lblTitre.setFont(new Font("Tahoma", Font.BOLD, 14));
         panel_4.add(lblTitre);
+        panel_1.add(panel_4);
         
-        JPanel panel_3 = new JPanel();
-        panel_1.add(panel_3);
-        panel_3.setLayout(new GridLayout(3, 2, 0, 0));
+        JPanel panel = new JPanel();
+        panel_1.add(panel);
+        panel.setLayout(new GridLayout(3, 2, 0, 0));
         
         JLabel lblAdresse = new JLabel("Adresse :");
-        panel_3.add(lblAdresse);
+        panel.add(lblAdresse);
         
-        JPanel panel_5 = new JPanel();
-        panel_3.add(panel_5);
+        textFieldAdresse = new JTextField();
+        panel.add(textFieldAdresse);
+        textFieldAdresse.setColumns(10);
         
-        textField = new JTextField();
-        panel_5.add(textField);
-        textField.setColumns(10);
+        JLabel lblDate = new JLabel("Date de construction :");
+        panel.add(lblDate);
         
-        JLabel lblDatedeConstruction = new JLabel("Date de construction :");
-        panel_3.add(lblDatedeConstruction);
+        textFieldDate = new JTextField();
+        panel.add(textFieldDate);
+        textFieldDate.setColumns(10);
         
-        JPanel panel_6 = new JPanel();
-        panel_3.add(panel_6);
+        JLabel lblNbBien = new JLabel("Nombre de bien louable :");
+        panel.add(lblNbBien);
         
-        textField_1 = new JTextField();
-        panel_6.add(textField_1);
-        textField_1.setColumns(10);
-        
-        JLabel lblNbBienLouable = new JLabel("Nombre de bien louable :");
-        panel_3.add(lblNbBienLouable);
-        
-        JPanel panel_7 = new JPanel();
-        panel_3.add(panel_7);
-        
-        textField_2 = new JTextField();
-        panel_7.add(textField_2);
-        textField_2.setColumns(10);
+        JSpinner spinnerNbBien = new JSpinner();
+        panel.add(spinnerNbBien);
 
-        JPanel panelCenterNorth = new JPanel();
-        panelCenter.add(panelCenterNorth, BorderLayout.NORTH);
-
-        Component verticalStrut = Box.createVerticalStrut(20);
-        verticalStrut.setPreferredSize(new Dimension(0, 10));
-        panelCenterNorth.add(verticalStrut);
-
-        JLabel lblVerification = new JLabel(
-            "L'action de supprimer est définitive");
+        
+        JLabel lblVerification = new JLabel("L'action de supprimer est définitive !");
         lblVerification.setHorizontalAlignment(SwingConstants.CENTER);
+        lblVerification.setBorder(BorderFactory.createEmptyBorder(5, 0, 5, 0));
         panelCenter.add(lblVerification, BorderLayout.SOUTH);
-
     }
-
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (((JButton) e.getSource()).getText()) {
-        case "Valider":
+        case "Annuler":
             this.dispose();
             break;
-        case "Annuler":
+        case "Supprimer":
             this.dispose();
             break;
         }
