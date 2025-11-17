@@ -38,7 +38,7 @@ CREATE TABLE SAE_Locataire (
     Salaire NUMBER,
     Profession VARCHAR2(50),
     Situation_Familiale VARCHAR2(50),
-    Image_Locataire VARCHAR2(),
+    Image_Locataire VARCHAR2(200),
     fk_Id_Garant NUMBER,
     CONSTRAINT fk_loc_garant FOREIGN KEY (fk_Id_Garant) REFERENCES SAE_Garant(Id_Garant)
 );
@@ -74,7 +74,7 @@ CREATE TABLE SAE_Diagnostics (
     Type_Diagnostic VARCHAR2(50),
     Date_Realisation DATE,
     Date_Validite DATE,
-    Fichier VARCHAR25(),
+    Fichier VARCHAR2(200),
     fk_Id_BienLouable NUMBER,
     CONSTRAINT fk_diag_bien FOREIGN KEY (fk_Id_BienLouable) REFERENCES SAE_BienLouable(Id_BienLouable)
 );
