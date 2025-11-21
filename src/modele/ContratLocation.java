@@ -1,29 +1,30 @@
 package modele;
 
+import java.sql.Date;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class ContratLocation {
 	private String numeroDeContrat;
-	private LocalDate dateDebut;
-	private LocalDate dateFin;
+	private Date dateDebut;
+	private Date dateFin;
 	private double montantDeCaution;
 	private double provisionCharge;
 	private double solde;
 	private double montantMensuel;
-	private LocalDate dateVersement;
+	private Date dateVersement;
 	private double indexCompteurEau;
 	private double indexCompteurElectricite;
 	private double indexCompteurGaz;
 	private BienLouable bienLouable;
 
-	public ContratLocation(String numeroDeContrat, LocalDate dateDebut, LocalDate dateFin, double montantDeCaution,
-			double provisionCharge, double solde, double montantMensuel, LocalDate dateVersement,
+	public ContratLocation(String numeroDeContrat, Date dateDebut, Date dateFin, double montantDeCaution,
+			double provisionCharge, double solde, double montantMensuel, Date dateVersement,
 			double indexCompteurEau, double indexCompteurElectricite, double indexCompteurGaz,
 			BienLouable bienLouable) {
-		super();
 		this.numeroDeContrat = numeroDeContrat;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
@@ -46,19 +47,19 @@ public class ContratLocation {
 		this.numeroDeContrat = numeroDeContrat;
 	}
 
-	public LocalDate getDateDebut() {
+	public Date getDateDebut() {
 		return dateDebut;
 	}
 
-	public void setDateDebut(LocalDate dateDebut) {
+	public void setDateDebut(Date dateDebut) {
 		this.dateDebut = dateDebut;
 	}
 
-	public LocalDate getDateFin() {
+	public Date getDateFin() {
 		return dateFin;
 	}
 
-	public void setDateFin(LocalDate dateFin) {
+	public void setDateFin(Date dateFin) {
 		this.dateFin = dateFin;
 	}
 
@@ -94,11 +95,11 @@ public class ContratLocation {
 		this.montantMensuel = montantMensuel;
 	}
 
-	public LocalDate getDateVersement() {
+	public Date getDateVersement() {
 		return dateVersement;
 	}
 
-	public void setDateVersement(LocalDate dateVersement) {
+	public void setDateVersement(Date dateVersement) {
 		this.dateVersement = dateVersement;
 	}
 
@@ -154,9 +155,11 @@ public class ContratLocation {
 	}
 
 	public long dureeEnMois() {
-		if (dateDebut == null || dateFin == null)
-			return 0;
-		return java.time.temporal.ChronoUnit.MONTHS.between(dateDebut, dateFin);
+
+	LocalDate d1 = dateDebut.toLocalDate();
+	LocalDate d2 = dateFin.toLocalDate();
+	
+	return ChronoUnit.MONTHS.between(d1, d2);
 	}
 
 	public double calculerLoyerTotal() {
@@ -167,7 +170,7 @@ public class ContratLocation {
 		this.solde += montantVerse;
 	}
 
-	public void enregistrerPaiement(double montantPaye, LocalDate date) {
+	public void enregistrerPaiement(double montantPaye, Date date) {
 		this.solde -= montantPaye;
 		this.dateVersement = date;
 	}

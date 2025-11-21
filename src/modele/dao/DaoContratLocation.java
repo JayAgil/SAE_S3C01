@@ -1,10 +1,15 @@
 package modele.dao;
 
+import java.sql.Date;
+import java.sql.ResultSet;
+import modele.dao.requetes.*;
+import java.sql.SQLException;
 import java.util.List;
 
+import modele.BienLouable;
 import modele.ContratLocation;
 
-public class DaoContratLocation implements Dao<ContratLocation> {
+public class DaoContratLocation extends DaoModele<ContratLocation>implements Dao<ContratLocation> {
 
 	@Override
 	public void create(ContratLocation t) {
@@ -25,16 +30,33 @@ public class DaoContratLocation implements Dao<ContratLocation> {
 	}
 
 	@Override
-	public ContratLocation findById(String... id) {
-		if (DaoTest.selectContratLocation(id).size()==0) {
-			return null;
-		}
-		return DaoTest.selectContratLocation(id).get(0);
+	public ContratLocation findById(String... id) throws SQLException {
+		return this.findById(new RequeteSelectContratLocationById(), id);
+
 	}
 
 	@Override
-	public List<ContratLocation> findAll() {
-		return DaoTest.selectContratLocation();
+	public List<ContratLocation> findAll() throws SQLException {
+		return this.find(new RequeteSelectContratLocation());
+	}
+
+	@Override
+	protected ContratLocation creerInstance(ResultSet curseur) throws SQLException {
+		String numeroDeContrat = curseur.getString(1);
+		Date dateDebut = curseur.getDate(2);
+		Date dateFin = curseur.getDate(3);
+		double montantCaution = curseur.getDouble(4);
+		double provisionCharge = curseur.getDouble(5);
+		double solde = curseur.getDouble(6);
+		double montantMensuel = curseur.getDouble(7);
+		Date dateVersement = curseur.getDate(8);
+		double indexCompteurEau = curseur.getDouble(9);
+		double indexCompteurElectricite = curseur.getDouble(10);
+		double indexCompteurGaz = curseur.getDouble(11);
+		String id = curseur.getString(12);
+		DaoBienLouable daoBL = new DaoBienLouable();
+		BienLouable bl = daoBL.findById(id);
+		return new ContratLocation(numeroDeContrat,dateDebut,dateFin,montantCaution,provisionCharge,solde,montantMensuel,dateVersement,indexCompteurEau,indexCompteurElectricite,indexCompteurGaz,bl);
 	}
 
 }
