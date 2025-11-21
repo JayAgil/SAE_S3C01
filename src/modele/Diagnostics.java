@@ -1,16 +1,17 @@
 package modele;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Objects;
 
 public class Diagnostics {
 	private String idDiagnostics;
 	private String typeDiagnostics;
-	private LocalDate dateRealisation;
-	private LocalDate dateValidite;
+	private Date dateRealisation;
+	private Date dateValidite;
 	private String fichier;
 	private BienLouable bienLouable;
-	public Diagnostics(String idDiagnostics, String typeDiagnostics, LocalDate dateRealisation, LocalDate dateValidite,
+	public Diagnostics(String idDiagnostics, String typeDiagnostics, Date dateRealisation, Date dateValidite,
 			String fichier, BienLouable bienLouable) {
 		this.idDiagnostics = idDiagnostics;
 		this.typeDiagnostics = typeDiagnostics;
@@ -34,10 +35,10 @@ public class Diagnostics {
 	public String getTypeDiagnostics() {
 		return typeDiagnostics;
 	}
-	public LocalDate getDateRealisation() {
+	public Date getDateRealisation() {
 		return dateRealisation;
 	}
-	public LocalDate getDateValidite() {
+	public Date getDateValidite() {
 		return dateValidite;
 	}
 	public void setIdDiagnostics(String idDiagnostics) {
@@ -46,10 +47,10 @@ public class Diagnostics {
 	public void setTypeDiagnostics(String typeDiagnostics) {
 		this.typeDiagnostics = typeDiagnostics;
 	}
-	public void setDateRealisation(LocalDate dateRealisation) {
+	public void setDateRealisation(Date dateRealisation) {
 		this.dateRealisation = dateRealisation;
 	}
-	public void setDateValidite(LocalDate dateValidite) {
+	public void setDateValidite(Date dateValidite) {
 		this.dateValidite = dateValidite;
 	}
 	public void setFichier(String fichier) {
