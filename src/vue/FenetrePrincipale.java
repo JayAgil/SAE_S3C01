@@ -30,14 +30,15 @@ import javax.swing.table.DefaultTableModel;
 
 import controleur.GestionFenetrePrincipale;
 
-public class FenetrePrincipale extends JFrame
-    implements ActionListener, MouseListener {
+public class FenetrePrincipale extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
 
     public JTable getTableBienLouable() {
+
         return table; 
+
     }
 
     private GestionFenetrePrincipale gestionClic;
@@ -66,7 +67,6 @@ public class FenetrePrincipale extends JFrame
     public FenetrePrincipale() {
         this.gestionClic = new GestionFenetrePrincipale(this);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         contentPane = new JPanel();
         setContentPane(contentPane);
         contentPane.setLayout(new BorderLayout(0, 0));
@@ -110,8 +110,11 @@ public class FenetrePrincipale extends JFrame
         Component horizontalStrut_3 = Box.createHorizontalStrut(20);
         panelNorthCenter.add(horizontalStrut_3);
 
+
         Component verticalStrut = Box.createVerticalStrut(20);
         verticalStrut.setPreferredSize(new Dimension(0, 10));
+
+        Component verticalStrut1 = Box.createVerticalStrut(10);
         panelNorth.add(verticalStrut, BorderLayout.NORTH);
 
         JPanel panel = new JPanel();
@@ -152,8 +155,12 @@ public class FenetrePrincipale extends JFrame
         Component horizontalStrut_3_1 = Box.createHorizontalStrut(20);
         panelNorthCenter_1.add(horizontalStrut_3_1);
 
+
         Component verticalStrut_2 = Box.createVerticalStrut(20);
         verticalStrut_2.setPreferredSize(new Dimension(0, 10));
+
+        Component verticalStrut_3 = Box.createVerticalStrut(10);
+        verticalStrut_2.setPreferredSize(new Dimension(0, 15));
         panel.add(verticalStrut_2, BorderLayout.SOUTH);
 
         JPanel panelSouth = new JPanel();
@@ -165,7 +172,7 @@ public class FenetrePrincipale extends JFrame
 
         JButton btnQuitter = new JButton("Quitter");
         panelSouthWest.add(btnQuitter);
-        btnQuitter.addActionListener(this);
+        btnQuitter.addActionListener(this.gestionClic);
 
         JPanel panelSouthEast = new JPanel();
         panelSouth.add(panelSouthEast, BorderLayout.EAST);
@@ -178,9 +185,9 @@ public class FenetrePrincipale extends JFrame
 
         JButton btnAssurance = new JButton("Assurance");
         panelSouthEast.add(btnAssurance);
-        btnAssurance.addActionListener(this);
-        btnCompteurs.addActionListener(this);
-        btnCharges.addActionListener(this);
+        btnAssurance.addActionListener(this.gestionClic);
+        btnCompteurs.addActionListener(this.gestionClic);
+        btnCharges.addActionListener(this.gestionClic);
 
         JPanel panelCenter = new JPanel();
         panelContent.add(panelCenter);
@@ -194,7 +201,7 @@ public class FenetrePrincipale extends JFrame
         panelCenterCenter.add(scrollPane, BorderLayout.CENTER);
 
         table = new JTable();
-        getTable().addMouseListener(this);
+        //getTable().addMouseListener(this);
         getTable().setModel(new DefaultTableModel(
             new Object[][] { { null, null, null, null },
                 { null, null, null, null }, { null, null, null, null },
@@ -232,19 +239,19 @@ public class FenetrePrincipale extends JFrame
 
         JComboBox<String> cbBatiment = new JComboBox<String>();
         cbBatiment.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        cbBatiment.addActionListener(this);
+        cbBatiment.addActionListener(this.gestionClic);
         cbBatiment.setModel(new DefaultComboBoxModel(new String[] { "Bat1",
             "Bat2", "Bat3", "TestLoooong", "BackRoom" }));
         panelCenterNorth.add(cbBatiment);
 
         JButton btnAjouterBatiment = new JButton("Ajouter");
-        btnAjouterBatiment.addActionListener(this);
+        btnAjouterBatiment.addActionListener(this.gestionClic);
         btnAjouterBatiment.setFont(new Font("Tahoma", Font.BOLD, 10));
         panelCenterNorth.add(btnAjouterBatiment);
 
         JButton btnSupprimerBatiment = new JButton("Supprimer");
         btnSupprimerBatiment.setFont(new Font("Tahoma", Font.BOLD, 10));
-        btnSupprimerBatiment.addActionListener(this);
+        btnSupprimerBatiment.addActionListener(this.gestionClic);
         panelCenterNorth.add(btnSupprimerBatiment);
 
         JPanel panelMenuBar = new JPanel();
@@ -332,27 +339,26 @@ public class FenetrePrincipale extends JFrame
         Component horizontalStrut_5 = Box.createHorizontalStrut(20);
         horizontalStrut_5.setPreferredSize(new Dimension(10, 0));
         contentPane.add(horizontalStrut_5, BorderLayout.EAST);
-        this.setPreferredSize(new Dimension(726, 442));
-        this.setMinimumSize(new Dimension(800, 600));
-        this.setMaximumSize(new Dimension(800, 600));
-        this.setSize(new Dimension(726, 442));
+
+        this.setPreferredSize(new Dimension(1200, 800));
+        this.setMinimumSize(new Dimension(1200, 800));
+        this.setMaximumSize(new Dimension(1200, 800));
+        this.setSize(new Dimension(1200, 800));
 
         this.pack();
         this.setLocationRelativeTo(null);
-       
+      
     }
 
-    @Override
     public void actionPerformed(ActionEvent arg) {
         gestionClic.actionPerformed(arg);
     }
 
-    @Override
     public void mouseClicked(MouseEvent arg) {
         gestionClic.mouseClicked(arg);
     }
 
-    @Override
+    /*@Override
     public void mouseEntered(MouseEvent arg) {}
     @Override
     public void mouseExited(MouseEvent arg) {}
@@ -360,6 +366,13 @@ public class FenetrePrincipale extends JFrame
     public void mousePressed(MouseEvent arg) {}
     @Override
     public void mouseReleased(MouseEvent arg) {}
+    public void mouseEntered(MouseEvent arg0) {}
+    @Override
+    public void mouseExited(MouseEvent arg0) {}
+    @Override
+    public void mousePressed(MouseEvent arg0) {}
+    @Override
+    public void mouseReleased(MouseEvent arg0) {}*/
 
     public JTable getTable() {
         return table;

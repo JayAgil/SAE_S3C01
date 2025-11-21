@@ -21,6 +21,9 @@ import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import controleur.GestionFenetreAjouterBatiment;
+
 import java.awt.Component;
 import javax.swing.Box;
 
@@ -30,6 +33,7 @@ public class FenetreAjouterBatiment extends JInternalFrame
     private static final long serialVersionUID = 1L;
     private JTextField textFieldAdresse;
     private JTextField textFieldDate;
+    private GestionFenetreAjouterBatiment gestionClic;
 
     /**
      * Launch the application.
@@ -52,7 +56,8 @@ public class FenetreAjouterBatiment extends JInternalFrame
      * Create the frame.
      */
     public FenetreAjouterBatiment() {
-        setBounds(100, 100, 400, 451);
+    	GestionFenetreAjouterBatiment gestionClic = new GestionFenetreAjouterBatiment(this); 
+        setBounds(100, 100, 600, 400);
         getContentPane().setLayout(new BorderLayout(0, 0));
 
         JPanel panel_10 = new JPanel();
@@ -74,8 +79,8 @@ public class FenetreAjouterBatiment extends JInternalFrame
         JPanel panelSouth = new JPanel();
         panel_10.add(panelSouth, BorderLayout.SOUTH);
 
-        JButton btnValider = new JButton("Valider");
-        panelSouth.add(btnValider);
+        JButton btnAjouter = new JButton("Ajouter");
+        panelSouth.add(btnAjouter);
 
         JButton btnAnnuler = new JButton("Annuler");
         panelSouth.add(btnAnnuler);
@@ -87,7 +92,7 @@ public class FenetreAjouterBatiment extends JInternalFrame
         Component verticalStrut_1 = Box.createVerticalStrut(100);
         panelSouth.add(verticalStrut_1);
         btnAnnuler.addActionListener(this);
-        btnValider.addActionListener(this);
+        btnAjouter.addActionListener(this);
 
         JPanel panelCenter = new JPanel();
         panel_10.add(panelCenter);
