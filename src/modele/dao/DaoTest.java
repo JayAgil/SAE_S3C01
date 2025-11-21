@@ -386,9 +386,9 @@ public class DaoTest {
     }
 
     public static void updateIRL(IRL irl) {
-        List<IRL> liste = DaoTest.selectIRL(irl.getAnnee());
-        IRL nouvelle = liste.get(0);
-        nouvelle.setIRL(irl.getIRL());
+        //List<IRL> liste = DaoTest.selectIRL(irl.getAnnee());
+        //IRL nouvelle = liste.get(0);
+        //nouvelle.setIRL(irl.getIRL());
 
     }
 
