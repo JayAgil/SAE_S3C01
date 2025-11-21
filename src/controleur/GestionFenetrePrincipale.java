@@ -34,12 +34,10 @@ public class GestionFenetrePrincipale implements ActionListener {
             break;
         case "Compteurs":
         	FenetreCompteurs fenetreCompteurs = new FenetreCompteurs();
-        	fenetre.getLayeredPane().add(fenetreCompteurs);
         	fenetreCompteurs.setVisible(true);
             break;
         case "Charges":
             FenetreCharges charges = new FenetreCharges();
-            fenetre.getLayeredPane().add(charges);
             charges.setVisible(true);
             break;
         case "Ajouter":
