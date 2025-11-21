@@ -8,5 +8,7 @@ public class RequeteSelectFacture extends Requete<Facture>{
 	public String requete() {
 		return "Select * from Facture";
 	}
+	
+	
 
 }
