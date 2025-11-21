@@ -62,7 +62,7 @@ public class FenetreLocataire extends JFrame {
      */
     public FenetreLocataire() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 600, 882);
+        setBounds(100, 100, 726, 442);
 
         JMenuBar menuBar = new JMenuBar();
         menuBar.setBackground(new Color(214, 214, 214));
@@ -146,7 +146,7 @@ public class FenetreLocataire extends JFrame {
         panel.setLayout(new BorderLayout(0, 0));
         
         JLabel lblTitre = new JLabel("Information Locataire");
-        lblTitre.setFont(new Font("Tahoma", Font.BOLD, 14));
+        lblTitre.setFont(new Font("Tahoma", Font.BOLD, 15));
         lblTitre.setHorizontalAlignment(SwingConstants.CENTER);
         panel.add(lblTitre, BorderLayout.NORTH);
         
@@ -165,53 +165,53 @@ public class FenetreLocataire extends JFrame {
         panel_3.setLayout(new GridLayout(10, 2, 10, 5)); 
         panel_2.add(panel_3);
 
-        
-        panel_3.add(new JLabel("Nom :"));
+        JLabel lblNom = new JLabel("Nom :");
+        panel_3.add(lblNom);
         textFieldNom = new JTextField();
         panel_3.add(textFieldNom);
 
-        
-        panel_3.add(new JLabel("Prénom :"));
+        JLabel lblPrenom = new JLabel("Prénom :");
+        panel_3.add(lblPrenom);
         textFieldPrenom = new JTextField();
         panel_3.add(textFieldPrenom);
 
-        
-        panel_3.add(new JLabel("Adresse :"));
+        JLabel lblAdresse = new JLabel("Adresse :");
+        panel_3.add(lblAdresse);
         textField = new JTextField();
         panel_3.add(textField);
 
-      
-        panel_3.add(new JLabel("Tél :"));
+        JLabel lblTel = new JLabel("Tél :");
+        panel_3.add(lblTel);
         textFieldTel = new JTextField();
         panel_3.add(textFieldTel);
 
-     
-        panel_3.add(new JLabel("Email :"));
+        JLabel lblEmail = new JLabel("Email :");
+        panel_3.add(lblEmail);
         textFieldEmail = new JTextField();
         panel_3.add(textFieldEmail);
 
-       
-        panel_3.add(new JLabel("Date de naissance :"));
+        JLabel lblDate = new JLabel("Date de naissance :");
+        panel_3.add(lblDate);
         textFieldDateNaissance = new JTextField();
         panel_3.add(textFieldDateNaissance);
 
-      
-        panel_3.add(new JLabel("Lieu de naissance :"));
+        JLabel lblLieu = new JLabel("Lieu de naissance :");
+        panel_3.add(lblLieu);
         textFieldLieuNaissance = new JTextField();
         panel_3.add(textFieldLieuNaissance);
 
-     
-        panel_3.add(new JLabel("Salaire :"));
+        JLabel lblSalaire = new JLabel("Salaire :");
+        panel_3.add(lblSalaire);
         textFieldSalaire = new JTextField();
         panel_3.add(textFieldSalaire);
 
-        
-        panel_3.add(new JLabel("Profession :"));
+        JLabel lblProfession = new JLabel("Profession :");
+        panel_3.add(lblProfession);
         textFieldProfession = new JTextField();
         panel_3.add(textFieldProfession);
 
-      
-        panel_3.add(new JLabel("Situation familiale :"));
+        JLabel lblSituation = new JLabel("Situation familiale :");
+        panel_3.add(lblSituation);
         textFieldSituationFamiliale = new JTextField();
         panel_3.add(textFieldSituationFamiliale);
 

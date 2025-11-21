@@ -18,17 +18,15 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.ActionListener;
 
-import controleur.GestionFenetreTotalAssuranceTaxe;
-
-public class FenetreTotalAssuranceTaxe extends JFrame {
+public class FenetreTotalAssuranceTaxe extends JFrame implements ActionListener {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
     private JTable table;
     private JScrollPane scrollPane;
     private JButton btnQuitter;
-    private GestionFenetreTotalAssuranceTaxe gestionClicTotalAssuranceTaxe;
     private JPanel panel_1;
     private JPanel panel_2;
 
@@ -105,10 +103,7 @@ public class FenetreTotalAssuranceTaxe extends JFrame {
 
         JPanel footerPanel = new JPanel();
         footerPanel.setBorder(
-            BorderFactory.createMatteBorder(1, 0, 0, 0, Color.LIGHT_GRAY)); // thin
-                                                                            // line
-                                                                            // on
-                                                                            // top
+            BorderFactory.createMatteBorder(1, 0, 0, 0, Color.LIGHT_GRAY));
         footerPanel.setBackground(new Color(214, 214, 214));
         footerPanel.setPreferredSize(new Dimension(584, 30));
 
@@ -120,8 +115,6 @@ public class FenetreTotalAssuranceTaxe extends JFrame {
 
         /*---------------------------------------------------*/
 
-        this.gestionClicTotalAssuranceTaxe = new GestionFenetreTotalAssuranceTaxe(
-            this);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 450, 300);
         contentPane = new JPanel();
@@ -155,11 +148,12 @@ public class FenetreTotalAssuranceTaxe extends JFrame {
         panel.add(panel_1, BorderLayout.NORTH);
         
         JButton btnRetour = new JButton("Retour");
+        btnRetour.addActionListener(this);
         panel_1.add(btnRetour);
 
         btnQuitter = new JButton("Quitter");
+        btnQuitter.addActionListener(this);
         panel_1.add(btnQuitter);
-        btnQuitter.addActionListener(gestionClicTotalAssuranceTaxe);
 
         panel_2 = new JPanel();
         contentPane.add(panel_2, BorderLayout.SOUTH);
@@ -178,8 +172,7 @@ public class FenetreTotalAssuranceTaxe extends JFrame {
 
     }
 
-    public void actionPerformed(ActionEvent e) {
 
-    }
-
+	public void actionPerformed(ActionEvent e) {
+	}
 }

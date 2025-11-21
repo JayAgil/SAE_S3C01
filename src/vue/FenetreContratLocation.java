@@ -29,8 +29,9 @@ import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionListener;
 import java.awt.Panel;
+import java.awt.Font;
 
-public class FenetreContratLocation extends JInternalFrame {
+public class FenetreContratLocation extends JInternalFrame implements ActionListener {
 	private GestionFenetreContratLocation gestionClicContratLocation;
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -116,7 +117,7 @@ public class FenetreContratLocation extends JInternalFrame {
 		
 		this.gestionClicContratLocation = new GestionFenetreContratLocation(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 509, 246);
+		setBounds(100, 100, 726, 442);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -173,38 +174,59 @@ public class FenetreContratLocation extends JInternalFrame {
         		{null, null, null, null, null, null, null, null, null, null},
         	},
         	new String[] {
-        		"Num\u00E9ro de contrat", "Date d\u00E9but", "Date fin", "Montant de caution", "Provision charge", "Solde", "Montant Mensuel", "Date versement", "Index Compteur eau", "Indexe compteur \u00E9lectricit\u00E9"
+        		"Num\u00E9ro contrat", "Date d\u00E9but", "Date fin", "Montant caution", "Provision charge", "Solde", "Montant mensuel", "Date versement", "Index eau", "Index \u00E9lectricit\u00E9"
         	}
         ) {
+        	Class[] columnTypes = new Class[] {
+        		String.class, String.class, String.class, Float.class, Float.class, Float.class, Float.class, String.class, Float.class, Float.class
+        	};
+        	public Class getColumnClass(int columnIndex) {
+        		return columnTypes[columnIndex];
+        	}
         	boolean[] columnEditables = new boolean[] {
-        		true, true, true, true, true, true, true, true, false, false
+        		false, false, false, false, false, false, false, false, false, false
         	};
         	public boolean isCellEditable(int row, int column) {
         		return columnEditables[column];
         	}
         });
+        table.getColumnModel().getColumn(0).setPreferredWidth(87);
+        table.getColumnModel().getColumn(1).setPreferredWidth(66);
+        table.getColumnModel().getColumn(2).setPreferredWidth(50);
+        table.getColumnModel().getColumn(3).setPreferredWidth(90);
+        table.getColumnModel().getColumn(4).setPreferredWidth(89);
+        table.getColumnModel().getColumn(5).setPreferredWidth(45);
+        table.getColumnModel().getColumn(6).setPreferredWidth(97);
+        table.getColumnModel().getColumn(7).setPreferredWidth(89);
+        table.getColumnModel().getColumn(8).setPreferredWidth(61);
         
         Panel Title_1 = new Panel();
         panel_1.add(Title_1, BorderLayout.NORTH);
         
-        JLabel lblNewLabel_1_1_1 = new JLabel("Contrats de locations :");
-        Title_1.add(lblNewLabel_1_1_1);
+        JLabel lblTitre = new JLabel("Contrat locations ");
+        lblTitre.setFont(new Font("Tahoma", Font.BOLD, 15));
+        Title_1.add(lblTitre);
         
         JPanel panel_2 = new JPanel();
         panel_1.add(panel_2, BorderLayout.SOUTH);
         
-        JButton btnNewButton_2 = new JButton("Ajouter");
-        panel_2.add(btnNewButton_2);
+        JButton btnAjouter = new JButton("Ajouter");
+        btnAjouter.addActionListener(this);
+        panel_2.add(btnAjouter);
         
-        JButton btnNewButtonAnnuler = new JButton("Annuler");
-        btnNewButtonAnnuler.addActionListener(gestionClicContratLocation);
-        panel_2.add(btnNewButtonAnnuler);
-        table.getColumnModel().getColumn(8).setResizable(false);
-        table.getColumnModel().getColumn(9).setResizable(false);
+        JButton btnAnnuler = new JButton("Annuler");
+        btnAnnuler.addActionListener(gestionClicContratLocation);
+        panel_2.add(btnAnnuler);
+        
+        JButton btnRetour = new JButton("Retour");
+        btnRetour.addActionListener(this);
+        panel_2.add(btnRetour);
 	}
 	
 	
 	
 
+	public void actionPerformed(ActionEvent e) {
+	}
 }
 

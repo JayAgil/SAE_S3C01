@@ -1,180 +1,159 @@
 package modele;
 
+import java.sql.Date;
 import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Objects;
 
 public class Locataire {
-	
+
 	private String idLocataire;
 	private String nom;
 	private String prenom;
 	private String adresse;
-	private int tel;
+	private String tel;
 	private String email;
-	private int codePostale;
+	private String codePostale;
 	private String ville;
-	private LocalDate dateDeNaissance;
+	private Date dateDeNaissance;
 	private String lieuDeNaissance;
 	private double salaire;
 	private String profession;
 	private String situationFamiliale;
+	private String image;
 	private Garant garant;
-	
-	@Override
-	public int hashCode() {
-		return Objects.hash(adresse, codePostale, dateDeNaissance, email, garant, idLocataire, lieuDeNaissance, nom,
-				prenom, profession, salaire, situationFamiliale, tel, ville);
-	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (!(obj instanceof Locataire)) {
-			return false;
-		}
-		Locataire other = (Locataire) obj;
-		return Objects.equals(adresse, other.adresse) && codePostale == other.codePostale
-				&& Objects.equals(dateDeNaissance, other.dateDeNaissance) && Objects.equals(email, other.email)
-				&& Objects.equals(garant, other.garant) && Objects.equals(idLocataire, other.idLocataire)
-				&& Objects.equals(lieuDeNaissance, other.lieuDeNaissance) && Objects.equals(nom, other.nom)
-				&& Objects.equals(prenom, other.prenom) && Objects.equals(profession, other.profession)
-				&& Double.doubleToLongBits(salaire) == Double.doubleToLongBits(other.salaire)
-				&& Objects.equals(situationFamiliale, other.situationFamiliale) && tel == other.tel
-				&& Objects.equals(ville, other.ville);
-	}
-
-	@Override
-	public String toString() {
-		return "Locataire [idLocataire=" + idLocataire + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse
-				+ ", tel=" + tel + ", email=" + email + ", codePostale=" + codePostale + ", ville=" + ville
-				+ ", dateDeNaissance=" + dateDeNaissance + ", lieuDeNaissance=" + lieuDeNaissance + ", salaire="
-				+ salaire + ", profession=" + profession + ", situationFamiliale=" + situationFamiliale + ", garant="
-				+ garant + "]";
-	}
-
-	public void setIdLocataire(String idLocataire) {
+	public Locataire(String idLocataire, String nom, String prenom, String adresse, String tel, String email,
+			String codePostale, String ville, Date dateDeNaissance, String lieuDeNaissance, double salaire,
+			String profession, String situationFamiliale, String image, Garant garant) {
+		super();
 		this.idLocataire = idLocataire;
-	}
-
-	public void setNom(String nom) {
 		this.nom = nom;
-	}
-
-	public void setPrenom(String prenom) {
 		this.prenom = prenom;
-	}
-
-	public void setAdresse(String adresse) {
 		this.adresse = adresse;
-	}
-
-	public void setTel(int tel) {
 		this.tel = tel;
-	}
-
-	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public void setCodePostale(int codePostale) {
 		this.codePostale = codePostale;
-	}
-
-	public void setVille(String ville) {
 		this.ville = ville;
-	}
-
-	public void setDateDeNaissance(LocalDate dateDeNaissance) {
 		this.dateDeNaissance = dateDeNaissance;
-	}
-
-	public void setLieuDeNaissance(String lieuDeNaissance) {
 		this.lieuDeNaissance = lieuDeNaissance;
-	}
-
-	public void setSalaire(double salaire) {
 		this.salaire = salaire;
-	}
-
-	public void setProfession(String profession) {
 		this.profession = profession;
-	}
-
-	public void setSituationFamiliale(String situationFamiliale) {
 		this.situationFamiliale = situationFamiliale;
+		this.image = image;
+		this.garant = garant;
 	}
 
 	public String getIdLocataire() {
 		return idLocataire;
 	}
 
+	public void setIdLocataire(String idLocataire) {
+		this.idLocataire = idLocataire;
+	}
+
 	public String getNom() {
 		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 
 	public String getPrenom() {
 		return prenom;
 	}
 
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
 	public String getAdresse() {
 		return adresse;
 	}
 
-	public int getTel() {
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
+	}
+
+	public String getTel() {
 		return tel;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
 	}
 
 	public String getEmail() {
 		return email;
 	}
 
-	public int getCodePostale() {
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getCodePostale() {
 		return codePostale;
+	}
+
+	public void setCodePostale(String codePostale) {
+		this.codePostale = codePostale;
 	}
 
 	public String getVille() {
 		return ville;
 	}
 
-	public LocalDate getDateDeNaissance() {
+	public void setVille(String ville) {
+		this.ville = ville;
+	}
+
+	public Date getDateDeNaissance() {
 		return dateDeNaissance;
+	}
+
+	public void setDateDeNaissance(Date dateDeNaissance) {
+		this.dateDeNaissance = dateDeNaissance;
 	}
 
 	public String getLieuDeNaissance() {
 		return lieuDeNaissance;
 	}
 
+	public void setLieuDeNaissance(String lieuDeNaissance) {
+		this.lieuDeNaissance = lieuDeNaissance;
+	}
+
 	public double getSalaire() {
 		return salaire;
+	}
+
+	public void setSalaire(double salaire) {
+		this.salaire = salaire;
 	}
 
 	public String getProfession() {
 		return profession;
 	}
 
+	public void setProfession(String profession) {
+		this.profession = profession;
+	}
+
 	public String getSituationFamiliale() {
 		return situationFamiliale;
 	}
 
-	public Locataire(String idLocataire, String nom, String prenom, String adresse, int tel, String email,
-			int codePostale, String ville, LocalDate dateDeNaissance, String lieuDeNaissance, double salaire,
-			String profession, String situationFamiliale, Garant garant) {
-		this.garant = garant;
-		this.idLocataire = idLocataire;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.adresse = adresse;
-		this.tel = tel;
-		this.email = email;
-		this.codePostale = codePostale;
-		this.ville = ville;
-		this.dateDeNaissance = dateDeNaissance;
-		this.lieuDeNaissance = lieuDeNaissance;
-		this.salaire = salaire;
-		this.profession = profession;
+	public void setSituationFamiliale(String situationFamiliale) {
 		this.situationFamiliale = situationFamiliale;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	public Garant getGarant() {
@@ -184,19 +163,44 @@ public class Locataire {
 	public void setGarant(Garant garant) {
 		this.garant = garant;
 	}
-	
-	public boolean estMajeur() {
-        return dateDeNaissance != null && 
-               dateDeNaissance.plusYears(18).isBefore(LocalDate.now());
-    }
-	
-	public boolean aUnGarant() {
-        return garant != null;
-    }
-	
-	 public String getNomComplet() {
-	        return prenom + " " + nom;
-	    }
 
+	public boolean estMajeur() {
+	    if (dateDeNaissance == null) return false;
+	    java.sql.Date today = new java.sql.Date(System.currentTimeMillis());
+	    Calendar cal = Calendar.getInstance();
+	    cal.setTime(dateDeNaissance);
+	    cal.add(Calendar.YEAR, 18);
+	    java.sql.Date eighteenthBirthday =
+	            new java.sql.Date(cal.getTimeInMillis());
+	    return eighteenthBirthday.before(today);
+	}
+
+
+	public boolean aUnGarant() {
+		return garant != null;
+	}
+
+	public String getNomComplet() {
+		return prenom + " " + nom;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(idLocataire);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Locataire other = (Locataire) obj;
+		return Objects.equals(idLocataire, other.idLocataire);
+	}
 	
+	
+
 }

@@ -18,14 +18,19 @@ import javax.swing.JComboBox;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JButton;
+import java.awt.GridLayout;
+import java.awt.Component;
+import javax.swing.Box;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class FenetreAjouterPaiement extends JFrame {
+public class FenetreAjouterPaiement extends JFrame implements ActionListener {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
-    private JTextField textFieldMontant;
-    private JTextField textFieldDate;
     private GestionFenetreAjouterPaiement gestionClic;
+    private JTextField textFieldDate;
+    private JTextField textFieldMontant;
 
     /**
      * Launch the application.
@@ -50,72 +55,86 @@ public class FenetreAjouterPaiement extends JFrame {
      */
     public FenetreAjouterPaiement() {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setBounds(100, 100, 450, 300);
+        setBounds(100, 100, 400, 451);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
         setContentPane(contentPane);
         contentPane.setLayout(new BorderLayout(0, 0));
-
-        JPanel footerPanel = new JPanel();
-        footerPanel.setBorder(
-            BorderFactory.createMatteBorder(1, 0, 0, 0, Color.LIGHT_GRAY)); 
-        
-        footerPanel.setBackground(new Color(214, 214, 214));
-        footerPanel.setPreferredSize(new Dimension(584, 30));
-
-        JLabel footerLabel = new JLabel(
-            "Developpé par Koshua, Jay, Aneesa, Luca et Franck");
-        footerPanel.add(footerLabel);
-
-        getContentPane().add(footerPanel, BorderLayout.SOUTH);
         
         JPanel panel = new JPanel();
-        contentPane.add(panel, BorderLayout.CENTER);
-        panel.setLayout(null);
+        contentPane.add(panel, BorderLayout.NORTH);
         
-        textFieldMontant = new JTextField();
-        textFieldMontant.setBounds(173, 50, 101, 19);
-        panel.add(textFieldMontant);
-        textFieldMontant.setColumns(10);
+        JLabel lblTitre = new JLabel("Ajouter paiement");
+        lblTitre.setFont(new Font("Tahoma", Font.BOLD, 15));
+        panel.add(lblTitre);
         
-        JLabel lblMontant = new JLabel("Montant de paiement : ");
-        lblMontant.setBounds(32, 50, 131, 13);
-        panel.add(lblMontant);
+        Component verticalStrut = Box.createVerticalStrut(60);
+        panel.add(verticalStrut);
         
-        JLabel lblDate = new JLabel("Date de paiement : ");
-        lblDate.setBounds(32, 73, 131, 13);
-        panel.add(lblDate);
-        textFieldDate = new JTextField();
-        textFieldDate.setColumns(10);
-        textFieldDate.setBounds(173, 73, 101, 19);
-        panel.add(textFieldDate);
+        JPanel panel_1 = new JPanel();
+        contentPane.add(panel_1, BorderLayout.CENTER);
+        panel_1.setLayout(new BorderLayout(0, 0));
         
-        JComboBox cbContratLocation = new JComboBox();
-        cbContratLocation.setBounds(173, 99, 101, 21);
-        panel.add(cbContratLocation);
-        
-        JLabel lblContrat = new JLabel("Choisir le contrat : ");
-        lblContrat.setBounds(32, 100, 131, 13);
-        panel.add(lblContrat);
-        
-        JLabel lblTitire = new JLabel("Ajouter Un Paiement");
-        lblTitire.setFont(new Font("Tahoma", Font.PLAIN, 17));
-        lblTitire.setHorizontalAlignment(SwingConstants.CENTER);
-        lblTitire.setBounds(0, 10, 422, 27);
-        panel.add(lblTitire);
-        
-        JButton btnAjout = new JButton("Ajouter");
-        btnAjout.setBounds(32, 133, 85, 21);
-        panel.add(btnAjout);
+        JPanel panel_2 = new JPanel();
+        panel_1.add(panel_2, BorderLayout.SOUTH);
         
         JButton btnRetour = new JButton("Retour");
-        btnRetour.setBounds(127, 133, 85, 21);
-        panel.add(btnRetour);
+        btnRetour.addActionListener(this);
         
-        gestionClic = new GestionFenetreAjouterPaiement(this);
+        JButton btnAjouter = new JButton("Ajouter");
+        btnAjouter.addActionListener(this);
+        panel_2.add(btnAjouter);
         
-        btnAjout.addActionListener(gestionClic);
-        btnRetour.addActionListener(gestionClic);
+        JButton btnAnnuler = new JButton("Annuler");
+        btnAnnuler.addActionListener(this);
+        panel_2.add(btnAnnuler);
+        panel_2.add(btnRetour);
+        
+        JPanel panel_3 = new JPanel();
+        panel_1.add(panel_3, BorderLayout.CENTER);
+        panel_3.setLayout(new GridLayout(6, 2, 0, 0));
+        
+        JPanel panel_4 = new JPanel();
+        panel_3.add(panel_4);
+        
+        JPanel panel_5 = new JPanel();
+        panel_3.add(panel_5);
+        
+        JLabel lblDatePaiement = new JLabel("Date paiement :");
+        panel_5.add(lblDatePaiement);
+        
+        textFieldDate = new JTextField();
+        panel_5.add(textFieldDate);
+        textFieldDate.setColumns(10);
+        
+        JPanel panel_6 = new JPanel();
+        panel_3.add(panel_6);
+        
+        JLabel lblMontant = new JLabel("Montant paiement :");
+        panel_6.add(lblMontant);
+        
+        textFieldMontant = new JTextField();
+        panel_6.add(textFieldMontant);
+        textFieldMontant.setColumns(10);
+        
+        JPanel panel_7 = new JPanel();
+        panel_3.add(panel_7);
+        
+        JLabel lblContratLocation = new JLabel("Contrat location :");
+        panel_7.add(lblContratLocation);
+        
+        JComboBox comboBox = new JComboBox();
+        panel_7.add(comboBox);
+        
+        JPanel panel_8 = new JPanel();
+        panel_3.add(panel_8);
+        
+        JPanel panel_9 = new JPanel();
+        panel_3.add(panel_9);
+        
+     
     }
+	public void actionPerformed(ActionEvent e) {
+	}
 }

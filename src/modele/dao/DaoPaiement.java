@@ -1,41 +1,48 @@
 package modele.dao;
 
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
+import modele.ContratLocation;
 import modele.Paiement;
+import modele.dao.requetes.*;
 
-public class DaoPaiement implements Dao<Paiement> {
+public class DaoPaiement extends DaoModele<Paiement> implements Dao<Paiement> {
+	
 
-	@Override
 	public void create(Paiement t) {
 		DaoTest.insertPaiement(t);
 		
 	}
 
-	@Override
 	public void update(Paiement t) {
 		DaoTest.updatePaiement(t);
 		
 	}
 
-	@Override
 	public void delete(Paiement t) {
 		DaoTest.deletePaiement(t);
 		
 	}
 
-	@Override
-	public Paiement findById(String... id) {
-		if (DaoTest.selectPaiement(id).size()==0) {
-			return null;
-		}
-		return DaoTest.selectPaiement(id).get(0);
+	public Paiement findById(String... id) throws SQLException {
+		return findById(new RequeteSelectPaiement(), id);
+	}
+
+	public List<Paiement> findAll() throws SQLException {
+		return find(new RequeteSelectPaiement());
 	}
 
 	@Override
-	public List<Paiement> findAll() {
-		return DaoTest.selectPaiement();
-		
+	protected Paiement creerInstance(ResultSet rs) throws SQLException {
+		DaoContratLocation dCL = new DaoContratLocation();
+		String idpaiement = rs.getString(1);
+		Double montant = rs.getDouble(2);
+		Date datePaiement = rs.getDate(3);
+		ContratLocation cl = dCL.findById(rs.getString(4));
+		return new Paiement(idpaiement, montant, datePaiement, cl);
 	}
 
 }

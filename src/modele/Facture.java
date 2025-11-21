@@ -1,15 +1,16 @@
 package modele;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Objects;
 
 public class Facture {
 	private String numeroFacture;
 	private double montant;
-	private LocalDate dateDeFacture;
+	private Date dateDeFacture;
 	private String compteBancaire;
 	private double montantDevis;
-	private LocalDate datePaiement;
+	private Date datePaiement;
 	private String designationDeTravaux;
 	private BienLouable bienLoauble;
 	private Entreprise entreprise;
@@ -35,7 +36,7 @@ public class Facture {
 	public void setMontant(double montant) {
 		this.montant = montant;
 	}
-	public void setDateDeFacture(LocalDate dateDeFacture) {
+	public void setDateDeFacture(Date dateDeFacture) {
 		this.dateDeFacture = dateDeFacture;
 	}
 	public void setCompteBancaire(String compteBancaire) {
@@ -44,7 +45,7 @@ public class Facture {
 	public void setMontantDevis(double montantDevis) {
 		this.montantDevis = montantDevis;
 	}
-	public void setDatePaiement(LocalDate datePaiement) {
+	public void setDatePaiement(Date datePaiement) {
 		this.datePaiement = datePaiement;
 	}
 	public void setDesignationDeTravaux(String designationDeTravaux) {
@@ -56,7 +57,7 @@ public class Facture {
 	public double getMontant() {
 		return montant;
 	}
-	public LocalDate getDateDeFacture() {
+	public Date getDateDeFacture() {
 		return dateDeFacture;
 	}
 	public String getCompteBancaire() {
@@ -65,15 +66,8 @@ public class Facture {
 	public double getMontantDevis() {
 		return montantDevis;
 	}
-	public LocalDate getDatePaiement() {
+	public Date getDatePaiement() {
 		return datePaiement;
-	}
-	@Override
-	public String toString() {
-		return "Facture [numeroFacture=" + numeroFacture + ", montant=" + montant + ", dateDeFacture=" + dateDeFacture
-				+ ", compteBancaire=" + compteBancaire + ", montantDevis=" + montantDevis + ", datePaiement="
-				+ datePaiement + ", designationDeTravaux=" + designationDeTravaux + ", bienLoauble=" + bienLoauble
-				+ ", entreprise=" + entreprise + "]";
 	}
 	public String getDesignationDeTravaux() {
 		return designationDeTravaux;
@@ -90,8 +84,8 @@ public class Facture {
 	public void setEntreprise(Entreprise entreprise) {
 		this.entreprise = entreprise;
 	}
-	public Facture(String numeroFacture, double montant, LocalDate dateDeFacture, String compteBancaire,
-			double montantDevis, LocalDate datePaiement, String designationDeTravaux, BienLouable bienLouable, Entreprise entreprise) {
+	public Facture(String numeroFacture, double montant, Date dateDeFacture, String compteBancaire,
+			double montantDevis, Date datePaiement, String designationDeTravaux, BienLouable bienLouable, Entreprise entreprise) {
 		super();
 		this.numeroFacture = numeroFacture;
 		this.montant = montant;

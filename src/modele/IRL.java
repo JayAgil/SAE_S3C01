@@ -4,16 +4,11 @@ import java.util.Objects;
 
 public class IRL {
 	public double IRL;
-	public String annee;
+	public int annee;
 	
-	public IRL(double IRL, String anne) {
+	public IRL(double IRL, int anne) {
 		this.IRL = IRL;
 		this.annee = anne;
-	}
-
-	@Override
-	public String toString() {
-		return "IRL [IRL=" + IRL + ", anne=" + annee + "]";
 	}
 
 	@Override
@@ -33,11 +28,11 @@ public class IRL {
 		return Double.doubleToLongBits(IRL) == Double.doubleToLongBits(other.IRL) && Objects.equals(annee, other.annee);
 	}
 
-	public String getAnnee() {
+	public int getAnnee() {
 		return annee;
 	}
 
-	public void setAnnee(String anne) {
+	public void setAnnee(int anne) {
 		this.annee = anne;
 	}
 

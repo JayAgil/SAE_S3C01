@@ -333,8 +333,8 @@ public class FenetrePrincipale extends JFrame
         horizontalStrut_5.setPreferredSize(new Dimension(10, 0));
         contentPane.add(horizontalStrut_5, BorderLayout.EAST);
         this.setPreferredSize(new Dimension(726, 442));
-        this.setMinimumSize(new Dimension(726, 442));
-        this.setMaximumSize(new Dimension(726, 442));
+        this.setMinimumSize(new Dimension(800, 600));
+        this.setMaximumSize(new Dimension(800, 600));
         this.setSize(new Dimension(726, 442));
 
         this.pack();

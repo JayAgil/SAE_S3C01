@@ -2,7 +2,7 @@ package modele;
 
 import java.util.Objects;
 
-public class BienLouable {
+public class BienLouable { 
 
 	private String idBienLouable;
 	private String numeroFiscale;
@@ -11,7 +11,7 @@ public class BienLouable {
 	private int nbPieces;
 	private String typeBienLouable;
 	private Batiment batiment;
-	private BienLouable Logement;
+	private BienLouable bienLouable;
 	public BienLouable(String idBienLouable, String numeroFiscale, String adresse, double surfaceHabituable,
 			int nbPieces, String typeBienLouable, Batiment batiment, BienLouable l) {
 		this.idBienLouable = idBienLouable;
@@ -21,13 +21,13 @@ public class BienLouable {
 		this.nbPieces = nbPieces;
 		this.typeBienLouable = typeBienLouable;
 		this.batiment = batiment;
-		this.Logement = l;
+		this.bienLouable = l;
 	}
 	public BienLouable getLogement() {
-		return Logement;
+		return bienLouable;
 	}
 	public void setLogement(BienLouable logement) {
-		Logement = logement;
+		bienLouable = logement;
 	}
 	public Batiment getBatiment() {
 		return batiment;
@@ -95,7 +95,7 @@ public class BienLouable {
 	public String toString() {
 		return "BienLouable [idBienLouable=" + idBienLouable + ", numeroFiscale=" + numeroFiscale + ", adresse="
 				+ adresse + ", surfaceHabituable=" + surfaceHabituable + ", nbPieces=" + nbPieces + ", typeBienLouable="
-				+ typeBienLouable + ", batiment=" + batiment + ", Logement=" + Logement + "]";
+				+ typeBienLouable + ", batiment=" + batiment + ", Logement=" + bienLouable + "]";
 	}
 	
 	public boolean estValide() {

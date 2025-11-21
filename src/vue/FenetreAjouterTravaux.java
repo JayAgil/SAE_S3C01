@@ -51,7 +51,7 @@ public class FenetreAjouterTravaux extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public FenetreAjouterTravaux() {
-		setBounds(100, 100, 373, 428);
+		setBounds(100, 100, 400, 451);
 		getContentPane().setLayout(new BorderLayout(0, 0));
 
         JPanel panel_12 = new JPanel();
@@ -109,8 +109,8 @@ public class FenetreAjouterTravaux extends JInternalFrame {
         panel.add(champCB);
         
         JLabel lblTitre = new JLabel("Ajouter travaux");
-        lblTitre.setFont(new Font("Tahoma", Font.BOLD, 12));
-        lblTitre.setBounds(126, 21, 114, 14);
+        lblTitre.setFont(new Font("Tahoma", Font.BOLD, 15));
+        lblTitre.setBounds(126, 23, 163, 14);
         panel.add(lblTitre);
         
         this.gestionClic = new GestionAjouterTravaux(this);
@@ -122,12 +122,12 @@ public class FenetreAjouterTravaux extends JInternalFrame {
         
         JButton btnAnnuler = new JButton("Annuler");
         btnAnnuler.addActionListener(this.gestionClic);
-        btnAnnuler.setBounds(126, 318, 89, 23);
+        btnAnnuler.setBounds(141, 318, 89, 23);
         panel.add(btnAnnuler);
         
         JButton btnRetour = new JButton("Retour");
         btnRetour.addActionListener(this.gestionClic);
-        btnRetour.setBounds(220, 318, 89, 23);
+        btnRetour.setBounds(240, 318, 89, 23);
         panel.add(btnRetour);
         
         JLabel lblMontantDevis = new JLabel("Montant devis :");

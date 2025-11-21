@@ -1,17 +1,18 @@
 package modele.dao;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface Dao<T> {
-	public void create(T t);
+	public void create(T t) throws SQLException;
 	
-	public void update(T t);
+	public void update(T t) throws SQLException;
 	
-	public void delete(T t);
+	public void delete(T t) throws SQLException;
 	
-	public T findById(String...id);
+	public T findById(String...id) throws SQLException;
 	
-	public List<T> findAll();
+	public List<T> findAll() throws SQLException;
 
 
 }

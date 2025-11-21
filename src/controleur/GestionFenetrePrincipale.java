@@ -9,6 +9,7 @@ import vue.FenetreAjouterBatiment;
 import vue.FenetreAssurance;
 import vue.FenetreBienLouable;
 import vue.FenetreCharges;
+import vue.FenetreCompteurs;
 import vue.FenetrePrincipale;
 import vue.FenetreSupprimerBatiment;
 
@@ -32,7 +33,9 @@ public class GestionFenetrePrincipale implements ActionListener {
             assurance.setVisible(true);
             break;
         case "Compteurs":
-
+        	FenetreCompteurs fenetreCompteurs = new FenetreCompteurs();
+        	fenetre.getLayeredPane().add(fenetreCompteurs);
+        	fenetreCompteurs.setVisible(true);
             break;
         case "Charges":
             FenetreCharges charges = new FenetreCharges();

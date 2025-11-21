@@ -49,7 +49,7 @@ public class FenetreTravaux extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public FenetreTravaux() {
-		setBounds(100, 100, 586, 300);
+		setBounds(100, 100, 726, 442);
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		JPanel panel_11 = new JPanel();
         getContentPane().add(panel_11, BorderLayout.NORTH);
@@ -118,7 +118,7 @@ public class FenetreTravaux extends JInternalFrame {
         getContentPane().add(panel_12, BorderLayout.SOUTH);
 
         JPanel footerPanel = new JPanel();
-        footerPanel.setPreferredSize(new Dimension(584, 30));
+        footerPanel.setPreferredSize(new Dimension(700, 30));
         footerPanel.setBorder(
             BorderFactory.createMatteBorder(1, 0, 0, 0, Color.LIGHT_GRAY));
         footerPanel.setBackground(new Color(214, 214, 214));
@@ -208,7 +208,7 @@ public class FenetreTravaux extends JInternalFrame {
         panel.add(scrollPane, BorderLayout.CENTER);
         
         JLabel lblTravaux = new JLabel("Travaux");
-        lblTravaux.setFont(new Font("Tahoma", Font.BOLD, 12));
+        lblTravaux.setFont(new Font("Tahoma", Font.BOLD, 15));
         panel.add(lblTravaux, BorderLayout.NORTH);
 
 
