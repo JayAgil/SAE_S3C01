@@ -23,12 +23,8 @@ public class GestionFenetreAjouterBatiment implements ActionListener {
             break;
         case "Annuler":
             fenetre.dispose();
-            break;
-        case "Retour" :
-        	fenetre.dispose();
-        	FenetrePrincipale fenPrincipale = new FenetrePrincipale();
-        	fenPrincipale.setVisible(true);
-        	break;
+            break;  
         }
     }
+
 }

@@ -29,7 +29,7 @@ import controleur.GestionFenetreAssurance;
 import java.awt.Component;
 import javax.swing.Box;
 
-public class FenetreAssurance extends JInternalFrame implements ActionListener {
+public class FenetreAssurance extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
@@ -61,8 +61,8 @@ public class FenetreAssurance extends JInternalFrame implements ActionListener {
      */
     public FenetreAssurance() {
         this.gestionClic = new GestionFenetreAssurance(this);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 400, 451);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setBounds(100, 100, 600, 400);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -75,16 +75,26 @@ public class FenetreAssurance extends JInternalFrame implements ActionListener {
 
         JPanel panelNorth = new JPanel();
         panel.add(panelNorth, BorderLayout.NORTH);
-
-        JComboBox<String> comboBox = new JComboBox<String>();
-        comboBox.setFont(new Font("Tahoma", Font.BOLD, 11));
-        comboBox.addActionListener(this);
-        panelNorth.add(comboBox);
-        comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {
-            "Assurance1", "Assurance2", "Assurance3", "THE_ASSURANCE" }));
+        panelNorth.setLayout(new GridLayout(2, 1, 0, 0));
         
-        Component verticalStrut_1 = Box.createVerticalStrut(70);
-        panelNorth.add(verticalStrut_1);
+        JPanel panel_1 = new JPanel();
+        panelNorth.add(panel_1);
+        
+        Component verticalStrut_1 = Box.createVerticalStrut(50);
+        panel_1.add(verticalStrut_1);
+        
+        JLabel lblTitre = new JLabel("Assurance");
+        lblTitre.setFont(new Font("Tahoma", Font.BOLD, 15));
+        panel_1.add(lblTitre);
+        
+        JPanel panel_2 = new JPanel();
+        panelNorth.add(panel_2);
+        
+        JComboBox comboBox = new JComboBox();
+        panel_2.add(comboBox);
+        
+        comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {
+                "Assurance1", "Assurance2", "Assurance3", "THE_ASSURANCE" }));
 
         JPanel panelCenter = new JPanel();
         panel.add(panelCenter);
@@ -187,7 +197,7 @@ public class FenetreAssurance extends JInternalFrame implements ActionListener {
         panel.add(panelSouth, BorderLayout.SOUTH);
 
         JButton btnRetour = new JButton("Retour");
-        btnRetour.addActionListener(this);
+        btnRetour.addActionListener(this.gestionClic);
         panelSouth.add(btnRetour);
         
         Component verticalStrut = Box.createVerticalStrut(60);
@@ -271,8 +281,5 @@ public class FenetreAssurance extends JInternalFrame implements ActionListener {
         footerPanel.add(footerLabel);
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        this.gestionClic.actionPerformed(e);
-    }
+   
 }

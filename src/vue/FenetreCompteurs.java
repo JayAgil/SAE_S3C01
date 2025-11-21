@@ -14,24 +14,22 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Font;
-import javax.swing.SwingConstants;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 import java.awt.GridLayout;
 import javax.swing.JButton;
-import javax.swing.table.TableModel;
-import javax.swing.JScrollBar;
+import controleur.GestionFenetreCompteurs;
+
 import java.awt.Component;
 import javax.swing.Box;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
-public class FenetreCompteurs extends JFrame implements ActionListener {
+public class FenetreCompteurs extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
     private JTable tableCompteurs;
+    private GestionFenetreCompteurs gestionClic;
     /**
      * Launch the application.
      */
@@ -53,8 +51,9 @@ public class FenetreCompteurs extends JFrame implements ActionListener {
      * Create the frame.
      */
     public FenetreCompteurs() {
+    	this.gestionClic = new GestionFenetreCompteurs(this);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setBounds(100, 100, 726, 442);
+        setBounds(100, 100, 1200, 800);
 
         JMenuBar menuBar = new JMenuBar();
         menuBar.setBackground(new Color(214, 214, 214));
@@ -194,11 +193,11 @@ public class FenetreCompteurs extends JFrame implements ActionListener {
         panel_butons.setLayout(new GridLayout(0, 2, 0, 0));
         
         JButton btnRetour = new JButton("Retour");
-        btnRetour.addActionListener(this);
+        btnRetour.addActionListener(this.gestionClic);
         panel_butons.add(btnRetour);
         
         JButton btnAjouterCompteur = new JButton("Ajouter compteur");
-        btnAjouterCompteur.addActionListener(this);
+        btnAjouterCompteur.addActionListener(this.gestionClic);
         panel_butons.add(btnAjouterCompteur);
         
         JPanel panel_1 = new JPanel();
@@ -212,12 +211,5 @@ public class FenetreCompteurs extends JFrame implements ActionListener {
         panel_1.add(lblTitre);
 
     }
-	public void actionPerformed(ActionEvent e) {
-		switch (((JButton) e.getSource()).getText()) {
-		case "Retour" :
-			break;
-		case "Ajouter compteur" :
-			break;
-		}
-	}
+	
 }

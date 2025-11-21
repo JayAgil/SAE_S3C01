@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import vue.FenetreAssurance;
+import vue.FenetrePrincipale;
 
 public class GestionFenetreAssurance implements ActionListener {
 
@@ -20,6 +21,8 @@ public class GestionFenetreAssurance implements ActionListener {
         switch (((JButton) e.getSource()).getText()) {
         case "Retour":
             fenetre.dispose();
+            FenetrePrincipale fenPrincipale = new FenetrePrincipale();
+            fenPrincipale.setVisible(true);
             break;
         }
     }

@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import vue.FenetrePrincipale;
 import vue.FenetreSupprimerBatiment;
 
 public class GestionFenetreSupprimerBatiment implements ActionListener {
@@ -19,7 +20,6 @@ public class GestionFenetreSupprimerBatiment implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         switch (((JButton) e.getSource()).getText()) {
         case "Valider":
-            fenetre.dispose();
             break;
         case "Annuler":
             fenetre.dispose();

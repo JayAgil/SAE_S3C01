@@ -20,14 +20,18 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
+import controleur.GestionFenetreSupprimerBatiment;
+
 import javax.swing.JTextField;
 import javax.swing.JSpinner;
 
-public class FenetreSupprimerBatiment extends JInternalFrame implements ActionListener {
+public class FenetreSupprimerBatiment extends JInternalFrame {
 
     private static final long serialVersionUID = 1L;
     private JTextField textFieldAdresse;
     private JTextField textFieldDate;
+    private GestionFenetreSupprimerBatiment gestionClic;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
@@ -41,8 +45,8 @@ public class FenetreSupprimerBatiment extends JInternalFrame implements ActionLi
     }
 
     public FenetreSupprimerBatiment() {
-
-        setBounds(100, 100, 400, 451);
+    	this.gestionClic = new GestionFenetreSupprimerBatiment(this);
+        setBounds(100, 100, 600, 400);
         getContentPane().setLayout(new BorderLayout(0, 0));
 
         JPanel panel_10 = new JPanel();
@@ -55,7 +59,7 @@ public class FenetreSupprimerBatiment extends JInternalFrame implements ActionLi
 
         JLabel lblTitre1 = new JLabel("Supprimer un bâtiment");
         lblTitre1.setHorizontalAlignment(SwingConstants.CENTER);
-        lblTitre1.setFont(new Font("Tahoma", Font.BOLD, 14));
+        lblTitre1.setFont(new Font("Tahoma", Font.BOLD, 15));
         panelNorth.add(lblTitre1);
         
         Component verticalStrut = Box.createVerticalStrut(20);
@@ -72,9 +76,13 @@ public class FenetreSupprimerBatiment extends JInternalFrame implements ActionLi
         btnSuprimer.setBackground(Color.WHITE);
         btnSuprimer.setFont(new Font("Tahoma", Font.PLAIN, 11));
         panelSouth.add(btnSuprimer);
+        
+        JButton btnRetour = new JButton("Retour");
+        btnRetour.addActionListener(this.gestionClic);
+        panelSouth.add(btnRetour);
 
-        btnSuprimer.addActionListener(this);
-        btnAnnuler.addActionListener(this);
+        btnSuprimer.addActionListener(this.gestionClic);
+        btnAnnuler.addActionListener(this.gestionClic);
 
         JPanel panelCenter = new JPanel(new BorderLayout(0, 0));
         panelCenter.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
@@ -138,15 +146,5 @@ public class FenetreSupprimerBatiment extends JInternalFrame implements ActionLi
         panelCenter.add(lblVerification, BorderLayout.SOUTH);
     }
     
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        switch (((JButton) e.getSource()).getText()) {
-        case "Annuler":
-            this.dispose();
-            break;
-        case "Supprimer":
-            this.dispose();
-            break;
-        }
-    }
+
 }

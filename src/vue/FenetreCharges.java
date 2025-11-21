@@ -30,11 +30,12 @@ import java.awt.Component;
 import javax.swing.Box;
 import java.awt.event.ActionListener;
 
-public class FenetreCharges extends JFrame implements ActionListener {
+public class FenetreCharges extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable table;
+	private GestionFenetreCharges gestionClic;
 	
 
 	/**
@@ -57,6 +58,7 @@ public class FenetreCharges extends JFrame implements ActionListener {
 	 * Create the frame.
 	 */
 	public FenetreCharges() {
+		this.gestionClic = new GestionFenetreCharges(this);
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBackground(new Color(214, 214, 214));
 		setJMenuBar(menuBar);
@@ -114,11 +116,9 @@ public class FenetreCharges extends JFrame implements ActionListener {
 		
 		JMenuItem mntmAjout = new JMenuItem("Ajouter Paiement");
 		mnPaiement.add(mntmAjout);
-		
-		/*---------------------------------------------------*/
 	
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 726, 442);
+		setBounds(100, 100, 1200, 800);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -176,11 +176,11 @@ public class FenetreCharges extends JFrame implements ActionListener {
         panel_1.add(panel_2, BorderLayout.SOUTH);
         
         JButton btnQuitter = new JButton("Quitter");
-        btnQuitter.addActionListener(this);
+        btnQuitter.addActionListener(this.gestionClic);
         panel_2.add(btnQuitter);
         
         JButton btnRetour = new JButton("Retour");
-        btnRetour.addActionListener(this);
+        btnRetour.addActionListener(this.gestionClic);
         panel_2.add(btnRetour);
         
         Component verticalStrut_1 = Box.createVerticalStrut(70);
@@ -211,13 +211,5 @@ public class FenetreCharges extends JFrame implements ActionListener {
         footerPanel.add(footerLabel);
 	}
 	
-	public void actionPerformed(ActionEvent e) {
-		switch (((JButton) e.getSource()).getText()) {
-		case "Retour" :
-			break;
-		case "Quitter" :
-			break;
-		}
-		
-	}
+	
 }

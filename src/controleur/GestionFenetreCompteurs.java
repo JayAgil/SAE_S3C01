@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import vue.FenetreCompteurs;
+import vue.FenetrePrincipale;
 
 public class GestionFenetreCompteurs implements ActionListener {
 	
@@ -20,8 +21,10 @@ public class GestionFenetreCompteurs implements ActionListener {
         switch (((JButton) e.getSource()).getText()) {
         case "Retour":
         	fenetre.dispose();
+        	FenetrePrincipale fenPrincipale = new FenetrePrincipale();
+        	fenPrincipale.setVisible(true);
         	break;
-        case "Ajouter Compteur":
+        case "Ajouter compteur":
         	break;
         }
 		

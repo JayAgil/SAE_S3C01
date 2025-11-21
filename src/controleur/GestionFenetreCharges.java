@@ -6,21 +6,26 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import vue.FenetreCharges;
+import vue.FenetrePrincipale;
 
 public class GestionFenetreCharges implements ActionListener{
 	
-	private FenetreCharges fenetreCharges;
+	private FenetreCharges fenetre;
 	
 	
 	
 	public GestionFenetreCharges(FenetreCharges fenetre) {
-        this.fenetreCharges = fenetre;
+        this.fenetre = fenetre;
     }
 	public void actionPerformed(ActionEvent e) {
         switch (((JButton) e.getSource()).getText()) {
         case "Quitter":
-            fenetreCharges.dispose();
+            fenetre.dispose();
             break;
+        case "Retour" :
+        	fenetre.dispose();
+        	FenetrePrincipale fenPrincipale = new FenetrePrincipale();
+        	fenPrincipale.setVisible(true);
         }
     }
 }
