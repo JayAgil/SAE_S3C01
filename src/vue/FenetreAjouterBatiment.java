@@ -27,8 +27,7 @@ import controleur.GestionFenetreAjouterBatiment;
 import java.awt.Component;
 import javax.swing.Box;
 
-public class FenetreAjouterBatiment extends JInternalFrame
-    implements ActionListener {
+public class FenetreAjouterBatiment extends JInternalFrame {
 
     private static final long serialVersionUID = 1L;
     private JTextField textFieldAdresse;
@@ -56,7 +55,7 @@ public class FenetreAjouterBatiment extends JInternalFrame
      * Create the frame.
      */
     public FenetreAjouterBatiment() {
-    	GestionFenetreAjouterBatiment gestionClic = new GestionFenetreAjouterBatiment(this); 
+    	this.gestionClic = new GestionFenetreAjouterBatiment(this); 
         setBounds(100, 100, 600, 400);
         getContentPane().setLayout(new BorderLayout(0, 0));
 
@@ -86,13 +85,13 @@ public class FenetreAjouterBatiment extends JInternalFrame
         panelSouth.add(btnAnnuler);
         
         JButton btnRetour = new JButton("Retour");
-        btnRetour.addActionListener(this);
+        btnRetour.addActionListener(this.gestionClic);
         panelSouth.add(btnRetour);
         
         Component verticalStrut_1 = Box.createVerticalStrut(100);
         panelSouth.add(verticalStrut_1);
-        btnAnnuler.addActionListener(this);
-        btnAjouter.addActionListener(this);
+        btnAnnuler.addActionListener(this.gestionClic);
+        btnAjouter.addActionListener(this.gestionClic);
 
         JPanel panelCenter = new JPanel();
         panel_10.add(panelCenter);
@@ -169,18 +168,5 @@ public class FenetreAjouterBatiment extends JInternalFrame
 
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        switch (((JButton) e.getSource()).getText()) {
-        case "Valider":
-            this.dispose();
-            break;
-        case "Annuler":
-            this.dispose();
-            break;
-        case "Retour" :
-        	this.dispose();
-        	break;
-        }
-    }
+    
 }
