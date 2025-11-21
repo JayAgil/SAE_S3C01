@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import modele.UtOracleDataSource;
+
 public class TestConnection {
 
     public static void main(String[] arg0) throws SQLException {

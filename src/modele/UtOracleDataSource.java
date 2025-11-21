@@ -1,4 +1,4 @@
-package Connection;
+package modele;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -8,7 +8,7 @@ import oracle.jdbc.datasource.impl.OracleDataSource;
 public class UtOracleDataSource extends OracleDataSource {
 
     private static UtOracleDataSource bd = null;
-    private static Connection connection;
+    private static Connection connection = null;
 
     private UtOracleDataSource(String login, String mdp) throws SQLException {
         this.setURL("jdbc:oracle:thin:@telline.univ-tlse3.fr" + ":1521:etupre");
@@ -22,7 +22,7 @@ public class UtOracleDataSource extends OracleDataSource {
         connection = bd.getConnection();
     }
 
-    public static Connection getConnectionBD() throws SQLException {
+    public static Connection getConnectionBD(){
         return connection;
     }
 
