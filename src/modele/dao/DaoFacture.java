@@ -32,12 +32,12 @@ public class DaoFacture extends DaoModele<Facture> implements Dao<Facture> {
 
 	@Override
 	public Facture findById(String... id) throws SQLException {
-		return findById(new RequeteSelectFacture(), id);
+		return findById(new RequeteSelectFactureById(), id);
 	}
 
 	@Override
 	public List<Facture> findAll() throws SQLException {
-		return find(new RequeteSelectFactureById());
+		return find(new RequeteSelectFacture());
 	}
 
 	@Override
