@@ -11,6 +11,5 @@ public abstract class Requete<T> {
 	}
 
 	public void parametres(PreparedStatement prSt, T donnee) {
-
 	}
 }
