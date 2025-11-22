@@ -8,8 +8,11 @@ import javax.swing.*;
 import vue.FenetreAssurance;
 import vue.FenetreBienLouable;
 import vue.FenetreCharges;
+import vue.FenetreCompteurs;
 import vue.FenetreContratLocation;
+import vue.FenetreDiagnostic;
 import vue.FenetrePrincipale;
+import vue.FenetreTravaux;
 
 public class GestionFenetreBienLouable implements ActionListener {
 	 
@@ -22,22 +25,42 @@ public class GestionFenetreBienLouable implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
     	switch (((JButton) e.getSource()).getText()) {
+    	case "Diagnostics" :
+    		FenetreDiagnostic fenDiagnostic = new FenetreDiagnostic();
+    		fenetrebienlouable.getLayeredPane().add(fenDiagnostic);
+    		fenDiagnostic.setVisible(true);
+    		break;   		
     	case "Contrat":
-    		System.out.println("Contrat");
     		FenetreContratLocation fenetrecontratlocation = new FenetreContratLocation();
         	fenetrebienlouable.getLayeredPane().add(fenetrecontratlocation);
         	fenetrecontratlocation.setVisible(true);
             break;
     	case "Charges":
-			FenetreCharges fenetreCharges= new FenetreCharges();
-			fenetrebienlouable.getLayeredPane().add(fenetreCharges);
-			fenetreCharges.setVisible(true);
-        break;
-    	case "Quitter":
-    		System.out.println("Quitter");
     		fenetrebienlouable.dispose();
+			FenetreCharges fenetreCharges= new FenetreCharges();
+			fenetreCharges.setVisible(true);
+			break;
+    	case "Travaux" :
+    		FenetreTravaux fenTravaux = new FenetreTravaux();
+    		fenetrebienlouable.getLayeredPane().add(fenTravaux);
+    		fenTravaux.setVisible(true);
     		break;
+    	case "Retour":
+    		fenetrebienlouable.dispose();
+    		FenetrePrincipale fenPrincipale = new FenetrePrincipale();
+    		fenPrincipale.setVisible(true);
+    		break;
+    	case "Compteur" :
+    		fenetrebienlouable.dispose();
+    		FenetreCompteurs fenCompteur = new FenetreCompteurs();
+    		fenCompteur.setVisible(true);
+    		break;
+    	case "Revaloriser" :
+    		break;
+    	
+    	
             }
+    	
     	}
     }
 

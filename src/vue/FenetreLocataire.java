@@ -19,12 +19,18 @@ import java.awt.GridLayout;
 import javax.swing.JTable;
 
 import javax.swing.table.DefaultTableModel;
+
+import controleur.GestionFenetreLocataire;
+
 import java.awt.Font;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class FenetreLocataire extends JFrame {
+public class FenetreLocataire extends JFrame implements ActionListener {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
@@ -39,6 +45,7 @@ public class FenetreLocataire extends JFrame {
     private JTextField textFieldSalaire;
     private JTextField textFieldProfession;
     private JTextField textFieldSituationFamiliale;
+    private GestionFenetreLocataire gestionClic;
 
     /**
      * Launch the application.
@@ -162,7 +169,7 @@ public class FenetreLocataire extends JFrame {
         panel_2.add(lblPhoto);
         
         JPanel panel_3 = new JPanel();
-        panel_3.setLayout(new GridLayout(10, 2, 10, 5)); 
+        panel_3.setLayout(new GridLayout(11, 2, 10, 5)); 
         panel_2.add(panel_3);
 
         JLabel lblNom = new JLabel("Nom :");
@@ -214,6 +221,20 @@ public class FenetreLocataire extends JFrame {
         panel_3.add(lblSituation);
         textFieldSituationFamiliale = new JTextField();
         panel_3.add(textFieldSituationFamiliale);
+        
+        JPanel panel_4 = new JPanel();
+        panel_3.add(panel_4);
+        
+        JButton btnAnnuler = new JButton("Annuler");
+        btnAnnuler.addActionListener(this);
+        panel_4.add(btnAnnuler);
+        
+        JPanel panel_5 = new JPanel();
+        panel_3.add(panel_5);
+        
+        JButton btnAjouterLocataire = new JButton("Ajouter locataire");
+        btnAjouterLocataire.addActionListener(this);
+        panel_5.add(btnAjouterLocataire);
 
         
         JScrollPane scrollPane = new JScrollPane();
@@ -252,4 +273,6 @@ public class FenetreLocataire extends JFrame {
 
 
     }
+	public void actionPerformed(ActionEvent e) {
+	}
 }

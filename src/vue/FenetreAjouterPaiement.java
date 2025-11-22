@@ -24,7 +24,7 @@ import javax.swing.Box;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class FenetreAjouterPaiement extends JFrame implements ActionListener {
+public class FenetreAjouterPaiement extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
@@ -54,6 +54,7 @@ public class FenetreAjouterPaiement extends JFrame implements ActionListener {
      * Create the frame.
      */
     public FenetreAjouterPaiement() {
+    	this.gestionClic = new GestionFenetreAjouterPaiement(this);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 400, 451);
         contentPane = new JPanel();
@@ -80,14 +81,14 @@ public class FenetreAjouterPaiement extends JFrame implements ActionListener {
         panel_1.add(panel_2, BorderLayout.SOUTH);
         
         JButton btnRetour = new JButton("Retour");
-        btnRetour.addActionListener(this);
+        btnRetour.addActionListener(this.gestionClic);
         
         JButton btnAjouter = new JButton("Ajouter");
-        btnAjouter.addActionListener(this);
+        btnAjouter.addActionListener(this.gestionClic);
         panel_2.add(btnAjouter);
         
         JButton btnAnnuler = new JButton("Annuler");
-        btnAnnuler.addActionListener(this);
+        btnAnnuler.addActionListener(this.gestionClic);
         panel_2.add(btnAnnuler);
         panel_2.add(btnRetour);
         
@@ -135,6 +136,5 @@ public class FenetreAjouterPaiement extends JFrame implements ActionListener {
         
      
     }
-	public void actionPerformed(ActionEvent e) {
-	}
+	
 }

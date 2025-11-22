@@ -35,7 +35,7 @@ import java.awt.Font;
 import java.awt.Component;
 import javax.swing.Box;
 	
-public class FenetreBienLouable extends JFrame implements ActionListener {
+public class FenetreBienLouable extends JFrame {
 	private GestionFenetreBienLouable gestionClicBienLouable;
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -123,14 +123,14 @@ public class FenetreBienLouable extends JFrame implements ActionListener {
 		/*--------------------------*/
 		this.gestionClicBienLouable = new GestionFenetreBienLouable(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 726, 442);
+		setBounds(100, 100, 1200, 800);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		JPanel footerPanel = new JPanel();
-        footerPanel.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.LIGHT_GRAY)); // thin line on top
+        footerPanel.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.LIGHT_GRAY)); 
         footerPanel.setBackground(new Color(214, 214, 214)); 
         footerPanel.setPreferredSize(new Dimension(584, 30));
 
@@ -146,12 +146,12 @@ public class FenetreBienLouable extends JFrame implements ActionListener {
         JPanel panel = new JPanel();
         panel_2.add(panel, BorderLayout.SOUTH);
         
-        JButton btnQuitter = new JButton("Quitter");
-        panel.add(btnQuitter);
-        btnQuitter.addActionListener(gestionClicBienLouable);
+        JButton btnRetour = new JButton("Retour");
+        panel.add(btnRetour);
+        btnRetour.addActionListener(gestionClicBienLouable);
         
         JButton btnRevaloriser = new JButton("Revaloriser");
-        btnRevaloriser.addActionListener(this);
+        btnRevaloriser.addActionListener(this.gestionClicBienLouable);
         panel.add(btnRevaloriser);
         
         JButton btnCompteur = new JButton("Compteur");
@@ -218,16 +218,17 @@ public class FenetreBienLouable extends JFrame implements ActionListener {
         scrollPane.setViewportView(panel_1);
         GridBagLayout gbl_panel_1 = new GridBagLayout();
         gbl_panel_1.columnWidths = new int[]{83, 0, 0};
-        gbl_panel_1.rowHeights = new int[]{21, 21, 0, 0, 21, 0, 0};
+        gbl_panel_1.rowHeights = new int[]{21, 0, 0, 21, 0, 0, 0, 0, 0, 0, 21, 0, 0, 0, 0};
         gbl_panel_1.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
-        gbl_panel_1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE, 0.0};
+        gbl_panel_1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE, 0.0, 0.0, 0.0};
         panel_1.setLayout(gbl_panel_1);
         
         
         JButton btnDiagnostic = new JButton("Diagnostics");
         GridBagConstraints gbc_btnDiagnostic = new GridBagConstraints();
+        gbc_btnDiagnostic.insets = new Insets(0, 0, 5, 0);
         gbc_btnDiagnostic.gridwidth = 3;
-        gbc_btnDiagnostic.gridheight = 7;
+        gbc_btnDiagnostic.gridheight = 13;
         gbc_btnDiagnostic.anchor = GridBagConstraints.NORTH;
         gbc_btnDiagnostic.weighty = 1.0;
         gbc_btnDiagnostic.weightx = 1.0;
@@ -237,31 +238,61 @@ public class FenetreBienLouable extends JFrame implements ActionListener {
         panel_1.add(btnDiagnostic, gbc_btnDiagnostic);
         btnDiagnostic.addActionListener(gestionClicBienLouable);
         
+        Component verticalStrut_2 = Box.createVerticalStrut(20);
+        GridBagConstraints gbc_verticalStrut_2 = new GridBagConstraints();
+        gbc_verticalStrut_2.insets = new Insets(0, 0, 5, 0);
+        gbc_verticalStrut_2.gridx = 2;
+        gbc_verticalStrut_2.gridy = 2;
+        panel_1.add(verticalStrut_2, gbc_verticalStrut_2);
+        
         JButton btnTravaux = new JButton("Travaux");
         GridBagConstraints gbc_btnTravaux = new GridBagConstraints();
-        gbc_btnTravaux.gridheight = 6;
+        gbc_btnTravaux.insets = new Insets(0, 0, 5, 0);
+        gbc_btnTravaux.gridheight = 10;
         gbc_btnTravaux.gridwidth = 3;
         gbc_btnTravaux.weighty = 1.0;
         gbc_btnTravaux.weightx = 1.0;
         gbc_btnTravaux.anchor = GridBagConstraints.NORTH;
         gbc_btnTravaux.fill = GridBagConstraints.HORIZONTAL;
         gbc_btnTravaux.gridx = 0;
-        gbc_btnTravaux.gridy = 1;
+        gbc_btnTravaux.gridy = 3;
         panel_1.add(btnTravaux, gbc_btnTravaux);
         btnTravaux.addActionListener(gestionClicBienLouable);
         
+        Component verticalStrut_3 = Box.createVerticalStrut(20);
+        GridBagConstraints gbc_verticalStrut_3 = new GridBagConstraints();
+        gbc_verticalStrut_3.insets = new Insets(0, 0, 5, 0);
+        gbc_verticalStrut_3.gridx = 2;
+        gbc_verticalStrut_3.gridy = 4;
+        panel_1.add(verticalStrut_3, gbc_verticalStrut_3);
+        
         JButton btnCharge = new JButton("Charges");
         GridBagConstraints gbc_btnCharge = new GridBagConstraints();
-        gbc_btnCharge.gridheight = 6;
+        gbc_btnCharge.insets = new Insets(0, 0, 5, 0);
+        gbc_btnCharge.gridheight = 9;
         gbc_btnCharge.gridwidth = 3;
         gbc_btnCharge.weighty = 1.0;
         gbc_btnCharge.weightx = 1.0;
         gbc_btnCharge.anchor = GridBagConstraints.NORTH;
         gbc_btnCharge.fill = GridBagConstraints.HORIZONTAL;
         gbc_btnCharge.gridx = 0;
-        gbc_btnCharge.gridy = 2;
+        gbc_btnCharge.gridy = 5;
         panel_1.add(btnCharge, gbc_btnCharge);
         btnCharge.addActionListener(gestionClicBienLouable);
+        
+        Component verticalStrut_4 = Box.createVerticalStrut(20);
+        GridBagConstraints gbc_verticalStrut_4 = new GridBagConstraints();
+        gbc_verticalStrut_4.insets = new Insets(0, 0, 5, 0);
+        gbc_verticalStrut_4.gridx = 2;
+        gbc_verticalStrut_4.gridy = 6;
+        panel_1.add(verticalStrut_4, gbc_verticalStrut_4);
+        
+        Component verticalStrut_5 = Box.createVerticalStrut(20);
+        GridBagConstraints gbc_verticalStrut_5 = new GridBagConstraints();
+        gbc_verticalStrut_5.insets = new Insets(0, 0, 5, 0);
+        gbc_verticalStrut_5.gridx = 2;
+        gbc_verticalStrut_5.gridy = 7;
+        panel_1.add(verticalStrut_5, gbc_verticalStrut_5);
         
         JButton btnContrat = new JButton("Contrat");
         GridBagConstraints gbc_btnContrat = new GridBagConstraints();
@@ -272,7 +303,7 @@ public class FenetreBienLouable extends JFrame implements ActionListener {
         gbc_btnContrat.fill = GridBagConstraints.HORIZONTAL;
         gbc_btnContrat.anchor = GridBagConstraints.NORTH;
         gbc_btnContrat.gridx = 0;
-        gbc_btnContrat.gridy = 3;
+        gbc_btnContrat.gridy = 9;
         panel_1.add(btnContrat, gbc_btnContrat);
         
         Panel Title = new Panel();
@@ -287,6 +318,5 @@ public class FenetreBienLouable extends JFrame implements ActionListener {
         btnContrat.addActionListener(gestionClicBienLouable);
 
 	}
-	public void actionPerformed(ActionEvent e) {
-	}
+	
 }
