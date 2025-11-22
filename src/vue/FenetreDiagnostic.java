@@ -54,7 +54,7 @@ public class FenetreDiagnostic extends JInternalFrame
      * Create the frame.
      */
     public FenetreDiagnostic() {
-        setBounds(100, 100, 726, 442);
+        setBounds(100, 100, 1200, 800);
         getContentPane().setLayout(new BorderLayout(0, 0));
 
         JPanel panelMenuBar = new JPanel();
@@ -174,7 +174,7 @@ public class FenetreDiagnostic extends JInternalFrame
         JComboBox comboBoxDateRealise = new JComboBox();
         panel_9.add(comboBoxDateRealise);
         
-        Component horizontalStrut_3 = Box.createHorizontalStrut(160);
+        Component horizontalStrut_3 = Box.createHorizontalStrut(445);
         panel_9.add(horizontalStrut_3);
         
         JPanel panel_6 = new JPanel();
@@ -191,7 +191,7 @@ public class FenetreDiagnostic extends JInternalFrame
         panel_10.add(textFieldDateValide);
         textFieldDateValide.setColumns(10);
         
-        Component horizontalStrut_2 = Box.createHorizontalStrut(170);
+        Component horizontalStrut_2 = Box.createHorizontalStrut(407);
         panel_10.add(horizontalStrut_2);
         
         JPanel panel_7 = new JPanel();
@@ -208,7 +208,7 @@ public class FenetreDiagnostic extends JInternalFrame
         panel_11.add(textFieldType);
         textFieldType.setColumns(10);
         
-        Component horizontalStrut_1 = Box.createHorizontalStrut(154);
+        Component horizontalStrut_1 = Box.createHorizontalStrut(390);
         panel_11.add(horizontalStrut_1);
         
         JPanel panel_8 = new JPanel();
@@ -222,7 +222,7 @@ public class FenetreDiagnostic extends JInternalFrame
         btnObtenir.addActionListener(this);
         panel_12.add(btnObtenir);
         
-        Component horizontalStrut = Box.createHorizontalStrut(275);
+        Component horizontalStrut = Box.createHorizontalStrut(510);
         panel_12.add(horizontalStrut);
 
     }
