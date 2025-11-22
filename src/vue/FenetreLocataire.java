@@ -30,7 +30,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class FenetreLocataire extends JFrame implements ActionListener {
+public class FenetreLocataire extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
@@ -68,6 +68,7 @@ public class FenetreLocataire extends JFrame implements ActionListener {
      * Create the frame.
      */
     public FenetreLocataire() {
+    	this.gestionClic = new GestionFenetreLocataire(this);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 726, 442);
 
@@ -226,14 +227,14 @@ public class FenetreLocataire extends JFrame implements ActionListener {
         panel_3.add(panel_4);
         
         JButton btnAnnuler = new JButton("Annuler");
-        btnAnnuler.addActionListener(this);
+        btnAnnuler.addActionListener(this.gestionClic);
         panel_4.add(btnAnnuler);
         
         JPanel panel_5 = new JPanel();
         panel_3.add(panel_5);
         
         JButton btnAjouterLocataire = new JButton("Ajouter locataire");
-        btnAjouterLocataire.addActionListener(this);
+        btnAjouterLocataire.addActionListener(this.gestionClic);
         panel_5.add(btnAjouterLocataire);
 
         
@@ -273,6 +274,5 @@ public class FenetreLocataire extends JFrame implements ActionListener {
 
 
     }
-	public void actionPerformed(ActionEvent e) {
-	}
+	
 }

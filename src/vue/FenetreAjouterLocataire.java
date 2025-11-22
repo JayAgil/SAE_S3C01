@@ -65,7 +65,7 @@ public class FenetreAjouterLocataire extends JInternalFrame {
 		setIconifiable(true);
 		setMaximizable(true);
 		setResizable(true);
-		setBounds(50, 50, 400, 451);
+		setBounds(50, 50, 600, 400);
 		setTitle("Ajouter Locataire");
 
 		contentPane = new JPanel();
@@ -198,8 +198,6 @@ public class FenetreAjouterLocataire extends JInternalFrame {
 		textFieldGarantTel = new JTextField();
 		textFieldGarantTel.setBounds(252, 341, 105, 25);
 		contentPane.add(textFieldGarantTel);
-
-		// Buttons
 		JButton btnAjouter = new JButton("Ajouter");
 		btnAjouter.addActionListener(gestionClic);
 		btnAjouter.setBounds(62, 380, 98, 30);

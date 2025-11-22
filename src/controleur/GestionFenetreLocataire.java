@@ -3,6 +3,8 @@ package controleur;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+
+import vue.FenetreBienLouable;
 import vue.FenetreLocataire;
 
 public class GestionFenetreLocataire implements ActionListener {
@@ -21,6 +23,8 @@ public class GestionFenetreLocataire implements ActionListener {
             break;
         case "Annuler":
         	fenetre.dispose();
+        	FenetreBienLouable fenBienLouable = new FenetreBienLouable();
+        	fenBienLouable.setVisible(true);
         	break;
         }		
 	} 

@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import vue.FenetreAjouterLocataire;
+import vue.FenetreLocataire;
 
 public class GestionFenetreAjouterLocataire implements ActionListener {
 
@@ -24,6 +25,8 @@ public class GestionFenetreAjouterLocataire implements ActionListener {
             break;
         case "Annuler":
         	fenetre.dispose();
+        	FenetreLocataire fenLocataire = new FenetreLocataire();
+        	fenLocataire.setVisible(true);
         	break;
         }		
 	}
