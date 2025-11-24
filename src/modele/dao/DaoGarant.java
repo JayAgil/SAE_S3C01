@@ -22,9 +22,8 @@ public class DaoGarant extends DaoModele<Garant> implements Dao<Garant> {
 	}
 
 	@Override
-	public void delete(Garant t) {
-		DaoTest.deleteGarant(t);
-
+	public int delete(Garant t) throws SQLException {
+		return this.miseAJour(new RequeteDeleteGarant(), t);
 	}
 
 	@Override

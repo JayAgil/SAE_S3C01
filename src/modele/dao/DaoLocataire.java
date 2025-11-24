@@ -26,7 +26,7 @@ public class DaoLocataire extends DaoModele<Locataire> implements Dao<Locataire>
 
 	@Override
 	public int delete(Locataire t) throws SQLException {
-return this.miseAJour(new RequeteDeleteLocataire(), t);
+		return this.miseAJour(new RequeteDeleteLocataire(), t);
 	}
 
 	@Override
@@ -57,7 +57,8 @@ return this.miseAJour(new RequeteDeleteLocataire(), t);
 		String situationFamiliale = rs.getString(13);
 		String image = rs.getString(14);
 		Garant garant = dG.findById(rs.getString(15));
-		return new Locataire(idLocataire, nom, prenom, adresse, tel, email, codePostal, ville, dateDeNaissance, lieuDeNaissance, salaire, profession, situationFamiliale, image, garant);
+		return new Locataire(idLocataire, nom, prenom, adresse, tel, email, codePostal, ville, dateDeNaissance,
+				lieuDeNaissance, salaire, profession, situationFamiliale, image, garant);
 	}
 
 }

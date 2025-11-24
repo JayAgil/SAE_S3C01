@@ -25,9 +25,8 @@ public class DaoFacture extends DaoModele<Facture> implements Dao<Facture> {
 	}
 
 	@Override
-	public void delete(Facture t) {
-		DaoTest.deleteFacture(t);
-
+	public int delete(Facture t) throws SQLException {
+		return this.miseAJour(new RequeteDeleteFacture(), t);
 	}
 
 	@Override
@@ -42,10 +41,10 @@ public class DaoFacture extends DaoModele<Facture> implements Dao<Facture> {
 
 	@Override
 	protected Facture creerInstance(ResultSet rs) throws SQLException {
-		
+
 		DaoBienLouable dBL = new DaoBienLouable();
 		DaoEntreprise dE = new DaoEntreprise();
-		
+
 		String numeroFacture = rs.getString(1);
 		double montant = rs.getDouble(2);
 		Date dateDeFacture = rs.getDate(3);
@@ -55,8 +54,9 @@ public class DaoFacture extends DaoModele<Facture> implements Dao<Facture> {
 		String designationDeTravaux = rs.getString(7);
 		BienLouable bienLouable = dBL.findById(rs.getString(8));
 		Entreprise entreprise = dE.findById(rs.getString(9));
-		
-		return new Facture(numeroFacture, montant, dateDeFacture, compteBancaire, montantDevis, datePaiement, designationDeTravaux, bienLouable, entreprise);
+
+		return new Facture(numeroFacture, montant, dateDeFacture, compteBancaire, montantDevis, datePaiement,
+				designationDeTravaux, bienLouable, entreprise);
 
 	}
 
