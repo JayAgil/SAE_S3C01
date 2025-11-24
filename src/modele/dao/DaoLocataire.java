@@ -25,9 +25,8 @@ public class DaoLocataire extends DaoModele<Locataire> implements Dao<Locataire>
 	}
 
 	@Override
-	public void delete(Locataire t) {
-		DaoTest.deleteLocataire(t);
-
+	public int delete(Locataire t) throws SQLException {
+return this.miseAJour(new RequeteDeleteLocataire(), t);
 	}
 
 	@Override
