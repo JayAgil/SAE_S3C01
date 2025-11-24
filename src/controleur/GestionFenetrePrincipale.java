@@ -28,8 +28,8 @@ public class GestionFenetrePrincipale implements ActionListener {
             fenetre.dispose();
             break;
         case "Assurance":
-        	fenetre.dispose();
             FenetreAssurance assurance = new FenetreAssurance();
+            fenetre.getLayeredPane().add(assurance);
             assurance.setVisible(true);
             break;
         case "Compteurs":

@@ -21,13 +21,13 @@ public class GestionFenetreTravaux implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		switch(((JButton)e.getSource()).getText()) {
 		case "Ajouter travaux" :
-			this.fenetreTravaux.dispose();
 			FenetreAjouterTravaux fenetreAjouterTravaux = new FenetreAjouterTravaux();
+			fenetreTravaux.getLayeredPane().add(fenetreAjouterTravaux);
 			fenetreAjouterTravaux.setVisible(true);	
 			break;
 		case "Ajouter entreprise" :
-			this.fenetreTravaux.dispose();
 			FenetreAjouterEntreprise fenetreAjouterEntreprise = new FenetreAjouterEntreprise();
+			fenetreTravaux.getLayeredPane().add(fenetreAjouterEntreprise);
 			fenetreAjouterEntreprise.setVisible(true);
 			break;
 		case "Générer facture" :
@@ -36,9 +36,6 @@ public class GestionFenetreTravaux implements ActionListener {
 			this.fenetreTravaux.dispose();
 			FenetreBienLouable fenetreBienLouable = new FenetreBienLouable();
 			fenetreBienLouable.setVisible(true);
-			break;
-		case "Quitter":
-			this.fenetreTravaux.dispose();
 			break;
 		}
 	}

@@ -2,10 +2,8 @@ package controleur;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.EventQueue;
 import javax.swing.*;
 
-import vue.FenetreAssurance;
 import vue.FenetreBienLouable;
 import vue.FenetreCharges;
 import vue.FenetreCompteurs;
@@ -26,13 +24,13 @@ public class GestionFenetreBienLouable implements ActionListener {
     public void actionPerformed(ActionEvent e) {
     	switch (((JButton) e.getSource()).getText()) {
     	case "Diagnostics" :
+    		fenetrebienlouable.dispose();
     		FenetreDiagnostic fenDiagnostic = new FenetreDiagnostic();
-    		fenetrebienlouable.getLayeredPane().add(fenDiagnostic);
     		fenDiagnostic.setVisible(true);
     		break;   		
     	case "Contrat":
+    		fenetrebienlouable.dispose();
     		FenetreContratLocation fenetrecontratlocation = new FenetreContratLocation();
-        	fenetrebienlouable.getLayeredPane().add(fenetrecontratlocation);
         	fenetrecontratlocation.setVisible(true);
             break;
     	case "Charges":
@@ -41,8 +39,8 @@ public class GestionFenetreBienLouable implements ActionListener {
 			fenetreCharges.setVisible(true);
 			break;
     	case "Travaux" :
+    		fenetrebienlouable.dispose();
     		FenetreTravaux fenTravaux = new FenetreTravaux();
-    		fenetrebienlouable.getLayeredPane().add(fenTravaux);
     		fenTravaux.setVisible(true);
     		break;
     	case "Retour":

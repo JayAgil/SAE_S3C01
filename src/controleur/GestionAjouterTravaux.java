@@ -51,12 +51,13 @@ public class GestionAjouterTravaux implements ActionListener {
 				
 			break;
 		case "Annuler" :
+			//Vider champs
 			this.fenetreAjouterTravaux.dispose();
 		case "Retour" :
 			this.fenetreAjouterTravaux.dispose();
 			FenetreTravaux fenetreTravaux = new FenetreTravaux();
 			fenetreTravaux.setVisible(true);
-			
+			break;
 		}
 	}
 	

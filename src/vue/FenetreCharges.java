@@ -20,7 +20,6 @@ import javax.swing.JScrollPane;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
-import java.awt.event.ActionEvent;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -29,6 +28,7 @@ import java.awt.Font;
 import java.awt.Component;
 import javax.swing.Box;
 import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FenetreCharges extends JFrame {
 
@@ -175,9 +175,13 @@ public class FenetreCharges extends JFrame {
         JPanel panel_2 = new JPanel();
         panel_1.add(panel_2, BorderLayout.SOUTH);
         
-        JButton btnQuitter = new JButton("Quitter");
-        btnQuitter.addActionListener(this.gestionClic);
-        panel_2.add(btnQuitter);
+        JButton btnAnnuler = new JButton("Annuler");
+        btnAnnuler.addActionListener(this.gestionClic);
+        
+        JButton btnAjouter = new JButton("Ajouter charge");
+        btnAjouter.addActionListener(this.gestionClic);
+        panel_2.add(btnAjouter);
+        panel_2.add(btnAnnuler);
         
         JButton btnRetour = new JButton("Retour");
         btnRetour.addActionListener(this.gestionClic);
@@ -210,6 +214,5 @@ public class FenetreCharges extends JFrame {
         JLabel footerLabel = new JLabel("Developpé par Koshua, Jay, Aneesa, Luca et Franck");
         footerPanel.add(footerLabel);
 	}
-	
 	
 }

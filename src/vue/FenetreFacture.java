@@ -7,14 +7,12 @@ import java.awt.EventQueue;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class FenetreFacture extends JFrame {
+public class FenetreFacture extends JInternalFrame {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
@@ -41,7 +39,7 @@ public class FenetreFacture extends JFrame {
      */
     public FenetreFacture() {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setBounds(100, 100, 450, 300);
+        setBounds(100, 100, 600, 400);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 

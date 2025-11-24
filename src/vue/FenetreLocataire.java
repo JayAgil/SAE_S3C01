@@ -30,7 +30,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class FenetreLocataire extends JFrame {
+public class FenetreLocataire extends JFrame implements ActionListener {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
@@ -70,7 +70,7 @@ public class FenetreLocataire extends JFrame {
     public FenetreLocataire() {
     	this.gestionClic = new GestionFenetreLocataire(this);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 726, 442);
+        setBounds(100, 100, 1200, 800);
 
         JMenuBar menuBar = new JMenuBar();
         menuBar.setBackground(new Color(214, 214, 214));
@@ -134,27 +134,49 @@ public class FenetreLocataire extends JFrame {
 
         setContentPane(contentPane);
         contentPane.setLayout(new BorderLayout(0, 0));
+        
+        JPanel bottomContainer = new JPanel(new BorderLayout());
 
-        JPanel footerPanel = new JPanel();
-        footerPanel.setBorder(
-            BorderFactory.createMatteBorder(1, 0, 0, 0, Color.LIGHT_GRAY));
-                                                                            
-                                                                                               
-        footerPanel.setBackground(new Color(214, 214, 214));
-        footerPanel.setPreferredSize(new Dimension(584, 30));
+    
 
-        JLabel footerLabel = new JLabel(
-            "Developpé par Koshua, Jay, Aneesa, Luca et Franck");
-        footerPanel.add(footerLabel);
+     // === BUTTONS PANEL ===
+     JPanel panelButtons = new JPanel();
+     panelButtons.setBorder(new EmptyBorder(10, 10, 10, 10));
+     JButton btnAjouterLocataire = new JButton("Ajouter locataire");
+     btnAjouterLocataire.addActionListener(this);
+     panelButtons.add(btnAjouterLocataire);
 
-        getContentPane().add(footerPanel, BorderLayout.SOUTH);
+     // Add buttons to top
+     bottomContainer.add(panelButtons, BorderLayout.NORTH);
+     
+          JButton btnRetour = new JButton("Retour");
+          btnRetour.addActionListener(this);
+          
+               panelButtons.add(btnRetour);
+
+
+     // === FOOTER PANEL ===
+     JPanel footerPanel = new JPanel();
+     footerPanel.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.LIGHT_GRAY));
+     footerPanel.setBackground(new Color(214, 214, 214));
+     footerPanel.setPreferredSize(new Dimension(584, 30));
+
+     JLabel footerLabel = new JLabel("Developpé par Koshua, Jay, Aneesa, Luca et Franck");
+     footerPanel.add(footerLabel);
+
+     bottomContainer.add(footerPanel, BorderLayout.SOUTH);
+
+
+     // === ADD BOTH TO THE FRAME ===
+     getContentPane().add(bottomContainer, BorderLayout.SOUTH);
+
         
         JPanel panel = new JPanel();
         contentPane.add(panel, BorderLayout.CENTER);
         panel.setLayout(new BorderLayout(0, 0));
         
-        JLabel lblTitre = new JLabel("Information Locataire");
-        lblTitre.setFont(new Font("Tahoma", Font.BOLD, 15));
+        JLabel lblTitre = new JLabel("Informations locataire");
+        lblTitre.setFont(new Font("Tahoma", Font.BOLD, 18));
         lblTitre.setHorizontalAlignment(SwingConstants.CENTER);
         panel.add(lblTitre, BorderLayout.NORTH);
         
@@ -170,7 +192,7 @@ public class FenetreLocataire extends JFrame {
         panel_2.add(lblPhoto);
         
         JPanel panel_3 = new JPanel();
-        panel_3.setLayout(new GridLayout(11, 2, 10, 5)); 
+        panel_3.setLayout(new GridLayout(10, 2, 10, 5)); 
         panel_2.add(panel_3);
 
         JLabel lblNom = new JLabel("Nom :");
@@ -222,20 +244,6 @@ public class FenetreLocataire extends JFrame {
         panel_3.add(lblSituation);
         textFieldSituationFamiliale = new JTextField();
         panel_3.add(textFieldSituationFamiliale);
-        
-        JPanel panel_4 = new JPanel();
-        panel_3.add(panel_4);
-        
-        JButton btnAnnuler = new JButton("Annuler");
-        btnAnnuler.addActionListener(this.gestionClic);
-        panel_4.add(btnAnnuler);
-        
-        JPanel panel_5 = new JPanel();
-        panel_3.add(panel_5);
-        
-        JButton btnAjouterLocataire = new JButton("Ajouter locataire");
-        btnAjouterLocataire.addActionListener(this.gestionClic);
-        panel_5.add(btnAjouterLocataire);
 
         
         JScrollPane scrollPane = new JScrollPane();
@@ -275,4 +283,6 @@ public class FenetreLocataire extends JFrame {
 
     }
 	
+	public void actionPerformed(ActionEvent e) {
+	}
 }

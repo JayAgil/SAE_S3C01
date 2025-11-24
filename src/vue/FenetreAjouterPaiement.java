@@ -1,12 +1,10 @@
 package vue;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.EventQueue;
 
-import javax.swing.BorderFactory;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -15,16 +13,13 @@ import controleur.GestionFenetreAjouterPaiement;
 
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
-import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.GridLayout;
 import java.awt.Component;
 import javax.swing.Box;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
-public class FenetreAjouterPaiement extends JFrame {
+public class FenetreAjouterPaiement extends JInternalFrame {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
@@ -56,7 +51,7 @@ public class FenetreAjouterPaiement extends JFrame {
     public FenetreAjouterPaiement() {
     	this.gestionClic = new GestionFenetreAjouterPaiement(this);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setBounds(100, 100, 400, 451);
+        setBounds(100, 100, 600, 400);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 

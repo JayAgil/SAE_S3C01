@@ -8,9 +8,6 @@ import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.DefaultComboBoxModel;
@@ -68,20 +65,20 @@ public class FenetreSupprimerBatiment extends JInternalFrame {
         JPanel panelSouth = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 10));
         panelSouth.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
         panel_10.add(panelSouth, BorderLayout.SOUTH);
+        
+                JButton btnSuprimer = new JButton("Supprimer");
+                btnSuprimer.setBackground(new Color(240, 240, 240));
+                btnSuprimer.setFont(new Font("Tahoma", Font.PLAIN, 11));
+                panelSouth.add(btnSuprimer);
+                
+                        btnSuprimer.addActionListener(this.gestionClic);
 
         JButton btnAnnuler = new JButton("Annuler");
         panelSouth.add(btnAnnuler);
-
-        JButton btnSuprimer = new JButton("Supprimer");
-        btnSuprimer.setBackground(Color.WHITE);
-        btnSuprimer.setFont(new Font("Tahoma", Font.PLAIN, 11));
-        panelSouth.add(btnSuprimer);
         
         JButton btnRetour = new JButton("Retour");
         btnRetour.addActionListener(this.gestionClic);
         panelSouth.add(btnRetour);
-
-        btnSuprimer.addActionListener(this.gestionClic);
         btnAnnuler.addActionListener(this.gestionClic);
 
         JPanel panelCenter = new JPanel(new BorderLayout(0, 0));
