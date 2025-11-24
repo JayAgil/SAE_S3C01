@@ -29,6 +29,7 @@ public class GestionFenetreAjouterBatiment implements ActionListener {
         	fenetre.dispose();
         	FenetrePrincipale fenPrincipale = new FenetrePrincipale();
         	fenPrincipale.setVisible(true);
+        	break;
         }
     }
 

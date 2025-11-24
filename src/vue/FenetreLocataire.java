@@ -144,6 +144,10 @@ public class FenetreLocataire extends JFrame implements ActionListener {
      panelButtons.setBorder(new EmptyBorder(10, 10, 10, 10));
      JButton btnAjouterLocataire = new JButton("Ajouter locataire");
      btnAjouterLocataire.addActionListener(this);
+     
+     JButton btnPaiement = new JButton("Paiement");
+     btnPaiement.addActionListener(this);
+     panelButtons.add(btnPaiement);
      panelButtons.add(btnAjouterLocataire);
 
      // Add buttons to top

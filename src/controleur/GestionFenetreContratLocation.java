@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import vue.FenetreBienLouable;
 import vue.FenetreContratLocation;
 
 public class GestionFenetreContratLocation implements ActionListener {
@@ -24,6 +25,11 @@ public class GestionFenetreContratLocation implements ActionListener {
         case "Annuler":
             fenetre.dispose();
             break;
+        case "Retour" :
+        	fenetre.dispose();
+        	FenetreBienLouable fenBienLouable = new FenetreBienLouable();
+        	fenBienLouable.setVisible(true);
+        	break;
         }
     }
 

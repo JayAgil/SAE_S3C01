@@ -21,8 +21,6 @@ public class GestionFenetreAssurance implements ActionListener {
         switch (((JButton) e.getSource()).getText()) {
         case "Retour":
             fenetre.dispose();
-            FenetrePrincipale fenPrincipale = new FenetrePrincipale();
-            fenPrincipale.setVisible(true);
             break;
         }
     }

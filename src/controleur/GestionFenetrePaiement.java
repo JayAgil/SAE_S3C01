@@ -33,6 +33,7 @@ public class GestionFenetrePaiement implements ActionListener {
         	break;
         case "Generer le Facture":
         	FenetreFacture fen1 = new FenetreFacture();
+        	fenetre.getLayeredPane().add(fen1);
         	fen1.setVisible(true);
         	break;
         }

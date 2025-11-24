@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import vue.FenetreAjouterCompteur;
 import vue.FenetreCompteurs;
 import vue.FenetrePrincipale;
 
@@ -25,6 +26,9 @@ public class GestionFenetreCompteurs implements ActionListener {
         	fenPrincipale.setVisible(true);
         	break;
         case "Ajouter compteur":
+        	FenetreAjouterCompteur fenAjouterCompteur = new FenetreAjouterCompteur();
+        	fenetre.getLayeredPane().add(fenAjouterCompteur);
+        	fenAjouterCompteur.setVisible(true);
         	break;
         }
 		
