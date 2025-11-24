@@ -26,7 +26,7 @@ import java.awt.event.ActionListener;
 import java.awt.Panel;
 import java.awt.Font;
 
-public class FenetreContratLocation extends JFrame implements ActionListener {
+public class FenetreContratLocation extends JFrame {
 	private GestionFenetreContratLocation gestionClicContratLocation;
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -200,7 +200,7 @@ public class FenetreContratLocation extends JFrame implements ActionListener {
         panel_1.add(panel_2, BorderLayout.SOUTH);
         
         JButton btnAjouter = new JButton("Ajouter");
-        btnAjouter.addActionListener(this);
+        btnAjouter.addActionListener(this.gestionClicContratLocation);
         panel_2.add(btnAjouter);
         
         JButton btnAnnuler = new JButton("Annuler");
@@ -208,14 +208,9 @@ public class FenetreContratLocation extends JFrame implements ActionListener {
         panel_2.add(btnAnnuler);
         
         JButton btnRetour = new JButton("Retour");
-        btnRetour.addActionListener(this);
+        btnRetour.addActionListener(this.gestionClicContratLocation);
         panel_2.add(btnRetour);
 	}
 	
-	
-	
-
-	public void actionPerformed(ActionEvent e) {
-	}
 }
 
