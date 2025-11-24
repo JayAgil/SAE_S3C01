@@ -8,7 +8,7 @@ import modele.ContratLocation;
 
 public class RequeteDeleteContratLocation extends Requete<ContratLocation> {
 	public String requete() {
-		return " Delete from ContratLocation where numeroDeContrat = ? " ;
+		return " Delete from ContratLocation where numero_De_Contrat = ? " ;
 	}
 
 	public void parametres(PreparedStatement prSt, String... id) throws SQLException {

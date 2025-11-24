@@ -7,7 +7,7 @@ import modele.Assurance;
 
 public class RequeteSelectAssuranceById extends Requete<Assurance> {
 	public String requete() {
-		return " Select * from Assurance where numeroAssurance = ? " ;
+		return " Select * from Assurance where Numero_d_assurance = ? " ;
 		
 	}
 

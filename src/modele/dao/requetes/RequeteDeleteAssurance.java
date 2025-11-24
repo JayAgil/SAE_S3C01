@@ -8,7 +8,7 @@ import modele.Assurance;
 public class RequeteDeleteAssurance extends Requete<Assurance>{
 	
 	public String requete() {
-		return " Delete from Assurance where numeroAssurance = ? " ;
+		return " Delete from Assurance where Numero_d_assurance = ? " ;
 		
 	}
 

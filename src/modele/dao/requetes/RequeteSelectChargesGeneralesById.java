@@ -9,7 +9,7 @@ import modele.ChargesGenerales;
 public class RequeteSelectChargesGeneralesById extends Requete<ChargesGenerales>{
 
 	public String requete() {
-		return " Select * from ChargesGenerales where id_ChargesGenerale = ? " ;
+		return " Select * from ChargesGenerales where id_Charges_Generale = ? " ;
 	}
 
 	public void parametres(PreparedStatement prSt, String... id) throws SQLException {

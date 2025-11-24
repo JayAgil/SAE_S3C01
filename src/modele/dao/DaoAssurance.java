@@ -43,12 +43,12 @@ public class DaoAssurance extends DaoModele<Assurance>implements Dao<Assurance> 
 		double prime = curseur.getDouble(2);
 		double montant = curseur.getDouble(3);
 		String typeAssurance = curseur.getString(4);
-		String adresseBat = curseur.getString(5);
+		String adresseBat = curseur.getString(8);
 		DaoBatiment daoBat = new DaoBatiment();
 		Batiment batiment = daoBat.findById(adresseBat) ;
-		String agence = curseur.getString(6);
-		String adresseAgence = curseur.getString(7);
-		String telAgence = curseur.getString(8); 
+		String agence = curseur.getString(5);
+		String adresseAgence = curseur.getString(6);
+		String telAgence = curseur.getString(7); 
 		return new Assurance (numeroAssurance,prime,montant,
 				typeAssurance,batiment,agence,adresseAgence,telAgence);
 	}

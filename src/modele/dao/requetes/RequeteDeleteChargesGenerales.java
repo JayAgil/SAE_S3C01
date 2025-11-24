@@ -9,7 +9,7 @@ import modele.ChargesGenerales;
 public class RequeteDeleteChargesGenerales extends Requete<ChargesGenerales>{
 	
 	public String requete() {
-		return " Delete from ChargesGenerales where id_ChargesGenerale = ? " ;
+		return " Delete from ChargesGenerales where id_Charges_Generale = ? " ;
 	}
 
 	public void parametres(PreparedStatement prSt, String... id) throws SQLException {

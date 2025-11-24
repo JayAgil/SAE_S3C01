@@ -48,10 +48,10 @@ public class DaoBienLouable extends DaoModele<BienLouable> implements Dao<BienLo
 		double surface = curseur.getDouble(4);
 		int nbPieces = curseur.getInt(5);
 		String typeBienLouable = curseur.getString(6);
-		String a = curseur.getString(7);
+		String a = curseur.getString(8);
 		DaoBatiment daoBat = new DaoBatiment();
 		Batiment b = daoBat.findById(a);
-		String id = curseur.getString(8);
+		String id = curseur.getString(7);
 		DaoBienLouable daoBL = new DaoBienLouable();
 		BienLouable bl = daoBL.findById(id);
 		return new BienLouable(id_bienLouable,numFiscale,adresse,surface,nbPieces,typeBienLouable, b, bl);

@@ -3,6 +3,6 @@ package modele.dao.requetes;
 public class RequeteDeleteFacture extends RequeteSelectFactureById {
 	@Override
 	public String requete() {
-		return "DELETE FROM Facture where numeroFacture = ?";
+		return "DELETE FROM Facture where numero_Facture = ?";
 	}
 }

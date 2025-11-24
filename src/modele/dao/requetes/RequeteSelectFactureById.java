@@ -9,7 +9,7 @@ public class RequeteSelectFactureById extends Requete<Facture>{
 
 	@Override
 	public String requete() {
-		return "Select * from Facture where numeroFacture = ?";
+		return "Select * from Facture where numero_Facture = ?";
 	}
 	
 	public void parametres(PreparedStatement prSt, String... id) throws SQLException {

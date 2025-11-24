@@ -9,7 +9,7 @@ public class RequeteSelectLocataireById extends Requete<Locataire> {
 	
 	@Override
 	public String requete() {
-		return "Select * from Locataire where idlocataire = ?";
+		return "Select * from Locataire where id_locataire = ?";
 	}
 	
 	public void parametres(PreparedStatement prSt, String... id) throws SQLException {

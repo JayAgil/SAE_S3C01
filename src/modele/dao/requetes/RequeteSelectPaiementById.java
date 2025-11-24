@@ -9,7 +9,7 @@ public class RequeteSelectPaiementById extends Requete<Paiement>{
 
 	@Override
 	public String requete() {
-		return "Select * from paiement where idpaiement = ?";
+		return "Select * from paiement where id_paiement = ?";
 	}
 	
 	public void parametres(PreparedStatement prSt, String... id) throws SQLException {
