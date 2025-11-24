@@ -25,7 +25,7 @@ public class GestionFenetreLocataire implements ActionListener {
             fenetre.getLayeredPane().add(fenAjouterLocataire);
             fenAjouterLocataire.setVisible(true);
             break;
-        case "Annuler":
+        case "Retour":
         	fenetre.dispose();
         	FenetreBienLouable fenBienLouable = new FenetreBienLouable();
         	fenBienLouable.setVisible(true);
