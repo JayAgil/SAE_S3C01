@@ -22,7 +22,7 @@ public class DaoEntreprise extends DaoModele<Entreprise> implements Dao<Entrepri
 	}
 
 	@Override
-	public void delete(Entreprise t) {
+	public int delete(Entreprise t) {
 		DaoTest.deleteEntreprise(t);
 
 	}

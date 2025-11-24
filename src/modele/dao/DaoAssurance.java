@@ -23,7 +23,7 @@ public class DaoAssurance extends DaoModele<Assurance>implements Dao<Assurance> 
 	}
 
 	@Override
-	public void delete(Assurance t) {
+	public int delete(Assurance t) {
 		DaoTest.deleteAssurance(t);
 		
 	}

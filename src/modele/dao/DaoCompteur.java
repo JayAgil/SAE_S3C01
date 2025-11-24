@@ -24,7 +24,7 @@ public class DaoCompteur extends DaoModele<Compteur> implements Dao<Compteur> {
 	}
 
 	@Override
-	public void delete(Compteur t) {
+	public int delete(Compteur t) {
 		DaoTest.deleteCompteur(t);
 		
 	}

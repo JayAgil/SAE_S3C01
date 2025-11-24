@@ -22,7 +22,7 @@ public class DaoBatiment extends DaoModele<Batiment> implements Dao<Batiment> {
 	}
 
 	@Override
-	public void delete(Batiment t) {
+	public int delete(Batiment t) {
 		DaoTest.deleteBatiment(t);
 		
 	}

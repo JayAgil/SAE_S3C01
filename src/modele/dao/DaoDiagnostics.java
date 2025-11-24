@@ -25,7 +25,7 @@ public class DaoDiagnostics extends DaoModele<Diagnostics> implements Dao<Diagno
 	}
 
 	@Override
-	public void delete(Diagnostics t) {
+	public int delete(Diagnostics t) {
 		DaoTest.deleteDiagnostics(t);
 
 	}

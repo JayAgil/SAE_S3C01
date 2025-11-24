@@ -23,7 +23,7 @@ public class DaoChargesGenerales extends DaoModele<ChargesGenerales>implements D
 	}
 
 	@Override
-	public void delete(ChargesGenerales t) {
+	public int delete(ChargesGenerales t) {
 		DaoTest.deleteChargesGenerales(t);
 		
 	}
