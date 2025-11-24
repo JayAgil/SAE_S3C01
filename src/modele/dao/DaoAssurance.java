@@ -23,9 +23,8 @@ public class DaoAssurance extends DaoModele<Assurance>implements Dao<Assurance> 
 	}
 
 	@Override
-	public int delete(Assurance t) {
-		DaoTest.deleteAssurance(t);
-		
+	public int delete(Assurance t) throws SQLException {
+		return miseAJour(new RequeteDeleteAssurance(), t);
 	}
 
 	@Override

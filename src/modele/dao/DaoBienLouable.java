@@ -24,8 +24,9 @@ public class DaoBienLouable extends DaoModele<BienLouable> implements Dao<BienLo
 	}
 
 	@Override
-	public void delete(BienLouable t) {
-		DaoTest.deleteBienLouable(t);
+	public int delete(BienLouable t) throws SQLException {
+		return miseAJour(new RequeteDeleteBienLouable(), t);
+
 		
 	}
 

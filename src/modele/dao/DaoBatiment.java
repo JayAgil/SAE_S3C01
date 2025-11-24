@@ -22,8 +22,8 @@ public class DaoBatiment extends DaoModele<Batiment> implements Dao<Batiment> {
 	}
 
 	@Override
-	public int delete(Batiment t) {
-		DaoTest.deleteBatiment(t);
+	public int delete(Batiment t) throws SQLException {
+		return miseAJour(new RequeteDeleteBatiment(), t);
 		
 	}
 
