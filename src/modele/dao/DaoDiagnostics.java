@@ -25,9 +25,8 @@ public class DaoDiagnostics extends DaoModele<Diagnostics> implements Dao<Diagno
 	}
 
 	@Override
-	public void delete(Diagnostics t) {
-		DaoTest.deleteDiagnostics(t);
-
+	public int delete(Diagnostics t) throws SQLException {
+		return this.miseAJour(new RequeteDeleteDiagnostics(), t);
 	}
 
 	@Override
@@ -47,7 +46,7 @@ public class DaoDiagnostics extends DaoModele<Diagnostics> implements Dao<Diagno
 		String typeDiagnostics = rs.getString(2);
 		Date dateRealisation = rs.getDate(3);
 		Date dateValidite = rs.getDate(4);
-		String fichier= rs.getString(5);
+		String fichier = rs.getString(5);
 		BienLouable bienLouable = dBL.findById(rs.getString(6));
 		return new Diagnostics(idDiagnostics, typeDiagnostics, dateRealisation, dateValidite, fichier, bienLouable);
 	}

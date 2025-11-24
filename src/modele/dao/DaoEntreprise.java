@@ -22,9 +22,8 @@ public class DaoEntreprise extends DaoModele<Entreprise> implements Dao<Entrepri
 	}
 
 	@Override
-	public void delete(Entreprise t) {
-		DaoTest.deleteEntreprise(t);
-
+	public int delete(Entreprise t) throws SQLException {
+		return this.miseAJour(new RequeteDeleteEntreprise(), t);
 	}
 
 	@Override
