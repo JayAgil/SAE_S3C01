@@ -24,7 +24,7 @@ public class DaoContratLocation extends DaoModele<ContratLocation>implements Dao
 	}
 
 	@Override
-	public void delete(ContratLocation t) {
+	public int delete(ContratLocation t) {
 		DaoTest.deleteContratLocation(t);
 		
 	}
