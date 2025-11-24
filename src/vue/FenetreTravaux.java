@@ -4,7 +4,6 @@ import java.awt.EventQueue;
 import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
-import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -16,6 +15,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JTable;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
 import controleur.GestionFenetreTravaux;
@@ -23,7 +23,7 @@ import controleur.GestionFenetreTravaux;
 import javax.swing.JScrollPane;
 import java.awt.Font;
 
-public class FenetreTravaux extends JInternalFrame {
+public class FenetreTravaux extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JTable table;
@@ -49,7 +49,7 @@ public class FenetreTravaux extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public FenetreTravaux() {
-		setBounds(100, 100, 726, 442);
+		setBounds(100, 100, 1200, 800);
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		JPanel panel_11 = new JPanel();
         getContentPane().add(panel_11, BorderLayout.NORTH);
@@ -118,7 +118,7 @@ public class FenetreTravaux extends JInternalFrame {
         getContentPane().add(panel_12, BorderLayout.SOUTH);
 
         JPanel footerPanel = new JPanel();
-        footerPanel.setPreferredSize(new Dimension(700, 30));
+        footerPanel.setPreferredSize(new Dimension(1500, 30));
         footerPanel.setBorder(
             BorderFactory.createMatteBorder(1, 0, 0, 0, Color.LIGHT_GRAY));
         footerPanel.setBackground(new Color(214, 214, 214));
@@ -152,10 +152,6 @@ public class FenetreTravaux extends JInternalFrame {
         JButton btnRetour = new JButton("Retour");
         btnRetour.addActionListener(this.gestionClic);
         panel_1.add(btnRetour);
-        
-        JButton btnQuitter = new JButton("Quitter");
-        btnQuitter.addActionListener(this.gestionClic);
-        panel_1.add(btnQuitter);
                 
         JScrollPane scrollPane = new JScrollPane();
         table = new JTable();

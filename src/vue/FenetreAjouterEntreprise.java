@@ -12,6 +12,8 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 public class FenetreAjouterEntreprise extends JInternalFrame  {
@@ -53,7 +55,7 @@ public class FenetreAjouterEntreprise extends JInternalFrame  {
 		setIconifiable(true);
 		setMaximizable(true);
 		setResizable(true);
-		setBounds(50, 50, 400, 451);
+		setBounds(50, 50, 600, 400);
 		setTitle("Ajouter Entreprise");
 
 		contentPane = new JPanel();
@@ -125,13 +127,18 @@ public class FenetreAjouterEntreprise extends JInternalFrame  {
 
 		JButton btnAnnuler = new JButton("Annuler");
 		btnAnnuler.addActionListener(gestionClic);
-		btnAnnuler.setBounds(65, 357, 100, 30);
+		btnAnnuler.setBounds(167, 325, 100, 30);
 		contentPane.add(btnAnnuler);
 
 		JButton btnAjouter = new JButton("Ajouter");
 		btnAjouter.addActionListener(gestionClic);
-		btnAjouter.setBounds(211, 357, 100, 30);
+		btnAjouter.setBounds(284, 325, 100, 30);
 		contentPane.add(btnAjouter);
+		
+		JButton btnRetour = new JButton("Retour");
+		btnRetour.addActionListener(gestionClic);
+		btnRetour.setBounds(68, 329, 89, 23);
+		contentPane.add(btnRetour);
 	}
 	
 }

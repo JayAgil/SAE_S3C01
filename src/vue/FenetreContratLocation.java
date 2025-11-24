@@ -7,7 +7,6 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -18,20 +17,16 @@ import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import controleur.GestionFenetreBienLouable;
-
 import javax.swing.JScrollPane;
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.GridBagLayout;
 import java.awt.event.ActionListener;
 import java.awt.Panel;
 import java.awt.Font;
 
-public class FenetreContratLocation extends JInternalFrame implements ActionListener {
+public class FenetreContratLocation extends JFrame implements ActionListener {
 	private GestionFenetreContratLocation gestionClicContratLocation;
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -117,7 +112,7 @@ public class FenetreContratLocation extends JInternalFrame implements ActionList
 		
 		this.gestionClicContratLocation = new GestionFenetreContratLocation(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 726, 442);
+		setBounds(100, 100, 1200, 800);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -132,19 +127,13 @@ public class FenetreContratLocation extends JInternalFrame implements ActionList
 			}
 		});
 		panel.add(btnNewButton);
-		
-		
-		/*footer*/
+	
 		
 		JButton btnNewButton_1 = new JButton("Annuler");
 		panel.add(btnNewButton_1);
 		btnNewButton_1.addActionListener(gestionClicContratLocation);
 		JPanel footerPanel = new JPanel();
-		
-		
-		
-		
-        footerPanel.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.LIGHT_GRAY)); // thin line on top
+        footerPanel.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.LIGHT_GRAY));
         footerPanel.setBackground(new Color(214, 214, 214)); 
         footerPanel.setPreferredSize(new Dimension(584, 30));
 

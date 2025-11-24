@@ -51,7 +51,8 @@ public class FenetreAjouterTravaux extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public FenetreAjouterTravaux() {
-		setBounds(100, 100, 400, 451);
+		this.gestionClic = new GestionAjouterTravaux(this);
+		setBounds(100, 100, 600, 400);
 		getContentPane().setLayout(new BorderLayout(0, 0));
 
         JPanel panel_12 = new JPanel();
@@ -109,25 +110,25 @@ public class FenetreAjouterTravaux extends JInternalFrame {
         panel.add(champCB);
         
         JLabel lblTitre = new JLabel("Ajouter travaux");
-        lblTitre.setFont(new Font("Tahoma", Font.BOLD, 15));
-        lblTitre.setBounds(126, 23, 163, 14);
+        lblTitre.setFont(new Font("Tahoma", Font.BOLD, 18));
+        lblTitre.setBounds(224, 22, 163, 14);
         panel.add(lblTitre);
         
         this.gestionClic = new GestionAjouterTravaux(this);
         
         JButton btnValider = new JButton("Valider");
         btnValider.addActionListener(this.gestionClic);
-        btnValider.setBounds(34, 318, 89, 23);
+        btnValider.setBounds(101, 296, 89, 23);
         panel.add(btnValider);
         
         JButton btnAnnuler = new JButton("Annuler");
         btnAnnuler.addActionListener(this.gestionClic);
-        btnAnnuler.setBounds(141, 318, 89, 23);
+        btnAnnuler.setBounds(259, 296, 89, 23);
         panel.add(btnAnnuler);
         
         JButton btnRetour = new JButton("Retour");
         btnRetour.addActionListener(this.gestionClic);
-        btnRetour.setBounds(240, 318, 89, 23);
+        btnRetour.setBounds(406, 296, 89, 23);
         panel.add(btnRetour);
         
         JLabel lblMontantDevis = new JLabel("Montant devis :");
@@ -145,7 +146,7 @@ public class FenetreAjouterTravaux extends JInternalFrame {
         champDatePaiement.setColumns(10);
         
         champDesignationTravaux = new JTextField();
-        champDesignationTravaux.setBounds(203, 243, 86, 20);
+        champDesignationTravaux.setBounds(448, 57, 86, 20);
         panel.add(champDesignationTravaux);
         champDesignationTravaux.setColumns(10);
         
@@ -154,15 +155,15 @@ public class FenetreAjouterTravaux extends JInternalFrame {
         panel.add(lblDatePaiement);
         
         JLabel lblDesignationTravaux = new JLabel("Désignation travaux :");
-        lblDesignationTravaux.setBounds(66, 246, 104, 14);
+        lblDesignationTravaux.setBounds(318, 60, 104, 14);
         panel.add(lblDesignationTravaux);
         
         JLabel lblEntreprise = new JLabel("Entreprise :");
-        lblEntreprise.setBounds(66, 277, 86, 14);
+        lblEntreprise.setBounds(318, 91, 86, 14);
         panel.add(lblEntreprise);
         
         comboBoxEntreprise = new JComboBox();
-        comboBoxEntreprise.setBounds(203, 274, 86, 22);
+        comboBoxEntreprise.setBounds(448, 87, 86, 22);
         panel.add(comboBoxEntreprise);
         
 	}

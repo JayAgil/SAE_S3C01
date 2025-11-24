@@ -7,6 +7,7 @@ import javax.swing.JButton;
 
 import vue.FenetreAjouterPaiement;
 import vue.FenetreFacture;
+import vue.FenetreLocataire;
 import vue.FenetrePaiement;
 
 public class GestionFenetrePaiement implements ActionListener {
@@ -22,9 +23,12 @@ public class GestionFenetrePaiement implements ActionListener {
         switch (((JButton) e.getSource()).getText()) {
         case "Retour":
             fenetre.dispose();
+            FenetreLocataire fenLocataire = new FenetreLocataire();
+            fenLocataire.setVisible(true);
             break;
-        case "Ajouter Un Paiement":
+        case "Ajouter paiement":
         	FenetreAjouterPaiement fen = new FenetreAjouterPaiement();
+        	fenetre.getLayeredPane().add(fen);
         	fen.setVisible(true);
         	break;
         case "Generer le Facture":

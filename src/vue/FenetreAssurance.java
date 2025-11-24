@@ -7,9 +7,6 @@ import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -29,7 +26,7 @@ import controleur.GestionFenetreAssurance;
 import java.awt.Component;
 import javax.swing.Box;
 
-public class FenetreAssurance extends JFrame {
+public class FenetreAssurance extends JInternalFrame {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;

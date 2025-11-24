@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import vue.FenetreAjouterCharge;
 import vue.FenetreCharges;
 import vue.FenetrePrincipale;
 
@@ -19,6 +20,11 @@ public class GestionFenetreCharges implements ActionListener{
     }
 	public void actionPerformed(ActionEvent e) {
         switch (((JButton) e.getSource()).getText()) {
+        case "Ajouter charge" :
+        	FenetreAjouterCharge fenAjouterCharge = new FenetreAjouterCharge();
+        	fenetre.getLayeredPane().add(fenAjouterCharge);
+        	fenAjouterCharge.setVisible(true);
+        	break;
         case "Quitter":
             fenetre.dispose();
             break;
@@ -26,6 +32,7 @@ public class GestionFenetreCharges implements ActionListener{
         	fenetre.dispose();
         	FenetrePrincipale fenPrincipale = new FenetrePrincipale();
         	fenPrincipale.setVisible(true);
+        	break;
         }
     }
 }

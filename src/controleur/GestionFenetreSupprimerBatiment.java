@@ -22,8 +22,13 @@ public class GestionFenetreSupprimerBatiment implements ActionListener {
         case "Valider":
             break;
         case "Annuler":
+        	//Vider champ
             fenetre.dispose();
             break;
+        case "Retour" :
+        	fenetre.dispose();
+        	FenetrePrincipale fenPrincipale = new FenetrePrincipale();
+        	fenPrincipale.setVisible(true);
         }
     }
 }

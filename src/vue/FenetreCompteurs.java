@@ -23,6 +23,7 @@ import controleur.GestionFenetreCompteurs;
 
 import java.awt.Component;
 import javax.swing.Box;
+import java.awt.FlowLayout;
 
 public class FenetreCompteurs extends JFrame {
 
@@ -190,10 +191,10 @@ public class FenetreCompteurs extends JFrame {
         
         JPanel panel_butons = new JPanel();
         panel.add(panel_butons, BorderLayout.SOUTH);
-        panel_butons.setLayout(new GridLayout(0, 2, 0, 0));
         
         JButton btnRetour = new JButton("Retour");
         btnRetour.addActionListener(this.gestionClic);
+        panel_butons.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         panel_butons.add(btnRetour);
         
         JButton btnAjouterCompteur = new JButton("Ajouter compteur");
