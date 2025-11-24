@@ -25,14 +25,9 @@ public class DaoDiagnostics extends DaoModele<Diagnostics> implements Dao<Diagno
 	}
 
 	@Override
-<<<<<<< HEAD
 	public int delete(Diagnostics t) throws SQLException {
 		return this.miseAJour(new RequeteDeleteDiagnostics(), t);
-=======
-	public int delete(Diagnostics t) {
-		DaoTest.deleteDiagnostics(t);
 
->>>>>>> 2ededba3a9f8a8c7eaad33f2eae79dd42d28c3d1
 	}
 
 	@Override
