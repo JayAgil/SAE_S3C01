@@ -122,6 +122,18 @@ public class FenetreAjouterAssurance extends JFrame {
 		textFieldTelAgence.setBounds(219, 365, 96, 19);
 		contentPane.add(textFieldTelAgence);
 		
+		JButton btnValider = new JButton("Valider");
+		btnValider.setBounds(90, 432, 85, 21);
+		contentPane.add(btnValider);
+		
+		JButton btnAnnuler = new JButton("Annuler ");
+		btnAnnuler.setBounds(188, 432, 85, 21);
+		contentPane.add(btnAnnuler);
+		
+		JButton btnRetour = new JButton("Retour");
+		btnRetour.setBounds(283, 432, 85, 21);
+		contentPane.add(btnRetour);
+		
     }
 	}
 
