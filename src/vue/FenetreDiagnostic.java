@@ -52,6 +52,7 @@ public class FenetreDiagnostic extends JFrame {
      * Create the frame.
      */
     public FenetreDiagnostic() {
+    	setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     	this.gestionClic = new GestionFenetreDiagnostic(this);
         setBounds(100, 100, 1200, 800);
         getContentPane().setLayout(new BorderLayout(0, 0));

@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JMenuItem;
 
 import vue.FenetreAjouterBatiment;
@@ -113,10 +114,12 @@ public class GestionFenetrePrincipale implements ActionListener {
 	        	fenChargesBL.setVisible(true);
 	        	break;
 	        case "Diagnostic" :
-	        	fenetre.dispose();
-	        	FenetreDiagnostic fenDiagnostic = new FenetreDiagnostic();
-	        	fenDiagnostic.setVisible(true);
-	        	break;
+	            java.awt.EventQueue.invokeLater(() -> {
+	                FenetreDiagnostic fenDiagnostic = new FenetreDiagnostic();
+	                fenDiagnostic.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	                fenDiagnostic.setVisible(true);
+	            });
+	            break;
 	        case "Locataires" :
 	        	fenetre.dispose();
 	        	FenetreLocataire fenLocataire = new FenetreLocataire();
