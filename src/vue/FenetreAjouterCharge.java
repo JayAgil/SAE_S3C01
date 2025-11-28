@@ -41,6 +41,8 @@ public class FenetreAjouterCharge extends JInternalFrame implements ActionListen
                 FenetreAjouterCharge internalFrame = new FenetreAjouterCharge();
                 internalFrame.setVisible(true);
                 desktopPane.add(internalFrame);
+                frame.setResizable(false); 
+
 
                 frame.setVisible(true);
             } catch (Exception e) {
