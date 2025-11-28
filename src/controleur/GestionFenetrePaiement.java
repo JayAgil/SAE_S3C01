@@ -17,7 +17,6 @@ import vue.FenetreFacture;
 import vue.FenetreLocataire;
 import vue.FenetreLogin;
 import vue.FenetrePaiement;
-import vue.FenetreSupprimerBatiment;
 import vue.FenetreTravaux;
 
 public class GestionFenetrePaiement implements ActionListener {
@@ -68,11 +67,6 @@ public class GestionFenetrePaiement implements ActionListener {
 	        	FenetreAjouterBatiment fenAjouterBatiment = new FenetreAjouterBatiment();
 	        	fenetre.getLayeredPane().add(fenAjouterBatiment);
 	        	fenAjouterBatiment.setVisible(true);
-	        	break;
-	        case "Supprimer bâtiment" :
-	        	FenetreSupprimerBatiment fenSupprimerBatiment = new FenetreSupprimerBatiment();
-	        	fenetre.getLayeredPane().add(fenSupprimerBatiment);
-	        	fenSupprimerBatiment.setVisible(true);
 	        	break;
 	        case "Assurance" :
 	        	FenetreAssurance fenAssurance = new FenetreAssurance();
