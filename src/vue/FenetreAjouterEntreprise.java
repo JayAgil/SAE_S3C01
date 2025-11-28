@@ -65,7 +65,7 @@ public class FenetreAjouterEntreprise extends JInternalFrame  {
 
 		JLabel lblTitre = new JLabel("Ajouter Entreprise");
 		lblTitre.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitre.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblTitre.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblTitre.setBounds(0, 22, 384, 30);
 		contentPane.add(lblTitre);
 

@@ -6,9 +6,6 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -19,17 +16,20 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import controleur.GestionFenetreDiagnostic;
+
 import java.awt.Font;
 import java.awt.Component;
 import javax.swing.Box;
 import java.awt.Panel;
 
-public class FenetreDiagnostic extends JFrame
-    implements ActionListener {
+public class FenetreDiagnostic extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JTextField textFieldDateValide;
     private JTextField textFieldType;
+    private GestionFenetreDiagnostic gestionClic;
 
     /**
      * Launch the application.
@@ -52,6 +52,7 @@ public class FenetreDiagnostic extends JFrame
      * Create the frame.
      */
     public FenetreDiagnostic() {
+    	this.gestionClic = new GestionFenetreDiagnostic(this);
         setBounds(100, 100, 1200, 800);
         getContentPane().setLayout(new BorderLayout(0, 0));
 
@@ -63,58 +64,73 @@ public class FenetreDiagnostic extends JFrame
         menuBar.setBackground(new Color(214, 214, 214));
         panelMenuBar.add(menuBar);
 
+      //header
         JMenu mnProfil = new JMenu("Profil");
         menuBar.add(mnProfil);
 
         JMenuItem mntmDeconnecter = new JMenuItem("Déconnecter");
+        mntmDeconnecter.addActionListener(this.gestionClic);
         mnProfil.add(mntmDeconnecter);
 
         JMenu mnBatiment = new JMenu("Batiment");
         menuBar.add(mnBatiment);
 
         JMenuItem mntmAjouterBat = new JMenuItem("Ajouter bâtiment");
+        mntmAjouterBat.addActionListener(this.gestionClic);
         mnBatiment.add(mntmAjouterBat);
 
         JMenuItem mntmSupprimerBat = new JMenuItem("Supprimer bâtiment");
+        mntmSupprimerBat.addActionListener(this.gestionClic);
         mnBatiment.add(mntmSupprimerBat);
 
         JMenuItem mntmAssurance = new JMenuItem("Assurance");
+        mntmAssurance.addActionListener(this.gestionClic);
         mnBatiment.add(mntmAssurance);
 
-        JMenuItem mntmCompteur = new JMenuItem("Compteurs");
+        JMenuItem mntmCompteur = new JMenuItem("Compteurs bâtiment");
+        mntmCompteur.addActionListener(this.gestionClic);
         mnBatiment.add(mntmCompteur);
 
-        JMenuItem mntmCharge = new JMenuItem("Charges");
+        JMenuItem mntmCharge = new JMenuItem("Charges bâtiment");
+        mntmCharge.addActionListener(this.gestionClic);
         mnBatiment.add(mntmCharge);
 
         JMenu mnBienLouable = new JMenu("Bien louable");
         menuBar.add(mnBienLouable);
 
         JMenuItem mntmContratLocation = new JMenuItem("Contrat location");
+        mntmContratLocation.addActionListener(this.gestionClic);
         mnBienLouable.add(mntmContratLocation);
 
-        JMenuItem mntmCompteurBL = new JMenuItem("Compteurs");
+        JMenuItem mntmCompteurBL = new JMenuItem("Compteurs bien louable");
+        mntmCompteurBL.addActionListener(this.gestionClic);
         mnBienLouable.add(mntmCompteurBL);
 
         JMenuItem mntmTravaux = new JMenuItem("Travaux");
+        mntmTravaux.addActionListener(this.gestionClic);
         mnBienLouable.add(mntmTravaux);
 
-        JMenuItem mntmChargesBL = new JMenuItem("Charges");
+        JMenuItem mntmChargesBL = new JMenuItem("Charges bien louable");
+        mntmChargesBL.addActionListener(this.gestionClic);
         mnBienLouable.add(mntmChargesBL);
 
         JMenuItem mntmDiagnostic = new JMenuItem("Diagnostics");
+        mntmDiagnostic.addActionListener(this.gestionClic);
         mnBienLouable.add(mntmDiagnostic);
 
         JMenuItem mntmLocataire = new JMenuItem("Locataires");
+        mntmLocataire.addActionListener(this.gestionClic);
         mnBienLouable.add(mntmLocataire);
-
+        
         JMenu mnPaiement = new JMenu("Paiement");
         menuBar.add(mnPaiement);
-
-        JMenuItem mntmHistorique = new JMenuItem("Historique De Paiements");
+        
+        JMenuItem mntmHistorique = new JMenuItem("Historique de paiement");
+        mntmHistorique.addActionListener(this.gestionClic);
         mnPaiement.add(mntmHistorique);
-
-        JMenuItem mntmAjout = new JMenuItem("Ajouter Paiement");
+        
+        JMenuItem mntmAjout = new JMenuItem("Ajouter paiement");
+        mntmAjout.addActionListener(this.gestionClic);
         mnPaiement.add(mntmAjout);
 
         JPanel panelFooter = new JPanel();
@@ -141,7 +157,7 @@ public class FenetreDiagnostic extends JFrame
         panel.add(panel_1, BorderLayout.SOUTH);
         
         JButton btnRetour = new JButton("Retour");
-        btnRetour.addActionListener(this);
+        btnRetour.addActionListener(this.gestionClic);
         panel_1.add(btnRetour);
         
         JPanel panel_2 = new JPanel();
@@ -217,15 +233,11 @@ public class FenetreDiagnostic extends JFrame
         panel_8.add(panel_12);
         
         JButton btnObtenir = new JButton("Obtenir");
-        btnObtenir.addActionListener(this);
+        btnObtenir.addActionListener(this.gestionClic);
         panel_12.add(btnObtenir);
         
         Component horizontalStrut = Box.createHorizontalStrut(510);
         panel_12.add(horizontalStrut);
 
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
     }
 }

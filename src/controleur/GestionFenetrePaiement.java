@@ -4,11 +4,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JMenuItem;
 
+import vue.FenetreAjouterBatiment;
 import vue.FenetreAjouterPaiement;
+import vue.FenetreAssurance;
+import vue.FenetreCharges;
+import vue.FenetreCompteurs;
+import vue.FenetreContratLocation;
+import vue.FenetreDiagnostic;
 import vue.FenetreFacture;
 import vue.FenetreLocataire;
+import vue.FenetreLogin;
 import vue.FenetrePaiement;
+import vue.FenetreSupprimerBatiment;
+import vue.FenetreTravaux;
 
 public class GestionFenetrePaiement implements ActionListener {
 
@@ -20,24 +30,106 @@ public class GestionFenetrePaiement implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        switch (((JButton) e.getSource()).getText()) {
-        case "Retour":
-            fenetre.dispose();
-            FenetreLocataire fenLocataire = new FenetreLocataire();
-            fenLocataire.setVisible(true);
-            break;
-        case "Ajouter paiement":
-        	FenetreAjouterPaiement fen = new FenetreAjouterPaiement();
-        	fenetre.getLayeredPane().add(fen);
-        	fen.setVisible(true);
-        	break;
-        case "Generer le Facture":
-        	FenetreFacture fen1 = new FenetreFacture();
-        	fenetre.getLayeredPane().add(fen1);
-        	fen1.setVisible(true);
-        	break;
-        }
+    	Object source = e.getSource();
+		// JButton
+		if (source instanceof JButton) {
+			JButton btn = (JButton) source;
+	        String texte = btn.getText();
+	        switch (texte) {
+	        case "Retour":
+	            fenetre.dispose();
+	            FenetreLocataire fenLocataire = new FenetreLocataire();
+	            fenLocataire.setVisible(true);
+	            break;
+	        case "Ajouter paiement":
+	        	FenetreAjouterPaiement fen = new FenetreAjouterPaiement();
+	        	fenetre.getLayeredPane().add(fen);
+	        	fen.setVisible(true);
+	        	break;
+	        case "Generer le Facture":
+	        	FenetreFacture fen1 = new FenetreFacture();
+	        	fenetre.getLayeredPane().add(fen1);
+	        	fen1.setVisible(true);
+	        	break;	
+	        }
+	     }
+		
+		// JMenuItem
+		if (source instanceof JMenuItem) {
+			JMenuItem item = (JMenuItem) source;
+	        String texte = item.getText();
+	        switch (texte) {
+	        case "Déconnecter":
+	        	fenetre.dispose();
+	        	FenetreLogin fenLogin = new FenetreLogin();
+	        	fenLogin.setVisible(true);
+	        	break;
+	        case "Ajouter bâtiment" :
+	        	FenetreAjouterBatiment fenAjouterBatiment = new FenetreAjouterBatiment();
+	        	fenetre.getLayeredPane().add(fenAjouterBatiment);
+	        	fenAjouterBatiment.setVisible(true);
+	        	break;
+	        case "Supprimer bâtiment" :
+	        	FenetreSupprimerBatiment fenSupprimerBatiment = new FenetreSupprimerBatiment();
+	        	fenetre.getLayeredPane().add(fenSupprimerBatiment);
+	        	fenSupprimerBatiment.setVisible(true);
+	        	break;
+	        case "Assurance" :
+	        	FenetreAssurance fenAssurance = new FenetreAssurance();
+	        	fenetre.getLayeredPane().add(fenAssurance);
+	        	fenAssurance.setVisible(true);
+	        	break;
+	        case "Compteurs bâtiment" :
+	        	fenetre.dispose();
+	        	FenetreCompteurs fenCompteurBat = new FenetreCompteurs();
+	        	fenCompteurBat.setVisible(true);
+	        	break;
+	        case "Charges bâtiment" :
+	        	fenetre.dispose();
+	        	FenetreCharges fenChargesBat = new FenetreCharges();
+	        	fenChargesBat.setVisible(true);
+	        	break;
+	        case "Contrat location" :
+	        	fenetre.dispose();
+	        	FenetreContratLocation fenContratLocation = new FenetreContratLocation();
+	        	fenContratLocation.setVisible(true);
+	        	break;
+	        case "Compteurs bien louable" :
+	        	fenetre.dispose();
+	        	FenetreCompteurs fenCompteurBL = new FenetreCompteurs();
+	        	fenCompteurBL.setVisible(true);
+	        	break;
+	        case "Travaux" :
+	        	fenetre.dispose();
+	        	FenetreTravaux fenTravaux = new FenetreTravaux();
+	        	fenTravaux.setVisible(true);
+	        	break;
+	        case "Charges bien louable" :
+	        	fenetre.dispose();
+	        	FenetreCharges fenChargesBL = new FenetreCharges();
+	        	fenChargesBL.setVisible(true);
+	        	break;
+	        case "Diagnostic" :
+	        	fenetre.dispose();
+	        	FenetreDiagnostic fenDiagnostic = new FenetreDiagnostic();
+	        	fenDiagnostic.setVisible(true);
+	        	break;
+	        case "Locataires" :
+	        	fenetre.dispose();
+	        	FenetreLocataire fenLocataire = new FenetreLocataire();
+	        	fenLocataire.setVisible(true);
+	        	break;
+	        case "Historique de paiement" :
+	        	fenetre.dispose();
+	        	FenetrePaiement fenPaiement = new FenetrePaiement();
+	        	fenPaiement.setVisible(true);
+	        	break;
+	        case "Ajouter paiement" :
+	        	FenetreAjouterPaiement fenAjouterPaiement = new FenetreAjouterPaiement();
+	        	fenetre.getLayeredPane().add(fenAjouterPaiement);
+	        	fenAjouterPaiement.setVisible(true);
+	        	break;
+	        }
+		}
     }
-
-
 }

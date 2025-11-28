@@ -62,7 +62,7 @@ public class FenetreAjouterPaiement extends JInternalFrame {
         contentPane.add(panel, BorderLayout.NORTH);
         
         JLabel lblTitre = new JLabel("Ajouter paiement");
-        lblTitre.setFont(new Font("Tahoma", Font.BOLD, 15));
+        lblTitre.setFont(new Font("Tahoma", Font.BOLD, 18));
         panel.add(lblTitre);
         
         Component verticalStrut = Box.createVerticalStrut(60);
