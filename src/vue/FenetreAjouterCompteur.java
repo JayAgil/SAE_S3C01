@@ -44,6 +44,7 @@ public class FenetreAjouterCompteur extends JInternalFrame implements ActionList
 				FenetreAjouterCompteur internalFrame = new FenetreAjouterCompteur();
 				internalFrame.setVisible(true);
 				desktopPane.add(internalFrame);
+				frame.setResizable(false); 
 
 				frame.setVisible(true);
 			} catch (Exception e) {

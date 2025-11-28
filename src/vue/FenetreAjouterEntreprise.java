@@ -39,6 +39,7 @@ public class FenetreAjouterEntreprise extends JInternalFrame  {
 				FenetreAjouterEntreprise internalFrame = new FenetreAjouterEntreprise();
 				internalFrame.setVisible(true);
 				desktopPane.add(internalFrame);
+				frame.setResizable(false); 
 
 				frame.setVisible(true);
 			} catch (Exception e) {
