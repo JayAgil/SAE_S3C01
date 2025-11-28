@@ -25,8 +25,8 @@ public class FenetreAjouterCharge extends JInternalFrame implements ActionListen
 
     private JTextField txtTypeCharge;
     private JTextField txtMontant;
-    private JTextField txtDate;
-    private JTextField txtCommentaire;
+    private JTextField txtPourcentage;
+    private JTextField txtQuotite;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
@@ -41,8 +41,6 @@ public class FenetreAjouterCharge extends JInternalFrame implements ActionListen
                 FenetreAjouterCharge internalFrame = new FenetreAjouterCharge();
                 internalFrame.setVisible(true);
                 desktopPane.add(internalFrame);
-                frame.setResizable(false); 
-
 
                 frame.setVisible(true);
             } catch (Exception e) {
@@ -133,13 +131,13 @@ public class FenetreAjouterCharge extends JInternalFrame implements ActionListen
         c5.gridy = 3;
         panelCenter.add(new JLabel("Pourcentage :"), c5);
 
-        GridBagConstraints c6 = new GridBagConstraints();
-        c6.insets = pad;
-        c6.anchor = GridBagConstraints.LINE_START;
-        c6.gridx = 1;
-        c6.gridy = 3;
-        txtDate = new JTextField(15);
-        panelCenter.add(txtDate, c6);
+        GridBagConstraints gbc_txtPourcentage = new GridBagConstraints();
+        gbc_txtPourcentage.insets = pad;
+        gbc_txtPourcentage.anchor = GridBagConstraints.LINE_START;
+        gbc_txtPourcentage.gridx = 1;
+        gbc_txtPourcentage.gridy = 3;
+        txtPourcentage = new JTextField(15);
+        panelCenter.add(txtPourcentage, gbc_txtPourcentage);
 
         // Row 4
         GridBagConstraints c7 = new GridBagConstraints();
@@ -149,13 +147,13 @@ public class FenetreAjouterCharge extends JInternalFrame implements ActionListen
         c7.gridy = 4;
         panelCenter.add(new JLabel("Quotité :"), c7);
 
-        GridBagConstraints c8 = new GridBagConstraints();
-        c8.insets = pad;
-        c8.anchor = GridBagConstraints.LINE_START;
-        c8.gridx = 1;
-        c8.gridy = 4;
-        txtCommentaire = new JTextField(15);
-        panelCenter.add(txtCommentaire, c8);
+        GridBagConstraints gbc_txtQuotite = new GridBagConstraints();
+        gbc_txtQuotite.insets = pad;
+        gbc_txtQuotite.anchor = GridBagConstraints.LINE_START;
+        gbc_txtQuotite.gridx = 1;
+        gbc_txtQuotite.gridy = 4;
+        txtQuotite = new JTextField(15);
+        panelCenter.add(txtQuotite, gbc_txtQuotite);
 
         JPanel panelFooter = new JPanel();
 
