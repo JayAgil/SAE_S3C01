@@ -72,20 +72,38 @@ public class FenetreAjouterCharge extends JInternalFrame implements ActionListen
         getContentPane().add(panelCenter, BorderLayout.CENTER);
 
         Insets pad = new Insets(10, 10, 10, 10);
+        
+     // Row 0 - ID Charge
+        GridBagConstraints idLabel = new GridBagConstraints();
+        idLabel.insets = pad;
+        idLabel.anchor = GridBagConstraints.LINE_END;
+        idLabel.gridx = 0;
+        idLabel.gridy = 0;
+        JLabel label = new JLabel("ID Charge :");
+        panelCenter.add(label, idLabel);
+        
+                GridBagConstraints idField = new GridBagConstraints();
+                idField.insets = pad;
+                idField.anchor = GridBagConstraints.LINE_START;
+                idField.gridx = 1;
+                idField.gridy = 0;
+                JTextField txtIdCharge = new JTextField(15);
+                panelCenter.add(txtIdCharge, idField);
+
 
         // Row 1
         GridBagConstraints c1 = new GridBagConstraints();
         c1.insets = pad;
         c1.anchor = GridBagConstraints.LINE_END;
         c1.gridx = 0;
-        c1.gridy = 0;
+        c1.gridy = 1;
         panelCenter.add(new JLabel("Type charge :"), c1);
 
         GridBagConstraints c2 = new GridBagConstraints();
         c2.insets = pad;
         c2.anchor = GridBagConstraints.LINE_START;
         c2.gridx = 1;
-        c2.gridy = 0;
+        c2.gridy = 1;
         txtTypeCharge = new JTextField(15);
         panelCenter.add(txtTypeCharge, c2);
 
@@ -94,14 +112,14 @@ public class FenetreAjouterCharge extends JInternalFrame implements ActionListen
         c3.insets = pad;
         c3.anchor = GridBagConstraints.LINE_END;
         c3.gridx = 0;
-        c3.gridy = 1;
+        c3.gridy = 2;
         panelCenter.add(new JLabel("Montant :"), c3);
 
         GridBagConstraints c4 = new GridBagConstraints();
         c4.insets = pad;
         c4.anchor = GridBagConstraints.LINE_START;
         c4.gridx = 1;
-        c4.gridy = 1;
+        c4.gridy = 2;
         txtMontant = new JTextField(15);
         panelCenter.add(txtMontant, c4);
 
@@ -110,14 +128,14 @@ public class FenetreAjouterCharge extends JInternalFrame implements ActionListen
         c5.insets = pad;
         c5.anchor = GridBagConstraints.LINE_END;
         c5.gridx = 0;
-        c5.gridy = 2;
-        panelCenter.add(new JLabel("Date :"), c5);
+        c5.gridy = 3;
+        panelCenter.add(new JLabel("Pourcentage :"), c5);
 
         GridBagConstraints c6 = new GridBagConstraints();
         c6.insets = pad;
         c6.anchor = GridBagConstraints.LINE_START;
         c6.gridx = 1;
-        c6.gridy = 2;
+        c6.gridy = 3;
         txtDate = new JTextField(15);
         panelCenter.add(txtDate, c6);
 
@@ -126,14 +144,14 @@ public class FenetreAjouterCharge extends JInternalFrame implements ActionListen
         c7.insets = pad;
         c7.anchor = GridBagConstraints.LINE_END;
         c7.gridx = 0;
-        c7.gridy = 3;
-        panelCenter.add(new JLabel("Commentaire :"), c7);
+        c7.gridy = 4;
+        panelCenter.add(new JLabel("Quotité :"), c7);
 
         GridBagConstraints c8 = new GridBagConstraints();
         c8.insets = pad;
         c8.anchor = GridBagConstraints.LINE_START;
         c8.gridx = 1;
-        c8.gridy = 3;
+        c8.gridy = 4;
         txtCommentaire = new JTextField(15);
         panelCenter.add(txtCommentaire, c8);
 

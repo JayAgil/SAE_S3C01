@@ -136,27 +136,6 @@ public class FenetreAjouterBatiment extends JInternalFrame {
         panel_7.add(textFieldDate);
         textFieldDate.setColumns(10);
 
-        JPanel panel_4 = new JPanel();
-        panel_1.add(panel_4);
-        panel_4.setLayout(new GridLayout(0, 2, 0, 0));
-
-        JPanel panel_5 = new JPanel();
-        FlowLayout flowLayout_2 = (FlowLayout) panel_5.getLayout();
-        flowLayout_2.setAlignment(FlowLayout.RIGHT);
-        panel_4.add(panel_5);
-
-        JLabel lblNbBienLouable = new JLabel("Nombre de bien louable : ");
-        panel_5.add(lblNbBienLouable);
-        lblNbBienLouable.setHorizontalAlignment(SwingConstants.RIGHT);
-
-        JPanel panel = new JPanel();
-        panel_4.add(panel);
-        panel.setLayout(null);
-
-        JSpinner spinnerNbBienLouable = new JSpinner();
-        spinnerNbBienLouable.setBounds(5, 5, 100, 20);
-        panel.add(spinnerNbBienLouable);
-
     }
 
     
