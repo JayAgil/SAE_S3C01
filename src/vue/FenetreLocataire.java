@@ -29,12 +29,14 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
 public class FenetreLocataire extends JFrame implements ActionListener {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
-    private JTable table;
     private JTextField textFieldNom;
     private JTextField textFieldPrenom;
     private JTextField textField;
@@ -46,6 +48,7 @@ public class FenetreLocataire extends JFrame implements ActionListener {
     private JTextField textFieldProfession;
     private JTextField textFieldSituationFamiliale;
     private GestionFenetreLocataire gestionClic;
+    private JTable table;
 
     /**
      * Launch the application.
@@ -196,94 +199,254 @@ public class FenetreLocataire extends JFrame implements ActionListener {
         panel_2.add(lblPhoto);
         
         JPanel panel_3 = new JPanel();
-        panel_3.setLayout(new GridLayout(10, 2, 10, 5)); 
         panel_2.add(panel_3);
+        GridBagLayout gbl_panel_3 = new GridBagLayout();
+        // set column widths and row heights (rowHeights can remain as is)
+        gbl_panel_3.columnWidths = new int[]{0, 0};
+        gbl_panel_3.rowHeights = new int[]{31, 31, 31, 31, 31, 31, 31, 31, 31, 31};
+        gbl_panel_3.columnWeights = new double[]{0.2, 0.8}; // 20% for labels, 80% for text fields
+        gbl_panel_3.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
+        panel_3.setLayout(gbl_panel_3);
 
+        Insets insets = new Insets(0, 0, 5, 5);
+
+        // Row 0
         JLabel lblNom = new JLabel("Nom :");
-        panel_3.add(lblNom);
+        GridBagConstraints gbc_lblNom = new GridBagConstraints();
+        gbc_lblNom.anchor = GridBagConstraints.WEST;
+        gbc_lblNom.fill = GridBagConstraints.HORIZONTAL;
+        gbc_lblNom.insets = insets;
+        gbc_lblNom.gridx = 0;
+        gbc_lblNom.gridy = 0;
+        gbc_lblNom.weightx = 0.2;
+        panel_3.add(lblNom, gbc_lblNom);
+
         textFieldNom = new JTextField();
-        panel_3.add(textFieldNom);
+        GridBagConstraints gbc_textFieldNom = new GridBagConstraints();
+        gbc_textFieldNom.fill = GridBagConstraints.HORIZONTAL;
+        gbc_textFieldNom.insets = new Insets(0, 0, 5, 0);
+        gbc_textFieldNom.gridx = 1;
+        gbc_textFieldNom.gridy = 0;
+        gbc_textFieldNom.weightx = 0.8;
+        panel_3.add(textFieldNom, gbc_textFieldNom);
 
+        // Row 1
         JLabel lblPrenom = new JLabel("Prénom :");
-        panel_3.add(lblPrenom);
+        GridBagConstraints gbc_lblPrenom = new GridBagConstraints();
+        gbc_lblPrenom.anchor = GridBagConstraints.WEST;
+        gbc_lblPrenom.fill = GridBagConstraints.HORIZONTAL;
+        gbc_lblPrenom.insets = insets;
+        gbc_lblPrenom.gridx = 0;
+        gbc_lblPrenom.gridy = 1;
+        gbc_lblPrenom.weightx = 0.2;
+        panel_3.add(lblPrenom, gbc_lblPrenom);
+
         textFieldPrenom = new JTextField();
-        panel_3.add(textFieldPrenom);
+        GridBagConstraints gbc_textFieldPrenom = new GridBagConstraints();
+        gbc_textFieldPrenom.fill = GridBagConstraints.HORIZONTAL;
+        gbc_textFieldPrenom.insets = new Insets(0, 0, 5, 0);
+        gbc_textFieldPrenom.gridx = 1;
+        gbc_textFieldPrenom.gridy = 1;
+        gbc_textFieldPrenom.weightx = 0.8;
+        panel_3.add(textFieldPrenom, gbc_textFieldPrenom);
 
+        // Row 2
         JLabel lblAdresse = new JLabel("Adresse :");
-        panel_3.add(lblAdresse);
+        GridBagConstraints gbc_lblAdresse = new GridBagConstraints();
+        gbc_lblAdresse.anchor = GridBagConstraints.WEST;
+        gbc_lblAdresse.fill = GridBagConstraints.HORIZONTAL;
+        gbc_lblAdresse.insets = insets;
+        gbc_lblAdresse.gridx = 0;
+        gbc_lblAdresse.gridy = 2;
+        gbc_lblAdresse.weightx = 0.2;
+        panel_3.add(lblAdresse, gbc_lblAdresse);
+
         textField = new JTextField();
-        panel_3.add(textField);
+        GridBagConstraints gbc_textField = new GridBagConstraints();
+        gbc_textField.fill = GridBagConstraints.HORIZONTAL;
+        gbc_textField.insets = new Insets(0, 0, 5, 0);
+        gbc_textField.gridx = 1;
+        gbc_textField.gridy = 2;
+        gbc_textField.weightx = 0.8;
+        panel_3.add(textField, gbc_textField);
 
+        // Repeat the same pattern for the remaining rows
+        // Tél
         JLabel lblTel = new JLabel("Tél :");
-        panel_3.add(lblTel);
+        GridBagConstraints gbc_lblTel = new GridBagConstraints();
+        gbc_lblTel.anchor = GridBagConstraints.WEST;
+        gbc_lblTel.fill = GridBagConstraints.HORIZONTAL;
+        gbc_lblTel.insets = insets;
+        gbc_lblTel.gridx = 0;
+        gbc_lblTel.gridy = 3;
+        gbc_lblTel.weightx = 0.2;
+        panel_3.add(lblTel, gbc_lblTel);
+
         textFieldTel = new JTextField();
-        panel_3.add(textFieldTel);
+        GridBagConstraints gbc_textFieldTel = new GridBagConstraints();
+        gbc_textFieldTel.fill = GridBagConstraints.HORIZONTAL;
+        gbc_textFieldTel.insets = new Insets(0, 0, 5, 0);
+        gbc_textFieldTel.gridx = 1;
+        gbc_textFieldTel.gridy = 3;
+        gbc_textFieldTel.weightx = 0.8;
+        panel_3.add(textFieldTel, gbc_textFieldTel);
 
+        // Email
         JLabel lblEmail = new JLabel("Email :");
-        panel_3.add(lblEmail);
+        GridBagConstraints gbc_lblEmail = new GridBagConstraints();
+        gbc_lblEmail.anchor = GridBagConstraints.WEST;
+        gbc_lblEmail.fill = GridBagConstraints.HORIZONTAL;
+        gbc_lblEmail.insets = insets;
+        gbc_lblEmail.gridx = 0;
+        gbc_lblEmail.gridy = 4;
+        gbc_lblEmail.weightx = 0.2;
+        panel_3.add(lblEmail, gbc_lblEmail);
+
         textFieldEmail = new JTextField();
-        panel_3.add(textFieldEmail);
+        GridBagConstraints gbc_textFieldEmail = new GridBagConstraints();
+        gbc_textFieldEmail.fill = GridBagConstraints.HORIZONTAL;
+        gbc_textFieldEmail.insets = new Insets(0, 0, 5, 0);
+        gbc_textFieldEmail.gridx = 1;
+        gbc_textFieldEmail.gridy = 4;
+        gbc_textFieldEmail.weightx = 0.8;
+        panel_3.add(textFieldEmail, gbc_textFieldEmail);
+        
+     // Date de naissance
+        JLabel lblDateNaissance = new JLabel("Date de naissance :");
+        GridBagConstraints gbc_lblDateNaissance = new GridBagConstraints();
+        gbc_lblDateNaissance.anchor = GridBagConstraints.WEST;
+        gbc_lblDateNaissance.fill = GridBagConstraints.HORIZONTAL;
+        gbc_lblDateNaissance.insets = insets;
+        gbc_lblDateNaissance.gridx = 0;
+        gbc_lblDateNaissance.gridy = 5;
+        gbc_lblDateNaissance.weightx = 0.2;
+        panel_3.add(lblDateNaissance, gbc_lblDateNaissance);
 
-        JLabel lblDate = new JLabel("Date de naissance :");
-        panel_3.add(lblDate);
         textFieldDateNaissance = new JTextField();
-        panel_3.add(textFieldDateNaissance);
+        GridBagConstraints gbc_textFieldDateNaissance = new GridBagConstraints();
+        gbc_textFieldDateNaissance.fill = GridBagConstraints.HORIZONTAL;
+        gbc_textFieldDateNaissance.insets = insets;
+        gbc_textFieldDateNaissance.gridx = 1;
+        gbc_textFieldDateNaissance.gridy = 5;
+        gbc_textFieldDateNaissance.weightx = 0.8;
+        panel_3.add(textFieldDateNaissance, gbc_textFieldDateNaissance);
 
-        JLabel lblLieu = new JLabel("Lieu de naissance :");
-        panel_3.add(lblLieu);
+        // Lieu de naissance
+        JLabel lblLieuNaissance = new JLabel("Lieu de naissance :");
+        GridBagConstraints gbc_lblLieuNaissance = new GridBagConstraints();
+        gbc_lblLieuNaissance.anchor = GridBagConstraints.WEST;
+        gbc_lblLieuNaissance.fill = GridBagConstraints.HORIZONTAL;
+        gbc_lblLieuNaissance.insets = insets;
+        gbc_lblLieuNaissance.gridx = 0;
+        gbc_lblLieuNaissance.gridy = 6;
+        gbc_lblLieuNaissance.weightx = 0.2;
+        panel_3.add(lblLieuNaissance, gbc_lblLieuNaissance);
+
         textFieldLieuNaissance = new JTextField();
-        panel_3.add(textFieldLieuNaissance);
+        GridBagConstraints gbc_textFieldLieuNaissance = new GridBagConstraints();
+        gbc_textFieldLieuNaissance.fill = GridBagConstraints.HORIZONTAL;
+        gbc_textFieldLieuNaissance.insets = insets;
+        gbc_textFieldLieuNaissance.gridx = 1;
+        gbc_textFieldLieuNaissance.gridy = 6;
+        gbc_textFieldLieuNaissance.weightx = 0.8;
+        panel_3.add(textFieldLieuNaissance, gbc_textFieldLieuNaissance);
 
+        // Salaire
         JLabel lblSalaire = new JLabel("Salaire :");
-        panel_3.add(lblSalaire);
+        GridBagConstraints gbc_lblSalaire = new GridBagConstraints();
+        gbc_lblSalaire.anchor = GridBagConstraints.WEST;
+        gbc_lblSalaire.fill = GridBagConstraints.HORIZONTAL;
+        gbc_lblSalaire.insets = insets;
+        gbc_lblSalaire.gridx = 0;
+        gbc_lblSalaire.gridy = 7;
+        gbc_lblSalaire.weightx = 0.2;
+        panel_3.add(lblSalaire, gbc_lblSalaire);
+
         textFieldSalaire = new JTextField();
-        panel_3.add(textFieldSalaire);
+        GridBagConstraints gbc_textFieldSalaire = new GridBagConstraints();
+        gbc_textFieldSalaire.fill = GridBagConstraints.HORIZONTAL;
+        gbc_textFieldSalaire.insets = insets;
+        gbc_textFieldSalaire.gridx = 1;
+        gbc_textFieldSalaire.gridy = 7;
+        gbc_textFieldSalaire.weightx = 0.8;
+        panel_3.add(textFieldSalaire, gbc_textFieldSalaire);
 
+        // Profession
         JLabel lblProfession = new JLabel("Profession :");
-        panel_3.add(lblProfession);
+        GridBagConstraints gbc_lblProfession = new GridBagConstraints();
+        gbc_lblProfession.anchor = GridBagConstraints.WEST;
+        gbc_lblProfession.fill = GridBagConstraints.HORIZONTAL;
+        gbc_lblProfession.insets = insets;
+        gbc_lblProfession.gridx = 0;
+        gbc_lblProfession.gridy = 8;
+        gbc_lblProfession.weightx = 0.2;
+        panel_3.add(lblProfession, gbc_lblProfession);
+
         textFieldProfession = new JTextField();
-        panel_3.add(textFieldProfession);
+        GridBagConstraints gbc_textFieldProfession = new GridBagConstraints();
+        gbc_textFieldProfession.fill = GridBagConstraints.HORIZONTAL;
+        gbc_textFieldProfession.insets = insets;
+        gbc_textFieldProfession.gridx = 1;
+        gbc_textFieldProfession.gridy = 8;
+        gbc_textFieldProfession.weightx = 0.8;
+        panel_3.add(textFieldProfession, gbc_textFieldProfession);
 
-        JLabel lblSituation = new JLabel("Situation familiale :");
-        panel_3.add(lblSituation);
+        // Situation familiale
+        JLabel lblSituationFamiliale = new JLabel("Situation familiale :");
+        GridBagConstraints gbc_lblSituationFamiliale = new GridBagConstraints();
+        gbc_lblSituationFamiliale.anchor = GridBagConstraints.WEST;
+        gbc_lblSituationFamiliale.fill = GridBagConstraints.HORIZONTAL;
+        gbc_lblSituationFamiliale.insets = insets;
+        gbc_lblSituationFamiliale.gridx = 0;
+        gbc_lblSituationFamiliale.gridy = 9;
+        gbc_lblSituationFamiliale.weightx = 0.2;
+        panel_3.add(lblSituationFamiliale, gbc_lblSituationFamiliale);
+
         textFieldSituationFamiliale = new JTextField();
-        panel_3.add(textFieldSituationFamiliale);
+        GridBagConstraints gbc_textFieldSituationFamiliale = new GridBagConstraints();
+        gbc_textFieldSituationFamiliale.fill = GridBagConstraints.HORIZONTAL;
+        gbc_textFieldSituationFamiliale.insets = insets;
+        gbc_textFieldSituationFamiliale.gridx = 1;
+        gbc_textFieldSituationFamiliale.gridy = 9;
+        gbc_textFieldSituationFamiliale.weightx = 0.8;
+        panel_3.add(textFieldSituationFamiliale, gbc_textFieldSituationFamiliale);
 
+        JPanel panel_4 = new JPanel();
+        panel_1.add(panel_4);
+        panel_4.setLayout(new BorderLayout(0, 0));
+        
+        JPanel panel_5 = new JPanel();
+        panel_4.add(panel_5);
+        panel_5.setLayout(new BorderLayout(0, 0));
         
         JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setPreferredSize(new Dimension(10, 10));
-      
-        panel_1.add(scrollPane);
+        panel_5.add(scrollPane);
         
         table = new JTable();
         table.setModel(new DefaultTableModel(
-            new Object[][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-            },
-            new String[] {"Prénom", "Nom", "Date Debut", "Date Fin"}
-        ) {
-            boolean[] columnEditables = {false, false, false, true};
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return columnEditables[column];
-            }
-        });
-
+        	new Object[][] {
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        	},
+        	new String[] {
+        		"New column", "New column", "New column", "New column", "New column", "New column"
+        	}
+        ));
         scrollPane.setViewportView(table);
-        int rowCount = table.getRowCount();
-        int rowHeight = table.getRowHeight();
         int maxVisibleRows = 5; 
         int tableHeight = Math.min(rowCount, maxVisibleRows) * rowHeight;
-        scrollPane.setPreferredSize(new Dimension(500, tableHeight + table.getTableHeader().getPreferredSize().height));
-        table.setFillsViewportHeight(true);
-        table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-        table.getTableHeader().setReorderingAllowed(false);
-        table.getTableHeader().setResizingAllowed(true);  
-        scrollPane.setBorder(BorderFactory.createTitledBorder("Historique des Contrats"));
 
 
     }
