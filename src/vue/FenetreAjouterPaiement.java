@@ -63,7 +63,7 @@ public class FenetreAjouterPaiement extends JInternalFrame {
         contentPane.add(panel, BorderLayout.NORTH);
         
         JLabel lblTitre = new JLabel("Ajouter paiement");
-        lblTitre.setFont(new Font("Tahoma", Font.BOLD, 18));
+        lblTitre.setFont(new Font("Tahoma", Font.BOLD, 15));
         panel.add(lblTitre);
         
         Component verticalStrut = Box.createVerticalStrut(60);
@@ -90,46 +90,42 @@ public class FenetreAjouterPaiement extends JInternalFrame {
         
         JPanel panel_3 = new JPanel();
         panel_1.add(panel_3, BorderLayout.CENTER);
-        panel_3.setLayout(new GridLayout(4, 2, 0, 0));
-        
-        JPanel panel_4 = new JPanel();
-        panel_3.add(panel_4);
-        
-        JLabel lblIdPaiement = new JLabel("ID Paiement :");
-        panel_4.add(lblIdPaiement);
-        
-        textFieldIdPaiement = new JTextField();
-        panel_4.add(textFieldIdPaiement);
-        textFieldIdPaiement.setColumns(10);
-        
-        JPanel panel_5 = new JPanel();
-        panel_3.add(panel_5);
-        
-        JLabel lblDatePaiement = new JLabel("Date paiement :");
-        panel_5.add(lblDatePaiement);
-        
-        textFieldDate = new JTextField();
-        panel_5.add(textFieldDate);
-        textFieldDate.setColumns(10);
-        
-        JPanel panel_6 = new JPanel();
-        panel_3.add(panel_6);
+        panel_3.setLayout(null);
         
         JLabel lblMontant = new JLabel("Montant paiement :");
-        panel_6.add(lblMontant);
+        lblMontant.setBounds(37, 120, 90, 13);
+        panel_3.add(lblMontant);
         
         textFieldMontant = new JTextField();
-        panel_6.add(textFieldMontant);
+        textFieldMontant.setBounds(137, 120, 96, 19);
+        panel_3.add(textFieldMontant);
         textFieldMontant.setColumns(10);
         
-        JPanel panel_7 = new JPanel();
-        panel_3.add(panel_7);
-        
         JLabel lblContratLocation = new JLabel("Contrat location :");
-        panel_7.add(lblContratLocation);
+        lblContratLocation.setBounds(37, 90, 79, 13);
+        panel_3.add(lblContratLocation);
         
         JComboBox comboBox = new JComboBox();
-        panel_7.add(comboBox);
+        comboBox.setBounds(137, 86, 29, 21);
+        panel_3.add(comboBox);
+        
+        textFieldDate = new JTextField();
+        textFieldDate.setBounds(137, 146, 96, 19);
+        panel_3.add(textFieldDate);
+        textFieldDate.setColumns(10);
+        
+        JLabel lblDatePaiement = new JLabel("Date paiement :");
+        lblDatePaiement.setBounds(37, 146, 74, 13);
+        panel_3.add(lblDatePaiement);
+        
+        textFieldIdPaiement = new JTextField();
+        textFieldIdPaiement.setBounds(137, 54, 96, 19);
+        panel_3.add(textFieldIdPaiement);
+        textFieldIdPaiement.setColumns(10);
+        
+        JLabel lblIdPaiement = new JLabel("ID Paiement :");
+        lblIdPaiement.setBounds(37, 57, 62, 13);
+        panel_3.add(lblIdPaiement);
         
      
     }
