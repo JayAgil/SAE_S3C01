@@ -26,6 +26,7 @@ public class FenetreAjouterPaiement extends JInternalFrame {
     private GestionFenetreAjouterPaiement gestionClic;
     private JTextField textFieldDate;
     private JTextField textFieldMontant;
+    private JTextField textFieldIdPaiement;
 
     /**
      * Launch the application.
@@ -89,10 +90,17 @@ public class FenetreAjouterPaiement extends JInternalFrame {
         
         JPanel panel_3 = new JPanel();
         panel_1.add(panel_3, BorderLayout.CENTER);
-        panel_3.setLayout(new GridLayout(6, 2, 0, 0));
+        panel_3.setLayout(new GridLayout(4, 2, 0, 0));
         
         JPanel panel_4 = new JPanel();
         panel_3.add(panel_4);
+        
+        JLabel lblIdPaiement = new JLabel("ID Paiement :");
+        panel_4.add(lblIdPaiement);
+        
+        textFieldIdPaiement = new JTextField();
+        panel_4.add(textFieldIdPaiement);
+        textFieldIdPaiement.setColumns(10);
         
         JPanel panel_5 = new JPanel();
         panel_3.add(panel_5);
@@ -122,12 +130,6 @@ public class FenetreAjouterPaiement extends JInternalFrame {
         
         JComboBox comboBox = new JComboBox();
         panel_7.add(comboBox);
-        
-        JPanel panel_8 = new JPanel();
-        panel_3.add(panel_8);
-        
-        JPanel panel_9 = new JPanel();
-        panel_3.add(panel_9);
         
      
     }
