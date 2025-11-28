@@ -49,6 +49,7 @@ public class FenetreTravaux extends JFrame {
 	 * Create the frame.
 	 */
 	public FenetreTravaux() {
+		this.gestionClic = new GestionFenetreTravaux(this);
 		setBounds(100, 100, 1200, 800);
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		JPanel panel_11 = new JPanel();
@@ -59,60 +60,74 @@ public class FenetreTravaux extends JFrame {
         menuBar.setBackground(new Color(214, 214, 214));
         panel_11.add(menuBar);
 
+      //header
         JMenu mnProfil = new JMenu("Profil");
         menuBar.add(mnProfil);
 
         JMenuItem mntmDeconnecter = new JMenuItem("Déconnecter");
+        mntmDeconnecter.addActionListener(this.gestionClic);
         mnProfil.add(mntmDeconnecter);
 
         JMenu mnBatiment = new JMenu("Batiment");
         menuBar.add(mnBatiment);
 
         JMenuItem mntmAjouterBat = new JMenuItem("Ajouter bâtiment");
+        mntmAjouterBat.addActionListener(this.gestionClic);
         mnBatiment.add(mntmAjouterBat);
 
         JMenuItem mntmSupprimerBat = new JMenuItem("Supprimer bâtiment");
+        mntmSupprimerBat.addActionListener(this.gestionClic);
         mnBatiment.add(mntmSupprimerBat);
 
         JMenuItem mntmAssurance = new JMenuItem("Assurance");
+        mntmAssurance.addActionListener(this.gestionClic);
         mnBatiment.add(mntmAssurance);
 
-        JMenuItem mntmCompteur = new JMenuItem("Compteurs");
+        JMenuItem mntmCompteur = new JMenuItem("Compteurs bâtiment");
+        mntmCompteur.addActionListener(this.gestionClic);
         mnBatiment.add(mntmCompteur);
 
-        JMenuItem mntmCharge = new JMenuItem("Charges");
+        JMenuItem mntmCharge = new JMenuItem("Charges bâtiment");
+        mntmCharge.addActionListener(this.gestionClic);
         mnBatiment.add(mntmCharge);
 
         JMenu mnBienLouable = new JMenu("Bien louable");
         menuBar.add(mnBienLouable);
 
         JMenuItem mntmContratLocation = new JMenuItem("Contrat location");
+        mntmContratLocation.addActionListener(this.gestionClic);
         mnBienLouable.add(mntmContratLocation);
 
-        JMenuItem mntmCompteurBL = new JMenuItem("Compteurs");
+        JMenuItem mntmCompteurBL = new JMenuItem("Compteurs bien louable");
+        mntmCompteurBL.addActionListener(this.gestionClic);
         mnBienLouable.add(mntmCompteurBL);
 
         JMenuItem mntmTravaux = new JMenuItem("Travaux");
+        mntmTravaux.addActionListener(this.gestionClic);
         mnBienLouable.add(mntmTravaux);
 
-        JMenuItem mntmChargesBL = new JMenuItem("Charges");
+        JMenuItem mntmChargesBL = new JMenuItem("Charges bien louable");
+        mntmChargesBL.addActionListener(this.gestionClic);
         mnBienLouable.add(mntmChargesBL);
 
         JMenuItem mntmDiagnostic = new JMenuItem("Diagnostics");
+        mntmDiagnostic.addActionListener(this.gestionClic);
         mnBienLouable.add(mntmDiagnostic);
 
         JMenuItem mntmLocataire = new JMenuItem("Locataires");
+        mntmLocataire.addActionListener(this.gestionClic);
         mnBienLouable.add(mntmLocataire);
         
         JMenu mnPaiement = new JMenu("Paiement");
         menuBar.add(mnPaiement);
         
-        JMenuItem mntmHistorique = new JMenuItem("Historique de Paiements");
+        JMenuItem mntmHistorique = new JMenuItem("Historique de paiement");
+        mntmHistorique.addActionListener(this.gestionClic);
         mnPaiement.add(mntmHistorique);
         
-        JMenuItem mntmAjout = new JMenuItem("Ajouter Paiement");
+        JMenuItem mntmAjout = new JMenuItem("Ajouter paiement");
+        mntmAjout.addActionListener(this.gestionClic);
         mnPaiement.add(mntmAjout);
-
 
         JPanel panel_12 = new JPanel();
         getContentPane().add(panel_12, BorderLayout.SOUTH);
@@ -134,8 +149,6 @@ public class FenetreTravaux extends JFrame {
         
         JPanel panel_1 = new JPanel();
         panel.add(panel_1, BorderLayout.SOUTH);
-        
-        this.gestionClic = new GestionFenetreTravaux(this);
         
         JButton btnAjouterTravaux = new JButton("Ajouter travaux");
         btnAjouterTravaux.addActionListener(this.gestionClic);

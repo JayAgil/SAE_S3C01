@@ -3,7 +3,6 @@ package vue;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -12,24 +11,18 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTable;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import javax.swing.table.DefaultTableModel;
 
 import controleur.GestionFenetreBienLouable;
 
 import javax.swing.JScrollPane;
-import java.awt.FlowLayout;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import javax.swing.SwingConstants;
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import java.awt.Panel;
 import java.awt.Font;
 import java.awt.Component;
@@ -61,67 +54,82 @@ public class FenetreBienLouable extends JFrame {
 	 * Create the frame.
 	 */
 	public FenetreBienLouable() {
-		
+		this.gestionClicBienLouable = new GestionFenetreBienLouable(this);
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBackground(new Color(214, 214, 214));
 		setJMenuBar(menuBar);
 		
-		JMenu mnProfil = new JMenu("Profil");
-		menuBar.add(mnProfil);
-		
-		JMenuItem mntmDeconnecter = new JMenuItem("Déconnecter");
-		mnProfil.add(mntmDeconnecter);
-		
-		JMenu mnBatiment = new JMenu("Batiment");
-		menuBar.add(mnBatiment);
-		
-		JMenuItem mntmAjouterBat = new JMenuItem("Ajouter bâtiment");
-		mnBatiment.add(mntmAjouterBat);
-		
-		JMenuItem mntmSupprimerBat = new JMenuItem("Supprimer bâtiment");
-		mnBatiment.add(mntmSupprimerBat);
-		
-		JMenuItem mntmAssurance = new JMenuItem("Assurance");
-		mnBatiment.add(mntmAssurance);
-		
-		JMenuItem mntmCompteur = new JMenuItem("Compteurs");
-		mnBatiment.add(mntmCompteur);
-		
-		JMenuItem mntmCharge = new JMenuItem("Charges");
-		mnBatiment.add(mntmCharge);
-		
-		JMenu mnBienLouable = new JMenu("Bien louable");
-		menuBar.add(mnBienLouable);
-		
-		JMenuItem mntmContratLocation = new JMenuItem("Contrat location");
-		mnBienLouable.add(mntmContratLocation);
-		
-		JMenuItem mntmCompteurBL = new JMenuItem("Compteurs");
-		mnBienLouable.add(mntmCompteurBL);
-		
-		JMenuItem mntmTravaux = new JMenuItem("Travaux");
-		mnBienLouable.add(mntmTravaux);
-		
-		JMenuItem mntmChargesBL = new JMenuItem("Charges");
-		mnBienLouable.add(mntmChargesBL);
-		
-		JMenuItem mntmDiagnostic = new JMenuItem("Diagnostics");
-		mnBienLouable.add(mntmDiagnostic);
-		
-		JMenuItem mntmLocataire = new JMenuItem("Locataires");
-		mnBienLouable.add(mntmLocataire);
-		
-		JMenu mnPaiement = new JMenu("Paiement");
-		menuBar.add(mnPaiement);
-		
-		JMenuItem mntmHistorique = new JMenuItem("Historique De Paiements");
-		mnPaiement.add(mntmHistorique);
-		
-		JMenuItem mntmAjout = new JMenuItem("Ajouter Paiement");
-		mnPaiement.add(mntmAjout);
+		//header
+        JMenu mnProfil = new JMenu("Profil");
+        menuBar.add(mnProfil);
+
+        JMenuItem mntmDeconnecter = new JMenuItem("Déconnecter");
+        mntmDeconnecter.addActionListener(this.gestionClicBienLouable);
+        mnProfil.add(mntmDeconnecter);
+
+        JMenu mnBatiment = new JMenu("Batiment");
+        menuBar.add(mnBatiment);
+
+        JMenuItem mntmAjouterBat = new JMenuItem("Ajouter bâtiment");
+        mntmAjouterBat.addActionListener(this.gestionClicBienLouable);
+        mnBatiment.add(mntmAjouterBat);
+
+        JMenuItem mntmSupprimerBat = new JMenuItem("Supprimer bâtiment");
+        mntmSupprimerBat.addActionListener(this.gestionClicBienLouable);
+        mnBatiment.add(mntmSupprimerBat);
+
+        JMenuItem mntmAssurance = new JMenuItem("Assurance");
+        mntmAssurance.addActionListener(this.gestionClicBienLouable);
+        mnBatiment.add(mntmAssurance);
+
+        JMenuItem mntmCompteur = new JMenuItem("Compteurs bâtiment");
+        mntmCompteur.addActionListener(this.gestionClicBienLouable);
+        mnBatiment.add(mntmCompteur);
+
+        JMenuItem mntmCharge = new JMenuItem("Charges bâtiment");
+        mntmCharge.addActionListener(this.gestionClicBienLouable);
+        mnBatiment.add(mntmCharge);
+
+        JMenu mnBienLouable = new JMenu("Bien louable");
+        menuBar.add(mnBienLouable);
+
+        JMenuItem mntmContratLocation = new JMenuItem("Contrat location");
+        mntmContratLocation.addActionListener(this.gestionClicBienLouable);
+        mnBienLouable.add(mntmContratLocation);
+
+        JMenuItem mntmCompteurBL = new JMenuItem("Compteurs bien louable");
+        mntmCompteurBL.addActionListener(this.gestionClicBienLouable);
+        mnBienLouable.add(mntmCompteurBL);
+
+        JMenuItem mntmTravaux = new JMenuItem("Travaux");
+        mntmTravaux.addActionListener(this.gestionClicBienLouable);
+        mnBienLouable.add(mntmTravaux);
+
+        JMenuItem mntmChargesBL = new JMenuItem("Charges bien louable");
+        mntmChargesBL.addActionListener(this.gestionClicBienLouable);
+        mnBienLouable.add(mntmChargesBL);
+
+        JMenuItem mntmDiagnostic = new JMenuItem("Diagnostics");
+        mntmDiagnostic.addActionListener(this.gestionClicBienLouable);
+        mnBienLouable.add(mntmDiagnostic);
+
+        JMenuItem mntmLocataire = new JMenuItem("Locataires");
+        mntmLocataire.addActionListener(this.gestionClicBienLouable);
+        mnBienLouable.add(mntmLocataire);
+        
+        JMenu mnPaiement = new JMenu("Paiement");
+        menuBar.add(mnPaiement);
+        
+        JMenuItem mntmHistorique = new JMenuItem("Historique de paiement");
+        mntmHistorique.addActionListener(this.gestionClicBienLouable);
+        mnPaiement.add(mntmHistorique);
+        
+        JMenuItem mntmAjout = new JMenuItem("Ajouter paiement");
+        mntmAjout.addActionListener(this.gestionClicBienLouable);
+        mnPaiement.add(mntmAjout);
 		
 		/*--------------------------*/
-		this.gestionClicBienLouable = new GestionFenetreBienLouable(this);
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1200, 800);
 		contentPane = new JPanel();
