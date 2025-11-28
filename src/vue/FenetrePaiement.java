@@ -185,7 +185,7 @@ public class FenetrePaiement extends JFrame implements ActionListener {
         contentPane.add(panel_3, BorderLayout.NORTH);
         
         JLabel lblTitre = new JLabel("Paiement");
-        lblTitre.setFont(new Font("Tahoma", Font.BOLD, 15));
+        lblTitre.setFont(new Font("Tahoma", Font.BOLD, 18));
         panel_3.add(lblTitre);
         
     	btnAjouterPaiement.addActionListener(gestionClic);

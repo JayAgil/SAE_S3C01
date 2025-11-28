@@ -148,7 +148,7 @@ public class FenetreDiagnostic extends JFrame
         panel.add(panel_2, BorderLayout.NORTH);
         
         JLabel lblTitre = new JLabel("Diagnostics");
-        lblTitre.setFont(new Font("Tahoma", Font.BOLD, 15));
+        lblTitre.setFont(new Font("Tahoma", Font.BOLD, 18));
         panel_2.add(lblTitre);
         
         JPanel panel_3 = new JPanel();

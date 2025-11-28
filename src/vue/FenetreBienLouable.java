@@ -310,7 +310,7 @@ public class FenetreBienLouable extends JFrame {
         panel_2.add(Title, BorderLayout.NORTH);
         
         JLabel lblTitre = new JLabel("Biens louables ");
-        lblTitre.setFont(new Font("Tahoma", Font.BOLD, 15));
+        lblTitre.setFont(new Font("Tahoma", Font.BOLD, 18));
         Title.add(lblTitre);
         
         Component verticalStrut = Box.createVerticalStrut(60);

@@ -74,13 +74,13 @@ public class FenetreAjouterLocataire extends JInternalFrame {
 		contentPane.setLayout(null);
 
 		JLabel lblLocataire = new JLabel("Informations Locataire");
-		lblLocataire.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblLocataire.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblLocataire.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLocataire.setBounds(0, 0, 384, 30);
 		contentPane.add(lblLocataire);
 
 		JLabel lblGarant = new JLabel("Informations Garant");
-		lblGarant.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblGarant.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblGarant.setHorizontalAlignment(SwingConstants.CENTER);
 		lblGarant.setBounds(0, 256, 384, 38);
 		contentPane.add(lblGarant);
