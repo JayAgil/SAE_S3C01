@@ -74,7 +74,7 @@ CREATE TABLE Diagnostics (
     Type_Diagnostic VARCHAR2(50),
     Date_Realisation DATE,
     Date_Validite DATE,
-    Fichier VARCHAR25(),
+    Fichier VARCHAR25(), 
     fk_Id_BienLouable NUMBER,
     CONSTRAINT fk_diag_bien FOREIGN KEY (fk_Id_BienLouable) REFERENCES BienLouable(Id_BienLouable)
 );
