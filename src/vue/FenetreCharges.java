@@ -194,7 +194,7 @@ public class FenetreCharges extends JFrame {
         panel_1.add(Title, BorderLayout.NORTH);
         
         JLabel lblTitre = new JLabel("Charges");
-        lblTitre.setFont(new Font("Tahoma", Font.BOLD, 15));
+        lblTitre.setFont(new Font("Tahoma", Font.BOLD, 18));
         Title.add(lblTitre);
         
         Component verticalStrut = Box.createVerticalStrut(70);

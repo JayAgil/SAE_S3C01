@@ -192,8 +192,8 @@ public class FenetreContratLocation extends JFrame {
         Panel Title_1 = new Panel();
         panel_1.add(Title_1, BorderLayout.NORTH);
         
-        JLabel lblTitre = new JLabel("Contrat locations ");
-        lblTitre.setFont(new Font("Tahoma", Font.BOLD, 15));
+        JLabel lblTitre = new JLabel("Contrats locations ");
+        lblTitre.setFont(new Font("Tahoma", Font.BOLD, 18));
         Title_1.add(lblTitre);
         
         JPanel panel_2 = new JPanel();

@@ -204,7 +204,7 @@ public class FenetreTravaux extends JFrame {
         panel.add(scrollPane, BorderLayout.CENTER);
         
         JLabel lblTravaux = new JLabel("Travaux");
-        lblTravaux.setFont(new Font("Tahoma", Font.BOLD, 15));
+        lblTravaux.setFont(new Font("Tahoma", Font.BOLD, 18));
         panel.add(lblTravaux, BorderLayout.NORTH);
 
 

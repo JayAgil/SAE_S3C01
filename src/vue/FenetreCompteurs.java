@@ -108,10 +108,10 @@ public class FenetreCompteurs extends JFrame {
         JMenu mnPaiement = new JMenu("Paiement");
         menuBar.add(mnPaiement);
         
-        JMenuItem mntmHistorique = new JMenuItem("Historique De Paiements");
+        JMenuItem mntmHistorique = new JMenuItem("Historique de paiement");
         mnPaiement.add(mntmHistorique);
         
-        JMenuItem mntmAjout = new JMenuItem("Ajouter Paiement");
+        JMenuItem mntmAjout = new JMenuItem("Ajouter paiement");
         mnPaiement.add(mntmAjout);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -208,7 +208,7 @@ public class FenetreCompteurs extends JFrame {
         panel_1.add(verticalStrut);
         
         JLabel lblTitre = new JLabel("Compteurs");
-        lblTitre.setFont(new Font("Tahoma", Font.BOLD, 15));
+        lblTitre.setFont(new Font("Tahoma", Font.BOLD, 18));
         panel_1.add(lblTitre);
 
     }

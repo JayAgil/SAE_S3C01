@@ -59,7 +59,7 @@ public class FenetreAjouterCharge extends JInternalFrame implements ActionListen
 
         JPanel panelHeader = new JPanel();
         JLabel lblTitre = new JLabel("Ajouter charge");
-        lblTitre.setFont(new Font("Tahoma", Font.BOLD, 15));
+        lblTitre.setFont(new Font("Tahoma", Font.BOLD, 18));
         panelHeader.add(lblTitre);
 
         Component verticalStrut = Box.createVerticalStrut(50);
