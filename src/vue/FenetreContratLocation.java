@@ -52,65 +52,80 @@ public class FenetreContratLocation extends JFrame {
 	 * Create the frame.
 	 */
 	public FenetreContratLocation() {
+		this.gestionClicContratLocation = new GestionFenetreContratLocation(this);
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBackground(new Color(214, 214, 214));
 		setJMenuBar(menuBar);
 		
-		JMenu mnProfil = new JMenu("Profil");
-		menuBar.add(mnProfil);
+		//header
+        JMenu mnProfil = new JMenu("Profil");
+        menuBar.add(mnProfil);
+
+        JMenuItem mntmDeconnecter = new JMenuItem("Déconnecter");
+        mntmDeconnecter.addActionListener(this.gestionClicContratLocation);
+        mnProfil.add(mntmDeconnecter);
+
+        JMenu mnBatiment = new JMenu("Batiment");
+        menuBar.add(mnBatiment);
+
+        JMenuItem mntmAjouterBat = new JMenuItem("Ajouter bâtiment");
+        mntmAjouterBat.addActionListener(this.gestionClicContratLocation);
+        mnBatiment.add(mntmAjouterBat);
+
+        JMenuItem mntmSupprimerBat = new JMenuItem("Supprimer bâtiment");
+        mntmSupprimerBat.addActionListener(this.gestionClicContratLocation);
+        mnBatiment.add(mntmSupprimerBat);
+
+        JMenuItem mntmAssurance = new JMenuItem("Assurance");
+        mntmAssurance.addActionListener(this.gestionClicContratLocation);
+        mnBatiment.add(mntmAssurance);
+
+        JMenuItem mntmCompteur = new JMenuItem("Compteurs bâtiment");
+        mntmCompteur.addActionListener(this.gestionClicContratLocation);
+        mnBatiment.add(mntmCompteur);
+
+        JMenuItem mntmCharge = new JMenuItem("Charges bâtiment");
+        mntmCharge.addActionListener(this.gestionClicContratLocation);
+        mnBatiment.add(mntmCharge);
+
+        JMenu mnBienLouable = new JMenu("Bien louable");
+        menuBar.add(mnBienLouable);
+
+        JMenuItem mntmContratLocation = new JMenuItem("Contrat location");
+        mntmContratLocation.addActionListener(this.gestionClicContratLocation);
+        mnBienLouable.add(mntmContratLocation);
+
+        JMenuItem mntmCompteurBL = new JMenuItem("Compteurs bien louable");
+        mntmCompteurBL.addActionListener(this.gestionClicContratLocation);
+        mnBienLouable.add(mntmCompteurBL);
+
+        JMenuItem mntmTravaux = new JMenuItem("Travaux");
+        mntmTravaux.addActionListener(this.gestionClicContratLocation);
+        mnBienLouable.add(mntmTravaux);
+
+        JMenuItem mntmChargesBL = new JMenuItem("Charges bien louable");
+        mntmChargesBL.addActionListener(this.gestionClicContratLocation);
+        mnBienLouable.add(mntmChargesBL);
+
+        JMenuItem mntmDiagnostic = new JMenuItem("Diagnostics");
+        mntmDiagnostic.addActionListener(this.gestionClicContratLocation);
+        mnBienLouable.add(mntmDiagnostic);
+
+        JMenuItem mntmLocataire = new JMenuItem("Locataires");
+        mntmLocataire.addActionListener(this.gestionClicContratLocation);
+        mnBienLouable.add(mntmLocataire);
+        
+        JMenu mnPaiement = new JMenu("Paiement");
+        menuBar.add(mnPaiement);
+        
+        JMenuItem mntmHistorique = new JMenuItem("Historique de paiement");
+        mntmHistorique.addActionListener(this.gestionClicContratLocation);
+        mnPaiement.add(mntmHistorique);
+        
+        JMenuItem mntmAjout = new JMenuItem("Ajouter paiement");
+        mntmAjout.addActionListener(this.gestionClicContratLocation);
+        mnPaiement.add(mntmAjout);
 		
-		JMenuItem mntmDeconnecter = new JMenuItem("Déconnecter");
-		mnProfil.add(mntmDeconnecter);
-		
-		JMenu mnBatiment = new JMenu("Batiment");
-		menuBar.add(mnBatiment);
-		
-		JMenuItem mntmAjouterBat = new JMenuItem("Ajouter bâtiment");
-		mnBatiment.add(mntmAjouterBat);
-		
-		JMenuItem mntmSupprimerBat = new JMenuItem("Supprimer bâtiment");
-		mnBatiment.add(mntmSupprimerBat);
-		
-		JMenuItem mntmAssurance = new JMenuItem("Assurance");
-		mnBatiment.add(mntmAssurance);
-		
-		JMenuItem mntmCompteur = new JMenuItem("Compteurs");
-		mnBatiment.add(mntmCompteur);
-		
-		JMenuItem mntmCharge = new JMenuItem("Charges");
-		mnBatiment.add(mntmCharge);
-		
-		JMenu mnBienLouable = new JMenu("Bien louable");
-		menuBar.add(mnBienLouable);
-		
-		JMenuItem mntmContratLocation = new JMenuItem("Contrat location");
-		mnBienLouable.add(mntmContratLocation);
-		
-		JMenuItem mntmCompteurBL = new JMenuItem("Compteurs");
-		mnBienLouable.add(mntmCompteurBL);
-		
-		JMenuItem mntmTravaux = new JMenuItem("Travaux");
-		mnBienLouable.add(mntmTravaux);
-		
-		JMenuItem mntmChargesBL = new JMenuItem("Charges");
-		mnBienLouable.add(mntmChargesBL);
-		
-		JMenuItem mntmDiagnostic = new JMenuItem("Diagnostics");
-		mnBienLouable.add(mntmDiagnostic);
-		
-		JMenuItem mntmLocataire = new JMenuItem("Locataires");
-		mnBienLouable.add(mntmLocataire);
-		
-		JMenu mnPaiement = new JMenu("Paiement");
-		menuBar.add(mnPaiement);
-		
-		JMenuItem mntmHistorique = new JMenuItem("Historique De Paiements");
-		mnPaiement.add(mntmHistorique);
-		
-		JMenuItem mntmAjout = new JMenuItem("Ajouter Paiement");
-		mnPaiement.add(mntmAjout);
-		
-		this.gestionClicContratLocation = new GestionFenetreContratLocation(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1200, 800);
 		contentPane = new JPanel();
@@ -121,17 +136,7 @@ public class FenetreContratLocation extends JFrame {
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.SOUTH);
 		
-		JButton btnNewButton = new JButton("Ajouter");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		panel.add(btnNewButton);
-	
-		
-		JButton btnNewButton_1 = new JButton("Annuler");
-		panel.add(btnNewButton_1);
-		btnNewButton_1.addActionListener(gestionClicContratLocation);
+		//footer
 		JPanel footerPanel = new JPanel();
         footerPanel.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.LIGHT_GRAY));
         footerPanel.setBackground(new Color(214, 214, 214)); 

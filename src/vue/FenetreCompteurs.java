@@ -17,7 +17,6 @@ import java.awt.Font;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
-import java.awt.GridLayout;
 import javax.swing.JButton;
 import controleur.GestionFenetreCompteurs;
 
@@ -59,71 +58,84 @@ public class FenetreCompteurs extends JFrame {
         JMenuBar menuBar = new JMenuBar();
         menuBar.setBackground(new Color(214, 214, 214));
         setJMenuBar(menuBar);
-
+        //header
         JMenu mnProfil = new JMenu("Profil");
         menuBar.add(mnProfil);
 
         JMenuItem mntmDeconnecter = new JMenuItem("Déconnecter");
+        mntmDeconnecter.addActionListener(this.gestionClic);
         mnProfil.add(mntmDeconnecter);
 
         JMenu mnBatiment = new JMenu("Batiment");
         menuBar.add(mnBatiment);
 
         JMenuItem mntmAjouterBat = new JMenuItem("Ajouter bâtiment");
+        mntmAjouterBat.addActionListener(this.gestionClic);
         mnBatiment.add(mntmAjouterBat);
 
         JMenuItem mntmSupprimerBat = new JMenuItem("Supprimer bâtiment");
+        mntmSupprimerBat.addActionListener(this.gestionClic);
         mnBatiment.add(mntmSupprimerBat);
 
         JMenuItem mntmAssurance = new JMenuItem("Assurance");
+        mntmAssurance.addActionListener(this.gestionClic);
         mnBatiment.add(mntmAssurance);
 
-        JMenuItem mntmCompteur = new JMenuItem("Compteurs");
+        JMenuItem mntmCompteur = new JMenuItem("Compteurs bâtiment");
+        mntmCompteur.addActionListener(this.gestionClic);
         mnBatiment.add(mntmCompteur);
 
-        JMenuItem mntmCharge = new JMenuItem("Charges");
+        JMenuItem mntmCharge = new JMenuItem("Charges bâtiment");
+        mntmCharge.addActionListener(this.gestionClic);
         mnBatiment.add(mntmCharge);
 
         JMenu mnBienLouable = new JMenu("Bien louable");
         menuBar.add(mnBienLouable);
 
         JMenuItem mntmContratLocation = new JMenuItem("Contrat location");
+        mntmContratLocation.addActionListener(this.gestionClic);
         mnBienLouable.add(mntmContratLocation);
 
-        JMenuItem mntmCompteurBL = new JMenuItem("Compteurs");
+        JMenuItem mntmCompteurBL = new JMenuItem("Compteurs bien louable");
+        mntmCompteurBL.addActionListener(this.gestionClic);
         mnBienLouable.add(mntmCompteurBL);
 
         JMenuItem mntmTravaux = new JMenuItem("Travaux");
+        mntmTravaux.addActionListener(this.gestionClic);
         mnBienLouable.add(mntmTravaux);
 
-        JMenuItem mntmChargesBL = new JMenuItem("Charges");
+        JMenuItem mntmChargesBL = new JMenuItem("Charges bien louable");
+        mntmChargesBL.addActionListener(this.gestionClic);
         mnBienLouable.add(mntmChargesBL);
 
         JMenuItem mntmDiagnostic = new JMenuItem("Diagnostics");
+        mntmDiagnostic.addActionListener(this.gestionClic);
         mnBienLouable.add(mntmDiagnostic);
 
         JMenuItem mntmLocataire = new JMenuItem("Locataires");
+        mntmLocataire.addActionListener(this.gestionClic);
         mnBienLouable.add(mntmLocataire);
         
         JMenu mnPaiement = new JMenu("Paiement");
         menuBar.add(mnPaiement);
         
         JMenuItem mntmHistorique = new JMenuItem("Historique de paiement");
+        mntmHistorique.addActionListener(this.gestionClic);
         mnPaiement.add(mntmHistorique);
         
         JMenuItem mntmAjout = new JMenuItem("Ajouter paiement");
+        mntmAjout.addActionListener(this.gestionClic);
         mnPaiement.add(mntmAjout);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
         setContentPane(contentPane);
         contentPane.setLayout(new BorderLayout(0, 0));
-
+        
+        //footer
         JPanel footerPanel = new JPanel();
         footerPanel.setBorder(
-            BorderFactory.createMatteBorder(1, 0, 0, 0, Color.LIGHT_GRAY));
-                                                                            
-                                                                                               
+            BorderFactory.createMatteBorder(1, 0, 0, 0, Color.LIGHT_GRAY));                                                                                        
         footerPanel.setBackground(new Color(214, 214, 214));
         footerPanel.setPreferredSize(new Dimension(584, 30));
 
