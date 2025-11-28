@@ -16,7 +16,6 @@ import vue.FenetreLocataire;
 import vue.FenetreLogin;
 import vue.FenetrePaiement;
 import vue.FenetrePrincipale;
-import vue.FenetreSupprimerBatiment;
 import vue.FenetreTravaux;
 
 public class GestionFenetreBienLouable implements ActionListener {
@@ -82,11 +81,6 @@ public class GestionFenetreBienLouable implements ActionListener {
      	        FenetreAjouterBatiment fenAjouterBatiment = new FenetreAjouterBatiment();
      	       fenetrebienlouable.getLayeredPane().add(fenAjouterBatiment);
      	        fenAjouterBatiment.setVisible(true);
-     	        break;
-     	    case "Supprimer bâtiment" :
-     	        FenetreSupprimerBatiment fenSupprimerBatiment = new FenetreSupprimerBatiment();
-     	       fenetrebienlouable.getLayeredPane().add(fenSupprimerBatiment);
-     	        fenSupprimerBatiment.setVisible(true);
      	        break;
      	    case "Assurance" :
      	        FenetreAssurance fenAssurance = new FenetreAssurance();

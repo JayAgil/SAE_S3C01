@@ -74,10 +74,6 @@ public class FenetreBienLouable extends JFrame {
         mntmAjouterBat.addActionListener(this.gestionClicBienLouable);
         mnBatiment.add(mntmAjouterBat);
 
-        JMenuItem mntmSupprimerBat = new JMenuItem("Supprimer bâtiment");
-        mntmSupprimerBat.addActionListener(this.gestionClicBienLouable);
-        mnBatiment.add(mntmSupprimerBat);
-
         JMenuItem mntmAssurance = new JMenuItem("Assurance");
         mntmAssurance.addActionListener(this.gestionClicBienLouable);
         mnBatiment.add(mntmAssurance);
@@ -127,8 +123,6 @@ public class FenetreBienLouable extends JFrame {
         JMenuItem mntmAjout = new JMenuItem("Ajouter paiement");
         mntmAjout.addActionListener(this.gestionClicBienLouable);
         mnPaiement.add(mntmAjout);
-		
-		/*--------------------------*/
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1200, 800);
