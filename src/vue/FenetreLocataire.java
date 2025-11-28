@@ -445,8 +445,7 @@ public class FenetreLocataire extends JFrame implements ActionListener {
         	}
         ));
         scrollPane.setViewportView(table);
-        int maxVisibleRows = 5; 
-        int tableHeight = Math.min(rowCount, maxVisibleRows) * rowHeight;
+
 
 
     }
