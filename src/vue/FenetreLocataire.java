@@ -27,13 +27,11 @@ import java.awt.Font;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
-public class FenetreLocataire extends JFrame implements ActionListener {
+public class FenetreLocataire extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
@@ -79,58 +77,73 @@ public class FenetreLocataire extends JFrame implements ActionListener {
         menuBar.setBackground(new Color(214, 214, 214));
         setJMenuBar(menuBar);
 
+      //header
         JMenu mnProfil = new JMenu("Profil");
         menuBar.add(mnProfil);
 
         JMenuItem mntmDeconnecter = new JMenuItem("Déconnecter");
+        mntmDeconnecter.addActionListener(this.gestionClic);
         mnProfil.add(mntmDeconnecter);
 
         JMenu mnBatiment = new JMenu("Batiment");
         menuBar.add(mnBatiment);
 
         JMenuItem mntmAjouterBat = new JMenuItem("Ajouter bâtiment");
+        mntmAjouterBat.addActionListener(this.gestionClic);
         mnBatiment.add(mntmAjouterBat);
 
         JMenuItem mntmSupprimerBat = new JMenuItem("Supprimer bâtiment");
+        mntmSupprimerBat.addActionListener(this.gestionClic);
         mnBatiment.add(mntmSupprimerBat);
 
         JMenuItem mntmAssurance = new JMenuItem("Assurance");
+        mntmAssurance.addActionListener(this.gestionClic);
         mnBatiment.add(mntmAssurance);
 
-        JMenuItem mntmCompteur = new JMenuItem("Compteurs");
+        JMenuItem mntmCompteur = new JMenuItem("Compteurs bâtiment");
+        mntmCompteur.addActionListener(this.gestionClic);
         mnBatiment.add(mntmCompteur);
 
-        JMenuItem mntmCharge = new JMenuItem("Charges");
+        JMenuItem mntmCharge = new JMenuItem("Charges bâtiment");
+        mntmCharge.addActionListener(this.gestionClic);
         mnBatiment.add(mntmCharge);
 
         JMenu mnBienLouable = new JMenu("Bien louable");
         menuBar.add(mnBienLouable);
 
         JMenuItem mntmContratLocation = new JMenuItem("Contrat location");
+        mntmContratLocation.addActionListener(this.gestionClic);
         mnBienLouable.add(mntmContratLocation);
 
-        JMenuItem mntmCompteurBL = new JMenuItem("Compteurs");
+        JMenuItem mntmCompteurBL = new JMenuItem("Compteurs bien louable");
+        mntmCompteurBL.addActionListener(this.gestionClic);
         mnBienLouable.add(mntmCompteurBL);
 
         JMenuItem mntmTravaux = new JMenuItem("Travaux");
+        mntmTravaux.addActionListener(this.gestionClic);
         mnBienLouable.add(mntmTravaux);
 
-        JMenuItem mntmChargesBL = new JMenuItem("Charges");
+        JMenuItem mntmChargesBL = new JMenuItem("Charges bien louable");
+        mntmChargesBL.addActionListener(this.gestionClic);
         mnBienLouable.add(mntmChargesBL);
 
         JMenuItem mntmDiagnostic = new JMenuItem("Diagnostics");
+        mntmDiagnostic.addActionListener(this.gestionClic);
         mnBienLouable.add(mntmDiagnostic);
 
         JMenuItem mntmLocataire = new JMenuItem("Locataires");
+        mntmLocataire.addActionListener(this.gestionClic);
         mnBienLouable.add(mntmLocataire);
         
         JMenu mnPaiement = new JMenu("Paiement");
         menuBar.add(mnPaiement);
         
-        JMenuItem mntmHistorique = new JMenuItem("Historique De Paiements");
+        JMenuItem mntmHistorique = new JMenuItem("Historique de paiement");
+        mntmHistorique.addActionListener(this.gestionClic);
         mnPaiement.add(mntmHistorique);
         
-        JMenuItem mntmAjout = new JMenuItem("Ajouter Paiement");
+        JMenuItem mntmAjout = new JMenuItem("Ajouter paiement");
+        mntmAjout.addActionListener(this.gestionClic);
         mnPaiement.add(mntmAjout);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -146,10 +159,10 @@ public class FenetreLocataire extends JFrame implements ActionListener {
      JPanel panelButtons = new JPanel();
      panelButtons.setBorder(new EmptyBorder(10, 10, 10, 10));
      JButton btnAjouterLocataire = new JButton("Ajouter locataire");
-     btnAjouterLocataire.addActionListener(this);
+     btnAjouterLocataire.addActionListener(this.gestionClic);
      
      JButton btnPaiement = new JButton("Paiement");
-     btnPaiement.addActionListener(this);
+     btnPaiement.addActionListener(this.gestionClic);
      panelButtons.add(btnPaiement);
      panelButtons.add(btnAjouterLocataire);
 
@@ -157,8 +170,7 @@ public class FenetreLocataire extends JFrame implements ActionListener {
      bottomContainer.add(panelButtons, BorderLayout.NORTH);
      
           JButton btnRetour = new JButton("Retour");
-          btnRetour.addActionListener(this);
-          
+          btnRetour.addActionListener(this.gestionClic);
                panelButtons.add(btnRetour);
 
 
@@ -450,6 +462,4 @@ public class FenetreLocataire extends JFrame implements ActionListener {
 
     }
 	
-	public void actionPerformed(ActionEvent e) {
-	}
 }
