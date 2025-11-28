@@ -251,6 +251,7 @@ public class FenetreLocataire extends JFrame implements ActionListener {
 
         
         JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setPreferredSize(new Dimension(10, 10));
       
         panel_1.add(scrollPane);
         
