@@ -74,39 +74,39 @@ public class FenetreAjouterTravaux extends JInternalFrame {
         panel.setLayout(null);
         
         JLabel lblNumFacture = new JLabel("Numéro facture :");
-        lblNumFacture.setBounds(66, 60, 86, 14);
+        lblNumFacture.setBounds(66, 76, 86, 14);
         panel.add(lblNumFacture);
         
         JLabel lblMontant = new JLabel("Montant :");
-        lblMontant.setBounds(66, 91, 104, 14);
+        lblMontant.setBounds(66, 107, 104, 14);
         panel.add(lblMontant);
         
         champNumFac = new JTextField();
-        champNumFac.setBounds(203, 57, 86, 20);
+        champNumFac.setBounds(203, 73, 86, 20);
         panel.add(champNumFac);
         champNumFac.setColumns(10);
         
         champMontant = new JTextField();
-        champMontant.setBounds(203, 88, 86, 20);
+        champMontant.setBounds(203, 104, 86, 20);
         panel.add(champMontant);
         champMontant.setColumns(10);
         
         JLabel lblDateFacture = new JLabel("Date de facture :");
-        lblDateFacture.setBounds(66, 122, 86, 14);
+        lblDateFacture.setBounds(66, 138, 86, 14);
         panel.add(lblDateFacture);
         
         champDateFac = new JTextField();
-        champDateFac.setBounds(203, 119, 86, 20);
+        champDateFac.setBounds(203, 135, 86, 20);
         panel.add(champDateFac);
         champDateFac.setColumns(10);
         
         JLabel lblCB = new JLabel("Compte bancaire :");
-        lblCB.setBounds(66, 153, 104, 14);
+        lblCB.setBounds(66, 169, 104, 14);
         panel.add(lblCB);
         
         champCB = new JTextField();
         champCB.setColumns(10);
-        champCB.setBounds(203, 150, 86, 20);
+        champCB.setBounds(203, 166, 86, 20);
         panel.add(champCB);
         
         JLabel lblTitre = new JLabel("Ajouter travaux");
@@ -132,38 +132,38 @@ public class FenetreAjouterTravaux extends JInternalFrame {
         panel.add(btnRetour);
         
         JLabel lblMontantDevis = new JLabel("Montant devis :");
-        lblMontantDevis.setBounds(66, 184, 75, 14);
+        lblMontantDevis.setBounds(66, 200, 75, 14);
         panel.add(lblMontantDevis);
         
         champDevis = new JTextField();
-        champDevis.setBounds(203, 181, 86, 20);
+        champDevis.setBounds(203, 197, 86, 20);
         panel.add(champDevis);
         champDevis.setColumns(10);
         
         champDatePaiement = new JTextField();
-        champDatePaiement.setBounds(203, 212, 86, 20);
+        champDatePaiement.setBounds(203, 228, 86, 20);
         panel.add(champDatePaiement);
         champDatePaiement.setColumns(10);
         
         champDesignationTravaux = new JTextField();
-        champDesignationTravaux.setBounds(448, 57, 86, 20);
+        champDesignationTravaux.setBounds(448, 73, 86, 20);
         panel.add(champDesignationTravaux);
         champDesignationTravaux.setColumns(10);
         
         JLabel lblDatePaiement = new JLabel("Date de paiement : ");
-        lblDatePaiement.setBounds(66, 215, 104, 14);
+        lblDatePaiement.setBounds(66, 231, 104, 14);
         panel.add(lblDatePaiement);
         
         JLabel lblDesignationTravaux = new JLabel("Désignation travaux :");
-        lblDesignationTravaux.setBounds(318, 60, 104, 14);
+        lblDesignationTravaux.setBounds(318, 76, 104, 14);
         panel.add(lblDesignationTravaux);
         
         JLabel lblEntreprise = new JLabel("Entreprise :");
-        lblEntreprise.setBounds(318, 91, 86, 14);
+        lblEntreprise.setBounds(318, 107, 86, 14);
         panel.add(lblEntreprise);
         
         comboBoxEntreprise = new JComboBox();
-        comboBoxEntreprise.setBounds(448, 87, 86, 22);
+        comboBoxEntreprise.setBounds(448, 103, 86, 22);
         panel.add(comboBoxEntreprise);
         
 	}
