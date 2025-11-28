@@ -90,7 +90,7 @@ public class FenetreAjouterBatiment extends JInternalFrame {
 
         JPanel panel_1 = new JPanel();
         panelCenter.add(panel_1);
-        panel_1.setLayout(new GridLayout(3, 1, 0, 0));
+        panel_1.setLayout(new GridLayout(2, 1, 0, 0));
 
         JPanel panel_2 = new JPanel();
         panel_1.add(panel_2);

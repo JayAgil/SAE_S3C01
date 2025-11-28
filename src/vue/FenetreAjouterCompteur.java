@@ -19,16 +19,17 @@ import javax.swing.Box;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.Color;
 
 public class FenetreAjouterCompteur extends JInternalFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 
-	private JTextField txtTypeCharge;
-	private JTextField txtMontant;
+	private JTextField txtPartieFixe;
+	private JTextField txtPartieVariable;
 	private JTextField txtDate;
 	private JTextField txtTotal;
-	private JTextField txtCommentaire;
+	private JTextField txtD;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(() -> {
@@ -84,13 +85,13 @@ public class FenetreAjouterCompteur extends JInternalFrame implements ActionList
 		JLabel label = new JLabel("ID Compteur :");
 		panelCenter.add(label, idLabel);
 
-		GridBagConstraints idField = new GridBagConstraints();
-		idField.insets = pad;
-		idField.anchor = GridBagConstraints.LINE_START;
-		idField.gridx = 1;
-		idField.gridy = 0;
-		JTextField txtIdCharge = new JTextField(15);
-		panelCenter.add(txtIdCharge, idField);
+		GridBagConstraints gbc_txtIdCompteur = new GridBagConstraints();
+		gbc_txtIdCompteur.insets = pad;
+		gbc_txtIdCompteur.anchor = GridBagConstraints.LINE_START;
+		gbc_txtIdCompteur.gridx = 1;
+		gbc_txtIdCompteur.gridy = 0;
+		JTextField txtIdCompteur = new JTextField(15);
+		panelCenter.add(txtIdCompteur, gbc_txtIdCompteur);
 
 		// Row 1
 		GridBagConstraints c1 = new GridBagConstraints();
@@ -100,13 +101,13 @@ public class FenetreAjouterCompteur extends JInternalFrame implements ActionList
 		c1.gridy = 1;
 		panelCenter.add(new JLabel("Partie Fixe :"), c1);
 
-		GridBagConstraints c2 = new GridBagConstraints();
-		c2.insets = pad;
-		c2.anchor = GridBagConstraints.LINE_START;
-		c2.gridx = 1;
-		c2.gridy = 1;
-		txtTypeCharge = new JTextField(15);
-		panelCenter.add(txtTypeCharge, c2);
+		GridBagConstraints gbc_txtPartieFixe = new GridBagConstraints();
+		gbc_txtPartieFixe.insets = pad;
+		gbc_txtPartieFixe.anchor = GridBagConstraints.LINE_START;
+		gbc_txtPartieFixe.gridx = 1;
+		gbc_txtPartieFixe.gridy = 1;
+		txtPartieFixe = new JTextField(15);
+		panelCenter.add(txtPartieFixe, gbc_txtPartieFixe);
 
 		// Row 2
 		GridBagConstraints c3 = new GridBagConstraints();
@@ -116,13 +117,13 @@ public class FenetreAjouterCompteur extends JInternalFrame implements ActionList
 		c3.gridy = 2;
 		panelCenter.add(new JLabel("Partie variable :"), c3);
 
-		GridBagConstraints c4 = new GridBagConstraints();
-		c4.insets = pad;
-		c4.anchor = GridBagConstraints.LINE_START;
-		c4.gridx = 1;
-		c4.gridy = 2;
-		txtMontant = new JTextField(15);
-		panelCenter.add(txtMontant, c4);
+		GridBagConstraints gbc_txtPartieVariable = new GridBagConstraints();
+		gbc_txtPartieVariable.insets = pad;
+		gbc_txtPartieVariable.anchor = GridBagConstraints.LINE_START;
+		gbc_txtPartieVariable.gridx = 1;
+		gbc_txtPartieVariable.gridy = 2;
+		txtPartieVariable = new JTextField(15);
+		panelCenter.add(txtPartieVariable, gbc_txtPartieVariable);
 
 		// Row 3
 		GridBagConstraints c5 = new GridBagConstraints();
@@ -161,13 +162,13 @@ public class FenetreAjouterCompteur extends JInternalFrame implements ActionList
 		c7.gridy = 5;
 		panelCenter.add(new JLabel("Date :"), c7);
 
-		GridBagConstraints c8 = new GridBagConstraints();
-		c8.insets = pad;
-		c8.anchor = GridBagConstraints.LINE_START;
-		c8.gridx = 1;
-		c8.gridy = 5;
-		txtCommentaire = new JTextField(15);
-		panelCenter.add(txtCommentaire, c8);
+		GridBagConstraints gbc_txtD = new GridBagConstraints();
+		gbc_txtD.insets = pad;
+		gbc_txtD.anchor = GridBagConstraints.LINE_START;
+		gbc_txtD.gridx = 1;
+		gbc_txtD.gridy = 5;
+		txtD = new JTextField(15);
+		panelCenter.add(txtD, gbc_txtD);
 
 		GridBagConstraints gbc_txtTotal = new GridBagConstraints();
 		gbc_txtTotal.insets = pad;
@@ -175,6 +176,8 @@ public class FenetreAjouterCompteur extends JInternalFrame implements ActionList
 		gbc_txtTotal.gridx = 1;
 		gbc_txtTotal.gridy = 3;
 		txtTotal = new JTextField(15);
+		txtTotal.setEditable(false);
+		txtTotal.setBackground(new Color(255, 255, 255));
 		panelCenter.add(txtTotal, gbc_txtTotal);
 
 		// Row 6 - Index ancien
