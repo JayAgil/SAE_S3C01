@@ -72,10 +72,6 @@ public class FenetreContratLocation extends JFrame {
         mntmAjouterBat.addActionListener(this.gestionClicContratLocation);
         mnBatiment.add(mntmAjouterBat);
 
-        JMenuItem mntmSupprimerBat = new JMenuItem("Supprimer bâtiment");
-        mntmSupprimerBat.addActionListener(this.gestionClicContratLocation);
-        mnBatiment.add(mntmSupprimerBat);
-
         JMenuItem mntmAssurance = new JMenuItem("Assurance");
         mntmAssurance.addActionListener(this.gestionClicContratLocation);
         mnBatiment.add(mntmAssurance);

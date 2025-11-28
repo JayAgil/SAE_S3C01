@@ -223,10 +223,6 @@ public class FenetreAssurance extends JInternalFrame {
         mntmAjouterBat.addActionListener(this.gestionClic);
         mnBatiment.add(mntmAjouterBat);
 
-        JMenuItem mntmSupprimerBat = new JMenuItem("Supprimer bâtiment");
-        mntmSupprimerBat.addActionListener(this.gestionClic);
-        mnBatiment.add(mntmSupprimerBat);
-
         JMenuItem mntmAssurance = new JMenuItem("Assurance");
         mntmAssurance.addActionListener(this.gestionClic);
         mnBatiment.add(mntmAssurance);

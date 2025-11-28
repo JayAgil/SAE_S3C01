@@ -52,7 +52,7 @@ public class FenetreAjouterPaiement extends JInternalFrame {
     public FenetreAjouterPaiement() {
     	this.gestionClic = new GestionFenetreAjouterPaiement(this);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setBounds(100, 100, 600, 400);
+        setBounds(100, 100, 450, 500);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 

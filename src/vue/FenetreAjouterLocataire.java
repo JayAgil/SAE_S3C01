@@ -52,7 +52,7 @@ public class FenetreAjouterLocataire extends JInternalFrame {
 				FenetreAjouterLocataire internalFrame = new FenetreAjouterLocataire();
 				internalFrame.setVisible(true);
 				desktopPane.add(internalFrame);
-
+				frame.setResizable(false); 
 				frame.setVisible(true);
 			} catch (Exception e) {
 				e.printStackTrace();

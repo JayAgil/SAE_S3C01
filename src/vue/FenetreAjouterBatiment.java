@@ -35,6 +35,7 @@ public class FenetreAjouterBatiment extends JInternalFrame {
                 try {
                     FenetreAjouterBatiment frame = new FenetreAjouterBatiment();
                     frame.setVisible(true);
+                    frame.setResizable(false);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
