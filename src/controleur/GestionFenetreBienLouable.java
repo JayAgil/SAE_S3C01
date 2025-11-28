@@ -117,7 +117,7 @@ public class GestionFenetreBienLouable implements ActionListener {
      	        FenetreCharges fenChargesBL = new FenetreCharges();
      	        fenChargesBL.setVisible(true);
      	        break;
-     	    case "Diagnostic" :
+     	    case "Diagnostics" :
      	    	fenetrebienlouable.dispose();
      	        FenetreDiagnostic fenDiagnostic = new FenetreDiagnostic();
      	        fenDiagnostic.setVisible(true);

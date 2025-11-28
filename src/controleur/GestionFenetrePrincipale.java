@@ -113,12 +113,10 @@ public class GestionFenetrePrincipale implements ActionListener {
 	        	FenetreCharges fenChargesBL = new FenetreCharges();
 	        	fenChargesBL.setVisible(true);
 	        	break;
-	        case "Diagnostic" :
-	            java.awt.EventQueue.invokeLater(() -> {
-	                FenetreDiagnostic fenDiagnostic = new FenetreDiagnostic();
-	                fenDiagnostic.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-	                fenDiagnostic.setVisible(true);
-	            });
+	        case "Diagnostics" :
+	        	fenetre.dispose();
+	            FenetreDiagnostic fenDiagnostic = new FenetreDiagnostic();
+	            fenDiagnostic.setVisible(true);
 	            break;
 	        case "Locataires" :
 	        	fenetre.dispose();

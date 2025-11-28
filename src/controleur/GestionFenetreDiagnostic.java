@@ -94,7 +94,7 @@ public class GestionFenetreDiagnostic implements ActionListener {
 	        	FenetreCharges fenChargesBL = new FenetreCharges();
 	        	fenChargesBL.setVisible(true);
 	        	break;
-	        case "Diagnostic" :
+	        case "Diagnostics" :
 	        	fenetre.dispose();
 	        	FenetreDiagnostic fenDiagnostic = new FenetreDiagnostic();
 	        	fenDiagnostic.setVisible(true);
