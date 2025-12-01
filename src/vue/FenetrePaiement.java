@@ -28,7 +28,7 @@ public class FenetrePaiement extends JFrame {
     public FenetrePaiement() {
     	
     	gestionClic = new GestionFenetrePaiement(this);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 1200, 800);
         setLocationRelativeTo(null);
         setTitle("Application Gestion");

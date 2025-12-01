@@ -63,6 +63,23 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
                 fen.setVisible(true);
             }
         }
+        if(e.getSource() == fenetre.getPanelRevenu()) {
+        	FenetreContratLocation fCL = new FenetreContratLocation();
+        	fCL.setVisible(true);
+        }
+        if(e.getSource() == fenetre.getPanelNbLoyerPasPaye()) {
+        	FenetreBienLouable fBL = new FenetreBienLouable();
+        	fBL.setVisible(true);
+        }
+        if(e.getSource() == fenetre.getPanelRevenu_1()) {
+        	FenetrePaiement fp = new FenetrePaiement();
+        	fp.setVisible(true);
+        }
+        if(e.getSource() == fenetre.getPanelNbLoyePasPaye_1()) {
+        	FenetreContratLocation fCL = new FenetreContratLocation();
+        	fCL.setVisible(true);
+        }
+        
     }
 
     @Override public void mousePressed(MouseEvent e) {}
