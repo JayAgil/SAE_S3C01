@@ -51,6 +51,7 @@ public class FenetreCompteurs extends JFrame {
      * Create the frame.
      */
     public FenetreCompteurs() {
+    	setExtendedState(JFrame.MAXIMIZED_BOTH);
     	this.gestionClic = new GestionFenetreCompteurs(this);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 1200, 800);

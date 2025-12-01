@@ -12,6 +12,7 @@ public class GestionFenetreCharges extends GestionHeaderEtFooter implements Acti
         super(fenetre);
         this.fenetre = fenetre;
     }
+   
 
     @Override
     protected void gererBoutonSpecifique(String texte) {
@@ -29,4 +30,14 @@ public class GestionFenetreCharges extends GestionHeaderEtFooter implements Acti
                 break;
         }
     }
+    
+    @Override
+    protected void gererBoutonRetour(String texte) {
+        if ("Retour".equals(texte)) {
+            fenetre.dispose();
+            FenetrePrincipale fp = new FenetrePrincipale();
+            fp.setVisible(true);
+        }
+    }
+
 }

@@ -4,9 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JTextField;
 
 import vue.FenetreAjouterBatiment;
-import vue.FenetrePrincipale;
 
 public class GestionFenetreAjouterBatiment implements ActionListener {
 
@@ -21,14 +21,13 @@ public class GestionFenetreAjouterBatiment implements ActionListener {
         switch (((JButton) e.getSource()).getText()) {
         case "Ajouter":
             break;
-        case "Annuler":
-        	// vider les champs !!
-            fenetre.dispose();
+        case "Vider":
+			for (JTextField field : fenetre.getAllTextFields()) {
+			    field.setText(""); 
+			}
             break;  
         case "Retour" :
         	fenetre.dispose();
-        	FenetrePrincipale fenPrincipale = new FenetrePrincipale();
-        	fenPrincipale.setVisible(true);
         	break;
         }
     }

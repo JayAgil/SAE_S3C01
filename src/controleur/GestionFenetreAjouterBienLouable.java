@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JTextField;
 
 import vue.FenetreAjouterBienLouable;
 import vue.FenetrePrincipale;
@@ -21,9 +22,10 @@ public class GestionFenetreAjouterBienLouable implements ActionListener {
         switch (((JButton) e.getSource()).getText()) {
         case "Ajouter":
             break;
-        case "Annuler":
-        	// vider les champs !!
-            fenetre.dispose();
+        case "Vider":
+			for (JTextField field : fenetre.getAllBienLouableTextFields()) {
+			    field.setText(""); 
+			}
             break;  
         case "Retour" :
         	fenetre.dispose();

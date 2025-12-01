@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -48,7 +51,7 @@ public class FenetreAjouterBatiment extends JInternalFrame {
     public FenetreAjouterBatiment() {
     	setResizable(false);
     	this.gestionClic = new GestionFenetreAjouterBatiment(this); 
-        setBounds(100, 100, 600, 400);
+        setBounds(100, 100, 450, 500);
         getContentPane().setLayout(new BorderLayout(0, 0));
 
         JPanel panel_10 = new JPanel();
@@ -73,8 +76,8 @@ public class FenetreAjouterBatiment extends JInternalFrame {
         JButton btnAjouter = new JButton("Ajouter");
         panelSouth.add(btnAjouter);
 
-        JButton btnAnnuler = new JButton("Annuler");
-        panelSouth.add(btnAnnuler);
+        JButton btnVider = new JButton("Vider");
+        panelSouth.add(btnVider);
         
         JButton btnRetour = new JButton("Retour");
         btnRetour.addActionListener(this.gestionClic);
@@ -82,7 +85,7 @@ public class FenetreAjouterBatiment extends JInternalFrame {
         
         Component verticalStrut_1 = Box.createVerticalStrut(100);
         panelSouth.add(verticalStrut_1);
-        btnAnnuler.addActionListener(this.gestionClic);
+        btnVider.addActionListener(this.gestionClic);
         btnAjouter.addActionListener(this.gestionClic);
 
         JPanel panelCenter = new JPanel();
@@ -137,6 +140,13 @@ public class FenetreAjouterBatiment extends JInternalFrame {
         panel_7.add(textFieldDate);
         textFieldDate.setColumns(10);
 
+    }
+    
+    public List<JTextField> getAllTextFields() {
+        List<JTextField> fields = new ArrayList<>();
+        fields.add(textFieldAdresse);
+        fields.add(textFieldDate);
+        return fields;
     }
 
     

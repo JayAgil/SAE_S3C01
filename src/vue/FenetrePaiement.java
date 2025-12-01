@@ -26,9 +26,9 @@ public class FenetrePaiement extends JFrame {
     }
 
     public FenetrePaiement() {
-    	
+    	setExtendedState(JFrame.MAXIMIZED_BOTH);
     	gestionClic = new GestionFenetrePaiement(this);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 1200, 800);
         setLocationRelativeTo(null);
         setTitle("Application Gestion");
@@ -130,7 +130,7 @@ public class FenetrePaiement extends JFrame {
         JLabel lblValDate = new JLabel("ValDate");
         panel_1.add(lblValDate);
         
-        Component horizontalStrut = Box.createHorizontalStrut(210);
+        Component horizontalStrut = Box.createHorizontalStrut(600);
         panel_1.add(horizontalStrut);
         
         JPanel panel_2 = new JPanel();
@@ -146,7 +146,7 @@ public class FenetrePaiement extends JFrame {
         JLabel lblValPaiement = new JLabel("euro");
         panel_5.add(lblValPaiement);
         
-        Component horizontalStrut_1 = Box.createHorizontalStrut(210);
+        Component horizontalStrut_1 = Box.createHorizontalStrut(600);
         panel_5.add(horizontalStrut_1);
         
         JPanel panelButtons = new JPanel();
@@ -157,7 +157,7 @@ public class FenetrePaiement extends JFrame {
         panelButtons.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         panelButtons.add(btnAjouterPaiement);
         
-        JButton btnGenFac = new JButton("Generer facture");
+        JButton btnGenFac = new JButton("Générer facture");
         btnGenFac.addActionListener(this.gestionClic);
         panelButtons.add(btnGenFac);
         

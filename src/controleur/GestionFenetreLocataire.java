@@ -23,11 +23,31 @@ public class GestionFenetreLocataire extends GestionHeaderEtFooter implements Ac
                 fenetre.getLayeredPane().add(fenAjouterLocataire);
                 fenAjouterLocataire.setVisible(true);
                 break;
-
             case "Paiement":
-                fenetre.dispose();
                 new FenetrePaiement().setVisible(true);
+                fenetre.dispose();
                 break;
+        }
+    }
+    
+    @Override
+    protected void gererBoutonRetour(String texte) {
+        if ("Retour".equals(texte)) {
+<<<<<<< HEAD
+            fenetre.dispose();
+            if(fenetre.getNomFenAvant() == "Principale") {
+	            FenetrePrincipale fp = new FenetrePrincipale();
+	            fp.setVisible(true);
+            }
+            if(fenetre.getNomFenAvant() == "BienLouable") {
+	            FenetreBienLouable fp = new FenetreBienLouable();
+	            fp.setVisible(true);
+            }
+=======
+            FenetreBienLouable fp = new FenetreBienLouable();
+            fp.setVisible(true);
+            fenetre.dispose();
+>>>>>>> 5285a853d578134fc700a9805029302e2c41d341
         }
     }
 

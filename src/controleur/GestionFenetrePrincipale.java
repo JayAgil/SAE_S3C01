@@ -3,6 +3,9 @@ package controleur;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
+import javax.swing.JTable;
+
 import vue.*;
 
 public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements MouseListener, ActionListener{
@@ -13,6 +16,8 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
         super(fenetre);
         this.fenetre = fenetre;
     }
+    
+    
 
     @Override
     protected void gererBoutonSpecifique(String texte) {
@@ -23,18 +28,17 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 
             case "Assurance":
                 FenetreAssurance assurance = new FenetreAssurance();
-                fenetre.getLayeredPane().add(assurance);
                 assurance.setVisible(true);
                 break;
 
             case "Compteurs":
-                fenetre.dispose();
                 new FenetreCompteurs().setVisible(true);
+                fenetre.dispose();
                 break;
 
             case "Charges":
-                fenetre.dispose();
                 new FenetreCharges().setVisible(true);
+                fenetre.dispose();
                 break;
 
             case "Ajouter":
@@ -51,14 +55,59 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (e.getClickCount() == 2) {
-            fenetre.dispose();
-            int row = fenetre.getTable().getSelectedRow();
-            if (row != -1) {
-                FenetreBienLouable fen = new FenetreBienLouable();
-                fen.setVisible(true);
-            }
+    	if (e.getClickCount() == 2 && e.getSource() instanceof JTable) {
+    	    JTable table = (JTable) e.getSource();
+    	    int row = table.rowAtPoint(e.getPoint());
+    	    int column = table.columnAtPoint(e.getPoint()); 
+    	    int targetColumn = 2;
+    	    if (row != -1 && column == targetColumn) {
+    	        fenetre.dispose();
+    	        FenetreBienLouable fen = new FenetreBienLouable();
+    	        fen.setVisible(true);
+    	    }
+    	}
+    	
+    	if (e.getClickCount() == 2 && e.getSource() instanceof JTable) {
+    	    JTable table = (JTable) e.getSource();
+    	    int row = table.rowAtPoint(e.getPoint());
+    	    int column = table.columnAtPoint(e.getPoint()); 
+    	    int targetColumn = 0;
+    	    if (row != -1 && column == targetColumn) {
+    	        fenetre.dispose();
+    	        FenetreContratLocation fen = new FenetreContratLocation();
+    	        fen.setVisible(true);
+    	    }
+    	}
+    	
+    	if (e.getClickCount() == 2 && e.getSource() instanceof JTable) {
+    	    JTable table = (JTable) e.getSource();
+    	    int row = table.rowAtPoint(e.getPoint());
+    	    int column = table.columnAtPoint(e.getPoint()); 
+    	    int targetColumn = 3;
+    	    if (row != -1 && column == targetColumn) {
+    	        fenetre.dispose();
+    	        FenetreLocataire fen = new FenetreLocataire("Principale");
+    	        fen.setVisible(true);
+    	    }
+    	}
+
+        if(e.getSource() == fenetre.getPanelRevenu()) {
+        	FenetreContratLocation fCL = new FenetreContratLocation();
+        	fCL.setVisible(true);
         }
+        if(e.getSource() == fenetre.getPanelNbLoyerPasPaye()) {
+        	FenetreBienLouable fBL = new FenetreBienLouable();
+        	fBL.setVisible(true);
+        }
+        if(e.getSource() == fenetre.getPanelRevenu_1()) {
+        	FenetrePaiement fp = new FenetrePaiement();
+        	fp.setVisible(true);
+        }
+        if(e.getSource() == fenetre.getPanelNbLoyePasPaye_1()) {
+        	FenetreContratLocation fCL = new FenetreContratLocation();
+        	fCL.setVisible(true);
+        }
+        
     }
 
     @Override public void mousePressed(MouseEvent e) {}

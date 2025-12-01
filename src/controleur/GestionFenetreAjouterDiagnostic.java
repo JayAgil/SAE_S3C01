@@ -6,10 +6,11 @@ import java.io.File;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
+import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import vue.FenetreAjouterDiagnostic;
-import vue.FenetrePrincipale;
+import vue.FenetreBienLouable;
 
 public class GestionFenetreAjouterDiagnostic implements ActionListener {
 
@@ -32,14 +33,15 @@ public class GestionFenetreAjouterDiagnostic implements ActionListener {
             break;
         case "Ajouter":
             break;
-        case "Annuler":
-        	// vider les champs !!
-            fenetre.dispose();
-            break;  
+        case "Vider":
+			for (JTextField field : fenetre.getAllDiagnosticTextFields()) {
+			    field.setText(""); 
+			}
+            break;     
         case "Retour" :
         	fenetre.dispose();
-        	FenetrePrincipale fenPrincipale = new FenetrePrincipale();
-        	fenPrincipale.setVisible(true);
+        	FenetreBienLouable fenBienLouable = new FenetreBienLouable();
+        	fenBienLouable.setVisible(true);
         	break;
         }
     }

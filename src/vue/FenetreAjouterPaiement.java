@@ -16,6 +16,8 @@ import javax.swing.JComboBox;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.GridLayout;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.Component;
 import javax.swing.Box;
 
@@ -84,9 +86,12 @@ public class FenetreAjouterPaiement extends JInternalFrame {
         btnAjouter.addActionListener(this.gestionClic);
         panel_2.add(btnAjouter);
         
-        JButton btnAnnuler = new JButton("Annuler");
-        btnAnnuler.addActionListener(this.gestionClic);
-        panel_2.add(btnAnnuler);
+        JButton btnVider = new JButton("Vider");
+        btnVider.addActionListener(this.gestionClic);
+        
+        Component verticalStrut_1 = Box.createVerticalStrut(60);
+        panel_2.add(verticalStrut_1);
+        panel_2.add(btnVider);
         panel_2.add(btnRetour);
         
         JPanel panel_3 = new JPanel();
@@ -94,41 +99,48 @@ public class FenetreAjouterPaiement extends JInternalFrame {
         panel_3.setLayout(null);
         
         JLabel lblMontant = new JLabel("Montant paiement :");
-        lblMontant.setBounds(37, 120, 90, 13);
+        lblMontant.setBounds(74, 174, 108, 13);
         panel_3.add(lblMontant);
         
         textFieldMontant = new JTextField();
-        textFieldMontant.setBounds(137, 120, 96, 19);
+        textFieldMontant.setBounds(234, 170, 96, 19);
         panel_3.add(textFieldMontant);
         textFieldMontant.setColumns(10);
         
         JLabel lblContratLocation = new JLabel("Contrat location :");
-        lblContratLocation.setBounds(37, 90, 79, 13);
+        lblContratLocation.setBounds(74, 120, 96, 13);
         panel_3.add(lblContratLocation);
         
         JComboBox comboBox = new JComboBox();
-        comboBox.setBounds(137, 86, 29, 21);
+        comboBox.setBounds(234, 116, 96, 21);
         panel_3.add(comboBox);
         
         textFieldDate = new JTextField();
-        textFieldDate.setBounds(137, 146, 96, 19);
+        textFieldDate.setBounds(234, 220, 96, 19);
         panel_3.add(textFieldDate);
         textFieldDate.setColumns(10);
         
         JLabel lblDatePaiement = new JLabel("Date paiement :");
-        lblDatePaiement.setBounds(37, 146, 74, 13);
+        lblDatePaiement.setBounds(75, 224, 108, 13);
         panel_3.add(lblDatePaiement);
         
         textFieldIdPaiement = new JTextField();
-        textFieldIdPaiement.setBounds(137, 54, 96, 19);
+        textFieldIdPaiement.setBounds(234, 68, 96, 19);
         panel_3.add(textFieldIdPaiement);
         textFieldIdPaiement.setColumns(10);
         
         JLabel lblIdPaiement = new JLabel("ID Paiement :");
-        lblIdPaiement.setBounds(37, 57, 62, 13);
+        lblIdPaiement.setBounds(74, 72, 96, 13);
         panel_3.add(lblIdPaiement);
         
      
     }
-	
+    
+    public List<JTextField> getPaiementTextFields() {
+        List<JTextField> fields = new ArrayList<>();
+        fields.add(textFieldDate);
+        fields.add(textFieldMontant);
+        fields.add(textFieldIdPaiement);
+        return fields;
+    }
 }

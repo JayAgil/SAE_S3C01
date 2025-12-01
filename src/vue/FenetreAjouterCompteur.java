@@ -6,6 +6,8 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JDesktopPane;
@@ -37,7 +39,7 @@ public class FenetreAjouterCompteur extends JInternalFrame {
 		EventQueue.invokeLater(() -> {
 			try {
 				JFrame frame = new JFrame();
-				frame.setBounds(100, 100, 600, 450);
+				frame.setBounds(100, 100, 450, 500);
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 				JDesktopPane desktopPane = new JDesktopPane();
@@ -62,7 +64,7 @@ public class FenetreAjouterCompteur extends JInternalFrame {
 		setIconifiable(true);
 		setMaximizable(true);
 		setResizable(true);
-		setBounds(50, 50, 600, 450);
+		setBounds(50, 50, 450, 500);
 		getContentPane().setLayout(new BorderLayout(0, 0));
 
 		JPanel panelHeader = new JPanel();
@@ -80,8 +82,7 @@ public class FenetreAjouterCompteur extends JInternalFrame {
 		getContentPane().add(panelCenter, BorderLayout.CENTER);
 
 		Insets pad = new Insets(10, 10, 10, 10);
-
-		// Row 0 - ID Charge
+		
 		GridBagConstraints idLabel = new GridBagConstraints();
 		idLabel.insets = pad;
 		idLabel.anchor = GridBagConstraints.LINE_END;
@@ -98,7 +99,6 @@ public class FenetreAjouterCompteur extends JInternalFrame {
 		JTextField txtIdCompteur = new JTextField(15);
 		panelCenter.add(txtIdCompteur, gbc_txtIdCompteur);
 
-		// Row 1
 		GridBagConstraints c1 = new GridBagConstraints();
 		c1.insets = pad;
 		c1.anchor = GridBagConstraints.LINE_END;
@@ -114,7 +114,6 @@ public class FenetreAjouterCompteur extends JInternalFrame {
 		txtPartieFixe = new JTextField(15);
 		panelCenter.add(txtPartieFixe, gbc_txtPartieFixe);
 
-		// Row 2
 		GridBagConstraints c3 = new GridBagConstraints();
 		c3.insets = pad;
 		c3.anchor = GridBagConstraints.LINE_END;
@@ -130,7 +129,6 @@ public class FenetreAjouterCompteur extends JInternalFrame {
 		txtPartieVariable = new JTextField(15);
 		panelCenter.add(txtPartieVariable, gbc_txtPartieVariable);
 
-		// Row 3
 		GridBagConstraints c5 = new GridBagConstraints();
 		c5.insets = pad;
 		c5.anchor = GridBagConstraints.LINE_END;
@@ -138,7 +136,6 @@ public class FenetreAjouterCompteur extends JInternalFrame {
 		c5.gridy = 3;
 		panelCenter.add(new JLabel("Total :"), c5);
 
-		// Row 5
 		GridBagConstraints gbc_lblType = new GridBagConstraints();
 		gbc_lblType.insets = pad;
 		gbc_lblType.anchor = GridBagConstraints.LINE_END;
@@ -156,10 +153,8 @@ public class FenetreAjouterCompteur extends JInternalFrame {
 		String[] types = { "Eau", "Électricité", "Gaz", "Chauffage" };
 		javax.swing.JComboBox<String> comboType = new javax.swing.JComboBox<>(types);
 		comboType.setModel(new DefaultComboBoxModel(new String[] { "Eau", "Électricité", "Gaz" }));
-
 		panelCenter.add(comboType, c6);
 
-		// Row 4
 		GridBagConstraints c7 = new GridBagConstraints();
 		c7.insets = pad;
 		c7.anchor = GridBagConstraints.LINE_END;
@@ -185,7 +180,6 @@ public class FenetreAjouterCompteur extends JInternalFrame {
 		txtTotal.setBackground(new Color(255, 255, 255));
 		panelCenter.add(txtTotal, gbc_txtTotal);
 
-		// Row 6 - Index ancien
 		GridBagConstraints c9 = new GridBagConstraints();
 		c9.insets = pad;
 		c9.anchor = GridBagConstraints.LINE_END;
@@ -201,7 +195,6 @@ public class FenetreAjouterCompteur extends JInternalFrame {
 		JTextField txtIndexAncien = new JTextField(15);
 		panelCenter.add(txtIndexAncien, c10);
 
-		// Row 7 - Index nouveau
 		GridBagConstraints c11 = new GridBagConstraints();
 		c11.insets = pad;
 		c11.anchor = GridBagConstraints.LINE_END;
@@ -221,18 +214,28 @@ public class FenetreAjouterCompteur extends JInternalFrame {
 
 		JButton btnRetour = new JButton("Retour");
 		btnRetour.addActionListener(this.gestionClic);
-
-		JButton btnAnnuler = new JButton("Annuler");
-		btnAnnuler.addActionListener(this.gestionClic);
-
-		JButton btnAjouter = new JButton("Ajouter");
-		btnAjouter.addActionListener(this.gestionClic);
+		
+				JButton btnAjouter = new JButton("Ajouter");
+				btnAjouter.addActionListener(this.gestionClic);
+				panelFooter.add(btnAjouter);
+		
+				JButton btnVider = new JButton("Vider");
+				btnVider.addActionListener(this.gestionClic);
+				panelFooter.add(btnVider);
 
 		panelFooter.add(btnRetour);
-		panelFooter.add(btnAnnuler);
-		panelFooter.add(btnAjouter);
 
 		getContentPane().add(panelFooter, BorderLayout.SOUTH);
+	}
+	
+	public List<JTextField> getAllPaiementTextFields() {
+	    List<JTextField> fields = new ArrayList<>();
+	    fields.add(txtPartieFixe);
+	    fields.add(txtPartieVariable);
+	    fields.add(txtDate);
+	    fields.add(txtTotal);
+	    fields.add(txtD);
+	    return fields;
 	}
 
 	

@@ -20,9 +20,9 @@ public class GestionFenetreDiagnostic extends GestionHeaderEtFooter implements A
                 fenetre.dispose();
                 break;
             case "Retour" :
-            	fenetre.dispose();
             	FenetreBienLouable fenBienLouable = new FenetreBienLouable();
 	            fenBienLouable.setVisible(true);
+	            fenetre.dispose();
 	            break;
         }
     }

@@ -13,6 +13,9 @@ import controleur.GestionFenetreAjouterBienLouable;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JTextField;
 
 public class FenetreAjouterBienLouable extends JFrame {
@@ -57,10 +60,10 @@ public class FenetreAjouterBienLouable extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lblTitre = new JLabel("Ajouter Bien Louable");
-		lblTitre.setFont(new Font("Tahoma", Font.BOLD, 14));
+		JLabel lblTitre = new JLabel("Ajouter bien louable");
+		lblTitre.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblTitre.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitre.setBounds(131, 29, 187, 29);
+		lblTitre.setBounds(0, 29, 434, 29);
 		contentPane.add(lblTitre);
 
 		JLabel lblIDBienLouable = new JLabel("ID Bien Louable :");
@@ -121,21 +124,32 @@ public class FenetreAjouterBienLouable extends JFrame {
 		lblType.setBounds(105, 324, 80, 13);
 		contentPane.add(lblType);
 
-		JButton btnValider = new JButton("Valider");
-		btnValider.setBounds(90, 414, 85, 21);
-		contentPane.add(btnValider);
+		JButton btnAjouter = new JButton("Ajouter");
+		btnAjouter.setBounds(90, 414, 85, 21);
+		contentPane.add(btnAjouter);
 
-		JButton btnAnnuler = new JButton("Annuler ");
-		btnAnnuler.setBounds(188, 414, 85, 21);
-		contentPane.add(btnAnnuler);
+		JButton btnVider = new JButton("Vider");
+		btnVider.setBounds(188, 414, 85, 21);
+		contentPane.add(btnVider);
 
 		JButton btnRetour = new JButton("Retour");
 		btnRetour.setBounds(283, 414, 85, 21);
 		contentPane.add(btnRetour);
 
-		btnAnnuler.addActionListener(this.gestionClic);
-		btnValider.addActionListener(this.gestionClic);
+		btnVider.addActionListener(this.gestionClic);
+		btnAjouter.addActionListener(this.gestionClic);
 		btnRetour.addActionListener(this.gestionClic);
 
+	}
+	
+	public List<JTextField> getAllBienLouableTextFields() {
+	    List<JTextField> fields = new ArrayList<>();
+	    fields.add(txtFieldBienLouable);
+	    fields.add(textFieldNumFiscale);
+	    fields.add(textFieldAddr);
+	    fields.add(txtFieldSurface);
+	    fields.add(textFieldNbPieces);
+	    fields.add(textFieldType);
+	    return fields;
 	}
 }

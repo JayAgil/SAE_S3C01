@@ -12,6 +12,9 @@ import controleur.GestionFenetreAjouterAssurance;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JTextField;
 
 public class FenetreAjouterAssurance extends JFrame {
@@ -49,7 +52,7 @@ public class FenetreAjouterAssurance extends JFrame {
 	public FenetreAjouterAssurance() {
 		setResizable(false);
 		this.gestionClic = new GestionFenetreAjouterAssurance(this);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 500);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -57,14 +60,14 @@ public class FenetreAjouterAssurance extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lblTitre = new JLabel("Ajouter une assurance");
-		lblTitre.setFont(new Font("Tahoma", Font.BOLD, 14));
+		JLabel lblTitre = new JLabel("Ajouter assurance");
+		lblTitre.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblTitre.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitre.setBounds(131, 29, 187, 29);
+		lblTitre.setBounds(0, 29, 434, 29);
 		contentPane.add(lblTitre);
 
 		JLabel lblNumAssurance = new JLabel("Numéro Assurance :");
-		lblNumAssurance.setBounds(90, 92, 96, 13);
+		lblNumAssurance.setBounds(90, 92, 119, 13);
 		contentPane.add(lblNumAssurance);
 
 		textFieldNumAssurance = new JTextField();
@@ -73,7 +76,7 @@ public class FenetreAjouterAssurance extends JFrame {
 		textFieldNumAssurance.setColumns(10);
 
 		JLabel lblPrime = new JLabel("Prime :");
-		lblPrime.setBounds(151, 141, 34, 13);
+		lblPrime.setBounds(90, 142, 34, 13);
 		contentPane.add(lblPrime);
 
 		textFieldPrime = new JTextField();
@@ -103,23 +106,23 @@ public class FenetreAjouterAssurance extends JFrame {
 
 		JLabel lblMontant = new JLabel("Montant :");
 		lblMontant.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblMontant.setBounds(131, 187, 54, 13);
+		lblMontant.setBounds(84, 188, 54, 13);
 		contentPane.add(lblMontant);
 
 		JLabel lblTypeAssurance = new JLabel("Type assurance :");
-		lblTypeAssurance.setBounds(105, 235, 80, 13);
+		lblTypeAssurance.setBounds(90, 236, 95, 13);
 		contentPane.add(lblTypeAssurance);
 
 		JLabel lblAgence = new JLabel("Agence :");
-		lblAgence.setBounds(144, 278, 41, 13);
+		lblAgence.setBounds(90, 279, 71, 13);
 		contentPane.add(lblAgence);
 
 		JLabel lblAddrAgence = new JLabel("Adresse agence :");
-		lblAddrAgence.setBounds(105, 324, 80, 13);
+		lblAddrAgence.setBounds(90, 325, 95, 13);
 		contentPane.add(lblAddrAgence);
 
 		JLabel lblTelAgence = new JLabel("Tèl Agence :");
-		lblTelAgence.setBounds(128, 368, 58, 13);
+		lblTelAgence.setBounds(90, 368, 96, 13);
 		contentPane.add(lblTelAgence);
 
 		textFieldTelAgence = new JTextField();
@@ -127,21 +130,33 @@ public class FenetreAjouterAssurance extends JFrame {
 		textFieldTelAgence.setBounds(219, 365, 96, 19);
 		contentPane.add(textFieldTelAgence);
 
-		JButton btnValider = new JButton("Valider");
-		btnValider.setBounds(90, 432, 85, 21);
-		contentPane.add(btnValider);
+		JButton btnAjouter = new JButton("Ajouter");
+		btnAjouter.setBounds(90, 432, 85, 21);
+		contentPane.add(btnAjouter);
 
-		JButton btnAnnuler = new JButton("Annuler ");
-		btnAnnuler.setBounds(188, 432, 85, 21);
-		contentPane.add(btnAnnuler);
+		JButton btnVider = new JButton("Vider");
+		btnVider.setBounds(188, 432, 85, 21);
+		contentPane.add(btnVider);
 
 		JButton btnRetour = new JButton("Retour");
 		btnRetour.setBounds(283, 432, 85, 21);
 		contentPane.add(btnRetour);
 
-		btnAnnuler.addActionListener(this.gestionClic);
-		btnValider.addActionListener(this.gestionClic);
+		btnVider.addActionListener(this.gestionClic);
+		btnAjouter.addActionListener(this.gestionClic);
 		btnRetour.addActionListener(this.gestionClic);
 
+	}
+	
+	public List<JTextField> getAllTextFields() {
+	    List<JTextField> fields = new ArrayList<>();
+	    fields.add(textFieldNumAssurance);
+	    fields.add(textFieldPrime);
+	    fields.add(textFieldMontant);
+	    fields.add(textFieldTypeAssurance);
+	    fields.add(textFieldAgence);
+	    fields.add(textFieldAddrAgence);
+	    fields.add(textFieldTelAgence);
+	    return fields;
 	}
 }

@@ -24,11 +24,25 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter implements Act
                 fenAjouterPaiement.setVisible(true);
                 break;
 
-            case "Generer le Facture":
+            case "Générer facture":
                 FenetreFacture fenFacture = new FenetreFacture();
                 fenetre.getLayeredPane().add(fenFacture);
                 fenFacture.setVisible(true);
                 break;
+        }
+    }
+    
+    @Override
+    protected void gererBoutonRetour(String texte) {
+        if ("Retour".equals(texte)) {
+<<<<<<< HEAD
+            fenetre.dispose();
+            FenetreLocataire fen = new FenetreLocataire("Paiement");
+=======
+            FenetreLocataire fen = new FenetreLocataire();
+>>>>>>> 5285a853d578134fc700a9805029302e2c41d341
+            fen.setVisible(true);
+            fenetre.dispose();
         }
     }
 }

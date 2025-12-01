@@ -12,6 +12,9 @@ import controleur.GestionFenetreAjouterDiagnostic;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JTextField;
 
 public class FenetreAjouterDiagnostic extends JFrame {
@@ -61,7 +64,7 @@ public class FenetreAjouterDiagnostic extends JFrame {
         JLabel lblTitre = new JLabel("Ajouter un diagnostic");
         lblTitre.setFont(new Font("Tahoma", Font.BOLD, 14));
         lblTitre.setHorizontalAlignment(SwingConstants.CENTER);
-        lblTitre.setBounds(100, 29, 250, 29);
+        lblTitre.setBounds(0, 37, 434, 29);
         contentPane.add(lblTitre);
 
         int labelX = 40;
@@ -72,7 +75,7 @@ public class FenetreAjouterDiagnostic extends JFrame {
 
         JLabel lblId = new JLabel("ID Diagnostic :");
         lblId.setHorizontalAlignment(SwingConstants.RIGHT);
-        lblId.setBounds(labelX, 114, labelW, 20);
+        lblId.setBounds(27, 115, labelW, 20);
         contentPane.add(lblId);
 
         textFieldIdDiagnostic = new JTextField();
@@ -81,7 +84,7 @@ public class FenetreAjouterDiagnostic extends JFrame {
 
         JLabel lblType = new JLabel("Type :");
         lblType.setHorizontalAlignment(SwingConstants.RIGHT);
-        lblType.setBounds(labelX, 163, labelW, 20);
+        lblType.setBounds(-12, 164, labelW, 20);
         contentPane.add(lblType);
 
         textFieldType = new JTextField();
@@ -99,7 +102,7 @@ public class FenetreAjouterDiagnostic extends JFrame {
 
         JLabel lblTypeDateValidite = new JLabel("Date Validité :");
         lblTypeDateValidite.setHorizontalAlignment(SwingConstants.RIGHT);
-        lblTypeDateValidite.setBounds(labelX, 257, labelW, 20);
+        lblTypeDateValidite.setBounds(27, 258, 110, 20);
         contentPane.add(lblTypeDateValidite);
 
         textFieldDateValidité = new JTextField();
@@ -108,7 +111,7 @@ public class FenetreAjouterDiagnostic extends JFrame {
 
         JLabel lblFichier = new JLabel("Fichier : ");
         lblFichier.setHorizontalAlignment(SwingConstants.RIGHT);
-        lblFichier.setBounds(labelX, 300, labelW, 20);
+        lblFichier.setBounds(0, 301, labelW, 20);
         contentPane.add(lblFichier);
 
         textFieldFichier = new JTextField();
@@ -119,21 +122,31 @@ public class FenetreAjouterDiagnostic extends JFrame {
         btnChoisir.setBounds(255, 332, 85, 22);
         contentPane.add(btnChoisir);
 
-        JButton btnValider = new JButton("Valider");
-        btnValider.setBounds(70, 432, 100, 25);
-        contentPane.add(btnValider);
+        JButton btnAjouter = new JButton("Ajouter");
+        btnAjouter.setBounds(50, 397, 100, 25);
+        contentPane.add(btnAjouter);
 
-        JButton btnAnnuler = new JButton("Annuler ");
-        btnAnnuler.setBounds(180, 432, 100, 25);
-        contentPane.add(btnAnnuler);
+        JButton btnVider = new JButton("Vider");
+        btnVider.setBounds(171, 397, 100, 25);
+        contentPane.add(btnVider);
 
         JButton btnRetour = new JButton("Retour");
-        btnRetour.setBounds(290, 432, 100, 25);
+        btnRetour.setBounds(289, 397, 100, 25);
         contentPane.add(btnRetour);
 
         btnChoisir.addActionListener(this.gestionClic);
-        btnAnnuler.addActionListener(this.gestionClic);
-        btnValider.addActionListener(this.gestionClic);
+        btnVider.addActionListener(this.gestionClic);
+        btnAjouter.addActionListener(this.gestionClic);
         btnRetour.addActionListener(this.gestionClic);
+    }
+    
+    public List<JTextField> getAllDiagnosticTextFields() {
+        List<JTextField> fields = new ArrayList<>();
+        fields.add(textFieldIdDiagnostic);
+        fields.add(textFieldType);
+        fields.add(textFieldDateRealisation);
+        fields.add(textFieldDateValidité);
+        fields.add(textFieldFichier);
+        return fields;
     }
 }

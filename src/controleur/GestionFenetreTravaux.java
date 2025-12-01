@@ -16,16 +16,18 @@ import vue.FenetreCharges;
 import vue.FenetreCompteurs;
 import vue.FenetreContratLocation;
 import vue.FenetreDiagnostic;
+import vue.FenetreFacture;
 import vue.FenetreLocataire;
 import vue.FenetreLogin;
 import vue.FenetrePaiement;
 import vue.FenetreTravaux;
 
-public class GestionFenetreTravaux implements ActionListener {
+public class GestionFenetreTravaux extends GestionHeaderEtFooter implements ActionListener {
 	
 	private FenetreTravaux fenetreTravaux;
 	
 	public GestionFenetreTravaux(FenetreTravaux fenetreTravaux) {
+		super(fenetreTravaux);
 		this.fenetreTravaux = fenetreTravaux;
 	}
 	
@@ -47,14 +49,20 @@ public class GestionFenetreTravaux implements ActionListener {
 				fenetreAjouterEntreprise.setVisible(true);
 				break;
 			case "Générer facture" :
-				break;
-			case "Retour" :
-				this.fenetreTravaux.dispose();
-				FenetreBienLouable fenetreBienLouable = new FenetreBienLouable();
-				fenetreBienLouable.setVisible(true);
+				FenetreFacture fen = new FenetreFacture();
+				fenetreTravaux.getLayeredPane().add(fen);
+				fen.setVisible(true);
 				break;
 	        }
 	     }
+<<<<<<< HEAD
+	}
+	
+	public void gererBoutonRetour() {
+		FenetreBienLouable fenetreBienLouable = new FenetreBienLouable();
+		fenetreBienLouable.setVisible(true);
+		this.fenetreTravaux.dispose();
+=======
 		
 		// JMenuItem
 		if (source instanceof JMenuItem) {
@@ -62,9 +70,9 @@ public class GestionFenetreTravaux implements ActionListener {
 	        String texte = item.getText();
 	        switch (texte) {
 	        case "Déconnecter":
-	        	fenetreTravaux.dispose();
 	        	FenetreLogin fenLogin = new FenetreLogin();
 	        	fenLogin.setVisible(true);
+	        	fenetreTravaux.dispose();
 	        	break;
 	        case "Ajouter bâtiment" :
 	        	FenetreAjouterBatiment fenAjouterBatiment = new FenetreAjouterBatiment();
@@ -77,49 +85,49 @@ public class GestionFenetreTravaux implements ActionListener {
 	        	fenAssurance.setVisible(true);
 	        	break;
 	        case "Compteurs bâtiment" :
-	        	fenetreTravaux.dispose();
 	        	FenetreCompteurs fenCompteurBat = new FenetreCompteurs();
 	        	fenCompteurBat.setVisible(true);
+	        	fenetreTravaux.dispose();
 	        	break;
 	        case "Charges bâtiment" :
-	        	fenetreTravaux.dispose();
 	        	FenetreCharges fenChargesBat = new FenetreCharges();
 	        	fenChargesBat.setVisible(true);
+	        	fenetreTravaux.dispose();
 	        	break;
 	        case "Contrat location" :
-	        	fenetreTravaux.dispose();
 	        	FenetreContratLocation fenContratLocation = new FenetreContratLocation();
 	        	fenContratLocation.setVisible(true);
+	        	fenetreTravaux.dispose();
 	        	break;
 	        case "Compteurs bien louable" :
-	        	fenetreTravaux.dispose();
 	        	FenetreCompteurs fenCompteurBL = new FenetreCompteurs();
 	        	fenCompteurBL.setVisible(true);
+	        	fenetreTravaux.dispose();
 	        	break;
 	        case "Travaux" :
-	        	fenetreTravaux.dispose();
 	        	FenetreTravaux fenTravaux = new FenetreTravaux();
 	        	fenTravaux.setVisible(true);
+	        	fenetreTravaux.dispose();
 	        	break;
 	        case "Charges bien louable" :
-	        	fenetreTravaux.dispose();
 	        	FenetreCharges fenChargesBL = new FenetreCharges();
 	        	fenChargesBL.setVisible(true);
+	        	fenetreTravaux.dispose();
 	        	break;
 	        case "Diagnostics" :
-	        	fenetreTravaux.dispose();
 	        	FenetreDiagnostic fenDiagnostic = new FenetreDiagnostic();
 	        	fenDiagnostic.setVisible(true);
+	        	fenetreTravaux.dispose();
 	        	break;
 	        case "Locataires" :
-	        	fenetreTravaux.dispose();
 	        	FenetreLocataire fenLocataire = new FenetreLocataire();
 	        	fenLocataire.setVisible(true);
+	        	fenetreTravaux.dispose();
 	        	break;
 	        case "Historique de paiement" :
-	        	fenetreTravaux.dispose();
 	        	FenetrePaiement fenPaiement = new FenetrePaiement();
 	        	fenPaiement.setVisible(true);
+	        	fenetreTravaux.dispose();
 	        	break;
 	        case "Ajouter paiement" :
 	        	FenetreAjouterPaiement fenAjouterPaiement = new FenetreAjouterPaiement();
@@ -129,6 +137,7 @@ public class GestionFenetreTravaux implements ActionListener {
 	        }
 		}
 		
+>>>>>>> 5285a853d578134fc700a9805029302e2c41d341
 	}
 	
 }

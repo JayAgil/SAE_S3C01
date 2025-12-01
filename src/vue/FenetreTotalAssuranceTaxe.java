@@ -51,7 +51,7 @@ public class FenetreTotalAssuranceTaxe extends JFrame implements ActionListener 
      * Create the frame.
      */
     public FenetreTotalAssuranceTaxe() {
-
+    	setExtendedState(JFrame.MAXIMIZED_BOTH);
         JMenuBar menuBar = new JMenuBar();
         menuBar.setBackground(new Color(214, 214, 214));
         setJMenuBar(menuBar);

@@ -47,6 +47,11 @@ public class FenetreLocataire extends JFrame {
     private JTextField textFieldSituationFamiliale;
     private GestionFenetreLocataire gestionClic;
     private JTable table;
+    private String nomFenAvant;
+    
+    public String getNomFenAvant() {
+    	return this.nomFenAvant;
+    }
 
     /**
      * Launch the application.
@@ -56,7 +61,7 @@ public class FenetreLocataire extends JFrame {
             @Override
             public void run() {
                 try {
-                    FenetreLocataire frame = new FenetreLocataire();
+                    FenetreLocataire frame = new FenetreLocataire("a");
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -68,7 +73,9 @@ public class FenetreLocataire extends JFrame {
     /**
      * Create the frame.
      */
-    public FenetreLocataire() {
+    public FenetreLocataire(String nomFenAvant) {
+    	this.nomFenAvant = nomFenAvant;
+    	setExtendedState(JFrame.MAXIMIZED_BOTH);
     	this.gestionClic = new GestionFenetreLocataire(this);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 800);

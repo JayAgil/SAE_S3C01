@@ -49,6 +49,7 @@ public class FenetreContratLocation extends JFrame {
 	 * Create the frame.
 	 */
 	public FenetreContratLocation() {
+    	setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.gestionClicContratLocation = new GestionFenetreContratLocation(this);
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBackground(new Color(214, 214, 214));
@@ -119,7 +120,7 @@ public class FenetreContratLocation extends JFrame {
         mntmAjout.addActionListener(this.gestionClicContratLocation);
         mnPaiement.add(mntmAjout);
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1200, 800);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -151,30 +152,24 @@ public class FenetreContratLocation extends JFrame {
         scrollPane.setViewportView(table);
         table.setModel(new DefaultTableModel(
         	new Object[][] {
-        		{null, null, null, null, null, null, null, null, null, null},
-        		{null, null, null, null, null, null, null, null, null, null},
-        		{null, null, null, null, null, null, null, null, null, null},
-        		{null, null, null, null, null, null, null, null, null, null},
-        		{null, null, null, null, null, null, null, null, null, null},
-        		{null, null, null, null, null, null, null, null, null, null},
-        		{null, null, null, null, null, null, null, null, null, null},
-        		{null, null, null, null, null, null, null, null, null, null},
+        		{null, null, null, null, null, null, null, null, null, null, null},
+        		{null, null, null, null, null, null, null, null, null, null, null},
+        		{null, null, null, null, null, null, null, null, null, null, null},
+        		{null, null, null, null, null, null, null, null, null, null, null},
+        		{null, null, null, null, null, null, null, null, null, null, null},
+        		{null, null, null, null, null, null, null, null, null, null, null},
+        		{null, null, null, null, null, null, null, null, null, null, null},
+        		{null, null, null, null, null, null, null, null, null, null, null},
         	},
         	new String[] {
-        		"Num\u00E9ro contrat", "Date d\u00E9but", "Date fin", "Montant caution", "Provision charge", "Solde", "Montant mensuel", "Date versement", "Index eau", "Index \u00E9lectricit\u00E9"
+        		"Num\u00E9ro contrat", "Date d\u00E9but", "Date fin", "Montant caution", "Provision charge", "Solde", "Montant mensuel", "Date versement", "Index eau", "Index \u00E9lectricit\u00E9", "Index gaz"
         	}
         ) {
         	Class[] columnTypes = new Class[] {
-        		String.class, String.class, String.class, Float.class, Float.class, Float.class, Float.class, String.class, Float.class, Float.class
+        		String.class, String.class, String.class, Float.class, Float.class, Float.class, Float.class, String.class, Float.class, Float.class, Object.class
         	};
         	public Class getColumnClass(int columnIndex) {
         		return columnTypes[columnIndex];
-        	}
-        	boolean[] columnEditables = new boolean[] {
-        		false, false, false, false, false, false, false, false, false, false
-        	};
-        	public boolean isCellEditable(int row, int column) {
-        		return columnEditables[column];
         	}
         });
         table.getColumnModel().getColumn(0).setPreferredWidth(87);

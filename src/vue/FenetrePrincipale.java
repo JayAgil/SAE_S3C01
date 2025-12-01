@@ -33,7 +33,26 @@ public class FenetrePrincipale extends JFrame {
     private JPanel contentPane;
     private GestionFenetrePrincipale gestionClic;
     private JTable table;
-
+    private JPanel panelRevenu;
+    private JPanel panelNbLoyePasPaye;
+    private JPanel panelRevenu_1;
+    private JPanel panelNbLoyePasPaye_1;
+    
+    public JPanel getPanelRevenu() {
+    	return this.panelRevenu;
+    }
+    
+    public JPanel getPanelNbLoyerPasPaye() {
+    	return this.panelNbLoyePasPaye;
+    }
+    
+    public JPanel getPanelRevenu_1() {
+    	return this.panelRevenu_1;
+    }
+    
+    public JPanel getPanelNbLoyePasPaye_1() {
+    	return this.panelNbLoyePasPaye_1;
+    }
     public JTable getTableBienLouable() {
         return table; 
     }
@@ -59,7 +78,9 @@ public class FenetrePrincipale extends JFrame {
     /**
      * Create the frame.
      */
-    public FenetrePrincipale() {
+    @SuppressWarnings({ "unused", "unused" })
+	public FenetrePrincipale() {
+    	setExtendedState(JFrame.MAXIMIZED_BOTH);
         gestionClic = new GestionFenetrePrincipale(this);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         contentPane = new JPanel();
@@ -81,7 +102,10 @@ public class FenetrePrincipale extends JFrame {
         Component horizontalStrut = Box.createHorizontalStrut(10);
         panelNorthCenter.add(horizontalStrut);
 
-        JPanel panelRevenu = new JPanel();
+        panelRevenu = new JPanel();
+        panelRevenu.addMouseListener(this.gestionClic);
+        FlowLayout fl_panelRevenu = (FlowLayout) panelRevenu.getLayout();
+        fl_panelRevenu.setHgap(15);
         panelRevenu.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Location Cumul\u00E9e", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
         panelRevenu.setFont(new Font("Tahoma", Font.BOLD, 30));
         panelNorthCenter.add(panelRevenu);
@@ -97,7 +121,10 @@ public class FenetrePrincipale extends JFrame {
         Component horizontalStrut_2 = Box.createHorizontalStrut(40);
         panelNorthCenter.add(horizontalStrut_2);
 
-        JPanel panelNbLoyePasPaye = new JPanel();
+        panelNbLoyePasPaye = new JPanel();
+        panelNbLoyePasPaye.addMouseListener(this.gestionClic);
+        FlowLayout fl_panelNbLoyePasPaye = (FlowLayout) panelNbLoyePasPaye.getLayout();
+        fl_panelNbLoyePasPaye.setHgap(15);
         panelNbLoyePasPaye.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Taux d'occupation", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
         panelNorthCenter.add(panelNbLoyePasPaye);
 
@@ -129,7 +156,10 @@ public class FenetrePrincipale extends JFrame {
         Component horizontalStrut_6 = Box.createHorizontalStrut(10);
         panelNorthCenter_1.add(horizontalStrut_6);
 
-        JPanel panelRevenu_1 = new JPanel();
+        panelRevenu_1 = new JPanel();
+        panelRevenu_1.addMouseListener(this.gestionClic);
+        FlowLayout fl_panelRevenu_1 = (FlowLayout) panelRevenu_1.getLayout();
+        fl_panelRevenu_1.setHgap(15);
         panelRevenu_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Montant total impay\u00E9s", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
         panelRevenu_1.setFont(new Font("Tahoma", Font.BOLD, 30));
         panelNorthCenter_1.add(panelRevenu_1);
@@ -144,7 +174,10 @@ public class FenetrePrincipale extends JFrame {
         Component horizontalStrut_2_1 = Box.createHorizontalStrut(40);
         panelNorthCenter_1.add(horizontalStrut_2_1);
 
-        JPanel panelNbLoyePasPaye_1 = new JPanel();
+        panelNbLoyePasPaye_1 = new JPanel();
+        panelNbLoyePasPaye_1.addMouseListener(this.gestionClic);
+        FlowLayout fl_panelNbLoyePasPaye_1 = (FlowLayout) panelNbLoyePasPaye_1.getLayout();
+        fl_panelNbLoyePasPaye_1.setHgap(15);
         panelNbLoyePasPaye_1.setBorder(new TitledBorder(null, "Contrats expirant ce mois", TitledBorder.LEADING, TitledBorder.TOP, null, null));
         panelNorthCenter_1.add(panelNbLoyePasPaye_1);
 
@@ -159,7 +192,7 @@ public class FenetrePrincipale extends JFrame {
         Component verticalStrut_2 = Box.createVerticalStrut(50);
         verticalStrut_2.setPreferredSize(new Dimension(0, 10));
 
-        Component verticalStrut_3 = Box.createVerticalStrut(10);
+		Component verticalStrut_3 = Box.createVerticalStrut(10);
         verticalStrut_2.setPreferredSize(new Dimension(0, 15));
         panel.add(verticalStrut_2, BorderLayout.SOUTH);
 
@@ -354,7 +387,7 @@ public class FenetrePrincipale extends JFrame {
 
         this.pack();
         this.setLocationRelativeTo(null);
-      
+ 
     }
 
     public JTable getTable() {

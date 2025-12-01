@@ -17,6 +17,8 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
     protected void gererBoutonSpecifique(String texte) {
         switch (texte) {
             case "Ajouter":
+                FenetreAjouterContratLocation fACL = new FenetreAjouterContratLocation();
+                fenetre.getLayeredPane().add(fACL).setVisible(true);
                 break;
             case "Annuler":
                 fenetre.dispose();
@@ -25,5 +27,15 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
     }
     @Override
     protected void gererMenuSpecifique(String texte) {
+    }
+    
+    @Override
+    protected void gererBoutonRetour(String texte) {
+        if ("Retour".equals(texte)) {
+            fenetre.dispose();
+            FenetrePrincipale fp = new FenetrePrincipale();
+            fp.setVisible(true);
+            fenetre.dispose();      
+        }
     }
 }
