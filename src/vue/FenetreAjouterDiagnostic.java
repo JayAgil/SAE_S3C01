@@ -58,7 +58,7 @@ public class FenetreAjouterDiagnostic extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        JLabel lblTitre = new JLabel("Ajouter une assurance");
+        JLabel lblTitre = new JLabel("Ajouter un diagnostic");
         lblTitre.setFont(new Font("Tahoma", Font.BOLD, 14));
         lblTitre.setHorizontalAlignment(SwingConstants.CENTER);
         lblTitre.setBounds(100, 29, 250, 29);
@@ -116,7 +116,7 @@ public class FenetreAjouterDiagnostic extends JFrame {
         contentPane.add(textFieldFichier);
 
         JButton btnChoisir = new JButton("Choisir");
-        btnChoisir.setBounds(270, 332, 70, fieldH);
+        btnChoisir.setBounds(255, 332, 85, 22);
         contentPane.add(btnChoisir);
 
         JButton btnValider = new JButton("Valider");

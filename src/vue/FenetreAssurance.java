@@ -26,7 +26,7 @@ import controleur.GestionFenetreAssurance;
 import java.awt.Component;
 import javax.swing.Box;
 
-public class FenetreAssurance extends JInternalFrame {
+public class FenetreAssurance extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
@@ -116,6 +116,7 @@ public class FenetreAssurance extends JInternalFrame {
         panelTxtNumAssurance.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
 
         textFieldNumAssurance = new JTextField();
+        textFieldNumAssurance.setEditable(false);
         textFieldNumAssurance.setHorizontalAlignment(SwingConstants.LEFT);
         panelTxtNumAssurance.add(textFieldNumAssurance);
         textFieldNumAssurance.setColumns(10);
@@ -141,6 +142,7 @@ public class FenetreAssurance extends JInternalFrame {
         panelL2.add(panelTxtTypeAssurance);
 
         textFieldTypeAssurance = new JTextField();
+        textFieldTypeAssurance.setEditable(false);
         panelTxtTypeAssurance.add(textFieldTypeAssurance);
         textFieldTypeAssurance.setColumns(10);
 
@@ -164,6 +166,7 @@ public class FenetreAssurance extends JInternalFrame {
         panelL3.add(panelTxtMontant);
 
         textFieldTxtMontant = new JTextField();
+        textFieldTxtMontant.setEditable(false);
         panelTxtMontant.add(textFieldTxtMontant);
         textFieldTxtMontant.setColumns(10);
 
@@ -187,6 +190,7 @@ public class FenetreAssurance extends JInternalFrame {
         panelL4.add(panelTxtBatAssure);
 
         textFieldBatAssure = new JTextField();
+        textFieldBatAssure.setEditable(false);
         panelTxtBatAssure.add(textFieldBatAssure);
         textFieldBatAssure.setColumns(10);
 
