@@ -22,7 +22,7 @@ public class GestionFenetreAjouterEntreprise implements ActionListener {
 		case "Ajouter":
             // Mettre à jour la base de données
             break;
-        case "Annuler":
+        case "Vider":
 			for (JTextField field : fenetre.getAllEntrepriseTextFields()) {
 			    field.setText(""); 
 			}

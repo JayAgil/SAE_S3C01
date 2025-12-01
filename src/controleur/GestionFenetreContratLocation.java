@@ -35,6 +35,7 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
             fenetre.dispose();
             FenetrePrincipale fp = new FenetrePrincipale();
             fp.setVisible(true);
+            fenetre.dispose();      
         }
     }
 }

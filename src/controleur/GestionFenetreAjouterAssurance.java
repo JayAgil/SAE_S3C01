@@ -7,7 +7,6 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 
 import vue.FenetreAjouterAssurance;
-import vue.FenetrePrincipale;
 
 public class GestionFenetreAjouterAssurance implements ActionListener {
 
@@ -22,15 +21,13 @@ public class GestionFenetreAjouterAssurance implements ActionListener {
         switch (((JButton) e.getSource()).getText()) {
         case "Ajouter":
             break;
-        case "Annuler":
+        case "Vider":
 			for (JTextField field : fenetre.getAllTextFields()) {
 			    field.setText(""); 
 			}
             break;  
         case "Retour" :
         	fenetre.dispose();
-        	FenetrePrincipale fenPrincipale = new FenetrePrincipale();
-        	fenPrincipale.setVisible(true);
         	break;
         }
     }

@@ -22,7 +22,7 @@ public class GestionFenetreAjouterBienLouable implements ActionListener {
         switch (((JButton) e.getSource()).getText()) {
         case "Ajouter":
             break;
-        case "Annuler":
+        case "Vider":
 			for (JTextField field : fenetre.getAllBienLouableTextFields()) {
 			    field.setText(""); 
 			}

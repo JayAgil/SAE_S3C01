@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JTextField;
 
 import vue.FenetreAjouterPaiement;
 
@@ -24,6 +25,9 @@ public class GestionFenetreAjouterPaiement implements ActionListener {
         case "Ajouter":
         	break;
         case "Vider" :
+        	for (JTextField field : fenetre.getPaiementTextFields()) {
+			    field.setText(""); 
+			}
         	break;
         }
     }

@@ -32,13 +32,13 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
                 break;
 
             case "Compteurs":
-                fenetre.dispose();
                 new FenetreCompteurs().setVisible(true);
+                fenetre.dispose();
                 break;
 
             case "Charges":
-                fenetre.dispose();
                 new FenetreCharges().setVisible(true);
+                fenetre.dispose();
                 break;
 
             case "Ajouter":

@@ -22,7 +22,7 @@ public class GestionFenetreAjouterCharge implements ActionListener {
         case "Ajouter":
             // Mettre à jour la base de données
             break;
-        case "Annuler":
+        case "Vider":
 			for (JTextField field : fenetre.getAllChargeTextFields()) {
 			    field.setText(""); 
 			}

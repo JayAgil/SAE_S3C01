@@ -1,14 +1,11 @@
 package vue;
 
 import java.awt.EventQueue;
-import javax.swing.BorderFactory;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
 import javax.swing.JTextField;
 
 import controleur.GestionAjouterTravaux;
@@ -56,106 +53,92 @@ public class FenetreAjouterTravaux extends JInternalFrame {
 	public FenetreAjouterTravaux() {
 		setResizable(false);
 		this.gestionClic = new GestionAjouterTravaux(this);
-		setBounds(100, 100, 600, 400);
+		setBounds(100, 100, 450, 500);
 		getContentPane().setLayout(new BorderLayout(0, 0));
-
-        JPanel panel_12 = new JPanel();
-        getContentPane().add(panel_12, BorderLayout.SOUTH);
-
-        JPanel footerPanel = new JPanel();
-        footerPanel.setPreferredSize(new Dimension(584, 30));
-        footerPanel.setBorder(
-            BorderFactory.createMatteBorder(1, 0, 0, 0, Color.LIGHT_GRAY));
-        footerPanel.setBackground(new Color(214, 214, 214));
-        panel_12.add(footerPanel);
-
-        JLabel footerLabel = new JLabel(
-            "Developpé par Koshua, Jay, Aneesa, Luca et Franck");
-        footerPanel.add(footerLabel);
         
         JPanel panel = new JPanel();
         getContentPane().add(panel, BorderLayout.CENTER);
         panel.setLayout(null);
         
         JLabel lblNumFacture = new JLabel("Numéro facture :");
-        lblNumFacture.setBounds(66, 76, 86, 14);
+        lblNumFacture.setBounds(94, 103, 86, 14);
         panel.add(lblNumFacture);
         
         JLabel lblMontant = new JLabel("Montant :");
-        lblMontant.setBounds(66, 107, 104, 14);
+        lblMontant.setBounds(94, 134, 104, 14);
         panel.add(lblMontant);
         
         champNumFac = new JTextField();
-        champNumFac.setBounds(203, 73, 86, 20);
+        champNumFac.setBounds(240, 100, 86, 20);
         panel.add(champNumFac);
         champNumFac.setColumns(10);
         
         champMontant = new JTextField();
-        champMontant.setBounds(203, 104, 86, 20);
+        champMontant.setBounds(240, 131, 86, 20);
         panel.add(champMontant);
         champMontant.setColumns(10);
         
         JLabel lblDateFacture = new JLabel("Date de facture :");
-        lblDateFacture.setBounds(66, 138, 86, 14);
+        lblDateFacture.setBounds(94, 165, 86, 14);
         panel.add(lblDateFacture);
         
         champDateFac = new JTextField();
-        champDateFac.setBounds(203, 135, 86, 20);
+        champDateFac.setBounds(240, 162, 86, 20);
         panel.add(champDateFac);
         champDateFac.setColumns(10);
         
         JLabel lblCB = new JLabel("Compte bancaire :");
-        lblCB.setBounds(66, 169, 104, 14);
+        lblCB.setBounds(94, 196, 104, 14);
         panel.add(lblCB);
         
         champCB = new JTextField();
         champCB.setColumns(10);
-        champCB.setBounds(203, 166, 86, 20);
+        champCB.setBounds(240, 193, 86, 20);
         panel.add(champCB);
         
         JLabel lblTitre = new JLabel("Ajouter travaux");
         lblTitre.setFont(new Font("Tahoma", Font.BOLD, 18));
-        lblTitre.setBounds(224, 22, 163, 14);
+        lblTitre.setBounds(139, 23, 163, 20);
         panel.add(lblTitre);
         
         this.gestionClic = new GestionAjouterTravaux(this);
         
         JButton btnValider = new JButton("Valider");
         btnValider.addActionListener(this.gestionClic);
-        btnValider.setBounds(101, 296, 89, 23);
+        btnValider.setBounds(47, 395, 89, 23);
         panel.add(btnValider);
         
-        JButton btnAnnuler = new JButton("Annuler");
-        btnAnnuler.addActionListener(this.gestionClic);
-        btnAnnuler.setBounds(259, 296, 89, 23);
-        panel.add(btnAnnuler);
+        JButton btnVider = new JButton("Vider");
+        btnVider.addActionListener(this.gestionClic);
+        btnVider.setBounds(175, 395, 89, 23);
+        panel.add(btnVider);
         
         JButton btnRetour = new JButton("Retour");
         btnRetour.addActionListener(this.gestionClic);
-        btnRetour.setBounds(406, 296, 89, 23);
+        btnRetour.setBounds(299, 395, 89, 23);
         panel.add(btnRetour);
         
         JLabel lblMontantDevis = new JLabel("Montant devis :");
-        lblMontantDevis.setBounds(66, 200, 75, 14);
+        lblMontantDevis.setBounds(94, 227, 75, 14);
         panel.add(lblMontantDevis);
         
         champDevis = new JTextField();
-        champDevis.setBounds(203, 197, 86, 20);
+        champDevis.setBounds(240, 224, 86, 20);
         panel.add(champDevis);
         champDevis.setColumns(10);
         
         champDatePaiement = new JTextField();
-        champDatePaiement.setBounds(203, 228, 86, 20);
+        champDatePaiement.setBounds(240, 255, 86, 20);
         panel.add(champDatePaiement);
         champDatePaiement.setColumns(10);
         
         champDesignationTravaux = new JTextField();
-        champDesignationTravaux.setBounds(448, 73, 86, 20);
+        champDesignationTravaux.setBounds(240, 289, 86, 20);
         panel.add(champDesignationTravaux);
         champDesignationTravaux.setColumns(10);
         
         JLabel lblDatePaiement = new JLabel("Date de paiement : ");
-        lblDatePaiement.setBounds(66, 231, 104, 14);
+        lblDatePaiement.setBounds(94, 258, 104, 14);
         panel.add(lblDatePaiement);
         
         JLabel lblDesignationTravaux = new JLabel("Désignation travaux :");
@@ -167,7 +150,7 @@ public class FenetreAjouterTravaux extends JInternalFrame {
         panel.add(lblEntreprise);
         
         comboBoxEntreprise = new JComboBox();
-        comboBoxEntreprise.setBounds(448, 103, 86, 22);
+        comboBoxEntreprise.setBounds(240, 324, 86, 22);
         panel.add(comboBoxEntreprise);
         
 	}

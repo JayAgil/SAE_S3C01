@@ -7,7 +7,6 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 
 import vue.FenetreAjouterContratLocation;
-import vue.FenetrePrincipale;
 
 public class GestionFenetreAjouterContratLocation implements ActionListener {
 
@@ -22,7 +21,7 @@ public class GestionFenetreAjouterContratLocation implements ActionListener {
         switch (((JButton) e.getSource()).getText()) {
         case "Ajouter":
             break;
-        case "Annuler":
+        case "Vider":
 			for (JTextField field : fenetre.getAllContratTextFields()) {
 			    field.setText(""); 
 			}

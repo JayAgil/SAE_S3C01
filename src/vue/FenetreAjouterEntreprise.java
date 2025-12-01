@@ -58,7 +58,7 @@ public class FenetreAjouterEntreprise extends JInternalFrame  {
 		setIconifiable(true);
 		setMaximizable(true);
 		setResizable(true);
-		setBounds(50, 50, 600, 400);
+		setBounds(50, 50, 450, 500);
 		setTitle("Ajouter Entreprise");
 
 		contentPane = new JPanel();
@@ -69,78 +69,78 @@ public class FenetreAjouterEntreprise extends JInternalFrame  {
 		JLabel lblTitre = new JLabel("Ajouter Entreprise");
 		lblTitre.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitre.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblTitre.setBounds(0, 22, 384, 30);
+		lblTitre.setBounds(0, 22, 434, 30);
 		contentPane.add(lblTitre);
 
 		JLabel lblSiret = new JLabel("Numéro SIRET :");
-		lblSiret.setBounds(33, 73, 100, 25);
+		lblSiret.setBounds(52, 85, 100, 25);
 		contentPane.add(lblSiret);
 
 		textFieldSiret = new JTextField();
-		textFieldSiret.setBounds(150, 73, 200, 25);
+		textFieldSiret.setBounds(175, 85, 200, 25);
 		contentPane.add(textFieldSiret);
 
 		JLabel lblNom = new JLabel("Nom :");
-		lblNom.setBounds(33, 109, 100, 25);
+		lblNom.setBounds(52, 127, 100, 25);
 		contentPane.add(lblNom);
 
 		textFieldNom = new JTextField();
-		textFieldNom.setBounds(150, 109, 200, 25);
+		textFieldNom.setBounds(175, 127, 200, 25);
 		contentPane.add(textFieldNom);
 
 		JLabel lblAdresse = new JLabel("Adresse :");
-		lblAdresse.setBounds(33, 145, 100, 25);
+		lblAdresse.setBounds(52, 167, 100, 25);
 		contentPane.add(lblAdresse);
 
 		textFieldAdresse = new JTextField();
-		textFieldAdresse.setBounds(150, 145, 200, 25);
+		textFieldAdresse.setBounds(175, 167, 200, 25);
 		contentPane.add(textFieldAdresse);
 
 		JLabel lblVille = new JLabel("Ville :");
-		lblVille.setBounds(33, 181, 100, 25);
+		lblVille.setBounds(52, 205, 100, 25);
 		contentPane.add(lblVille);
 
 		textFieldVille = new JTextField();
-		textFieldVille.setBounds(150, 181, 200, 25);
+		textFieldVille.setBounds(175, 205, 200, 25);
 		contentPane.add(textFieldVille);
 
 		JLabel lblCodePostal = new JLabel("Code postal :");
-		lblCodePostal.setBounds(33, 217, 100, 25);
+		lblCodePostal.setBounds(52, 241, 100, 25);
 		contentPane.add(lblCodePostal);
 
 		textFieldCodePostal = new JTextField();
-		textFieldCodePostal.setBounds(150, 217, 200, 25);
+		textFieldCodePostal.setBounds(175, 241, 200, 25);
 		contentPane.add(textFieldCodePostal);
 
 		JLabel lblTel = new JLabel("Numéro de téléphone :");
-		lblTel.setBounds(33, 253, 140, 25);
+		lblTel.setBounds(52, 277, 140, 25);
 		contentPane.add(lblTel);
 
 		textFieldTel = new JTextField();
-		textFieldTel.setBounds(150, 253, 200, 25);
+		textFieldTel.setBounds(175, 277, 200, 25);
 		contentPane.add(textFieldTel);
 
 		JLabel lblSpecialite = new JLabel("Spécialité :");
-		lblSpecialite.setBounds(33, 289, 100, 25);
+		lblSpecialite.setBounds(52, 313, 100, 25);
 		contentPane.add(lblSpecialite);
 
 		textFieldSpecialite = new JTextField();
-		textFieldSpecialite.setBounds(150, 289, 200, 25);
+		textFieldSpecialite.setBounds(175, 315, 200, 25);
 		contentPane.add(textFieldSpecialite);
 
-		JButton btnAnnuler = new JButton("Annuler");
-		btnAnnuler.addActionListener(gestionClic);
-		btnAnnuler.setBounds(167, 325, 100, 30);
-		contentPane.add(btnAnnuler);
+		JButton btnVider = new JButton("Vider");
+		btnVider.addActionListener(gestionClic);
+		btnVider.setBounds(171, 390, 100, 30);
+		contentPane.add(btnVider);
 
 		JButton btnAjouter = new JButton("Ajouter");
 		btnAjouter.addActionListener(gestionClic);
-		btnAjouter.setBounds(284, 325, 100, 30);
+		btnAjouter.setBounds(52, 390, 100, 30);
 		contentPane.add(btnAjouter);
 		
 		JButton btnRetour = new JButton("Retour");
 		btnRetour.addActionListener(gestionClic);
-		btnRetour.setBounds(68, 329, 89, 23);
+		btnRetour.setBounds(294, 390, 100, 30);
 		contentPane.add(btnRetour);
 	}
 	
