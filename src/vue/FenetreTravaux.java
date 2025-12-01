@@ -48,6 +48,7 @@ public class FenetreTravaux extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings("serial")
 	public FenetreTravaux() {
     	setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.gestionClic = new GestionFenetreTravaux(this);
@@ -194,10 +195,12 @@ public class FenetreTravaux extends JFrame {
         		"Num\u00E9ro facture", "Montant", "Date de facture", "Compte bancaire", "Montant devis", "Date de paiement", "D\u00E9signation travaux", "Entreprise"
         	}
         ) {
-        	Class[] columnTypes = new Class[] {
+        	@SuppressWarnings("rawtypes")
+			Class[] columnTypes = new Class[] {
         		String.class, String.class, String.class, String.class, Float.class, String.class, String.class, String.class
         	};
-        	public Class getColumnClass(int columnIndex) {
+        	@SuppressWarnings({ "unchecked", "rawtypes" })
+			public Class getColumnClass(int columnIndex) {
         		return columnTypes[columnIndex];
         	}
         	boolean[] columnEditables = new boolean[] {

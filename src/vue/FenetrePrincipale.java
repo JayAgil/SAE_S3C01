@@ -26,8 +26,6 @@ import javax.swing.table.DefaultTableModel;
 import controleur.GestionFenetrePrincipale;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class FenetrePrincipale extends JFrame {
 
@@ -80,7 +78,8 @@ public class FenetrePrincipale extends JFrame {
     /**
      * Create the frame.
      */
-    public FenetrePrincipale() {
+    @SuppressWarnings({ "unused", "unused" })
+	public FenetrePrincipale() {
     	setExtendedState(JFrame.MAXIMIZED_BOTH);
         gestionClic = new GestionFenetrePrincipale(this);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -193,7 +192,7 @@ public class FenetrePrincipale extends JFrame {
         Component verticalStrut_2 = Box.createVerticalStrut(50);
         verticalStrut_2.setPreferredSize(new Dimension(0, 10));
 
-        Component verticalStrut_3 = Box.createVerticalStrut(10);
+		Component verticalStrut_3 = Box.createVerticalStrut(10);
         verticalStrut_2.setPreferredSize(new Dimension(0, 15));
         panel.add(verticalStrut_2, BorderLayout.SOUTH);
 
