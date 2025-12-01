@@ -6,6 +6,7 @@ import java.io.File;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
+import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import vue.FenetreAjouterDiagnostic;
@@ -33,9 +34,10 @@ public class GestionFenetreAjouterDiagnostic implements ActionListener {
         case "Ajouter":
             break;
         case "Annuler":
-        	// vider les champs !!
-            fenetre.dispose();
-            break;  
+			for (JTextField field : fenetre.getAllDiagnosticTextFields()) {
+			    field.setText(""); 
+			}
+            break;     
         case "Retour" :
         	fenetre.dispose();
         	FenetrePrincipale fenPrincipale = new FenetrePrincipale();

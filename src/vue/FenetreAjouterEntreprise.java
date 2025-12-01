@@ -10,6 +10,9 @@ import controleur.GestionFenetreAjouterEntreprise;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
@@ -139,6 +142,18 @@ public class FenetreAjouterEntreprise extends JInternalFrame  {
 		btnRetour.addActionListener(gestionClic);
 		btnRetour.setBounds(68, 329, 89, 23);
 		contentPane.add(btnRetour);
+	}
+	
+	public List<JTextField> getAllEntrepriseTextFields() {
+	    List<JTextField> fields = new ArrayList<>();
+	    fields.add(textFieldSiret);
+	    fields.add(textFieldNom);
+	    fields.add(textFieldAdresse);
+	    fields.add(textFieldVille);
+	    fields.add(textFieldCodePostal);
+	    fields.add(textFieldTel);
+	    fields.add(textFieldSpecialite);
+	    return fields;
 	}
 	
 }

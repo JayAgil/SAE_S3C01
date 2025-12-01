@@ -6,6 +6,8 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JDesktopPane;
@@ -233,6 +235,16 @@ public class FenetreAjouterCompteur extends JInternalFrame {
 		panelFooter.add(btnAjouter);
 
 		getContentPane().add(panelFooter, BorderLayout.SOUTH);
+	}
+	
+	public List<JTextField> getAllPaiementTextFields() {
+	    List<JTextField> fields = new ArrayList<>();
+	    fields.add(txtPartieFixe);
+	    fields.add(txtPartieVariable);
+	    fields.add(txtDate);
+	    fields.add(txtTotal);
+	    fields.add(txtD);
+	    return fields;
 	}
 
 	

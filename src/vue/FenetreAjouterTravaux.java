@@ -15,6 +15,9 @@ import controleur.GestionAjouterTravaux;
 import modele.Entreprise;
 
 import java.awt.Font;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 
@@ -199,5 +202,17 @@ public class FenetreAjouterTravaux extends JInternalFrame {
 
 	public JTextField getChampDesignationTravaux() {
 		return champDesignationTravaux;
+	}
+	
+	public List<JTextField> getTravauxTextFields() {
+	    List<JTextField> fields = new ArrayList<>();
+	    fields.add(champNumFac);
+	    fields.add(champMontant);
+	    fields.add(champDateFac);
+	    fields.add(champCB);
+	    fields.add(champDevis);
+	    fields.add(champDatePaiement);
+	    fields.add(champDesignationTravaux);
+	    return fields;
 	}
 }

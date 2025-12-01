@@ -12,6 +12,9 @@ import controleur.GestionFenetreAjouterDiagnostic;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JTextField;
 
 public class FenetreAjouterDiagnostic extends JFrame {
@@ -135,5 +138,15 @@ public class FenetreAjouterDiagnostic extends JFrame {
         btnAnnuler.addActionListener(this.gestionClic);
         btnValider.addActionListener(this.gestionClic);
         btnRetour.addActionListener(this.gestionClic);
+    }
+    
+    public List<JTextField> getAllDiagnosticTextFields() {
+        List<JTextField> fields = new ArrayList<>();
+        fields.add(textFieldIdDiagnostic);
+        fields.add(textFieldType);
+        fields.add(textFieldDateRealisation);
+        fields.add(textFieldDateValidité);
+        fields.add(textFieldFichier);
+        return fields;
     }
 }

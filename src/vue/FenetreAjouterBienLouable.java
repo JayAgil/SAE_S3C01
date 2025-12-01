@@ -13,6 +13,9 @@ import controleur.GestionFenetreAjouterBienLouable;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JTextField;
 
 public class FenetreAjouterBienLouable extends JFrame {
@@ -137,5 +140,16 @@ public class FenetreAjouterBienLouable extends JFrame {
 		btnValider.addActionListener(this.gestionClic);
 		btnRetour.addActionListener(this.gestionClic);
 
+	}
+	
+	public List<JTextField> getAllBienLouableTextFields() {
+	    List<JTextField> fields = new ArrayList<>();
+	    fields.add(txtFieldBienLouable);
+	    fields.add(textFieldNumFiscale);
+	    fields.add(textFieldAddr);
+	    fields.add(txtFieldSurface);
+	    fields.add(textFieldNbPieces);
+	    fields.add(textFieldType);
+	    return fields;
 	}
 }

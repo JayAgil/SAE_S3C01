@@ -16,6 +16,8 @@ import javax.swing.JComboBox;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.GridLayout;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.Component;
 import javax.swing.Box;
 
@@ -129,6 +131,14 @@ public class FenetreAjouterPaiement extends JInternalFrame {
         panel_3.add(lblIdPaiement);
         
      
+    }
+    
+    public List<JTextField> getPaiementTextFields() {
+        List<JTextField> fields = new ArrayList<>();
+        fields.add(textFieldDate);
+        fields.add(textFieldMontant);
+        fields.add(textFieldIdPaiement);
+        return fields;
     }
 	
 }

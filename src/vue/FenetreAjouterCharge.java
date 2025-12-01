@@ -20,6 +20,8 @@ import controleur.GestionFenetreAjouterCharge;
 import java.awt.Component;
 import javax.swing.Box;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 
 public class FenetreAjouterCharge extends JInternalFrame {
@@ -178,5 +180,13 @@ public class FenetreAjouterCharge extends JInternalFrame {
 
         getContentPane().add(panelFooter, BorderLayout.SOUTH);
     }
-
+    
+    public List<JTextField> getAllChargeTextFields() {
+        List<JTextField> fields = new ArrayList<>();
+        fields.add(txtTypeCharge);
+        fields.add(txtMontant);
+        fields.add(txtPourcentage);
+        fields.add(txtQuotite);
+        return fields;
+    }
 }

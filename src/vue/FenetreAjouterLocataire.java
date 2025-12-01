@@ -13,6 +13,8 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 
 public class FenetreAjouterLocataire extends JInternalFrame {
@@ -217,5 +219,30 @@ public class FenetreAjouterLocataire extends JInternalFrame {
 		JLabel lblIdLoc = new JLabel("Id Locataire : ");
 		lblIdLoc.setBounds(23, 241, 120, 25);
 		contentPane.add(lblIdLoc);
+	}
+	
+	public List<JTextField> getAllLocataireTextFields() {
+	    List<JTextField> fields = new ArrayList<>();
+	    
+	    fields.add(textFieldNom);
+	    fields.add(textFieldPrenom);
+	    fields.add(textFieldAdresse);
+	    fields.add(textFieldTel);
+	    fields.add(textFieldEmail);
+	    fields.add(textFieldCodePostal);
+	    fields.add(textFieldVille);
+	    fields.add(textFieldDateNaissance);
+	    fields.add(textFieldLieuNaissance);
+	    fields.add(textFieldSalaire);
+	    fields.add(textFieldProfession);
+	    fields.add(textFieldSituationFamiliale);
+
+	    fields.add(textFieldGarantNom);
+	    fields.add(textFieldGarantPrenom);
+	    fields.add(textFieldGarantAdresse);
+	    fields.add(textFieldGarantTel);
+	    fields.add(textIdLoc);
+	    
+	    return fields;
 	}
 }

@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JTextField;
 
 import vue.FenetreAjouterAssurance;
 import vue.FenetrePrincipale;
@@ -22,8 +23,9 @@ public class GestionFenetreAjouterAssurance implements ActionListener {
         case "Ajouter":
             break;
         case "Annuler":
-        	// vider les champs !!
-            fenetre.dispose();
+			for (JTextField field : fenetre.getAllTextFields()) {
+			    field.setText(""); 
+			}
             break;  
         case "Retour" :
         	fenetre.dispose();

@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -137,6 +140,13 @@ public class FenetreAjouterBatiment extends JInternalFrame {
         panel_7.add(textFieldDate);
         textFieldDate.setColumns(10);
 
+    }
+    
+    public List<JTextField> getAllTextFields() {
+        List<JTextField> fields = new ArrayList<>();
+        fields.add(textFieldAdresse);
+        fields.add(textFieldDate);
+        return fields;
     }
 
     

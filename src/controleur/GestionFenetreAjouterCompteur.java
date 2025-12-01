@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JTextField;
 
 import vue.FenetreAjouterCompteur;
 
@@ -21,9 +22,10 @@ public class GestionFenetreAjouterCompteur implements ActionListener {
 	    	fenetre.dispose();
 	    	break;            
 	    case "Annuler":
-	    	//vider champs
-	        fenetre.dispose();
-	        break;
+			for (JTextField field : fenetre.getAllPaiementTextFields()) {
+			    field.setText(""); 
+			}
+            break; 
 	    case "Ajouter" :
 	    	// Mettre à jour la base de données
 	    	break;

@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JTextField;
 
 import vue.FenetreAjouterCharge;
 
@@ -22,9 +23,10 @@ public class GestionFenetreAjouterCharge implements ActionListener {
             // Mettre à jour la base de données
             break;
         case "Annuler":
-        	//vider champs
-        	fenetre.dispose();
-        	break;
+			for (JTextField field : fenetre.getAllChargeTextFields()) {
+			    field.setText(""); 
+			}
+            break; 
         case "Retour" :
         	fenetre.dispose();
         	break;

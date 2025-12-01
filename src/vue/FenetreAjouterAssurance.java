@@ -12,6 +12,9 @@ import controleur.GestionFenetreAjouterAssurance;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JTextField;
 
 public class FenetreAjouterAssurance extends JFrame {
@@ -143,5 +146,17 @@ public class FenetreAjouterAssurance extends JFrame {
 		btnValider.addActionListener(this.gestionClic);
 		btnRetour.addActionListener(this.gestionClic);
 
+	}
+	
+	public List<JTextField> getAllTextFields() {
+	    List<JTextField> fields = new ArrayList<>();
+	    fields.add(textFieldNumAssurance);
+	    fields.add(textFieldPrime);
+	    fields.add(textFieldMontant);
+	    fields.add(textFieldTypeAssurance);
+	    fields.add(textFieldAgence);
+	    fields.add(textFieldAddrAgence);
+	    fields.add(textFieldTelAgence);
+	    return fields;
 	}
 }

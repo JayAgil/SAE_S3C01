@@ -13,6 +13,9 @@ import controleur.GestionFenetreAjouterContratLocation;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JTextField;
 
 public class FenetreAjouterContratLocation extends JInternalFrame {
@@ -187,5 +190,21 @@ public class FenetreAjouterContratLocation extends JInternalFrame {
         btnAnnuler.addActionListener(this.gestionClic);
         btnValider.addActionListener(this.gestionClic);
         btnRetour.addActionListener(this.gestionClic);
+    }
+    
+    public List<JTextField> getAllContratTextFields() {
+        List<JTextField> fields = new ArrayList<>();
+        fields.add(txtFieldNumContrat);
+        fields.add(textFieldDateDebut);
+        fields.add(textFieldADateFin);
+        fields.add(txtFieldMontant);
+        fields.add(textFieldProvision);
+        fields.add(textFieldSolde);
+        fields.add(textFieldMontantMensuel);
+        fields.add(textFieldDateVersement);
+        fields.add(textFieldIdxEau);
+        fields.add(textFieldElectrcité);
+        fields.add(textFieldGaz);
+        return fields;
     }
 }

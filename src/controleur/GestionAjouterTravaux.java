@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 import vue.FenetreAjouterTravaux;
 import vue.FenetreTravaux;
@@ -51,8 +52,10 @@ public class GestionAjouterTravaux implements ActionListener {
 				
 			break;
 		case "Annuler" :
-			//Vider champs
-			this.fenetreAjouterTravaux.dispose();
+			for (JTextField field : fenetreAjouterTravaux.getTravauxTextFields()) {
+			    field.setText(""); 
+			}
+			break;
 		case "Retour" :
 			this.fenetreAjouterTravaux.dispose();
 			break;
