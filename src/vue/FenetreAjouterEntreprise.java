@@ -49,6 +49,7 @@ public class FenetreAjouterEntreprise extends JInternalFrame  {
 	}
 
 	public FenetreAjouterEntreprise() {
+		setResizable(false);
 		GestionFenetreAjouterEntreprise gestionClic = new GestionFenetreAjouterEntreprise(this);
 		setClosable(true);
 		setIconifiable(true);

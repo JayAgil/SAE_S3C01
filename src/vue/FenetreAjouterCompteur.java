@@ -54,6 +54,7 @@ public class FenetreAjouterCompteur extends JInternalFrame implements ActionList
 	}
 
 	public FenetreAjouterCompteur() {
+		setResizable(false);
 		setClosable(true);
 		setIconifiable(true);
 		setMaximizable(true);

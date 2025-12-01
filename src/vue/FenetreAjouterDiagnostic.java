@@ -48,6 +48,7 @@ public class FenetreAjouterDiagnostic extends JFrame {
     }
 
     public FenetreAjouterDiagnostic() {
+    	setResizable(false);
         this.gestionClic = new GestionFenetreAjouterDiagnostic(this);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 450, 500);

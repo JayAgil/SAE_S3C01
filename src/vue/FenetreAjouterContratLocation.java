@@ -45,6 +45,7 @@ public class FenetreAjouterContratLocation extends JFrame {
     }
 
     public FenetreAjouterContratLocation() {
+    	setResizable(false);
         this.gestionClic = new GestionFenetreAjouterContratLocation(this);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(0, -17, 450, 500);

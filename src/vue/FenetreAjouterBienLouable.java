@@ -47,6 +47,7 @@ public class FenetreAjouterBienLouable extends JFrame {
 	 * Create the frame.
 	 */
 	public FenetreAjouterBienLouable() {
+		setResizable(false);
 		this.gestionClic = new GestionFenetreAjouterBienLouable(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, -17, 450, 500);

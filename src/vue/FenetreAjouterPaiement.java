@@ -50,6 +50,7 @@ public class FenetreAjouterPaiement extends JInternalFrame {
      * Create the frame.
      */
     public FenetreAjouterPaiement() {
+    	setResizable(false);
     	this.gestionClic = new GestionFenetreAjouterPaiement(this);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 450, 500);

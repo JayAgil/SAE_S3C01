@@ -46,6 +46,7 @@ public class FenetreAjouterBatiment extends JInternalFrame {
      * Create the frame.
      */
     public FenetreAjouterBatiment() {
+    	setResizable(false);
     	this.gestionClic = new GestionFenetreAjouterBatiment(this); 
         setBounds(100, 100, 600, 400);
         getContentPane().setLayout(new BorderLayout(0, 0));

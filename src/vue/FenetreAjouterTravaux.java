@@ -51,6 +51,7 @@ public class FenetreAjouterTravaux extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public FenetreAjouterTravaux() {
+		setResizable(false);
 		this.gestionClic = new GestionAjouterTravaux(this);
 		setBounds(100, 100, 600, 400);
 		getContentPane().setLayout(new BorderLayout(0, 0));

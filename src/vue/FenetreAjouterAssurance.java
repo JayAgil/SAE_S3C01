@@ -47,6 +47,7 @@ public class FenetreAjouterAssurance extends JFrame {
 	 * Create the frame.
 	 */
 	public FenetreAjouterAssurance() {
+		setResizable(false);
 		this.gestionClic = new GestionFenetreAjouterAssurance(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 500);

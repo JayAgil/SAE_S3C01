@@ -61,6 +61,7 @@ public class FenetreAjouterLocataire extends JInternalFrame {
 	}
 
 	public FenetreAjouterLocataire() {
+		setResizable(false);
 		GestionFenetreAjouterLocataire gestionClic = new GestionFenetreAjouterLocataire(this);
 		setClosable(true);
 		setIconifiable(true);

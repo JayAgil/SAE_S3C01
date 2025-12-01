@@ -50,6 +50,7 @@ public class FenetreAjouterCharge extends JInternalFrame implements ActionListen
     }
 
     public FenetreAjouterCharge() {
+    	setResizable(false);
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
