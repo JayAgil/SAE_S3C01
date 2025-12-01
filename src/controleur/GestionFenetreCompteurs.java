@@ -27,6 +27,9 @@ public class GestionFenetreCompteurs extends GestionHeaderEtFooter implements Ac
     }
 
     @Override
-    protected void gererMenuSpecifique(String texte) {
+    protected void gererBoutonRetour(String texte) {
+    	fenetre.dispose();
+    	FenetrePrincipale fp = new FenetrePrincipale();
+    	fp.setVisible(true);
     }
 }

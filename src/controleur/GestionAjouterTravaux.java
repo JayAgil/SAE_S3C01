@@ -55,8 +55,6 @@ public class GestionAjouterTravaux implements ActionListener {
 			this.fenetreAjouterTravaux.dispose();
 		case "Retour" :
 			this.fenetreAjouterTravaux.dispose();
-			FenetreTravaux fenetreTravaux = new FenetreTravaux();
-			fenetreTravaux.setVisible(true);
 			break;
 		}
 	}

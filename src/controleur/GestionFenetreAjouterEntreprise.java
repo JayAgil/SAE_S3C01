@@ -24,7 +24,10 @@ public class GestionFenetreAjouterEntreprise implements ActionListener {
         case "Annuler":
         	fenetre.dispose();
         	break;
-        }		
+        case "Retour":
+        	fenetre.dispose();
+        	break;
+        }
 	} 
 
 }

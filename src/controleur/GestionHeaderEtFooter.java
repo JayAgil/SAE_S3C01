@@ -21,6 +21,7 @@ public abstract class GestionHeaderEtFooter implements ActionListener {
         if (src instanceof JButton btn) {
             gererBoutonCommun(btn.getText());
             gererBoutonSpecifique(btn.getText());
+            gererBoutonRetour(btn.getText());
         }
         if (src instanceof JMenuItem item) {
             String texte = item.getText();
@@ -95,11 +96,14 @@ public abstract class GestionHeaderEtFooter implements ActionListener {
             break;
         }
     }
-
-    protected void gererBoutonCommun(String texte) {
+    
+    protected void gererBoutonRetour(String texte) {
 	    if ("Retour".equals(texte)) {
 	        fenetre.dispose();
 	    }
+    }
+
+    protected void gererBoutonCommun(String texte) {
     }
     protected void gererMenuSpecifique(String texte) {}
     protected void gererBoutonSpecifique(String texte) {}

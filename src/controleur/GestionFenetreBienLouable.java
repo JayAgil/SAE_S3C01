@@ -46,4 +46,13 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
                 break;
         }
     }
+    
+    @Override
+    protected void gererBoutonRetour(String texte) {
+        if ("Retour".equals(texte)) {
+            fenetre.dispose();
+            FenetrePrincipale fp = new FenetrePrincipale();
+            fp.setVisible(true);
+        }
+    }
 }
