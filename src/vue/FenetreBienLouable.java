@@ -58,6 +58,7 @@ public class FenetreBienLouable extends JFrame {
 	 * Create the frame.
 	 */
 	public FenetreBienLouable() {
+		setResizable(false);
     	setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.gestionClicBienLouable = new GestionFenetreBienLouable(this);
 		JMenuBar menuBar = new JMenuBar();
@@ -188,7 +189,7 @@ public class FenetreBienLouable extends JFrame {
         panel_3.setLayout(null);
         
         JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setBounds(0, 0, 1170, 400);
+        scrollPane.setBounds(0, 0, 1528, 400);
         panel_3.add(scrollPane);
         
         table = new JTable();

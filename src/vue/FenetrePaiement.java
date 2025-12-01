@@ -130,7 +130,7 @@ public class FenetrePaiement extends JFrame {
         JLabel lblValDate = new JLabel("ValDate");
         panel_1.add(lblValDate);
         
-        Component horizontalStrut = Box.createHorizontalStrut(210);
+        Component horizontalStrut = Box.createHorizontalStrut(600);
         panel_1.add(horizontalStrut);
         
         JPanel panel_2 = new JPanel();
@@ -146,7 +146,7 @@ public class FenetrePaiement extends JFrame {
         JLabel lblValPaiement = new JLabel("euro");
         panel_5.add(lblValPaiement);
         
-        Component horizontalStrut_1 = Box.createHorizontalStrut(210);
+        Component horizontalStrut_1 = Box.createHorizontalStrut(600);
         panel_5.add(horizontalStrut_1);
         
         JPanel panelButtons = new JPanel();
