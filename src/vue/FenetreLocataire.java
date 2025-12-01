@@ -237,6 +237,7 @@ public class FenetreLocataire extends JFrame {
         panel_3.add(lblNom, gbc_lblNom);
 
         textFieldNom = new JTextField();
+        textFieldNom.setEditable(false);
         GridBagConstraints gbc_textFieldNom = new GridBagConstraints();
         gbc_textFieldNom.fill = GridBagConstraints.HORIZONTAL;
         gbc_textFieldNom.insets = new Insets(0, 0, 5, 0);
@@ -257,6 +258,7 @@ public class FenetreLocataire extends JFrame {
         panel_3.add(lblPrenom, gbc_lblPrenom);
 
         textFieldPrenom = new JTextField();
+        textFieldPrenom.setEditable(false);
         GridBagConstraints gbc_textFieldPrenom = new GridBagConstraints();
         gbc_textFieldPrenom.fill = GridBagConstraints.HORIZONTAL;
         gbc_textFieldPrenom.insets = new Insets(0, 0, 5, 0);
@@ -277,6 +279,7 @@ public class FenetreLocataire extends JFrame {
         panel_3.add(lblAdresse, gbc_lblAdresse);
 
         textField = new JTextField();
+        textField.setEditable(false);
         GridBagConstraints gbc_textField = new GridBagConstraints();
         gbc_textField.fill = GridBagConstraints.HORIZONTAL;
         gbc_textField.insets = new Insets(0, 0, 5, 0);
@@ -298,6 +301,7 @@ public class FenetreLocataire extends JFrame {
         panel_3.add(lblTel, gbc_lblTel);
 
         textFieldTel = new JTextField();
+        textFieldTel.setEditable(false);
         GridBagConstraints gbc_textFieldTel = new GridBagConstraints();
         gbc_textFieldTel.fill = GridBagConstraints.HORIZONTAL;
         gbc_textFieldTel.insets = new Insets(0, 0, 5, 0);
@@ -318,6 +322,7 @@ public class FenetreLocataire extends JFrame {
         panel_3.add(lblEmail, gbc_lblEmail);
 
         textFieldEmail = new JTextField();
+        textFieldEmail.setEditable(false);
         GridBagConstraints gbc_textFieldEmail = new GridBagConstraints();
         gbc_textFieldEmail.fill = GridBagConstraints.HORIZONTAL;
         gbc_textFieldEmail.insets = new Insets(0, 0, 5, 0);
@@ -338,6 +343,7 @@ public class FenetreLocataire extends JFrame {
         panel_3.add(lblDateNaissance, gbc_lblDateNaissance);
 
         textFieldDateNaissance = new JTextField();
+        textFieldDateNaissance.setEditable(false);
         GridBagConstraints gbc_textFieldDateNaissance = new GridBagConstraints();
         gbc_textFieldDateNaissance.fill = GridBagConstraints.HORIZONTAL;
         gbc_textFieldDateNaissance.insets = insets;
@@ -358,6 +364,7 @@ public class FenetreLocataire extends JFrame {
         panel_3.add(lblLieuNaissance, gbc_lblLieuNaissance);
 
         textFieldLieuNaissance = new JTextField();
+        textFieldLieuNaissance.setEditable(false);
         GridBagConstraints gbc_textFieldLieuNaissance = new GridBagConstraints();
         gbc_textFieldLieuNaissance.fill = GridBagConstraints.HORIZONTAL;
         gbc_textFieldLieuNaissance.insets = insets;
@@ -378,6 +385,7 @@ public class FenetreLocataire extends JFrame {
         panel_3.add(lblSalaire, gbc_lblSalaire);
 
         textFieldSalaire = new JTextField();
+        textFieldSalaire.setEditable(false);
         GridBagConstraints gbc_textFieldSalaire = new GridBagConstraints();
         gbc_textFieldSalaire.fill = GridBagConstraints.HORIZONTAL;
         gbc_textFieldSalaire.insets = insets;
@@ -398,6 +406,7 @@ public class FenetreLocataire extends JFrame {
         panel_3.add(lblProfession, gbc_lblProfession);
 
         textFieldProfession = new JTextField();
+        textFieldProfession.setEditable(false);
         GridBagConstraints gbc_textFieldProfession = new GridBagConstraints();
         gbc_textFieldProfession.fill = GridBagConstraints.HORIZONTAL;
         gbc_textFieldProfession.insets = insets;
@@ -418,6 +427,7 @@ public class FenetreLocataire extends JFrame {
         panel_3.add(lblSituationFamiliale, gbc_lblSituationFamiliale);
 
         textFieldSituationFamiliale = new JTextField();
+        textFieldSituationFamiliale.setEditable(false);
         GridBagConstraints gbc_textFieldSituationFamiliale = new GridBagConstraints();
         gbc_textFieldSituationFamiliale.fill = GridBagConstraints.HORIZONTAL;
         gbc_textFieldSituationFamiliale.insets = insets;
