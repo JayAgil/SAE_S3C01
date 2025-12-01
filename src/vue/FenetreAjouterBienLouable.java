@@ -7,7 +7,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import controleur.GestionFenetreAjouterAssurance;
 import controleur.GestionFenetreAjouterBienLouable;
 
 import javax.swing.JLabel;
