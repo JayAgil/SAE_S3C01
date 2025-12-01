@@ -14,12 +14,15 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import controleur.GestionFenetreAjouterCharge;
+
 import java.awt.Component;
 import javax.swing.Box;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class FenetreAjouterCharge extends JInternalFrame implements ActionListener {
+public class FenetreAjouterCharge extends JInternalFrame {
 
     private static final long serialVersionUID = 1L;
 
@@ -27,6 +30,7 @@ public class FenetreAjouterCharge extends JInternalFrame implements ActionListen
     private JTextField txtMontant;
     private JTextField txtPourcentage;
     private JTextField txtQuotite;
+    private GestionFenetreAjouterCharge gestionClic;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
@@ -50,6 +54,7 @@ public class FenetreAjouterCharge extends JInternalFrame implements ActionListen
     }
 
     public FenetreAjouterCharge() {
+    	gestionClic = new GestionFenetreAjouterCharge(this);
     	setResizable(false);
         setClosable(true);
         setIconifiable(true);
@@ -159,13 +164,13 @@ public class FenetreAjouterCharge extends JInternalFrame implements ActionListen
         JPanel panelFooter = new JPanel();
 
         JButton btnRetour = new JButton("Retour");
-        btnRetour.addActionListener(this);
+        btnRetour.addActionListener(this.gestionClic);
 
         JButton btnAnnuler = new JButton("Annuler");
-        btnAnnuler.addActionListener(this);
+        btnAnnuler.addActionListener(this.gestionClic);
 
         JButton btnAjouter = new JButton("Ajouter");
-        btnAjouter.addActionListener(this);
+        btnAjouter.addActionListener(this.gestionClic);
 
         panelFooter.add(btnRetour);
         panelFooter.add(btnAnnuler);
@@ -174,8 +179,4 @@ public class FenetreAjouterCharge extends JInternalFrame implements ActionListen
         getContentPane().add(panelFooter, BorderLayout.SOUTH);
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        
-    }
 }

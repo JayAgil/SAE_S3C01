@@ -8,8 +8,6 @@ import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.DefaultComboBoxModel;
@@ -62,7 +60,7 @@ public class FenetrePrincipale extends JFrame {
      * Create the frame.
      */
     public FenetrePrincipale() {
-        this.gestionClic = new GestionFenetrePrincipale(this);
+        gestionClic = new GestionFenetrePrincipale(this);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         contentPane = new JPanel();
         setContentPane(contentPane);
@@ -203,6 +201,7 @@ public class FenetrePrincipale extends JFrame {
         panelCenterCenter.add(scrollPane, BorderLayout.CENTER);
 
         table = new JTable();
+        table.addMouseListener(this.gestionClic);
         //getTable().addMouseListener(this);
         getTable().setModel(new DefaultTableModel(
             new Object[][] { { null, null, null, null },
@@ -250,11 +249,6 @@ public class FenetrePrincipale extends JFrame {
         btnAjouterBatiment.addActionListener(this.gestionClic);
         btnAjouterBatiment.setFont(new Font("Tahoma", Font.BOLD, 10));
         panelCenterNorth.add(btnAjouterBatiment);
-
-        JButton btnSupprimerBatiment = new JButton("Supprimer");
-        btnSupprimerBatiment.setFont(new Font("Tahoma", Font.BOLD, 10));
-        btnSupprimerBatiment.addActionListener(this.gestionClic);
-        panelCenterNorth.add(btnSupprimerBatiment);
 
         JPanel panelMenuBar = new JPanel();
         contentPane.add(panelMenuBar, BorderLayout.NORTH);
@@ -362,30 +356,6 @@ public class FenetrePrincipale extends JFrame {
         this.setLocationRelativeTo(null);
       
     }
-
-    public void actionPerformed(ActionEvent arg) {
-        gestionClic.actionPerformed(arg);
-    }
-
-    public void mouseClicked(MouseEvent arg) {
-        gestionClic.mouseClicked(arg);
-    }
-
-    /*@Override
-    public void mouseEntered(MouseEvent arg) {}
-    @Override
-    public void mouseExited(MouseEvent arg) {}
-    @Override
-    public void mousePressed(MouseEvent arg) {}
-    @Override
-    public void mouseReleased(MouseEvent arg) {}
-    public void mouseEntered(MouseEvent arg0) {}
-    @Override
-    public void mouseExited(MouseEvent arg0) {}
-    @Override
-    public void mousePressed(MouseEvent arg0) {}
-    @Override
-    public void mouseReleased(MouseEvent arg0) {}*/
 
     public JTable getTable() {
         return table;

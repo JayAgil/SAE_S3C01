@@ -2,9 +2,10 @@ package controleur;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JMenuItem;
 
 import vue.FenetreAjouterBatiment;
@@ -21,7 +22,7 @@ import vue.FenetrePaiement;
 import vue.FenetrePrincipale;
 import vue.FenetreTravaux;
 
-public class GestionFenetrePrincipale implements ActionListener {
+public class GestionFenetrePrincipale implements ActionListener, MouseListener {
 
     private FenetrePrincipale fenetre;
 
@@ -137,8 +138,9 @@ public class GestionFenetrePrincipale implements ActionListener {
 		}
     }
 
-    public void mouseClicked(java.awt.event.MouseEvent e) {
+    public void mouseClicked(MouseEvent e) {
         if (e.getClickCount() == 2) {
+        	fenetre.dispose();
             int row = fenetre.getTable().getSelectedRow();
             if (row != -1) {
                 String contrat = (String) fenetre.getTable().getValueAt(row, 0);
@@ -151,4 +153,28 @@ public class GestionFenetrePrincipale implements ActionListener {
             }
         }
     }
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 }

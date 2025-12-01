@@ -14,14 +14,15 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import controleur.GestionFenetreAjouterCompteur;
+
 import java.awt.Component;
 import javax.swing.Box;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Color;
 
-public class FenetreAjouterCompteur extends JInternalFrame implements ActionListener {
+public class FenetreAjouterCompteur extends JInternalFrame {
 
 	private static final long serialVersionUID = 1L;
 
@@ -30,6 +31,7 @@ public class FenetreAjouterCompteur extends JInternalFrame implements ActionList
 	private JTextField txtDate;
 	private JTextField txtTotal;
 	private JTextField txtD;
+	private GestionFenetreAjouterCompteur gestionClic;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(() -> {
@@ -54,6 +56,7 @@ public class FenetreAjouterCompteur extends JInternalFrame implements ActionList
 	}
 
 	public FenetreAjouterCompteur() {
+		gestionClic = new GestionFenetreAjouterCompteur(this);
 		setResizable(false);
 		setClosable(true);
 		setIconifiable(true);
@@ -217,13 +220,13 @@ public class FenetreAjouterCompteur extends JInternalFrame implements ActionList
 		JPanel panelFooter = new JPanel();
 
 		JButton btnRetour = new JButton("Retour");
-		btnRetour.addActionListener(this);
+		btnRetour.addActionListener(this.gestionClic);
 
 		JButton btnAnnuler = new JButton("Annuler");
-		btnAnnuler.addActionListener(this);
+		btnAnnuler.addActionListener(this.gestionClic);
 
 		JButton btnAjouter = new JButton("Ajouter");
-		btnAjouter.addActionListener(this);
+		btnAjouter.addActionListener(this.gestionClic);
 
 		panelFooter.add(btnRetour);
 		panelFooter.add(btnAnnuler);
@@ -232,8 +235,5 @@ public class FenetreAjouterCompteur extends JInternalFrame implements ActionList
 		getContentPane().add(panelFooter, BorderLayout.SOUTH);
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-
-	}
+	
 }
