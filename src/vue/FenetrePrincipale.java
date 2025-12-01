@@ -354,9 +354,7 @@ public class FenetrePrincipale extends JFrame {
 
         this.pack();
         this.setLocationRelativeTo(null);
-        
-        
-      
+ 
     }
 
     public JTable getTable() {
