@@ -16,13 +16,11 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter {
         switch (texte) {
             case "Ajouter":
                 break;
-
             case "Annuler":
                 fenetre.dispose();
                 break;
         }
     }
-
     @Override
     protected void gererMenuSpecifique(String texte) {
     }
