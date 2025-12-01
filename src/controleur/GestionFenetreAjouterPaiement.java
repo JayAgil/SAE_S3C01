@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import vue.FenetreAjouterPaiement;
-import vue.FenetrePaiement;
 
 public class GestionFenetreAjouterPaiement implements ActionListener {
 
@@ -21,10 +20,10 @@ public class GestionFenetreAjouterPaiement implements ActionListener {
         switch (((JButton) e.getSource()).getText()) {
         case "Retour":
             fenetre.dispose();
-            FenetrePaiement fenPaiement = new FenetrePaiement();
-            fenPaiement.setVisible(true);
             break;
         case "Ajouter":
+        	break;
+        case "Vider" :
         	break;
         }
     }

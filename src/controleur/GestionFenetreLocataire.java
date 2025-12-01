@@ -30,5 +30,14 @@ public class GestionFenetreLocataire extends GestionHeaderEtFooter implements Ac
                 break;
         }
     }
+    
+    @Override
+    protected void gererBoutonRetour(String texte) {
+        if ("Retour".equals(texte)) {
+            fenetre.dispose();
+            FenetreBienLouable fp = new FenetreBienLouable();
+            fp.setVisible(true);
+        }
+    }
 
 }

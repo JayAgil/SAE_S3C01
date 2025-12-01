@@ -128,7 +128,7 @@ public class FenetreBienLouable extends JFrame {
         mntmAjout.addActionListener(this.gestionClicBienLouable);
         mnPaiement.add(mntmAjout);
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1200, 800);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -191,6 +191,47 @@ public class FenetreBienLouable extends JFrame {
         panel_3.add(scrollPane);
         
         table = new JTable();
+        table.addMouseListener(this.gestionClicBienLouable);
+        table.setModel(new DefaultTableModel(
+        	new Object[][] {
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        	},
+        	new String[] {
+        		"ID", "Num\u00E9ro fiscale", "Adresse", "Surface habitable", "Nombre pi\u00E8ces", "Type bien louable"
+        	}
+        ) {
+        	Class[] columnTypes = new Class[] {
+        		String.class, String.class, String.class, Float.class, Integer.class, String.class
+        	};
+        	public Class getColumnClass(int columnIndex) {
+        		return columnTypes[columnIndex];
+        	}
+        	boolean[] columnEditables = new boolean[] {
+        		false, false, false, false, false, false
+        	};
+        	public boolean isCellEditable(int row, int column) {
+        		return columnEditables[column];
+        	}
+        });
+        table.getColumnModel().getColumn(1).setPreferredWidth(97);
+        table.getColumnModel().getColumn(2).setPreferredWidth(101);
+        table.getColumnModel().getColumn(3).setPreferredWidth(102);
+        table.getColumnModel().getColumn(4).setPreferredWidth(85);
+        table.getColumnModel().getColumn(5).setPreferredWidth(95);
         scrollPane.setViewportView(table);
         btnCompteur.addActionListener(gestionClicBienLouable);
         
@@ -206,4 +247,5 @@ public class FenetreBienLouable extends JFrame {
 	public JTable getTable() {
 		return table;
 	}
+	
 }

@@ -4,9 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JTextField;
 
 import vue.FenetreAjouterLocataire;
-import vue.FenetreLocataire;
 
 public class GestionFenetreAjouterLocataire implements ActionListener {
 
@@ -23,13 +23,18 @@ public class GestionFenetreAjouterLocataire implements ActionListener {
 		case "Ajouter":
             // Mettre à jour la base de données
             break;
-        case "Annuler":
+        case "Vider":
+        	for (JTextField field : fenetre.getAllLocataireTextFields()) {
+			    field.setText(""); 
+			}
+        	break;
+        case "Retour" :
         	fenetre.dispose();
-        	FenetreLocataire fenLocataire = new FenetreLocataire();
-        	fenLocataire.setVisible(true);
         	break;
         }		
 	}
+	
+	
 	
 	
 }

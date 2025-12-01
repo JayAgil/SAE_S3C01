@@ -16,6 +16,7 @@ import vue.FenetreCharges;
 import vue.FenetreCompteurs;
 import vue.FenetreContratLocation;
 import vue.FenetreDiagnostic;
+import vue.FenetreFacture;
 import vue.FenetreLocataire;
 import vue.FenetreLogin;
 import vue.FenetrePaiement;
@@ -47,6 +48,9 @@ public class GestionFenetreTravaux implements ActionListener {
 				fenetreAjouterEntreprise.setVisible(true);
 				break;
 			case "Générer facture" :
+				FenetreFacture fen = new FenetreFacture();
+				fenetreTravaux.getLayeredPane().add(fen);
+				fen.setVisible(true);
 				break;
 			case "Retour" :
 				this.fenetreTravaux.dispose();

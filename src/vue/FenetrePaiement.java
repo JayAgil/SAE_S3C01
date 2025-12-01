@@ -157,7 +157,7 @@ public class FenetrePaiement extends JFrame {
         panelButtons.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         panelButtons.add(btnAjouterPaiement);
         
-        JButton btnGenFac = new JButton("Generer facture");
+        JButton btnGenFac = new JButton("Générer facture");
         btnGenFac.addActionListener(this.gestionClic);
         panelButtons.add(btnGenFac);
         

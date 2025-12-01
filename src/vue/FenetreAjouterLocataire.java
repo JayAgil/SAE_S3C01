@@ -40,6 +40,8 @@ public class FenetreAjouterLocataire extends JInternalFrame {
 	private JTextField textFieldGarantAdresse;
 	private JTextField textFieldGarantTel;
 	private JTextField textIdLoc;
+	
+	private GestionFenetreAjouterLocataire gestionClic;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(() -> {
@@ -64,7 +66,7 @@ public class FenetreAjouterLocataire extends JInternalFrame {
 
 	public FenetreAjouterLocataire() {
 		setResizable(false);
-		GestionFenetreAjouterLocataire gestionClic = new GestionFenetreAjouterLocataire(this);
+		gestionClic = new GestionFenetreAjouterLocataire(this);
 		setClosable(true);
 		setIconifiable(true);
 		setMaximizable(true);
@@ -202,14 +204,20 @@ public class FenetreAjouterLocataire extends JInternalFrame {
 		textFieldGarantTel = new JTextField();
 		textFieldGarantTel.setBounds(296, 341, 105, 25);
 		contentPane.add(textFieldGarantTel);
+		
 		JButton btnAjouter = new JButton("Ajouter");
-		btnAjouter.addActionListener(gestionClic);
-		btnAjouter.setBounds(110, 380, 98, 30);
+		btnAjouter.addActionListener(this.gestionClic);
+		btnAjouter.setBounds(85, 402, 98, 30);
 		contentPane.add(btnAjouter);
 
-		JButton btnRetour = new JButton("Annuler");
-		btnRetour.addActionListener(gestionClic);
-		btnRetour.setBounds(237, 380, 98, 30);
+		JButton btnVider = new JButton("Vider");
+		btnVider.addActionListener(this.gestionClic);
+		btnVider.setBounds(200, 402, 98, 30);
+		contentPane.add(btnVider);
+		
+		JButton btnRetour = new JButton("Retour");
+		btnRetour.addActionListener(this.gestionClic);
+		btnRetour.setBounds(312, 406, 89, 23);
 		contentPane.add(btnRetour);
 		
 		textIdLoc = new JTextField();
@@ -219,6 +227,8 @@ public class FenetreAjouterLocataire extends JInternalFrame {
 		JLabel lblIdLoc = new JLabel("Id Locataire : ");
 		lblIdLoc.setBounds(23, 241, 120, 25);
 		contentPane.add(lblIdLoc);
+		
+		
 	}
 	
 	public List<JTextField> getAllLocataireTextFields() {
@@ -245,4 +255,5 @@ public class FenetreAjouterLocataire extends JInternalFrame {
 	    
 	    return fields;
 	}
+	
 }

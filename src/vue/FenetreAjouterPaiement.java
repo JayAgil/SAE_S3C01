@@ -86,9 +86,9 @@ public class FenetreAjouterPaiement extends JInternalFrame {
         btnAjouter.addActionListener(this.gestionClic);
         panel_2.add(btnAjouter);
         
-        JButton btnAnnuler = new JButton("Annuler");
-        btnAnnuler.addActionListener(this.gestionClic);
-        panel_2.add(btnAnnuler);
+        JButton btnVider = new JButton("Vider");
+        btnVider.addActionListener(this.gestionClic);
+        panel_2.add(btnVider);
         panel_2.add(btnRetour);
         
         JPanel panel_3 = new JPanel();
