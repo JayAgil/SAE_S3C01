@@ -54,7 +54,7 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
             fenetre.dispose();
             int row = ((FenetreBienLouable) fenetre).getTable().getSelectedRow();
             if (row != -1) {
-                FenetreLocataire fen = new FenetreLocataire();
+                FenetreLocataire fen = new FenetreLocataire("BienLouable");
                 fen.setVisible(true);
             }
         }

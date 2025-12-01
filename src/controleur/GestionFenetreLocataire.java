@@ -35,8 +35,14 @@ public class GestionFenetreLocataire extends GestionHeaderEtFooter implements Ac
     protected void gererBoutonRetour(String texte) {
         if ("Retour".equals(texte)) {
             fenetre.dispose();
-            FenetreBienLouable fp = new FenetreBienLouable();
-            fp.setVisible(true);
+            if(fenetre.getNomFenAvant() == "Principale") {
+	            FenetrePrincipale fp = new FenetrePrincipale();
+	            fp.setVisible(true);
+            }
+            if(fenetre.getNomFenAvant() == "BienLouable") {
+	            FenetreBienLouable fp = new FenetreBienLouable();
+	            fp.setVisible(true);
+            }
         }
     }
 

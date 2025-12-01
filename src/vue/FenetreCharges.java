@@ -147,38 +147,32 @@ public class FenetreCharges extends JFrame {
         scrollPane.setViewportView(table);
         table.setModel(new DefaultTableModel(
         	new Object[][] {
-        		{null, null, null, null},
-        		{null, null, null, null},
-        		{null, null, null, null},
-        		{null, null, null, null},
-        		{null, null, null, null},
-        		{null, null, null, null},
-        		{null, null, null, null},
-        		{null, null, null, null},
-        		{null, null, null, null},
-        		{null, null, null, null},
-        		{null, null, null, null},
-        		{null, null, null, null},
-        		{null, null, null, null},
-        		{null, null, null, null},
-        		{null, null, null, null},
-        		{null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
+        		{null, null, null, null, null, null},
         	},
         	new String[] {
-        		"Types charges", "Montant", "Pourcentage", "Quotite"
+        		"Types charges", "Montant Total", "Pourcentage", "Quotite", "Montant ", "Mois"
         	}
         ) {
         	Class[] columnTypes = new Class[] {
-        		String.class, Float.class, Float.class, String.class
+        		String.class, Float.class, Float.class, String.class, Object.class, Object.class
         	};
         	public Class getColumnClass(int columnIndex) {
         		return columnTypes[columnIndex];
-        	}
-        	boolean[] columnEditables = new boolean[] {
-        		false, false, false, false
-        	};
-        	public boolean isCellEditable(int row, int column) {
-        		return columnEditables[column];
         	}
         });
         table.getColumnModel().getColumn(0).setPreferredWidth(92);

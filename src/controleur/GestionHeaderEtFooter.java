@@ -77,7 +77,7 @@ public abstract class GestionHeaderEtFooter implements ActionListener {
             break;
 
         case "Locataires":
-            new FenetreLocataire().setVisible(true);
+            new FenetreLocataire("Principal").setVisible(true);
             fenetre.dispose();
             break;
 

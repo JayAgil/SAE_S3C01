@@ -36,7 +36,7 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter implements Act
     protected void gererBoutonRetour(String texte) {
         if ("Retour".equals(texte)) {
             fenetre.dispose();
-            FenetreLocataire fen = new FenetreLocataire();
+            FenetreLocataire fen = new FenetreLocataire("Paiement");
             fen.setVisible(true);
         }
     }
