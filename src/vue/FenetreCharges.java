@@ -58,6 +58,7 @@ public class FenetreCharges extends JFrame {
 	 * Create the frame.
 	 */
 	public FenetreCharges() {
+    	setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.gestionClic = new GestionFenetreCharges(this);
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBackground(new Color(214, 214, 214));

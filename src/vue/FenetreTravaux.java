@@ -49,6 +49,7 @@ public class FenetreTravaux extends JFrame {
 	 * Create the frame.
 	 */
 	public FenetreTravaux() {
+    	setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.gestionClic = new GestionFenetreTravaux(this);
 		setBounds(100, 100, 1200, 800);
 		getContentPane().setLayout(new BorderLayout(0, 0));

@@ -69,6 +69,7 @@ public class FenetreLocataire extends JFrame {
      * Create the frame.
      */
     public FenetreLocataire() {
+    	setExtendedState(JFrame.MAXIMIZED_BOTH);
     	this.gestionClic = new GestionFenetreLocataire(this);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 800);

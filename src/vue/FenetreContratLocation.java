@@ -49,6 +49,7 @@ public class FenetreContratLocation extends JFrame {
 	 * Create the frame.
 	 */
 	public FenetreContratLocation() {
+    	setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.gestionClicContratLocation = new GestionFenetreContratLocation(this);
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBackground(new Color(214, 214, 214));

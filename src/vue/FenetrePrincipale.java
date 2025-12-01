@@ -81,6 +81,7 @@ public class FenetrePrincipale extends JFrame {
      * Create the frame.
      */
     public FenetrePrincipale() {
+    	setExtendedState(JFrame.MAXIMIZED_BOTH);
         gestionClic = new GestionFenetrePrincipale(this);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         contentPane = new JPanel();

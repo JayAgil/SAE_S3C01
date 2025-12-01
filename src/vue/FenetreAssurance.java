@@ -57,6 +57,7 @@ public class FenetreAssurance extends JFrame {
      * Create the frame.
      */
     public FenetreAssurance() {
+    	setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.gestionClic = new GestionFenetreAssurance(this);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 600, 400);
