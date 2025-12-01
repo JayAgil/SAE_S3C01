@@ -37,53 +37,53 @@ public abstract class GestionHeaderEtFooter implements ActionListener {
         switch (texte) {
 
         case "Déconnecter":
-            fenetre.dispose();
             new FenetreLogin().setVisible(true);
+            fenetre.dispose();
             break;
 
         case "Compteurs bâtiment":
-            fenetre.dispose();
             new FenetreCompteurs().setVisible(true);
+            fenetre.dispose();
             break;
 
         case "Charges bâtiment":
-            fenetre.dispose();
             new FenetreCharges().setVisible(true);
+            fenetre.dispose();
             break;
 
         case "Contrat location":
-            fenetre.dispose();
             new FenetreContratLocation().setVisible(true);
+            fenetre.dispose();
             break;
 
         case "Compteurs bien louable":
-            fenetre.dispose();
             new FenetreCompteurs().setVisible(true);
+            fenetre.dispose();
             break;
 
         case "Travaux":
-            fenetre.dispose();
             new FenetreTravaux().setVisible(true);
+            fenetre.dispose();
             break;
 
         case "Charges bien louable":
-            fenetre.dispose();
             new FenetreCharges().setVisible(true);
+            fenetre.dispose();
             break;
 
         case "Diagnostics":
-            fenetre.dispose();
             new FenetreDiagnostic().setVisible(true);
+            fenetre.dispose();
             break;
 
         case "Locataires":
-            fenetre.dispose();
             new FenetreLocataire().setVisible(true);
+            fenetre.dispose();
             break;
 
         case "Historique de paiement":
-            fenetre.dispose();
             new FenetrePaiement().setVisible(true);
+            fenetre.dispose();
             break;
         case "Ajouter bâtiment":
             fenetre.getLayeredPane().add(new FenetreAjouterBatiment()).setVisible(true);

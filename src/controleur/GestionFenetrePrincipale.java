@@ -55,14 +55,30 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (e.getClickCount() == 2 && e.getSource() instanceof JTable) {
-            fenetre.dispose();
-            int row = fenetre.getTable().getSelectedRow();
-            if (row != -1) {
-                FenetreBienLouable fen = new FenetreBienLouable();
-                fen.setVisible(true);
-            }
-        }
+    	if (e.getClickCount() == 2 && e.getSource() instanceof JTable) {
+    	    JTable table = (JTable) e.getSource();
+    	    int row = table.rowAtPoint(e.getPoint());
+    	    int column = table.columnAtPoint(e.getPoint()); 
+    	    int targetColumn = 2;
+    	    if (row != -1 && column == targetColumn) {
+    	        fenetre.dispose();
+    	        FenetreBienLouable fen = new FenetreBienLouable();
+    	        fen.setVisible(true);
+    	    }
+    	}
+    	
+    	if (e.getClickCount() == 2 && e.getSource() instanceof JTable) {
+    	    JTable table = (JTable) e.getSource();
+    	    int row = table.rowAtPoint(e.getPoint());
+    	    int column = table.columnAtPoint(e.getPoint()); 
+    	    int targetColumn = 0;
+    	    if (row != -1 && column == targetColumn) {
+    	        fenetre.dispose();
+    	        FenetreContratLocation fen = new FenetreContratLocation();
+    	        fen.setVisible(true);
+    	    }
+    	}
+
         if(e.getSource() == fenetre.getPanelRevenu()) {
         	FenetreContratLocation fCL = new FenetreContratLocation();
         	fCL.setVisible(true);

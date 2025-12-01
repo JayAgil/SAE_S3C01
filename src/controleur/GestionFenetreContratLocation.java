@@ -33,7 +33,7 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
     protected void gererBoutonRetour(String texte) {
         if ("Retour".equals(texte)) {
             fenetre.dispose();
-            FenetreBienLouable fp = new FenetreBienLouable();
+            FenetrePrincipale fp = new FenetrePrincipale();
             fp.setVisible(true);
         }
     }

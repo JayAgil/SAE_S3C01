@@ -53,9 +53,9 @@ public class GestionFenetreTravaux implements ActionListener {
 				fen.setVisible(true);
 				break;
 			case "Retour" :
-				this.fenetreTravaux.dispose();
 				FenetreBienLouable fenetreBienLouable = new FenetreBienLouable();
 				fenetreBienLouable.setVisible(true);
+				this.fenetreTravaux.dispose();
 				break;
 	        }
 	     }
