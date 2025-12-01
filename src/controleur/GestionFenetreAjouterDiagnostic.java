@@ -11,7 +11,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import vue.FenetreAjouterDiagnostic;
 import vue.FenetreBienLouable;
-import vue.FenetrePrincipale;
 
 public class GestionFenetreAjouterDiagnostic implements ActionListener {
 

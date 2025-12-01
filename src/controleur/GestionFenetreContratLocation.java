@@ -32,12 +32,8 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
     @Override
     protected void gererBoutonRetour(String texte) {
         if ("Retour".equals(texte)) {
-<<<<<<< Updated upstream
             fenetre.dispose();
             FenetrePrincipale fp = new FenetrePrincipale();
-=======
-        	FenetreBienLouable fp = new FenetreBienLouable();
->>>>>>> Stashed changes
             fp.setVisible(true);
             fenetre.dispose();      
         }

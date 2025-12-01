@@ -1,14 +1,11 @@
 package vue;
 
 import java.awt.EventQueue;
-import javax.swing.BorderFactory;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
 import javax.swing.JTextField;
 
 import controleur.GestionAjouterTravaux;
@@ -145,19 +142,11 @@ public class FenetreAjouterTravaux extends JInternalFrame {
         panel.add(lblDatePaiement);
         
         JLabel lblDesignationTravaux = new JLabel("Désignation travaux :");
-<<<<<<< Updated upstream
         lblDesignationTravaux.setBounds(318, 76, 120, 14);
         panel.add(lblDesignationTravaux);
         
         JLabel lblEntreprise = new JLabel("Entreprise :");
         lblEntreprise.setBounds(318, 107, 120, 14);
-=======
-        lblDesignationTravaux.setBounds(94, 292, 104, 14);
-        panel.add(lblDesignationTravaux);
-        
-        JLabel lblEntreprise = new JLabel("Entreprise :");
-        lblEntreprise.setBounds(94, 328, 86, 14);
->>>>>>> Stashed changes
         panel.add(lblEntreprise);
         
         comboBoxEntreprise = new JComboBox();
