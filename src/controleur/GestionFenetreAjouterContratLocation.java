@@ -1,14 +1,14 @@
 package controleur;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.List;
 
-import javax.swing.JButton;
+import javax.swing.JInternalFrame;
 import javax.swing.JTextField;
 
 import vue.FenetreAjouterContratLocation;
 
-public class GestionFenetreAjouterContratLocation implements ActionListener {
+public class GestionFenetreAjouterContratLocation extends GestionButtonFenetreAjouter {
 
     private FenetreAjouterContratLocation fenetre;
 
@@ -17,19 +17,17 @@ public class GestionFenetreAjouterContratLocation implements ActionListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        switch (((JButton) e.getSource()).getText()) {
-        case "Ajouter":
-            break;
-        case "Vider":
-			for (JTextField field : fenetre.getAllContratTextFields()) {
-			    field.setText(""); 
-			}
-            break;   
-        case "Retour" :
-        	fenetre.dispose();
-        	break;
-        }
+    protected List<JTextField> getTextFields() {
+        return fenetre.getAllContratTextFields();
     }
-
+    
+    @Override
+    protected JInternalFrame getFrame() {
+        return fenetre;
+    }
+    
+    @Override
+    protected void GererAction(String buttonText, ActionEvent e) {
+    	
+    }
 }

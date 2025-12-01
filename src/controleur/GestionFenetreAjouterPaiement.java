@@ -1,14 +1,14 @@
 package controleur;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.List;
 
-import javax.swing.JButton;
+import javax.swing.JInternalFrame;
 import javax.swing.JTextField;
 
 import vue.FenetreAjouterPaiement;
 
-public class GestionFenetreAjouterPaiement implements ActionListener {
+public class GestionFenetreAjouterPaiement extends GestionButtonFenetreAjouter {
 
     private FenetreAjouterPaiement fenetre;
 
@@ -17,19 +17,18 @@ public class GestionFenetreAjouterPaiement implements ActionListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        switch (((JButton) e.getSource()).getText()) {
-        case "Retour":
-            fenetre.dispose();
-            break;
-        case "Ajouter":
-        	break;
-        case "Vider" :
-        	for (JTextField field : fenetre.getPaiementTextFields()) {
-			    field.setText(""); 
-			}
-        	break;
-        }
+    protected List<JTextField> getTextFields() {
+        return fenetre.getPaiementTextFields();
+    }
+    
+    @Override
+    protected JInternalFrame getFrame() {
+        return fenetre;
+    }
+    
+    @Override
+    protected void GererAction(String buttonText, ActionEvent e) {
+    	
     }
 
 

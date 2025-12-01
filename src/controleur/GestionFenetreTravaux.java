@@ -4,22 +4,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JMenuItem;
-
-import vue.FenetreAjouterBatiment;
 import vue.FenetreAjouterEntreprise;
-import vue.FenetreAjouterPaiement;
 import vue.FenetreAjouterTravaux;
-import vue.FenetreAssurance;
 import vue.FenetreBienLouable;
-import vue.FenetreCharges;
-import vue.FenetreCompteurs;
-import vue.FenetreContratLocation;
-import vue.FenetreDiagnostic;
 import vue.FenetreFacture;
-import vue.FenetreLocataire;
-import vue.FenetreLogin;
-import vue.FenetrePaiement;
 import vue.FenetreTravaux;
 
 public class GestionFenetreTravaux extends GestionHeaderEtFooter implements ActionListener {

@@ -1,23 +1,38 @@
 package controleur;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
+import javax.swing.JInternalFrame;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import vue.FenetreAjouterDiagnostic;
-import vue.FenetreBienLouable;
 
-public class GestionFenetreAjouterDiagnostic implements ActionListener {
+public class GestionFenetreAjouterDiagnostic extends GestionButtonFenetreAjouter {
 
     private FenetreAjouterDiagnostic fenetre;
 
     public GestionFenetreAjouterDiagnostic(FenetreAjouterDiagnostic fenetre) {
         this.fenetre = fenetre;
+    }
+    
+    @Override
+    protected List<JTextField> getTextFields() {
+        return fenetre.getAllDiagnosticTextFields();
+    }
+    
+    @Override
+    protected JInternalFrame getFrame() {
+        return fenetre;
+    }
+    
+    @Override
+    protected void GererAction(String buttonText, ActionEvent e) {
+    	
     }
 
     @Override
@@ -31,18 +46,6 @@ public class GestionFenetreAjouterDiagnostic implements ActionListener {
                 fenetre.getTextFieldFichier().setText(selectedFile.getAbsolutePath());
             }
             break;
-        case "Ajouter":
-            break;
-        case "Vider":
-			for (JTextField field : fenetre.getAllDiagnosticTextFields()) {
-			    field.setText(""); 
-			}
-            break;     
-        case "Retour" :
-        	fenetre.dispose();
-        	FenetreBienLouable fenBienLouable = new FenetreBienLouable();
-        	fenBienLouable.setVisible(true);
-        	break;
         }
     }
 
