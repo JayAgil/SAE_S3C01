@@ -181,58 +181,18 @@ public class FenetreBienLouable extends JFrame {
         JButton btnContrat= new JButton("Contrat");
         btnContrat.addActionListener(this.gestionClicBienLouable);
         panel.add(btnContrat);
-        btnCompteur.addActionListener(gestionClicBienLouable);
+        
+        JPanel panel_3 = new JPanel();
+        panel_2.add(panel_3, BorderLayout.CENTER);
+        panel_3.setLayout(null);
         
         JScrollPane scrollPane = new JScrollPane();
-        panel_2.add(scrollPane);
+        scrollPane.setBounds(0, 0, 1170, 400);
+        panel_3.add(scrollPane);
         
         table = new JTable();
-        table.addMouseListener(this.gestionClicBienLouable);
-        table.setEnabled(false);
-        scrollPane.setRowHeaderView(table);
-        table.setModel(new DefaultTableModel(
-        	new Object[][] {
-        		{null, null, null, null, null, null},
-        		{null, null, null, null, null, null},
-        		{null, null, null, null, null, null},
-        		{null, null, null, null, null, null},
-        		{null, null, null, null, null, null},
-        		{null, null, null, null, null, null},
-        		{null, null, null, null, null, null},
-        		{null, null, null, null, null, null},
-        		{null, null, null, null, null, null},
-        		{null, null, null, null, null, null},
-        		{null, null, null, null, null, null},
-        		{null, null, null, null, null, null},
-        		{null, null, null, null, null, null},
-        		{null, null, null, null, null, null},
-        		{null, null, null, null, null, null},
-        		{null, null, null, null, null, null},
-        		{null, null, null, null, null, null},
-        		{null, null, null, null, null, null},
-        		{null, null, null, null, null, null},
-        		{null, null, null, null, null, null},
-        		{null, null, null, null, null, null},
-        		{null, null, null, null, null, null},
-        		{null, null, null, null, null, null},
-        		{null, null, null, null, null, null},
-        		{null, null, null, null, null, null},
-        		{null, null, null, null, null, null},
-        		{null, null, null, null, null, null},
-        		{null, null, null, null, null, null},
-        		{null, null, null, null, null, null},
-        	},
-        	new String[] {
-        		"ID", "Num\u00E9ro Fiscale", "Adresse", "Surface habitable", "Nb pi\u00E8ces", "Type de bien"
-        	}
-        ) {
-        	Class[] columnTypes = new Class[] {
-        		String.class, String.class, String.class, Float.class, Integer.class, String.class
-        	};
-        	public Class getColumnClass(int columnIndex) {
-        		return columnTypes[columnIndex];
-        	}
-        });
+        scrollPane.setViewportView(table);
+        btnCompteur.addActionListener(gestionClicBienLouable);
         
         JPanel panel_1 = new JPanel();
         contentPane.add(panel_1, BorderLayout.NORTH);
@@ -240,23 +200,10 @@ public class FenetreBienLouable extends JFrame {
         JLabel lblTitre = new JLabel("Biens louables");
         lblTitre.setFont(new Font("Tahoma", Font.BOLD, 18));
         panel_1.add(lblTitre);
-        table.getColumnModel().getColumn(0).setResizable(false);
-        table.getColumnModel().getColumn(0).setPreferredWidth(40);
-        table.getColumnModel().getColumn(1).setResizable(false);
-        table.getColumnModel().getColumn(1).setPreferredWidth(144);
-        table.getColumnModel().getColumn(2).setResizable(false);
-        table.getColumnModel().getColumn(2).setPreferredWidth(200);
-        table.getColumnModel().getColumn(3).setResizable(false);
-        table.getColumnModel().getColumn(3).setPreferredWidth(100);
-        table.getColumnModel().getColumn(4).setResizable(false);
-        table.getColumnModel().getColumn(4).setPreferredWidth(60);
-        table.getColumnModel().getColumn(5).setResizable(false);
-        table.getColumnModel().getColumn(5).setPreferredWidth(245);
 
 	}
 	
 	public JTable getTable() {
 		return table;
 	}
-
 }
