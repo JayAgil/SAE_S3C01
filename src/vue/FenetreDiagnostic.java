@@ -23,13 +23,15 @@ import java.awt.Font;
 import java.awt.Component;
 import javax.swing.Box;
 import java.awt.Panel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JScrollPane;
 
 public class FenetreDiagnostic extends JFrame {
 
     private static final long serialVersionUID = 1L;
-    private JTextField textFieldDateValide;
-    private JTextField textFieldType;
     private GestionFenetreDiagnostic gestionClic;
+    private JTable table;
 
     /**
      * Launch the application.
@@ -166,75 +168,31 @@ public class FenetreDiagnostic extends JFrame {
         
         JPanel panel_3 = new JPanel();
         panel.add(panel_3, BorderLayout.CENTER);
-        panel_3.setLayout(new BorderLayout(0, 0));
+        panel_3.setLayout(null);
         
-        JPanel panel_4 = new JPanel();
-        panel_3.add(panel_4, BorderLayout.NORTH);
-        panel_4.setLayout(new GridLayout(4, 0, 0, 0));
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setBounds(0, 20, 1185, 160);
+        panel_3.add(scrollPane);
         
-        JPanel panel_5 = new JPanel();
-        panel_4.add(panel_5);
-        panel_5.setLayout(new GridLayout(0, 2, 0, 0));
-        
-        JPanel panel_9 = new JPanel();
-        panel_5.add(panel_9);
-        
-        JLabel lblDateRealise = new JLabel("Date de realisation :");
-        panel_9.add(lblDateRealise);
-        
-        JComboBox comboBoxDateRealise = new JComboBox();
-        panel_9.add(comboBoxDateRealise);
-        
-        Component horizontalStrut_3 = Box.createHorizontalStrut(445);
-        panel_9.add(horizontalStrut_3);
-        
-        JPanel panel_6 = new JPanel();
-        panel_4.add(panel_6);
-        panel_6.setLayout(new GridLayout(0, 2, 0, 0));
-        
-        JPanel panel_10 = new JPanel();
-        panel_6.add(panel_10);
-        
-        JLabel lblDateValide = new JLabel("Date de validite :");
-        panel_10.add(lblDateValide);
-        
-        textFieldDateValide = new JTextField();
-        panel_10.add(textFieldDateValide);
-        textFieldDateValide.setColumns(10);
-        
-        Component horizontalStrut_2 = Box.createHorizontalStrut(407);
-        panel_10.add(horizontalStrut_2);
-        
-        JPanel panel_7 = new JPanel();
-        panel_4.add(panel_7);
-        panel_7.setLayout(new GridLayout(0, 2, 0, 0));
-        
-        Panel panel_11 = new Panel();
-        panel_7.add(panel_11);
-        
-        JLabel lblType = new JLabel("Type de diagnostic : ");
-        panel_11.add(lblType);
-        
-        textFieldType = new JTextField();
-        panel_11.add(textFieldType);
-        textFieldType.setColumns(10);
-        
-        Component horizontalStrut_1 = Box.createHorizontalStrut(390);
-        panel_11.add(horizontalStrut_1);
-        
-        JPanel panel_8 = new JPanel();
-        panel_4.add(panel_8);
-        panel_8.setLayout(new GridLayout(0, 2, 0, 0));
-        
-        JPanel panel_12 = new JPanel();
-        panel_8.add(panel_12);
-        
-        JButton btnObtenir = new JButton("Obtenir");
-        btnObtenir.addActionListener(this.gestionClic);
-        panel_12.add(btnObtenir);
-        
-        Component horizontalStrut = Box.createHorizontalStrut(510);
-        panel_12.add(horizontalStrut);
+        table = new JTable();
+        scrollPane.setViewportView(table);
+        table.setModel(new DefaultTableModel(
+        	new Object[][] {
+        		{null, null, null, null, null},
+        		{null, null, null, null, null},
+        		{null, null, null, null, null},
+        		{null, null, null, null, null},
+        		{null, null, null, null, null},
+        		{null, null, null, null, null},
+        		{null, null, null, null, null},
+        		{null, null, null, null, null},
+        	},
+        	new String[] {
+        		"Type Diagnostics", "Date R\u00E9alisation", "Date Validit\u00E9", "Fichier", "Bien Associ\u00E9"
+        	}
+        ));
+        table.getColumnModel().getColumn(0).setPreferredWidth(96);
+        table.getColumnModel().getColumn(1).setPreferredWidth(96);
 
     }
 }

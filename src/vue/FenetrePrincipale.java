@@ -26,6 +26,8 @@ import javax.swing.table.DefaultTableModel;
 import controleur.GestionFenetrePrincipale;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class FenetrePrincipale extends JFrame {
 
@@ -82,6 +84,9 @@ public class FenetrePrincipale extends JFrame {
         panelNorthCenter.add(horizontalStrut);
 
         JPanel panelRevenu = new JPanel();
+        panelRevenu.addMouseListener(this.gestionClic);
+        FlowLayout flowLayout_2 = (FlowLayout) panelRevenu.getLayout();
+        flowLayout_2.setHgap(15);
         panelRevenu.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Location Cumul\u00E9e", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
         panelRevenu.setFont(new Font("Tahoma", Font.BOLD, 30));
         panelNorthCenter.add(panelRevenu);
@@ -98,6 +103,9 @@ public class FenetrePrincipale extends JFrame {
         panelNorthCenter.add(horizontalStrut_2);
 
         JPanel panelNbLoyePasPaye = new JPanel();
+        panelNbLoyePasPaye.addMouseListener(this.gestionClic);
+        FlowLayout flowLayout_1 = (FlowLayout) panelNbLoyePasPaye.getLayout();
+        flowLayout_1.setHgap(15);
         panelNbLoyePasPaye.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Taux d'occupation", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
         panelNorthCenter.add(panelNbLoyePasPaye);
 
@@ -130,6 +138,9 @@ public class FenetrePrincipale extends JFrame {
         panelNorthCenter_1.add(horizontalStrut_6);
 
         JPanel panelRevenu_1 = new JPanel();
+        panelRevenu_1.addMouseListener(this.gestionClic);
+        FlowLayout flowLayout_3 = (FlowLayout) panelRevenu_1.getLayout();
+        flowLayout_3.setHgap(15);
         panelRevenu_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Montant total impay\u00E9s", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
         panelRevenu_1.setFont(new Font("Tahoma", Font.BOLD, 30));
         panelNorthCenter_1.add(panelRevenu_1);
@@ -145,6 +156,9 @@ public class FenetrePrincipale extends JFrame {
         panelNorthCenter_1.add(horizontalStrut_2_1);
 
         JPanel panelNbLoyePasPaye_1 = new JPanel();
+        panelNbLoyePasPaye_1.addMouseListener(this.gestionClic);
+        FlowLayout flowLayout = (FlowLayout) panelNbLoyePasPaye_1.getLayout();
+        flowLayout.setHgap(15);
         panelNbLoyePasPaye_1.setBorder(new TitledBorder(null, "Contrats expirant ce mois", TitledBorder.LEADING, TitledBorder.TOP, null, null));
         panelNorthCenter_1.add(panelNbLoyePasPaye_1);
 

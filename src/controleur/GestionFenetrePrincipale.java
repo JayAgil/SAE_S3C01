@@ -3,6 +3,9 @@ package controleur;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
+import javax.swing.JTable;
+
 import vue.*;
 
 public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements MouseListener, ActionListener{
@@ -13,6 +16,8 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
         super(fenetre);
         this.fenetre = fenetre;
     }
+    
+    
 
     @Override
     protected void gererBoutonSpecifique(String texte) {
@@ -50,7 +55,7 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (e.getClickCount() == 2) {
+        if (e.getClickCount() == 2 && e.getSource() instanceof JTable) {
             fenetre.dispose();
             int row = fenetre.getTable().getSelectedRow();
             if (row != -1) {
