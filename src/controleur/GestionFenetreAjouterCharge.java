@@ -22,6 +22,10 @@ public class GestionFenetreAjouterCharge implements ActionListener {
             // Mettre à jour la base de données
             break;
         case "Annuler":
+        	//vider champs
+        	fenetre.dispose();
+        	break;
+        case "Retour" :
         	fenetre.dispose();
         	break;
 

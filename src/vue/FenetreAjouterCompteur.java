@@ -56,6 +56,7 @@ public class FenetreAjouterCompteur extends JInternalFrame {
 	}
 
 	public FenetreAjouterCompteur() {
+		gestionClic = new GestionFenetreAjouterCompteur(this);
 		setResizable(false);
 		setClosable(true);
 		setIconifiable(true);

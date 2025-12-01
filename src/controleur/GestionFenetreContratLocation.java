@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JMenuItem;
 
 import vue.FenetreAjouterBatiment;
+import vue.FenetreAjouterContratLocation;
 import vue.FenetreAjouterPaiement;
 import vue.FenetreAssurance;
 import vue.FenetreBienLouable;
@@ -36,7 +37,8 @@ public class GestionFenetreContratLocation implements ActionListener {
 	        String texte = btn.getText();
 	        switch (texte) {
 	        case "Ajouter":
-
+	        	FenetreAjouterContratLocation fenAjouterContratLocation = new FenetreAjouterContratLocation();
+	        	fenAjouterContratLocation.setVisible(true);
 	            break;
 	        case "Annuler":
 	            fenetre.dispose();

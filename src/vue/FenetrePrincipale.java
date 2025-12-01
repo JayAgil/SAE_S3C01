@@ -26,8 +26,6 @@ import javax.swing.table.DefaultTableModel;
 import controleur.GestionFenetrePrincipale;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseEvent;
 
 public class FenetrePrincipale extends JFrame {
 
@@ -62,7 +60,7 @@ public class FenetrePrincipale extends JFrame {
      * Create the frame.
      */
     public FenetrePrincipale() {
-        this.gestionClic = new GestionFenetrePrincipale(this);
+        gestionClic = new GestionFenetrePrincipale(this);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         contentPane = new JPanel();
         setContentPane(contentPane);
@@ -252,11 +250,6 @@ public class FenetrePrincipale extends JFrame {
         btnAjouterBatiment.setFont(new Font("Tahoma", Font.BOLD, 10));
         panelCenterNorth.add(btnAjouterBatiment);
 
-        JButton btnSupprimerBatiment = new JButton("Supprimer");
-        btnSupprimerBatiment.setFont(new Font("Tahoma", Font.BOLD, 10));
-        btnSupprimerBatiment.addActionListener(this.gestionClic);
-        panelCenterNorth.add(btnSupprimerBatiment);
-
         JPanel panelMenuBar = new JPanel();
         contentPane.add(panelMenuBar, BorderLayout.NORTH);
         panelMenuBar.setLayout(new GridLayout(0, 1, 0, 0));
@@ -363,24 +356,6 @@ public class FenetrePrincipale extends JFrame {
         this.setLocationRelativeTo(null);
       
     }
-
-    
-
-    /*@Override
-    public void mouseEntered(MouseEvent arg) {}
-    @Override
-    public void mouseExited(MouseEvent arg) {}
-    @Override
-    public void mousePressed(MouseEvent arg) {}
-    @Override
-    public void mouseReleased(MouseEvent arg) {}
-    public void mouseEntered(MouseEvent arg0) {}
-    @Override
-    public void mouseExited(MouseEvent arg0) {}
-    @Override
-    public void mousePressed(MouseEvent arg0) {}
-    @Override
-    public void mouseReleased(MouseEvent arg0) {}*/
 
     public JTable getTable() {
         return table;

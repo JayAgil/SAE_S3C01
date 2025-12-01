@@ -140,6 +140,7 @@ public class GestionFenetrePrincipale implements ActionListener, MouseListener {
 
     public void mouseClicked(MouseEvent e) {
         if (e.getClickCount() == 2) {
+        	fenetre.dispose();
             int row = fenetre.getTable().getSelectedRow();
             if (row != -1) {
                 String contrat = (String) fenetre.getTable().getValueAt(row, 0);

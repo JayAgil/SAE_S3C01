@@ -9,6 +9,7 @@ import javax.swing.JMenuItem;
 import vue.FenetreAjouterBatiment;
 import vue.FenetreAjouterPaiement;
 import vue.FenetreAssurance;
+import vue.FenetreBienLouable;
 import vue.FenetreCharges;
 import vue.FenetreCompteurs;
 import vue.FenetreContratLocation;
@@ -36,10 +37,11 @@ public class GestionFenetreDiagnostic implements ActionListener {
 	        switch (texte) {
 	        case "Retour":
 	            fenetre.dispose();
+	            FenetreBienLouable fenBienLouable = new FenetreBienLouable();
+	            fenBienLouable.setVisible(true);
 	            break;
 	        case "obtenir":
 	            // permet de telecharger la fiche de diagnostique choisi
-	            fenetre.dispose();
 	            break;		
 	        }
 	     }
