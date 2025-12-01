@@ -1,7 +1,6 @@
 package controleur;
 
 import vue.*;
-import javax.swing.*;
 
 public class GestionFenetreContratLocation extends GestionHeaderEtFooter {
 
