@@ -17,10 +17,14 @@ public class GestionFenetreDiagnostic extends GestionHeaderEtFooter {
             case "obtenir":
                 fenetre.dispose();
                 break;
+            case "Retour" :
+            	fenetre.dispose();
+            	FenetreBienLouable fenBienLouable = new FenetreBienLouable();
+	            fenBienLouable.setVisible(true);
+	            break;
         }
     }
 
-    @Override
     protected void gererMenuSpecifique(String texte) {
     }
 }
