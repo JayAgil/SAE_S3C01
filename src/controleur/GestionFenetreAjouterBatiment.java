@@ -7,7 +7,6 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 
 import vue.FenetreAjouterBatiment;
-import vue.FenetrePrincipale;
 
 public class GestionFenetreAjouterBatiment implements ActionListener {
 
@@ -22,7 +21,7 @@ public class GestionFenetreAjouterBatiment implements ActionListener {
         switch (((JButton) e.getSource()).getText()) {
         case "Ajouter":
             break;
-        case "Annuler":
+        case "Vider":
 			for (JTextField field : fenetre.getAllTextFields()) {
 			    field.setText(""); 
 			}

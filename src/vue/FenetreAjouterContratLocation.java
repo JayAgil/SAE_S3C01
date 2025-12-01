@@ -1,22 +1,22 @@
 package vue;
 
 import java.awt.EventQueue;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import controleur.GestionFenetreAjouterContratLocation;
-
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.JTextField;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import java.awt.Dimension;
 
 public class FenetreAjouterContratLocation extends JInternalFrame {
 
@@ -49,146 +49,294 @@ public class FenetreAjouterContratLocation extends JInternalFrame {
     }
 
     public FenetreAjouterContratLocation() {
-    	setResizable(false);
+        setResizable(false);
         this.gestionClic = new GestionFenetreAjouterContratLocation(this);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(0, -17, 450, 500);
         contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        contentPane.setBorder(new EmptyBorder(10, 15, 10, 15));
 
         setContentPane(contentPane);
-        contentPane.setLayout(null);
+        contentPane.setLayout(new GridBagLayout());
+        
+        Dimension fieldSize = new Dimension(150, 25);
 
+        GridBagConstraints gbcTitle = new GridBagConstraints();
+        gbcTitle.gridx = 0;
+        gbcTitle.gridy = 0;
+        gbcTitle.gridwidth = 2;
+        gbcTitle.insets = new Insets(0, 0, 15, 0);
+        gbcTitle.fill = GridBagConstraints.HORIZONTAL;
+        
         JLabel lblTitre = new JLabel("Ajouter Contrat Location");
         lblTitre.setFont(new Font("Tahoma", Font.BOLD, 14));
         lblTitre.setHorizontalAlignment(SwingConstants.CENTER);
-        lblTitre.setBounds(131, 29, 187, 29);
-        contentPane.add(lblTitre);
-
+        contentPane.add(lblTitre, gbcTitle);
+        
+        GridBagConstraints gbcLabel1 = new GridBagConstraints();
+        gbcLabel1.gridx = 0;
+        gbcLabel1.gridy = 1;
+        gbcLabel1.anchor = GridBagConstraints.EAST;
+        gbcLabel1.fill = GridBagConstraints.NONE;
+        gbcLabel1.insets = new Insets(2, 5, 2, 5);
+        gbcLabel1.weightx = 0.4;
         JLabel lblNumContrat = new JLabel("Numéro de contrat :");
         lblNumContrat.setHorizontalAlignment(SwingConstants.RIGHT);
-        lblNumContrat.setBounds(23, 90, 132, 13);
-        contentPane.add(lblNumContrat);
+        contentPane.add(lblNumContrat, gbcLabel1);
 
+        GridBagConstraints gbcField1 = new GridBagConstraints();
+        gbcField1.gridx = 1;
+        gbcField1.gridy = 1;
+        gbcField1.fill = GridBagConstraints.HORIZONTAL;
+        gbcField1.insets = new Insets(2, 5, 2, 5);
+        gbcField1.weightx = 0.6;
+        gbcField1.ipadx = 5;
         txtFieldNumContrat = new JTextField();
-        txtFieldNumContrat.setBounds(219, 87, 96, 19);
-        contentPane.add(txtFieldNumContrat);
-        txtFieldNumContrat.setColumns(10);
+        txtFieldNumContrat.setPreferredSize(fieldSize);
+        contentPane.add(txtFieldNumContrat, gbcField1);
 
+        GridBagConstraints gbcLabel2 = new GridBagConstraints();
+        gbcLabel2.gridx = 0;
+        gbcLabel2.gridy = 2;
+        gbcLabel2.anchor = GridBagConstraints.EAST;
+        gbcLabel2.fill = GridBagConstraints.NONE;
+        gbcLabel2.insets = new Insets(2, 5, 2, 5);
+        gbcLabel2.weightx = 0.4;
         JLabel lblDateDebut = new JLabel("Date début :");
         lblDateDebut.setHorizontalAlignment(SwingConstants.RIGHT);
-        lblDateDebut.setBounds(75, 120, 79, 13);
-        contentPane.add(lblDateDebut);
+        contentPane.add(lblDateDebut, gbcLabel2);
 
+        GridBagConstraints gbcField2 = new GridBagConstraints();
+        gbcField2.gridx = 1;
+        gbcField2.gridy = 2;
+        gbcField2.fill = GridBagConstraints.HORIZONTAL;
+        gbcField2.insets = new Insets(2, 5, 2, 5);
+        gbcField2.weightx = 0.6;
+        gbcField2.ipadx = 5;
         textFieldDateDebut = new JTextField();
-        textFieldDateDebut.setBounds(219, 117, 96, 19);
-        contentPane.add(textFieldDateDebut);
-        textFieldDateDebut.setColumns(10);
+        textFieldDateDebut.setPreferredSize(fieldSize);
+        contentPane.add(textFieldDateDebut, gbcField2);
 
-        textFieldADateFin = new JTextField();
-        textFieldADateFin.setColumns(10);
-        textFieldADateFin.setBounds(219, 147, 96, 19);
-        contentPane.add(textFieldADateFin);
-
-        txtFieldMontant = new JTextField();
-        txtFieldMontant.setColumns(10);
-        txtFieldMontant.setBounds(219, 177, 96, 19);
-        contentPane.add(txtFieldMontant);
-
-        textFieldProvision = new JTextField();
-        textFieldProvision.setColumns(10);
-        textFieldProvision.setBounds(219, 207, 96, 19);
-        contentPane.add(textFieldProvision);
-
-        textFieldSolde = new JTextField();
-        textFieldSolde.setColumns(10);
-        textFieldSolde.setBounds(219, 237, 96, 19);
-        contentPane.add(textFieldSolde);
-
+        GridBagConstraints gbcLabel3 = new GridBagConstraints();
+        gbcLabel3.gridx = 0;
+        gbcLabel3.gridy = 3;
+        gbcLabel3.anchor = GridBagConstraints.EAST;
+        gbcLabel3.fill = GridBagConstraints.NONE;
+        gbcLabel3.insets = new Insets(2, 5, 2, 5);
+        gbcLabel3.weightx = 0.4;
         JLabel lblDateFin = new JLabel("Date fin :");
         lblDateFin.setHorizontalAlignment(SwingConstants.RIGHT);
-        lblDateFin.setBounds(101, 150, 54, 13);
-        contentPane.add(lblDateFin);
+        contentPane.add(lblDateFin, gbcLabel3);
 
+        GridBagConstraints gbcField3 = new GridBagConstraints();
+        gbcField3.gridx = 1;
+        gbcField3.gridy = 3;
+        gbcField3.fill = GridBagConstraints.HORIZONTAL;
+        gbcField3.insets = new Insets(2, 5, 2, 5);
+        gbcField3.weightx = 0.6;
+        gbcField3.ipadx = 5;
+        textFieldADateFin = new JTextField();
+        textFieldADateFin.setPreferredSize(fieldSize);
+        contentPane.add(textFieldADateFin, gbcField3);
+
+        GridBagConstraints gbcLabel4 = new GridBagConstraints();
+        gbcLabel4.gridx = 0;
+        gbcLabel4.gridy = 4;
+        gbcLabel4.anchor = GridBagConstraints.EAST;
+        gbcLabel4.fill = GridBagConstraints.NONE;
+        gbcLabel4.insets = new Insets(2, 5, 2, 5);
+        gbcLabel4.weightx = 0.4;
         JLabel lblMontant = new JLabel("Montant de caution :");
         lblMontant.setHorizontalAlignment(SwingConstants.RIGHT);
-        lblMontant.setBounds(38, 180, 117, 13);
-        contentPane.add(lblMontant);
+        contentPane.add(lblMontant, gbcLabel4);
 
+        GridBagConstraints gbcField4 = new GridBagConstraints();
+        gbcField4.gridx = 1;
+        gbcField4.gridy = 4;
+        gbcField4.fill = GridBagConstraints.HORIZONTAL;
+        gbcField4.insets = new Insets(2, 5, 2, 5);
+        gbcField4.weightx = 0.6;
+        gbcField4.ipadx = 5;
+        txtFieldMontant = new JTextField();
+        txtFieldMontant.setPreferredSize(fieldSize);
+        contentPane.add(txtFieldMontant, gbcField4);
+        
+        GridBagConstraints gbcLabel5 = new GridBagConstraints();
+        gbcLabel5.gridx = 0;
+        gbcLabel5.gridy = 5;
+        gbcLabel5.anchor = GridBagConstraints.EAST;
+        gbcLabel5.fill = GridBagConstraints.NONE;
+        gbcLabel5.insets = new Insets(2, 5, 2, 5);
+        gbcLabel5.weightx = 0.4;
         JLabel lblProvision = new JLabel("Provision charge :");
         lblProvision.setHorizontalAlignment(SwingConstants.RIGHT);
-        lblProvision.setBounds(60, 210, 95, 13);
-        contentPane.add(lblProvision);
+        contentPane.add(lblProvision, gbcLabel5);
 
+        GridBagConstraints gbcField5 = new GridBagConstraints();
+        gbcField5.gridx = 1;
+        gbcField5.gridy = 5;
+        gbcField5.fill = GridBagConstraints.HORIZONTAL;
+        gbcField5.insets = new Insets(2, 5, 2, 5);
+        gbcField5.weightx = 0.6;
+        gbcField5.ipadx = 5;
+        textFieldProvision = new JTextField();
+        textFieldProvision.setPreferredSize(fieldSize);
+        contentPane.add(textFieldProvision, gbcField5);
+
+        GridBagConstraints gbcLabel6 = new GridBagConstraints();
+        gbcLabel6.gridx = 0;
+        gbcLabel6.gridy = 6;
+        gbcLabel6.anchor = GridBagConstraints.EAST;
+        gbcLabel6.fill = GridBagConstraints.NONE;
+        gbcLabel6.insets = new Insets(2, 5, 2, 5);
+        gbcLabel6.weightx = 0.4;
         JLabel lblSolde = new JLabel("Solde :");
         lblSolde.setHorizontalAlignment(SwingConstants.RIGHT);
-        lblSolde.setBounds(75, 240, 80, 13);
-        contentPane.add(lblSolde);
+        contentPane.add(lblSolde, gbcLabel6);
 
-        JButton btnValider = new JButton("Valider");
-        btnValider.setBounds(85, 432, 85, 21);
-        contentPane.add(btnValider);
-
-        JButton btnAnnuler = new JButton("Annuler ");
-        btnAnnuler.setBounds(180, 432, 85, 21);
-        contentPane.add(btnAnnuler);
-
-        JButton btnRetour = new JButton("Retour");
-        btnRetour.setBounds(275, 432, 85, 21);
-        contentPane.add(btnRetour);
-
+        GridBagConstraints gbcField6 = new GridBagConstraints();
+        gbcField6.gridx = 1;
+        gbcField6.gridy = 6;
+        gbcField6.fill = GridBagConstraints.HORIZONTAL;
+        gbcField6.insets = new Insets(2, 5, 2, 5);
+        gbcField6.weightx = 0.6;
+        gbcField6.ipadx = 5;
+        textFieldSolde = new JTextField();
+        textFieldSolde.setPreferredSize(fieldSize);
+        contentPane.add(textFieldSolde, gbcField6);
+        
+        GridBagConstraints gbcLabel7 = new GridBagConstraints();
+        gbcLabel7.gridx = 0;
+        gbcLabel7.gridy = 7;
+        gbcLabel7.anchor = GridBagConstraints.EAST;
+        gbcLabel7.fill = GridBagConstraints.NONE;
+        gbcLabel7.insets = new Insets(2, 5, 2, 5);
+        gbcLabel7.weightx = 0.4;
         JLabel lblMontantMensuel = new JLabel("Montant mensuel :");
         lblMontantMensuel.setHorizontalAlignment(SwingConstants.RIGHT);
-        lblMontantMensuel.setBounds(60, 270, 95, 13);
-        contentPane.add(lblMontantMensuel);
+        contentPane.add(lblMontantMensuel, gbcLabel7);
 
+        GridBagConstraints gbcField7 = new GridBagConstraints();
+        gbcField7.gridx = 1;
+        gbcField7.gridy = 7;
+        gbcField7.fill = GridBagConstraints.HORIZONTAL;
+        gbcField7.insets = new Insets(2, 5, 2, 5);
+        gbcField7.weightx = 0.6;
+        gbcField7.ipadx = 5;
         textFieldMontantMensuel = new JTextField();
-        textFieldMontantMensuel.setBounds(219, 267, 96, 19);
-        contentPane.add(textFieldMontantMensuel);
-        textFieldMontantMensuel.setColumns(10);
+        textFieldMontantMensuel.setPreferredSize(fieldSize);
+        contentPane.add(textFieldMontantMensuel, gbcField7);
 
+        GridBagConstraints gbcLabel8 = new GridBagConstraints();
+        gbcLabel8.gridx = 0;
+        gbcLabel8.gridy = 8;
+        gbcLabel8.anchor = GridBagConstraints.EAST;
+        gbcLabel8.fill = GridBagConstraints.NONE;
+        gbcLabel8.insets = new Insets(2, 5, 2, 5);
+        gbcLabel8.weightx = 0.4;
         JLabel lblDateVersement = new JLabel("Date versement :");
         lblDateVersement.setHorizontalAlignment(SwingConstants.RIGHT);
-        lblDateVersement.setBounds(75, 300, 80, 13);
-        contentPane.add(lblDateVersement);
+        contentPane.add(lblDateVersement, gbcLabel8);
 
+        GridBagConstraints gbcField8 = new GridBagConstraints();
+        gbcField8.gridx = 1;
+        gbcField8.gridy = 8;
+        gbcField8.fill = GridBagConstraints.HORIZONTAL;
+        gbcField8.insets = new Insets(2, 5, 2, 5);
+        gbcField8.weightx = 0.6;
+        gbcField8.ipadx = 5;
         textFieldDateVersement = new JTextField();
-        textFieldDateVersement.setBounds(219, 297, 96, 19);
-        contentPane.add(textFieldDateVersement);
-        textFieldDateVersement.setColumns(10);
+        textFieldDateVersement.setPreferredSize(fieldSize);
+        contentPane.add(textFieldDateVersement, gbcField8);
 
+        GridBagConstraints gbcLabel9 = new GridBagConstraints();
+        gbcLabel9.gridx = 0;
+        gbcLabel9.gridy = 9;
+        gbcLabel9.anchor = GridBagConstraints.EAST;
+        gbcLabel9.fill = GridBagConstraints.NONE;
+        gbcLabel9.insets = new Insets(2, 5, 2, 5);
+        gbcLabel9.weightx = 0.4;
         JLabel lblIdxEau = new JLabel("Index Eau :");
         lblIdxEau.setHorizontalAlignment(SwingConstants.RIGHT);
-        lblIdxEau.setBounds(101, 330, 54, 13);
-        contentPane.add(lblIdxEau);
+        contentPane.add(lblIdxEau, gbcLabel9);
 
+        GridBagConstraints gbcField9 = new GridBagConstraints();
+        gbcField9.gridx = 1;
+        gbcField9.gridy = 9;
+        gbcField9.fill = GridBagConstraints.HORIZONTAL;
+        gbcField9.insets = new Insets(2, 5, 2, 5);
+        gbcField9.weightx = 0.6;
+        gbcField9.ipadx = 5;
         textFieldIdxEau = new JTextField();
-        textFieldIdxEau.setBounds(219, 327, 96, 19);
-        contentPane.add(textFieldIdxEau);
-        textFieldIdxEau.setColumns(10);
+        textFieldIdxEau.setPreferredSize(fieldSize);
+        contentPane.add(textFieldIdxEau, gbcField9);
 
+
+        GridBagConstraints gbcLabel10 = new GridBagConstraints();
+        gbcLabel10.gridx = 0;
+        gbcLabel10.gridy = 10;
+        gbcLabel10.anchor = GridBagConstraints.EAST;
+        gbcLabel10.fill = GridBagConstraints.NONE;
+        gbcLabel10.insets = new Insets(2, 5, 2, 5);
+        gbcLabel10.weightx = 0.4;
         JLabel lblIdxElectricite = new JLabel("Index Electricité :");
         lblIdxElectricite.setHorizontalAlignment(SwingConstants.RIGHT);
-        lblIdxElectricite.setBounds(75, 360, 80, 13);
-        contentPane.add(lblIdxElectricite);
+        contentPane.add(lblIdxElectricite, gbcLabel10);
 
+        GridBagConstraints gbcField10 = new GridBagConstraints();
+        gbcField10.gridx = 1;
+        gbcField10.gridy = 10;
+        gbcField10.fill = GridBagConstraints.HORIZONTAL;
+        gbcField10.insets = new Insets(2, 5, 2, 5);
+        gbcField10.weightx = 0.6;
+        gbcField10.ipadx = 5;
+        textFieldElectrcité = new JTextField();
+        textFieldElectrcité.setPreferredSize(fieldSize);
+        contentPane.add(textFieldElectrcité, gbcField10);
+
+        GridBagConstraints gbcLabel11 = new GridBagConstraints();
+        gbcLabel11.gridx = 0;
+        gbcLabel11.gridy = 11;
+        gbcLabel11.anchor = GridBagConstraints.EAST;
+        gbcLabel11.fill = GridBagConstraints.NONE;
+        gbcLabel11.insets = new Insets(2, 5, 2, 5);
+        gbcLabel11.weightx = 0.4;
         JLabel lblIdxGaz = new JLabel("Index Gaz :");
         lblIdxGaz.setHorizontalAlignment(SwingConstants.RIGHT);
-        lblIdxGaz.setBounds(101, 390, 54, 13);
-        contentPane.add(lblIdxGaz);
+        contentPane.add(lblIdxGaz, gbcLabel11);
 
-        textFieldElectrcité = new JTextField();
-        textFieldElectrcité.setColumns(10);
-        textFieldElectrcité.setBounds(219, 357, 96, 19);
-        contentPane.add(textFieldElectrcité);
-
+        GridBagConstraints gbcField11 = new GridBagConstraints();
+        gbcField11.gridx = 1;
+        gbcField11.gridy = 11;
+        gbcField11.fill = GridBagConstraints.HORIZONTAL;
+        gbcField11.insets = new Insets(2, 5, 2, 5);
+        gbcField11.weightx = 0.6;
+        gbcField11.ipadx = 5;
         textFieldGaz = new JTextField();
-        textFieldGaz.setColumns(10);
-        textFieldGaz.setBounds(219, 387, 96, 19);
-        contentPane.add(textFieldGaz);
+        textFieldGaz.setPreferredSize(fieldSize);
+        contentPane.add(textFieldGaz, gbcField11);
+        
+        GridBagConstraints gbcButtonPanel = new GridBagConstraints();
+        gbcButtonPanel.gridy = 13;
+        gbcButtonPanel.gridx = 0;
+        gbcButtonPanel.gridwidth = 2;
+        gbcButtonPanel.insets = new Insets(15, 0, 0, 0);
+        gbcButtonPanel.fill = GridBagConstraints.HORIZONTAL;
+        
+        JPanel buttonPanel = new JPanel();
+        contentPane.add(buttonPanel, gbcButtonPanel);
 
-        btnAnnuler.addActionListener(this.gestionClic);
-        btnValider.addActionListener(this.gestionClic);
+        JButton btnAjouter = new JButton("Ajouter");
+        buttonPanel.add(btnAjouter);
+
+        JButton btnVider = new JButton("Vider");
+        buttonPanel.add(btnVider);
+
+        JButton btnRetour = new JButton("Retour");
+        buttonPanel.add(btnRetour);
+
+        btnVider.addActionListener(this.gestionClic);
+        btnAjouter.addActionListener(this.gestionClic);
         btnRetour.addActionListener(this.gestionClic);
     }
     

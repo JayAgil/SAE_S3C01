@@ -20,28 +20,28 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
         switch (texte) {
 
             case "Diagnostics":
-                fenetrebienlouable.dispose();
                 new FenetreDiagnostic().setVisible(true);
+                fenetrebienlouable.dispose();
                 break;
 
             case "Contrat":
-                fenetrebienlouable.dispose();
                 new FenetreContratLocation().setVisible(true);
+                fenetrebienlouable.dispose();
                 break;
 
             case "Charges":
-                fenetrebienlouable.dispose();
                 new FenetreCharges().setVisible(true);
+                fenetrebienlouable.dispose();
                 break;
 
             case "Travaux":
-                fenetrebienlouable.dispose();
                 new FenetreTravaux().setVisible(true);
+                fenetrebienlouable.dispose();
                 break;
 
             case "Compteur":
-                fenetrebienlouable.dispose();
                 new FenetreCompteurs().setVisible(true);
+                fenetrebienlouable.dispose();
                 break;
 
             case "Revaloriser":

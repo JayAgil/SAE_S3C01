@@ -38,7 +38,7 @@ public class FenetreAjouterCharge extends JInternalFrame {
         EventQueue.invokeLater(() -> {
             try {
                 JFrame frame = new JFrame();
-                frame.setBounds(100, 100, 600, 400);
+                frame.setBounds(100, 100, 450, 500);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
                 JDesktopPane desktopPane = new JDesktopPane();
@@ -62,7 +62,7 @@ public class FenetreAjouterCharge extends JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setBounds(50, 50, 600, 400);
+        setBounds(50, 50, 450, 500);
         getContentPane().setLayout(new BorderLayout(0, 0));
 
         JPanel panelHeader = new JPanel();
@@ -165,20 +165,20 @@ public class FenetreAjouterCharge extends JInternalFrame {
 
         JPanel panelFooter = new JPanel();
 
-        JButton btnRetour = new JButton("Retour");
-        btnRetour.addActionListener(this.gestionClic);
-
-        JButton btnAnnuler = new JButton("Annuler");
-        btnAnnuler.addActionListener(this.gestionClic);
-
-        JButton btnAjouter = new JButton("Ajouter");
-        btnAjouter.addActionListener(this.gestionClic);
-
-        panelFooter.add(btnRetour);
-        panelFooter.add(btnAnnuler);
-        panelFooter.add(btnAjouter);
+        JButton btnVider = new JButton("Vider");
+        btnVider.addActionListener(this.gestionClic);
+        
+                JButton btnAjouter = new JButton("Ajouter");
+                btnAjouter.addActionListener(this.gestionClic);
+                panelFooter.add(btnAjouter);
+        panelFooter.add(btnVider);
 
         getContentPane().add(panelFooter, BorderLayout.SOUTH);
+        
+                JButton btnRetour = new JButton("Retour");
+                btnRetour.addActionListener(this.gestionClic);
+                
+                        panelFooter.add(btnRetour);
     }
     
     public List<JTextField> getAllChargeTextFields() {

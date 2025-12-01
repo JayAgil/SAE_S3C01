@@ -21,7 +21,7 @@ public class GestionFenetreAjouterCompteur implements ActionListener {
 	    case "Retour":
 	    	fenetre.dispose();
 	    	break;            
-	    case "Annuler":
+	    case "Vider":
 			for (JTextField field : fenetre.getAllPaiementTextFields()) {
 			    field.setText(""); 
 			}

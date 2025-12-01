@@ -11,7 +11,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import vue.FenetreAjouterTravaux;
-import vue.FenetreTravaux;
 
 public class GestionAjouterTravaux implements ActionListener {
 	
@@ -24,7 +23,7 @@ public class GestionAjouterTravaux implements ActionListener {
 	
 	public void actionPerformed(ActionEvent e) {
 		switch(((JButton)e.getSource()).getText()) {
-		case "Valider":
+		case "Ajouter":
 			try {
 				String query = "insert into Travaux (Numero Facture,Montant,"
 						+ "Date de facture,Compte bancaire,Montant devis,"
@@ -51,7 +50,7 @@ public class GestionAjouterTravaux implements ActionListener {
 			}				
 				
 			break;
-		case "Annuler" :
+		case "Vider" :
 			for (JTextField field : fenetreAjouterTravaux.getTravauxTextFields()) {
 			    field.setText(""); 
 			}

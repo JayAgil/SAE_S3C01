@@ -85,6 +85,7 @@ public abstract class GestionHeaderEtFooter implements ActionListener {
             new FenetrePaiement().setVisible(true);
             fenetre.dispose();
             break;
+            
         case "Ajouter bâtiment":
             fenetre.getLayeredPane().add(new FenetreAjouterBatiment()).setVisible(true);
             break;

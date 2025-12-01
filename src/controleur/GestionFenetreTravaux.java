@@ -66,9 +66,9 @@ public class GestionFenetreTravaux implements ActionListener {
 	        String texte = item.getText();
 	        switch (texte) {
 	        case "Déconnecter":
-	        	fenetreTravaux.dispose();
 	        	FenetreLogin fenLogin = new FenetreLogin();
 	        	fenLogin.setVisible(true);
+	        	fenetreTravaux.dispose();
 	        	break;
 	        case "Ajouter bâtiment" :
 	        	FenetreAjouterBatiment fenAjouterBatiment = new FenetreAjouterBatiment();
@@ -81,49 +81,49 @@ public class GestionFenetreTravaux implements ActionListener {
 	        	fenAssurance.setVisible(true);
 	        	break;
 	        case "Compteurs bâtiment" :
-	        	fenetreTravaux.dispose();
 	        	FenetreCompteurs fenCompteurBat = new FenetreCompteurs();
 	        	fenCompteurBat.setVisible(true);
+	        	fenetreTravaux.dispose();
 	        	break;
 	        case "Charges bâtiment" :
-	        	fenetreTravaux.dispose();
 	        	FenetreCharges fenChargesBat = new FenetreCharges();
 	        	fenChargesBat.setVisible(true);
+	        	fenetreTravaux.dispose();
 	        	break;
 	        case "Contrat location" :
-	        	fenetreTravaux.dispose();
 	        	FenetreContratLocation fenContratLocation = new FenetreContratLocation();
 	        	fenContratLocation.setVisible(true);
+	        	fenetreTravaux.dispose();
 	        	break;
 	        case "Compteurs bien louable" :
-	        	fenetreTravaux.dispose();
 	        	FenetreCompteurs fenCompteurBL = new FenetreCompteurs();
 	        	fenCompteurBL.setVisible(true);
+	        	fenetreTravaux.dispose();
 	        	break;
 	        case "Travaux" :
-	        	fenetreTravaux.dispose();
 	        	FenetreTravaux fenTravaux = new FenetreTravaux();
 	        	fenTravaux.setVisible(true);
+	        	fenetreTravaux.dispose();
 	        	break;
 	        case "Charges bien louable" :
-	        	fenetreTravaux.dispose();
 	        	FenetreCharges fenChargesBL = new FenetreCharges();
 	        	fenChargesBL.setVisible(true);
+	        	fenetreTravaux.dispose();
 	        	break;
 	        case "Diagnostics" :
-	        	fenetreTravaux.dispose();
 	        	FenetreDiagnostic fenDiagnostic = new FenetreDiagnostic();
 	        	fenDiagnostic.setVisible(true);
+	        	fenetreTravaux.dispose();
 	        	break;
 	        case "Locataires" :
-	        	fenetreTravaux.dispose();
 	        	FenetreLocataire fenLocataire = new FenetreLocataire();
 	        	fenLocataire.setVisible(true);
+	        	fenetreTravaux.dispose();
 	        	break;
 	        case "Historique de paiement" :
-	        	fenetreTravaux.dispose();
 	        	FenetrePaiement fenPaiement = new FenetrePaiement();
 	        	fenPaiement.setVisible(true);
+	        	fenetreTravaux.dispose();
 	        	break;
 	        case "Ajouter paiement" :
 	        	FenetreAjouterPaiement fenAjouterPaiement = new FenetreAjouterPaiement();

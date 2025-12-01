@@ -23,10 +23,9 @@ public class GestionFenetreLocataire extends GestionHeaderEtFooter implements Ac
                 fenetre.getLayeredPane().add(fenAjouterLocataire);
                 fenAjouterLocataire.setVisible(true);
                 break;
-
             case "Paiement":
-                fenetre.dispose();
                 new FenetrePaiement().setVisible(true);
+                fenetre.dispose();
                 break;
         }
     }
@@ -34,9 +33,9 @@ public class GestionFenetreLocataire extends GestionHeaderEtFooter implements Ac
     @Override
     protected void gererBoutonRetour(String texte) {
         if ("Retour".equals(texte)) {
-            fenetre.dispose();
             FenetreBienLouable fp = new FenetreBienLouable();
             fp.setVisible(true);
+            fenetre.dispose();
         }
     }
 
