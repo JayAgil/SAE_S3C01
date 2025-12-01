@@ -8,8 +8,6 @@ import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.DefaultComboBoxModel;
@@ -28,6 +26,8 @@ import javax.swing.table.DefaultTableModel;
 import controleur.GestionFenetrePrincipale;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseEvent;
 
 public class FenetrePrincipale extends JFrame {
 
@@ -203,6 +203,7 @@ public class FenetrePrincipale extends JFrame {
         panelCenterCenter.add(scrollPane, BorderLayout.CENTER);
 
         table = new JTable();
+        table.addMouseListener(this.gestionClic);
         //getTable().addMouseListener(this);
         getTable().setModel(new DefaultTableModel(
             new Object[][] { { null, null, null, null },
@@ -363,13 +364,7 @@ public class FenetrePrincipale extends JFrame {
       
     }
 
-    public void actionPerformed(ActionEvent arg) {
-        gestionClic.actionPerformed(arg);
-    }
-
-    public void mouseClicked(MouseEvent arg) {
-        gestionClic.mouseClicked(arg);
-    }
+    
 
     /*@Override
     public void mouseEntered(MouseEvent arg) {}
