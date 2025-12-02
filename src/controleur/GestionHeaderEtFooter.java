@@ -105,8 +105,7 @@ public abstract class GestionHeaderEtFooter implements ActionListener {
 	    }
     }
 
-    protected void gererBoutonCommun(String texte) {
-    }
+    protected void gererBoutonCommun(String texte) {}
     protected void gererMenuSpecifique(String texte) {}
     protected void gererBoutonSpecifique(String texte) {}
 }
