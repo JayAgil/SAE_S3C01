@@ -34,6 +34,7 @@ public class FenetreAjouterContratLocation extends JInternalFrame {
     private JTextField textFieldIdxEau;
     private JTextField textFieldElectrcité;
     private JTextField textFieldGaz;
+    private JTextField textFieldLoyer;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -57,7 +58,9 @@ public class FenetreAjouterContratLocation extends JInternalFrame {
         contentPane.setBorder(new EmptyBorder(10, 15, 10, 15));
 
         setContentPane(contentPane);
-        contentPane.setLayout(new GridBagLayout());
+        GridBagLayout gbl_contentPane = new GridBagLayout();
+        gbl_contentPane.columnWeights = new double[]{1.0, 1.0};
+        contentPane.setLayout(gbl_contentPane);
         
         Dimension fieldSize = new Dimension(150, 25);
 
@@ -78,7 +81,7 @@ public class FenetreAjouterContratLocation extends JInternalFrame {
         gbcLabel1.gridy = 1;
         gbcLabel1.anchor = GridBagConstraints.EAST;
         gbcLabel1.fill = GridBagConstraints.NONE;
-        gbcLabel1.insets = new Insets(2, 5, 2, 5);
+        gbcLabel1.insets = new Insets(2, 5, 5, 5);
         gbcLabel1.weightx = 0.4;
         JLabel lblNumContrat = new JLabel("Numéro de contrat :");
         lblNumContrat.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -88,7 +91,7 @@ public class FenetreAjouterContratLocation extends JInternalFrame {
         gbcField1.gridx = 1;
         gbcField1.gridy = 1;
         gbcField1.fill = GridBagConstraints.HORIZONTAL;
-        gbcField1.insets = new Insets(2, 5, 2, 5);
+        gbcField1.insets = new Insets(2, 5, 5, 0);
         gbcField1.weightx = 0.6;
         gbcField1.ipadx = 5;
         txtFieldNumContrat = new JTextField();
@@ -100,7 +103,7 @@ public class FenetreAjouterContratLocation extends JInternalFrame {
         gbcLabel2.gridy = 2;
         gbcLabel2.anchor = GridBagConstraints.EAST;
         gbcLabel2.fill = GridBagConstraints.NONE;
-        gbcLabel2.insets = new Insets(2, 5, 2, 5);
+        gbcLabel2.insets = new Insets(2, 5, 5, 5);
         gbcLabel2.weightx = 0.4;
         JLabel lblDateDebut = new JLabel("Date début :");
         lblDateDebut.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -110,7 +113,7 @@ public class FenetreAjouterContratLocation extends JInternalFrame {
         gbcField2.gridx = 1;
         gbcField2.gridy = 2;
         gbcField2.fill = GridBagConstraints.HORIZONTAL;
-        gbcField2.insets = new Insets(2, 5, 2, 5);
+        gbcField2.insets = new Insets(2, 5, 5, 0);
         gbcField2.weightx = 0.6;
         gbcField2.ipadx = 5;
         textFieldDateDebut = new JTextField();
@@ -122,7 +125,7 @@ public class FenetreAjouterContratLocation extends JInternalFrame {
         gbcLabel3.gridy = 3;
         gbcLabel3.anchor = GridBagConstraints.EAST;
         gbcLabel3.fill = GridBagConstraints.NONE;
-        gbcLabel3.insets = new Insets(2, 5, 2, 5);
+        gbcLabel3.insets = new Insets(2, 5, 5, 5);
         gbcLabel3.weightx = 0.4;
         JLabel lblDateFin = new JLabel("Date fin :");
         lblDateFin.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -132,7 +135,7 @@ public class FenetreAjouterContratLocation extends JInternalFrame {
         gbcField3.gridx = 1;
         gbcField3.gridy = 3;
         gbcField3.fill = GridBagConstraints.HORIZONTAL;
-        gbcField3.insets = new Insets(2, 5, 2, 5);
+        gbcField3.insets = new Insets(2, 5, 5, 0);
         gbcField3.weightx = 0.6;
         gbcField3.ipadx = 5;
         textFieldADateFin = new JTextField();
@@ -144,7 +147,7 @@ public class FenetreAjouterContratLocation extends JInternalFrame {
         gbcLabel4.gridy = 4;
         gbcLabel4.anchor = GridBagConstraints.EAST;
         gbcLabel4.fill = GridBagConstraints.NONE;
-        gbcLabel4.insets = new Insets(2, 5, 2, 5);
+        gbcLabel4.insets = new Insets(2, 5, 5, 5);
         gbcLabel4.weightx = 0.4;
         JLabel lblMontant = new JLabel("Montant de caution :");
         lblMontant.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -154,7 +157,7 @@ public class FenetreAjouterContratLocation extends JInternalFrame {
         gbcField4.gridx = 1;
         gbcField4.gridy = 4;
         gbcField4.fill = GridBagConstraints.HORIZONTAL;
-        gbcField4.insets = new Insets(2, 5, 2, 5);
+        gbcField4.insets = new Insets(2, 5, 5, 0);
         gbcField4.weightx = 0.6;
         gbcField4.ipadx = 5;
         txtFieldMontant = new JTextField();
@@ -166,7 +169,7 @@ public class FenetreAjouterContratLocation extends JInternalFrame {
         gbcLabel5.gridy = 5;
         gbcLabel5.anchor = GridBagConstraints.EAST;
         gbcLabel5.fill = GridBagConstraints.NONE;
-        gbcLabel5.insets = new Insets(2, 5, 2, 5);
+        gbcLabel5.insets = new Insets(2, 5, 5, 5);
         gbcLabel5.weightx = 0.4;
         JLabel lblProvision = new JLabel("Provision charge :");
         lblProvision.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -176,7 +179,7 @@ public class FenetreAjouterContratLocation extends JInternalFrame {
         gbcField5.gridx = 1;
         gbcField5.gridy = 5;
         gbcField5.fill = GridBagConstraints.HORIZONTAL;
-        gbcField5.insets = new Insets(2, 5, 2, 5);
+        gbcField5.insets = new Insets(2, 5, 5, 0);
         gbcField5.weightx = 0.6;
         gbcField5.ipadx = 5;
         textFieldProvision = new JTextField();
@@ -188,7 +191,7 @@ public class FenetreAjouterContratLocation extends JInternalFrame {
         gbcLabel6.gridy = 6;
         gbcLabel6.anchor = GridBagConstraints.EAST;
         gbcLabel6.fill = GridBagConstraints.NONE;
-        gbcLabel6.insets = new Insets(2, 5, 2, 5);
+        gbcLabel6.insets = new Insets(2, 5, 5, 5);
         gbcLabel6.weightx = 0.4;
         JLabel lblSolde = new JLabel("Solde :");
         lblSolde.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -198,7 +201,7 @@ public class FenetreAjouterContratLocation extends JInternalFrame {
         gbcField6.gridx = 1;
         gbcField6.gridy = 6;
         gbcField6.fill = GridBagConstraints.HORIZONTAL;
-        gbcField6.insets = new Insets(2, 5, 2, 5);
+        gbcField6.insets = new Insets(2, 5, 5, 0);
         gbcField6.weightx = 0.6;
         gbcField6.ipadx = 5;
         textFieldSolde = new JTextField();
@@ -210,7 +213,7 @@ public class FenetreAjouterContratLocation extends JInternalFrame {
         gbcLabel7.gridy = 7;
         gbcLabel7.anchor = GridBagConstraints.EAST;
         gbcLabel7.fill = GridBagConstraints.NONE;
-        gbcLabel7.insets = new Insets(2, 5, 2, 5);
+        gbcLabel7.insets = new Insets(2, 5, 5, 5);
         gbcLabel7.weightx = 0.4;
         JLabel lblMontantMensuel = new JLabel("Montant mensuel :");
         lblMontantMensuel.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -220,7 +223,7 @@ public class FenetreAjouterContratLocation extends JInternalFrame {
         gbcField7.gridx = 1;
         gbcField7.gridy = 7;
         gbcField7.fill = GridBagConstraints.HORIZONTAL;
-        gbcField7.insets = new Insets(2, 5, 2, 5);
+        gbcField7.insets = new Insets(2, 5, 5, 0);
         gbcField7.weightx = 0.6;
         gbcField7.ipadx = 5;
         textFieldMontantMensuel = new JTextField();
@@ -232,7 +235,7 @@ public class FenetreAjouterContratLocation extends JInternalFrame {
         gbcLabel8.gridy = 8;
         gbcLabel8.anchor = GridBagConstraints.EAST;
         gbcLabel8.fill = GridBagConstraints.NONE;
-        gbcLabel8.insets = new Insets(2, 5, 2, 5);
+        gbcLabel8.insets = new Insets(2, 5, 5, 5);
         gbcLabel8.weightx = 0.4;
         JLabel lblDateVersement = new JLabel("Date versement :");
         lblDateVersement.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -242,7 +245,7 @@ public class FenetreAjouterContratLocation extends JInternalFrame {
         gbcField8.gridx = 1;
         gbcField8.gridy = 8;
         gbcField8.fill = GridBagConstraints.HORIZONTAL;
-        gbcField8.insets = new Insets(2, 5, 2, 5);
+        gbcField8.insets = new Insets(2, 5, 5, 0);
         gbcField8.weightx = 0.6;
         gbcField8.ipadx = 5;
         textFieldDateVersement = new JTextField();
@@ -254,7 +257,7 @@ public class FenetreAjouterContratLocation extends JInternalFrame {
         gbcLabel9.gridy = 9;
         gbcLabel9.anchor = GridBagConstraints.EAST;
         gbcLabel9.fill = GridBagConstraints.NONE;
-        gbcLabel9.insets = new Insets(2, 5, 2, 5);
+        gbcLabel9.insets = new Insets(2, 5, 5, 5);
         gbcLabel9.weightx = 0.4;
         JLabel lblIdxEau = new JLabel("Index Eau :");
         lblIdxEau.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -264,7 +267,7 @@ public class FenetreAjouterContratLocation extends JInternalFrame {
         gbcField9.gridx = 1;
         gbcField9.gridy = 9;
         gbcField9.fill = GridBagConstraints.HORIZONTAL;
-        gbcField9.insets = new Insets(2, 5, 2, 5);
+        gbcField9.insets = new Insets(2, 5, 5, 0);
         gbcField9.weightx = 0.6;
         gbcField9.ipadx = 5;
         textFieldIdxEau = new JTextField();
@@ -277,7 +280,7 @@ public class FenetreAjouterContratLocation extends JInternalFrame {
         gbcLabel10.gridy = 10;
         gbcLabel10.anchor = GridBagConstraints.EAST;
         gbcLabel10.fill = GridBagConstraints.NONE;
-        gbcLabel10.insets = new Insets(2, 5, 2, 5);
+        gbcLabel10.insets = new Insets(2, 5, 5, 5);
         gbcLabel10.weightx = 0.4;
         JLabel lblIdxElectricite = new JLabel("Index Electricité :");
         lblIdxElectricite.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -287,7 +290,7 @@ public class FenetreAjouterContratLocation extends JInternalFrame {
         gbcField10.gridx = 1;
         gbcField10.gridy = 10;
         gbcField10.fill = GridBagConstraints.HORIZONTAL;
-        gbcField10.insets = new Insets(2, 5, 2, 5);
+        gbcField10.insets = new Insets(2, 5, 5, 0);
         gbcField10.weightx = 0.6;
         gbcField10.ipadx = 5;
         textFieldElectrcité = new JTextField();
@@ -299,7 +302,7 @@ public class FenetreAjouterContratLocation extends JInternalFrame {
         gbcLabel11.gridy = 11;
         gbcLabel11.anchor = GridBagConstraints.EAST;
         gbcLabel11.fill = GridBagConstraints.NONE;
-        gbcLabel11.insets = new Insets(2, 5, 2, 5);
+        gbcLabel11.insets = new Insets(2, 5, 5, 5);
         gbcLabel11.weightx = 0.4;
         JLabel lblIdxGaz = new JLabel("Index Gaz :");
         lblIdxGaz.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -309,12 +312,30 @@ public class FenetreAjouterContratLocation extends JInternalFrame {
         gbcField11.gridx = 1;
         gbcField11.gridy = 11;
         gbcField11.fill = GridBagConstraints.HORIZONTAL;
-        gbcField11.insets = new Insets(2, 5, 2, 5);
+        gbcField11.insets = new Insets(2, 5, 5, 0);
         gbcField11.weightx = 0.6;
         gbcField11.ipadx = 5;
         textFieldGaz = new JTextField();
         textFieldGaz.setPreferredSize(fieldSize);
         contentPane.add(textFieldGaz, gbcField11);
+        
+        JLabel lblLoyer = new JLabel("Loyer : ");
+        lblLoyer.setHorizontalAlignment(SwingConstants.RIGHT);
+        GridBagConstraints gbc_lblLoyer = new GridBagConstraints();
+        gbc_lblLoyer.anchor = GridBagConstraints.EAST;
+        gbc_lblLoyer.insets = new Insets(0, 0, 5, 5);
+        gbc_lblLoyer.gridx = 0;
+        gbc_lblLoyer.gridy = 12;
+        contentPane.add(lblLoyer, gbc_lblLoyer);
+        
+        textFieldLoyer = new JTextField();
+        textFieldLoyer.setPreferredSize(new Dimension(150, 25));
+        GridBagConstraints gbc_textFieldLoyer = new GridBagConstraints();
+        gbc_textFieldLoyer.insets = new Insets(0, 0, 5, 0);
+        gbc_textFieldLoyer.fill = GridBagConstraints.HORIZONTAL;
+        gbc_textFieldLoyer.gridx = 1;
+        gbc_textFieldLoyer.gridy = 12;
+        contentPane.add(textFieldLoyer, gbc_textFieldLoyer);
         
         GridBagConstraints gbcButtonPanel = new GridBagConstraints();
         gbcButtonPanel.gridy = 13;

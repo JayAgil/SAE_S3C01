@@ -22,6 +22,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Panel;
 import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
 public class FenetreContratLocation extends JFrame {
 	private GestionFenetreContratLocation gestionClicContratLocation;
@@ -145,43 +149,6 @@ public class FenetreContratLocation extends JFrame {
         contentPane.add(panel_1, BorderLayout.CENTER);
         panel_1.setLayout(new BorderLayout(0, 0));
         
-        JScrollPane scrollPane = new JScrollPane();
-        panel_1.add(scrollPane, BorderLayout.CENTER);
-        
-        table = new JTable();
-        scrollPane.setViewportView(table);
-        table.setModel(new DefaultTableModel(
-        	new Object[][] {
-        		{null, null, null, null, null, null, null, null, null, null, null},
-        		{null, null, null, null, null, null, null, null, null, null, null},
-        		{null, null, null, null, null, null, null, null, null, null, null},
-        		{null, null, null, null, null, null, null, null, null, null, null},
-        		{null, null, null, null, null, null, null, null, null, null, null},
-        		{null, null, null, null, null, null, null, null, null, null, null},
-        		{null, null, null, null, null, null, null, null, null, null, null},
-        		{null, null, null, null, null, null, null, null, null, null, null},
-        	},
-        	new String[] {
-        		"Num\u00E9ro contrat", "Date d\u00E9but", "Date fin", "Montant caution", "Provision charge", "Solde", "Montant mensuel", "Date versement", "Index eau", "Index \u00E9lectricit\u00E9", "Index gaz"
-        	}
-        ) {
-        	Class[] columnTypes = new Class[] {
-        		String.class, String.class, String.class, Float.class, Float.class, Float.class, Float.class, String.class, Float.class, Float.class, Object.class
-        	};
-        	public Class getColumnClass(int columnIndex) {
-        		return columnTypes[columnIndex];
-        	}
-        });
-        table.getColumnModel().getColumn(0).setPreferredWidth(87);
-        table.getColumnModel().getColumn(1).setPreferredWidth(66);
-        table.getColumnModel().getColumn(2).setPreferredWidth(50);
-        table.getColumnModel().getColumn(3).setPreferredWidth(90);
-        table.getColumnModel().getColumn(4).setPreferredWidth(89);
-        table.getColumnModel().getColumn(5).setPreferredWidth(45);
-        table.getColumnModel().getColumn(6).setPreferredWidth(97);
-        table.getColumnModel().getColumn(7).setPreferredWidth(89);
-        table.getColumnModel().getColumn(8).setPreferredWidth(61);
-        
         Panel Title_1 = new Panel();
         panel_1.add(Title_1, BorderLayout.NORTH);
         
@@ -203,6 +170,49 @@ public class FenetreContratLocation extends JFrame {
         JButton btnRetour = new JButton("Retour");
         btnRetour.addActionListener(this.gestionClicContratLocation);
         panel_2.add(btnRetour);
+        
+        JPanel panel_3 = new JPanel();
+        panel_1.add(panel_3, BorderLayout.CENTER);
+        GridBagLayout gbl_panel_3 = new GridBagLayout();
+        gbl_panel_3.columnWidths = new int[]{1176, 0};
+        gbl_panel_3.rowHeights = new int[] {500, 220, 0};
+        gbl_panel_3.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+        gbl_panel_3.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+        panel_3.setLayout(gbl_panel_3);
+        
+        JPanel panel_4 = new JPanel();
+        GridBagConstraints gbc_panel_4 = new GridBagConstraints();
+        gbc_panel_4.fill = GridBagConstraints.BOTH;
+        gbc_panel_4.insets = new Insets(0, 0, 5, 0);
+        gbc_panel_4.gridx = 0;
+        gbc_panel_4.gridy = 0;
+        panel_3.add(panel_4, gbc_panel_4);
+        
+        JScrollPane scrollPane = new JScrollPane();
+        GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+        gbc_scrollPane.fill = GridBagConstraints.BOTH;
+        gbc_scrollPane.gridx = 0;
+        gbc_scrollPane.gridy = 1;
+        panel_3.add(scrollPane, gbc_scrollPane);
+        
+        table = new JTable();
+        table.setModel(new DefaultTableModel(
+        	new Object[][] {
+        		{null, null, null, null},
+        		{null, null, null, null},
+        		{null, null, null, null},
+        		{null, null, null, null},
+        		{null, null, null, null},
+        		{null, null, null, null},
+        		{null, null, null, null},
+        		{null, null, null, null},
+        		{null, null, null, null},
+        	},
+        	new String[] {
+        		"Numero De Contrat", "Nom du locataire", "Date Fin", "Solde"
+        	}
+        ));
+        scrollPane.setViewportView(table);
 	}
 	
 }
