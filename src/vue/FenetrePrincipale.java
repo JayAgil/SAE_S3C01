@@ -26,6 +26,8 @@ import javax.swing.table.DefaultTableModel;
 import controleur.GestionFenetrePrincipale;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FenetrePrincipale extends JFrame {
 
@@ -37,6 +39,7 @@ public class FenetrePrincipale extends JFrame {
     private JPanel panelNbLoyePasPaye;
     private JPanel panelRevenu_1;
     private JPanel panelNbLoyePasPaye_1;
+    private JButton btnImporter;
     
     public JPanel getPanelRevenu() {
     	return this.panelRevenu;
@@ -218,9 +221,14 @@ public class FenetrePrincipale extends JFrame {
 
         JButton btnAssurance = new JButton("Assurance");
         panelSouthEast.add(btnAssurance);
+        
+        btnImporter = new JButton("Importer Un Fichier CSV");
+        panelSouthEast.add(btnImporter);
+        
         btnAssurance.addActionListener(this.gestionClic);
         btnCompteurs.addActionListener(this.gestionClic);
         btnCharges.addActionListener(this.gestionClic);
+        btnImporter.addActionListener(this.gestionClic);
 
         JPanel panelCenter = new JPanel();
         panelContent.add(panelCenter);

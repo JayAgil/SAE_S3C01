@@ -3,7 +3,9 @@ package controleur;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
 
+import javax.swing.JFileChooser;
 import javax.swing.JTable;
 
 import vue.*;
@@ -46,8 +48,23 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
                 fenetre.getLayeredPane().add(ajout);
                 ajout.setVisible(true);
                 break;
+            case "Importer Un Fichier CSV":
+            	JFileChooser chooser = new JFileChooser();
+                int result = chooser.showOpenDialog(null);
+
+                if (result == JFileChooser.APPROVE_OPTION) {
+                    File selectedFile = chooser.getSelectedFile();
+                    System.out.println("Selected file: " + selectedFile.getAbsolutePath());
+                    mAJDeBaseDeDonnees(selectedFile);
+            	break;
+                }
         }
     }
+        
+    private void mAJDeBaseDeDonnees(File file) {
+    	return;
+    }
+
 
     @Override
     protected void gererMenuSpecifique(String texte) {
