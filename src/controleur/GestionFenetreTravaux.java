@@ -44,8 +44,8 @@ public class GestionFenetreTravaux extends GestionHeaderEtFooter implements Acti
 	        }
 	     }
 	}
-	
-	public void gererBoutonRetour() {
+	@Override
+	protected void gererBoutonRetour(String texte) {
 		FenetreBienLouable fenetreBienLouable = new FenetreBienLouable();
 		fenetreBienLouable.setVisible(true);
 		this.fenetreTravaux.dispose();
