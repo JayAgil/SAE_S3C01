@@ -232,8 +232,6 @@ public class FenetreLocataire extends FenetreBase {
         // Row 0
         JLabel lblNom = new JLabel("Nom :");
         GridBagConstraints gbc_lblNom = new GridBagConstraints();
-        gbc_lblNom.anchor = GridBagConstraints.WEST;
-        gbc_lblNom.fill = GridBagConstraints.HORIZONTAL;
         gbc_lblNom.insets = insets;
         gbc_lblNom.gridx = 0;
         gbc_lblNom.gridy = 0;
@@ -253,8 +251,6 @@ public class FenetreLocataire extends FenetreBase {
         // Row 1
         JLabel lblPrenom = new JLabel("Prénom :");
         GridBagConstraints gbc_lblPrenom = new GridBagConstraints();
-        gbc_lblPrenom.anchor = GridBagConstraints.WEST;
-        gbc_lblPrenom.fill = GridBagConstraints.HORIZONTAL;
         gbc_lblPrenom.insets = insets;
         gbc_lblPrenom.gridx = 0;
         gbc_lblPrenom.gridy = 1;
@@ -274,8 +270,6 @@ public class FenetreLocataire extends FenetreBase {
         // Row 2
         JLabel lblAdresse = new JLabel("Adresse :");
         GridBagConstraints gbc_lblAdresse = new GridBagConstraints();
-        gbc_lblAdresse.anchor = GridBagConstraints.WEST;
-        gbc_lblAdresse.fill = GridBagConstraints.HORIZONTAL;
         gbc_lblAdresse.insets = insets;
         gbc_lblAdresse.gridx = 0;
         gbc_lblAdresse.gridy = 2;
@@ -296,8 +290,6 @@ public class FenetreLocataire extends FenetreBase {
         // Tél
         JLabel lblTel = new JLabel("Tél :");
         GridBagConstraints gbc_lblTel = new GridBagConstraints();
-        gbc_lblTel.anchor = GridBagConstraints.WEST;
-        gbc_lblTel.fill = GridBagConstraints.HORIZONTAL;
         gbc_lblTel.insets = insets;
         gbc_lblTel.gridx = 0;
         gbc_lblTel.gridy = 3;
@@ -317,8 +309,6 @@ public class FenetreLocataire extends FenetreBase {
         // Email
         JLabel lblEmail = new JLabel("Email :");
         GridBagConstraints gbc_lblEmail = new GridBagConstraints();
-        gbc_lblEmail.anchor = GridBagConstraints.WEST;
-        gbc_lblEmail.fill = GridBagConstraints.HORIZONTAL;
         gbc_lblEmail.insets = insets;
         gbc_lblEmail.gridx = 0;
         gbc_lblEmail.gridy = 4;
@@ -338,8 +328,6 @@ public class FenetreLocataire extends FenetreBase {
      // Date de naissance
         JLabel lblDateNaissance = new JLabel("Date de naissance :");
         GridBagConstraints gbc_lblDateNaissance = new GridBagConstraints();
-        gbc_lblDateNaissance.anchor = GridBagConstraints.WEST;
-        gbc_lblDateNaissance.fill = GridBagConstraints.HORIZONTAL;
         gbc_lblDateNaissance.insets = insets;
         gbc_lblDateNaissance.gridx = 0;
         gbc_lblDateNaissance.gridy = 5;
@@ -359,8 +347,6 @@ public class FenetreLocataire extends FenetreBase {
         // Lieu de naissance
         JLabel lblLieuNaissance = new JLabel("Lieu de naissance :");
         GridBagConstraints gbc_lblLieuNaissance = new GridBagConstraints();
-        gbc_lblLieuNaissance.anchor = GridBagConstraints.WEST;
-        gbc_lblLieuNaissance.fill = GridBagConstraints.HORIZONTAL;
         gbc_lblLieuNaissance.insets = insets;
         gbc_lblLieuNaissance.gridx = 0;
         gbc_lblLieuNaissance.gridy = 6;
@@ -380,8 +366,6 @@ public class FenetreLocataire extends FenetreBase {
         // Salaire
         JLabel lblSalaire = new JLabel("Salaire :");
         GridBagConstraints gbc_lblSalaire = new GridBagConstraints();
-        gbc_lblSalaire.anchor = GridBagConstraints.WEST;
-        gbc_lblSalaire.fill = GridBagConstraints.HORIZONTAL;
         gbc_lblSalaire.insets = insets;
         gbc_lblSalaire.gridx = 0;
         gbc_lblSalaire.gridy = 7;
@@ -401,8 +385,6 @@ public class FenetreLocataire extends FenetreBase {
         // Profession
         JLabel lblProfession = new JLabel("Profession :");
         GridBagConstraints gbc_lblProfession = new GridBagConstraints();
-        gbc_lblProfession.anchor = GridBagConstraints.WEST;
-        gbc_lblProfession.fill = GridBagConstraints.HORIZONTAL;
         gbc_lblProfession.insets = insets;
         gbc_lblProfession.gridx = 0;
         gbc_lblProfession.gridy = 8;
@@ -422,8 +404,6 @@ public class FenetreLocataire extends FenetreBase {
         // Situation familiale
         JLabel lblSituationFamiliale = new JLabel("Situation familiale :");
         GridBagConstraints gbc_lblSituationFamiliale = new GridBagConstraints();
-        gbc_lblSituationFamiliale.anchor = GridBagConstraints.WEST;
-        gbc_lblSituationFamiliale.fill = GridBagConstraints.HORIZONTAL;
         gbc_lblSituationFamiliale.insets = insets;
         gbc_lblSituationFamiliale.gridx = 0;
         gbc_lblSituationFamiliale.gridy = 9;
@@ -470,7 +450,7 @@ public class FenetreLocataire extends FenetreBase {
         		{null, null, null, null, null, null},
         	},
         	new String[] {
-        		"New column", "New column", "New column", "New column", "New column", "New column"
+        		"Id Locataire", "Nom", "Prenom", "Adresse", "Tel", "Email"
         	}
         ));
         scrollPane.setViewportView(table);
