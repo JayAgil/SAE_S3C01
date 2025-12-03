@@ -7,6 +7,7 @@ public class GestionFenetreDiagnostic extends GestionHeaderEtFooter {
 
     public GestionFenetreDiagnostic(FenetreDiagnostic fenetre) {
         super(fenetre);
+        this.fenetre = fenetre;
     }
 
     @Override

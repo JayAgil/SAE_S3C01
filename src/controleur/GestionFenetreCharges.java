@@ -7,6 +7,7 @@ public class GestionFenetreCharges extends GestionHeaderEtFooter{
 
     public GestionFenetreCharges(FenetreCharges fenetre) {
         super(fenetre);
+        this.fenetre = fenetre;
     }
    
 
