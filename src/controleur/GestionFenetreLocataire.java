@@ -8,7 +8,6 @@ public class GestionFenetreLocataire extends GestionHeaderEtFooter {
 
     public GestionFenetreLocataire(FenetreLocataire fenetre) {
         super(fenetre);
-        this.fenetre = fenetre;
     }
 
     @Override
