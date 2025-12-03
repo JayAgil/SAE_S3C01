@@ -53,8 +53,6 @@ public class FenetreBienLouable extends FenetreBase {
 	 * Create the frame.
 	 */
 	public FenetreBienLouable() {
-		setResizable(false);
-    	setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.gestionClicBienLouable = new GestionFenetreBienLouable(this);
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBackground(new Color(214, 214, 214));
