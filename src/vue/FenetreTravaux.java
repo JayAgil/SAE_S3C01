@@ -22,6 +22,11 @@ import controleur.GestionFenetreTravaux;
 
 import javax.swing.JScrollPane;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+
 
 public class FenetreTravaux extends FenetreBase {
 
@@ -216,6 +221,7 @@ public class FenetreTravaux extends FenetreBase {
         });
         table.getColumnModel().getColumn(1).setPreferredWidth(58);
         table.getColumnModel().getColumn(2).setPreferredWidth(91);
+        table.addMouseListener(this.gestionClic);
 
         scrollPane.setViewportView(table);
         panel.add(scrollPane, BorderLayout.CENTER);
