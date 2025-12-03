@@ -12,10 +12,8 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
-import java.awt.event.ActionEvent;
 
 public class FenetreAjouterLocataire extends JInternalFrame {
 
