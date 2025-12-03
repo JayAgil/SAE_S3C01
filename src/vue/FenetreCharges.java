@@ -27,15 +27,21 @@ import java.awt.Panel;
 import java.awt.Font;
 import java.awt.Component;
 import javax.swing.Box;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
-public class FenetreCharges extends JFrame {
+
+public class FenetreCharges extends FenetreBase {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable table;
 	private GestionFenetreCharges gestionClic;
+	private String fenetreAvant;
+	private JMenu mnPaiement;
+	private JMenu mnBienLouable;
+	private JMenuItem mntmAjouterBat;
+	private JMenuItem mntmChargesBL;
+	private JMenu mnBatiment;
+	private JMenuItem mntmCharge;
 	
 
 	/**
@@ -45,7 +51,7 @@ public class FenetreCharges extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FenetreCharges frame = new FenetreCharges();
+					FenetreCharges frame = new FenetreCharges("");
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -57,7 +63,8 @@ public class FenetreCharges extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public FenetreCharges() {
+	public FenetreCharges(String FenetreAvant) {
+		this.fenetreAvant = fenetreAvant;
     	setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.gestionClic = new GestionFenetreCharges(this);
 		JMenuBar menuBar = new JMenuBar();
@@ -72,10 +79,10 @@ public class FenetreCharges extends JFrame {
         mntmDeconnecter.addActionListener(this.gestionClic);
         mnProfil.add(mntmDeconnecter);
 
-        JMenu mnBatiment = new JMenu("Batiment");
+        mnBatiment = new JMenu("Batiment");
         menuBar.add(mnBatiment);
 
-        JMenuItem mntmAjouterBat = new JMenuItem("Ajouter bâtiment");
+        mntmAjouterBat = new JMenuItem("Ajouter bâtiment");
         mntmAjouterBat.addActionListener(this.gestionClic);
         mnBatiment.add(mntmAjouterBat);
 
@@ -87,11 +94,11 @@ public class FenetreCharges extends JFrame {
         mntmCompteur.addActionListener(this.gestionClic);
         mnBatiment.add(mntmCompteur);
 
-        JMenuItem mntmCharge = new JMenuItem("Charges bâtiment");
+        mntmCharge = new JMenuItem("Charges bâtiment");
         mntmCharge.addActionListener(this.gestionClic);
         mnBatiment.add(mntmCharge);
 
-        JMenu mnBienLouable = new JMenu("Bien louable");
+        mnBienLouable = new JMenu("Bien louable");
         menuBar.add(mnBienLouable);
 
         JMenuItem mntmContratLocation = new JMenuItem("Contrat location");
@@ -106,7 +113,7 @@ public class FenetreCharges extends JFrame {
         mntmTravaux.addActionListener(this.gestionClic);
         mnBienLouable.add(mntmTravaux);
 
-        JMenuItem mntmChargesBL = new JMenuItem("Charges bien louable");
+        mntmChargesBL = new JMenuItem("Charges bien louable");
         mntmChargesBL.addActionListener(this.gestionClic);
         mnBienLouable.add(mntmChargesBL);
 
@@ -118,7 +125,7 @@ public class FenetreCharges extends JFrame {
         mntmLocataire.addActionListener(this.gestionClic);
         mnBienLouable.add(mntmLocataire);
         
-        JMenu mnPaiement = new JMenu("Paiement");
+        mnPaiement = new JMenu("Paiement");
         menuBar.add(mnPaiement);
         
         JMenuItem mntmHistorique = new JMenuItem("Historique de paiement");
@@ -188,6 +195,7 @@ public class FenetreCharges extends JFrame {
         btnAjouter.addActionListener(this.gestionClic);
         panel_2.add(btnAjouter);
         panel_2.add(btnAnnuler);
+        this.gestionClic.initialize();
         
         JButton btnRetour = new JButton("Retour");
         btnRetour.addActionListener(this.gestionClic);
@@ -220,5 +228,22 @@ public class FenetreCharges extends JFrame {
         JLabel footerLabel = new JLabel("Developpé par Koshua, Jay, Aneesa, Luca et Franck");
         footerPanel.add(footerLabel);
 	}
+	
+	@Override
+    public void disableMenuItems(boolean actif) {
+		this.mnPaiement.setEnabled(actif);
+
+    	if (this.fenetreAvant == "FenetrePrincipale"){
+    			this.mnBienLouable.setEnabled(actif);
+    			this.mnPaiement.setEnabled(actif);
+    			this.mntmAjouterBat.setEnabled(actif);
+    			mntmCharge.setEnabled(actif);
+    	}
+    	if (this.fenetreAvant == "FenetreBienLouable"){
+			this.mntmChargesBL.setEnabled(actif);
+			this.mnBatiment.setEnabled(actif);	
+	}
+    	
+    }
 	
 }

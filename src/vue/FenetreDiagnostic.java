@@ -8,30 +8,26 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-
 import controleur.GestionFenetreDiagnostic;
-
 import java.awt.Font;
-import java.awt.Component;
-import javax.swing.Box;
-import java.awt.Panel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 
-public class FenetreDiagnostic extends JFrame {
+public class FenetreDiagnostic extends FenetreBase {
 
     private static final long serialVersionUID = 1L;
     private GestionFenetreDiagnostic gestionClic;
     private JTable table;
+	private JMenu mnBatiment;
+	private JMenuItem mntmDiagnostic;
+	private JMenu mnPaiement;
 
     /**
      * Launch the application.
@@ -76,7 +72,7 @@ public class FenetreDiagnostic extends JFrame {
         mntmDeconnecter.addActionListener(this.gestionClic);
         mnProfil.add(mntmDeconnecter);
 
-        JMenu mnBatiment = new JMenu("Batiment");
+        mnBatiment = new JMenu("Batiment");
         menuBar.add(mnBatiment);
 
         JMenuItem mntmAjouterBat = new JMenuItem("Ajouter bâtiment");
@@ -114,7 +110,7 @@ public class FenetreDiagnostic extends JFrame {
         mntmChargesBL.addActionListener(this.gestionClic);
         mnBienLouable.add(mntmChargesBL);
 
-        JMenuItem mntmDiagnostic = new JMenuItem("Diagnostics");
+        mntmDiagnostic = new JMenuItem("Diagnostics");
         mntmDiagnostic.addActionListener(this.gestionClic);
         mnBienLouable.add(mntmDiagnostic);
 
@@ -122,7 +118,7 @@ public class FenetreDiagnostic extends JFrame {
         mntmLocataire.addActionListener(this.gestionClic);
         mnBienLouable.add(mntmLocataire);
         
-        JMenu mnPaiement = new JMenu("Paiement");
+        mnPaiement = new JMenu("Paiement");
         menuBar.add(mnPaiement);
         
         JMenuItem mntmHistorique = new JMenuItem("Historique de paiement");
@@ -132,6 +128,7 @@ public class FenetreDiagnostic extends JFrame {
         JMenuItem mntmAjout = new JMenuItem("Ajouter paiement");
         mntmAjout.addActionListener(this.gestionClic);
         mnPaiement.add(mntmAjout);
+        this.gestionClic.initialize();
 
         JPanel panelFooter = new JPanel();
         getContentPane().add(panelFooter, BorderLayout.SOUTH);
@@ -158,6 +155,9 @@ public class FenetreDiagnostic extends JFrame {
         
         JButton btnRetour = new JButton("Retour");
         btnRetour.addActionListener(this.gestionClic);
+        
+        JButton btnAjouter = new JButton("Ajouter");
+        panel_1.add(btnAjouter);
         panel_1.add(btnRetour);
         
         JPanel panel_2 = new JPanel();
@@ -169,10 +169,9 @@ public class FenetreDiagnostic extends JFrame {
         
         JPanel panel_3 = new JPanel();
         panel.add(panel_3, BorderLayout.CENTER);
-        panel_3.setLayout(null);
+        panel_3.setLayout(new BorderLayout(0, 0));
         
         JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setBounds(0, 20, 1185, 160);
         panel_3.add(scrollPane);
         
         table = new JTable();
@@ -195,5 +194,10 @@ public class FenetreDiagnostic extends JFrame {
         table.getColumnModel().getColumn(0).setPreferredWidth(96);
         table.getColumnModel().getColumn(1).setPreferredWidth(96);
 
+    }
+    public void disableMenuItems(boolean actif) {
+    	this.mnBatiment.setEnabled(actif);
+    	this.mnPaiement.setEnabled(actif);
+    	this.mntmDiagnostic.setEnabled(actif);
     }
 }

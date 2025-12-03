@@ -15,7 +15,6 @@ public class GestionFenetreTravaux extends GestionHeaderEtFooter {
 	
 	public GestionFenetreTravaux(FenetreTravaux fenetreTravaux) {
 		super(fenetreTravaux);
-		this.fenetreTravaux = fenetreTravaux;
 	}
 	
 	public void actionPerformed(ActionEvent e) {

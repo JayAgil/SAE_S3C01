@@ -7,14 +7,14 @@ public class GestionFenetreDiagnostic extends GestionHeaderEtFooter {
 
     public GestionFenetreDiagnostic(FenetreDiagnostic fenetre) {
         super(fenetre);
-        this.fenetre = fenetre;
     }
 
     @Override
     protected void gererBoutonSpecifique(String texte) {
         switch (texte) {
-            case "obtenir":
-                fenetre.dispose();
+            case "Ajouter":
+                FenetreAjouterDiagnostic fenAjouterDiagnostic = new FenetreAjouterDiagnostic();
+                fenAjouterDiagnostic.setVisible(true);
                 break;
             case "Retour" :
             	FenetreBienLouable fenBienLouable = new FenetreBienLouable();

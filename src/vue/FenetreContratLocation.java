@@ -22,13 +22,12 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Panel;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTextField;
 
-public class FenetreContratLocation extends JFrame {
+public class FenetreContratLocation extends FenetreBase {
 	private GestionFenetreContratLocation gestionClicContratLocation;
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -43,6 +42,9 @@ public class FenetreContratLocation extends JFrame {
 	private JTextField textFieldCptElec;
 	private JTextField textFieldCptGaz;
 	private JTextField textFieldSolde;
+	private JMenu mnBatiment;
+	private JMenu mnPaiement;
+	private JMenuItem mntmContratLocation;
 
 	/**
 	 * Launch the application.
@@ -78,7 +80,7 @@ public class FenetreContratLocation extends JFrame {
         mntmDeconnecter.addActionListener(this.gestionClicContratLocation);
         mnProfil.add(mntmDeconnecter);
 
-        JMenu mnBatiment = new JMenu("Batiment");
+        mnBatiment = new JMenu("Batiment");
         menuBar.add(mnBatiment);
 
         JMenuItem mntmAjouterBat = new JMenuItem("Ajouter bâtiment");
@@ -100,7 +102,7 @@ public class FenetreContratLocation extends JFrame {
         JMenu mnBienLouable = new JMenu("Bien louable");
         menuBar.add(mnBienLouable);
 
-        JMenuItem mntmContratLocation = new JMenuItem("Contrat location");
+        mntmContratLocation = new JMenuItem("Contrat location");
         mntmContratLocation.addActionListener(this.gestionClicContratLocation);
         mnBienLouable.add(mntmContratLocation);
 
@@ -124,7 +126,7 @@ public class FenetreContratLocation extends JFrame {
         mntmLocataire.addActionListener(this.gestionClicContratLocation);
         mnBienLouable.add(mntmLocataire);
         
-        JMenu mnPaiement = new JMenu("Paiement");
+        mnPaiement = new JMenu("Paiement");
         menuBar.add(mnPaiement);
         
         JMenuItem mntmHistorique = new JMenuItem("Historique de paiement");
@@ -144,6 +146,7 @@ public class FenetreContratLocation extends JFrame {
 		
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.SOUTH);
+		this.gestionClicContratLocation.initialize();
 		
 		//footer
 		JPanel footerPanel = new JPanel();
@@ -414,6 +417,14 @@ public class FenetreContratLocation extends JFrame {
         gbc_panel_5.gridy = 2;
         panel_3.add(panel_5, gbc_panel_5);
 	}
+	
+	@Override
+	public void disableMenuItems(boolean actif) {
+		this.mnBatiment.setEnabled(actif);
+		this.mnPaiement.setEnabled(actif);
+		this.mntmContratLocation.setEnabled(actif);
+	}
+	
 	
 }
 

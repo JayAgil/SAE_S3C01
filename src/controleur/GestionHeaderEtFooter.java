@@ -44,12 +44,12 @@ public abstract class GestionHeaderEtFooter implements ActionListener {
             break;
 
         case "Compteurs bâtiment":
-            new FenetreCompteurs().setVisible(true);
+            new FenetreCompteurs("FenetrePrincipale").setVisible(true);
             fenetre.dispose();
             break;
 
         case "Charges bâtiment":
-            new FenetreCharges().setVisible(true);
+            new FenetreCharges("FenetrePrincipale").setVisible(true);
             fenetre.dispose();
             break;
 
@@ -59,7 +59,7 @@ public abstract class GestionHeaderEtFooter implements ActionListener {
             break;
 
         case "Compteurs bien louable":
-            new FenetreCompteurs().setVisible(true);
+            new FenetreCompteurs("FenetreBienLouable").setVisible(true);
             fenetre.dispose();
             break;
 
@@ -69,7 +69,7 @@ public abstract class GestionHeaderEtFooter implements ActionListener {
             break;
 
         case "Charges bien louable":
-            new FenetreCharges().setVisible(true);
+            new FenetreCharges("FenetreBienLouable").setVisible(true);
             fenetre.dispose();
             break;
 

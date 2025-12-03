@@ -7,12 +7,19 @@ import javax.swing.table.DefaultTableModel;
 
 import controleur.GestionFenetrePaiement;
 
-public class FenetrePaiement extends JFrame {
+public class FenetrePaiement extends FenetreBase {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
     private JTable table;
     private GestionFenetrePaiement gestionClic;
+	private JMenu mnBatiment;
+	private JMenuItem mntmHistorique;
+	private JMenuItem mntmContratLocation;
+	private JMenuItem mntmCompteurBL;
+	private JMenuItem mntmTravaux;
+	private JMenuItem mntmChargesBL;
+	private JMenuItem mntmDiagnostic;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
@@ -45,7 +52,7 @@ public class FenetrePaiement extends JFrame {
         mntmDeconnecter.addActionListener(this.gestionClic);
         mnProfil.add(mntmDeconnecter);
 
-        JMenu mnBatiment = new JMenu("Batiment");
+        mnBatiment = new JMenu("Batiment");
         menuBar.add(mnBatiment);
 
         JMenuItem mntmAjouterBat = new JMenuItem("Ajouter bâtiment");
@@ -67,23 +74,23 @@ public class FenetrePaiement extends JFrame {
         JMenu mnBienLouable = new JMenu("Bien louable");
         menuBar.add(mnBienLouable);
 
-        JMenuItem mntmContratLocation = new JMenuItem("Contrat location");
+        mntmContratLocation = new JMenuItem("Contrat location");
         mntmContratLocation.addActionListener(this.gestionClic);
         mnBienLouable.add(mntmContratLocation);
 
-        JMenuItem mntmCompteurBL = new JMenuItem("Compteurs bien louable");
+        mntmCompteurBL = new JMenuItem("Compteurs bien louable");
         mntmCompteurBL.addActionListener(this.gestionClic);
         mnBienLouable.add(mntmCompteurBL);
 
-        JMenuItem mntmTravaux = new JMenuItem("Travaux");
+        mntmTravaux = new JMenuItem("Travaux");
         mntmTravaux.addActionListener(this.gestionClic);
         mnBienLouable.add(mntmTravaux);
 
-        JMenuItem mntmChargesBL = new JMenuItem("Charges bien louable");
+        mntmChargesBL = new JMenuItem("Charges bien louable");
         mntmChargesBL.addActionListener(this.gestionClic);
         mnBienLouable.add(mntmChargesBL);
 
-        JMenuItem mntmDiagnostic = new JMenuItem("Diagnostics");
+        mntmDiagnostic = new JMenuItem("Diagnostics");
         mntmDiagnostic.addActionListener(this.gestionClic);
         mnBienLouable.add(mntmDiagnostic);
 
@@ -94,7 +101,7 @@ public class FenetrePaiement extends JFrame {
         JMenu mnPaiement = new JMenu("Paiement");
         menuBar.add(mnPaiement);
         
-        JMenuItem mntmHistorique = new JMenuItem("Historique de paiement");
+        mntmHistorique = new JMenuItem("Historique de paiement");
         mntmHistorique.addActionListener(this.gestionClic);
         mnPaiement.add(mntmHistorique);
         
@@ -106,6 +113,7 @@ public class FenetrePaiement extends JFrame {
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         contentPane.setLayout(new BorderLayout(0, 0));
         setContentPane(contentPane);
+        this.gestionClic.initialize();
 
         JPanel mainPanel = new JPanel();
         mainPanel.setBackground(Color.WHITE);
@@ -229,6 +237,17 @@ public class FenetrePaiement extends JFrame {
     	btnAjouterPaiement.addActionListener(gestionClic);
         btnGenFac.addActionListener(gestionClic);
         btnRetour.addActionListener(gestionClic);
+    }
+    
+    public void disableMenuItems(boolean actif) {
+    	this.mnBatiment.setEnabled(actif);
+    	this.mntmChargesBL.setEnabled(actif);
+    	this.mntmCompteurBL.setEnabled(actif);
+    	this.mntmContratLocation.setEnabled(actif);
+    	this.mntmDiagnostic.setEnabled(actif);
+    	this.mntmHistorique.setEnabled(actif);
+    	this.mntmTravaux.setEnabled(actif);
+
     }
     
     

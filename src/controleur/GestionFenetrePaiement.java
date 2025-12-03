@@ -9,7 +9,6 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter{
 
     public GestionFenetrePaiement(FenetrePaiement fenetre) {
         super(fenetre);
-        this.fenetre = fenetre;
     }
 
     @Override

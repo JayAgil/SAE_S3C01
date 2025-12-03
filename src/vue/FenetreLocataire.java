@@ -31,7 +31,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
-public class FenetreLocataire extends JFrame {
+public class FenetreLocataire extends FenetreBase {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
@@ -48,6 +48,8 @@ public class FenetreLocataire extends JFrame {
     private GestionFenetreLocataire gestionClic;
     private JTable table;
     private String nomFenAvant;
+	private JMenuItem mntmLocataire;
+	private JMenu mnBatiment;
     
     public String getNomFenAvant() {
     	return this.nomFenAvant;
@@ -92,7 +94,7 @@ public class FenetreLocataire extends JFrame {
         mntmDeconnecter.addActionListener(this.gestionClic);
         mnProfil.add(mntmDeconnecter);
 
-        JMenu mnBatiment = new JMenu("Batiment");
+        mnBatiment = new JMenu("Batiment");
         menuBar.add(mnBatiment);
 
         JMenuItem mntmAjouterBat = new JMenuItem("Ajouter bâtiment");
@@ -134,7 +136,7 @@ public class FenetreLocataire extends JFrame {
         mntmDiagnostic.addActionListener(this.gestionClic);
         mnBienLouable.add(mntmDiagnostic);
 
-        JMenuItem mntmLocataire = new JMenuItem("Locataires");
+        mntmLocataire = new JMenuItem("Locataires");
         mntmLocataire.addActionListener(this.gestionClic);
         mnBienLouable.add(mntmLocataire);
         
@@ -155,6 +157,7 @@ public class FenetreLocataire extends JFrame {
         contentPane.setLayout(new BorderLayout(0, 0));
         
         JPanel bottomContainer = new JPanel(new BorderLayout());
+        this.gestionClic.initialize();
 
     
 
@@ -473,6 +476,10 @@ public class FenetreLocataire extends JFrame {
 
 
 
+    }
+    public void disableMenuItems(boolean actif) {
+    	this.mnBatiment.setEnabled(actif);
+    	this.mntmLocataire.setEnabled(actif);
     }
 	
 }
