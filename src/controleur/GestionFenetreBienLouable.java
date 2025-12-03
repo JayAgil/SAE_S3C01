@@ -1,12 +1,10 @@
 package controleur;
-
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import vue.*;
 
-public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements ActionListener, MouseListener{
+public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements MouseListener{
 
     private FenetreBienLouable fenetrebienlouable;
 

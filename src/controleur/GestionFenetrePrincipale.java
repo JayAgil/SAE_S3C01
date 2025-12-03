@@ -1,6 +1,4 @@
 package controleur;
-
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
@@ -10,7 +8,7 @@ import javax.swing.JTable;
 
 import vue.*;
 
-public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements MouseListener, ActionListener{
+public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements MouseListener{
 
     private FenetrePrincipale fenetre;
 

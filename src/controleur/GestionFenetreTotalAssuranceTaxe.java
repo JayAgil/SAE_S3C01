@@ -1,16 +1,16 @@
 package controleur;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
 import vue.FenetreTotalAssuranceTaxe;
 
-public class GestionFenetreTotalAssuranceTaxe implements ActionListener {
+public class GestionFenetreTotalAssuranceTaxe extends GestionHeaderEtFooter {
     private FenetreTotalAssuranceTaxe fenetreTotalAssuranceTaxe;
 
     public GestionFenetreTotalAssuranceTaxe(FenetreTotalAssuranceTaxe fenetre) {
+		super(fenetre);
         this.fenetreTotalAssuranceTaxe = fenetre;
     }
 

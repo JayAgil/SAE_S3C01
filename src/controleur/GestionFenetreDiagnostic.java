@@ -1,10 +1,7 @@
 package controleur;
-
-import java.awt.event.ActionListener;
-
 import vue.*;
 
-public class GestionFenetreDiagnostic extends GestionHeaderEtFooter implements ActionListener{
+public class GestionFenetreDiagnostic extends GestionHeaderEtFooter {
 
     private FenetreDiagnostic fenetre;
 

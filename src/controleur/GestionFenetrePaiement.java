@@ -1,10 +1,9 @@
 package controleur;
 
-import java.awt.event.ActionListener;
 
 import vue.*;
 
-public class GestionFenetrePaiement extends GestionHeaderEtFooter implements ActionListener{
+public class GestionFenetrePaiement extends GestionHeaderEtFooter{
 
     private FenetrePaiement fenetre;
 

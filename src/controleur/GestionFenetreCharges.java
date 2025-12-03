@@ -1,10 +1,7 @@
 package controleur;
-
-import java.awt.event.ActionListener;
-
 import vue.*;
 
-public class GestionFenetreCharges extends GestionHeaderEtFooter implements ActionListener{
+public class GestionFenetreCharges extends GestionHeaderEtFooter{
 
     private FenetreCharges fenetre;
 

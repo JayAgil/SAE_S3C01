@@ -1,7 +1,6 @@
 package controleur;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import vue.FenetreAjouterEntreprise;
@@ -10,7 +9,7 @@ import vue.FenetreBienLouable;
 import vue.FenetreFacture;
 import vue.FenetreTravaux;
 
-public class GestionFenetreTravaux extends GestionHeaderEtFooter implements ActionListener {
+public class GestionFenetreTravaux extends GestionHeaderEtFooter {
 	
 	private FenetreTravaux fenetreTravaux;
 	
