@@ -101,7 +101,7 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
     	    int targetColumn = 3;
     	    if (row != -1 && column == targetColumn) {
     	        fenetre.dispose();
-    	        FenetreLocataire fen = new FenetreLocataire("Principale");
+    	        FenetreLocataire fen = new FenetreLocataire("FenetrePrincipale");
     	        fen.setVisible(true);
     	    }
     	}

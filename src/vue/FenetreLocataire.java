@@ -461,10 +461,7 @@ public class FenetreLocataire extends FenetreBase {
     public void disableMenuItems(boolean actif) {
 
     	if (this.nomFenAvant == "FenetrePrincipale"){
-    			this.mnBienLouable.setEnabled(actif);
-    			this.mnPaiement.setEnabled(actif);
-    			this.mntmAjouterBat.setEnabled(actif);
-    			mntmCharge.setEnabled(actif);
+    			this.mnBatiment.setEnabled(actif);
     	}
     	if (this.nomFenAvant == "FenetreBienLouable"){
     		this.mnBatiment.setEnabled(actif);

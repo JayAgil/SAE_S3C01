@@ -35,7 +35,7 @@ public class GestionFenetreLocataire extends GestionHeaderEtFooter {
     	    String fenAvant = fenetre.getNomFenAvant();
 
     	    switch (fenAvant) {
-    	        case "Principale":
+    	        case "FenetrePrincipale":
     	            FenetrePrincipale fp1 = new FenetrePrincipale();
     	            fp1.setVisible(true);
     	            break;
