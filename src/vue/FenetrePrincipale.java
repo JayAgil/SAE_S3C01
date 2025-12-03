@@ -26,10 +26,9 @@ import javax.swing.table.DefaultTableModel;
 import controleur.GestionFenetrePrincipale;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
-public class FenetrePrincipale extends JFrame {
+
+public class FenetrePrincipale extends FenetreBase {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
@@ -40,6 +39,13 @@ public class FenetrePrincipale extends JFrame {
     private JPanel panelRevenu_1;
     private JPanel panelNbLoyePasPaye_1;
     private JButton btnImporter;
+    
+	public JMenu getMnBienLouable() {
+		return mnBienLouable;
+	}
+
+	private JMenu mnBienLouable;
+	private JMenu mnPaiement;
     
     public JPanel getPanelRevenu() {
     	return this.panelRevenu;
@@ -59,7 +65,7 @@ public class FenetrePrincipale extends JFrame {
     public JTable getTableBienLouable() {
         return table; 
     }
-
+    
 
     /**
      * Launch the application.
@@ -244,7 +250,7 @@ public class FenetrePrincipale extends JFrame {
         table = new JTable();
         table.addMouseListener(this.gestionClic);
         //getTable().addMouseListener(this);
-        getTable().setModel(new DefaultTableModel(
+        getTableBienLouable().setModel(new DefaultTableModel(
             new Object[][] { { null, null, null, null },
                 { null, null, null, null }, { null, null, null, null },
                 { null, null, null, null }, { null, null, null, null },
@@ -273,7 +279,7 @@ public class FenetrePrincipale extends JFrame {
         table.getColumnModel().getColumn(1).setResizable(false);
         table.getColumnModel().getColumn(2).setResizable(false);
         table.getColumnModel().getColumn(3).setResizable(false);
-        scrollPane.setViewportView(getTable());
+        scrollPane.setViewportView(getTableBienLouable());
 
         JPanel panelCenterNorth = new JPanel();
         panelCenter.add(panelCenterNorth, BorderLayout.NORTH);
@@ -326,7 +332,7 @@ public class FenetrePrincipale extends JFrame {
         mntmCharge.addActionListener(this.gestionClic);
         mnBatiment.add(mntmCharge);
 
-        JMenu mnBienLouable = new JMenu("Bien louable");
+        mnBienLouable = new JMenu("Bien louable");
         menuBar.add(mnBienLouable);
 
         JMenuItem mntmContratLocation = new JMenuItem("Contrat location");
@@ -353,7 +359,7 @@ public class FenetrePrincipale extends JFrame {
         mntmLocataire.addActionListener(this.gestionClic);
         mnBienLouable.add(mntmLocataire);
         
-        JMenu mnPaiement = new JMenu("Paiement");
+        mnPaiement = new JMenu("Paiement");
         menuBar.add(mnPaiement);
         
         JMenuItem mntmHistorique = new JMenuItem("Historique de paiement");
@@ -363,6 +369,8 @@ public class FenetrePrincipale extends JFrame {
         JMenuItem mntmAjout = new JMenuItem("Ajouter paiement");
         mntmAjout.addActionListener(this.gestionClic);
         mnPaiement.add(mntmAjout);
+        
+        gestionClic.initialize();
 
         JPanel panelFooter = new JPanel();
         contentPane.add(panelFooter, BorderLayout.SOUTH);
@@ -392,13 +400,15 @@ public class FenetrePrincipale extends JFrame {
         this.setMinimumSize(new Dimension(1200, 800));
         this.setMaximumSize(new Dimension(1200, 800));
         this.setSize(new Dimension(1200, 800));
-
         this.pack();
         this.setLocationRelativeTo(null);
  
     }
 
-    public JTable getTable() {
-        return table;
+    @Override
+    public void disableMenuItems(boolean actif) {
+    	mnBienLouable.setEnabled(actif);
+    	mnPaiement.setEnabled(actif);
     }
+
 }

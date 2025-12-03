@@ -8,12 +8,16 @@ import vue.*;
 
 public abstract class GestionHeaderEtFooter implements ActionListener {
 
-    protected JFrame fenetre;
+    protected FenetreBase fenetre;
 
-    public GestionHeaderEtFooter(JFrame fenetre) {
+    public GestionHeaderEtFooter(FenetreBase fenetre) {
         this.fenetre = fenetre;
     }
-
+    
+    public void initialize() {
+       this.fenetre.disableMenuItems(false);
+    }
+    
     @Override
     public void actionPerformed(ActionEvent e) {
 

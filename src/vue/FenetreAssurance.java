@@ -12,7 +12,6 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -26,7 +25,7 @@ import controleur.GestionFenetreAssurance;
 import java.awt.Component;
 import javax.swing.Box;
 
-public class FenetreAssurance extends JFrame {
+public class FenetreAssurance extends FenetreBase {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
@@ -35,6 +34,9 @@ public class FenetreAssurance extends JFrame {
     private JTextField textFieldTypeAssurance;
     private JTextField textFieldTxtMontant;
     private JTextField textFieldBatAssure;
+	private JMenuItem mntmAssurance;
+	private JMenu mnBienLouable;
+	private JMenu mnPaiement;
 
     /**
      * Launch the application.
@@ -228,7 +230,7 @@ public class FenetreAssurance extends JFrame {
         mntmAjouterBat.addActionListener(this.gestionClic);
         mnBatiment.add(mntmAjouterBat);
 
-        JMenuItem mntmAssurance = new JMenuItem("Assurance");
+        mntmAssurance = new JMenuItem("Assurance");
         mntmAssurance.addActionListener(this.gestionClic);
         mnBatiment.add(mntmAssurance);
 
@@ -240,7 +242,7 @@ public class FenetreAssurance extends JFrame {
         mntmCharge.addActionListener(this.gestionClic);
         mnBatiment.add(mntmCharge);
 
-        JMenu mnBienLouable = new JMenu("Bien louable");
+        mnBienLouable = new JMenu("Bien louable");
         menuBar.add(mnBienLouable);
 
         JMenuItem mntmContratLocation = new JMenuItem("Contrat location");
@@ -267,7 +269,7 @@ public class FenetreAssurance extends JFrame {
         mntmLocataire.addActionListener(this.gestionClic);
         mnBienLouable.add(mntmLocataire);
         
-        JMenu mnPaiement = new JMenu("Paiement");
+        mnPaiement = new JMenu("Paiement");
         menuBar.add(mnPaiement);
         
         JMenuItem mntmHistorique = new JMenuItem("Historique de paiement");
@@ -277,6 +279,8 @@ public class FenetreAssurance extends JFrame {
         JMenuItem mntmAjout = new JMenuItem("Ajouter paiement");
         mntmAjout.addActionListener(this.gestionClic);
         mnPaiement.add(mntmAjout);
+        
+        this.gestionClic.initialize();
 
         JPanel panelFooter = new JPanel();
         contentPane.add(panelFooter, BorderLayout.SOUTH);
@@ -294,5 +298,10 @@ public class FenetreAssurance extends JFrame {
         footerPanel.add(footerLabel);
     }
 
-   
+    @Override
+    public void disableMenuItems(boolean actif) {
+    	mntmAssurance.setEnabled(actif);
+    	mnBienLouable.setEnabled(actif);
+    	mnPaiement.setEnabled(actif);
+    }
 }

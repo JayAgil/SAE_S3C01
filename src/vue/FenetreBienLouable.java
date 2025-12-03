@@ -19,24 +19,19 @@ import javax.swing.JScrollPane;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import javax.swing.BorderFactory;
-import java.awt.Panel;
 import java.awt.Font;
 import java.awt.Component;
 import javax.swing.Box;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+
 	
-public class FenetreBienLouable extends JFrame {
+public class FenetreBienLouable extends FenetreBase {
 	private GestionFenetreBienLouable gestionClicBienLouable;
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable table;
+	private JMenu mnPaiement;
+	private JMenu mnBatiment;
 
 	/**
 	 * Launch the application.
@@ -73,7 +68,7 @@ public class FenetreBienLouable extends JFrame {
         mntmDeconnecter.addActionListener(this.gestionClicBienLouable);
         mnProfil.add(mntmDeconnecter);
 
-        JMenu mnBatiment = new JMenu("Batiment");
+        mnBatiment = new JMenu("Batiment");
         menuBar.add(mnBatiment);
 
         JMenuItem mntmAjouterBat = new JMenuItem("Ajouter bâtiment");
@@ -119,7 +114,7 @@ public class FenetreBienLouable extends JFrame {
         mntmLocataire.addActionListener(this.gestionClicBienLouable);
         mnBienLouable.add(mntmLocataire);
         
-        JMenu mnPaiement = new JMenu("Paiement");
+        mnPaiement = new JMenu("Paiement");
         menuBar.add(mnPaiement);
         
         JMenuItem mntmHistorique = new JMenuItem("Historique de paiement");
@@ -136,6 +131,8 @@ public class FenetreBienLouable extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
+        this.gestionClicBienLouable.initialize();
+
 		
 		JPanel footerPanel = new JPanel();
         footerPanel.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.LIGHT_GRAY)); 
@@ -249,5 +246,11 @@ public class FenetreBienLouable extends JFrame {
 	public JTable getTable() {
 		return table;
 	}
+	
+	@Override
+    public void disableMenuItems(boolean actif) {
+		this.mnBatiment.setEnabled(actif);
+		this.mnPaiement.setEnabled(actif);
+    }
 	
 }
