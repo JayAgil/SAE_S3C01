@@ -46,6 +46,9 @@ public class FenetrePrincipale extends FenetreBase {
 
 	private JMenu mnBienLouable;
 	private JMenu mnPaiement;
+	private JMenuItem mntmAssurance;
+	private JMenuItem mntmCompteur;
+	private JMenuItem mntmCharge;
     
     public JPanel getPanelRevenu() {
     	return this.panelRevenu;
@@ -320,15 +323,15 @@ public class FenetrePrincipale extends FenetreBase {
         mntmAjouterBat.addActionListener(this.gestionClic);
         mnBatiment.add(mntmAjouterBat);
         
-        JMenuItem mntmAssurance = new JMenuItem("Assurance");
+        mntmAssurance = new JMenuItem("Assurance");
         mntmAssurance.addActionListener(this.gestionClic);
         mnBatiment.add(mntmAssurance);
 
-        JMenuItem mntmCompteur = new JMenuItem("Compteurs bâtiment");
+        mntmCompteur = new JMenuItem("Compteurs bâtiment");
         mntmCompteur.addActionListener(this.gestionClic);
         mnBatiment.add(mntmCompteur);
 
-        JMenuItem mntmCharge = new JMenuItem("Charges bâtiment");
+        mntmCharge = new JMenuItem("Charges bâtiment");
         mntmCharge.addActionListener(this.gestionClic);
         mnBatiment.add(mntmCharge);
 
@@ -409,6 +412,9 @@ public class FenetrePrincipale extends FenetreBase {
     public void disableMenuItems(boolean actif) {
     	mnBienLouable.setEnabled(actif);
     	mnPaiement.setEnabled(actif);
+    	this.mntmAssurance.setEnabled(actif);
+    	this.mntmCharge.setEnabled(actif);
+    	this.mntmCompteur.setEnabled(actif);
     }
 
 }
