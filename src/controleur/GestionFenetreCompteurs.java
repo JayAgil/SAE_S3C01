@@ -1,10 +1,8 @@
 package controleur;
 
-import java.awt.event.ActionListener;
-
 import vue.*;
 
-public class GestionFenetreCompteurs extends GestionHeaderEtFooter implements ActionListener{
+public class GestionFenetreCompteurs extends GestionHeaderEtFooter {
 
     private FenetreCompteurs fenetre;
 
@@ -15,9 +13,7 @@ public class GestionFenetreCompteurs extends GestionHeaderEtFooter implements Ac
 
     @Override
     protected void gererBoutonSpecifique(String texte) {
-
         switch (texte) {
-
             case "Ajouter compteur":
                 FenetreAjouterCompteur fenAjouterCompteur = new FenetreAjouterCompteur();
                 fenetre.getLayeredPane().add(fenAjouterCompteur);
@@ -28,9 +24,11 @@ public class GestionFenetreCompteurs extends GestionHeaderEtFooter implements Ac
 
     @Override
     protected void gererBoutonRetour(String texte) {
-    	FenetrePrincipale fp = new FenetrePrincipale();
-    	fp.setVisible(true);
-    	fenetre.dispose();
-    	
+    	if ("Retour".equals(texte)) {
+    		FenetrePrincipale fp = new FenetrePrincipale();
+        	fp.setVisible(true);
+        	fenetre.dispose();
+    	}
+    		
     }
 }

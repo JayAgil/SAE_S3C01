@@ -19,6 +19,7 @@ public class GestionFenetreTravaux extends GestionHeaderEtFooter {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
+		super.actionPerformed(e);
 		Object source = e.getSource();
 		// JButton
 		if (source instanceof JButton) {
@@ -43,11 +44,15 @@ public class GestionFenetreTravaux extends GestionHeaderEtFooter {
 	        }
 	     }
 	}
+	
 	@Override
 	protected void gererBoutonRetour(String texte) {
-		FenetreBienLouable fenetreBienLouable = new FenetreBienLouable();
-		fenetreBienLouable.setVisible(true);
-		this.fenetreTravaux.dispose();
+		if ("Retour".equals(texte)) {
+			FenetreBienLouable fenetreBienLouable = new FenetreBienLouable();
+			fenetreBienLouable.setVisible(true);
+			fenetreTravaux.dispose();
+		}
+		
 	}
 	
 }

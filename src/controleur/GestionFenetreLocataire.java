@@ -39,6 +39,9 @@ public class GestionFenetreLocataire extends GestionHeaderEtFooter {
             if(fenetre.getNomFenAvant() == "BienLouable") {
 	            FenetreBienLouable fp = new FenetreBienLouable();
 	            fp.setVisible(true);
+            } else {
+            	FenetreBienLouable fp = new FenetreBienLouable();
+	            fp.setVisible(true);
             }
         }
     }

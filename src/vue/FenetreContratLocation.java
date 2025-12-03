@@ -22,7 +22,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Panel;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
