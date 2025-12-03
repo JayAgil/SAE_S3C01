@@ -231,7 +231,11 @@ public class FenetreCompteurs extends FenetreBase {
         panel_1.add(lblTitre);
 
     }
-    @Override
+    public String getFenetreAvant() {
+		return fenetreAvant;
+	}
+
+	@Override
     public void disableMenuItems(boolean actif) {
     	this.mnPaiement.setEnabled(actif);
 

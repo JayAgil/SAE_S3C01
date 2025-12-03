@@ -36,6 +36,7 @@ public class FenetreCharges extends FenetreBase {
 	private JTable table;
 	private GestionFenetreCharges gestionClic;
 	private String fenetreAvant;
+	
 	private JMenu mnPaiement;
 	private JMenu mnBienLouable;
 	private JMenuItem mntmAjouterBat;
@@ -64,7 +65,7 @@ public class FenetreCharges extends FenetreBase {
 	 * Create the frame.
 	 */
 	public FenetreCharges(String FenetreAvant) {
-		this.fenetreAvant = fenetreAvant;
+    	this.fenetreAvant = FenetreAvant;
     	setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.gestionClic = new GestionFenetreCharges(this);
 		JMenuBar menuBar = new JMenuBar();
@@ -245,5 +246,9 @@ public class FenetreCharges extends FenetreBase {
 	}
     	
     }
+	public String getFenetreAvant() {
+		return fenetreAvant;
+	}
+
 	
 }

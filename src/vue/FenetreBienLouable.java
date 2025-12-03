@@ -466,7 +466,7 @@ public class FenetreBienLouable extends FenetreBase {
         JPanel panel_1 = new JPanel();
         contentPane.add(panel_1, BorderLayout.NORTH);
         
-        JLabel lblTitre = new JLabel("Biens louables");
+        JLabel lblTitre = new JLabel("Bien louable");
         lblTitre.setFont(new Font("Tahoma", Font.BOLD, 18));
         panel_1.add(lblTitre);
 
