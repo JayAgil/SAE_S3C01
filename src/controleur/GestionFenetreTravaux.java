@@ -19,7 +19,7 @@ public class GestionFenetreTravaux extends GestionHeaderEtFooter implements Mous
 	
 	public GestionFenetreTravaux(FenetreTravaux fenetreTravaux) {
 		super(fenetreTravaux);
-        this.fenetre = fenetre;
+        this.fenetre = fenetreTravaux;
 	}
 	
 	public void actionPerformed(ActionEvent e) {
