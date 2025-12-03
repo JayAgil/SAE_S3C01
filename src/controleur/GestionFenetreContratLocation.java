@@ -7,6 +7,8 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter{
 
     public GestionFenetreContratLocation(FenetreContratLocation fenetre) {
         super(fenetre);
+        this.fenetre = fenetre;
+
     }
 
     @Override
