@@ -30,20 +30,25 @@ public class GestionFenetreLocataire extends GestionHeaderEtFooter {
     
     @Override
     protected void gererBoutonRetour(String texte) {
-        if ("Retour".equals(texte)) {
-            fenetre.dispose();
-            if(fenetre.getNomFenAvant() == "Principale") {
-	            FenetrePrincipale fp = new FenetrePrincipale();
-	            fp.setVisible(true);
-            }
-            if(fenetre.getNomFenAvant() == "BienLouable") {
-	            FenetreBienLouable fp = new FenetreBienLouable();
-	            fp.setVisible(true);
-            } else {
-            	FenetreBienLouable fp = new FenetreBienLouable();
-	            fp.setVisible(true);
-            }
-        }
+    	if ("Retour".equals(texte)) {
+    	    fenetre.dispose();
+    	    String fenAvant = fenetre.getNomFenAvant();
+
+    	    switch (fenAvant) {
+    	        case "Principale":
+    	            FenetrePrincipale fp1 = new FenetrePrincipale();
+    	            fp1.setVisible(true);
+    	            break;
+    	        case "BienLouable":
+    	            FenetreBienLouable fp2 = new FenetreBienLouable();
+    	            fp2.setVisible(true);
+    	            break;
+    	        default:
+    	            FenetreBienLouable fpDefault = new FenetreBienLouable();
+    	            fpDefault.setVisible(true);
+    	            break;
+    	    }
+    	}
     }
 
 }

@@ -50,6 +50,7 @@ public class FenetreLocataire extends FenetreBase {
     private String nomFenAvant;
 	private JMenuItem mntmLocataire;
 	private JMenu mnBatiment;
+	private JMenuItem mntmAjouterBat;
     
     public String getNomFenAvant() {
     	return this.nomFenAvant;
@@ -97,7 +98,7 @@ public class FenetreLocataire extends FenetreBase {
         mnBatiment = new JMenu("Batiment");
         menuBar.add(mnBatiment);
 
-        JMenuItem mntmAjouterBat = new JMenuItem("Ajouter bâtiment");
+        mntmAjouterBat = new JMenuItem("Ajouter bâtiment");
         mntmAjouterBat.addActionListener(this.gestionClic);
         mnBatiment.add(mntmAjouterBat);
 
@@ -478,8 +479,17 @@ public class FenetreLocataire extends FenetreBase {
 
     }
     public void disableMenuItems(boolean actif) {
-    	this.mnBatiment.setEnabled(actif);
-    	this.mntmLocataire.setEnabled(actif);
+
+    	if (this.nomFenAvant == "FenetrePrincipale"){
+    			this.mnBienLouable.setEnabled(actif);
+    			this.mnPaiement.setEnabled(actif);
+    			this.mntmAjouterBat.setEnabled(actif);
+    			mntmCharge.setEnabled(actif);
+    	}
+    	if (this.nomFenAvant == "FenetreBienLouable"){
+    		this.mnBatiment.setEnabled(actif);
+        	this.mntmLocataire.setEnabled(actif);
+	}
     }
 	
 }
