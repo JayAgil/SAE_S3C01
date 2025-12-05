@@ -87,18 +87,6 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
     	    JTable table = (JTable) e.getSource();
     	    int row = table.rowAtPoint(e.getPoint());
     	    int column = table.columnAtPoint(e.getPoint()); 
-    	    int targetColumn = 0;
-    	    if (row != -1 && column == targetColumn) {
-    	        fenetre.dispose();
-    	        FenetreContratLocation fen = new FenetreContratLocation("FenPrincipale");
-    	        fen.setVisible(true);
-    	    }
-    	}
-    	
-    	if (e.getClickCount() == 2 && e.getSource() instanceof JTable) {
-    	    JTable table = (JTable) e.getSource();
-    	    int row = table.rowAtPoint(e.getPoint());
-    	    int column = table.columnAtPoint(e.getPoint()); 
     	    int targetColumn = 3;
     	    if (row != -1 && column == targetColumn) {
     	        fenetre.dispose();
