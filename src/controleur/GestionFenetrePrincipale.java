@@ -29,6 +29,7 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
             case "Assurance":
                 FenetreAssurance assurance = new FenetreAssurance();
                 assurance.setVisible(true);
+                fenetre.dispose();            
                 break;
 
             case "Compteurs":

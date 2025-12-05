@@ -2,6 +2,8 @@ package controleur;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.JTable;
+
 import vue.*;
 
 public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements MouseListener{
@@ -48,14 +50,17 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
     }
     
     public void mouseClicked(MouseEvent e) {
-        if (e.getClickCount() == 2) {
-            fenetre.dispose();
-            int row = ((FenetreBienLouable) fenetre).getTable().getSelectedRow();
-            if (row != -1) {
-                FenetreLocataire fen = new FenetreLocataire("BienLouable");
-                fen.setVisible(true);
-            }
-        }
+    	if (e.getClickCount() == 2 && e.getSource() instanceof JTable) {
+    	    JTable table = (JTable) e.getSource();
+    	    int row = table.rowAtPoint(e.getPoint());
+    	    int column = table.columnAtPoint(e.getPoint()); 
+    	    int targetColumn = 0;
+    	    if (row != -1 && column == targetColumn) {
+    	        FenetreLocataire fen = new FenetreLocataire("FenetreLocataire");
+    	        fen.setVisible(true);
+    	        fenetre.dispose();
+    	    }
+    	}
     }
 
     public void mousePressed(MouseEvent e) {}

@@ -23,7 +23,6 @@ import javax.swing.BorderFactory;
 import java.awt.Font;
 import java.awt.Component;
 import javax.swing.Box;
-import java.awt.GridLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -435,6 +434,7 @@ public class FenetreBienLouable extends FenetreBase {
         panel_5.add(scrollPane);
         
         table = new JTable();
+        table.addMouseListener(this.gestionClicBienLouable);
         table.setModel(new DefaultTableModel(
         	new Object[][] {
         		{null, null, null, null},
@@ -451,7 +451,20 @@ public class FenetreBienLouable extends FenetreBase {
         	new String[] {
         		"Id Bien Louble", "Adresse", "Nombre Pieces", "Type Bien"
         	}
-        ));
+        ) {
+        	Class[] columnTypes = new Class[] {
+        		String.class, String.class, String.class, String.class
+        	};
+        	public Class getColumnClass(int columnIndex) {
+        		return columnTypes[columnIndex];
+        	}
+        	boolean[] columnEditables = new boolean[] {
+        		false, false, false, false
+        	};
+        	public boolean isCellEditable(int row, int column) {
+        		return columnEditables[column];
+        	}
+        });
         table.getColumnModel().getColumn(0).setPreferredWidth(120);
         table.getColumnModel().getColumn(0).setMinWidth(120);
         table.getColumnModel().getColumn(1).setPreferredWidth(400);
