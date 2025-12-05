@@ -1,15 +1,14 @@
 package controleur;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.List;
 
-import javax.swing.JButton;
+import javax.swing.JInternalFrame;
 import javax.swing.JTextField;
 
 import vue.FenetreAjouterBienLouable;
-import vue.FenetrePrincipale;
 
-public class GestionFenetreAjouterBienLouable implements ActionListener {
+public class GestionFenetreAjouterBienLouable extends GestionButtonFenetreAjouter {
 
     private FenetreAjouterBienLouable fenetre;
 
@@ -18,21 +17,18 @@ public class GestionFenetreAjouterBienLouable implements ActionListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        switch (((JButton) e.getSource()).getText()) {
-        case "Ajouter":
-            break;
-        case "Vider":
-			for (JTextField field : fenetre.getAllBienLouableTextFields()) {
-			    field.setText(""); 
-			}
-            break;  
-        case "Retour" :
-        	fenetre.dispose();
-        	FenetrePrincipale fenPrincipale = new FenetrePrincipale();
-        	fenPrincipale.setVisible(true);
-        	break;
-        }
+    protected List<JTextField> getTextFields() {
+        return fenetre.getAllBienLouableTextFields();
+    }
+    
+    @Override
+    protected JInternalFrame getFrame() {
+        return fenetre;
+    }
+    
+    @Override
+    protected void GererAction(String buttonText, ActionEvent e) {
+    	
     }
 
 }

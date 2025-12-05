@@ -24,12 +24,20 @@ import java.awt.Component;
 import javax.swing.Box;
 import java.awt.FlowLayout;
 
-public class FenetreCompteurs extends JFrame {
+public class FenetreCompteurs extends FenetreBase {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
     private JTable tableCompteurs;
     private GestionFenetreCompteurs gestionClic;
+    private String fenetreAvant;
+	private JMenu mnBatiment;
+	private JMenu mnBienLouable;
+	private JMenu mnPaiement;
+	private JMenuItem mntmAjouterBat;
+	private JMenuItem mntmCompteur;
+	private JMenuItem mntmCompteurBL;
+    
     /**
      * Launch the application.
      */
@@ -38,7 +46,7 @@ public class FenetreCompteurs extends JFrame {
             @Override
             public void run() {
                 try {
-                    FenetreCompteurs frame = new FenetreCompteurs();
+                    FenetreCompteurs frame = new FenetreCompteurs("");
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -50,7 +58,8 @@ public class FenetreCompteurs extends JFrame {
     /**
      * Create the frame.
      */
-    public FenetreCompteurs() {
+    public FenetreCompteurs(String fenetreAvant) {
+    	this.fenetreAvant = fenetreAvant;
     	setExtendedState(JFrame.MAXIMIZED_BOTH);
     	this.gestionClic = new GestionFenetreCompteurs(this);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -67,10 +76,10 @@ public class FenetreCompteurs extends JFrame {
         mntmDeconnecter.addActionListener(this.gestionClic);
         mnProfil.add(mntmDeconnecter);
 
-        JMenu mnBatiment = new JMenu("Batiment");
+        mnBatiment = new JMenu("Batiment");
         menuBar.add(mnBatiment);
 
-        JMenuItem mntmAjouterBat = new JMenuItem("Ajouter bâtiment");
+        mntmAjouterBat = new JMenuItem("Ajouter bâtiment");
         mntmAjouterBat.addActionListener(this.gestionClic);
         mnBatiment.add(mntmAjouterBat);
 
@@ -78,7 +87,7 @@ public class FenetreCompteurs extends JFrame {
         mntmAssurance.addActionListener(this.gestionClic);
         mnBatiment.add(mntmAssurance);
 
-        JMenuItem mntmCompteur = new JMenuItem("Compteurs bâtiment");
+        mntmCompteur = new JMenuItem("Compteurs bâtiment");
         mntmCompteur.addActionListener(this.gestionClic);
         mnBatiment.add(mntmCompteur);
 
@@ -86,14 +95,14 @@ public class FenetreCompteurs extends JFrame {
         mntmCharge.addActionListener(this.gestionClic);
         mnBatiment.add(mntmCharge);
 
-        JMenu mnBienLouable = new JMenu("Bien louable");
+        mnBienLouable = new JMenu("Bien louable");
         menuBar.add(mnBienLouable);
 
         JMenuItem mntmContratLocation = new JMenuItem("Contrat location");
         mntmContratLocation.addActionListener(this.gestionClic);
         mnBienLouable.add(mntmContratLocation);
 
-        JMenuItem mntmCompteurBL = new JMenuItem("Compteurs bien louable");
+        mntmCompteurBL = new JMenuItem("Compteurs bien louable");
         mntmCompteurBL.addActionListener(this.gestionClic);
         mnBienLouable.add(mntmCompteurBL);
 
@@ -113,7 +122,7 @@ public class FenetreCompteurs extends JFrame {
         mntmLocataire.addActionListener(this.gestionClic);
         mnBienLouable.add(mntmLocataire);
         
-        JMenu mnPaiement = new JMenu("Paiement");
+        mnPaiement = new JMenu("Paiement");
         menuBar.add(mnPaiement);
         
         JMenuItem mntmHistorique = new JMenuItem("Historique de paiement");
@@ -128,6 +137,7 @@ public class FenetreCompteurs extends JFrame {
 
         setContentPane(contentPane);
         contentPane.setLayout(new BorderLayout(0, 0));
+        this.gestionClic.initialize();
         
         //footer
         JPanel footerPanel = new JPanel();
@@ -221,5 +231,24 @@ public class FenetreCompteurs extends JFrame {
         panel_1.add(lblTitre);
 
     }
-	
+    public String getFenetreAvant() {
+		return fenetreAvant;
+	}
+
+	@Override
+    public void disableMenuItems(boolean actif) {
+    	this.mnPaiement.setEnabled(actif);
+
+    	if (this.fenetreAvant == "FenetrePrincipale"){
+    			this.mnBienLouable.setEnabled(actif);
+    			this.mntmAjouterBat.setEnabled(actif);
+    			mntmCompteur.setEnabled(actif);
+    	}
+    	if (this.fenetreAvant == "FenetreBienLouable"){
+			this.mntmCompteurBL.setEnabled(actif);
+			this.mnBatiment.setEnabled(actif);	
+	}
+	}
+    
+    
 }

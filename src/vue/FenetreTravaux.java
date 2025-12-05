@@ -22,12 +22,20 @@ import controleur.GestionFenetreTravaux;
 
 import javax.swing.JScrollPane;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
-public class FenetreTravaux extends JFrame {
+
+
+public class FenetreTravaux extends FenetreBase {
 
 	private static final long serialVersionUID = 1L;
 	private JTable table;
 	private GestionFenetreTravaux gestionClic;
+	private JMenu mnBatiment;
+	private JMenuItem mntmTravaux;
+	private JMenu mnPaiement;
 
 	/**
 	 * Launch the application.
@@ -70,7 +78,7 @@ public class FenetreTravaux extends JFrame {
         mntmDeconnecter.addActionListener(this.gestionClic);
         mnProfil.add(mntmDeconnecter);
 
-        JMenu mnBatiment = new JMenu("Batiment");
+        mnBatiment = new JMenu("Batiment");
         menuBar.add(mnBatiment);
 
         JMenuItem mntmAjouterBat = new JMenuItem("Ajouter bâtiment");
@@ -100,7 +108,7 @@ public class FenetreTravaux extends JFrame {
         mntmCompteurBL.addActionListener(this.gestionClic);
         mnBienLouable.add(mntmCompteurBL);
 
-        JMenuItem mntmTravaux = new JMenuItem("Travaux");
+        mntmTravaux = new JMenuItem("Travaux");
         mntmTravaux.addActionListener(this.gestionClic);
         mnBienLouable.add(mntmTravaux);
 
@@ -116,7 +124,7 @@ public class FenetreTravaux extends JFrame {
         mntmLocataire.addActionListener(this.gestionClic);
         mnBienLouable.add(mntmLocataire);
         
-        JMenu mnPaiement = new JMenu("Paiement");
+        mnPaiement = new JMenu("Paiement");
         menuBar.add(mnPaiement);
         
         JMenuItem mntmHistorique = new JMenuItem("Historique de paiement");
@@ -126,6 +134,7 @@ public class FenetreTravaux extends JFrame {
         JMenuItem mntmAjout = new JMenuItem("Ajouter paiement");
         mntmAjout.addActionListener(this.gestionClic);
         mnPaiement.add(mntmAjout);
+        this.gestionClic.initialize();
 
         JPanel panel_12 = new JPanel();
         getContentPane().add(panel_12, BorderLayout.SOUTH);
@@ -212,6 +221,7 @@ public class FenetreTravaux extends JFrame {
         });
         table.getColumnModel().getColumn(1).setPreferredWidth(58);
         table.getColumnModel().getColumn(2).setPreferredWidth(91);
+        table.addMouseListener(this.gestionClic);
 
         scrollPane.setViewportView(table);
         panel.add(scrollPane, BorderLayout.CENTER);
@@ -222,5 +232,13 @@ public class FenetreTravaux extends JFrame {
 
 
 	}
+	
+	public void disableMenuItems(boolean actif) {
+    	this.mnBatiment.setEnabled(actif);
+    	this.mnPaiement.setEnabled(actif);
+    	this.mntmTravaux.setEnabled(actif);
+
+
+    }
 
 }

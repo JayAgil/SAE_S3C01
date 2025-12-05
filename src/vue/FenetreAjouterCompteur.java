@@ -228,7 +228,7 @@ public class FenetreAjouterCompteur extends JInternalFrame {
 		getContentPane().add(panelFooter, BorderLayout.SOUTH);
 	}
 	
-	public List<JTextField> getAllPaiementTextFields() {
+	public List<JTextField> getAllCompteurTextFields() {
 	    List<JTextField> fields = new ArrayList<>();
 	    fields.add(txtPartieFixe);
 	    fields.add(txtPartieVariable);

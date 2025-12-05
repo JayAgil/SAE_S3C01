@@ -2,20 +2,22 @@ package controleur;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
-
 import javax.swing.*;
 
 import vue.*;
 
 public abstract class GestionHeaderEtFooter implements ActionListener {
 
-    protected JFrame fenetre;
+    protected FenetreBase fenetre;
 
-    public GestionHeaderEtFooter(JFrame fenetre) {
+    public GestionHeaderEtFooter(FenetreBase fenetre) {
         this.fenetre = fenetre;
     }
-
+    
+    public void initialize() {
+       this.fenetre.disableMenuItems(false);
+    }
+    
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -42,12 +44,12 @@ public abstract class GestionHeaderEtFooter implements ActionListener {
             break;
 
         case "Compteurs bâtiment":
-            new FenetreCompteurs().setVisible(true);
+            new FenetreCompteurs("FenetrePrincipale").setVisible(true);
             fenetre.dispose();
             break;
 
         case "Charges bâtiment":
-            new FenetreCharges().setVisible(true);
+            new FenetreCharges("FenetrePrincipale").setVisible(true);
             fenetre.dispose();
             break;
 
@@ -57,7 +59,7 @@ public abstract class GestionHeaderEtFooter implements ActionListener {
             break;
 
         case "Compteurs bien louable":
-            new FenetreCompteurs().setVisible(true);
+            new FenetreCompteurs("FenetreBienLouable").setVisible(true);
             fenetre.dispose();
             break;
 
@@ -67,7 +69,7 @@ public abstract class GestionHeaderEtFooter implements ActionListener {
             break;
 
         case "Charges bien louable":
-            new FenetreCharges().setVisible(true);
+            new FenetreCharges("FenetreBienLouable").setVisible(true);
             fenetre.dispose();
             break;
 
@@ -91,7 +93,8 @@ public abstract class GestionHeaderEtFooter implements ActionListener {
             break;
 
         case "Assurance":
-            fenetre.getLayeredPane().add(new FenetreAssurance()).setVisible(true);
+           FenetreAssurance fA = new FenetreAssurance();
+           fA.setVisible(true);
             break;
 
         case "Ajouter paiement":
@@ -106,8 +109,7 @@ public abstract class GestionHeaderEtFooter implements ActionListener {
 	    }
     }
 
-    protected void gererBoutonCommun(String texte) {
-    }
+    protected void gererBoutonCommun(String texte) {}
     protected void gererMenuSpecifique(String texte) {}
     protected void gererBoutonSpecifique(String texte) {}
 }

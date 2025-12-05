@@ -1,12 +1,10 @@
 package controleur;
-
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import vue.*;
 
-public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements ActionListener, MouseListener{
+public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements MouseListener{
 
     private FenetreBienLouable fenetrebienlouable;
 
@@ -30,7 +28,7 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
                 break;
 
             case "Charges":
-                new FenetreCharges().setVisible(true);
+                new FenetreCharges("FenetreBienLouable").setVisible(true);
                 fenetrebienlouable.dispose();
                 break;
 
@@ -40,7 +38,7 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
                 break;
 
             case "Compteur":
-                new FenetreCompteurs().setVisible(true);
+                new FenetreCompteurs("FenereBienLouable").setVisible(true);
                 fenetrebienlouable.dispose();
                 break;
 

@@ -1,10 +1,7 @@
 package controleur;
-
-import java.awt.event.ActionListener;
-
 import vue.*;
 
-public class GestionFenetreDiagnostic extends GestionHeaderEtFooter implements ActionListener{
+public class GestionFenetreDiagnostic extends GestionHeaderEtFooter {
 
     private FenetreDiagnostic fenetre;
 
@@ -16,8 +13,9 @@ public class GestionFenetreDiagnostic extends GestionHeaderEtFooter implements A
     @Override
     protected void gererBoutonSpecifique(String texte) {
         switch (texte) {
-            case "obtenir":
-                fenetre.dispose();
+            case "Ajouter":
+                FenetreAjouterDiagnostic fenAjouterDiagnostic = new FenetreAjouterDiagnostic();
+                fenAjouterDiagnostic.setVisible(true);
                 break;
             case "Retour" :
             	FenetreBienLouable fenBienLouable = new FenetreBienLouable();

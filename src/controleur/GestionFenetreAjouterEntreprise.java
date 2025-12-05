@@ -1,14 +1,14 @@
 package controleur;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.List;
 
-import javax.swing.JButton;
+import javax.swing.JInternalFrame;
 import javax.swing.JTextField;
 
 import vue.FenetreAjouterEntreprise;
 
-public class GestionFenetreAjouterEntreprise implements ActionListener {
+public class GestionFenetreAjouterEntreprise extends GestionButtonFenetreAjouter {
 
 	private FenetreAjouterEntreprise fenetre;
 	
@@ -17,20 +17,17 @@ public class GestionFenetreAjouterEntreprise implements ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		switch (((JButton) e.getSource()).getText()) {
-		case "Ajouter":
-            // Mettre à jour la base de données
-            break;
-        case "Vider":
-			for (JTextField field : fenetre.getAllEntrepriseTextFields()) {
-			    field.setText(""); 
-			}
-            break;   
-        case "Retour":
-        	fenetre.dispose();
-        	break;
-        }
-	} 
-
+    protected List<JTextField> getTextFields() {
+        return fenetre.getAllEntrepriseTextFields();
+    }
+    
+    @Override
+    protected JInternalFrame getFrame() {
+        return fenetre;
+    }
+    
+    @Override
+    protected void GererAction(String buttonText, ActionEvent e) {
+    	
+    }
 }

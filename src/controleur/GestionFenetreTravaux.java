@@ -1,37 +1,29 @@
 package controleur;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
-import javax.swing.JMenuItem;
+import javax.swing.JTable;
 
-import vue.FenetreAjouterBatiment;
 import vue.FenetreAjouterEntreprise;
-import vue.FenetreAjouterPaiement;
 import vue.FenetreAjouterTravaux;
-import vue.FenetreAssurance;
 import vue.FenetreBienLouable;
-import vue.FenetreCharges;
-import vue.FenetreCompteurs;
-import vue.FenetreContratLocation;
-import vue.FenetreDiagnostic;
 import vue.FenetreFacture;
-import vue.FenetreLocataire;
-import vue.FenetreLogin;
-import vue.FenetrePaiement;
 import vue.FenetreTravaux;
 
-public class GestionFenetreTravaux extends GestionHeaderEtFooter implements ActionListener {
+public class GestionFenetreTravaux extends GestionHeaderEtFooter implements MouseListener {
 	
 	private FenetreTravaux fenetreTravaux;
 	
 	public GestionFenetreTravaux(FenetreTravaux fenetreTravaux) {
 		super(fenetreTravaux);
-		this.fenetreTravaux = fenetreTravaux;
+        this.fenetre = fenetreTravaux;
 	}
 	
 	public void actionPerformed(ActionEvent e) {
+		super.actionPerformed(e);
 		Object source = e.getSource();
 		// JButton
 		if (source instanceof JButton) {
@@ -57,10 +49,52 @@ public class GestionFenetreTravaux extends GestionHeaderEtFooter implements Acti
 	     }
 	}
 	
-	public void gererBoutonRetour() {
-		FenetreBienLouable fenetreBienLouable = new FenetreBienLouable();
-		fenetreBienLouable.setVisible(true);
-		this.fenetreTravaux.dispose();
+	@Override
+	protected void gererBoutonRetour(String texte) {
+		if ("Retour".equals(texte)) {
+			FenetreBienLouable fenetreBienLouable = new FenetreBienLouable();
+			fenetreBienLouable.setVisible(true);
+			fenetreTravaux.dispose();
+		}
+		
 	}
 	
+	@Override
+	public void mouseClicked(MouseEvent e) {
+    	if (e.getClickCount() == 2 && e.getSource() instanceof JTable) {
+    	    JTable table = (JTable) e.getSource();
+    	    int row = table.rowAtPoint(e.getPoint());
+    	    int column = table.columnAtPoint(e.getPoint()); 
+    	    int targetColumn = 0;
+    	    if (row != -1 && column == targetColumn) {
+    	        fenetre.dispose();
+    	        FenetreFacture fen = new FenetreFacture();
+    	        fen.setVisible(true);
+    	    }
+    	}
+    }
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 }

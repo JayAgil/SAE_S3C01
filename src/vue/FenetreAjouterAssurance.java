@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -17,7 +18,7 @@ import java.util.List;
 
 import javax.swing.JTextField;
 
-public class FenetreAjouterAssurance extends JFrame {
+public class FenetreAjouterAssurance extends JInternalFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;

@@ -1,16 +1,14 @@
 package controleur;
-
-import java.awt.event.ActionListener;
-
 import vue.*;
 
-public class GestionFenetreContratLocation extends GestionHeaderEtFooter implements ActionListener{
+public class GestionFenetreContratLocation extends GestionHeaderEtFooter{
 
     private FenetreContratLocation fenetre;
 
     public GestionFenetreContratLocation(FenetreContratLocation fenetre) {
         super(fenetre);
         this.fenetre = fenetre;
+
     }
 
     @Override
@@ -32,8 +30,7 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
     @Override
     protected void gererBoutonRetour(String texte) {
         if ("Retour".equals(texte)) {
-            fenetre.dispose();
-            FenetrePrincipale fp = new FenetrePrincipale();
+            FenetreBienLouable fp = new FenetreBienLouable();
             fp.setVisible(true);
             fenetre.dispose();      
         }

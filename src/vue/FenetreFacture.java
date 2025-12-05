@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class FenetreFacture extends JInternalFrame {
+public class FenetreFacture extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
@@ -58,6 +58,12 @@ public class FenetreFacture extends JInternalFrame {
         footerPanel.add(footerLabel);
 
         getContentPane().add(footerPanel, BorderLayout.SOUTH);
+        
+        JPanel panel = new JPanel();
+        contentPane.add(panel, BorderLayout.CENTER);
+        
+        JLabel Ttire = new JLabel("TO BE DONE!!!");
+        panel.add(Ttire);
 
     }
 }

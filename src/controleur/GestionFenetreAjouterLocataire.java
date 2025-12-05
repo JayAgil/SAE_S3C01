@@ -1,14 +1,14 @@
 package controleur;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.List;
 
-import javax.swing.JButton;
+import javax.swing.JInternalFrame;
 import javax.swing.JTextField;
 
 import vue.FenetreAjouterLocataire;
 
-public class GestionFenetreAjouterLocataire implements ActionListener {
+public class GestionFenetreAjouterLocataire extends GestionButtonFenetreAjouter {
 
 	private FenetreAjouterLocataire fenetre;
 	
@@ -18,23 +18,18 @@ public class GestionFenetreAjouterLocataire implements ActionListener {
 
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		switch (((JButton) e.getSource()).getText()) {
-		case "Ajouter":
-            // Mettre à jour la base de données
-            break;
-        case "Vider":
-        	for (JTextField field : fenetre.getAllLocataireTextFields()) {
-			    field.setText(""); 
-			}
-        	break;
-        case "Retour" :
-        	fenetre.dispose();
-        	break;
-        }		
-	}
-	
-	
-	
+    protected List<JTextField> getTextFields() {
+        return fenetre.getAllLocataireTextFields();
+    }
+    
+    @Override
+    protected JInternalFrame getFrame() {
+        return fenetre;
+    }
+    
+    @Override
+    protected void GererAction(String buttonText, ActionEvent e) {
+    	
+    }
 	
 }
