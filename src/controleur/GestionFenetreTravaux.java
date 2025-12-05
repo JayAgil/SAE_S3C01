@@ -19,7 +19,7 @@ public class GestionFenetreTravaux extends GestionHeaderEtFooter implements Mous
 	
 	public GestionFenetreTravaux(FenetreTravaux fenetreTravaux) {
 		super(fenetreTravaux);
-        this.fenetre = fenetreTravaux;
+        this.fenetreTravaux = fenetreTravaux;
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -67,9 +67,9 @@ public class GestionFenetreTravaux extends GestionHeaderEtFooter implements Mous
     	    int column = table.columnAtPoint(e.getPoint()); 
     	    int targetColumn = 0;
     	    if (row != -1 && column == targetColumn) {
-    	        fenetre.dispose();
     	        FenetreFacture fen = new FenetreFacture();
     	        fen.setVisible(true);
+    	        fenetre.dispose();
     	    }
     	}
     }
