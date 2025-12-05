@@ -27,6 +27,8 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class FenetreContratLocation extends FenetreBase {
 	private GestionFenetreContratLocation gestionClicContratLocation;
@@ -422,6 +424,7 @@ public class FenetreContratLocation extends FenetreBase {
         panel_3.add(scrollPane, gbc_scrollPane);
         
         table = new JTable();
+        table.addMouseListener(this.gestionClicContratLocation);
         table.setModel(new DefaultTableModel(
         	new Object[][] {
         		{null, null, null, null, null},
@@ -443,7 +446,14 @@ public class FenetreContratLocation extends FenetreBase {
         	new String[] {
         		"Nom du locataire", "Numero De Contrat", "Date Fin", "Montant Mensuel", "Solde"
         	}
-        ));
+        ) {
+        	boolean[] columnEditables = new boolean[] {
+        		false, false, false, false, false
+        	};
+        	public boolean isCellEditable(int row, int column) {
+        		return columnEditables[column];
+        	}
+        });
         scrollPane.setViewportView(table);
         
         JPanel panel_5 = new JPanel();

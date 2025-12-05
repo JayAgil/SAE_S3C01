@@ -1,7 +1,12 @@
 package controleur;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+import javax.swing.JTable;
+
 import vue.*;
 
-public class GestionFenetreContratLocation extends GestionHeaderEtFooter{
+public class GestionFenetreContratLocation extends GestionHeaderEtFooter implements MouseListener{
 
     private FenetreContratLocation fenetre;
 
@@ -42,4 +47,44 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter{
         	}
         }
     }
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		if (e.getClickCount() == 2 && e.getSource() instanceof JTable) {
+    	    JTable table = (JTable) e.getSource();
+    	    int row = table.rowAtPoint(e.getPoint());
+    	    int column = table.columnAtPoint(e.getPoint()); 
+    	    int targetColumn = 0;
+    	    if (row != -1 && column == targetColumn) {
+    	        fenetre.dispose();
+    	        FenetreLocataire fen = new FenetreLocataire("FenContratLocation");
+    	        fen.setVisible(true);
+    	    }
+    	}
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 }
