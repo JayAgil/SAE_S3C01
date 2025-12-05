@@ -8,7 +8,7 @@ public class GestionFenetreAssurance extends GestionHeaderEtFooter {
     private FenetreAssurance fenetre;
 
     public GestionFenetreAssurance(FenetreAssurance fenetre) {
-    	super();
+    	super(fenetre);
         this.fenetre = fenetre;
     }
     

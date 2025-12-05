@@ -6,7 +6,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
 import controleur.GestionFenetreAssurance;
 
-public class FenetreAssurance extends JFrame {
+public class FenetreAssurance extends FenetreBase {
 
     private static final long serialVersionUID = 1L;
     private GestionFenetreAssurance gestionClic;
