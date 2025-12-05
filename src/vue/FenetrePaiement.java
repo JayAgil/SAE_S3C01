@@ -13,13 +13,7 @@ public class FenetrePaiement extends FenetreBase {
     private JPanel contentPane;
     private JTable table;
     private GestionFenetrePaiement gestionClic;
-	private JMenu mnBatiment;
-	private JMenuItem mntmHistorique;
-	private JMenuItem mntmContratLocation;
-	private JMenuItem mntmCompteurBL;
-	private JMenuItem mntmTravaux;
-	private JMenuItem mntmChargesBL;
-	private JMenuItem mntmDiagnostic;
+	
 
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
@@ -33,6 +27,7 @@ public class FenetrePaiement extends FenetreBase {
     }
 
     public FenetrePaiement() {
+    	super();
     	setExtendedState(JFrame.MAXIMIZED_BOTH);
     	gestionClic = new GestionFenetrePaiement(this);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -40,74 +35,9 @@ public class FenetrePaiement extends FenetreBase {
         setLocationRelativeTo(null);
         setTitle("Application Gestion");
 
-        JMenuBar menuBar = new JMenuBar();
-        menuBar.setBackground(new Color(214, 214, 214));
-        setJMenuBar(menuBar);
-
+        
         //header
-        JMenu mnProfil = new JMenu("Profil");
-        menuBar.add(mnProfil);
-
-        JMenuItem mntmDeconnecter = new JMenuItem("Déconnecter");
-        mntmDeconnecter.addActionListener(this.gestionClic);
-        mnProfil.add(mntmDeconnecter);
-
-        mnBatiment = new JMenu("Batiment");
-        menuBar.add(mnBatiment);
-
-        JMenuItem mntmAjouterBat = new JMenuItem("Ajouter bâtiment");
-        mntmAjouterBat.addActionListener(this.gestionClic);
-        mnBatiment.add(mntmAjouterBat);
-
-        JMenuItem mntmAssurance = new JMenuItem("Assurance");
-        mntmAssurance.addActionListener(this.gestionClic);
-        mnBatiment.add(mntmAssurance);
-
-        JMenuItem mntmCompteur = new JMenuItem("Compteurs bâtiment");
-        mntmCompteur.addActionListener(this.gestionClic);
-        mnBatiment.add(mntmCompteur);
-
-        JMenuItem mntmCharge = new JMenuItem("Charges bâtiment");
-        mntmCharge.addActionListener(this.gestionClic);
-        mnBatiment.add(mntmCharge);
-
-        JMenu mnBienLouable = new JMenu("Bien louable");
-        menuBar.add(mnBienLouable);
-
-        mntmContratLocation = new JMenuItem("Contrat location");
-        mntmContratLocation.addActionListener(this.gestionClic);
-        mnBienLouable.add(mntmContratLocation);
-
-        mntmCompteurBL = new JMenuItem("Compteurs bien louable");
-        mntmCompteurBL.addActionListener(this.gestionClic);
-        mnBienLouable.add(mntmCompteurBL);
-
-        mntmTravaux = new JMenuItem("Travaux");
-        mntmTravaux.addActionListener(this.gestionClic);
-        mnBienLouable.add(mntmTravaux);
-
-        mntmChargesBL = new JMenuItem("Charges bien louable");
-        mntmChargesBL.addActionListener(this.gestionClic);
-        mnBienLouable.add(mntmChargesBL);
-
-        mntmDiagnostic = new JMenuItem("Diagnostics");
-        mntmDiagnostic.addActionListener(this.gestionClic);
-        mnBienLouable.add(mntmDiagnostic);
-
-        JMenuItem mntmLocataire = new JMenuItem("Locataires");
-        mntmLocataire.addActionListener(this.gestionClic);
-        mnBienLouable.add(mntmLocataire);
-        
-        JMenu mnPaiement = new JMenu("Paiement");
-        menuBar.add(mnPaiement);
-        
-        mntmHistorique = new JMenuItem("Historique de paiement");
-        mntmHistorique.addActionListener(this.gestionClic);
-        mnPaiement.add(mntmHistorique);
-        
-        JMenuItem mntmAjout = new JMenuItem("Ajouter paiement");
-        mntmAjout.addActionListener(this.gestionClic);
-        mnPaiement.add(mntmAjout);
+        this.setJMenuBar(createHeader());
 
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -231,15 +161,9 @@ public class FenetrePaiement extends FenetreBase {
         	}
         });
 
-        JPanel footerPanel = new JPanel();
-        footerPanel.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.LIGHT_GRAY));
-        footerPanel.setBackground(new Color(214, 214, 214));
-        footerPanel.setPreferredSize(new Dimension(584, 30));
+       
 
-        JLabel footerLabel = new JLabel("Développé par Koshua, Jay, Aneesa, Luca et Franck");
-        footerPanel.add(footerLabel);
-
-        contentPane.add(footerPanel, BorderLayout.SOUTH);
+        contentPane.add(createFooter(), BorderLayout.SOUTH);
         
         JPanel panel_3 = new JPanel();
         contentPane.add(panel_3, BorderLayout.NORTH);

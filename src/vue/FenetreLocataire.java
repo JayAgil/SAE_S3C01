@@ -48,9 +48,6 @@ public class FenetreLocataire extends FenetreBase {
 	private GestionFenetreLocataire gestionClic;
 	private JTable table;
 	private String nomFenAvant;
-	private JMenuItem mntmLocataire;
-	private JMenu mnBatiment;
-	private JMenuItem mntmAjouterBat;
 
 	public String getNomFenAvant() {
 		return this.nomFenAvant;
@@ -77,80 +74,16 @@ public class FenetreLocataire extends FenetreBase {
 	 * Create the frame.
 	 */
 	public FenetreLocataire(String nomFenAvant) {
+		super();
 		this.nomFenAvant = nomFenAvant;
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.gestionClic = new GestionFenetreLocataire(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1200, 800);
 
-		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBackground(new Color(214, 214, 214));
-		setJMenuBar(menuBar);
-
 		// header
-		JMenu mnProfil = new JMenu("Profil");
-		menuBar.add(mnProfil);
-
-		JMenuItem mntmDeconnecter = new JMenuItem("Déconnecter");
-		mntmDeconnecter.addActionListener(this.gestionClic);
-		mnProfil.add(mntmDeconnecter);
-
-		mnBatiment = new JMenu("Batiment");
-		menuBar.add(mnBatiment);
-
-		mntmAjouterBat = new JMenuItem("Ajouter bâtiment");
-		mntmAjouterBat.addActionListener(this.gestionClic);
-		mnBatiment.add(mntmAjouterBat);
-
-		JMenuItem mntmAssurance = new JMenuItem("Assurance");
-		mntmAssurance.addActionListener(this.gestionClic);
-		mnBatiment.add(mntmAssurance);
-
-		JMenuItem mntmCompteur = new JMenuItem("Compteurs bâtiment");
-		mntmCompteur.addActionListener(this.gestionClic);
-		mnBatiment.add(mntmCompteur);
-
-		JMenuItem mntmCharge = new JMenuItem("Charges bâtiment");
-		mntmCharge.addActionListener(this.gestionClic);
-		mnBatiment.add(mntmCharge);
-
-		JMenu mnBienLouable = new JMenu("Bien louable");
-		menuBar.add(mnBienLouable);
-
-		JMenuItem mntmContratLocation = new JMenuItem("Contrat location");
-		mntmContratLocation.addActionListener(this.gestionClic);
-		mnBienLouable.add(mntmContratLocation);
-
-		JMenuItem mntmCompteurBL = new JMenuItem("Compteurs bien louable");
-		mntmCompteurBL.addActionListener(this.gestionClic);
-		mnBienLouable.add(mntmCompteurBL);
-
-		JMenuItem mntmTravaux = new JMenuItem("Travaux");
-		mntmTravaux.addActionListener(this.gestionClic);
-		mnBienLouable.add(mntmTravaux);
-
-		JMenuItem mntmChargesBL = new JMenuItem("Charges bien louable");
-		mntmChargesBL.addActionListener(this.gestionClic);
-		mnBienLouable.add(mntmChargesBL);
-
-		JMenuItem mntmDiagnostic = new JMenuItem("Diagnostics");
-		mntmDiagnostic.addActionListener(this.gestionClic);
-		mnBienLouable.add(mntmDiagnostic);
-
-		mntmLocataire = new JMenuItem("Locataires");
-		mntmLocataire.addActionListener(this.gestionClic);
-		mnBienLouable.add(mntmLocataire);
-
-		JMenu mnPaiement = new JMenu("Paiement");
-		menuBar.add(mnPaiement);
-
-		JMenuItem mntmHistorique = new JMenuItem("Historique de paiement");
-		mntmHistorique.addActionListener(this.gestionClic);
-		mnPaiement.add(mntmHistorique);
-
-		JMenuItem mntmAjout = new JMenuItem("Ajouter paiement");
-		mntmAjout.addActionListener(this.gestionClic);
-		mnPaiement.add(mntmAjout);
+		this.setJMenuBar(createHeader());
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -179,15 +112,7 @@ public class FenetreLocataire extends FenetreBase {
 		panelButtons.add(btnRetour);
 
 		// === FOOTER PANEL ===
-		JPanel footerPanel = new JPanel();
-		footerPanel.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.LIGHT_GRAY));
-		footerPanel.setBackground(new Color(214, 214, 214));
-		footerPanel.setPreferredSize(new Dimension(584, 30));
-
-		JLabel footerLabel = new JLabel("Developpé par Koshua, Jay, Aneesa, Luca et Franck");
-		footerPanel.add(footerLabel);
-
-		bottomContainer.add(footerPanel, BorderLayout.SOUTH);
+		bottomContainer.add(createFooter(), BorderLayout.SOUTH);
 
 		// === ADD BOTH TO THE FRAME ===
 		getContentPane().add(bottomContainer, BorderLayout.SOUTH);
@@ -241,6 +166,7 @@ public class FenetreLocataire extends FenetreBase {
 		// Row 0
 		JLabel lblNom = new JLabel("Nom :");
 		GridBagConstraints gbc_lblNom = new GridBagConstraints();
+		gbc_lblNom.anchor = GridBagConstraints.EAST;
 		gbc_lblNom.insets = insets;
 		gbc_lblNom.gridx = 0;
 		gbc_lblNom.gridy = 0;
@@ -260,6 +186,7 @@ public class FenetreLocataire extends FenetreBase {
 		// Row 1
 		JLabel lblPrenom = new JLabel("Prénom :");
 		GridBagConstraints gbc_lblPrenom = new GridBagConstraints();
+		gbc_lblPrenom.anchor = GridBagConstraints.EAST;
 		gbc_lblPrenom.insets = insets;
 		gbc_lblPrenom.gridx = 0;
 		gbc_lblPrenom.gridy = 1;
@@ -279,6 +206,7 @@ public class FenetreLocataire extends FenetreBase {
 		// Row 2
 		JLabel lblAdresse = new JLabel("Adresse :");
 		GridBagConstraints gbc_lblAdresse = new GridBagConstraints();
+		gbc_lblAdresse.anchor = GridBagConstraints.EAST;
 		gbc_lblAdresse.insets = insets;
 		gbc_lblAdresse.gridx = 0;
 		gbc_lblAdresse.gridy = 2;
@@ -299,6 +227,7 @@ public class FenetreLocataire extends FenetreBase {
 		// Tél
 		JLabel lblTel = new JLabel("Tél :");
 		GridBagConstraints gbc_lblTel = new GridBagConstraints();
+		gbc_lblTel.anchor = GridBagConstraints.EAST;
 		gbc_lblTel.insets = insets;
 		gbc_lblTel.gridx = 0;
 		gbc_lblTel.gridy = 3;
@@ -318,6 +247,7 @@ public class FenetreLocataire extends FenetreBase {
 		// Email
 		JLabel lblEmail = new JLabel("Email :");
 		GridBagConstraints gbc_lblEmail = new GridBagConstraints();
+		gbc_lblEmail.anchor = GridBagConstraints.EAST;
 		gbc_lblEmail.insets = insets;
 		gbc_lblEmail.gridx = 0;
 		gbc_lblEmail.gridy = 4;
@@ -337,6 +267,7 @@ public class FenetreLocataire extends FenetreBase {
 		// Date de naissance
 		JLabel lblDateNaissance = new JLabel("Date de naissance :");
 		GridBagConstraints gbc_lblDateNaissance = new GridBagConstraints();
+		gbc_lblDateNaissance.anchor = GridBagConstraints.EAST;
 		gbc_lblDateNaissance.insets = insets;
 		gbc_lblDateNaissance.gridx = 0;
 		gbc_lblDateNaissance.gridy = 5;
@@ -356,6 +287,7 @@ public class FenetreLocataire extends FenetreBase {
 		// Lieu de naissance
 		JLabel lblLieuNaissance = new JLabel("Lieu de naissance :");
 		GridBagConstraints gbc_lblLieuNaissance = new GridBagConstraints();
+		gbc_lblLieuNaissance.anchor = GridBagConstraints.EAST;
 		gbc_lblLieuNaissance.insets = insets;
 		gbc_lblLieuNaissance.gridx = 0;
 		gbc_lblLieuNaissance.gridy = 6;
@@ -375,6 +307,7 @@ public class FenetreLocataire extends FenetreBase {
 		// Salaire
 		JLabel lblSalaire = new JLabel("Salaire :");
 		GridBagConstraints gbc_lblSalaire = new GridBagConstraints();
+		gbc_lblSalaire.anchor = GridBagConstraints.EAST;
 		gbc_lblSalaire.insets = insets;
 		gbc_lblSalaire.gridx = 0;
 		gbc_lblSalaire.gridy = 7;
@@ -394,6 +327,7 @@ public class FenetreLocataire extends FenetreBase {
 		// Profession
 		JLabel lblProfession = new JLabel("Profession :");
 		GridBagConstraints gbc_lblProfession = new GridBagConstraints();
+		gbc_lblProfession.anchor = GridBagConstraints.EAST;
 		gbc_lblProfession.insets = insets;
 		gbc_lblProfession.gridx = 0;
 		gbc_lblProfession.gridy = 8;
@@ -413,6 +347,7 @@ public class FenetreLocataire extends FenetreBase {
 		// Situation familiale
 		JLabel lblSituationFamiliale = new JLabel("Situation familiale :");
 		GridBagConstraints gbc_lblSituationFamiliale = new GridBagConstraints();
+		gbc_lblSituationFamiliale.anchor = GridBagConstraints.EAST;
 		gbc_lblSituationFamiliale.insets = insets;
 		gbc_lblSituationFamiliale.gridx = 0;
 		gbc_lblSituationFamiliale.gridy = 9;

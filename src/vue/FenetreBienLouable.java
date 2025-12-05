@@ -33,8 +33,6 @@ public class FenetreBienLouable extends FenetreBase {
 	private GestionFenetreBienLouable gestionClicBienLouable;
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JMenu mnPaiement;
-	private JMenu mnBatiment;
 	private JTable table;
 	private JTextField textFieldNom;
 	private JTextField textFieldLoyerMen;
@@ -69,77 +67,14 @@ public class FenetreBienLouable extends FenetreBase {
 	 * Create the frame.
 	 */
 	public FenetreBienLouable() {
+		super();
     	setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.gestionClicBienLouable = new GestionFenetreBienLouable(this);
-		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBackground(new Color(214, 214, 214));
-		setJMenuBar(menuBar);
+		
 		
 		//header
-        JMenu mnProfil = new JMenu("Profil");
-        menuBar.add(mnProfil);
-
-        JMenuItem mntmDeconnecter = new JMenuItem("Déconnecter");
-        mntmDeconnecter.addActionListener(this.gestionClicBienLouable);
-        mnProfil.add(mntmDeconnecter);
-
-        mnBatiment = new JMenu("Batiment");
-        menuBar.add(mnBatiment);
-
-        JMenuItem mntmAjouterBat = new JMenuItem("Ajouter bâtiment");
-        mntmAjouterBat.addActionListener(this.gestionClicBienLouable);
-        mnBatiment.add(mntmAjouterBat);
-
-        JMenuItem mntmAssurance = new JMenuItem("Assurance");
-        mntmAssurance.addActionListener(this.gestionClicBienLouable);
-        mnBatiment.add(mntmAssurance);
-
-        JMenuItem mntmCompteur = new JMenuItem("Compteurs bâtiment");
-        mntmCompteur.addActionListener(this.gestionClicBienLouable);
-        mnBatiment.add(mntmCompteur);
-
-        JMenuItem mntmCharge = new JMenuItem("Charges bâtiment");
-        mntmCharge.addActionListener(this.gestionClicBienLouable);
-        mnBatiment.add(mntmCharge);
-
-        JMenu mnBienLouable = new JMenu("Bien louable");
-        menuBar.add(mnBienLouable);
-
-        JMenuItem mntmContratLocation = new JMenuItem("Contrat location");
-        mntmContratLocation.addActionListener(this.gestionClicBienLouable);
-        mnBienLouable.add(mntmContratLocation);
-
-        JMenuItem mntmCompteurBL = new JMenuItem("Compteurs bien louable");
-        mntmCompteurBL.addActionListener(this.gestionClicBienLouable);
-        mnBienLouable.add(mntmCompteurBL);
-
-        JMenuItem mntmTravaux = new JMenuItem("Travaux");
-        mntmTravaux.addActionListener(this.gestionClicBienLouable);
-        mnBienLouable.add(mntmTravaux);
-
-        JMenuItem mntmChargesBL = new JMenuItem("Charges bien louable");
-        mntmChargesBL.addActionListener(this.gestionClicBienLouable);
-        mnBienLouable.add(mntmChargesBL);
-
-        JMenuItem mntmDiagnostic = new JMenuItem("Diagnostics");
-        mntmDiagnostic.addActionListener(this.gestionClicBienLouable);
-        mnBienLouable.add(mntmDiagnostic);
-
-        JMenuItem mntmLocataire = new JMenuItem("Locataires");
-        mntmLocataire.addActionListener(this.gestionClicBienLouable);
-        mnBienLouable.add(mntmLocataire);
+        this.setJMenuBar(createHeader());
         
-        mnPaiement = new JMenu("Paiement");
-        menuBar.add(mnPaiement);
-        
-        JMenuItem mntmHistorique = new JMenuItem("Historique de paiement");
-        mntmHistorique.addActionListener(this.gestionClicBienLouable);
-        mnPaiement.add(mntmHistorique);
-        
-        JMenuItem mntmAjout = new JMenuItem("Ajouter paiement");
-        mntmAjout.addActionListener(this.gestionClicBienLouable);
-        mnPaiement.add(mntmAjout);
-		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1200, 800);
 		contentPane = new JPanel();
@@ -148,16 +83,7 @@ public class FenetreBienLouable extends FenetreBase {
 		contentPane.setLayout(new BorderLayout(0, 0));
         this.gestionClicBienLouable.initialize();
 
-		
-		JPanel footerPanel = new JPanel();
-        footerPanel.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.LIGHT_GRAY)); 
-        footerPanel.setBackground(new Color(214, 214, 214)); 
-        footerPanel.setPreferredSize(new Dimension(584, 30));
-
-        JLabel footerLabel = new JLabel("Developpé par Koshua, Jay, Aneesa, Luca et Franck");
-        footerPanel.add(footerLabel);
-
-        getContentPane().add(footerPanel, BorderLayout.SOUTH);
+        getContentPane().add(createFooter(), BorderLayout.SOUTH);
         
         JPanel panel_2 = new JPanel();
         contentPane.add(panel_2, BorderLayout.CENTER);
