@@ -25,7 +25,7 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
                 break;
 
             case "Contrat":
-                new FenetreContratLocation().setVisible(true);
+                new FenetreContratLocation("FenBienLouable").setVisible(true);
                 fenetrebienlouable.dispose();
                 break;
 

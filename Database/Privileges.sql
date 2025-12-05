@@ -1,0 +1,14 @@
+GRANT ALL ON SAE_Assurance TO nrk4981a,rmj5159a,hmn4899a,dbl5595a;
+GRANT ALL ON SAE_Batiment TO nrk4981a,rmj5159a,hmn4899a,dbl5595a;
+GRANT ALL ON SAE_BienLouable TO nrk4981a,rmj5159a,hmn4899a,dbl5595a;
+GRANT ALL ON SAE_Charges_Generale TO nrk4981a,rmj5159a,hmn4899a,dbl5595a;
+GRANT ALL ON SAE_Compteur TO nrk4981a,rmj5159a,hmn4899a,dbl5595a;
+GRANT ALL ON SAE_Contrat_Locataire TO nrk4981a,rmj5159a,hmn4899a,dbl5595a;
+GRANT ALL ON SAE_ContratLocation TO nrk4981a,rmj5159a,hmn4899a,dbl5595a;
+GRANT ALL ON SAE_Diagnostics TO nrk4981a,rmj5159a,hmn4899a,dbl5595a;
+GRANT ALL ON SAE_Entreprise TO nrk4981a,rmj5159a,hmn4899a,dbl5595a;
+GRANT ALL ON SAE_Facture TO nrk4981a,rmj5159a,hmn4899a,dbl5595a;
+GRANT ALL ON SAE_Garant TO nrk4981a,rmj5159a,hmn4899a,dbl5595a;
+GRANT ALL ON SAE_IRL TO nrk4981a,rmj5159a,hmn4899a,dbl5595a;
+GRANT ALL ON SAE_locataire TO nrk4981a,rmj5159a,hmn4899a,dbl5595a;
+GRANT ALL ON SAE_Paiement TO nrk4981a,rmj5159a,hmn4899a,dbl5595a;
