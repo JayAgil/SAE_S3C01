@@ -46,7 +46,11 @@ public class FenetreContratLocation extends FenetreBase {
 	private JMenu mnBatiment;
 	private JMenu mnPaiement;
 	private JMenuItem mntmContratLocation;
-
+	private String fenDavant;
+	
+	public String getFenDavant() {
+		return this.fenDavant;
+	}
 	/**
 	 * Launch the application.
 	 */
@@ -54,7 +58,7 @@ public class FenetreContratLocation extends FenetreBase {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FenetreContratLocation frame = new FenetreContratLocation();
+					FenetreContratLocation frame = new FenetreContratLocation(null);
 					frame.setVisible(true);
 					 UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
 				} catch (Exception e) {
@@ -67,7 +71,8 @@ public class FenetreContratLocation extends FenetreBase {
 	/**
 	 * Create the frame.
 	 */
-	public FenetreContratLocation() {
+	public FenetreContratLocation(String f) {
+		this.fenDavant = f;
     	setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.gestionClicContratLocation = new GestionFenetreContratLocation(this);
 		JMenuBar menuBar = new JMenuBar();

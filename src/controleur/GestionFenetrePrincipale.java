@@ -89,7 +89,7 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
     	    int targetColumn = 0;
     	    if (row != -1 && column == targetColumn) {
     	        fenetre.dispose();
-    	        FenetreContratLocation fen = new FenetreContratLocation();
+    	        FenetreContratLocation fen = new FenetreContratLocation("FenPrincipale");
     	        fen.setVisible(true);
     	    }
     	}
@@ -107,7 +107,7 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
     	}
 
         if(e.getSource() == fenetre.getPanelRevenu()) {
-        	FenetreContratLocation fCL = new FenetreContratLocation();
+        	FenetreContratLocation fCL = new FenetreContratLocation("FenPrincipale");
         	fCL.setVisible(true);
         }
         if(e.getSource() == fenetre.getPanelNbLoyerPasPaye()) {
@@ -119,7 +119,7 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
         	fp.setVisible(true);
         }
         if(e.getSource() == fenetre.getPanelNbLoyePasPaye_1()) {
-        	FenetreContratLocation fCL = new FenetreContratLocation();
+        	FenetreContratLocation fCL = new FenetreContratLocation("FenPrincipale");
         	fCL.setVisible(true);
         }
         

@@ -30,9 +30,16 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter{
     @Override
     protected void gererBoutonRetour(String texte) {
         if ("Retour".equals(texte)) {
-            FenetreBienLouable fp = new FenetreBienLouable();
-            fp.setVisible(true);
-            fenetre.dispose();      
+        	if(fenetre.getFenDavant().equals("FenBienLouable")) {
+	            FenetreBienLouable fp = new FenetreBienLouable();
+	            fp.setVisible(true);
+	            fenetre.dispose();
+        	}
+        	if(fenetre.getFenDavant().equals("FenPrincipale")) {
+	            FenetrePrincipale fp = new FenetrePrincipale();
+	            fp.setVisible(true);
+	            fenetre.dispose();
+        	}
         }
     }
 }
