@@ -203,7 +203,8 @@ public class FenetreContratLocation extends FenetreBase {
         
         JPanel panel_4 = new JPanel();
         GridBagConstraints gbc_panel_4 = new GridBagConstraints();
-        gbc_panel_4.fill = GridBagConstraints.BOTH;
+        gbc_panel_4.anchor = GridBagConstraints.EAST;
+        gbc_panel_4.fill = GridBagConstraints.VERTICAL;
         gbc_panel_4.insets = new Insets(0, 0, 5, 0);
         gbc_panel_4.gridx = 0;
         gbc_panel_4.gridy = 0;
@@ -217,6 +218,7 @@ public class FenetreContratLocation extends FenetreBase {
         
         JLabel labelNom = new JLabel("Nom : ");
         GridBagConstraints gbc_labelNom = new GridBagConstraints();
+        gbc_labelNom.anchor = GridBagConstraints.EAST;
         gbc_labelNom.insets = new Insets(0, 0, 5, 5);
         gbc_labelNom.gridx = 0;
         gbc_labelNom.gridy = 0;
@@ -236,6 +238,7 @@ public class FenetreContratLocation extends FenetreBase {
         
         JLabel lblNC = new JLabel("Numero de contrat : ");
         GridBagConstraints gbc_lblNC = new GridBagConstraints();
+        gbc_lblNC.anchor = GridBagConstraints.EAST;
         gbc_lblNC.insets = new Insets(0, 0, 5, 5);
         gbc_lblNC.gridx = 0;
         gbc_lblNC.gridy = 1;
@@ -254,6 +257,7 @@ public class FenetreContratLocation extends FenetreBase {
         
         JLabel lblValidite = new JLabel("Validite de contrat : ");
         GridBagConstraints gbc_lblValidite = new GridBagConstraints();
+        gbc_lblValidite.anchor = GridBagConstraints.EAST;
         gbc_lblValidite.insets = new Insets(0, 0, 5, 5);
         gbc_lblValidite.gridx = 0;
         gbc_lblValidite.gridy = 2;
@@ -272,6 +276,7 @@ public class FenetreContratLocation extends FenetreBase {
         
         JLabel lblNewLabel_2 = new JLabel("Montant de caution : ");
         GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
+        gbc_lblNewLabel_2.anchor = GridBagConstraints.EAST;
         gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
         gbc_lblNewLabel_2.gridx = 0;
         gbc_lblNewLabel_2.gridy = 3;
@@ -291,6 +296,7 @@ public class FenetreContratLocation extends FenetreBase {
         
         JLabel lblNewLabel_3 = new JLabel("Provision Charge : ");
         GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
+        gbc_lblNewLabel_3.anchor = GridBagConstraints.EAST;
         gbc_lblNewLabel_3.insets = new Insets(0, 0, 5, 5);
         gbc_lblNewLabel_3.gridx = 0;
         gbc_lblNewLabel_3.gridy = 4;
@@ -310,6 +316,7 @@ public class FenetreContratLocation extends FenetreBase {
         
         JLabel lblNewLabel_4 = new JLabel("Loyer mensuel : ");
         GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
+        gbc_lblNewLabel_4.anchor = GridBagConstraints.EAST;
         gbc_lblNewLabel_4.insets = new Insets(0, 0, 5, 5);
         gbc_lblNewLabel_4.gridx = 0;
         gbc_lblNewLabel_4.gridy = 5;
@@ -329,6 +336,7 @@ public class FenetreContratLocation extends FenetreBase {
         
         JLabel lblNewLabel_5 = new JLabel("Index Compteur Eau Ancien: : ");
         GridBagConstraints gbc_lblNewLabel_5 = new GridBagConstraints();
+        gbc_lblNewLabel_5.anchor = GridBagConstraints.EAST;
         gbc_lblNewLabel_5.insets = new Insets(0, 0, 5, 5);
         gbc_lblNewLabel_5.gridx = 0;
         gbc_lblNewLabel_5.gridy = 6;
@@ -348,6 +356,7 @@ public class FenetreContratLocation extends FenetreBase {
         
         JLabel lblNewLabel_6 = new JLabel("Index Compteur Electricite Ancien: : ");
         GridBagConstraints gbc_lblNewLabel_6 = new GridBagConstraints();
+        gbc_lblNewLabel_6.anchor = GridBagConstraints.EAST;
         gbc_lblNewLabel_6.insets = new Insets(0, 0, 5, 5);
         gbc_lblNewLabel_6.gridx = 0;
         gbc_lblNewLabel_6.gridy = 7;
@@ -367,6 +376,7 @@ public class FenetreContratLocation extends FenetreBase {
         
         JLabel lblNewLabel_7 = new JLabel("Index Compteur Gaz Ancien: : ");
         GridBagConstraints gbc_lblNewLabel_7 = new GridBagConstraints();
+        gbc_lblNewLabel_7.anchor = GridBagConstraints.EAST;
         gbc_lblNewLabel_7.insets = new Insets(0, 0, 5, 5);
         gbc_lblNewLabel_7.gridx = 0;
         gbc_lblNewLabel_7.gridy = 8;
@@ -386,6 +396,7 @@ public class FenetreContratLocation extends FenetreBase {
         
         JLabel lblNewLabel_8 = new JLabel("Solde : ");
         GridBagConstraints gbc_lblNewLabel_8 = new GridBagConstraints();
+        gbc_lblNewLabel_8.anchor = GridBagConstraints.EAST;
         gbc_lblNewLabel_8.insets = new Insets(0, 0, 0, 5);
         gbc_lblNewLabel_8.gridx = 0;
         gbc_lblNewLabel_8.gridy = 9;
