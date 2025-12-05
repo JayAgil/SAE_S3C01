@@ -26,6 +26,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 
 public class FenetreContratLocation extends FenetreBase {
 	private GestionFenetreContratLocation gestionClicContratLocation;
@@ -55,6 +56,7 @@ public class FenetreContratLocation extends FenetreBase {
 				try {
 					FenetreContratLocation frame = new FenetreContratLocation();
 					frame.setVisible(true);
+					 UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -216,6 +218,8 @@ public class FenetreContratLocation extends FenetreBase {
         panel_4.add(labelNom, gbc_labelNom);
         
         textFieldNomLoc = new JTextField();
+        textFieldNomLoc.setForeground(Color.BLACK);
+        textFieldNomLoc.setBorder(BorderFactory.createEmptyBorder());
         textFieldNomLoc.setEditable(false);
         GridBagConstraints gbc_textFieldNomLoc = new GridBagConstraints();
         gbc_textFieldNomLoc.insets = new Insets(0, 0, 5, 0);
@@ -234,6 +238,7 @@ public class FenetreContratLocation extends FenetreBase {
         
         textFieldNdC = new JTextField();
         textFieldNdC.setEditable(false);
+        textFieldNdC.setBorder(BorderFactory.createEmptyBorder());
         GridBagConstraints gbc_textFieldNdC = new GridBagConstraints();
         gbc_textFieldNdC.insets = new Insets(0, 0, 5, 0);
         gbc_textFieldNdC.fill = GridBagConstraints.HORIZONTAL;
@@ -251,6 +256,7 @@ public class FenetreContratLocation extends FenetreBase {
         
         textFieldPeriode = new JTextField();
         textFieldPeriode.setEditable(false);
+        textFieldPeriode.setBorder(BorderFactory.createEmptyBorder());
         GridBagConstraints gbc_textFieldPeriode = new GridBagConstraints();
         gbc_textFieldPeriode.insets = new Insets(0, 0, 5, 0);
         gbc_textFieldPeriode.fill = GridBagConstraints.HORIZONTAL;
@@ -268,6 +274,8 @@ public class FenetreContratLocation extends FenetreBase {
         
         textFieldMontantC = new JTextField();
         textFieldMontantC.setEditable(false);
+        textFieldMontantC.setBorder(BorderFactory.createEmptyBorder());
+
         GridBagConstraints gbc_textFieldMontantC = new GridBagConstraints();
         gbc_textFieldMontantC.insets = new Insets(0, 0, 5, 0);
         gbc_textFieldMontantC.fill = GridBagConstraints.HORIZONTAL;
@@ -285,6 +293,8 @@ public class FenetreContratLocation extends FenetreBase {
         
         textFieldProvCharge = new JTextField();
         textFieldProvCharge.setEditable(false);
+        textFieldProvCharge.setBorder(BorderFactory.createEmptyBorder());
+
         GridBagConstraints gbc_textFieldProvCharge = new GridBagConstraints();
         gbc_textFieldProvCharge.insets = new Insets(0, 0, 5, 0);
         gbc_textFieldProvCharge.fill = GridBagConstraints.HORIZONTAL;
@@ -301,6 +311,8 @@ public class FenetreContratLocation extends FenetreBase {
         panel_4.add(lblNewLabel_4, gbc_lblNewLabel_4);
         
         textFieldLoyerMen = new JTextField();
+        textFieldLoyerMen.setBorder(BorderFactory.createEmptyBorder());
+
         textFieldLoyerMen.setEditable(false);
         GridBagConstraints gbc_textFieldLoyerMen = new GridBagConstraints();
         gbc_textFieldLoyerMen.insets = new Insets(0, 0, 5, 0);
@@ -319,6 +331,8 @@ public class FenetreContratLocation extends FenetreBase {
         
         textFieldCptEau = new JTextField();
         textFieldCptEau.setEditable(false);
+        textFieldCptEau.setBorder(BorderFactory.createEmptyBorder());
+
         GridBagConstraints gbc_textFieldCptEau = new GridBagConstraints();
         gbc_textFieldCptEau.insets = new Insets(0, 0, 5, 0);
         gbc_textFieldCptEau.fill = GridBagConstraints.HORIZONTAL;
@@ -336,6 +350,8 @@ public class FenetreContratLocation extends FenetreBase {
         
         textFieldCptElec = new JTextField();
         textFieldCptElec.setEditable(false);
+        textFieldCptElec.setBorder(BorderFactory.createEmptyBorder());
+
         GridBagConstraints gbc_textFieldCptElec = new GridBagConstraints();
         gbc_textFieldCptElec.insets = new Insets(0, 0, 5, 0);
         gbc_textFieldCptElec.fill = GridBagConstraints.HORIZONTAL;
@@ -353,6 +369,8 @@ public class FenetreContratLocation extends FenetreBase {
         
         textFieldCptGaz = new JTextField();
         textFieldCptGaz.setEditable(false);
+        textFieldCptGaz.setBorder(BorderFactory.createEmptyBorder());
+
         GridBagConstraints gbc_textFieldCptGaz = new GridBagConstraints();
         gbc_textFieldCptGaz.insets = new Insets(0, 0, 5, 0);
         gbc_textFieldCptGaz.fill = GridBagConstraints.HORIZONTAL;
@@ -370,6 +388,8 @@ public class FenetreContratLocation extends FenetreBase {
         
         textFieldSolde = new JTextField();
         textFieldSolde.setEditable(false);
+        textFieldSolde.setBorder(BorderFactory.createEmptyBorder());
+
         GridBagConstraints gbc_textFieldSolde = new GridBagConstraints();
         gbc_textFieldSolde.fill = GridBagConstraints.HORIZONTAL;
         gbc_textFieldSolde.gridx = 1;
