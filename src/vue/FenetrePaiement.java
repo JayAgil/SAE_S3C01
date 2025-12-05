@@ -176,6 +176,7 @@ public class FenetrePaiement extends FenetreBase {
         mainPanel.add(scrollPane, BorderLayout.CENTER);
         
         table = new JTable();
+        table.addMouseListener(this.gestionClic);
         scrollPane.setViewportView(table);
         table.setModel(new DefaultTableModel(
         	new Object[][] {
@@ -215,7 +216,20 @@ public class FenetrePaiement extends FenetreBase {
         	new String[] {
         		"Nom Locataire", "Date de Paiement", "Montant de Paiement", "Solde", "Contrat Location"
         	}
-        ));
+        ) {
+        	Class[] columnTypes = new Class[] {
+        		String.class, String.class, Float.class, String.class, String.class
+        	};
+        	public Class getColumnClass(int columnIndex) {
+        		return columnTypes[columnIndex];
+        	}
+        	boolean[] columnEditables = new boolean[] {
+        		false, false, false, false, false
+        	};
+        	public boolean isCellEditable(int row, int column) {
+        		return columnEditables[column];
+        	}
+        });
 
         JPanel footerPanel = new JPanel();
         footerPanel.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.LIGHT_GRAY));
@@ -249,6 +263,9 @@ public class FenetrePaiement extends FenetreBase {
     	this.mntmTravaux.setEnabled(actif);
 
     }
-    
+
+	public JTable getTable() {
+		return table;
+	}
     
 }

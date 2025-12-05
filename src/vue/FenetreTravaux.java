@@ -22,9 +22,6 @@ import controleur.GestionFenetreTravaux;
 
 import javax.swing.JScrollPane;
 import java.awt.Font;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 
 
@@ -233,12 +230,18 @@ public class FenetreTravaux extends FenetreBase {
 
 	}
 	
+	
+	
 	public void disableMenuItems(boolean actif) {
     	this.mnBatiment.setEnabled(actif);
     	this.mnPaiement.setEnabled(actif);
     	this.mntmTravaux.setEnabled(actif);
 
-
     }
+
+	public JTable getTable() {
+		return table;
+	}
+	
 
 }

@@ -1,69 +1,87 @@
 package vue;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.EventQueue;
-
-import javax.swing.BorderFactory;
-import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.print.*;
 
 public class FenetreFacture extends JFrame {
 
-    private static final long serialVersionUID = 1L;
-    private JPanel contentPane;
+    private Object[] data;
+    private String[] columnNames;
+    private String source;
 
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
+    public FenetreFacture(Object[] rowData, String[] columnNames, String source) {
+
+        this.data = rowData;
+        this.columnNames = columnNames;
+        this.source = source;
+
+        setSize(600, 500);
+        setLocationRelativeTo(null);
+        setLayout(new BorderLayout());
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+        // ---------- TITLE ----------
+        String titre;
+        if (source.equals("Travaux")) {
+            titre = "Facture Travaux";
+        } else {
+            titre = "Facture Paiement";
+        }
+
+        JLabel titleLabel = new JLabel(titre, SwingConstants.CENTER);
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 28));
+        titleLabel.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0));
+        add(titleLabel, BorderLayout.NORTH);
+
+        // ---------- CONTENT ----------
+        JPanel contentPanel = new JPanel(new GridLayout(0, 2, 15, 15));
+        contentPanel.setBorder(BorderFactory.createEmptyBorder(20, 40, 20, 40));
+
+        for (int i = 0; i < data.length; i++) {
+            String label = (i < columnNames.length) ? columnNames[i] : "Champ " + (i + 1);
+            contentPanel.add(new JLabel(label + " :"));
+            contentPanel.add(new JLabel(String.valueOf(data[i])));
+        }
+
+        add(contentPanel, BorderLayout.CENTER);
+
+        // ---------- PRINT BUTTON ----------
+        JButton btnPrint = new JButton("Imprimer facture");
+        btnPrint.addActionListener(e -> {
+
+            PrinterJob job = PrinterJob.getPrinterJob();
+            job.setJobName("Facture");
+
+            job.setPrintable((graphics, pageFormat, pageIndex) -> {
+
+                if (pageIndex > 0) {
+                    return Printable.NO_SUCH_PAGE;
+                }
+
+                Graphics2D g2 = (Graphics2D) graphics;
+                g2.translate(pageFormat.getImageableX(), pageFormat.getImageableY());
+                this.printAll(g2);
+
+                return Printable.PAGE_EXISTS;
+            });
+
+            boolean ok = job.printDialog();
+            if (ok) {
                 try {
-                    FenetreFacture frame = new FenetreFacture();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
+                    job.print();
+                    JOptionPane.showMessageDialog(this, "Impression réussie !");
+                } catch (PrinterException ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(this, "Erreur d'impression.");
                 }
             }
         });
-    }
 
-    /**
-     * Create the frame.
-     */
-    public FenetreFacture() {
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setBounds(100, 100, 600, 400);
-        contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        JPanel footer = new JPanel();
+        footer.add(btnPrint);
+        add(footer, BorderLayout.SOUTH);
 
-        setContentPane(contentPane);
-        contentPane.setLayout(new BorderLayout(0, 0));
-
-        JPanel footerPanel = new JPanel();
-        footerPanel.setBorder(
-            BorderFactory.createMatteBorder(1, 0, 0, 0, Color.LIGHT_GRAY));                                                                                                                  
-                                                                            
-        footerPanel.setBackground(new Color(214, 214, 214));
-        footerPanel.setPreferredSize(new Dimension(584, 30));
-
-        JLabel footerLabel = new JLabel(
-            "Developpé par Koshua, Jay, Aneesa, Luca et Franck");
-        footerPanel.add(footerLabel);
-
-        getContentPane().add(footerPanel, BorderLayout.SOUTH);
-        
-        JPanel panel = new JPanel();
-        contentPane.add(panel, BorderLayout.CENTER);
-        
-        JLabel Ttire = new JLabel("TO BE DONE!!!");
-        panel.add(Ttire);
-
+        setVisible(true);
     }
 }

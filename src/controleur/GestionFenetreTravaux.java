@@ -5,7 +5,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 import vue.FenetreAjouterEntreprise;
 import vue.FenetreAjouterTravaux;
@@ -25,30 +27,51 @@ public class GestionFenetreTravaux extends GestionHeaderEtFooter implements Mous
 	public void actionPerformed(ActionEvent e) {
 		super.actionPerformed(e);
 		Object source = e.getSource();
-		// JButton
+
 		if (source instanceof JButton) {
 			JButton btn = (JButton) source;
 	        String texte = btn.getText();
+
 	        switch (texte) {
-	        case "Ajouter travaux" :
-				FenetreAjouterTravaux fenetreAjouterTravaux = new FenetreAjouterTravaux();
-				fenetreTravaux.getLayeredPane().add(fenetreAjouterTravaux);
-				fenetreAjouterTravaux.setVisible(true);	
+
+			case "Ajouter travaux":
+				FenetreAjouterTravaux fenAjouterTravaux = new FenetreAjouterTravaux();
+				fenetreTravaux.getLayeredPane().add(fenAjouterTravaux);
+				fenAjouterTravaux.setVisible(true);
 				break;
-			case "Ajouter entreprise" :
-				FenetreAjouterEntreprise fenetreAjouterEntreprise = new FenetreAjouterEntreprise();
-				fenetreTravaux.getLayeredPane().add(fenetreAjouterEntreprise);
-				fenetreAjouterEntreprise.setVisible(true);
+
+			case "Ajouter entreprise":
+				FenetreAjouterEntreprise fenAjouterEntreprise = new FenetreAjouterEntreprise();
+				fenetreTravaux.getLayeredPane().add(fenAjouterEntreprise);
+				fenAjouterEntreprise.setVisible(true);
 				break;
-			case "Générer facture" :
-				FenetreFacture fen = new FenetreFacture();
-				fenetreTravaux.getLayeredPane().add(fen);
-				fen.setVisible(true);
+
+			case "Générer facture":
+				genererFactureDepuisSelection();
 				break;
 	        }
 	     }
 	}
-	
+
+	private void genererFactureDepuisSelection() {
+
+	    JTable table = fenetreTravaux.getTable();
+	    int selectedRow = table.getSelectedRow();    
+	    if (selectedRow == -1) {
+	        JOptionPane.showMessageDialog(null, "Veuillez sélectionner une ligne.");
+	        return;
+	    }
+	    DefaultTableModel model = (DefaultTableModel) table.getModel();
+	    Object[] rowData = new Object[model.getColumnCount()];
+	    String[] columnNames = new String[model.getColumnCount()];
+	    for (int i = 0; i < model.getColumnCount(); i++) {
+	        rowData[i] = model.getValueAt(selectedRow, i);
+	        columnNames[i] = model.getColumnName(i);
+	    }
+	    new FenetreFacture(rowData, columnNames, "Travaux");
+	}
+
+
 	@Override
 	protected void gererBoutonRetour(String texte) {
 		if ("Retour".equals(texte)) {
@@ -56,45 +79,32 @@ public class GestionFenetreTravaux extends GestionHeaderEtFooter implements Mous
 			fenetreBienLouable.setVisible(true);
 			fenetreTravaux.dispose();
 		}
-		
 	}
-	
+
 	@Override
 	public void mouseClicked(MouseEvent e) {
-    	if (e.getClickCount() == 2 && e.getSource() instanceof JTable) {
-    	    JTable table = (JTable) e.getSource();
-    	    int row = table.rowAtPoint(e.getPoint());
-    	    int column = table.columnAtPoint(e.getPoint()); 
-    	    int targetColumn = 0;
-    	    if (row != -1 && column == targetColumn) {
-    	        FenetreFacture fen = new FenetreFacture();
-    	        fen.setVisible(true);
-    	        fenetre.dispose();
-    	    }
-    	}
-    }
+	    if (e.getClickCount() == 2 && e.getSource() instanceof JTable) {
+	        JTable table = (JTable) e.getSource();
+	        int row = table.rowAtPoint(e.getPoint());
 
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+	        if (row != -1) {
+	            DefaultTableModel model = (DefaultTableModel) table.getModel();
+	            Object[] rowData = new Object[model.getColumnCount()];
+	            String[] columnNames = new String[model.getColumnCount()];
+
+	            for (int i = 0; i < model.getColumnCount(); i++) {
+	                rowData[i] = model.getValueAt(row, i);
+	                columnNames[i] = model.getColumnName(i);
+	            }
+
+	            new FenetreFacture(rowData, columnNames, "Travaux");
+	        }
+	    }
 	}
 
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	@Override public void mousePressed(MouseEvent e) {}
+	@Override public void mouseReleased(MouseEvent e) {}
+	@Override public void mouseEntered(MouseEvent e) {}
+	@Override public void mouseExited(MouseEvent e) {}
 }
