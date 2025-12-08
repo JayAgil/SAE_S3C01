@@ -48,7 +48,7 @@ public class FenetreAjouterCompteur extends JInternalFrame {
 				FenetreAjouterCompteur internalFrame = new FenetreAjouterCompteur();
 				internalFrame.setVisible(true);
 				desktopPane.add(internalFrame);
-				frame.setResizable(false); 
+				frame.setResizable(false);
 
 				frame.setVisible(true);
 			} catch (Exception e) {
@@ -82,7 +82,7 @@ public class FenetreAjouterCompteur extends JInternalFrame {
 		getContentPane().add(panelCenter, BorderLayout.CENTER);
 
 		Insets pad = new Insets(10, 10, 10, 10);
-		
+
 		GridBagConstraints idLabel = new GridBagConstraints();
 		idLabel.insets = pad;
 		idLabel.anchor = GridBagConstraints.LINE_END;
@@ -214,29 +214,28 @@ public class FenetreAjouterCompteur extends JInternalFrame {
 
 		JButton btnRetour = new JButton("Retour");
 		btnRetour.addActionListener(this.gestionClic);
-		
-				JButton btnAjouter = new JButton("Ajouter");
-				btnAjouter.addActionListener(this.gestionClic);
-				panelFooter.add(btnAjouter);
-		
-				JButton btnVider = new JButton("Vider");
-				btnVider.addActionListener(this.gestionClic);
-				panelFooter.add(btnVider);
+
+		JButton btnAjouter = new JButton("Ajouter");
+		btnAjouter.addActionListener(this.gestionClic);
+		panelFooter.add(btnAjouter);
+
+		JButton btnVider = new JButton("Vider");
+		btnVider.addActionListener(this.gestionClic);
+		panelFooter.add(btnVider);
 
 		panelFooter.add(btnRetour);
 
 		getContentPane().add(panelFooter, BorderLayout.SOUTH);
 	}
-	
+
 	public List<JTextField> getAllCompteurTextFields() {
-	    List<JTextField> fields = new ArrayList<>();
-	    fields.add(txtPartieFixe);
-	    fields.add(txtPartieVariable);
-	    fields.add(txtDate);
-	    fields.add(txtTotal);
-	    fields.add(txtD);
-	    return fields;
+		List<JTextField> fields = new ArrayList<>();
+		fields.add(txtPartieFixe);
+		fields.add(txtPartieVariable);
+		fields.add(txtDate);
+		fields.add(txtTotal);
+		fields.add(txtD);
+		return fields;
 	}
 
-	
 }
