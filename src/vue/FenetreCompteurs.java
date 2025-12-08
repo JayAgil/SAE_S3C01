@@ -241,7 +241,7 @@ public class FenetreCompteurs extends FenetreBase {
         panel_1.add(lblTitre);
         
         //icons
-        ImageIcon eauIcon = new ImageIcon("img/electricity.png"); 
+        ImageIcon eauIcon = new ImageIcon("img/water.png"); 
         Image imgEau = eauIcon.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
         lblNewLabel.setIcon(new ImageIcon(imgEau));
         lblNewLabel.setHorizontalAlignment(JLabel.RIGHT); 
@@ -253,7 +253,7 @@ public class FenetreCompteurs extends FenetreBase {
         gbc_lblNewLabel_5.gridy = 1;
         panel_4.add(lblNewLabel_5, gbc_lblNewLabel_5);
 
-        ImageIcon elecIcon = new ImageIcon("img/gaz.png");
+        ImageIcon elecIcon = new ImageIcon("img/electricity.png");
         Image imgElec = elecIcon.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
         lblNewLabel_1.setIcon(new ImageIcon(imgElec));
         lblNewLabel_1.setHorizontalAlignment(JLabel.RIGHT);
@@ -266,7 +266,7 @@ public class FenetreCompteurs extends FenetreBase {
         panel_4_1.add(lblNewLabel_4, gbc_lblNewLabel_4);
 
 
-        ImageIcon gazIcon = new ImageIcon("img/water.png");
+        ImageIcon gazIcon = new ImageIcon("img/gaz.png");
         Image imgGaz = gazIcon.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
         lblNewLabel_2.setIcon(new ImageIcon(imgGaz));
         lblNewLabel_2.setHorizontalAlignment(JLabel.RIGHT);

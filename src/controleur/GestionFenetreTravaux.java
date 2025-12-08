@@ -54,7 +54,6 @@ public class GestionFenetreTravaux extends GestionHeaderEtFooter implements Mous
 	}
 
 	private void genererFactureDepuisSelection() {
-
 	    JTable table = fenetreTravaux.getTable();
 	    int selectedRow = table.getSelectedRow();    
 	    if (selectedRow == -1) {
