@@ -8,7 +8,6 @@ import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
-import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -16,8 +15,6 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -26,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
 import controleur.GestionFenetrePrincipale;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
-import javax.swing.JProgressBar;
+import java.awt.Toolkit;
 
 
 public class FenetrePrincipale extends FenetreBase {
@@ -87,6 +84,7 @@ public class FenetrePrincipale extends FenetreBase {
      */
 	public FenetrePrincipale() {
 		super();
+		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\anees\\Documents\\GitHub\\SAE_S3C01\\img\\bat.png"));
     	setExtendedState(JFrame.MAXIMIZED_BOTH);
         gestionClic = new GestionFenetrePrincipale(this);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -287,7 +285,7 @@ public class FenetrePrincipale extends FenetreBase {
         cbBatiment.setFont(new Font("Tahoma", Font.PLAIN, 14));
         cbBatiment.addActionListener(this.gestionClic);
         cbBatiment.setModel(new DefaultComboBoxModel(new String[] { "Bat1",
-            "Bat2", "Bat3", "TestLoooong", "BackRoom" }));
+            "Bat2", "Bat3"}));
         panelCenterNorth.add(cbBatiment);
 
         JButton btnAjouterBatiment = new JButton("Ajouter");
