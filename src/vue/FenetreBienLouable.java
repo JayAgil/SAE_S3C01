@@ -27,6 +27,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 	
 public class FenetreBienLouable extends FenetreBase {
@@ -96,10 +97,6 @@ public class FenetreBienLouable extends FenetreBase {
         panel.add(btnRetour);
         btnRetour.addActionListener(gestionClicBienLouable);
         
-        JButton btnRevaloriser = new JButton("Revaloriser");
-        btnRevaloriser.addActionListener(this.gestionClicBienLouable);
-        panel.add(btnRevaloriser);
-        
         JButton btnCompteur = new JButton("Compteur");
         panel.add(btnCompteur);
         
@@ -139,14 +136,16 @@ public class FenetreBienLouable extends FenetreBase {
         gbc_panel_4.gridy = 0;
         panel_3.add(panel_4, gbc_panel_4);
         GridBagLayout gbl_panel_4 = new GridBagLayout();
-        gbl_panel_4.rowHeights = new int[] {0, 0, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30};
+        gbl_panel_4.rowHeights = new int[] {30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30};
         gbl_panel_4.columnWidths = new int[] {350, 600, 200};
         gbl_panel_4.columnWeights = new double[]{0.0, 1.0};
         gbl_panel_4.rowWeights = new double[]{0.0, 0.0, 0.0};
         panel_4.setLayout(gbl_panel_4);
         
         JLabel lblNewLabel = new JLabel("Nom Locataire : ");
+        lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+        gbc_lblNewLabel.anchor = GridBagConstraints.EAST;
         gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
         gbc_lblNewLabel.gridx = 0;
         gbc_lblNewLabel.gridy = 0;
@@ -154,6 +153,8 @@ public class FenetreBienLouable extends FenetreBase {
         
         textFieldNom = new JTextField();
         textFieldNom.setEditable(false);
+        textFieldNom.setBorder(null);
+
         GridBagConstraints gbc_textFieldNom = new GridBagConstraints();
         gbc_textFieldNom.insets = new Insets(0, 0, 5, 0);
         gbc_textFieldNom.fill = GridBagConstraints.HORIZONTAL;
@@ -163,7 +164,9 @@ public class FenetreBienLouable extends FenetreBase {
         textFieldNom.setColumns(10);
         
         JLabel lblNewLabel_1 = new JLabel("Loyer mensuel : ");
+        lblNewLabel_1.setHorizontalAlignment(SwingConstants.RIGHT);
         GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
+        gbc_lblNewLabel_1.anchor = GridBagConstraints.EAST;
         gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
         gbc_lblNewLabel_1.gridx = 0;
         gbc_lblNewLabel_1.gridy = 1;
@@ -171,6 +174,8 @@ public class FenetreBienLouable extends FenetreBase {
         
         textFieldLoyerMen = new JTextField();
         textFieldLoyerMen.setEditable(false);
+        textFieldLoyerMen.setBorder(null);
+
         GridBagConstraints gbc_textFieldLoyerMen = new GridBagConstraints();
         gbc_textFieldLoyerMen.insets = new Insets(0, 0, 5, 0);
         gbc_textFieldLoyerMen.fill = GridBagConstraints.HORIZONTAL;
@@ -181,6 +186,7 @@ public class FenetreBienLouable extends FenetreBase {
         
         JLabel lblNewLabel_2 = new JLabel("Numero Fiscale :");
         GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
+        gbc_lblNewLabel_2.anchor = GridBagConstraints.EAST;
         gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
         gbc_lblNewLabel_2.gridx = 0;
         gbc_lblNewLabel_2.gridy = 2;
@@ -188,6 +194,8 @@ public class FenetreBienLouable extends FenetreBase {
         
         textFieldNF = new JTextField();
         textFieldNF.setEditable(false);
+        textFieldNF.setBorder(null);
+
         GridBagConstraints gbc_textFieldNF = new GridBagConstraints();
         gbc_textFieldNF.insets = new Insets(0, 0, 5, 0);
         gbc_textFieldNF.fill = GridBagConstraints.HORIZONTAL;
@@ -197,7 +205,9 @@ public class FenetreBienLouable extends FenetreBase {
         textFieldNF.setColumns(10);
         
         JLabel lblNewLabel_3 = new JLabel("Adresse : ");
+        lblNewLabel_3.setHorizontalAlignment(SwingConstants.RIGHT);
         GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
+        gbc_lblNewLabel_3.anchor = GridBagConstraints.EAST;
         gbc_lblNewLabel_3.insets = new Insets(0, 0, 5, 5);
         gbc_lblNewLabel_3.gridx = 0;
         gbc_lblNewLabel_3.gridy = 3;
@@ -205,6 +215,8 @@ public class FenetreBienLouable extends FenetreBase {
         
         textFieldAdresse = new JTextField();
         textFieldAdresse.setEditable(false);
+        textFieldAdresse.setBorder(null);
+
         GridBagConstraints gbc_textFieldAdresse = new GridBagConstraints();
         gbc_textFieldAdresse.insets = new Insets(0, 0, 5, 0);
         gbc_textFieldAdresse.fill = GridBagConstraints.HORIZONTAL;
@@ -215,6 +227,7 @@ public class FenetreBienLouable extends FenetreBase {
         
         JLabel lblNewLabel_4 = new JLabel("Surface Habituable : ");
         GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
+        gbc_lblNewLabel_4.anchor = GridBagConstraints.EAST;
         gbc_lblNewLabel_4.insets = new Insets(0, 0, 5, 5);
         gbc_lblNewLabel_4.gridx = 0;
         gbc_lblNewLabel_4.gridy = 4;
@@ -222,6 +235,8 @@ public class FenetreBienLouable extends FenetreBase {
         
         textFieldSurfaceHab = new JTextField();
         textFieldSurfaceHab.setEditable(false);
+        textFieldSurfaceHab.setBorder(null);
+
         GridBagConstraints gbc_textFieldSurfaceHab = new GridBagConstraints();
         gbc_textFieldSurfaceHab.insets = new Insets(0, 0, 5, 0);
         gbc_textFieldSurfaceHab.fill = GridBagConstraints.HORIZONTAL;
@@ -232,6 +247,7 @@ public class FenetreBienLouable extends FenetreBase {
         
         JLabel lblNewLabel_5 = new JLabel("Nombre de pieces : ");
         GridBagConstraints gbc_lblNewLabel_5 = new GridBagConstraints();
+        gbc_lblNewLabel_5.anchor = GridBagConstraints.EAST;
         gbc_lblNewLabel_5.insets = new Insets(0, 0, 5, 5);
         gbc_lblNewLabel_5.gridx = 0;
         gbc_lblNewLabel_5.gridy = 5;
@@ -239,6 +255,8 @@ public class FenetreBienLouable extends FenetreBase {
         
         textFieldNbDPieces = new JTextField();
         textFieldNbDPieces.setEditable(false);
+        textFieldNbDPieces.setBorder(null);
+
         GridBagConstraints gbc_textFieldNbDPieces = new GridBagConstraints();
         gbc_textFieldNbDPieces.insets = new Insets(0, 0, 5, 0);
         gbc_textFieldNbDPieces.fill = GridBagConstraints.HORIZONTAL;
@@ -249,6 +267,7 @@ public class FenetreBienLouable extends FenetreBase {
         
         JLabel lblNewLabel_6 = new JLabel("Type bien louable : ");
         GridBagConstraints gbc_lblNewLabel_6 = new GridBagConstraints();
+        gbc_lblNewLabel_6.anchor = GridBagConstraints.EAST;
         gbc_lblNewLabel_6.insets = new Insets(0, 0, 5, 5);
         gbc_lblNewLabel_6.gridx = 0;
         gbc_lblNewLabel_6.gridy = 6;
@@ -256,6 +275,8 @@ public class FenetreBienLouable extends FenetreBase {
         
         textFieldBienLoauble = new JTextField();
         textFieldBienLoauble.setEditable(false);
+        textFieldBienLoauble.setBorder(null);
+
         GridBagConstraints gbc_textFieldBienLoauble = new GridBagConstraints();
         gbc_textFieldBienLoauble.insets = new Insets(0, 0, 5, 0);
         gbc_textFieldBienLoauble.fill = GridBagConstraints.HORIZONTAL;
@@ -266,6 +287,7 @@ public class FenetreBienLouable extends FenetreBase {
         
         JLabel lblNewLabel_7 = new JLabel("Batiment : ");
         GridBagConstraints gbc_lblNewLabel_7 = new GridBagConstraints();
+        gbc_lblNewLabel_7.anchor = GridBagConstraints.EAST;
         gbc_lblNewLabel_7.insets = new Insets(0, 0, 5, 5);
         gbc_lblNewLabel_7.gridx = 0;
         gbc_lblNewLabel_7.gridy = 7;
@@ -273,6 +295,8 @@ public class FenetreBienLouable extends FenetreBase {
         
         textFieldBatiment = new JTextField();
         textFieldBatiment.setEditable(false);
+        textFieldBatiment.setBorder(null);
+
         GridBagConstraints gbc_textFieldBatiment = new GridBagConstraints();
         gbc_textFieldBatiment.insets = new Insets(0, 0, 5, 0);
         gbc_textFieldBatiment.fill = GridBagConstraints.HORIZONTAL;
@@ -283,6 +307,7 @@ public class FenetreBienLouable extends FenetreBase {
         
         JLabel lblNewLabel_8 = new JLabel("Date de derniere travaux : ");
         GridBagConstraints gbc_lblNewLabel_8 = new GridBagConstraints();
+        gbc_lblNewLabel_8.anchor = GridBagConstraints.EAST;
         gbc_lblNewLabel_8.insets = new Insets(0, 0, 5, 5);
         gbc_lblNewLabel_8.gridx = 0;
         gbc_lblNewLabel_8.gridy = 8;
@@ -290,6 +315,8 @@ public class FenetreBienLouable extends FenetreBase {
         
         textFieldDT = new JTextField();
         textFieldDT.setEditable(false);
+        textFieldDT.setBorder(null);
+
         GridBagConstraints gbc_textFieldDT = new GridBagConstraints();
         gbc_textFieldDT.insets = new Insets(0, 0, 5, 0);
         gbc_textFieldDT.fill = GridBagConstraints.HORIZONTAL;
@@ -300,6 +327,7 @@ public class FenetreBienLouable extends FenetreBase {
         
         JLabel lblNewLabel_9 = new JLabel("Total Charges : ");
         GridBagConstraints gbc_lblNewLabel_9 = new GridBagConstraints();
+        gbc_lblNewLabel_9.anchor = GridBagConstraints.EAST;
         gbc_lblNewLabel_9.insets = new Insets(0, 0, 5, 5);
         gbc_lblNewLabel_9.gridx = 0;
         gbc_lblNewLabel_9.gridy = 9;
@@ -307,6 +335,8 @@ public class FenetreBienLouable extends FenetreBase {
         
         textFieldTotalCharges = new JTextField();
         textFieldTotalCharges.setEditable(false);
+        textFieldTotalCharges.setBorder(null);
+
         GridBagConstraints gbc_textFieldTotalCharges = new GridBagConstraints();
         gbc_textFieldTotalCharges.insets = new Insets(0, 0, 5, 0);
         gbc_textFieldTotalCharges.fill = GridBagConstraints.HORIZONTAL;
@@ -317,6 +347,7 @@ public class FenetreBienLouable extends FenetreBase {
         
         JLabel lblNewLabel_10 = new JLabel("Date Fin de Contrat : ");
         GridBagConstraints gbc_lblNewLabel_10 = new GridBagConstraints();
+        gbc_lblNewLabel_10.anchor = GridBagConstraints.EAST;
         gbc_lblNewLabel_10.insets = new Insets(0, 0, 5, 5);
         gbc_lblNewLabel_10.gridx = 0;
         gbc_lblNewLabel_10.gridy = 10;
@@ -324,6 +355,8 @@ public class FenetreBienLouable extends FenetreBase {
         
         textFieldDFC = new JTextField();
         textFieldDFC.setEditable(false);
+        textFieldDFC.setBorder(null);
+
         GridBagConstraints gbc_textFieldDFC = new GridBagConstraints();
         gbc_textFieldDFC.insets = new Insets(0, 0, 5, 0);
         gbc_textFieldDFC.fill = GridBagConstraints.HORIZONTAL;
@@ -334,6 +367,7 @@ public class FenetreBienLouable extends FenetreBase {
         
         JLabel lblNewLabel_11 = new JLabel("Dernier Paiement : ");
         GridBagConstraints gbc_lblNewLabel_11 = new GridBagConstraints();
+        gbc_lblNewLabel_11.anchor = GridBagConstraints.EAST;
         gbc_lblNewLabel_11.insets = new Insets(0, 0, 0, 5);
         gbc_lblNewLabel_11.gridx = 0;
         gbc_lblNewLabel_11.gridy = 11;
@@ -341,6 +375,8 @@ public class FenetreBienLouable extends FenetreBase {
         
         textFieldDP = new JTextField();
         textFieldDP.setEditable(false);
+        textFieldDP.setBorder(null);
+
         GridBagConstraints gbc_textFieldDP = new GridBagConstraints();
         gbc_textFieldDP.fill = GridBagConstraints.HORIZONTAL;
         gbc_textFieldDP.gridx = 1;
