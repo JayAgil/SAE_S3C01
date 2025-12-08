@@ -22,7 +22,17 @@ import controleur.GestionFenetreCompteurs;
 
 import java.awt.Component;
 import javax.swing.Box;
+import javax.swing.ImageIcon;
+
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import javax.swing.border.TitledBorder;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.MatteBorder;
 
 public class FenetreCompteurs extends FenetreBase {
 
@@ -127,7 +137,7 @@ public class FenetreCompteurs extends FenetreBase {
         });
 
         JScrollPane scrollPane = new JScrollPane(tableCompteurs);
-        panel.add(scrollPane, BorderLayout.CENTER);
+        panel.add(scrollPane, BorderLayout.NORTH);
         scrollPane.setPreferredSize(new Dimension(700, 300));
         
         JPanel panel_butons = new JPanel();
@@ -142,6 +152,84 @@ public class FenetreCompteurs extends FenetreBase {
         btnAjouterCompteur.addActionListener(this.gestionClic);
         panel_butons.add(btnAjouterCompteur);
         
+        JPanel panel_2 = new JPanel();
+        panel.add(panel_2, BorderLayout.CENTER);
+        GridBagLayout gbl_panel_2 = new GridBagLayout();
+        gbl_panel_2.columnWidths = new int[] {400, 400, 400};
+        gbl_panel_2.rowHeights = new int[] {230, 200};
+        gbl_panel_2.columnWeights = new double[]{1.0, 1.0, 1.0};
+        gbl_panel_2.rowWeights = new double[]{1.0, 1.0};
+        panel_2.setLayout(gbl_panel_2);
+        
+        JPanel panel_4 = new JPanel();
+        panel_4.setBorder(new TitledBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)), "Total Eau", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
+        GridBagConstraints gbc_panel_4 = new GridBagConstraints();
+        gbc_panel_4.insets = new Insets(0, 0, 5, 5);
+        gbc_panel_4.fill = GridBagConstraints.BOTH;
+        gbc_panel_4.gridx = 0;
+        gbc_panel_4.gridy = 0;
+        panel_2.add(panel_4, gbc_panel_4);
+        GridBagLayout gbl_panel_4 = new GridBagLayout();
+        gbl_panel_4.columnWidths = new int[] {400};
+        gbl_panel_4.rowHeights = new int[] {50, 180};
+        gbl_panel_4.columnWeights = new double[]{1.0};
+        gbl_panel_4.rowWeights = new double[]{0.0, 1.0};
+        panel_4.setLayout(gbl_panel_4);
+        
+        JLabel lblNewLabel = new JLabel("");
+        GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+        gbc_lblNewLabel.anchor = GridBagConstraints.WEST;
+        gbc_lblNewLabel.insets = new Insets(0, 0, 5, 0);
+        gbc_lblNewLabel.gridx = 0;
+        gbc_lblNewLabel.gridy = 0;
+        panel_4.add(lblNewLabel, gbc_lblNewLabel);
+        
+        JPanel panel_4_1 = new JPanel();
+        panel_4_1.setBorder(new TitledBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)), "Total \u00C9electricit\u00E9", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
+        GridBagConstraints gbc_panel_4_1 = new GridBagConstraints();
+        gbc_panel_4_1.insets = new Insets(0, 0, 5, 5);
+        gbc_panel_4_1.fill = GridBagConstraints.BOTH;
+        gbc_panel_4_1.gridx = 1;
+        gbc_panel_4_1.gridy = 0;
+        panel_2.add(panel_4_1, gbc_panel_4_1);
+        GridBagLayout gbl_panel_4_1 = new GridBagLayout();
+        gbl_panel_4_1.columnWidths = new int[] {400};
+        gbl_panel_4_1.rowHeights = new int[] {50, 180};
+        gbl_panel_4_1.columnWeights = new double[]{1.0};
+        gbl_panel_4_1.rowWeights = new double[]{0.0, 1.0};
+        panel_4_1.setLayout(gbl_panel_4_1);
+        
+        JLabel lblNewLabel_1 = new JLabel("");
+        GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
+        gbc_lblNewLabel_1.anchor = GridBagConstraints.WEST;
+        gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 0);
+        gbc_lblNewLabel_1.gridx = 0;
+        gbc_lblNewLabel_1.gridy = 0;
+        panel_4_1.add(lblNewLabel_1, gbc_lblNewLabel_1);
+        
+        JPanel panel_4_2 = new JPanel();
+        panel_4_2.setBorder(new TitledBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)), "Total Gaz", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
+        GridBagConstraints gbc_panel_4_2 = new GridBagConstraints();
+        gbc_panel_4_2.insets = new Insets(0, 0, 5, 0);
+        gbc_panel_4_2.fill = GridBagConstraints.BOTH;
+        gbc_panel_4_2.gridx = 2;
+        gbc_panel_4_2.gridy = 0;
+        panel_2.add(panel_4_2, gbc_panel_4_2);
+        GridBagLayout gbl_panel_4_2 = new GridBagLayout();
+        gbl_panel_4_2.columnWidths = new int[] {400};
+        gbl_panel_4_2.rowHeights = new int[] {50, 180};
+        gbl_panel_4_2.columnWeights = new double[]{1.0};
+        gbl_panel_4_2.rowWeights = new double[]{0.0, 1.0};
+        panel_4_2.setLayout(gbl_panel_4_2);
+        
+        JLabel lblNewLabel_2 = new JLabel("");
+        GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
+        gbc_lblNewLabel_2.anchor = GridBagConstraints.WEST;
+        gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 0);
+        gbc_lblNewLabel_2.gridx = 0;
+        gbc_lblNewLabel_2.gridy = 0;
+        panel_4_2.add(lblNewLabel_2, gbc_lblNewLabel_2);
+        
         JPanel panel_1 = new JPanel();
         contentPane.add(panel_1, BorderLayout.NORTH);
         
@@ -151,6 +239,45 @@ public class FenetreCompteurs extends FenetreBase {
         JLabel lblTitre = new JLabel("Compteurs");
         lblTitre.setFont(new Font("Tahoma", Font.BOLD, 18));
         panel_1.add(lblTitre);
+        
+        //icons
+        ImageIcon eauIcon = new ImageIcon("img/electricity.png"); 
+        Image imgEau = eauIcon.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+        lblNewLabel.setIcon(new ImageIcon(imgEau));
+        lblNewLabel.setHorizontalAlignment(JLabel.RIGHT); 
+        
+        JLabel lblNewLabel_5 = new JLabel("860");
+        lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 95));
+        GridBagConstraints gbc_lblNewLabel_5 = new GridBagConstraints();
+        gbc_lblNewLabel_5.gridx = 0;
+        gbc_lblNewLabel_5.gridy = 1;
+        panel_4.add(lblNewLabel_5, gbc_lblNewLabel_5);
+
+        ImageIcon elecIcon = new ImageIcon("img/gaz.png");
+        Image imgElec = elecIcon.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+        lblNewLabel_1.setIcon(new ImageIcon(imgElec));
+        lblNewLabel_1.setHorizontalAlignment(JLabel.RIGHT);
+        
+        JLabel lblNewLabel_4 = new JLabel("900");
+        lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 95));
+        GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
+        gbc_lblNewLabel_4.gridx = 0;
+        gbc_lblNewLabel_4.gridy = 1;
+        panel_4_1.add(lblNewLabel_4, gbc_lblNewLabel_4);
+
+
+        ImageIcon gazIcon = new ImageIcon("img/water.png");
+        Image imgGaz = gazIcon.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+        lblNewLabel_2.setIcon(new ImageIcon(imgGaz));
+        lblNewLabel_2.setHorizontalAlignment(JLabel.RIGHT);
+        
+        JLabel lblNewLabel_3 = new JLabel("123");
+        lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 95));
+        GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
+        gbc_lblNewLabel_3.gridx = 0;
+        gbc_lblNewLabel_3.gridy = 1;
+        panel_4_2.add(lblNewLabel_3, gbc_lblNewLabel_3);
+
 
     }
     public String getFenetreAvant() {
