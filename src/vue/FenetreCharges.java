@@ -125,9 +125,8 @@ public class FenetreCharges extends FenetreBase {
 	    JPanel panel_8 = new JPanel();
 	    panel_1.add(panel_8);
 	    GridBagLayout gbl_panel_8 = new GridBagLayout();
-	    gbl_panel_8.columnWidths = new int[]{0};
-	    gbl_panel_8.rowHeights = new int[]{0};
-	    gbl_panel_8.columnWeights = new double[]{Double.MIN_VALUE};
+	    gbl_panel_8.rowHeights = new int[] {50, 70};
+	    gbl_panel_8.columnWeights = new double[]{};
 	    gbl_panel_8.rowWeights = new double[]{Double.MIN_VALUE};
 	    panel_8.setLayout(gbl_panel_8);
 	    
