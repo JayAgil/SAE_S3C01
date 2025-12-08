@@ -6,28 +6,33 @@ import javax.swing.*;
 
 public abstract class FenetreBase extends JFrame {
 
-	protected JMenu mnProfil;
-	protected JMenu mnBatiment;
-	protected JMenu mnBienLouable;
-	protected JMenu mnPaiement;
+	public JMenu mnProfil;
+	public JMenu mnBatiment;
+	public JMenu mnBienLouable;
+	public JMenu mnPaiement;
 
 	// ===== MENU ITEMS =====
-	protected JMenuItem mntmDeconnecter;
-	protected JMenuItem mntmAjouterBat;
-	protected JMenuItem mntmAssurance;
-	protected JMenuItem mntmCompteur;
-	protected JMenuItem mntmCharge;
+	public JMenuItem mntmDeconnecter;
+	public JMenuItem mntmAjouterBat;
+	public JMenuItem mntmAssurance;
+	public JMenuItem mntmCompteur;
+	public JMenuItem mntmCharge;
 
-	protected JMenuItem mntmContratLocation;
-	protected JMenuItem mntmCompteurBL;
-	protected JMenuItem mntmTravaux;
-	protected JMenuItem mntmChargesBL;
-	protected JMenuItem mntmDiagnostic;
-	protected JMenuItem mntmLocataire;
+	public JMenuItem mntmContratLocation;
+	public JMenuItem mntmCompteurBL;
+	public JMenuItem mntmTravaux;
+	public JMenuItem mntmChargesBL;
+	public JMenuItem mntmDiagnostic;
+	public JMenuItem mntmLocataire;
 
+<<<<<<< HEAD
 	protected JMenuItem mntmHistorique;
 	protected JMenuItem mntmAjout;
 	
+=======
+	public JMenuItem mntmHistorique;
+	public JMenuItem mntmAjout;
+>>>>>>> 5beeb5f49022f34f83ba9ae5c6bd2257dcb97ead
 
 	public void disableMenuItems(boolean actif) {
 		// default behaviour: do nothing
@@ -86,7 +91,11 @@ public abstract class FenetreBase extends JFrame {
 	    menuBar.add(mnPaiement);
 	    mnPaiement.add(mntmHistorique);
 	    mnPaiement.add(mntmAjout);
+<<<<<<< HEAD
 	   
+=======
+	    
+>>>>>>> 5beeb5f49022f34f83ba9ae5c6bd2257dcb97ead
 	    return menuBar;
 	}
 
