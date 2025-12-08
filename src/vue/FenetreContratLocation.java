@@ -45,9 +45,6 @@ public class FenetreContratLocation extends FenetreBase {
 	private JTextField textFieldCptElec;
 	private JTextField textFieldCptGaz;
 	private JTextField textFieldSolde;
-	private JMenu mnBatiment;
-	private JMenu mnPaiement;
-	private JMenuItem mntmContratLocation;
 	private String fenDavant;
 	
 	public String getFenDavant() {
