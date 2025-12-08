@@ -24,9 +24,6 @@ public class RequeteInsertAssurance extends Requete<Assurance> {
         ps.setString(7, a.getTelAgence());
         ps.setString(8, a.getBatiment().getAdresse());
     }
-	
-	
-	
-	
 
+	
 }

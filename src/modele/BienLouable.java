@@ -109,4 +109,10 @@ public class BienLouable {
 	    }
 	}
 	
+	public boolean verifParent() {
+		if(this.getTypeBienLouable() == "Appartement" || this.getTypeBienLouable() == "Studio" || this.getTypeBienLouable() == "Maison") {
+			return this.idBienLouable
+		}
+	}
+	
 }
