@@ -15,8 +15,23 @@ public abstract class GestionHeaderEtFooter implements ActionListener {
     }
     
     public void initialize() {
-       this.fenetre.disableMenuItems(false);
+        fenetre.mntmAssurance.addActionListener(this);
+        fenetre.mntmCharge.addActionListener(this);
+        fenetre.mntmCompteur.addActionListener(this);
+        fenetre.mntmAjouterBat.addActionListener(this);
+
+        fenetre.mntmContratLocation.addActionListener(this);
+        fenetre.mntmCompteurBL.addActionListener(this);
+        fenetre.mntmTravaux.addActionListener(this);
+        fenetre.mntmChargesBL.addActionListener(this);
+        fenetre.mntmDiagnostic.addActionListener(this);
+        fenetre.mntmLocataire.addActionListener(this);
+
+        fenetre.mntmHistorique.addActionListener(this);
+        fenetre.mntmAjout.addActionListener(this);
+        this.fenetre.disableMenuItems(false);
     }
+
     
     @Override
     public void actionPerformed(ActionEvent e) {
