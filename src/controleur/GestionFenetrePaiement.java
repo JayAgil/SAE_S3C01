@@ -5,12 +5,11 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.text.Document;
 
 import vue.*;
 
-public class GestionFenetrePaiement extends GestionHeaderEtFooter implements MouseListener {
+public class GestionFenetrePaiement extends GestionHeaderEtFooter implements MouseListener{
 
     private FenetrePaiement fenetre;
 
@@ -31,24 +30,15 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter implements Mou
                 break;
 
             case "Générer facture":
-            	int selectedRow = fenetre.getTable().getSelectedRow();
-            	if (selectedRow == -1) {
-            	    JOptionPane.showMessageDialog(null, "Veuillez sélectionner une ligne.");
-            	    return;
-            	}
-            	DefaultTableModel model = (DefaultTableModel) fenetre.getTable().getModel();
-            	Object[] rowData = new Object[model.getColumnCount()];
-            	String[] columnNames = new String[model.getColumnCount()];
-            	for (int i = 0; i < model.getColumnCount(); i++) {
-            	    rowData[i] = model.getValueAt(selectedRow, i);
-            	    columnNames[i] = model.getColumnName(i);
-            	}
-            	FenetreFacture fenFacture = new FenetreFacture(rowData, columnNames, "Paiement");
-            	fenFacture.setVisible(true);
-            	break;
-
+            	int[][] data = new int[5][5];
+            	String[] cNames = new String[5];
+            	String tabName = "";
+                FenetreFacture fenFacture = new FenetreFacture(data, cNames, tabName);
+                fenFacture.setVisible(true);
+                break;
         }
     }
+
     
     @Override
     protected void gererBoutonRetour(String texte) {
@@ -58,26 +48,12 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter implements Mou
             fenetre.dispose();
         }
     }
-    
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        if (e.getClickCount() == 2 && e.getSource() instanceof JTable) {
-            JTable table = (JTable) e.getSource();
-            int row = table.rowAtPoint(e.getPoint());
-            if (row != -1) {
-                DefaultTableModel model = (DefaultTableModel) table.getModel();
-                Object[] rowData = new Object[model.getColumnCount()];
-                String[] columnNames = new String[model.getColumnCount()];
-                for (int i = 0; i < model.getColumnCount(); i++) {
-                    rowData[i] = model.getValueAt(row, i);
-                    columnNames[i] = model.getColumnName(i);
-                }
-                FenetreFacture fenFacture = new FenetreFacture(rowData, columnNames, "Paiement");
-                fenFacture.setVisible(true);
-            }
-        }
-    }
 
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {

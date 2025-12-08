@@ -77,7 +77,5 @@ public class FenetreFacture extends JFrame {
         JPanel footer = new JPanel();
         footer.add(btnPrint);
         add(footer, BorderLayout.SOUTH);
-
-        setVisible(true);
     }
 }

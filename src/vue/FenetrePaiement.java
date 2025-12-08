@@ -6,20 +6,17 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controleur.GestionFenetrePaiement;
+import javax.swing.border.TitledBorder;
+import javax.swing.border.EtchedBorder;
 
-public class FenetrePaiement extends FenetreBase {
+public class FenetrePaiement extends FenetreBase{
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
-    private JTable table;
     private GestionFenetrePaiement gestionClic;
-	private JMenu mnBatiment;
-	private JMenuItem mntmHistorique;
-	private JMenuItem mntmContratLocation;
-	private JMenuItem mntmCompteurBL;
-	private JMenuItem mntmTravaux;
-	private JMenuItem mntmChargesBL;
-	private JMenuItem mntmDiagnostic;
+    private JTable table;
+    private JProgressBar progressBar;
+	
 
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
@@ -33,6 +30,7 @@ public class FenetrePaiement extends FenetreBase {
     }
 
     public FenetrePaiement() {
+    	super();
     	setExtendedState(JFrame.MAXIMIZED_BOTH);
     	gestionClic = new GestionFenetrePaiement(this);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -40,74 +38,9 @@ public class FenetrePaiement extends FenetreBase {
         setLocationRelativeTo(null);
         setTitle("Application Gestion");
 
-        JMenuBar menuBar = new JMenuBar();
-        menuBar.setBackground(new Color(214, 214, 214));
-        setJMenuBar(menuBar);
-
+        
         //header
-        JMenu mnProfil = new JMenu("Profil");
-        menuBar.add(mnProfil);
-
-        JMenuItem mntmDeconnecter = new JMenuItem("Déconnecter");
-        mntmDeconnecter.addActionListener(this.gestionClic);
-        mnProfil.add(mntmDeconnecter);
-
-        mnBatiment = new JMenu("Batiment");
-        menuBar.add(mnBatiment);
-
-        JMenuItem mntmAjouterBat = new JMenuItem("Ajouter bâtiment");
-        mntmAjouterBat.addActionListener(this.gestionClic);
-        mnBatiment.add(mntmAjouterBat);
-
-        JMenuItem mntmAssurance = new JMenuItem("Assurance");
-        mntmAssurance.addActionListener(this.gestionClic);
-        mnBatiment.add(mntmAssurance);
-
-        JMenuItem mntmCompteur = new JMenuItem("Compteurs bâtiment");
-        mntmCompteur.addActionListener(this.gestionClic);
-        mnBatiment.add(mntmCompteur);
-
-        JMenuItem mntmCharge = new JMenuItem("Charges bâtiment");
-        mntmCharge.addActionListener(this.gestionClic);
-        mnBatiment.add(mntmCharge);
-
-        JMenu mnBienLouable = new JMenu("Bien louable");
-        menuBar.add(mnBienLouable);
-
-        mntmContratLocation = new JMenuItem("Contrat location");
-        mntmContratLocation.addActionListener(this.gestionClic);
-        mnBienLouable.add(mntmContratLocation);
-
-        mntmCompteurBL = new JMenuItem("Compteurs bien louable");
-        mntmCompteurBL.addActionListener(this.gestionClic);
-        mnBienLouable.add(mntmCompteurBL);
-
-        mntmTravaux = new JMenuItem("Travaux");
-        mntmTravaux.addActionListener(this.gestionClic);
-        mnBienLouable.add(mntmTravaux);
-
-        mntmChargesBL = new JMenuItem("Charges bien louable");
-        mntmChargesBL.addActionListener(this.gestionClic);
-        mnBienLouable.add(mntmChargesBL);
-
-        mntmDiagnostic = new JMenuItem("Diagnostics");
-        mntmDiagnostic.addActionListener(this.gestionClic);
-        mnBienLouable.add(mntmDiagnostic);
-
-        JMenuItem mntmLocataire = new JMenuItem("Locataires");
-        mntmLocataire.addActionListener(this.gestionClic);
-        mnBienLouable.add(mntmLocataire);
-        
-        JMenu mnPaiement = new JMenu("Paiement");
-        menuBar.add(mnPaiement);
-        
-        mntmHistorique = new JMenuItem("Historique de paiement");
-        mntmHistorique.addActionListener(this.gestionClic);
-        mnPaiement.add(mntmHistorique);
-        
-        JMenuItem mntmAjout = new JMenuItem("Ajouter paiement");
-        mntmAjout.addActionListener(this.gestionClic);
-        mnPaiement.add(mntmAjout);
+        this.setJMenuBar(createHeader());
 
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -172,12 +105,29 @@ public class FenetrePaiement extends FenetreBase {
         JButton btnRetour = new JButton("Retour");
         panelButtons.add(btnRetour);
         
-        JScrollPane scrollPane = new JScrollPane();
-        mainPanel.add(scrollPane, BorderLayout.CENTER);
+        JPanel panel_7 = new JPanel();
+        mainPanel.add(panel_7, BorderLayout.CENTER);
+        panel_7.setLayout(new BorderLayout(0, 0));
+        
+        JPanel panel_8 = new JPanel();
+        panel_7.add(panel_8, BorderLayout.NORTH);
+        
+        JComboBox comboBoxMois = new JComboBox();
+        comboBoxMois.setModel(new DefaultComboBoxModel(new String[] {"Mois", "Janvier", "Février", "Mars", "Avril ", "Mai", "Juin Juillet", "Août", "Septembre", "Octobre", "Novembre", "Decembre"}));
+        panel_8.add(comboBoxMois);
+        
+        JComboBox comboBoxLocataire = new JComboBox();
+        comboBoxLocataire.setModel(new DefaultComboBoxModel(new String[] {"Locataire", "Koshua", "Aneesa", "Luca", "Frank"}));
+        panel_8.add(comboBoxLocataire);
+        
+        JPanel panel_9 = new JPanel();
+        panel_7.add(panel_9, BorderLayout.CENTER);
+        panel_9.setLayout(new BorderLayout(0, 0));
+        
+        JScrollPane scrollPane_1 = new JScrollPane();
+        panel_9.add(scrollPane_1);
         
         table = new JTable();
-        table.addMouseListener(this.gestionClic);
-        scrollPane.setViewportView(table);
         table.setModel(new DefaultTableModel(
         	new Object[][] {
         		{null, null, null, null, null},
@@ -190,56 +140,74 @@ public class FenetrePaiement extends FenetreBase {
         		{null, null, null, null, null},
         		{null, null, null, null, null},
         		{null, null, null, null, null},
-        		{null, null, null, null, null},
-        		{null, null, null, null, null},
-        		{null, null, null, null, null},
-        		{null, null, null, null, null},
-        		{null, null, null, null, null},
-        		{null, null, null, null, null},
-        		{null, null, null, null, null},
-        		{null, null, null, null, null},
-        		{null, null, null, null, null},
-        		{null, null, null, null, null},
-        		{null, null, null, null, null},
-        		{null, null, null, null, null},
-        		{null, null, null, null, null},
-        		{null, null, null, null, null},
-        		{null, null, null, null, null},
-        		{null, null, null, null, null},
-        		{null, null, null, null, null},
-        		{null, null, null, null, null},
-        		{null, null, null, null, null},
-        		{null, null, null, null, null},
-        		{null, null, null, null, null},
-        		{null, null, null, null, null},
         	},
         	new String[] {
-        		"Nom Locataire", "Date de Paiement", "Montant de Paiement", "Solde", "Contrat Location"
+        		"Nom Locataire", "Batiment", "Montant", "Id Contrat", "Designation"
         	}
-        ) {
-        	Class[] columnTypes = new Class[] {
-        		String.class, String.class, Float.class, String.class, String.class
-        	};
-        	public Class getColumnClass(int columnIndex) {
-        		return columnTypes[columnIndex];
-        	}
-        	boolean[] columnEditables = new boolean[] {
-        		false, false, false, false, false
-        	};
-        	public boolean isCellEditable(int row, int column) {
-        		return columnEditables[column];
-        	}
-        });
+        ));
+        scrollPane_1.setViewportView(table);
+        
+        JPanel panel_10 = new JPanel();
+        panel_7.add(panel_10, BorderLayout.SOUTH);
+        GridBagLayout gbl_panel_10 = new GridBagLayout();
+        gbl_panel_10.columnWidths = new int[] {200, 200, 200};
+        gbl_panel_10.rowHeights = new int[] {100, 200};
+        gbl_panel_10.columnWeights = new double[]{1.0, 1.0, 1.0};
+        gbl_panel_10.rowWeights = new double[]{0.0};
+        panel_10.setLayout(gbl_panel_10);
+        
+        JPanel panel_12 = new JPanel();
+        panel_12.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Totals Paiements Recu Ann\u00E9es", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+        GridBagConstraints gbc_panel_12 = new GridBagConstraints();
+        gbc_panel_12.insets = new Insets(0, 0, 5, 5);
+        gbc_panel_12.fill = GridBagConstraints.BOTH;
+        gbc_panel_12.gridx = 0;
+        gbc_panel_12.gridy = 0;
+        panel_10.add(panel_12, gbc_panel_12);
+        
+        JLabel lblNewLabel_1 = new JLabel("3600");
+        lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 99));
+        panel_12.add(lblNewLabel_1);
+        
+        JPanel panel_13 = new JPanel();
+        panel_13.setBorder(new TitledBorder(null, "Totals Paiements Recu Ce Mois", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+        GridBagConstraints gbc_panel_13 = new GridBagConstraints();
+        gbc_panel_13.insets = new Insets(0, 0, 5, 5);
+        gbc_panel_13.fill = GridBagConstraints.HORIZONTAL;
+        gbc_panel_13.gridx = 1;
+        gbc_panel_13.gridy = 0;
+        panel_10.add(panel_13, gbc_panel_13);
+        
+        JLabel lblNewLabel_2 = new JLabel("1200");
+        lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 99));
+        panel_13.add(lblNewLabel_2);
+        
+        JPanel panel_11 = new JPanel();
+        panel_11.setBorder(new TitledBorder(null, "Montant Total Pr\u00E9vu", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+        GridBagConstraints gbc_panel_11 = new GridBagConstraints();
+        gbc_panel_11.insets = new Insets(0, 0, 5, 0);
+        gbc_panel_11.fill = GridBagConstraints.HORIZONTAL;
+        gbc_panel_11.gridx = 2;
+        gbc_panel_11.gridy = 0;
+        panel_10.add(panel_11, gbc_panel_11);
+        
+        JLabel lblNewLabel = new JLabel("1300");
+        lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 99));
+        panel_11.add(lblNewLabel);
+        
+        progressBar = new JProgressBar();
+        progressBar.setToolTipText("");
+        progressBar.setValue(20);
+        GridBagConstraints gbc_progressBar = new GridBagConstraints();
+        gbc_progressBar.fill = GridBagConstraints.HORIZONTAL;
+        gbc_progressBar.insets = new Insets(0, 0, 0, 5);
+        gbc_progressBar.gridx = 1;
+        gbc_progressBar.gridy = 1;
+        panel_10.add(progressBar, gbc_progressBar);
+        progressBar.setStringPainted(true);
+        setString("30 Pourcent de paiement reçus");
 
-        JPanel footerPanel = new JPanel();
-        footerPanel.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.LIGHT_GRAY));
-        footerPanel.setBackground(new Color(214, 214, 214));
-        footerPanel.setPreferredSize(new Dimension(584, 30));
-
-        JLabel footerLabel = new JLabel("Développé par Koshua, Jay, Aneesa, Luca et Franck");
-        footerPanel.add(footerLabel);
-
-        contentPane.add(footerPanel, BorderLayout.SOUTH);
+        contentPane.add(createFooter(), BorderLayout.SOUTH);
         
         JPanel panel_3 = new JPanel();
         contentPane.add(panel_3, BorderLayout.NORTH);
@@ -248,8 +216,9 @@ public class FenetrePaiement extends FenetreBase {
         lblTitre.setFont(new Font("Tahoma", Font.BOLD, 18));
         panel_3.add(lblTitre);
         
-    	btnAjouterPaiement.addActionListener(gestionClic);
-        btnGenFac.addActionListener(gestionClic);
+        JPanel panel_6 = new JPanel();
+        contentPane.add(panel_6, BorderLayout.SOUTH);
+        
         btnRetour.addActionListener(gestionClic);
     }
     
@@ -267,5 +236,8 @@ public class FenetrePaiement extends FenetreBase {
 	public JTable getTable() {
 		return table;
 	}
-    
+	
+    public void setString(String s) {
+    	progressBar.setString(s);
+    }
 }

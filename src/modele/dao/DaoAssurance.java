@@ -17,9 +17,8 @@ public class DaoAssurance extends DaoModele<Assurance>implements Dao<Assurance> 
 	}
 
 	@Override
-	public void update(Assurance t) {
-		DaoTest.updateAssurance(t);
-		
+	public void update(Assurance t) throws SQLException {
+		miseAJour(new RequeteUpdateAssurance(), t);
 	}
 
 	@Override

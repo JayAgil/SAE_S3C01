@@ -10,6 +10,6 @@ public abstract class Requete<T> {
 	public void parametres(PreparedStatement prSt, String... id) throws SQLException {
 	}
 
-	public void parametres(PreparedStatement prSt, T donnee) {
+	public void parametres(PreparedStatement prSt, T donnee) throws SQLException {
 	}
 }
