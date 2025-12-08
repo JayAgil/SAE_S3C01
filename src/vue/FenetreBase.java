@@ -24,16 +24,11 @@ public abstract class FenetreBase extends JFrame {
 	public JMenuItem mntmChargesBL;
 	public JMenuItem mntmDiagnostic;
 	public JMenuItem mntmLocataire;
-<<<<<<< HEAD
-	
+
 
 	public JMenuItem mntmHistorique;
 	public JMenuItem mntmAjout;
-=======
-	public JMenuItem mntmHistorique;
-	public JMenuItem mntmAjout;
-	
->>>>>>> 0a9ccc890e31f17c1ca46c54f3525c9e3225f63c
+
 
 	public void disableMenuItems(boolean actif) {
 		// default behaviour: do nothing
@@ -92,10 +87,7 @@ public abstract class FenetreBase extends JFrame {
 	    menuBar.add(mnPaiement);
 	    mnPaiement.add(mntmHistorique);
 	    mnPaiement.add(mntmAjout);
-<<<<<<< HEAD
 
-=======
->>>>>>> 0a9ccc890e31f17c1ca46c54f3525c9e3225f63c
 	    return menuBar;
 	}
 
