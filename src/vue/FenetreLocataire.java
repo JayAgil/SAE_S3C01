@@ -1,16 +1,10 @@
 package vue;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.EventQueue;
 
-import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.SwingConstants;
@@ -175,6 +169,7 @@ public class FenetreLocataire extends FenetreBase {
 
 		textFieldNom = new JTextField();
 		textFieldNom.setEditable(false);
+		textFieldNom.setBorder(null);
 		GridBagConstraints gbc_textFieldNom = new GridBagConstraints();
 		gbc_textFieldNom.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textFieldNom.insets = new Insets(0, 0, 5, 0);
@@ -195,6 +190,7 @@ public class FenetreLocataire extends FenetreBase {
 
 		textFieldPrenom = new JTextField();
 		textFieldPrenom.setEditable(false);
+		textFieldPrenom.setBorder(null);
 		GridBagConstraints gbc_textFieldPrenom = new GridBagConstraints();
 		gbc_textFieldPrenom.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textFieldPrenom.insets = new Insets(0, 0, 5, 0);
@@ -215,6 +211,7 @@ public class FenetreLocataire extends FenetreBase {
 
 		textField = new JTextField();
 		textField.setEditable(false);
+		textField.setBorder(null);
 		GridBagConstraints gbc_textField = new GridBagConstraints();
 		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField.insets = new Insets(0, 0, 5, 0);
@@ -236,6 +233,7 @@ public class FenetreLocataire extends FenetreBase {
 
 		textFieldTel = new JTextField();
 		textFieldTel.setEditable(false);
+		textFieldTel.setBorder(null);
 		GridBagConstraints gbc_textFieldTel = new GridBagConstraints();
 		gbc_textFieldTel.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textFieldTel.insets = new Insets(0, 0, 5, 0);
@@ -253,8 +251,10 @@ public class FenetreLocataire extends FenetreBase {
 		gbc_lblEmail.gridy = 4;
 		gbc_lblEmail.weightx = 0.2;
 		panel_3.add(lblEmail, gbc_lblEmail);
+		
 
 		textFieldEmail = new JTextField();
+		textFieldEmail.setBorder(null);
 		textFieldEmail.setEditable(false);
 		GridBagConstraints gbc_textFieldEmail = new GridBagConstraints();
 		gbc_textFieldEmail.fill = GridBagConstraints.HORIZONTAL;
@@ -273,8 +273,10 @@ public class FenetreLocataire extends FenetreBase {
 		gbc_lblDateNaissance.gridy = 5;
 		gbc_lblDateNaissance.weightx = 0.2;
 		panel_3.add(lblDateNaissance, gbc_lblDateNaissance);
+		
 
 		textFieldDateNaissance = new JTextField();
+		textFieldDateNaissance.setBorder(null);
 		textFieldDateNaissance.setEditable(false);
 		GridBagConstraints gbc_textFieldDateNaissance = new GridBagConstraints();
 		gbc_textFieldDateNaissance.fill = GridBagConstraints.HORIZONTAL;
@@ -293,8 +295,10 @@ public class FenetreLocataire extends FenetreBase {
 		gbc_lblLieuNaissance.gridy = 6;
 		gbc_lblLieuNaissance.weightx = 0.2;
 		panel_3.add(lblLieuNaissance, gbc_lblLieuNaissance);
-
+		
+	
 		textFieldLieuNaissance = new JTextField();
+		textFieldLieuNaissance.setBorder(null);
 		textFieldLieuNaissance.setEditable(false);
 		GridBagConstraints gbc_textFieldLieuNaissance = new GridBagConstraints();
 		gbc_textFieldLieuNaissance.fill = GridBagConstraints.HORIZONTAL;
@@ -313,8 +317,10 @@ public class FenetreLocataire extends FenetreBase {
 		gbc_lblSalaire.gridy = 7;
 		gbc_lblSalaire.weightx = 0.2;
 		panel_3.add(lblSalaire, gbc_lblSalaire);
+		
 
 		textFieldSalaire = new JTextField();
+		textFieldSalaire.setBorder(null);
 		textFieldSalaire.setEditable(false);
 		GridBagConstraints gbc_textFieldSalaire = new GridBagConstraints();
 		gbc_textFieldSalaire.fill = GridBagConstraints.HORIZONTAL;
@@ -333,8 +339,10 @@ public class FenetreLocataire extends FenetreBase {
 		gbc_lblProfession.gridy = 8;
 		gbc_lblProfession.weightx = 0.2;
 		panel_3.add(lblProfession, gbc_lblProfession);
-
+		
+		
 		textFieldProfession = new JTextField();
+		textFieldProfession.setBorder(null);
 		textFieldProfession.setEditable(false);
 		GridBagConstraints gbc_textFieldProfession = new GridBagConstraints();
 		gbc_textFieldProfession.fill = GridBagConstraints.HORIZONTAL;
@@ -353,8 +361,9 @@ public class FenetreLocataire extends FenetreBase {
 		gbc_lblSituationFamiliale.gridy = 9;
 		gbc_lblSituationFamiliale.weightx = 0.2;
 		panel_3.add(lblSituationFamiliale, gbc_lblSituationFamiliale);
-
+		
 		textFieldSituationFamiliale = new JTextField();
+		textFieldSituationFamiliale.setBorder(null);
 		textFieldSituationFamiliale.setEditable(false);
 		GridBagConstraints gbc_textFieldSituationFamiliale = new GridBagConstraints();
 		gbc_textFieldSituationFamiliale.fill = GridBagConstraints.HORIZONTAL;
