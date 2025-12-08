@@ -18,6 +18,8 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+import controleur.GestionConnexion;
+
 public class FenetreLogin extends JFrame {
 
     private static final long serialVersionUID = 1L;
@@ -25,6 +27,7 @@ public class FenetreLogin extends JFrame {
     private JTextField txtUsername;
     private JPasswordField txtPassword;
     private JLabel lblMessage;
+    private GestionConnexion gestionClic;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(()-> {
@@ -38,6 +41,7 @@ public class FenetreLogin extends JFrame {
     }
 
     public FenetreLogin() {
+    	this.gestionClic = new GestionConnexion(this);
         setTitle("Connexion");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 480, 350);
@@ -98,14 +102,14 @@ public class FenetreLogin extends JFrame {
         panelLogin.add(txtPassword);
 
         lblMessage = new JLabel("");
-        lblMessage.setBounds(10, 191, 446, 20);
+        lblMessage.setBounds(10, 203, 446, 20);
         panelLogin.add(lblMessage);
         lblMessage.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         lblMessage.setForeground(Color.RED);
         lblMessage.setHorizontalAlignment(SwingConstants.CENTER);
 
         JButton btnLogin = new JButton("Se connecter");
-        btnLogin.setBounds(133, 177, 196, 34);
+        btnLogin.setBounds(132, 160, 196, 34);
         panelLogin.add(btnLogin);
         btnLogin.setForeground(Color.BLACK);
         btnLogin.setFont(new Font("Segoe UI", Font.BOLD, 13));
@@ -125,26 +129,20 @@ public class FenetreLogin extends JFrame {
             }
         });
 
-        btnLogin.addActionListener(e->methodLogin());
+        btnLogin.addActionListener(gestionClic);
     }
 
-    private void methodLogin() {
-        String username = txtUsername.getText();
-        String password = new String(txtPassword.getPassword());
-        String usernameOri = "admin";
-        String mDPOri = "1234";
+   
 
-        if (username.isEmpty() || password.isEmpty()) {
-            lblMessage.setText("Veuillez remplir tous les champs.");
-            lblMessage.setForeground(Color.RED);
-        } else if (username.equals(usernameOri) && password.equals(mDPOri)) {
-            lblMessage.setForeground(new Color(0, 128, 0));
-            lblMessage.setText("Connexion réussie !");
-            JOptionPane.showMessageDialog(this,
-                "Bienvenue, " + username + " !");
-        } else {
-            lblMessage.setForeground(Color.RED);
-            lblMessage.setText("Identifiant ou mot de passe incorrect.");
-        }
-    }
+	public JLabel getLblMessage() {
+		return lblMessage;
+	}
+
+	public JTextField getTxtUsername() {
+		return txtUsername;
+	}
+
+	public JPasswordField getTxtPassword() {
+		return txtPassword;
+	}
 }
