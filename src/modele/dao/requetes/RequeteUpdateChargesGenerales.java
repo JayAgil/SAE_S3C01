@@ -8,21 +8,25 @@ import modele.ChargesGenerales;
 public class RequeteUpdateChargesGenerales extends Requete<ChargesGenerales> {
     @Override
     public String requete() {
-        return " Update MSF5131A.SAE_CHARGES_GENERALE set POURCENTAGE = ?, QUOTITE =  ? Where ID_CHARGES_GENERALE = ? ";
-
+        return "UPDATE MSF5131A.SAE_Charges_Generale " +
+                "SET Type_Charge = ?, " +
+                "Montant_Total = ?, " +
+                "Pourcentage = ?, " +
+                "Quotite = ?, " +
+                "Mois = ?, " +
+                "WHERE Id_Charges_Generale = ?";
     }
 
-    @Override
-    public void parametres(PreparedStatement prSt, String... id)
-        throws SQLException {
-    }
-
+  
     @Override
     public void parametres(PreparedStatement prSt, ChargesGenerales donnee)
         throws SQLException {
-        prSt.setFloat(1, donnee.getPourcentage());
-        prSt.setDouble(2, donnee.getQuotite());
-        prSt.setString(3, donnee.getIdChargesGenerales());
+        prSt.setString(1, donnee.getTypeCharge());
+        prSt.setDouble(2, donnee.getMontant());
+        prSt.setFloat(3, donnee.getPourcentage());
+        prSt.setDouble(4, donnee.getQuotite());
+        prSt.setString(5, donnee.get);
+        prSt.setString(7, donnee.getFkIdBienLouable())
     }
 
 }

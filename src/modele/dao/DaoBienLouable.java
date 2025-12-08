@@ -12,14 +12,14 @@ import modele.BienLouable;
 public class DaoBienLouable extends DaoModele<BienLouable> implements Dao<BienLouable> {
 
 	@Override
-	public void create(BienLouable t) {
-		DaoTest.insertBienLouable(t);
+	public int create(BienLouable t) throws SQLException {
+		return miseAJour(new RequeteInsertBienLouable(), t);
 		
 	}
 
 	@Override
-	public void update(BienLouable t) {
-		DaoTest.updateBienLouable(t);
+	public int update(BienLouable t) throws SQLException {
+		return miseAJour(new RequeteUpdateBienLouable(), t);
 		
 	}
 
@@ -52,9 +52,8 @@ public class DaoBienLouable extends DaoModele<BienLouable> implements Dao<BienLo
 		DaoBatiment daoBat = new DaoBatiment();
 		Batiment b = daoBat.findById(a);
 		String id = curseur.getString(7);
-		DaoBienLouable daoBL = new DaoBienLouable();
-		BienLouable bl = daoBL.findById(id);
-		return new BienLouable(id_bienLouable,numFiscale,adresse,surface,nbPieces,typeBienLouable, b, bl);
+		
+		return new BienLouable(id_bienLouable,numFiscale,adresse,surface,nbPieces,typeBienLouable, b, id);
 	}
 
 }
