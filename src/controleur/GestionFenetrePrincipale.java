@@ -18,7 +18,6 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
     }
     
     
-
     @Override
     protected void gererBoutonSpecifique(String texte) {
         switch (texte) {

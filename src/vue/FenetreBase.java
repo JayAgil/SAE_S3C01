@@ -1,11 +1,8 @@
 package vue;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-
 import javax.swing.*;
-
 
 public abstract class FenetreBase extends JFrame {
 
@@ -30,12 +27,14 @@ public abstract class FenetreBase extends JFrame {
 
 	protected JMenuItem mntmHistorique;
 	protected JMenuItem mntmAjout;
+	
 
 	public void disableMenuItems(boolean actif) {
 		// default behaviour: do nothing
 	}
 	
 	public FenetreBase() {
+
 	    // Menus
 	    mnProfil = new JMenu("Profil");
 	    mnBatiment = new JMenu("Batiment");
@@ -87,7 +86,7 @@ public abstract class FenetreBase extends JFrame {
 	    menuBar.add(mnPaiement);
 	    mnPaiement.add(mntmHistorique);
 	    mnPaiement.add(mntmAjout);
-
+	   
 	    return menuBar;
 	}
 
