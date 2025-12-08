@@ -26,6 +26,7 @@ import javax.swing.table.DefaultTableModel;
 import controleur.GestionFenetrePrincipale;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
+import javax.swing.JProgressBar;
 
 
 public class FenetrePrincipale extends FenetreBase {
@@ -166,7 +167,7 @@ public class FenetrePrincipale extends FenetreBase {
         panelRevenu_1.addMouseListener(this.gestionClic);
         FlowLayout fl_panelRevenu_1 = (FlowLayout) panelRevenu_1.getLayout();
         fl_panelRevenu_1.setHgap(15);
-        panelRevenu_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Montant total impay\u00E9s", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+        panelRevenu_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Total B\u00E9n\u00E9fice", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
         panelRevenu_1.setFont(new Font("Tahoma", Font.BOLD, 30));
         panelNorthCenter_1.add(panelRevenu_1);
 
@@ -293,6 +294,9 @@ public class FenetrePrincipale extends FenetreBase {
         btnAjouterBatiment.addActionListener(this.gestionClic);
         btnAjouterBatiment.setFont(new Font("Tahoma", Font.BOLD, 10));
         panelCenterNorth.add(btnAjouterBatiment);
+        
+        JPanel panelChart = new JPanel();
+        panelCenter.add(panelChart, BorderLayout.SOUTH);
 
         JPanel panelMenuBar = new JPanel();
         contentPane.add(panelMenuBar, BorderLayout.NORTH);
