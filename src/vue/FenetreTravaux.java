@@ -86,7 +86,7 @@ public class FenetreTravaux extends FenetreBase {
 		btnAjouterEntreprise.addActionListener(this.gestionClic);
 		panel_1.add(btnAjouterEntreprise);
 
-		JButton btnGenFacture = new JButton("Générer facture");
+		JButton btnGenFacture = new JButton("Visualiser facture");
 		btnGenFacture.addActionListener(this.gestionClic);
 		panel_1.add(btnGenFacture);
 
