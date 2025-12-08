@@ -11,9 +11,9 @@ public class BienLouable {
 	private int nbPieces;
 	private String typeBienLouable;
 	private Batiment batiment;
-	private BienLouable bienLouable;
+	private String bienLouableLie;
 	public BienLouable(String idBienLouable, String numeroFiscale, String adresse, double surfaceHabituable,
-			int nbPieces, String typeBienLouable, Batiment batiment, BienLouable l) {
+			int nbPieces, String typeBienLouable, Batiment batiment, String l) {
 		this.idBienLouable = idBienLouable;
 		this.numeroFiscale = numeroFiscale;
 		this.adresse = adresse;
@@ -21,13 +21,13 @@ public class BienLouable {
 		this.nbPieces = nbPieces;
 		this.typeBienLouable = typeBienLouable;
 		this.batiment = batiment;
-		this.bienLouable = l;
+		this.bienLouableLie = l;
 	}
-	public BienLouable getLogement() {
-		return bienLouable;
+	public String getLogement() {
+		return bienLouableLie;
 	}
-	public void setLogement(BienLouable logement) {
-		bienLouable = logement;
+	public void setLogement(String logement) {
+		bienLouableLie = logement;
 	}
 	public Batiment getBatiment() {
 		return batiment;
@@ -95,7 +95,7 @@ public class BienLouable {
 	public String toString() {
 		return "BienLouable [idBienLouable=" + idBienLouable + ", numeroFiscale=" + numeroFiscale + ", adresse="
 				+ adresse + ", surfaceHabituable=" + surfaceHabituable + ", nbPieces=" + nbPieces + ", typeBienLouable="
-				+ typeBienLouable + ", batiment=" + batiment + ", Logement=" + bienLouable + "]";
+				+ typeBienLouable + ", batiment=" + batiment + ", Logement=" + bienLouableLie+ "]";
 	}
 	
 	public boolean estValide() {
@@ -108,13 +108,5 @@ public class BienLouable {
 	                && nbPieces > 0;
 	    }
 	}
-	
-	public boolean verifBienParent() {
-		if(this.typeBienLouable == "logement") {
-			this.setLogement(null);
-		}
-		return this.getLogement().getTypeBienLouable() == "logement";
-	}
-
 	
 }

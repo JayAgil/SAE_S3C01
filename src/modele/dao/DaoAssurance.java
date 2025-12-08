@@ -11,14 +11,13 @@ import modele.Batiment;
 public class DaoAssurance extends DaoModele<Assurance>implements Dao<Assurance> {
 
 	@Override
-	public void create(Assurance t) {
-		DaoTest.insertAssurance(t);
-	
+	public int create(Assurance t) throws SQLException {
+		return miseAJour(new RequeteInsertAssurance(), t);	
 	}
 
 	@Override
-	public void update(Assurance t) throws SQLException {
-		miseAJour(new RequeteUpdateAssurance(), t);
+	public int update(Assurance t) throws SQLException {
+		return miseAJour(new RequeteUpdateAssurance(), t);
 	}
 
 	@Override

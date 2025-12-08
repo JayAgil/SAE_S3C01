@@ -13,11 +13,6 @@ public class RequeteUpdateAssurance extends Requete<Assurance> {
     }
 
     @Override
-    public void parametres(PreparedStatement prSt, String... id)
-        throws SQLException {
-    }
-
-    @Override
     public void parametres(PreparedStatement prSt, Assurance donnee)
         throws SQLException {
         prSt.setDouble(1, donnee.getPrime());

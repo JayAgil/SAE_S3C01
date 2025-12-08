@@ -17,8 +17,8 @@ public class DaoChargesGenerales extends DaoModele<ChargesGenerales>implements D
 	}
 
 	@Override
-	public void update(ChargesGenerales t) throws SQLException {
-		miseAJour(new RequeteUpdateChargesGenerales(), t);
+	public int update(ChargesGenerales t) throws SQLException {
+		return miseAJour(new RequeteUpdateChargesGenerales(), t);
 	}
 
 	@Override

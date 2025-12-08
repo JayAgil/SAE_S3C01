@@ -11,14 +11,14 @@ import modele.Batiment;
 public class DaoBatiment extends DaoModele<Batiment> implements Dao<Batiment> {
 
 	@Override
-	public void create(Batiment t) {
-		DaoTest.insertBatiment(t);
+	public int create(Batiment t) throws SQLException {
+		return miseAJour(new RequeteInsertBatiment(), t);
 		
 	}
 
 	@Override
-	public void update(Batiment t) throws SQLException {
-		miseAJour(new RequeteUpdateBatiment(), t);
+	public int update(Batiment t) throws SQLException {
+		return miseAJour(new RequeteUpdateBatiment(), t);
 	}
 
 	@Override

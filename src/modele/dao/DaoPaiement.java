@@ -13,12 +13,10 @@ public class DaoPaiement extends DaoModele<Paiement> implements Dao<Paiement> {
 
 	public void create(Paiement t) {
 		DaoTest.insertPaiement(t);
-
 	}
 
 	public void update(Paiement t) {
 		DaoTest.updatePaiement(t);
-
 	}
 
 	public int delete(Paiement t) throws SQLException {
