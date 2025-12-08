@@ -304,17 +304,12 @@ public class FenetrePrincipale extends FenetreBase {
 
       //header
        this.setJMenuBar(createHeader());
-        
         gestionClic.initialize();
-
         JPanel panelFooter = new JPanel();
         contentPane.add(panelFooter, BorderLayout.SOUTH);
         panelFooter.setLayout(new GridLayout(1,0, 0, 0));
-
-        
         panelFooter.add(createFooter());
    
-
         Component horizontalStrut_4 = Box.createHorizontalStrut(10);
         horizontalStrut_4.setPreferredSize(new Dimension(10, 0));
         contentPane.add(horizontalStrut_4, BorderLayout.WEST);
