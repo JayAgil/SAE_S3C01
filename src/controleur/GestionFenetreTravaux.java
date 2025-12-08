@@ -46,7 +46,7 @@ public class GestionFenetreTravaux extends GestionHeaderEtFooter implements Mous
 				fenAjouterEntreprise.setVisible(true);
 				break;
 
-			case "Générer facture":
+			case "Visualiser facture":
 				genererFactureDepuisSelection();
 				break;
 	        }
@@ -68,7 +68,8 @@ public class GestionFenetreTravaux extends GestionHeaderEtFooter implements Mous
 	        rowData[i] = model.getValueAt(selectedRow, i);
 	        columnNames[i] = model.getColumnName(i);
 	    }
-	    new FenetreFacture(rowData, columnNames, "Travaux");
+	    new FenetreFacture(rowData, columnNames, "Travaux").setVisible(true);
+	    
 	}
 
 
