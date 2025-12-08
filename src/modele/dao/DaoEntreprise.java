@@ -8,17 +8,15 @@ import modele.Entreprise;
 import modele.dao.requetes.*;
 
 public class DaoEntreprise extends DaoModele<Entreprise> implements Dao<Entreprise> {
-
+	
 	@Override
-	public void create(Entreprise t) {
-		DaoTest.insertEntreprise(t);
-
+	public int create(Entreprise t) throws SQLException {
+		return miseAJour(new RequeteInsertEntreprise(), t);	
 	}
-
+	
 	@Override
-	public void update(Entreprise t) {
-		DaoTest.updateEntreprise(t);
-
+	public int update(Entreprise t) throws SQLException {
+		return miseAJour(new RequeteUpdateEntreprise(), t);
 	}
 
 	@Override
