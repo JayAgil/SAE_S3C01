@@ -142,11 +142,11 @@ public class FenetreAjouterTravaux extends JInternalFrame {
         panel.add(lblDatePaiement);
         
         JLabel lblDesignationTravaux = new JLabel("Désignation travaux :");
-        lblDesignationTravaux.setBounds(318, 76, 120, 14);
+        lblDesignationTravaux.setBounds(94, 292, 120, 14);
         panel.add(lblDesignationTravaux);
         
         JLabel lblEntreprise = new JLabel("Entreprise :");
-        lblEntreprise.setBounds(318, 107, 120, 14);
+        lblEntreprise.setBounds(94, 328, 120, 14);
         panel.add(lblEntreprise);
         
         comboBoxEntreprise = new JComboBox();
