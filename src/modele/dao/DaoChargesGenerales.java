@@ -17,9 +17,8 @@ public class DaoChargesGenerales extends DaoModele<ChargesGenerales>implements D
 	}
 
 	@Override
-	public void update(ChargesGenerales t) {
-		DaoTest.updateChargesGenerales(t);
-		
+	public void update(ChargesGenerales t) throws SQLException {
+		miseAJour(new RequeteUpdateChargesGenerales(), t);
 	}
 
 	@Override

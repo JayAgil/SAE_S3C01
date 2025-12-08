@@ -17,8 +17,8 @@ public class DaoBatiment extends DaoModele<Batiment> implements Dao<Batiment> {
 	}
 
 	@Override
-	public void update(Batiment t) {
-		DaoTest.updateBatiment(t);
+	public void update(Batiment t) throws SQLException {
+		miseAJour(new RequeteUpdateBatiment(), t);
 	}
 
 	@Override

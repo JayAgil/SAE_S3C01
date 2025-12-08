@@ -74,77 +74,13 @@ public class FenetreContratLocation extends FenetreBase {
 	 * Create the frame.
 	 */
 	public FenetreContratLocation(String f) {
+		super();
 		this.fenDavant = f;
     	setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.gestionClicContratLocation = new GestionFenetreContratLocation(this);
-		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBackground(new Color(214, 214, 214));
-		setJMenuBar(menuBar);
-		
+
 		//header
-        JMenu mnProfil = new JMenu("Profil");
-        menuBar.add(mnProfil);
-
-        JMenuItem mntmDeconnecter = new JMenuItem("Déconnecter");
-        mntmDeconnecter.addActionListener(this.gestionClicContratLocation);
-        mnProfil.add(mntmDeconnecter);
-
-        mnBatiment = new JMenu("Batiment");
-        menuBar.add(mnBatiment);
-
-        JMenuItem mntmAjouterBat = new JMenuItem("Ajouter bâtiment");
-        mntmAjouterBat.addActionListener(this.gestionClicContratLocation);
-        mnBatiment.add(mntmAjouterBat);
-
-        JMenuItem mntmAssurance = new JMenuItem("Assurance");
-        mntmAssurance.addActionListener(this.gestionClicContratLocation);
-        mnBatiment.add(mntmAssurance);
-
-        JMenuItem mntmCompteur = new JMenuItem("Compteurs bâtiment");
-        mntmCompteur.addActionListener(this.gestionClicContratLocation);
-        mnBatiment.add(mntmCompteur);
-
-        JMenuItem mntmCharge = new JMenuItem("Charges bâtiment");
-        mntmCharge.addActionListener(this.gestionClicContratLocation);
-        mnBatiment.add(mntmCharge);
-
-        JMenu mnBienLouable = new JMenu("Bien louable");
-        menuBar.add(mnBienLouable);
-
-        mntmContratLocation = new JMenuItem("Contrat location");
-        mntmContratLocation.addActionListener(this.gestionClicContratLocation);
-        mnBienLouable.add(mntmContratLocation);
-
-        JMenuItem mntmCompteurBL = new JMenuItem("Compteurs bien louable");
-        mntmCompteurBL.addActionListener(this.gestionClicContratLocation);
-        mnBienLouable.add(mntmCompteurBL);
-
-        JMenuItem mntmTravaux = new JMenuItem("Travaux");
-        mntmTravaux.addActionListener(this.gestionClicContratLocation);
-        mnBienLouable.add(mntmTravaux);
-
-        JMenuItem mntmChargesBL = new JMenuItem("Charges bien louable");
-        mntmChargesBL.addActionListener(this.gestionClicContratLocation);
-        mnBienLouable.add(mntmChargesBL);
-
-        JMenuItem mntmDiagnostic = new JMenuItem("Diagnostics");
-        mntmDiagnostic.addActionListener(this.gestionClicContratLocation);
-        mnBienLouable.add(mntmDiagnostic);
-
-        JMenuItem mntmLocataire = new JMenuItem("Locataires");
-        mntmLocataire.addActionListener(this.gestionClicContratLocation);
-        mnBienLouable.add(mntmLocataire);
-        
-        mnPaiement = new JMenu("Paiement");
-        menuBar.add(mnPaiement);
-        
-        JMenuItem mntmHistorique = new JMenuItem("Historique de paiement");
-        mntmHistorique.addActionListener(this.gestionClicContratLocation);
-        mnPaiement.add(mntmHistorique);
-        
-        JMenuItem mntmAjout = new JMenuItem("Ajouter paiement");
-        mntmAjout.addActionListener(this.gestionClicContratLocation);
-        mnPaiement.add(mntmAjout);
+        this.setJMenuBar(createHeader());
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1200, 800);
@@ -158,15 +94,7 @@ public class FenetreContratLocation extends FenetreBase {
 		this.gestionClicContratLocation.initialize();
 		
 		//footer
-		JPanel footerPanel = new JPanel();
-        footerPanel.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.LIGHT_GRAY));
-        footerPanel.setBackground(new Color(214, 214, 214)); 
-        footerPanel.setPreferredSize(new Dimension(584, 30));
-
-        JLabel footerLabel = new JLabel("Developpé par Koshua, Jay, Aneesa, Luca et Franck");
-        footerPanel.add(footerLabel);
-
-        getContentPane().add(footerPanel, BorderLayout.SOUTH);
+        getContentPane().add(createFooter(), BorderLayout.SOUTH);
         
         JPanel panel_1 = new JPanel();
         contentPane.add(panel_1, BorderLayout.CENTER);

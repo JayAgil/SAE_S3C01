@@ -8,296 +8,247 @@ import controleur.GestionFenetreAssurance;
 
 public class FenetreAssurance extends FenetreBase {
 
-    private static final long serialVersionUID = 1L;
-    private GestionFenetreAssurance gestionClic;
+	private static final long serialVersionUID = 1L;
+	private GestionFenetreAssurance gestionClic;
 
-    private JTextField textFieldNumAssurance;
-    private JTextField txtFieldPrime;
-    private JTextField txtFieldMontant;
-    private JTextField txtFieldType;
-    private JTextField textFieldAgence;
-    private JTextField textFieldAdresseAgence;
-    private JTextField textFieldTelAgence;
-    private JPanel panelNombreBien;
-    
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    FenetreAssurance frame = new FenetreAssurance();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
+	private JTextField textFieldNumAssurance;
+	private JTextField txtFieldPrime;
+	private JTextField txtFieldMontant;
+	private JTextField txtFieldType;
+	private JTextField textFieldAgence;
+	private JTextField textFieldAdresseAgence;
+	private JTextField textFieldTelAgence;
+	private JPanel panelNombreBien;
+	
 
-    public FenetreAssurance() {
-        setTitle("Assurance");
-        setSize(600, 650);
-        setResizable(false); 
-        gestionClic = new GestionFenetreAssurance(this);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Container contentPane = getContentPane();
-        contentPane.setLayout(new BorderLayout(10, 10));
-        
-        JMenuBar menuBar = new JMenuBar();
-        menuBar.setBackground(new Color(214, 214, 214));
-        setJMenuBar(menuBar);
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					FenetreAssurance frame = new FenetreAssurance();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
-        JMenu mnProfil = new JMenu("Profil");
-        menuBar.add(mnProfil);
+	public FenetreAssurance() {
+		super();
+		setTitle("Assurance");
+		setSize(600, 650);
+		setResizable(false);
+		gestionClic = new GestionFenetreAssurance(this);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Container contentPane = getContentPane();
+		contentPane.setLayout(new BorderLayout(10, 10));
+		this.setJMenuBar(createHeader());
 
-        JMenuItem mntmDeconnecter = new JMenuItem("Déconnecter");
-        mntmDeconnecter.addActionListener(this.gestionClic);
-        mnProfil.add(mntmDeconnecter);
+		mntmDeconnecter.addActionListener(this.gestionClic);
+		mntmAjouterBat.addActionListener(this.gestionClic);
+	    mntmAssurance.addActionListener(this.gestionClic);
+		mntmCompteur.addActionListener(this.gestionClic);
+		mntmCharge.addActionListener(this.gestionClic);
+		mntmContratLocation.addActionListener(this.gestionClic);
+		mntmCompteurBL.addActionListener(this.gestionClic);
+		mntmTravaux.addActionListener(this.gestionClic);
+		mntmChargesBL.addActionListener(this.gestionClic);
+		mntmDiagnostic.addActionListener(this.gestionClic);
+		mntmLocataire.addActionListener(this.gestionClic);
+		mntmHistorique.addActionListener(this.gestionClic);
+		mntmAjout.addActionListener(this.gestionClic);
+		
+		this.gestionClic.initialize();
+		JPanel panelCenter = new JPanel(new GridBagLayout());
+		contentPane.add(panelCenter, BorderLayout.CENTER);
 
-        JMenu mnBatiment = new JMenu("Batiment");
-        menuBar.add(mnBatiment);
+		int row = 0;
 
-        JMenuItem mntmAjouterBat = new JMenuItem("Ajouter bâtiment");
-        mntmAjouterBat.addActionListener(this.gestionClic);
-        mnBatiment.add(mntmAjouterBat);
+		JLabel lblTitre = new JLabel("Assurance");
+		lblTitre.setFont(new Font("Tahoma", Font.BOLD, 18));
+		GridBagConstraints gbc_lblTitre = new GridBagConstraints();
+		gbc_lblTitre.gridwidth = 2;
+		gbc_lblTitre.insets = new Insets(0, 0, 5, 5);
+		gbc_lblTitre.gridx = 0;
+		gbc_lblTitre.gridy = 0;
+		panelCenter.add(lblTitre, gbc_lblTitre);
 
-        JMenuItem mntmAssurance = new JMenuItem("Assurance");
-        mntmAssurance.addActionListener(this.gestionClic);
-        mnBatiment.add(mntmAssurance);
+		panelNombreBien = new JPanel();
+		panelNombreBien.setBorder(
+				new TitledBorder(new EtchedBorder(), "Biens louables assurés", TitledBorder.CENTER, TitledBorder.TOP));
+		panelNombreBien.setPreferredSize(new Dimension(200, 80));
+		JLabel lblNbBien = new JLabel("3", SwingConstants.CENTER);
+		lblNbBien.setFont(new Font("Tahoma", Font.BOLD, 24));
+		panelNombreBien.add(lblNbBien);
 
-        JMenuItem mntmCompteur = new JMenuItem("Compteurs bâtiment");
-        mntmCompteur.addActionListener(this.gestionClic);
-        mnBatiment.add(mntmCompteur);
+		GridBagConstraints gbcPanel = new GridBagConstraints();
+		gbcPanel.insets = new Insets(10, 10, 10, 10);
+		gbcPanel.fill = GridBagConstraints.HORIZONTAL;
+		gbcPanel.gridx = 0;
+		gbcPanel.gridy = 1;
+		gbcPanel.gridwidth = 2;
+		panelCenter.add(panelNombreBien, gbcPanel);
 
-        JMenuItem mntmCharge = new JMenuItem("Charges bâtiment");
-        mntmCharge.addActionListener(this.gestionClic);
-        mnBatiment.add(mntmCharge);
+		row++;
 
-        JMenu mnBienLouable = new JMenu("Bien louable");
-        menuBar.add(mnBienLouable);
+		GridBagConstraints gbcLabel1 = new GridBagConstraints();
+		gbcLabel1.insets = new Insets(10, 10, 10, 10);
+		gbcLabel1.fill = GridBagConstraints.HORIZONTAL;
+		gbcLabel1.gridx = 0;
+		gbcLabel1.gridy = 2;
+		gbcLabel1.anchor = GridBagConstraints.EAST;
+		JLabel lblNumAssurance = new JLabel("Numéro d'assurance :");
+		panelCenter.add(lblNumAssurance, gbcLabel1);
 
-        JMenuItem mntmContratLocation = new JMenuItem("Contrat location");
-        mntmContratLocation.addActionListener(this.gestionClic);
-        mnBienLouable.add(mntmContratLocation);
+		textFieldNumAssurance = new JTextField(15);
+		GridBagConstraints gbcTextField1 = new GridBagConstraints();
+		gbcTextField1.insets = new Insets(10, 10, 10, 10);
+		gbcTextField1.fill = GridBagConstraints.HORIZONTAL;
+		gbcTextField1.gridx = 1;
+		gbcTextField1.gridy = 2;
+		gbcTextField1.anchor = GridBagConstraints.WEST;
+		panelCenter.add(textFieldNumAssurance, gbcTextField1);
+		row++;
 
-        JMenuItem mntmCompteurBL = new JMenuItem("Compteurs bien louable");
-        mntmCompteurBL.addActionListener(this.gestionClic);
-        mnBienLouable.add(mntmCompteurBL);
+		GridBagConstraints gbcLabel2 = new GridBagConstraints();
+		gbcLabel2.insets = new Insets(10, 10, 10, 10);
+		gbcLabel2.fill = GridBagConstraints.HORIZONTAL;
+		gbcLabel2.gridx = 0;
+		gbcLabel2.gridy = 3;
+		gbcLabel2.anchor = GridBagConstraints.EAST;
+		JLabel lblPrime = new JLabel("Prime :");
+		panelCenter.add(lblPrime, gbcLabel2);
 
-        JMenuItem mntmTravaux = new JMenuItem("Travaux");
-        mntmTravaux.addActionListener(this.gestionClic);
-        mnBienLouable.add(mntmTravaux);
+		txtFieldPrime = new JTextField(15);
+		GridBagConstraints gbcTextField2 = new GridBagConstraints();
+		gbcTextField2.insets = new Insets(10, 10, 10, 10);
+		gbcTextField2.fill = GridBagConstraints.HORIZONTAL;
+		gbcTextField2.gridx = 1;
+		gbcTextField2.gridy = 3;
+		gbcTextField2.anchor = GridBagConstraints.WEST;
+		panelCenter.add(txtFieldPrime, gbcTextField2);
+		row++;
 
-        JMenuItem mntmChargesBL = new JMenuItem("Charges bien louable");
-        mntmChargesBL.addActionListener(this.gestionClic);
-        mnBienLouable.add(mntmChargesBL);
+		GridBagConstraints gbcLabel3 = new GridBagConstraints();
+		gbcLabel3.insets = new Insets(10, 10, 10, 10);
+		gbcLabel3.fill = GridBagConstraints.HORIZONTAL;
+		gbcLabel3.gridx = 0;
+		gbcLabel3.gridy = 4;
+		gbcLabel3.anchor = GridBagConstraints.EAST;
+		JLabel lblMontant = new JLabel("Montant :");
+		panelCenter.add(lblMontant, gbcLabel3);
 
-        JMenuItem mntmDiagnostic = new JMenuItem("Diagnostics");
-        mntmDiagnostic.addActionListener(this.gestionClic);
-        mnBienLouable.add(mntmDiagnostic);
+		txtFieldMontant = new JTextField(15);
+		GridBagConstraints gbcTextField3 = new GridBagConstraints();
+		gbcTextField3.insets = new Insets(10, 10, 10, 10);
+		gbcTextField3.fill = GridBagConstraints.HORIZONTAL;
+		gbcTextField3.gridx = 1;
+		gbcTextField3.gridy = 4;
+		gbcTextField3.anchor = GridBagConstraints.WEST;
+		panelCenter.add(txtFieldMontant, gbcTextField3);
+		row++;
 
-        JMenuItem mntmLocataire = new JMenuItem("Locataires");
-        mntmLocataire.addActionListener(this.gestionClic);
-        mnBienLouable.add(mntmLocataire);
-        
-        JMenu mnPaiement = new JMenu("Paiement");
-        menuBar.add(mnPaiement);
-        
-        JMenuItem mntmHistorique = new JMenuItem("Historique de paiement");
-        mntmHistorique.addActionListener(this.gestionClic);
-        mnPaiement.add(mntmHistorique);
-        
-        JMenuItem mntmAjout = new JMenuItem("Ajouter paiement");
-        mntmAjout.addActionListener(this.gestionClic);
-        mnPaiement.add(mntmAjout);
-        
-        JPanel panelCenter = new JPanel(new GridBagLayout());
-        contentPane.add(panelCenter, BorderLayout.CENTER);
+		GridBagConstraints gbcLabel4 = new GridBagConstraints();
+		gbcLabel4.insets = new Insets(10, 10, 10, 10);
+		gbcLabel4.fill = GridBagConstraints.HORIZONTAL;
+		gbcLabel4.gridx = 0;
+		gbcLabel4.gridy = 5;
+		gbcLabel4.anchor = GridBagConstraints.EAST;
+		JLabel lblType = new JLabel("Type assurance :");
+		panelCenter.add(lblType, gbcLabel4);
 
-        int row = 0;
-        
-        JLabel lblTitre = new JLabel("Assurance");
-        lblTitre.setFont(new Font("Tahoma", Font.BOLD, 18));
-        GridBagConstraints gbc_lblTitre = new GridBagConstraints();
-        gbc_lblTitre.gridwidth = 2;
-        gbc_lblTitre.insets = new Insets(0, 0, 5, 5);
-        gbc_lblTitre.gridx = 0;
-        gbc_lblTitre.gridy = 0;
-        panelCenter.add(lblTitre, gbc_lblTitre);
+		txtFieldType = new JTextField(15);
+		GridBagConstraints gbcTextField4 = new GridBagConstraints();
+		gbcTextField4.insets = new Insets(10, 10, 10, 10);
+		gbcTextField4.fill = GridBagConstraints.HORIZONTAL;
+		gbcTextField4.gridx = 1;
+		gbcTextField4.gridy = 5;
+		gbcTextField4.anchor = GridBagConstraints.WEST;
+		panelCenter.add(txtFieldType, gbcTextField4);
+		row++;
 
-        panelNombreBien = new JPanel();
-        panelNombreBien.setBorder(new TitledBorder(new EtchedBorder(), 
-            "Biens louables assurés", TitledBorder.CENTER, TitledBorder.TOP));
-        panelNombreBien.setPreferredSize(new Dimension(200, 80));
-        JLabel lblNbBien = new JLabel("3", SwingConstants.CENTER);
-        lblNbBien.setFont(new Font("Tahoma", Font.BOLD, 24));
-        panelNombreBien.add(lblNbBien);
+		GridBagConstraints gbcLabel5 = new GridBagConstraints();
+		gbcLabel5.insets = new Insets(10, 10, 10, 10);
+		gbcLabel5.fill = GridBagConstraints.HORIZONTAL;
+		gbcLabel5.gridx = 0;
+		gbcLabel5.gridy = 6;
+		gbcLabel5.anchor = GridBagConstraints.EAST;
+		JLabel lblAgence = new JLabel("Agence :");
+		panelCenter.add(lblAgence, gbcLabel5);
 
-        GridBagConstraints gbcPanel = new GridBagConstraints();
-        gbcPanel.insets = new Insets(10, 10, 10, 10);
-        gbcPanel.fill = GridBagConstraints.HORIZONTAL;
-        gbcPanel.gridx = 0;
-        gbcPanel.gridy = 1;
-        gbcPanel.gridwidth = 2;
-        panelCenter.add(panelNombreBien, gbcPanel);
+		textFieldAgence = new JTextField(15);
+		GridBagConstraints gbcTextField5 = new GridBagConstraints();
+		gbcTextField5.insets = new Insets(10, 10, 10, 10);
+		gbcTextField5.fill = GridBagConstraints.HORIZONTAL;
+		gbcTextField5.gridx = 1;
+		gbcTextField5.gridy = 6;
+		gbcTextField5.anchor = GridBagConstraints.WEST;
+		panelCenter.add(textFieldAgence, gbcTextField5);
+		row++;
 
-        row++;
+		GridBagConstraints gbcLabel6 = new GridBagConstraints();
+		gbcLabel6.insets = new Insets(10, 10, 10, 10);
+		gbcLabel6.fill = GridBagConstraints.HORIZONTAL;
+		gbcLabel6.gridx = 0;
+		gbcLabel6.gridy = 7;
+		gbcLabel6.anchor = GridBagConstraints.EAST;
+		JLabel lblAdresse = new JLabel("Adresse agence :");
+		panelCenter.add(lblAdresse, gbcLabel6);
 
-        GridBagConstraints gbcLabel1 = new GridBagConstraints();
-        gbcLabel1.insets = new Insets(10, 10, 10, 10);
-        gbcLabel1.fill = GridBagConstraints.HORIZONTAL;
-        gbcLabel1.gridx = 0;
-        gbcLabel1.gridy = 2;
-        gbcLabel1.anchor = GridBagConstraints.EAST;
-        JLabel lblNumAssurance = new JLabel("Numéro d'assurance :");
-        panelCenter.add(lblNumAssurance, gbcLabel1);
+		textFieldAdresseAgence = new JTextField(15);
+		GridBagConstraints gbcTextField6 = new GridBagConstraints();
+		gbcTextField6.insets = new Insets(10, 10, 10, 10);
+		gbcTextField6.fill = GridBagConstraints.HORIZONTAL;
+		gbcTextField6.gridx = 1;
+		gbcTextField6.gridy = 7;
+		gbcTextField6.anchor = GridBagConstraints.WEST;
+		panelCenter.add(textFieldAdresseAgence, gbcTextField6);
+		row++;
 
-        textFieldNumAssurance = new JTextField(15); 
-        GridBagConstraints gbcTextField1 = new GridBagConstraints();
-        gbcTextField1.insets = new Insets(10, 10, 10, 10);
-        gbcTextField1.fill = GridBagConstraints.HORIZONTAL;
-        gbcTextField1.gridx = 1;
-        gbcTextField1.gridy = 2;
-        gbcTextField1.anchor = GridBagConstraints.WEST;
-        panelCenter.add(textFieldNumAssurance, gbcTextField1);
-        row++;
+		GridBagConstraints gbcLabel7 = new GridBagConstraints();
+		gbcLabel7.insets = new Insets(10, 10, 10, 10);
+		gbcLabel7.fill = GridBagConstraints.HORIZONTAL;
+		gbcLabel7.gridx = 0;
+		gbcLabel7.gridy = 8;
+		gbcLabel7.anchor = GridBagConstraints.EAST;
+		JLabel lblTel = new JLabel("Téléphone agence :");
+		panelCenter.add(lblTel, gbcLabel7);
 
-        GridBagConstraints gbcLabel2 = new GridBagConstraints();
-        gbcLabel2.insets = new Insets(10, 10, 10, 10);
-        gbcLabel2.fill = GridBagConstraints.HORIZONTAL;
-        gbcLabel2.gridx = 0;
-        gbcLabel2.gridy = 3;
-        gbcLabel2.anchor = GridBagConstraints.EAST;
-        JLabel lblPrime = new JLabel("Prime :");
-        panelCenter.add(lblPrime, gbcLabel2);
+		textFieldTelAgence = new JTextField(15);
+		GridBagConstraints gbcTextField7 = new GridBagConstraints();
+		gbcTextField7.insets = new Insets(10, 10, 10, 10);
+		gbcTextField7.fill = GridBagConstraints.HORIZONTAL;
+		gbcTextField7.gridx = 1;
+		gbcTextField7.gridy = 8;
+		gbcTextField7.anchor = GridBagConstraints.WEST;
+		panelCenter.add(textFieldTelAgence, gbcTextField7);
+		row++;
 
-        txtFieldPrime = new JTextField(15); 
-        GridBagConstraints gbcTextField2 = new GridBagConstraints();
-        gbcTextField2.insets = new Insets(10, 10, 10, 10);
-        gbcTextField2.fill = GridBagConstraints.HORIZONTAL;
-        gbcTextField2.gridx = 1;
-        gbcTextField2.gridy = 3;
-        gbcTextField2.anchor = GridBagConstraints.WEST;
-        panelCenter.add(txtFieldPrime, gbcTextField2);
-        row++;
+		JPanel southPanel = new JPanel(new BorderLayout());
 
-        GridBagConstraints gbcLabel3 = new GridBagConstraints();
-        gbcLabel3.insets = new Insets(10, 10, 10, 10);
-        gbcLabel3.fill = GridBagConstraints.HORIZONTAL;
-        gbcLabel3.gridx = 0;
-        gbcLabel3.gridy = 4;
-        gbcLabel3.anchor = GridBagConstraints.EAST;
-        JLabel lblMontant = new JLabel("Montant :");
-        panelCenter.add(lblMontant, gbcLabel3);
+		JPanel panelButtons = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 10));
+		JButton btnAjouter = new JButton("Ajouter assurance");
+		btnAjouter.addActionListener(gestionClic);
+		panelButtons.add(btnAjouter);
 
-        txtFieldMontant = new JTextField(15); 
-        GridBagConstraints gbcTextField3 = new GridBagConstraints();
-        gbcTextField3.insets = new Insets(10, 10, 10, 10);
-        gbcTextField3.fill = GridBagConstraints.HORIZONTAL;
-        gbcTextField3.gridx = 1;
-        gbcTextField3.gridy = 4;
-        gbcTextField3.anchor = GridBagConstraints.WEST;
-        panelCenter.add(txtFieldMontant, gbcTextField3);
-        row++;
+		JButton btnRetour = new JButton("Retour");
+		btnRetour.addActionListener(gestionClic);
+		panelButtons.add(btnRetour);
 
-        GridBagConstraints gbcLabel4 = new GridBagConstraints();
-        gbcLabel4.insets = new Insets(10, 10, 10, 10);
-        gbcLabel4.fill = GridBagConstraints.HORIZONTAL;
-        gbcLabel4.gridx = 0;
-        gbcLabel4.gridy = 5;
-        gbcLabel4.anchor = GridBagConstraints.EAST;
-        JLabel lblType = new JLabel("Type assurance :");
-        panelCenter.add(lblType, gbcLabel4);
+		southPanel.add(panelButtons, BorderLayout.NORTH);
 
-        txtFieldType = new JTextField(15); 
-        GridBagConstraints gbcTextField4 = new GridBagConstraints();
-        gbcTextField4.insets = new Insets(10, 10, 10, 10);
-        gbcTextField4.fill = GridBagConstraints.HORIZONTAL;
-        gbcTextField4.gridx = 1;
-        gbcTextField4.gridy = 5;
-        gbcTextField4.anchor = GridBagConstraints.WEST;
-        panelCenter.add(txtFieldType, gbcTextField4);
-        row++;
+		southPanel.add(createFooter(), BorderLayout.SOUTH);
 
-        GridBagConstraints gbcLabel5 = new GridBagConstraints();
-        gbcLabel5.insets = new Insets(10, 10, 10, 10);
-        gbcLabel5.fill = GridBagConstraints.HORIZONTAL;
-        gbcLabel5.gridx = 0;
-        gbcLabel5.gridy = 6;
-        gbcLabel5.anchor = GridBagConstraints.EAST;
-        JLabel lblAgence = new JLabel("Agence :");
-        panelCenter.add(lblAgence, gbcLabel5);
 
-        textFieldAgence = new JTextField(15); 
-        GridBagConstraints gbcTextField5 = new GridBagConstraints();
-        gbcTextField5.insets = new Insets(10, 10, 10, 10);
-        gbcTextField5.fill = GridBagConstraints.HORIZONTAL;
-        gbcTextField5.gridx = 1;
-        gbcTextField5.gridy = 6;
-        gbcTextField5.anchor = GridBagConstraints.WEST;
-        panelCenter.add(textFieldAgence, gbcTextField5);
-        row++;
+		contentPane.add(southPanel, BorderLayout.SOUTH);
+		setLocationRelativeTo(null);
+		setVisible(true);
+	}
 
-        GridBagConstraints gbcLabel6 = new GridBagConstraints();
-        gbcLabel6.insets = new Insets(10, 10, 10, 10);
-        gbcLabel6.fill = GridBagConstraints.HORIZONTAL;
-        gbcLabel6.gridx = 0;
-        gbcLabel6.gridy = 7;
-        gbcLabel6.anchor = GridBagConstraints.EAST;
-        JLabel lblAdresse = new JLabel("Adresse agence :");
-        panelCenter.add(lblAdresse, gbcLabel6);
-
-        textFieldAdresseAgence = new JTextField(15);
-        GridBagConstraints gbcTextField6 = new GridBagConstraints();
-        gbcTextField6.insets = new Insets(10, 10, 10, 10);
-        gbcTextField6.fill = GridBagConstraints.HORIZONTAL;
-        gbcTextField6.gridx = 1;
-        gbcTextField6.gridy = 7;
-        gbcTextField6.anchor = GridBagConstraints.WEST;
-        panelCenter.add(textFieldAdresseAgence, gbcTextField6);
-        row++;
-
-        GridBagConstraints gbcLabel7 = new GridBagConstraints();
-        gbcLabel7.insets = new Insets(10, 10, 10, 10);
-        gbcLabel7.fill = GridBagConstraints.HORIZONTAL;
-        gbcLabel7.gridx = 0;
-        gbcLabel7.gridy = 8;
-        gbcLabel7.anchor = GridBagConstraints.EAST;
-        JLabel lblTel = new JLabel("Téléphone agence :");
-        panelCenter.add(lblTel, gbcLabel7);
-
-        textFieldTelAgence = new JTextField(15); 
-        GridBagConstraints gbcTextField7 = new GridBagConstraints();
-        gbcTextField7.insets = new Insets(10, 10, 10, 10);
-        gbcTextField7.fill = GridBagConstraints.HORIZONTAL;
-        gbcTextField7.gridx = 1;
-        gbcTextField7.gridy = 8;
-        gbcTextField7.anchor = GridBagConstraints.WEST;
-        panelCenter.add(textFieldTelAgence, gbcTextField7);
-        row++;
-
-        JPanel southPanel = new JPanel(new BorderLayout());
-        
-        JPanel panelButtons = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 10));
-        JButton btnAjouter = new JButton("Ajouter assurance");
-        btnAjouter.addActionListener(gestionClic);
-        panelButtons.add(btnAjouter);
-
-        JButton btnRetour = new JButton("Retour");
-        btnRetour.addActionListener(gestionClic);
-        panelButtons.add(btnRetour);
-        
-        southPanel.add(panelButtons, BorderLayout.NORTH);
-
-        JPanel footerPanel = new JPanel();
-        footerPanel.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.LIGHT_GRAY)); 
-        footerPanel.setBackground(new Color(214, 214, 214)); 
-        footerPanel.setPreferredSize(new Dimension(584, 30));
-        JLabel footerLabel = new JLabel("Developpé par Koshua, Jay, Aneesa, Luca et Franck");
-        footerPanel.add(footerLabel);
-        southPanel.add(footerPanel, BorderLayout.SOUTH);
-       
-        contentPane.add(southPanel, BorderLayout.SOUTH);
-        setLocationRelativeTo(null);
-        setVisible(true);
-    }
+	public void disableMenuItems(boolean actif) {
+		this.mntmAssurance.setEnabled(actif);
+		this.mnBienLouable.setEnabled(actif);
+		this.mnPaiement.setEnabled(actif);
+	}
 }

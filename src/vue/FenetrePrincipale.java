@@ -90,8 +90,8 @@ public class FenetrePrincipale extends FenetreBase {
     /**
      * Create the frame.
      */
-    @SuppressWarnings({ "unused", "unused" })
 	public FenetrePrincipale() {
+		super();
     	setExtendedState(JFrame.MAXIMIZED_BOTH);
         gestionClic = new GestionFenetrePrincipale(this);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -304,92 +304,20 @@ public class FenetrePrincipale extends FenetreBase {
         contentPane.add(panelMenuBar, BorderLayout.NORTH);
         panelMenuBar.setLayout(new GridLayout(0, 1, 0, 0));
 
-        JMenuBar menuBar = new JMenuBar();
-        menuBar.setBackground(new Color(214, 214, 214));
-        panelMenuBar.add(menuBar);
+      
 
       //header
-        JMenu mnProfil = new JMenu("Profil");
-        menuBar.add(mnProfil);
-
-        JMenuItem mntmDeconnecter = new JMenuItem("Déconnecter");
-        mntmDeconnecter.addActionListener(this.gestionClic);
-        mnProfil.add(mntmDeconnecter);
-
-        JMenu mnBatiment = new JMenu("Batiment");
-        menuBar.add(mnBatiment);
-
-        JMenuItem mntmAjouterBat = new JMenuItem("Ajouter bâtiment");
-        mntmAjouterBat.addActionListener(this.gestionClic);
-        mnBatiment.add(mntmAjouterBat);
-        
-        mntmAssurance = new JMenuItem("Assurance");
-        mntmAssurance.addActionListener(this.gestionClic);
-        mnBatiment.add(mntmAssurance);
-
-        mntmCompteur = new JMenuItem("Compteurs bâtiment");
-        mntmCompteur.addActionListener(this.gestionClic);
-        mnBatiment.add(mntmCompteur);
-
-        mntmCharge = new JMenuItem("Charges bâtiment");
-        mntmCharge.addActionListener(this.gestionClic);
-        mnBatiment.add(mntmCharge);
-
-        mnBienLouable = new JMenu("Bien louable");
-        menuBar.add(mnBienLouable);
-
-        JMenuItem mntmContratLocation = new JMenuItem("Contrat location");
-        mntmContratLocation.addActionListener(this.gestionClic);
-        mnBienLouable.add(mntmContratLocation);
-
-        JMenuItem mntmCompteurBL = new JMenuItem("Compteurs bien louable");
-        mntmCompteurBL.addActionListener(this.gestionClic);
-        mnBienLouable.add(mntmCompteurBL);
-
-        JMenuItem mntmTravaux = new JMenuItem("Travaux");
-        mntmTravaux.addActionListener(this.gestionClic);
-        mnBienLouable.add(mntmTravaux);
-
-        JMenuItem mntmChargesBL = new JMenuItem("Charges bien louable");
-        mntmChargesBL.addActionListener(this.gestionClic);
-        mnBienLouable.add(mntmChargesBL);
-
-        JMenuItem mntmDiagnostic = new JMenuItem("Diagnostics");
-        mntmDiagnostic.addActionListener(this.gestionClic);
-        mnBienLouable.add(mntmDiagnostic);
-
-        JMenuItem mntmLocataire = new JMenuItem("Locataires");
-        mntmLocataire.addActionListener(this.gestionClic);
-        mnBienLouable.add(mntmLocataire);
-        
-        mnPaiement = new JMenu("Paiement");
-        menuBar.add(mnPaiement);
-        
-        JMenuItem mntmHistorique = new JMenuItem("Historique de paiement");
-        mntmHistorique.addActionListener(this.gestionClic);
-        mnPaiement.add(mntmHistorique);
-        
-        JMenuItem mntmAjout = new JMenuItem("Ajouter paiement");
-        mntmAjout.addActionListener(this.gestionClic);
-        mnPaiement.add(mntmAjout);
+       this.setJMenuBar(createHeader());
         
         gestionClic.initialize();
 
         JPanel panelFooter = new JPanel();
         contentPane.add(panelFooter, BorderLayout.SOUTH);
-        panelFooter.setLayout(new GridLayout(0, 1, 0, 0));
+        panelFooter.setLayout(new GridLayout(1,0, 0, 0));
 
-        JPanel footerPanel = new JPanel();
-        footerPanel.setPreferredSize(new Dimension(584, 30));
-        footerPanel.setBorder(
-            BorderFactory.createMatteBorder(1, 0, 0, 0, Color.LIGHT_GRAY));
-        footerPanel.setBackground(new Color(214, 214, 214));
-        panelFooter.add(footerPanel);
-        footerPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-
-        JLabel footerLabel = new JLabel(
-            "Developpé par Koshua, Jay, Aneesa, Luca et Franck");
-        footerPanel.add(footerLabel);
+        
+        panelFooter.add(createFooter());
+   
 
         Component horizontalStrut_4 = Box.createHorizontalStrut(10);
         horizontalStrut_4.setPreferredSize(new Dimension(10, 0));
