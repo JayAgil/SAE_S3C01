@@ -21,7 +21,6 @@ public class FenetreFacture extends JFrame {
         setLayout(new BorderLayout());
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
-        // ---------- TITLE ----------
         String titre;
         if (source.equals("Travaux")) {
             titre = "Facture Travaux";
@@ -33,8 +32,6 @@ public class FenetreFacture extends JFrame {
         titleLabel.setFont(new Font("Arial", Font.BOLD, 28));
         titleLabel.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0));
         add(titleLabel, BorderLayout.NORTH);
-
-        // ---------- CONTENT ----------
         JPanel contentPanel = new JPanel(new GridLayout(0, 2, 15, 15));
         contentPanel.setBorder(BorderFactory.createEmptyBorder(20, 40, 20, 40));
 
@@ -46,7 +43,6 @@ public class FenetreFacture extends JFrame {
 
         add(contentPanel, BorderLayout.CENTER);
 
-        // ---------- PRINT BUTTON ----------
         JButton btnPrint = new JButton("Imprimer facture");
         btnPrint.addActionListener(e -> {
 
