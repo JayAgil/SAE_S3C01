@@ -43,12 +43,6 @@ public class FenetrePrincipale extends FenetreBase {
 	public JMenu getMnBienLouable() {
 		return mnBienLouable;
 	}
-
-	private JMenu mnBienLouable;
-	private JMenu mnPaiement;
-	private JMenuItem mntmAssurance;
-	private JMenuItem mntmCompteur;
-	private JMenuItem mntmCharge;
     
     public JPanel getPanelRevenu() {
     	return this.panelRevenu;

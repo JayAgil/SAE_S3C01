@@ -1,12 +1,15 @@
 package controleur;
 
 
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 import javax.swing.JOptionPane;
 import javax.swing.text.Document;
 
 import vue.*;
 
-public class GestionFenetrePaiement extends GestionHeaderEtFooter{
+public class GestionFenetrePaiement extends GestionHeaderEtFooter implements MouseListener{
 
     private FenetrePaiement fenetre;
 
@@ -27,8 +30,10 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter{
                 break;
 
             case "Générer facture":
-                FenetreFacture fenFacture = new FenetreFacture();
-                fenetre.getLayeredPane().add(fenFacture);
+            	int[][] data = new int[5][5];
+            	String[] cNames = new String[5];
+            	String tabName = "";
+                FenetreFacture fenFacture = new FenetreFacture(data, cNames, tabName);
                 fenFacture.setVisible(true);
                 break;
         }
@@ -43,4 +48,34 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter{
             fenetre.dispose();
         }
     }
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 }

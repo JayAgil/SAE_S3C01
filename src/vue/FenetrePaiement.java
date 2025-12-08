@@ -7,7 +7,7 @@ import javax.swing.table.DefaultTableModel;
 
 import controleur.GestionFenetrePaiement;
 
-public class FenetrePaiement extends FenetreBase {
+public class FenetrePaiement extends FenetreBase{
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
@@ -172,8 +172,6 @@ public class FenetrePaiement extends FenetreBase {
         lblTitre.setFont(new Font("Tahoma", Font.BOLD, 18));
         panel_3.add(lblTitre);
         
-    	btnAjouterPaiement.addActionListener(gestionClic);
-        btnGenFac.addActionListener(gestionClic);
         btnRetour.addActionListener(gestionClic);
     }
     
