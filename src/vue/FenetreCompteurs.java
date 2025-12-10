@@ -41,6 +41,10 @@ public class FenetreCompteurs extends FenetreBase {
     private JTable tableCompteurs;
     private GestionFenetreCompteurs gestionClic;
     private String fenetreAvant;
+    private JLabel lbltotaleau;
+    private JLabel lnltotalelec;
+    private JLabel lbltotalgaz;
+    private JScrollPane scrollPane;
 	
     
     /**
@@ -136,7 +140,7 @@ public class FenetreCompteurs extends FenetreBase {
         	}
         });
 
-        JScrollPane scrollPane = new JScrollPane(tableCompteurs);
+        scrollPane = new JScrollPane(tableCompteurs);
         panel.add(scrollPane, BorderLayout.NORTH);
         scrollPane.setPreferredSize(new Dimension(700, 300));
         
@@ -246,24 +250,24 @@ public class FenetreCompteurs extends FenetreBase {
         lblNewLabel.setIcon(new ImageIcon(imgEau));
         lblNewLabel.setHorizontalAlignment(JLabel.RIGHT); 
         
-        JLabel lblNewLabel_5 = new JLabel("860");
-        lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 95));
-        GridBagConstraints gbc_lblNewLabel_5 = new GridBagConstraints();
-        gbc_lblNewLabel_5.gridx = 0;
-        gbc_lblNewLabel_5.gridy = 1;
-        panel_4.add(lblNewLabel_5, gbc_lblNewLabel_5);
+        lbltotaleau = new JLabel("860");
+        lbltotaleau.setFont(new Font("Tahoma", Font.PLAIN, 95));
+        GridBagConstraints gbc_lbltotaleau = new GridBagConstraints();
+        gbc_lbltotaleau.gridx = 0;
+        gbc_lbltotaleau.gridy = 1;
+        panel_4.add(lbltotaleau, gbc_lbltotaleau);
 
         ImageIcon elecIcon = new ImageIcon("img/electricity.png");
         Image imgElec = elecIcon.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
         lblNewLabel_1.setIcon(new ImageIcon(imgElec));
         lblNewLabel_1.setHorizontalAlignment(JLabel.RIGHT);
         
-        JLabel lblNewLabel_4 = new JLabel("900");
-        lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 95));
-        GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
-        gbc_lblNewLabel_4.gridx = 0;
-        gbc_lblNewLabel_4.gridy = 1;
-        panel_4_1.add(lblNewLabel_4, gbc_lblNewLabel_4);
+        lnltotalelec = new JLabel("900");
+        lnltotalelec.setFont(new Font("Tahoma", Font.PLAIN, 95));
+        GridBagConstraints gbc_lnltotalelec = new GridBagConstraints();
+        gbc_lnltotalelec.gridx = 0;
+        gbc_lnltotalelec.gridy = 1;
+        panel_4_1.add(lnltotalelec, gbc_lnltotalelec);
 
 
         ImageIcon gazIcon = new ImageIcon("img/gaz.png");
@@ -271,16 +275,48 @@ public class FenetreCompteurs extends FenetreBase {
         lblNewLabel_2.setIcon(new ImageIcon(imgGaz));
         lblNewLabel_2.setHorizontalAlignment(JLabel.RIGHT);
         
-        JLabel lblNewLabel_3 = new JLabel("123");
-        lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 95));
-        GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
-        gbc_lblNewLabel_3.gridx = 0;
-        gbc_lblNewLabel_3.gridy = 1;
-        panel_4_2.add(lblNewLabel_3, gbc_lblNewLabel_3);
+        lbltotalgaz = new JLabel("123");
+        lbltotalgaz.setFont(new Font("Tahoma", Font.PLAIN, 95));
+        GridBagConstraints gbc_lbltotalgaz = new GridBagConstraints();
+        gbc_lbltotalgaz.gridx = 0;
+        gbc_lbltotalgaz.gridy = 1;
+        panel_4_2.add(lbltotalgaz, gbc_lbltotalgaz);
 
 
     }
-    public String getFenetreAvant() {
+    public JTable getTableCompteurs() {
+		return tableCompteurs;
+	}
+
+	public void setTableCompteurs(JTable tableCompteurs) {
+		this.tableCompteurs = tableCompteurs;
+	}
+
+	public JLabel getLbltotaleau() {
+		return lbltotaleau;
+	}
+
+	public void setLbltotaleau(JLabel lbltotaleau) {
+		this.lbltotaleau = lbltotaleau;
+	}
+
+	public JLabel getLnltotalelec() {
+		return lnltotalelec;
+	}
+
+	public void setLnltotalelec(JLabel lnltotalelec) {
+		this.lnltotalelec = lnltotalelec;
+	}
+
+	public JLabel getLbltotalgaz() {
+		return lbltotalgaz;
+	}
+
+	public void setLbltotalgaz(JLabel lbltotalgaz) {
+		this.lbltotalgaz = lbltotalgaz;
+	}
+
+	public String getFenetreAvant() {
 		return fenetreAvant;
 	}
 
@@ -298,6 +334,8 @@ public class FenetreCompteurs extends FenetreBase {
 			this.mnBatiment.setEnabled(actif);	
 	}
 	}
+	
+	
     
     
 }

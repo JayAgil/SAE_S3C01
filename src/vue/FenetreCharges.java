@@ -47,8 +47,79 @@ public class FenetreCharges extends FenetreBase {
 	private JTable table;
 	private GestionFenetreCharges gestionClic;
 	private String fenetreAvant;
+	private JLabel lbltotalentretien;
+	private JLabel lbltotalorduremenageres;
+	private JLabel lbltotalascenceur;
+	private JLabel lbl1er;
+	private JLabel lbl2nde;
+	private JLabel lbl3eme;
+	private JLabel lblchargesmoyen;
 	
 	
+	
+	public JTable getTable() {
+		return table;
+	}
+
+	public void setTable(JTable table) {
+		this.table = table;
+	}
+
+	public JLabel getLbltotalentretien() {
+		return lbltotalentretien;
+	}
+
+	public void setLbltotalentretien(JLabel lbltotalentretien) {
+		this.lbltotalentretien = lbltotalentretien;
+	}
+
+	public JLabel getLbltotalorduremenageres() {
+		return lbltotalorduremenageres;
+	}
+
+	public void setLbltotalorduremenageres(JLabel lbltotalorduremenageres) {
+		this.lbltotalorduremenageres = lbltotalorduremenageres;
+	}
+
+	public JLabel getLbltotalascenceur() {
+		return lbltotalascenceur;
+	}
+
+	public void setLbltotalascenceur(JLabel lbltotalascenceur) {
+		this.lbltotalascenceur = lbltotalascenceur;
+	}
+
+	public JLabel getLbl1er() {
+		return lbl1er;
+	}
+
+	public void setLbl1er(JLabel lbl1er) {
+		this.lbl1er = lbl1er;
+	}
+
+	public JLabel getLbl2nde() {
+		return lbl2nde;
+	}
+
+	public void setLbl2nde(JLabel lbl2nde) {
+		this.lbl2nde = lbl2nde;
+	}
+
+	public JLabel getLbl3eme() {
+		return lbl3eme;
+	}
+
+	public void setLbl3eme(JLabel lbl3eme) {
+		this.lbl3eme = lbl3eme;
+	}
+
+	public JLabel getLblchargesmoyen() {
+		return lblchargesmoyen;
+	}
+
+	public void setLblchargesmoyen(JLabel lblchargesmoyen) {
+		this.lblchargesmoyen = lblchargesmoyen;
+	}
 
 	/**
 	 * Launch the application.
@@ -165,10 +236,10 @@ public class FenetreCharges extends FenetreBase {
 	    JLabel lblNewLabel_1 = new JLabel("  Première : ");
 	    panel_5.add(lblNewLabel_1, BorderLayout.NORTH);
 	    
-	    JLabel lblNewLabel_4_3 = new JLabel("Bien 2");
-	    lblNewLabel_4_3.setFont(new Font("Tahoma", Font.PLAIN, 40));
-	    lblNewLabel_4_3.setHorizontalAlignment(SwingConstants.CENTER);
-	    panel_5.add(lblNewLabel_4_3, BorderLayout.CENTER);
+	    lbl1er = new JLabel("Bien 2");
+	    lbl1er.setFont(new Font("Tahoma", Font.PLAIN, 40));
+	    lbl1er.setHorizontalAlignment(SwingConstants.CENTER);
+	    panel_5.add(lbl1er, BorderLayout.CENTER);
 	    
 	    JPanel panel_6 = new JPanel();
 	    panel_6.setBorder(new TitledBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -178,10 +249,10 @@ public class FenetreCharges extends FenetreBase {
 	    JLabel lblNewLabel_2 = new JLabel("Seconde: ");
 	    panel_6.add(lblNewLabel_2, BorderLayout.NORTH);
 	    
-	    JLabel lblNewLabel_4_4 = new JLabel("Bien 8");
-	    lblNewLabel_4_4.setFont(new Font("Tahoma", Font.PLAIN, 40));
-	    lblNewLabel_4_4.setHorizontalAlignment(SwingConstants.CENTER);
-	    panel_6.add(lblNewLabel_4_4, BorderLayout.CENTER);
+	    lbl2nde = new JLabel("Bien 8");
+	    lbl2nde.setFont(new Font("Tahoma", Font.PLAIN, 40));
+	    lbl2nde.setHorizontalAlignment(SwingConstants.CENTER);
+	    panel_6.add(lbl2nde, BorderLayout.CENTER);
 	    
 	    JPanel panel_4 = new JPanel();
 	    panel_4.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
@@ -191,20 +262,20 @@ public class FenetreCharges extends FenetreBase {
 	    JLabel lblNewLabel_3 = new JLabel("Troisième: ");
 	    panel_4.add(lblNewLabel_3, BorderLayout.NORTH);
 	    
-	    JLabel lblNewLabel_4_5 = new JLabel("Bien 4");
-	    lblNewLabel_4_5.setFont(new Font("Tahoma", Font.PLAIN, 40));
-	    lblNewLabel_4_5.setHorizontalAlignment(SwingConstants.CENTER);
-	    panel_4.add(lblNewLabel_4_5, BorderLayout.CENTER);
+	    lbl3eme = new JLabel("Bien 4");
+	    lbl3eme.setFont(new Font("Tahoma", Font.PLAIN, 40));
+	    lbl3eme.setHorizontalAlignment(SwingConstants.CENTER);
+	    panel_4.add(lbl3eme, BorderLayout.CENTER);
 	    
 	    JPanel panel_3 = new JPanel();
 	    panel_3.setBorder(new TitledBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)), "Charges Moyen Par Bien", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
 	    panel.add(panel_3);
 	    panel_3.setLayout(new BorderLayout(0, 0));
 	    
-	    JLabel lblNewLabel = new JLabel("\r\n238");
-	    lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-	    lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 99));
-	    panel_3.add(lblNewLabel, BorderLayout.CENTER);
+	    lblchargesmoyen = new JLabel("\r\n238");
+	    lblchargesmoyen.setHorizontalAlignment(SwingConstants.CENTER);
+	    lblchargesmoyen.setFont(new Font("Tahoma", Font.PLAIN, 99));
+	    panel_3.add(lblchargesmoyen, BorderLayout.CENTER);
 
 	    // Bottom panel for buttons
 	    JPanel buttonPanel = new JPanel();
@@ -234,30 +305,30 @@ public class FenetreCharges extends FenetreBase {
         imageEntretien.setIcon(new ImageIcon(imgentretien));
         imageEntretien.setHorizontalAlignment(JLabel.LEFT);
         
-        JLabel lblNewLabel_4 = new JLabel("200");
-        lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 45));
-        lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
-        panel_8.add(lblNewLabel_4, BorderLayout.CENTER);
+        lbltotalentretien = new JLabel("200");
+        lbltotalentretien.setFont(new Font("Tahoma", Font.PLAIN, 45));
+        lbltotalentretien.setHorizontalAlignment(SwingConstants.CENTER);
+        panel_8.add(lbltotalentretien, BorderLayout.CENTER);
         
         ImageIcon nettoyageIcom = new ImageIcon("img/nettoyage.png");
         Image imgNettoyage = nettoyageIcom.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
         imageNettoyage.setIcon(new ImageIcon(imgNettoyage));
         imageNettoyage.setHorizontalAlignment(JLabel.LEFT);
         
-        JLabel lblNewLabel_4_1 = new JLabel("300");
-        lblNewLabel_4_1.setFont(new Font("Tahoma", Font.PLAIN, 45));
-        lblNewLabel_4_1.setHorizontalAlignment(SwingConstants.CENTER);
-        panel_9.add(lblNewLabel_4_1, BorderLayout.CENTER);
+        lbltotalorduremenageres = new JLabel("300");
+        lbltotalorduremenageres.setFont(new Font("Tahoma", Font.PLAIN, 45));
+        lbltotalorduremenageres.setHorizontalAlignment(SwingConstants.CENTER);
+        panel_9.add(lbltotalorduremenageres, BorderLayout.CENTER);
         
         ImageIcon lifticon = new ImageIcon("img/lift.png");
         Image imglift = lifticon.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
         imageAscenceur.setIcon(new ImageIcon(imglift));
         imageAscenceur.setHorizontalAlignment(JLabel.LEFT);
         
-        JLabel lblNewLabel_4_2 = new JLabel("250");
-        lblNewLabel_4_2.setFont(new Font("Tahoma", Font.PLAIN, 45));
-        lblNewLabel_4_2.setHorizontalAlignment(SwingConstants.CENTER);
-        panel_7.add(lblNewLabel_4_2, BorderLayout.CENTER);
+        lbltotalascenceur = new JLabel("250");
+        lbltotalascenceur.setFont(new Font("Tahoma", Font.PLAIN, 45));
+        lbltotalascenceur.setHorizontalAlignment(SwingConstants.CENTER);
+        panel_7.add(lbltotalascenceur, BorderLayout.CENTER);
 	}
 
 	

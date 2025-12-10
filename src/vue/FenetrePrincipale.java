@@ -37,7 +37,14 @@ public class FenetrePrincipale extends FenetreBase {
     private JPanel panelRevenu_1;
     private JPanel panelNbLoyePasPaye_1;
     private JButton btnImporter;
+    private JLabel lblRevenu;
+    private JLabel lblRevenu_1;
+    private JLabel lblPasPaye;
+    private JLabel lblPasPaye_1;
     
+    public JTable getTable() {
+    	return this.table;
+    }
 	public JMenu getMnBienLouable() {
 		return mnBienLouable;
 	}
@@ -115,7 +122,7 @@ public class FenetrePrincipale extends FenetreBase {
         panelRevenu.setFont(new Font("Tahoma", Font.BOLD, 30));
         panelNorthCenter.add(panelRevenu);
 
-        JLabel lblRevenu = new JLabel("180.000");
+        lblRevenu = new JLabel("180.000");
         lblRevenu.setBackground(Color.WHITE);
         lblRevenu.setFont(new Font("Tahoma", Font.BOLD, 30));
         panelRevenu.add(lblRevenu);
@@ -133,7 +140,7 @@ public class FenetrePrincipale extends FenetreBase {
         panelNbLoyePasPaye.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Taux d'occupation", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
         panelNorthCenter.add(panelNbLoyePasPaye);
 
-        JLabel lblPasPaye = new JLabel("      0      ");
+        lblPasPaye = new JLabel("      0      ");
         lblPasPaye.setFont(new Font("Tahoma", Font.BOLD, 30));
         panelNbLoyePasPaye.add(lblPasPaye);
 
@@ -169,7 +176,7 @@ public class FenetrePrincipale extends FenetreBase {
         panelRevenu_1.setFont(new Font("Tahoma", Font.BOLD, 30));
         panelNorthCenter_1.add(panelRevenu_1);
 
-        JLabel lblRevenu_1 = new JLabel("180.000\r\n");
+        lblRevenu_1 = new JLabel("180.000\r\n");
         lblRevenu_1.setFont(new Font("Tahoma", Font.BOLD, 30));
         panelRevenu_1.add(lblRevenu_1);
 
@@ -186,7 +193,7 @@ public class FenetrePrincipale extends FenetreBase {
         panelNbLoyePasPaye_1.setBorder(new TitledBorder(null, "Contrats expirant ce mois", TitledBorder.LEADING, TitledBorder.TOP, null, null));
         panelNorthCenter_1.add(panelNbLoyePasPaye_1);
 
-        JLabel lblPasPaye_1 = new JLabel("      8      ");
+        lblPasPaye_1 = new JLabel("      8      ");
         lblPasPaye_1.setFont(new Font("Tahoma", Font.BOLD, 30));
         panelNbLoyePasPaye_1.add(lblPasPaye_1);
 
@@ -335,5 +342,34 @@ public class FenetrePrincipale extends FenetreBase {
     	this.mntmCharge.setEnabled(actif);
     	this.mntmCompteur.setEnabled(actif);
     }
+	public JLabel getLblRevenu() {
+		return lblRevenu;
+	}
+	public void setLblRevenu(JLabel lblRevenu) {
+		this.lblRevenu = lblRevenu;
+	}
+	public JLabel getLblRevenu_1() {
+		return lblRevenu_1;
+	}
+	public void setLblRevenu_1(JLabel lblRevenu_1) {
+		this.lblRevenu_1 = lblRevenu_1;
+	}
+	public JLabel getLblPasPaye() {
+		return lblPasPaye;
+	}
+	public void setLblPasPaye(JLabel lblPasPaye) {
+		this.lblPasPaye = lblPasPaye;
+	}
+	public JLabel getLblPasPaye_1() {
+		return lblPasPaye_1;
+	}
+	public void setLblPasPaye_1(JLabel lblPasPaye_1) {
+		this.lblPasPaye_1 = lblPasPaye_1;
+	}
+	public void setTable(JTable table) {
+		this.table = table;
+	}
+    
+    
 
 }
