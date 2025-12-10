@@ -110,9 +110,34 @@ public class BienLouable {
 	}
 	
 	public boolean verifParent() {
-		if(this.getTypeBienLouable() == "Appartement" || this.getTypeBienLouable() == "Studio" || this.getTypeBienLouable() == "Maison") {
-			return this.idBienLouable
-		}
+		
+	    if (this.bienLouableLie == null) {
+	        return false; 
+	    }
+	    
+	    String typeA = this.typeBienLouable;
+	    String typeB = this.bienLouableLie.getTypeBienLouable();
+	    
+	    boolean aIsLogement = typeA.equalsIgnoreCase("Appartement") ||
+	                          typeA.equalsIgnoreCase("Studio") ||
+	                          typeA.equalsIgnoreCase("Maison");
+
+	    boolean bIsLogement = typeB.equalsIgnoreCase("Appartement") ||
+	                          typeB.equalsIgnoreCase("Studio") ||
+	                          typeB.equalsIgnoreCase("Maison");
+	    
+	    boolean aIsGarage = typeA.equalsIgnoreCase("Garage");
+	    boolean bIsGarage = typeB.equalsIgnoreCase("Garage");
+	    
+	    if (aIsLogement && bIsGarage) { 
+	    	return true;
+	    }
+	    if (aIsGarage && bIsLogement) {
+	    	return true;
+	    }
+	    
+	    return false;
 	}
+
 	
 }
