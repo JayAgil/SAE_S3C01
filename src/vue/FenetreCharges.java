@@ -129,28 +129,31 @@ public class FenetreCharges extends FenetreBase {
 	    panel_1.setLayout(new GridLayout(3, 0, 0, 0));
 	    
 	    JPanel panel_8 = new JPanel();
+	    panel_8.setBorder(new TitledBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)), "Entretien", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
 	    panel_1.add(panel_8);
 	    panel_8.setLayout(new BorderLayout(0, 0));
 	    
-	    JLabel imageEntretien = new JLabel("Entretien : ");
+	    JLabel imageEntretien = new JLabel("");
 	    panel_8.add(imageEntretien, BorderLayout.NORTH);
 	    
 	    JPanel panel_9 = new JPanel();
+	    panel_9.setBorder(new TitledBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)), "Ordures M\u00E9nag\u00E8res", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
 	    panel_1.add(panel_9);
 	    panel_9.setLayout(new BorderLayout(0, 0));
 	    
-	    JLabel imageNettoyage = new JLabel("Nettoyage : ");
+	    JLabel imageNettoyage = new JLabel("");
 	    panel_9.add(imageNettoyage, BorderLayout.NORTH);
 	    
 	    JPanel panel_7 = new JPanel();
+	    panel_7.setBorder(new TitledBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)), "Ascenceur", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
 	    panel_1.add(panel_7);
 	    panel_7.setLayout(new BorderLayout(0, 0));
 	    
-	    JLabel imageAscenceur = new JLabel("Ascenceur : ");
+	    JLabel imageAscenceur = new JLabel("");
 	    panel_7.add(imageAscenceur, BorderLayout.NORTH);
 	    
 	    JPanel panel_2 = new JPanel();
-	    panel_2.setBorder(new TitledBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)), "Trois Batiments Avec Les Plus Haut Charges", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
+	    panel_2.setBorder(new TitledBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)), "Trois Biens Avec Les Plus Haut Charges", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
 	    panel.add(panel_2);
 	    panel_2.setLayout(new GridLayout(0, 1, 0, 0));
 	    
@@ -230,7 +233,7 @@ public class FenetreCharges extends FenetreBase {
         imageEntretien.setHorizontalAlignment(JLabel.LEFT);
         
         JLabel lblNewLabel_4 = new JLabel("200");
-        lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 60));
+        lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 45));
         lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
         panel_8.add(lblNewLabel_4, BorderLayout.CENTER);
         
@@ -240,7 +243,7 @@ public class FenetreCharges extends FenetreBase {
         imageNettoyage.setHorizontalAlignment(JLabel.LEFT);
         
         JLabel lblNewLabel_4_1 = new JLabel("300");
-        lblNewLabel_4_1.setFont(new Font("Tahoma", Font.PLAIN, 60));
+        lblNewLabel_4_1.setFont(new Font("Tahoma", Font.PLAIN, 45));
         lblNewLabel_4_1.setHorizontalAlignment(SwingConstants.CENTER);
         panel_9.add(lblNewLabel_4_1, BorderLayout.CENTER);
         
@@ -250,7 +253,7 @@ public class FenetreCharges extends FenetreBase {
         imageAscenceur.setHorizontalAlignment(JLabel.LEFT);
         
         JLabel lblNewLabel_4_2 = new JLabel("250");
-        lblNewLabel_4_2.setFont(new Font("Tahoma", Font.PLAIN, 60));
+        lblNewLabel_4_2.setFont(new Font("Tahoma", Font.PLAIN, 45));
         lblNewLabel_4_2.setHorizontalAlignment(SwingConstants.CENTER);
         panel_7.add(lblNewLabel_4_2, BorderLayout.CENTER);
 	}
