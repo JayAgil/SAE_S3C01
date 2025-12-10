@@ -10,15 +10,13 @@ import modele.Garant;
 public class DaoGarant extends DaoModele<Garant> implements Dao<Garant> {
 
 	@Override
-	public void create(Garant t) {
-		DaoTest.insertGarant(t);
-
+	public int create(Garant t) throws SQLException {
+		return miseAJour(new RequeteInsertGarant(), t);	
 	}
-
+	
 	@Override
-	public void update(Garant t) {
-		DaoTest.updateGarant(t);
-
+	public int update(Garant t) throws SQLException {
+		return miseAJour(new RequeteUpdateGarant(), t);
 	}
 
 	@Override
@@ -40,9 +38,10 @@ public class DaoGarant extends DaoModele<Garant> implements Dao<Garant> {
 	protected Garant creerInstance(ResultSet rs) throws SQLException {
 		String idGarant = rs.getString(1);
 		String nom = rs.getString(2);
-		String adresse = rs.getString(3);
-		String tel = rs.getString(4);
-		return new Garant(idGarant, nom, adresse, tel);
+		String prenom = rs.getString(3);
+		String adresse = rs.getString(4);
+		String tel = rs.getString(5);
+		return new Garant(idGarant, nom, prenom, adresse, tel);
 	}
 
 }

@@ -5,12 +5,14 @@ import java.util.Objects;
 public class Garant {
 	private String idGarant;
 	private String nom;
+	private String prenom;
 	private String adresse;
 	private String tel;
 
-	public Garant(String idGarant, String nom, String adresse, String tel) {
+	public Garant(String idGarant, String nom, String prenom, String adresse, String tel) {
 		this.idGarant = idGarant;
 		this.nom = nom;
+		this.prenom = prenom;
 		this.adresse = adresse;
 		this.tel = tel;
 	}
@@ -44,6 +46,10 @@ public class Garant {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+	
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
 
 	public void setAdresse(String adresse) {
 		this.adresse = adresse;
@@ -59,6 +65,10 @@ public class Garant {
 
 	public String getNom() {
 		return nom;
+	}
+	
+	public String getPrenom() {
+		return prenom;
 	}
 
 	public String getAdresse() {
