@@ -3,7 +3,6 @@ package modele.dao;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.List;
 
 import modele.Garant;
@@ -13,14 +12,13 @@ import modele.dao.requetes.*;;
 public class DaoLocataire extends DaoModele<Locataire> implements Dao<Locataire> {
 
 	@Override
-	public void create(Locataire t) {
-		DaoTest.insertLocataire(t);
-
+	public int create(Locataire t) throws SQLException {
+		return miseAJour(new RequeteInsertLocataire(), t);
 	}
 
 	@Override
-	public void update(Locataire t) {
-		DaoTest.updateLocataire(t);
+	public int update(Locataire t) throws SQLException {
+		return miseAJour(new RequeteUpdateLocataire(), t);
 
 	}
 

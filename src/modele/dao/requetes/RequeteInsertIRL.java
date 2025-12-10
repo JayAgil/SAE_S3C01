@@ -10,7 +10,7 @@ public class RequeteInsertIRL extends Requete<IRL>{
 	
 	public String requete() {
 		// TODO Auto-generated method stub
-		return "INSERT INTO SAE_IRL (Annee, IRL) VALUES (?,?)";
+		return "INSERT INTO MSF5131A.SAE_IRL (Annee, IRL) VALUES (?,?)";
 	}
 	
 	public void parametres(PreparedStatement ps, IRL i) throws SQLException {
