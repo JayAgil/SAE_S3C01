@@ -33,6 +33,9 @@ public class FenetreTravaux extends FenetreBase {
 	private static final long serialVersionUID = 1L;
 	private GestionFenetreTravaux gestionClic;
 	private JTable table;
+	private JScrollPane scrollPane;
+	private JLabel lblMontantTotal;
+	private JLabel lblNewLabel;
 
 	/**
 	 * Launch the application.
@@ -104,7 +107,7 @@ public class FenetreTravaux extends FenetreBase {
 		
 		JPanel panel_3 = new JPanel();
 		panel.add(panel_3, BorderLayout.CENTER);
-		JScrollPane scrollPane = new JScrollPane();
+		scrollPane = new JScrollPane();
 		table = new JTable();
 		table.setModel(new DefaultTableModel(new Object[][] { { null, null, null, null, null, null, null, null },
 		{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
@@ -162,7 +165,7 @@ public class FenetreTravaux extends FenetreBase {
 		panel_4.add(panel_5, gbc_panel_5);
 		panel_5.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblMontantTotal = new JLabel("14,200");
+		lblMontantTotal = new JLabel("14,200");
 		lblMontantTotal.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMontantTotal.setFont(new Font("Tahoma", Font.BOLD, 95));
 		panel_5.add(lblMontantTotal);
@@ -183,10 +186,10 @@ public class FenetreTravaux extends FenetreBase {
 		panel_4.add(panel_6, gbc_panel_6);
 		panel_6.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblNewLabel_1 = new JLabel("3");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 95));
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_6.add(lblNewLabel_1);
+		lblNewLabel = new JLabel("3");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 95));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_6.add(lblNewLabel);
 		
 		JPanel panel_7 = new JPanel();
 		FlowLayout flowLayout = (FlowLayout) panel_7.getLayout();
@@ -218,5 +221,27 @@ public class FenetreTravaux extends FenetreBase {
 	public JTable getTable() {
 		return table;
 	}
+
+	public JLabel getLblMontantTotal() {
+		return lblMontantTotal;
+	}
+
+	public void setLblMontantTotal(JLabel lblMontantTotal) {
+		this.lblMontantTotal = lblMontantTotal;
+	}
+
+	public JLabel getLblNewLabel() {
+		return lblNewLabel;
+	}
+
+	public void setLblNewLabel(JLabel lblNewLabel) {
+		this.lblNewLabel = lblNewLabel;
+	}
+
+	public void setTable(JTable table) {
+		this.table = table;
+	}
+	
+	
 
 }

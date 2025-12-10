@@ -4,24 +4,20 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import modele.dao.requetes.*;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.List;
-import modele.dao.requetes.*;
 import modele.BienLouable;
 import modele.Diagnostics;
 
 public class DaoDiagnostics extends DaoModele<Diagnostics> implements Dao<Diagnostics> {
 
 	@Override
-	public void create(Diagnostics t) {
-		DaoTest.insertDiagnostics(t);
-
+	public int create(Diagnostics t) throws SQLException {
+		return miseAJour(new RequeteInsertDiagnostics(), t);	
 	}
-
+	
 	@Override
-	public void update(Diagnostics t) {
-		DaoTest.updateDiagnostics(t);
-
+	public int update(Diagnostics t) throws SQLException {
+		return miseAJour(new RequeteUpdateDiagnostics(), t);
 	}
 
 	@Override

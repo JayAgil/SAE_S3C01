@@ -35,16 +35,6 @@ public class FenetreContratLocation extends FenetreBase {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable table;
-	private JTextField textFieldNomLoc;
-	private JTextField textFieldNdC;
-	private JTextField textFieldPeriode;
-	private JTextField textFieldMontantC;
-	private JTextField textFieldProvCharge;
-	private JTextField textFieldCptEau;
-	private JTextField textFieldLoyerMen;
-	private JTextField textFieldCptElec;
-	private JTextField textFieldCptGaz;
-	private JTextField textFieldSolde;
 	private String fenDavant;
 	
 	public String getFenDavant() {
@@ -151,7 +141,7 @@ public class FenetreContratLocation extends FenetreBase {
         gbc_labelNom.gridy = 0;
         panel_4.add(labelNom, gbc_labelNom);
         
-        textFieldNomLoc = new JTextField();
+        JTextField textFieldNomLoc = new JTextField();
         textFieldNomLoc.setForeground(Color.BLACK);
         textFieldNomLoc.setBorder(BorderFactory.createEmptyBorder());
         textFieldNomLoc.setEditable(false);
@@ -171,7 +161,7 @@ public class FenetreContratLocation extends FenetreBase {
         gbc_lblNC.gridy = 1;
         panel_4.add(lblNC, gbc_lblNC);
         
-        textFieldNdC = new JTextField();
+        JTextField textFieldNdC = new JTextField();
         textFieldNdC.setEditable(false);
         textFieldNdC.setBorder(BorderFactory.createEmptyBorder());
         GridBagConstraints gbc_textFieldNdC = new GridBagConstraints();
@@ -190,7 +180,7 @@ public class FenetreContratLocation extends FenetreBase {
         gbc_lblValidite.gridy = 2;
         panel_4.add(lblValidite, gbc_lblValidite);
         
-        textFieldPeriode = new JTextField();
+        JTextField textFieldPeriode = new JTextField();
         textFieldPeriode.setEditable(false);
         textFieldPeriode.setBorder(BorderFactory.createEmptyBorder());
         GridBagConstraints gbc_textFieldPeriode = new GridBagConstraints();
@@ -209,7 +199,7 @@ public class FenetreContratLocation extends FenetreBase {
         gbc_lblNewLabel_2.gridy = 3;
         panel_4.add(lblNewLabel_2, gbc_lblNewLabel_2);
         
-        textFieldMontantC = new JTextField();
+        JTextField textFieldMontantC = new JTextField();
         textFieldMontantC.setEditable(false);
         textFieldMontantC.setBorder(BorderFactory.createEmptyBorder());
 
@@ -229,7 +219,7 @@ public class FenetreContratLocation extends FenetreBase {
         gbc_lblNewLabel_3.gridy = 4;
         panel_4.add(lblNewLabel_3, gbc_lblNewLabel_3);
         
-        textFieldProvCharge = new JTextField();
+        JTextField textFieldProvCharge = new JTextField();
         textFieldProvCharge.setEditable(false);
         textFieldProvCharge.setBorder(BorderFactory.createEmptyBorder());
 
@@ -249,7 +239,7 @@ public class FenetreContratLocation extends FenetreBase {
         gbc_lblNewLabel_4.gridy = 5;
         panel_4.add(lblNewLabel_4, gbc_lblNewLabel_4);
         
-        textFieldLoyerMen = new JTextField();
+        JTextField textFieldLoyerMen = new JTextField();
         textFieldLoyerMen.setBorder(BorderFactory.createEmptyBorder());
 
         textFieldLoyerMen.setEditable(false);
@@ -269,7 +259,7 @@ public class FenetreContratLocation extends FenetreBase {
         gbc_lblNewLabel_5.gridy = 6;
         panel_4.add(lblNewLabel_5, gbc_lblNewLabel_5);
         
-        textFieldCptEau = new JTextField();
+        JTextField textFieldCptEau = new JTextField();
         textFieldCptEau.setEditable(false);
         textFieldCptEau.setBorder(BorderFactory.createEmptyBorder());
 
@@ -289,7 +279,7 @@ public class FenetreContratLocation extends FenetreBase {
         gbc_lblNewLabel_6.gridy = 7;
         panel_4.add(lblNewLabel_6, gbc_lblNewLabel_6);
         
-        textFieldCptElec = new JTextField();
+        JTextField textFieldCptElec = new JTextField();
         textFieldCptElec.setEditable(false);
         textFieldCptElec.setBorder(BorderFactory.createEmptyBorder());
 
@@ -309,7 +299,7 @@ public class FenetreContratLocation extends FenetreBase {
         gbc_lblNewLabel_7.gridy = 8;
         panel_4.add(lblNewLabel_7, gbc_lblNewLabel_7);
         
-        textFieldCptGaz = new JTextField();
+        JTextField textFieldCptGaz = new JTextField();
         textFieldCptGaz.setEditable(false);
         textFieldCptGaz.setBorder(BorderFactory.createEmptyBorder());
 
@@ -329,7 +319,7 @@ public class FenetreContratLocation extends FenetreBase {
         gbc_lblNewLabel_8.gridy = 9;
         panel_4.add(lblNewLabel_8, gbc_lblNewLabel_8);
         
-        textFieldSolde = new JTextField();
+        JTextField textFieldSolde = new JTextField();
         textFieldSolde.setEditable(false);
         textFieldSolde.setBorder(BorderFactory.createEmptyBorder());
 
@@ -389,6 +379,30 @@ public class FenetreContratLocation extends FenetreBase {
         panel_3.add(panel_5, gbc_panel_5);
 	}
 	
+	public GestionFenetreContratLocation getGestionClicContratLocation() {
+		return gestionClicContratLocation;
+	}
+	public void setGestionClicContratLocation(GestionFenetreContratLocation gestionClicContratLocation) {
+		this.gestionClicContratLocation = gestionClicContratLocation;
+	}
+	public JPanel getContentPane() {
+		return contentPane;
+	}
+	public void setContentPane(JPanel contentPane) {
+		this.contentPane = contentPane;
+	}
+	public JTable getTable() {
+		return table;
+	}
+	public void setTable(JTable table) {
+		this.table = table;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	public void setFenDavant(String fenDavant) {
+		this.fenDavant = fenDavant;
+	}
 	@Override
 	public void disableMenuItems(boolean actif) {
 		this.mnBatiment.setEnabled(actif);

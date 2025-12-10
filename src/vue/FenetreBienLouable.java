@@ -447,6 +447,107 @@ public class FenetreBienLouable extends FenetreBase {
 
 	}
 	
+	
+	public JTextField getTextFieldNom() {
+		return textFieldNom;
+	}
+
+	public void setTextFieldNom(JTextField textFieldNom) {
+		this.textFieldNom = textFieldNom;
+	}
+
+	public JTextField getTextFieldLoyerMen() {
+		return textFieldLoyerMen;
+	}
+
+	public void setTextFieldLoyerMen(JTextField textFieldLoyerMen) {
+		this.textFieldLoyerMen = textFieldLoyerMen;
+	}
+
+	public JTextField getTextFieldNF() {
+		return textFieldNF;
+	}
+
+	public void setTextFieldNF(JTextField textFieldNF) {
+		this.textFieldNF = textFieldNF;
+	}
+
+	public JTextField getTextFieldAdresse() {
+		return textFieldAdresse;
+	}
+
+	public void setTextFieldAdresse(JTextField textFieldAdresse) {
+		this.textFieldAdresse = textFieldAdresse;
+	}
+
+	public JTextField getTextFieldSurfaceHab() {
+		return textFieldSurfaceHab;
+	}
+
+	public void setTextFieldSurfaceHab(JTextField textFieldSurfaceHab) {
+		this.textFieldSurfaceHab = textFieldSurfaceHab;
+	}
+
+	public JTextField getTextFieldNbDPieces() {
+		return textFieldNbDPieces;
+	}
+
+	public void setTextFieldNbDPieces(JTextField textFieldNbDPieces) {
+		this.textFieldNbDPieces = textFieldNbDPieces;
+	}
+
+	public JTextField getTextFieldBienLoauble() {
+		return textFieldBienLoauble;
+	}
+
+	public void setTextFieldBienLoauble(JTextField textFieldBienLoauble) {
+		this.textFieldBienLoauble = textFieldBienLoauble;
+	}
+
+	public JTextField getTextFieldBatiment() {
+		return textFieldBatiment;
+	}
+
+	public void setTextFieldBatiment(JTextField textFieldBatiment) {
+		this.textFieldBatiment = textFieldBatiment;
+	}
+
+	public JTextField getTextFieldDT() {
+		return textFieldDT;
+	}
+
+	public void setTextFieldDT(JTextField textFieldDT) {
+		this.textFieldDT = textFieldDT;
+	}
+
+	public JTextField getTextFieldTotalCharges() {
+		return textFieldTotalCharges;
+	}
+
+	public void setTextFieldTotalCharges(JTextField textFieldTotalCharges) {
+		this.textFieldTotalCharges = textFieldTotalCharges;
+	}
+
+	public JTextField getTextFieldDFC() {
+		return textFieldDFC;
+	}
+
+	public void setTextFieldDFC(JTextField textFieldDFC) {
+		this.textFieldDFC = textFieldDFC;
+	}
+
+	public JTextField getTextFieldDP() {
+		return textFieldDP;
+	}
+
+	public void setTextFieldDP(JTextField textFieldDP) {
+		this.textFieldDP = textFieldDP;
+	}
+
+	public void setTable(JTable table) {
+		this.table = table;
+	}
+
 	public JTable getTable() {
 		return table;
 	}

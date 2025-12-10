@@ -33,6 +33,8 @@ public class FenetreDiagnostic extends FenetreBase {
 	private static final long serialVersionUID = 1L;
 	private GestionFenetreDiagnostic gestionClic;
 	private JTable table;
+	private JLabel lblnbDiag;
+	private JLabel lblnbDiagExp;
 
 	/**
 	 * Launch the application.
@@ -133,20 +135,56 @@ public class FenetreDiagnostic extends FenetreBase {
 										panel_5.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Nombre de Diagnostics Valide Aujourd'hui", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
 										panel_4.add(panel_5);
 										
-										JLabel lblNewLabel = new JLabel("32");
-										lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 95));
-										panel_5.add(lblNewLabel);
+										lblnbDiag = new JLabel("32");
+										lblnbDiag.setFont(new Font("Tahoma", Font.PLAIN, 95));
+										panel_5.add(lblnbDiag);
 										
 										JPanel panel_6 = new JPanel();
 										panel_6.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Diagnostics expirant ce mois", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
 										panel_4.add(panel_6);
 										
-										JLabel lblNewLabel_1 = new JLabel("33\r\n");
-										lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 95));
-										panel_6.add(lblNewLabel_1);
+										lblnbDiagExp = new JLabel("33\r\n");
+										lblnbDiagExp.setFont(new Font("Tahoma", Font.PLAIN, 95));
+										panel_6.add(lblnbDiagExp);
 		table.getColumnModel().getColumn(0).setPreferredWidth(96);
 		table.getColumnModel().getColumn(1).setPreferredWidth(96);
 
+	}
+
+	public JLabel getLblnbDiag() {
+		return lblnbDiag;
+	}
+
+	public void setLblnbDiag(JLabel lblnbDiag) {
+		this.lblnbDiag = lblnbDiag;
+	}
+
+	public JLabel getLblnbDiagExp() {
+		return lblnbDiagExp;
+	}
+
+	public void setLblnbDiagExp(JLabel lblnbDiagExp) {
+		this.lblnbDiagExp = lblnbDiagExp;
+	}
+
+	public GestionFenetreDiagnostic getGestionClic() {
+		return gestionClic;
+	}
+
+	public void setGestionClic(GestionFenetreDiagnostic gestionClic) {
+		this.gestionClic = gestionClic;
+	}
+
+	public JTable getTable() {
+		return table;
+	}
+
+	public void setTable(JTable table) {
+		this.table = table;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	public void disableMenuItems(boolean actif) {

@@ -42,6 +42,7 @@ public class FenetreLocataire extends FenetreBase {
 	private GestionFenetreLocataire gestionClic;
 	private JTable table;
 	private String nomFenAvant;
+	private JScrollPane scrollPane;
 
 	public String getNomFenAvant() {
 		return this.nomFenAvant;
@@ -381,7 +382,7 @@ public class FenetreLocataire extends FenetreBase {
 		panel_4.add(panel_5);
 		panel_5.setLayout(new BorderLayout(0, 0));
 
-		JScrollPane scrollPane = new JScrollPane();
+		scrollPane = new JScrollPane();
 		panel_5.add(scrollPane);
 
 		table = new JTable();
@@ -408,5 +409,95 @@ public class FenetreLocataire extends FenetreBase {
 			this.mntmLocataire.setEnabled(actif);
 		}
 	}
+
+	public JTextField getTextFieldNom() {
+		return textFieldNom;
+	}
+
+	public void setTextFieldNom(JTextField textFieldNom) {
+		this.textFieldNom = textFieldNom;
+	}
+
+	public JTextField getTextFieldPrenom() {
+		return textFieldPrenom;
+	}
+
+	public void setTextFieldPrenom(JTextField textFieldPrenom) {
+		this.textFieldPrenom = textFieldPrenom;
+	}
+
+	public JTextField getTextField() {
+		return textField;
+	}
+
+	public void setTextField(JTextField textField) {
+		this.textField = textField;
+	}
+
+	public JTextField getTextFieldTel() {
+		return textFieldTel;
+	}
+
+	public void setTextFieldTel(JTextField textFieldTel) {
+		this.textFieldTel = textFieldTel;
+	}
+
+	public JTextField getTextFieldEmail() {
+		return textFieldEmail;
+	}
+
+	public void setTextFieldEmail(JTextField textFieldEmail) {
+		this.textFieldEmail = textFieldEmail;
+	}
+
+	public JTextField getTextFieldDateNaissance() {
+		return textFieldDateNaissance;
+	}
+
+	public void setTextFieldDateNaissance(JTextField textFieldDateNaissance) {
+		this.textFieldDateNaissance = textFieldDateNaissance;
+	}
+
+	public JTextField getTextFieldLieuNaissance() {
+		return textFieldLieuNaissance;
+	}
+
+	public void setTextFieldLieuNaissance(JTextField textFieldLieuNaissance) {
+		this.textFieldLieuNaissance = textFieldLieuNaissance;
+	}
+
+	public JTextField getTextFieldSalaire() {
+		return textFieldSalaire;
+	}
+
+	public void setTextFieldSalaire(JTextField textFieldSalaire) {
+		this.textFieldSalaire = textFieldSalaire;
+	}
+
+	public JTextField getTextFieldProfession() {
+		return textFieldProfession;
+	}
+
+	public void setTextFieldProfession(JTextField textFieldProfession) {
+		this.textFieldProfession = textFieldProfession;
+	}
+
+	public JTextField getTextFieldSituationFamiliale() {
+		return textFieldSituationFamiliale;
+	}
+
+	public void setTextFieldSituationFamiliale(JTextField textFieldSituationFamiliale) {
+		this.textFieldSituationFamiliale = textFieldSituationFamiliale;
+	}
+
+	public JTable getTable() {
+		return table;
+	}
+
+	public void setTable(JTable table) {
+		this.table = table;
+	}
+	
+	
 
 }

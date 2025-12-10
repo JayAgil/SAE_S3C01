@@ -16,9 +16,13 @@ public class FenetrePaiement extends FenetreBase{
     private GestionFenetrePaiement gestionClic;
     private JTable table;
     private JProgressBar progressBar;
+    private JLabel lblNewLabel_1;
+    private JLabel lblNewLabel_2;
+    private JLabel lblNewLabel;
 	
+    
 
-    public static void main(String[] args) {
+	public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
             try {
                 FenetrePaiement frame = new FenetrePaiement();
@@ -165,7 +169,7 @@ public class FenetrePaiement extends FenetreBase{
         gbc_panel_12.gridy = 0;
         panel_10.add(panel_12, gbc_panel_12);
         
-        JLabel lblNewLabel_1 = new JLabel("3600");
+        lblNewLabel_1 = new JLabel("3600");
         lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 99));
         panel_12.add(lblNewLabel_1);
         
@@ -178,7 +182,7 @@ public class FenetrePaiement extends FenetreBase{
         gbc_panel_13.gridy = 0;
         panel_10.add(panel_13, gbc_panel_13);
         
-        JLabel lblNewLabel_2 = new JLabel("1200");
+        lblNewLabel_2 = new JLabel("1200");
         lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 99));
         panel_13.add(lblNewLabel_2);
         
@@ -191,7 +195,7 @@ public class FenetrePaiement extends FenetreBase{
         gbc_panel_11.gridy = 0;
         panel_10.add(panel_11, gbc_panel_11);
         
-        JLabel lblNewLabel = new JLabel("1300");
+        lblNewLabel = new JLabel("1300");
         lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 99));
         panel_11.add(lblNewLabel);
         
@@ -240,4 +244,42 @@ public class FenetrePaiement extends FenetreBase{
     public void setString(String s) {
     	progressBar.setString(s);
     }
+
+	public JProgressBar getProgressBar() {
+		return progressBar;
+	}
+
+	public void setProgressBar(JProgressBar progressBar) {
+		this.progressBar = progressBar;
+	}
+
+	public JLabel getLblNewLabel_1() {
+		return lblNewLabel_1;
+	}
+
+	public void setLblNewLabel_1(JLabel lblNewLabel_1) {
+		this.lblNewLabel_1 = lblNewLabel_1;
+	}
+
+	public JLabel getLblNewLabel_2() {
+		return lblNewLabel_2;
+	}
+
+	public void setLblNewLabel_2(JLabel lblNewLabel_2) {
+		this.lblNewLabel_2 = lblNewLabel_2;
+	}
+
+	public JLabel getLblNewLabel() {
+		return lblNewLabel;
+	}
+
+	public void setLblNewLabel(JLabel lblNewLabel) {
+		this.lblNewLabel = lblNewLabel;
+	}
+
+	public void setTable(JTable table) {
+		this.table = table;
+	}
+    
+    
 }

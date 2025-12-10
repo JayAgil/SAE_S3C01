@@ -19,6 +19,7 @@ public class FenetreAssurance extends FenetreBase {
 	private JTextField textFieldAdresseAgence;
 	private JTextField textFieldTelAgence;
 	private JPanel panelNombreBien;
+	private JLabel lblNbBien;
 	
 
 	public static void main(String[] args) {
@@ -78,7 +79,7 @@ public class FenetreAssurance extends FenetreBase {
 		panelNombreBien.setBorder(
 				new TitledBorder(new EtchedBorder(), "Biens louables assurés", TitledBorder.CENTER, TitledBorder.TOP));
 		panelNombreBien.setPreferredSize(new Dimension(200, 80));
-		JLabel lblNbBien = new JLabel("3", SwingConstants.CENTER);
+		lblNbBien = new JLabel("3", SwingConstants.CENTER);
 		lblNbBien.setFont(new Font("Tahoma", Font.BOLD, 24));
 		panelNombreBien.add(lblNbBien);
 
@@ -244,6 +245,72 @@ public class FenetreAssurance extends FenetreBase {
 		contentPane.add(southPanel, BorderLayout.SOUTH);
 		setLocationRelativeTo(null);
 		setVisible(true);
+	}
+	
+	
+
+	public JTextField getTextFieldNumAssurance() {
+		return textFieldNumAssurance;
+	}
+
+	public void setTextFieldNumAssurance(JTextField textFieldNumAssurance) {
+		this.textFieldNumAssurance = textFieldNumAssurance;
+	}
+
+	public JTextField getTxtFieldPrime() {
+		return txtFieldPrime;
+	}
+
+	public void setTxtFieldPrime(JTextField txtFieldPrime) {
+		this.txtFieldPrime = txtFieldPrime;
+	}
+
+	public JTextField getTxtFieldMontant() {
+		return txtFieldMontant;
+	}
+
+	public void setTxtFieldMontant(JTextField txtFieldMontant) {
+		this.txtFieldMontant = txtFieldMontant;
+	}
+
+	public JTextField getTxtFieldType() {
+		return txtFieldType;
+	}
+
+	public void setTxtFieldType(JTextField txtFieldType) {
+		this.txtFieldType = txtFieldType;
+	}
+
+	public JTextField getTextFieldAgence() {
+		return textFieldAgence;
+	}
+
+	public void setTextFieldAgence(JTextField textFieldAgence) {
+		this.textFieldAgence = textFieldAgence;
+	}
+
+	public JTextField getTextFieldAdresseAgence() {
+		return textFieldAdresseAgence;
+	}
+
+	public void setTextFieldAdresseAgence(JTextField textFieldAdresseAgence) {
+		this.textFieldAdresseAgence = textFieldAdresseAgence;
+	}
+
+	public JTextField getTextFieldTelAgence() {
+		return textFieldTelAgence;
+	}
+
+	public void setTextFieldTelAgence(JTextField textFieldTelAgence) {
+		this.textFieldTelAgence = textFieldTelAgence;
+	}
+
+	public JLabel getLblNbBien() {
+		return lblNbBien;
+	}
+
+	public void setLblNbBien(JLabel lblNbBien) {
+		this.lblNbBien = lblNbBien;
 	}
 
 	public void disableMenuItems(boolean actif) {
