@@ -21,15 +21,15 @@ public class RequeteUpdateBienLouable extends Requete<BienLouable> {
 
     @Override
     public void parametres(PreparedStatement ps, BienLouable b)
-        throws SQLException {
-    	ps.setString(1, b.getIdBienLouable());          
-	    ps.setString(2, b.getNumeroFiscale());          
-	    ps.setString(3, b.getAdresse());                
-	    ps.setDouble(4, b.getSurfaceHabituable());       
-	    ps.setInt(5, b.getNbPieces());            
-	    ps.setString(6, b.getTypeBienLouable());        
-	    ps.setString(7, b.getLogement());    
-	    ps.setString(8, b.getBatiment().getAdresse());
+        throws SQLException {          
+	    ps.setString(1, b.getNumeroFiscale());          
+	    ps.setString(2, b.getAdresse());                
+	    ps.setDouble(3, b.getSurfaceHabituable());       
+	    ps.setInt(4, b.getNbPieces());            
+	    ps.setString(5, b.getTypeBienLouable());        
+	    ps.setString(6, b.getLogement());    
+	    ps.setString(7, b.getBatiment().getAdresse());
+	    ps.setString(8, b.getIdBienLouable()); 
     }
 
 }
