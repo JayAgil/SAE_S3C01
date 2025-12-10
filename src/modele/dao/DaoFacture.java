@@ -3,7 +3,6 @@ package modele.dao;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.List;
 import modele.dao.requetes.*;
 import modele.BienLouable;
@@ -13,16 +12,15 @@ import modele.Facture;
 public class DaoFacture extends DaoModele<Facture> implements Dao<Facture> {
 
 	@Override
-	public void create(Facture t) {
-		DaoTest.insertFacture(t);
-
+	public int create(Facture t) throws SQLException {
+		return miseAJour(new RequeteInsertFacture(), t);	
 	}
-
+	
 	@Override
-	public void update(Facture t) {
-		DaoTest.updateFacture(t);
-
+	public int update(Facture t) throws SQLException {
+		return miseAJour(new RequeteUpdateFacture(), t);
 	}
+
 
 	@Override
 	public int delete(Facture t) throws SQLException {
