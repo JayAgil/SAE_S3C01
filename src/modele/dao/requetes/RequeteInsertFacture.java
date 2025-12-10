@@ -9,7 +9,7 @@ public class RequeteInsertFacture extends Requete<Facture>{
 	
 	@Override
 	public String requete() {
-		return "INSERT INTO SAE_FACTURE VALUES (?,?,?,?,?,?,?)";
+		return "INSERT INTO MSF5131A.SAE_Facture VALUES (?,?,?,?,?,?,?)";
 	}
 	
 	@Override

@@ -9,7 +9,7 @@ public class RequeteSelectGarantById extends Requete<Garant>{
 	
 	@Override
 	public String requete() {
-		return "Select * from Garant where id_garant = ?";
+		return "Select * from MSF5131A.SAE_Garant where id_garant = ?";
 	}
 	
 	public void parametres(PreparedStatement prSt, String... id) throws SQLException {

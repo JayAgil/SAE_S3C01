@@ -6,7 +6,7 @@ public class RequeteSelectFacture extends Requete<Facture>{
 
 	@Override
 	public String requete() {
-		return "Select * from Facture";
+		return "Select * from MSF5131A.SAE_Facture";
 	}
 	
 	

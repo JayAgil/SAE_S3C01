@@ -12,16 +12,15 @@ import modele.Compteur;
 public class DaoCompteur extends DaoModele<Compteur> implements Dao<Compteur> {
 
 	@Override
-	public void create(Compteur t) {
-		DaoTest.insertCompteur(t);
-		
+	public int create(Compteur t) throws SQLException {
+		return miseAJour(new RequeteInsertCompteur(), t);	
+	}
+	
+	@Override
+	public int update(Compteur t) throws SQLException {
+		return miseAJour(new RequeteUpdateCompteur(), t);
 	}
 
-	@Override
-	public void update(Compteur t) {
-		DaoTest.updateCompteur(t);
-		
-	}
 
 	@Override
 	public int delete(Compteur t) throws SQLException {

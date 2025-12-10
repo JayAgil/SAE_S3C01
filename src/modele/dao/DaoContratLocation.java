@@ -9,18 +9,16 @@ import java.util.List;
 import modele.BienLouable;
 import modele.ContratLocation;
 
-public class DaoContratLocation extends DaoModele<ContratLocation>implements Dao<ContratLocation> {
+public class DaoContratLocation extends DaoModele<ContratLocation> implements Dao<ContratLocation> {
 
 	@Override
-	public void create(ContratLocation t) {
-		DaoTest.insertContratLocation(t);
-		
+	public int create(ContratLocation t) throws SQLException {
+		return miseAJour(new RequeteInsertContratLocation(), t);	
 	}
-
+	
 	@Override
-	public void update(ContratLocation t) {
-		DaoTest.updateContratLocation(t);
-		
+	public int update(ContratLocation t) throws SQLException {
+		return miseAJour(new RequeteUpdateContratLocation(), t);
 	}
 
 	@Override
