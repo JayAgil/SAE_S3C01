@@ -8,13 +8,8 @@ import modele.Batiment;
 public class RequeteUpdateBatiment extends Requete<Batiment> {
     @Override
     public String requete() {
-        return " Update SAE_BATIMENT set DATE_CONSTRUCTION =  ? Where ADRESSE = ? ";
+        return " Update MSF5131A.SAE_Batiment set DATE_CONSTRUCTION =  ? Where ADRESSE = ? ";
 
-    }
-
-    @Override
-    public void parametres(PreparedStatement prSt, String... id)
-        throws SQLException {
     }
 
     @Override

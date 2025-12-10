@@ -10,7 +10,7 @@ public class RequeteInsertAssurance extends Requete<Assurance> {
 	@Override
 	public String requete() {
 		// TODO Auto-generated method stub
-		return "INSERT INTO SAE_ASSURANCE VALUES (?,?,?, ?, ?, ?, ?, ?)";
+		return "INSERT INTO MSF5131A.SAE_ASSURANCE VALUES (?,?,?, ?, ?, ?, ?, ?)";
 	}
 	
 	@Override

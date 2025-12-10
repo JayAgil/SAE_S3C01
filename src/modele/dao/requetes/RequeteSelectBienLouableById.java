@@ -8,7 +8,7 @@ import modele.BienLouable;
 
 public class RequeteSelectBienLouableById extends Requete<BienLouable> {
 	public String requete() {
-		return " Select * from BienLouable where id_bienLouable = ? " ;
+		return " Select * from SAE_BienLouable where Id_BienLouable = ? " ;
 		
 	}
 

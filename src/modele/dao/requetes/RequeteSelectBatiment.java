@@ -7,7 +7,7 @@ public class RequeteSelectBatiment extends Requete<Batiment> {
 	@Override
 	public String requete() {
 		// TODO Auto-generated method stub
-		return " Select * from batiment ";
+		return " Select * from MSF5131A.SAE_Batiment ";
 	}
 	
 

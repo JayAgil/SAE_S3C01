@@ -1,14 +1,11 @@
 package modele.dao.requetes;
-
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
-import modele.Assurance;
 import modele.BienLouable;
 
 public class RequeteDeleteBienLouable extends Requete<BienLouable>{
 	public String requete() {
-		return " Delete from BienLouable where id_bienLouable = ? " ;
+		return " Delete from MSF5131A.SAE_BienLouable  where id_bienLouable = ? " ;
 		
 	}
 
@@ -16,7 +13,4 @@ public class RequeteDeleteBienLouable extends Requete<BienLouable>{
 		prSt.setString(1, id[0]);
 	}
 
-	public void parametres(PreparedStatement prSt, Assurance donnee) {
-		
-	}
 }

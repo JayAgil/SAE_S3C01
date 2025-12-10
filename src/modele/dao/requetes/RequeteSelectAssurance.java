@@ -7,7 +7,7 @@ public class RequeteSelectAssurance extends Requete<Assurance> {
 	@Override
 	public String requete() {
 		// TODO Auto-generated method stub
-		return "Select * from assurance" ;
+		return "Select * from MSF5131A.SAE_ASSURANCE" ;
 	}
 
 }

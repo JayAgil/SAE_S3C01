@@ -10,7 +10,7 @@ public class RequeteInsertBienLouable extends Requete<BienLouable> {
 	@Override
 	public String requete() {
 		// TODO Auto-generated method stub
-		return "INSERT INTO SAE_BienLouable VALUES (?,?,?,?,?,?,?,?)";
+		return "INSERT INTO MSF5131A.SAE_BienLouable VALUES (?,?,?,?,?,?,?,?)";
 	}
 	
 	@Override
@@ -21,7 +21,7 @@ public class RequeteInsertBienLouable extends Requete<BienLouable> {
 		    ps.setDouble(4, b.getSurfaceHabituable());       
 		    ps.setInt(5, b.getNbPieces());            
 		    ps.setString(6, b.getTypeBienLouable());        
-		    ps.setString(7, b.getLogement());    
+		    ps.setString(7, b.getLogement().getIdBienLouable());    
 		    ps.setString(8, b.getBatiment().getAdresse());
 
         

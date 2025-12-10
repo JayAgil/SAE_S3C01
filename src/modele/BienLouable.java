@@ -11,9 +11,9 @@ public class BienLouable {
 	private int nbPieces;
 	private String typeBienLouable;
 	private Batiment batiment;
-	private String bienLouableLie;
+	private BienLouable bienLouableLie;
 	public BienLouable(String idBienLouable, String numeroFiscale, String adresse, double surfaceHabituable,
-			int nbPieces, String typeBienLouable, Batiment batiment, String l) {
+			int nbPieces, String typeBienLouable, Batiment batiment, BienLouable bl) {
 		this.idBienLouable = idBienLouable;
 		this.numeroFiscale = numeroFiscale;
 		this.adresse = adresse;
@@ -21,12 +21,12 @@ public class BienLouable {
 		this.nbPieces = nbPieces;
 		this.typeBienLouable = typeBienLouable;
 		this.batiment = batiment;
-		this.bienLouableLie = l;
+		this.bienLouableLie = bl;
 	}
-	public String getLogement() {
+	public BienLouable getLogement() {
 		return bienLouableLie;
 	}
-	public void setLogement(String logement) {
+	public void setLogement(BienLouable logement) {
 		bienLouableLie = logement;
 	}
 	public Batiment getBatiment() {
