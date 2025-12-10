@@ -7,7 +7,7 @@ import modele.Assurance;
 
 public class RequeteSelectAssuranceById extends Requete<Assurance> {
 	public String requete() {
-		return " Select * from Assurance where Numero_d_assurance = ? " ;
+		return " Select * from MSF5131A.SAE_ASSURANCE where Numero_d_assurance = ? " ;
 		
 	}
 
@@ -15,7 +15,4 @@ public class RequeteSelectAssuranceById extends Requete<Assurance> {
 		prSt.setString(1, id[0]);
 	}
 
-	public void parametres(PreparedStatement prSt, Assurance donnee) {
-		
-	}
 }

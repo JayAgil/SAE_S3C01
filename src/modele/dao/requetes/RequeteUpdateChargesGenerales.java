@@ -13,6 +13,7 @@ public class RequeteUpdateChargesGenerales extends Requete<ChargesGenerales> {
                 "Montant_Total = ?, " +
                 "Pourcentage = ?, " +
                 "Quotite = ?, " +
+                "Mois = ? " +
                 "WHERE Id_Charges_Generale = ?";
     }
 
@@ -24,7 +25,8 @@ public class RequeteUpdateChargesGenerales extends Requete<ChargesGenerales> {
         prSt.setDouble(2, donnee.getMontant());
         prSt.setFloat(3, donnee.getPourcentage());
         prSt.setDouble(4, donnee.getQuotite());
-        prSt.setString(7, donnee.getIdChargesGenerales());
+        prSt.setString(5, donnee.getMois());
+        prSt.setString(6, donnee.getIdChargesGenerales());
     }
 
 }

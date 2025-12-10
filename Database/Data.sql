@@ -1,7 +1,7 @@
 
-INSERT INTO SAE_Garant (Id_Garant,Prenom,Nom, Adresse, Tel) VALUES ('GAR-001', 'Martin', 'Dupont', '12 Rue des Lys', '0601020304');
-INSERT INTO SAE_Garant (Id_Garant,Prenom,Nom, Adresse, Tel) VALUES ('GAR-002', 'Claire', 'Renaud', '8 Avenue Victor Hugo', '0605060708');
-INSERT INTO SAE_Garant (Id_Garant,Prenom,Nom, Adresse, Tel) VALUES ('GAR-003', 'Pierre', 'Lamart', '5 Rue du Marché', '0611223344');
+INSERT INTO SAE_Garant (Id_Garant,Prenom,Nom, Adresse, Tel) VALUES ('GAR-001', 'Martin', 'Dupont', '12 Rue des Lys', '0693765432');
+INSERT INTO SAE_Garant (Id_Garant,Prenom,Nom, Adresse, Tel) VALUES ('GAR-002', 'Claire', 'Renaud', '8 Avenue Victor Hugo', '0692654322');
+INSERT INTO SAE_Garant (Id_Garant,Prenom,Nom, Adresse, Tel) VALUES ('GAR-003', 'Pierre', 'Lamart', '5 Rue du Marché', '0693557204');
 INSERT INTO SAE_Garant (Id_Garant,Prenom,Nom, Adresse, Tel) VALUES ('GAR-004', 'Sophie', 'Armand', '22 Rue de la Paix', '0677889900');
 INSERT INTO SAE_Garant (Id_Garant,Prenom,Nom, Adresse, Tel) VALUES ('GAR-005', 'Nicolas', 'Breton', '14 Boulevard Carnot', '0644556677');
 INSERT INTO SAE_Garant (Id_Garant,Prenom,Nom, Adresse, Tel) VALUES ('GAR-006', 'Lucie', 'Morel', '3 Rue Antoine Lumière', '0622334455');
@@ -12,18 +12,11 @@ INSERT INTO SAE_Garant (Id_Garant,Prenom,Nom, Adresse, Tel) VALUES ('GAR-010', '
 INSERT INTO SAE_Garant (Id_Garant,Prenom,Nom, Adresse, Tel) VALUES ('GAR-011', 'Thomas', 'Bailly', '18 Rue de Sèze', '0633221100');
 INSERT INTO SAE_Garant (Id_Garant,Prenom,Nom, Adresse, Tel) VALUES ('GAR-012', 'Anaïs', 'Delorme', '11 Avenue des Acacias', '0699887766');
 INSERT INTO SAE_Garant (Id_Garant,Prenom,Nom, Adresse, Tel) VALUES ('GAR-013', 'Romain', 'Georges', '42 Boulevard Voltaire', '0655332211');
-INSERT INTO SAE_Garant (Id_Garant,Prenom,Nom, Adresse, Tel) VALUES ('GAR-014', 'Eva', 'Leroy', '17 Rue des Capucins', '0611778899');
-INSERT INTO SAE_Garant (Id_Garant,Prenom,Nom, Adresse, Tel) VALUES ('GAR-015', 'Louis', 'Tran', '55 Rue du Général Leclerc', '0677445566');
-INSERT INTO SAE_Garant (Id_Garant,Prenom,Nom, Adresse, Tel) VALUES ('GAR-016', 'Julie', 'Meyer', '2 Rue des Orangers', '0644221100');
-INSERT INTO SAE_Garant (Id_Garant,Prenom,Nom, Adresse, Tel) VALUES ('GAR-017', 'Antoine', 'Baron', '30 Rue Centrale', '0603030303');
-INSERT INTO SAE_Garant (Id_Garant,Prenom,Nom, Adresse, Tel) VALUES ('GAR-018', 'Sarah', 'Picard', '8 Chemin des Vignes', '0616161616');
-INSERT INTO SAE_Garant (Id_Garant,Prenom,Nom, Adresse, Tel) VALUES ('GAR-019', 'Benjamin', 'Schmitt', '6 Allée des Fleurs', '0688997744');
 
 
 
 
 
-------------------------------------^ A REVOIR ^-----^ A REVOIR ^-----^ A REVOIR ^-----^ A REVOIR ^-----^ A REVOIR ^-----^ A REVOIR ^-----------------------------
 
 
 
@@ -47,7 +40,7 @@ INSERT INTO SAE_Garant (Id_Garant,Prenom,Nom, Adresse, Tel) VALUES ('GAR-019', '
 
 INSERT INTO SAE_Batiment (Adresse, Date_construction) VALUES ('20 Chemin La Fayette', TO_DATE('2001-05-12','YYYY-MM-DD'));
 INSERT INTO SAE_Batiment (Adresse, Date_construction) VALUES ('31 Rue de la Paix', TO_DATE('1998-11-03','YYYY-MM-DD'));
-INSERT INTO SAE_Batiment (Adresse, Date_construction) VALUES ('15 Allées de la Gare', TO_DATE('2010-02-17','YYYY-MM-DD'));
+INSERT INTO SAE_Batiment (Adresse, Date_construction) VALUES ('15 Allée de la Gare', TO_DATE('2010-02-17','YYYY-MM-DD'));
 INSERT INTO SAE_Batiment (Adresse, Date_construction) VALUES ('7 Rue de la Croix', TO_DATE('1985-08-29','YYYY-MM-DD'));
 INSERT INTO SAE_Batiment (Adresse, Date_construction) VALUES ('24 Impasse des tomates', TO_DATE('2005-04-14','YYYY-MM-DD'));
 INSERT INTO SAE_Batiment (Adresse, Date_construction) VALUES ('26 Chemin des pissenlits', TO_DATE('1992-12-01','YYYY-MM-DD'));
@@ -79,88 +72,88 @@ INSERT INTO SAE_Batiment (Adresse, Date_construction) VALUES ('26 Chemin des pis
 
 INSERT INTO SAE_BienLouable (Id_BienLouable,NumeroFiscale, Adresse, Surface_d_habituable, Nombre_de_pieces, Type_bien_louable, 
  Id_BienLouable_2, fk_Adresse_Bat)
- VALUES ('BIEN-001','FISC-001','12 Rue des Roses',65,3,'logement',NULL,'20 Chemin La Fayette');
+ VALUES ('BIEN-001','FISC-001','17',65,3,'logement',NULL,'20 Chemin La Fayette');
 
 INSERT INTO SAE_BienLouable (Id_BienLouable,NumeroFiscale, Adresse, Surface_d_habituable, Nombre_de_pieces, Type_bien_louable, 
  Id_BienLouable_2, fk_Adresse_Bat)
- VALUES ('BIEN-007','FISC-007','14 Rue des Roses',55,2,'logement',NULL,'20 Chemin La Fayette');
+ VALUES ('BIEN-007','FISC-007','26',55,2,'logement',NULL,'20 Chemin La Fayette');
 
 INSERT INTO SAE_BienLouable(Id_BienLouable,NumeroFiscale, Adresse, Surface_d_habituable, Nombre_de_pieces, Type_bien_louable, 
  Id_BienLouable_2, fk_Adresse_Bat)
-  VALUES ('BIEN-008','FISC-008','16 Rue des Roses',48,2,'garage',NULL,'20 Chemin La Fayette');
+  VALUES ('BIEN-008','FISC-008','07',48,2,'garage',NULL,'20 Chemin La Fayette');
 
 
 
 INSERT INTO SAE_BienLouable (Id_BienLouable,NumeroFiscale, Adresse, Surface_d_habituable, Nombre_de_pieces, Type_bien_louable, 
  Id_BienLouable_2, fk_Adresse_Bat)
-VALUES ('BIEN-002','FISC-002','8 Rue des Lilas',42,2,'garage',NULL,'31 Rue de la Paix');
+VALUES ('BIEN-002','FISC-002','18',42,2,'garage',NULL,'31 Rue de la Paix');
 
 INSERT INTO SAE_BienLouable(Id_BienLouable,NumeroFiscale, Adresse, Surface_d_habituable, Nombre_de_pieces, Type_bien_louable, 
  Id_BienLouable_2, fk_Adresse_Bat)
-  VALUES ('BIEN-009','FISC-009','20 Rue Nationale',70,3,'logement',NULL,'31 Rue de la Paix');
+  VALUES ('BIEN-009','FISC-009','21',70,3,'logement',NULL,'31 Rue de la Paix');
 
 INSERT INTO SAE_BienLouable(Id_BienLouable,NumeroFiscale, Adresse, Surface_d_habituable, Nombre_de_pieces, Type_bien_louable, 
  Id_BienLouable_2, fk_Adresse_Bat)
-  VALUES ('BIEN-010','FISC-010','22 Rue Nationale',45,2,'garage',NULL,'31 Rue de la Paix');
+  VALUES ('BIEN-010','FISC-010','22',45,2,'garage',NULL,'31 Rue de la Paix');
 
 INSERT INTO SAE_BienLouable(Id_BienLouable,NumeroFiscale, Adresse, Surface_d_habituable, Nombre_de_pieces, Type_bien_louable, 
  Id_BienLouable_2, fk_Adresse_Bat)
-  VALUES ('BIEN-011','FISC-011','24 Rue Nationale',60,3,'logement',NULL,'31 Rue de la Paix');
+  VALUES ('BIEN-011','FISC-011','06',60,3,'logement',NULL,'31 Rue de la Paix');
 
 
 INSERT INTO SAE_BienLouable (Id_BienLouable,NumeroFiscale, Adresse, Surface_d_habituable, Nombre_de_pieces, Type_bien_louable, 
  Id_BienLouable_2, fk_Adresse_Bat)
- VALUES ('BIEN-003','FISC-003','4 Rue du Port',110,5,'logement',NULL,'15 Allées de la Gare');
+ VALUES ('BIEN-003','FISC-003','09',110,5,'logement',NULL,'15 Allée de la Gare');
 
 INSERT INTO SAE_BienLouable (Id_BienLouable,NumeroFiscale, Adresse, Surface_d_habituable, Nombre_de_pieces, Type_bien_louable, 
  Id_BienLouable_2, fk_Adresse_Bat)
- VALUES ('BIEN-012','FISC-012','6 Rue du Port',95,4,'logement',NULL,'15 Allées de la Gare');
+ VALUES ('BIEN-012','FISC-012','15',95,4,'logement',NULL,'15 Allée de la Gare');
 
 INSERT INTO SAE_BienLouable (Id_BienLouable,NumeroFiscale, Adresse, Surface_d_habituable, Nombre_de_pieces, Type_bien_louable, 
  Id_BienLouable_2, fk_Adresse_Bat)
- VALUES ('BIEN-013','FISC-013','8 Rue du Port',40,1,'garage',NULL,'15 Allées de la Gare');
+ VALUES ('BIEN-013','FISC-013','23',40,1,'garage',NULL,'15 Allée de la Gare');
 
 
 
 INSERT INTO SAE_BienLouable (Id_BienLouable,NumeroFiscale, Adresse, Surface_d_habituable, Nombre_de_pieces, Type_bien_louable, 
  Id_BienLouable_2, fk_Adresse_Bat)
- VALUES ('BIEN-004','FISC-004','10 Rue Nationale',75,3,'garage',NULL,'7 Rue de la Croix');
+ VALUES ('BIEN-004','FISC-004','03',75,3,'garage',NULL,'7 Rue de la Croix');
  
  INSERT INTO SAE_BienLouable(Id_BienLouable,NumeroFiscale, Adresse, Surface_d_habituable, Nombre_de_pieces, Type_bien_louable, 
  Id_BienLouable_2, fk_Adresse_Bat)
- VALUES ('BIEN-014','FISC-014','12 Rue Nationale',80,3,'logement',NULL,'7 Rue de la Croix');
+ VALUES ('BIEN-014','FISC-014','15',80,3,'logement',NULL,'7 Rue de la Croix');
 
 INSERT INTO SAE_BienLouable(Id_BienLouable,NumeroFiscale, Adresse, Surface_d_habituable, Nombre_de_pieces, Type_bien_louable, 
  Id_BienLouable_2, fk_Adresse_Bat)
-  VALUES ('BIEN-015','FISC-015','14 Rue Nationale',35,1,'garage',NULL,'7 Rue de la Croix');
+  VALUES ('BIEN-015','FISC-015','16',35,1,'garage',NULL,'7 Rue de la Croix');
 
 
 
 INSERT INTO SAE_BienLouable (Id_BienLouable,NumeroFiscale, Adresse, Surface_d_habituable, Nombre_de_pieces, Type_bien_louable, 
  Id_BienLouable_2, fk_Adresse_Bat)
- VALUES ('BIEN-005','FISC-005','18 Avenue du Parc',30,1,'logement',NULL,'24 Impasse des tomates');
+ VALUES ('BIEN-005','FISC-005','18 ',30,1,'logement',NULL,'24 Impasse des tomates');
  
  INSERT INTO SAE_BienLouable(Id_BienLouable,NumeroFiscale, Adresse, Surface_d_habituable, Nombre_de_pieces, Type_bien_louable, 
  Id_BienLouable_2, fk_Adresse_Bat) 
- VALUES ('BIEN-016','FISC-016','20 Avenue du Parc',52,2,'logement',NULL,'24 Impasse des tomates');
+ VALUES ('BIEN-016','FISC-016','21',52,2,'logement',NULL,'24 Impasse des tomates');
 
 INSERT INTO SAE_BienLouable (Id_BienLouable,NumeroFiscale, Adresse, Surface_d_habituable, Nombre_de_pieces, Type_bien_louable, 
 Id_BienLouable_2, fk_Adresse_Bat)
-VALUES ('BIEN-017','FISC-017','22 Avenue du Parc',38,1,'garage',NULL,'24 Impasse des tomates');
+VALUES ('BIEN-017','FISC-017','24',38,1,'garage',NULL,'24 Impasse des tomates');
 
 
 
 INSERT INTO SAE_BienLouable (Id_BienLouable,NumeroFiscale, Adresse, Surface_d_habituable, Nombre_de_pieces, Type_bien_louable, 
  Id_BienLouable_2, fk_Adresse_Bat)
- VALUES ('BIEN-006','FISC-006','33 Rue des Écoles',95,4,'garage',NULL,'26 Chemin des pissenlits');
+ VALUES ('BIEN-006','FISC-006','13',95,4,'garage',NULL,'26 Chemin des pissenlits');
 
 INSERT INTO SAE_BienLouable (Id_BienLouable,NumeroFiscale, Adresse, Surface_d_habituable, Nombre_de_pieces, Type_bien_louable, 
  Id_BienLouable_2, fk_Adresse_Bat)
- VALUES ('BIEN-018','FISC-018','35 Rue des Ecoles',78,3,'logement',NULL,'26 Chemin des pissenlits');
+ VALUES ('BIEN-018','FISC-018','17',78,3,'logement',NULL,'26 Chemin des pissenlits');
 
 INSERT INTO SAE_BienLouable (Id_BienLouable,NumeroFiscale, Adresse, Surface_d_habituable, Nombre_de_pieces, Type_bien_louable, 
  Id_BienLouable_2, fk_Adresse_Bat)
- VALUES ('BIEN-019','FISC-019','37 Rue des Ecoles',28,1,'garage',NULL,'26 Chemin des pissenlits');
+ VALUES ('BIEN-019','FISC-019','27',28,1,'garage',NULL,'26 Chemin des pissenlits');
 
 
 
@@ -252,35 +245,7 @@ INSERT INTO SAE_Locataire (Id_Locataire, Nom, Prenom, Adresse, Tel, Email, Code_
  VALUES ('LOC-013','Moreau','Eva','31 Avenue de la Gare','0600000013','eva_m@mail.com','35000','Rennes',
  TO_DATE('1995-06-07','YYYY-MM-DD'),'Rennes',1950,'Coiffeuse','Célibataire',NULL,'GAR-013');
 
-INSERT INTO SAE_Locataire (Id_Locataire, Nom, Prenom, Adresse, Tel, Email, Code_Postale, Ville, Date_de_naissance, 
- Lieu_de_naissance, Salaire, Profession, Situation_Familiale, Image_Locataire, fk_Id_Garant)
- VALUES ('LOC-014','Barbier','Hugo','9 Rue Lafayette','0600000014','hugo@mail.com','59000','Lille',
- TO_DATE('1990-10-30','YYYY-MM-DD'),'Douai',2100,'Graphiste','Compagnon',NULL,'GAR-014');
 
-INSERT INTO SAE_Locataire (Id_Locataire, Nom, Prenom, Adresse, Tel, Email, Code_Postale, Ville, Date_de_naissance, 
- Lieu_de_naissance, Salaire, Profession, Situation_Familiale, Image_Locataire, fk_Id_Garant)
- VALUES ('LOC-015','Renard','Camille','3 Rue de la Chapelle','0600000015','camille@mail.com','45000','Orléans',
- TO_DATE('1986-04-02','YYYY-MM-DD'),'Orléans',2700,'Pharmacienne','Mariée',NULL,'GAR-015');
-
-INSERT INTO SAE_Locataire (Id_Locataire, Nom, Prenom, Adresse, Tel, Email, Code_Postale, Ville, Date_de_naissance, 
- Lieu_de_naissance, Salaire, Profession, Situation_Familiale, Image_Locataire, fk_Id_Garant)
- VALUES ('LOC-016','Poirier','Lucas','12 Avenue de Bretagne','0600000016','lucas@mail.com','67000','Strasbourg',
- TO_DATE('1994-01-19','YYYY-MM-DD'),'Strasbourg',2300,'Analyste','Célibataire',NULL,'GAR-016');
-
-INSERT INTO SAE_Locataire (Id_Locataire, Nom, Prenom, Adresse, Tel, Email, Code_Postale, Ville, Date_de_naissance, 
- Lieu_de_naissance, Salaire, Profession, Situation_Familiale, Image_Locataire, fk_Id_Garant)
- VALUES ('LOC-017','Joly','Manon','6 Impasse du Moulin','0600000017','manon@mail.com','25000','Besançon',
- TO_DATE('1992-03-15','YYYY-MM-DD'),'Besançon',1850,'Assistante Sociale','Célibataire',NULL,'GAR-017');
-
-INSERT INTO SAE_Locataire (Id_Locataire, Nom, Prenom, Adresse, Tel, Email, Code_Postale, Ville, Date_de_naissance, 
- Lieu_de_naissance, Salaire, Profession, Situation_Familiale, Image_Locataire, fk_Id_Garant)
- VALUES ('LOC-018','Baron','Alexandre','10 Rue des Cerisiers','0600000018','alex@mail.com','74000','Annecy',
- TO_DATE('1988-09-08','YYYY-MM-DD'),'Lyon',3100,'Ingénieur','Marié',NULL,'GAR-018');
-
-INSERT INTO SAE_Locataire (Id_Locataire, Nom, Prenom, Adresse, Tel, Email, Code_Postale, Ville, Date_de_naissance, 
- Lieu_de_naissance, Salaire, Profession, Situation_Familiale, Image_Locataire, fk_Id_Garant)
- VALUES ('LOC-019','Boucher','Léa','5 Rue des Tilleuls','0600000019','lea@mail.com','06000','Nice',
- TO_DATE('1996-05-22','YYYY-MM-DD'),'Nice',2000,'Chargée de com','Célibataire',NULL,'GAR-019');
 
 
 
@@ -351,31 +316,7 @@ INSERT INTO SAE_ContratLocation (Numero_de_contrat,Date_debut, Date_Fin, Montant
 
  INSERT INTO SAE_ContratLocation (Numero_de_contrat,Date_debut, Date_Fin, Montant_de_caution, Provision_Charge, Solde, Montant_Mensuel,
  Date_versement, Index_Compteur_Eau, Index_Compteur_Electrcite, Index_Compteur_Gaz, fk_Id_BienLouable)
- VALUES ('CTR-013',TO_DATE('2023-0-17','YYYY-MM-DD'),NULL,700,50,0,800,NULL,0,0,0,'BIEN-013');
- 
- INSERT INTO SAE_ContratLocation (Numero_de_contrat,Date_debut, Date_Fin, Montant_de_caution, Provision_Charge, Solde, Montant_Mensuel,
- Date_versement, Index_Compteur_Eau, Index_Compteur_Electrcite, Index_Compteur_Gaz, fk_Id_BienLouable)
- VALUES ('CTR-0014',TO_DATE('2025-02-01','YYYY-MM-DD'),NULL,850,50,0,850,NULL,0,0,0,'BIEN-0014');
-
- INSERT INTO SAE_ContratLocation (Numero_de_contrat,Date_debut, Date_Fin, Montant_de_caution, Provision_Charge, Solde, Montant_Mensuel,
- Date_versement, Index_Compteur_Eau, Index_Compteur_Electrcite, Index_Compteur_Gaz, fk_Id_BienLouable)
- VALUES ('CTR-015',TO_DATE('2022-06-07','YYYY-MM-DD'),NULL,1250,40,0,900,NULL,0,0,0,'BIEN-015');
-
-INSERT INTO SAE_ContratLocation (Numero_de_contrat,Date_debut, Date_Fin, Montant_de_caution, Provision_Charge, Solde, Montant_Mensuel,
- Date_versement, Index_Compteur_Eau, Index_Compteur_Electrcite, Index_Compteur_Gaz, fk_Id_BienLouable)
- VALUES ('CTR-016',TO_DATE('2022-10-09','YYYY-MM-DD'),NULL,1150,50,0,700,NULL,0,0,0,'BIEN-016');
-
-  INSERT INTO SAE_ContratLocation (Numero_de_contrat,Date_debut, Date_Fin, Montant_de_caution, Provision_Charge, Solde, Montant_Mensuel,
- Date_versement, Index_Compteur_Eau, Index_Compteur_Electrcite, Index_Compteur_Gaz, fk_Id_BienLouable)
- VALUES ('CTR-017',TO_DATE('2022-11-01','YYYY-MM-DD'),NULL,1150,50,0,500,NULL,0,0,0,'BIEN-017');
-
- INSERT INTO SAE_ContratLocation (Numero_de_contrat,Date_debut, Date_Fin, Montant_de_caution, Provision_Charge, Solde, Montant_Mensuel,
- Date_versement, Index_Compteur_Eau, Index_Compteur_Electrcite, Index_Compteur_Gaz, fk_Id_BienLouable)
- VALUES ('CTR-018',TO_DATE('2021-05-04','YYYY-MM-DD'),NULL,897,89,0,678,NULL,0,0,0,'BIEN-018');
-
-INSERT INTO SAE_ContratLocation (Numero_de_contrat,Date_debut, Date_Fin, Montant_de_caution, Provision_Charge, Solde, Montant_Mensuel,
- Date_versement, Index_Compteur_Eau, Index_Compteur_Electrcite, Index_Compteur_Gaz, fk_Id_BienLouable)
- VALUES ('CTR-019',TO_DATE('2025-10-11','YYYY-MM-DD'),NULL,876,50,0,763,NULL,0,0,0,'BIEN-019');
+ VALUES ('CTR-013',TO_DATE('2023-03-17','YYYY-MM-DD'),NULL,700,50,0,800,NULL,0,0,0,'BIEN-013');
 
 
 
@@ -401,31 +342,99 @@ INSERT INTO SAE_ContratLocation (Numero_de_contrat,Date_debut, Date_Fin, Montant
 ----------------------------------------------------------------------------------------------------------------
 INSERT INTO SAE_Charges_Generale (Id_Charges_Generale,Type_Charge, Montant_Total, Pourcentage, Quotite, Mois, fk_Id_BienLouable)
  VALUES ('CHG-001','Entretien',80,10,1.0,'JANVIER','BIEN-001');
+
+INSERT INTO SAE_Charges_Generale (Id_Charges_Generale,Type_Charge, Montant_Total, Pourcentage, Quotite, Mois, fk_Id_BienLouable)
+ VALUES ('CHG-002','Ascenseur',60,8,0.8,'JANVIER','BIEN-001');
+
+
+
+INSERT INTO SAE_Charges_Generale (Id_Charges_Generale,Type_Charge, Montant_Total, Pourcentage, Quotite, Mois, fk_Id_BienLouable)
+ VALUES ('CHG-003','Entretien',85,10,1.1,'FEVRIER','BIEN-007');
+
+INSERT INTO SAE_Charges_Generale (Id_Charges_Generale,Type_Charge, Montant_Total, Pourcentage, Quotite, Mois, fk_Id_BienLouable)
+ VALUES ('CHG-004','Ascenseur',65,9,0.9,'FEVRIER','BIEN-007');
+
+
+
+INSERT INTO SAE_Charges_Generale (Id_Charges_Generale,Type_Charge, Montant_Total, Pourcentage, Quotite, Mois, fk_Id_BienLouable)
+ VALUES ('CHG-005','Entretien',40,5,0.5,'MARS','BIEN-008');
+
+INSERT INTO SAE_Charges_Generale (Id_Charges_Generale,Type_Charge, Montant_Total, Pourcentage, Quotite, Mois, fk_Id_BienLouable)
+ VALUES ('CHG-006','Parking',30,4,0.4,'MARS','BIEN-008');
+
+
+
+INSERT INTO SAE_Charges_Generale (Id_Charges_Generale,Type_Charge, Montant_Total, Pourcentage, Quotite, Mois, fk_Id_BienLouable)
+ VALUES ('CHG-007','Entretien',45,6,0.5,'JANVIER','BIEN-002');
+
+INSERT INTO SAE_Charges_Generale (Id_Charges_Generale,Type_Charge, Montant_Total, Pourcentage, Quotite, Mois, fk_Id_BienLouable)
+ VALUES ('CHG-008','Ascenseur',55,7,0.7,'JANVIER','BIEN-002');
+
+
+
+INSERT INTO SAE_Charges_Generale (Id_Charges_Generale,Type_Charge, Montant_Total, Pourcentage, Quotite, Mois, fk_Id_BienLouable)
+ VALUES ('CHG-009','Entretien',90,12,1.2,'MARS','BIEN-009');
+
+INSERT INTO SAE_Charges_Generale (Id_Charges_Generale,Type_Charge, Montant_Total, Pourcentage, Quotite, Mois, fk_Id_BienLouable)
+ VALUES ('CHG-010','Ascenseur',60,9,0.9,'MARS','BIEN-009');
+
+
+
+INSERT INTO SAE_Charges_Generale (Id_Charges_Generale,Type_Charge, Montant_Total, Pourcentage, Quotite, Mois, fk_Id_BienLouable)
+ VALUES ('CHG-011','Entretien',50,7,0.6,'AVRIL','BIEN-010');
+
+INSERT INTO SAE_Charges_Generale (Id_Charges_Generale,Type_Charge, Montant_Total, Pourcentage, Quotite, Mois, fk_Id_BienLouable)
+ VALUES ('CHG-012','Ascenseur',55,7,0.7,'AVRIL','BIEN-010');
+
+
+
+INSERT INTO SAE_Charges_Generale (Id_Charges_Generale,Type_Charge, Montant_Total, Pourcentage, Quotite, Mois, fk_Id_BienLouable)
+ VALUES ('CHG-013','Entretien',70,9,1.0,'MAI','BIEN-011');
+
+INSERT INTO SAE_Charges_Generale (Id_Charges_Generale,Type_Charge, Montant_Total, Pourcentage, Quotite, Mois, fk_Id_BienLouable)
+ VALUES ('CHG-014','Nettoyage',40,5,0.6,'MAI','BIEN-011');
+
+
+
+INSERT INTO SAE_Charges_Generale (Id_Charges_Generale,Type_Charge, Montant_Total, Pourcentage, Quotite, Mois, fk_Id_BienLouable)
+ VALUES ('CHG-017','Entretien',88,11,1.2,'JANVIER','BIEN-012');
+
+INSERT INTO SAE_Charges_Generale (Id_Charges_Generale,Type_Charge, Montant_Total, Pourcentage, Quotite, Mois, fk_Id_BienLouable)
+ VALUES ('CHG-018','Ascenseur',58,8,0.8,'JANVIER','BIEN-012');
+
+
+
+INSERT INTO SAE_Charges_Generale (Id_Charges_Generale,Type_Charge, Montant_Total, Pourcentage, Quotite, Mois, fk_Id_BienLouable)
+ VALUES ('CHG-019','Entretien',42,5,0.5,'FEVRIER','BIEN-013');
+
+INSERT INTO SAE_Charges_Generale (Id_Charges_Generale,Type_Charge, Montant_Total, Pourcentage, Quotite, Mois, fk_Id_BienLouable)
+ VALUES ('CHG-020','Ascenseur',55,7,0.7,'FEVRIER','BIEN-013');
+
+
+
+INSERT INTO SAE_Charges_Generale (Id_Charges_Generale,Type_Charge, Montant_Total, Pourcentage, Quotite, Mois, fk_Id_BienLouable)
+ VALUES ('CHG-021','Entretien',35,5,0.4,'MARS','BIEN-004');
+
+INSERT INTO SAE_Charges_Generale (Id_Charges_Generale,Type_Charge, Montant_Total, Pourcentage, Quotite, Mois, fk_Id_BienLouable)
+ VALUES ('CHG-022','Parking',25,3,0.3,'MARS','BIEN-004');
+
+
+INSERT INTO SAE_Charges_Generale (Id_Charges_Generale,Type_Charge, Montant_Total, Pourcentage, Quotite, Mois, fk_Id_BienLouable)
+ VALUES ('CHG-027','Entretien',75,9,1.0,'JUIN','BIEN-005');
+
+INSERT INTO SAE_Charges_Generale (Id_Charges_Generale,Type_Charge, Montant_Total, Pourcentage, Quotite, Mois, fk_Id_BienLouable)
+ VALUES ('CHG-028','Ascenseur',58,8,0.8,'JUIN','BIEN-005');
+
+
+
+
+INSERT INTO SAE_Charges_Generale (Id_Charges_Generale,Type_Charge, Montant_Total, Pourcentage, Quotite, Mois, fk_Id_BienLouable)
+ VALUES ('CHG-033','Entretien',48,6,0.6,'SEPTEMBRE','BIEN-006');
+
+INSERT INTO SAE_Charges_Generale (Id_Charges_Generale,Type_Charge, Montant_Total, Pourcentage, Quotite, Mois, fk_Id_BienLouable)
+ VALUES ('CHG-034','Ascenseur',52,7,0.7,'SEPTEMBRE','BIEN-006');
  
-INSERT INTO SAE_Charges_Generale (Id_Charges_Generale,Type_Charge, Montant_Total, Pourcentage, Quotite, Mois, fk_Id_BienLouable)
- VALUES ('CHG-002','Nettoyage',120,15,1.1,'FEVRIER','BIEN-002');
 
-INSERT INTO SAE_Charges_Generale (Id_Charges_Generale,Type_Charge, Montant_Total, Pourcentage, Quotite, Mois, fk_Id_BienLouable) 
- VALUES ('CHG-003','Nettoyage',200,20,1.2,'AVRIL','BIEN-003');
-
-INSERT INTO SAE_Charges_Generale (Id_Charges_Generale,Type_Charge, Montant_Total, Pourcentage, Quotite, Mois, fk_Id_BienLouable) 
- VALUES ('CHG-004','Entretien',60,8,0.8,'DECEMBRE','BIEN-004');
-
-INSERT INTO SAE_Charges_Generale (Id_Charges_Generale,Type_Charge, Montant_Total, Pourcentage, Quotite, Mois, fk_Id_BienLouable)
- VALUES ('CHG-005','Ascenseur',90,12,0.9,'AOUT','BIEN-005');
-
-INSERT INTO SAE_Charges_Generale (Id_Charges_Generale,Type_Charge, Montant_Total, Pourcentage, Quotite, Mois, fk_Id_BienLouable)
-VALUES ('CHG-006','Nettoyage',70,10,1.0,'MARS','BIEN-006');
-
-
-
-
-
-
-
-
-
-------------------------------------^ A REVOIR ^-----^ A REVOIR ^-----^ A REVOIR ^-----^ A REVOIR ^-----^ A REVOIR ^-----^ A REVOIR ^-----------------------------
 
 
 
@@ -451,169 +460,99 @@ VALUES ('CHG-006','Nettoyage',70,10,1.0,'MARS','BIEN-006');
 
 
 ----------------------------------------------------------------------------------------------------------------
-INSERT INTO SAE_Diagnostics (Id_Diagnostics, Type_Diagnostic, Date_Realisation, Date_Validite, Fichier, fk_Id_BienLouable)
- VALUES ('DIA-001','DPE',TO_DATE('2022-09-01','YYYY-MM-DD'),TO_DATE('2032-09-01','YYYY-MM-DD'),'dpe1.pdf','BIEN-001');
-
-INSERT INTO SAE_Diagnostics (Id_Diagnostics, Type_Diagnostic, Date_Realisation, Date_Validite, Fichier, fk_Id_BienLouable)
- VALUES ('DIA-002','Gaz',TO_DATE('2022-10-05','YYYY-MM-DD'),TO_DATE('2032-10-05','YYYY-MM-DD'),'gaz2.pdf','BIEN-002');
-
-INSERT INTO SAE_Diagnostics (Id_Diagnostics, Type_Diagnostic, Date_Realisation, Date_Validite, Fichier, fk_Id_BienLouable)
- VALUES ('DIA-003','Électricité',TO_DATE('2023-01-10','YYYY-MM-DD'),TO_DATE('2033-01-10','YYYY-MM-DD'),'elec3.pdf','BIEN-003');
-
-INSERT INTO SAE_Diagnostics (Id_Diagnostics, Type_Diagnostic, Date_Realisation, Date_Validite, Fichier, fk_Id_BienLouable)
- VALUES ('DIA-004','Amiante',TO_DATE('2021-06-15','YYYY-MM-DD'),TO_DATE('2031-06-15','YYYY-MM-DD'),'ami4.pdf','BIEN-004');
-
-INSERT INTO SAE_Diagnostics (Id_Diagnostics, Type_Diagnostic, Date_Realisation, Date_Validite, Fichier, fk_Id_BienLouable)
- VALUES ('DIA-005','Plomb',TO_DATE('2020-11-01','YYYY-MM-DD'),TO_DATE('2030-11-01','YYYY-MM-DD'),'plomb5.pdf','BIEN-005');
-
-INSERT INTO SAE_Diagnostics (Id_Diagnostics, Type_Diagnostic, Date_Realisation, Date_Validite, Fichier, fk_Id_BienLouable) 
- VALUES ('DIA-006','Termites',TO_DATE('2023-02-20','YYYY-MM-DD'),TO_DATE('2028-02-20','YYYY-MM-DD'),'term6.pdf','BIEN-006');
-
-
-
-INSERT INTO SAE_Diagnostic (Id_Diagnostics, Type_Diagnostic, Date_Realisation, Date_Validite, Fichier, fk_Id_BienLouable) 
-VALUES ('DIAG-019','DPE',TO_DATE('2021-04-12','YYYY-MM-DD'),'BIEN-007');
-
-INSERT INTO SAE_Diagnostic (Id_Diagnostics, Type_Diagnostic, Date_Realisation, Date_Validite, Fichier, fk_Id_BienLouable) 
-VALUES ('DIAG-020','Gaz',TO_DATE('2021-04-15','YYYY-MM-DD'),'BIEN-007');
-
-INSERT INTO SAE_Diagnostic (Id_Diagnostics, Type_Diagnostic, Date_Realisation, Date_Validite, Fichier, fk_Id_BienLouable) 
-VALUES ('DIAG-021','Amiante',TO_DATE('2021-04-18','YYYY-MM-DD'),'BIEN-007');
-
-
-
-INSERT INTO SAE_Diagnostic (Id_Diagnostics, Type_Diagnostic, Date_Realisation, Date_Validite, Fichier, fk_Id_BienLouable) 
- VALUES ('DIAG-022','Electricité',TO_DATE('2020-07-09','YYYY-MM-DD'),'BIEN-008');
-
-INSERT INTO SAE_Diagnostic (Id_Diagnostics, Type_Diagnostic, Date_Realisation, Date_Validite, Fichier, fk_Id_BienLouable) 
-VALUES ('DIAG-023','Amiante',TO_DATE('2020-07-12','YYYY-MM-DD'),'BIEN-008');
-
-INSERT INTO SAE_Diagnostic (Id_Diagnostics, Type_Diagnostic, Date_Realisation, Date_Validite, Fichier, fk_Id_BienLouable) 
-VALUES ('DIAG-024','DPE',TO_DATE('2020-07-15','YYYY-MM-DD'),'BIEN-008');
-
-
-
-INSERT INTO SAE_Diagnostic (Id_Diagnostics, Type_Diagnostic, Date_Realisation, Date_Validite, Fichier, fk_Id_BienLouable) 
-VALUES ('DIAG-025','DPE',TO_DATE('2022-08-05','YYYY-MM-DD'),'BIEN-009');
-
-INSERT INTO SAE_Diagnostic (Id_Diagnostics, Type_Diagnostic, Date_Realisation, Date_Validite, Fichier, fk_Id_BienLouable) 
-VALUES ('DIAG-026','Gaz',TO_DATE('2022-08-09','YYYY-MM-DD'),'BIEN-009');
-
-INSERT INTO SAE_Diagnostic (Id_Diagnostics, Type_Diagnostic, Date_Realisation, Date_Validite, Fichier, fk_Id_BienLouable) 
-VALUES ('DIAG-027','Amiante',TO_DATE('2022-08-12','YYYY-MM-DD'),'BIEN-009');
-
-
-
-INSERT INTO SAE_Diagnostic (Id_Diagnostics, Type_Diagnostic, Date_Realisation, Date_Validite, Fichier, fk_Id_BienLouable) 
- VALUES ('DIAG-028','Electricité',TO_DATE('2021-03-22','YYYY-MM-DD'),'BIEN-010');
-
-INSERT INTO SAE_Diagnostic (Id_Diagnostics, Type_Diagnostic, Date_Realisation, Date_Validite, Fichier, fk_Id_BienLouable)  
-VALUES ('DIAG-029','Amiante',TO_DATE('2021-03-26','YYYY-MM-DD'),'BIEN-010');
-
-INSERT INTO SAE_Diagnostic (Id_Diagnostics, Type_Diagnostic, Date_Realisation, Date_Validite, Fichier, fk_Id_BienLouable) 
- VALUES ('DIAG-030','DPE',TO_DATE('2021-03-29','YYYY-MM-DD'),'BIEN-010');
-
-
-
-INSERT INTO SAE_Diagnostic (Id_Diagnostics, Type_Diagnostic, Date_Realisation, Date_Validite, Fichier, fk_Id_BienLouable) 
- VALUES ('DIAG-031','DPE',TO_DATE('2023-09-03','YYYY-MM-DD'),'BIEN-011');
-
-INSERT INTO SAE_Diagnostic (Id_Diagnostics, Type_Diagnostic, Date_Realisation, Date_Validite, Fichier, fk_Id_BienLouable) 
-VALUES ('DIAG-032','Gaz',TO_DATE('2023-09-07','YYYY-MM-DD'),'BIEN-011');
-
-INSERT INTO SAE_Diagnostic (Id_Diagnostics, Type_Diagnostic, Date_Realisation, Date_Validite, Fichier, fk_Id_BienLouable) 
-VALUES ('DIAG-033','Amiante',TO_DATE('2023-09-10','YYYY-MM-DD'),'BIEN-011');
-
-
-
-INSERT INTO SAE_Diagnostic (Id_Diagnostics, Type_Diagnostic, Date_Realisation, Date_Validite, Fichier, fk_Id_BienLouable) 
- VALUES ('DIAG-034','DPE',TO_DATE('2021-12-01','YYYY-MM-DD'),'BIEN-012');
-
-INSERT INTO SAE_Diagnostic (Id_Diagnostics, Type_Diagnostic, Date_Realisation, Date_Validite, Fichier, fk_Id_BienLouable) 
-VALUES ('DIAG-035','Gaz',TO_DATE('2021-12-05','YYYY-MM-DD'),'BIEN-012');
-
-INSERT INTO SAE_Diagnostic (Id_Diagnostics, Type_Diagnostic, Date_Realisation, Date_Validite, Fichier, fk_Id_BienLouable) 
-VALUES ('DIAG-036','Amiante',TO_DATE('2021-12-08','YYYY-MM-DD'),'BIEN-012');
-
-
-
-INSERT INTO SAE_Diagnostic (Id_Diagnostics, Type_Diagnostic, Date_Realisation, Date_Validite, Fichier, fk_Id_BienLouable) 
- VALUES ('DIAG-037','Electricité',TO_DATE('2020-05-14','YYYY-MM-DD'),'BIEN-013');
-
-INSERT INTO SAE_Diagnostic (Id_Diagnostics, Type_Diagnostic, Date_Realisation, Date_Validite, Fichier, fk_Id_BienLouable) 
-VALUES ('DIAG-038','Amiante',TO_DATE('2020-05-17','YYYY-MM-DD'),'BIEN-013');
-
-INSERT INTO SAE_Diagnostic (Id_Diagnostics, Type_Diagnostic, Date_Realisation, Date_Validite, Fichier, fk_Id_BienLouable) 
- VALUES ('DIAG-039','DPE',TO_DATE('2020-05-20','YYYY-MM-DD'),'BIEN-013');
-
-
-
-INSERT INTO SAE_Diagnostic (Id_Diagnostics, Type_Diagnostic, Date_Realisation, Date_Validite, Fichier, fk_Id_BienLouable) 
-VALUES ('DIAG-040','DPE',TO_DATE('2020-11-10','YYYY-MM-DD'),'BIEN-014');
-
-INSERT INTO SAE_Diagnostic (Id_Diagnostics, Type_Diagnostic, Date_Realisation, Date_Validite, Fichier, fk_Id_BienLouable) 
-VALUES ('DIAG-041','Gaz',TO_DATE('2020-11-14','YYYY-MM-DD'),'BIEN-014');
-
-INSERT INTO SAE_Diagnostic (Id_Diagnostics, Type_Diagnostic, Date_Realisation, Date_Validite, Fichier, fk_Id_BienLouable)
-VALUES ('DIAG-042','Amiante',TO_DATE('2020-11-18','YYYY-MM-DD'),'BIEN-014');
-
-
-
-INSERT INTO SAE_Diagnostic (Id_Diagnostics, Type_Diagnostic, Date_Realisation, Date_Validite, Fichier, fk_Id_BienLouable) 
-VALUES ('DIAG-043','Electricité',TO_DATE('2021-01-04','YYYY-MM-DD'),'BIEN-015');
-
-INSERT INTO SAE_Diagnostic (Id_Diagnostics, Type_Diagnostic, Date_Realisation, Date_Validite, Fichier, fk_Id_BienLouable) 
-VALUES ('DIAG-044','Amiante',TO_DATE('2021-01-07','YYYY-MM-DD'),'BIEN-015');
-
-INSERT INTO SAE_Diagnostic (Id_Diagnostics, Type_Diagnostic, Date_Realisation, Date_Validite, Fichier, fk_Id_BienLouable) 
-VALUES ('DIAG-045','DPE',TO_DATE('2021-01-11','YYYY-MM-DD'),'BIEN-015');
-
-
-
-INSERT INTO SAE_Diagnostic (Id_Diagnostics, Type_Diagnostic, Date_Realisation, Date_Validite, Fichier, fk_Id_BienLouable) 
-VALUES ('DIAG-046','DPE',TO_DATE('2022-02-15','YYYY-MM-DD'),'BIEN-016');
-
-INSERT INTO SAE_Diagnostic (Id_Diagnostics, Type_Diagnostic, Date_Realisation, Date_Validite, Fichier, fk_Id_BienLouable) 
-VALUES ('DIAG-047','Gaz',TO_DATE('2022-02-18','YYYY-MM-DD'),'BIEN-016');
-
-INSERT INTO SAE_Diagnostic (Id_Diagnostics, Type_Diagnostic, Date_Realisation, Date_Validite, Fichier, fk_Id_BienLouable) 
-VALUES ('DIAG-048','Amiante',TO_DATE('2022-02-21','YYYY-MM-DD'),'BIEN-016');
-
-
-
-INSERT INTO SAE_Diagnostic (Id_Diagnostics, Type_Diagnostic, Date_Realisation, Date_Validite, Fichier, fk_Id_BienLouable) 
-VALUES ('DIAG-049','Electricité',TO_DATE('2023-04-09','YYYY-MM-DD'),'BIEN-017');
-
-INSERT INTO SAE_Diagnostic (Id_Diagnostics, Type_Diagnostic, Date_Realisation, Date_Validite, Fichier, fk_Id_BienLouable) 
-VALUES ('DIAG-050','Amiante',TO_DATE('2023-04-12','YYYY-MM-DD'),'BIEN-017');
-
-INSERT INTO SAE_Diagnostic (Id_Diagnostics, Type_Diagnostic, Date_Realisation, Date_Validite, Fichier, fk_Id_BienLouable) 
-VALUES ('DIAG-051','DPE',TO_DATE('2023-04-16','YYYY-MM-DD'),'BIEN-017');
-
-
-
-INSERT INTO SAE_Diagnostic (Id_Diagnostics, Type_Diagnostic, Date_Realisation, Date_Validite, Fichier, fk_Id_BienLouable) 
-VALUES ('DIAG-052','DPE',TO_DATE('2021-09-10','YYYY-MM-DD'),'BIEN-018');
-
-INSERT INTO SAE_Diagnostic (Id_Diagnostics, Type_Diagnostic, Date_Realisation, Date_Validite, Fichier, fk_Id_BienLouable) 
-VALUES ('DIAG-053','Gaz',TO_DATE('2021-09-13','YYYY-MM-DD'),'BIEN-018');
-
-INSERT INTO SAE_Diagnostic (Id_Diagnostics, Type_Diagnostic, Date_Realisation, Date_Validite, Fichier, fk_Id_BienLouable) 
-VALUES ('DIAG-054','Amiante',TO_DATE('2021-09-17','YYYY-MM-DD'),'BIEN-018');
-
-
-
-INSERT INTO SAE_Diagnostic (Id_Diagnostics, Type_Diagnostic, Date_Realisation, Date_Validite, Fichier, fk_Id_BienLouable) 
-VALUES ('DIAG-055','Electricité',TO_DATE('2020-06-22','YYYY-MM-DD'),'BIEN-019');
-
-INSERT INTO SAE_Diagnostic (Id_Diagnostics, Type_Diagnostic, Date_Realisation, Date_Validite, Fichier, fk_Id_BienLouable) 
-VALUES ('DIAG-056','Amiante',TO_DATE('2020-06-26','YYYY-MM-DD'),'BIEN-019');
-
-INSERT INTO SAE_Diagnostic (Id_Diagnostics, Type_Diagnostic, Date_Realisation, Date_Validite, Fichier, fk_Id_BienLouable) 
-VALUES ('DIAG-057','DPE',TO_DATE('2020-06-29','YYYY-MM-DD'),'BIEN-019');
-
-
-
+INSERT INTO SAE_Diagnostics VALUES ('DIA-001','DPE',TO_DATE('2022-01-10','YYYY-MM-DD'),TO_DATE('2032-01-10','YYYY-MM-DD'),'dpe001.pdf','BIEN-001');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-002','Électricité',TO_DATE('2022-02-10','YYYY-MM-DD'),TO_DATE('2032-02-10','YYYY-MM-DD'),'elec001.pdf','BIEN-001');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-003','Gaz',TO_DATE('2022-03-10','YYYY-MM-DD'),TO_DATE('2032-03-10','YYYY-MM-DD'),'gaz001.pdf','BIEN-001');
+
+-- BIEN-002
+INSERT INTO SAE_Diagnostics VALUES ('DIA-004','DPE',TO_DATE('2022-01-15','YYYY-MM-DD'),TO_DATE('2032-01-15','YYYY-MM-DD'),'dpe002.pdf','BIEN-002');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-005','Électricité',TO_DATE('2022-02-15','YYYY-MM-DD'),TO_DATE('2032-02-15','YYYY-MM-DD'),'elec002.pdf','BIEN-002');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-006','Gaz',TO_DATE('2022-03-15','YYYY-MM-DD'),TO_DATE('2032-03-15','YYYY-MM-DD'),'gaz002.pdf','BIEN-002');
+
+-- BIEN-003
+INSERT INTO SAE_Diagnostics VALUES ('DIA-007','DPE',TO_DATE('2022-01-20','YYYY-MM-DD'),TO_DATE('2032-01-20','YYYY-MM-DD'),'dpe003.pdf','BIEN-003');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-008','Électricité',TO_DATE('2022-02-20','YYYY-MM-DD'),TO_DATE('2032-02-20','YYYY-MM-DD'),'elec003.pdf','BIEN-003');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-009','Gaz',TO_DATE('2022-03-20','YYYY-MM-DD'),TO_DATE('2032-03-20','YYYY-MM-DD'),'gaz003.pdf','BIEN-003');
+
+-- BIEN-004
+INSERT INTO SAE_Diagnostics VALUES ('DIA-010','DPE',TO_DATE('2022-01-25','YYYY-MM-DD'),TO_DATE('2032-01-25','YYYY-MM-DD'),'dpe004.pdf','BIEN-004');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-011','Électricité',TO_DATE('2022-02-25','YYYY-MM-DD'),TO_DATE('2032-02-25','YYYY-MM-DD'),'elec004.pdf','BIEN-004');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-012','Gaz',TO_DATE('2022-03-25','YYYY-MM-DD'),TO_DATE('2032-03-25','YYYY-MM-DD'),'gaz004.pdf','BIEN-004');
+
+-- BIEN-005
+INSERT INTO SAE_Diagnostics VALUES ('DIA-013','DPE',TO_DATE('2022-01-30','YYYY-MM-DD'),TO_DATE('2032-01-30','YYYY-MM-DD'),'dpe005.pdf','BIEN-005');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-014','Électricité',TO_DATE('2022-02-28','YYYY-MM-DD'),TO_DATE('2032-02-28','YYYY-MM-DD'),'elec005.pdf','BIEN-005');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-015','Gaz',TO_DATE('2022-03-30','YYYY-MM-DD'),TO_DATE('2032-03-30','YYYY-MM-DD'),'gaz005.pdf','BIEN-005');
+
+-- BIEN-006
+INSERT INTO SAE_Diagnostics VALUES ('DIA-016','DPE',TO_DATE('2022-04-05','YYYY-MM-DD'),TO_DATE('2032-04-05','YYYY-MM-DD'),'dpe006.pdf','BIEN-006');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-017','Électricité',TO_DATE('2022-04-10','YYYY-MM-DD'),TO_DATE('2032-04-10','YYYY-MM-DD'),'elec006.pdf','BIEN-006');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-018','Gaz',TO_DATE('2022-04-15','YYYY-MM-DD'),TO_DATE('2032-04-15','YYYY-MM-DD'),'gaz006.pdf','BIEN-006');
+
+-- BIEN-007
+INSERT INTO SAE_Diagnostics VALUES ('DIA-019','DPE',TO_DATE('2022-04-20','YYYY-MM-DD'),TO_DATE('2032-04-20','YYYY-MM-DD'),'dpe007.pdf','BIEN-007');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-020','Électricité',TO_DATE('2022-04-25','YYYY-MM-DD'),TO_DATE('2032-04-25','YYYY-MM-DD'),'elec007.pdf','BIEN-007');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-021','Gaz',TO_DATE('2022-04-30','YYYY-MM-DD'),TO_DATE('2032-04-30','YYYY-MM-DD'),'gaz007.pdf','BIEN-007');
+
+-- BIEN-008
+INSERT INTO SAE_Diagnostics VALUES ('DIA-022','DPE',TO_DATE('2022-05-05','YYYY-MM-DD'),TO_DATE('2032-05-05','YYYY-MM-DD'),'dpe008.pdf','BIEN-008');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-023','Électricité',TO_DATE('2022-05-10','YYYY-MM-DD'),TO_DATE('2032-05-10','YYYY-MM-DD'),'elec008.pdf','BIEN-008');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-024','Gaz',TO_DATE('2022-05-15','YYYY-MM-DD'),TO_DATE('2032-05-15','YYYY-MM-DD'),'gaz008.pdf','BIEN-008');
+
+-- BIEN-009
+INSERT INTO SAE_Diagnostics VALUES ('DIA-025','DPE',TO_DATE('2022-05-20','YYYY-MM-DD'),TO_DATE('2032-05-20','YYYY-MM-DD'),'dpe009.pdf','BIEN-009');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-026','Électricité',TO_DATE('2022-05-25','YYYY-MM-DD'),TO_DATE('2032-05-25','YYYY-MM-DD'),'elec009.pdf','BIEN-009');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-027','Gaz',TO_DATE('2022-05-30','YYYY-MM-DD'),TO_DATE('2032-05-30','YYYY-MM-DD'),'gaz009.pdf','BIEN-009');
+
+-- BIEN-010
+INSERT INTO SAE_Diagnostics VALUES ('DIA-028','DPE',TO_DATE('2022-06-05','YYYY-MM-DD'),TO_DATE('2032-06-05','YYYY-MM-DD'),'dpe010.pdf','BIEN-010');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-029','Électricité',TO_DATE('2022-06-10','YYYY-MM-DD'),TO_DATE('2032-06-10','YYYY-MM-DD'),'elec010.pdf','BIEN-010');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-030','Gaz',TO_DATE('2022-06-15','YYYY-MM-DD'),TO_DATE('2032-06-15','YYYY-MM-DD'),'gaz010.pdf','BIEN-010');
+
+-- BIEN-011
+INSERT INTO SAE_Diagnostics VALUES ('DIA-031','DPE',TO_DATE('2022-06-20','YYYY-MM-DD'),TO_DATE('2032-06-20','YYYY-MM-DD'),'dpe011.pdf','BIEN-011');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-032','Électricité',TO_DATE('2022-06-25','YYYY-MM-DD'),TO_DATE('2032-06-25','YYYY-MM-DD'),'elec011.pdf','BIEN-011');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-033','Gaz',TO_DATE('2022-06-30','YYYY-MM-DD'),TO_DATE('2032-06-30','YYYY-MM-DD'),'gaz011.pdf','BIEN-011');
+
+-- BIEN-012
+INSERT INTO SAE_Diagnostics VALUES ('DIA-034','DPE',TO_DATE('2022-07-05','YYYY-MM-DD'),TO_DATE('2032-07-05','YYYY-MM-DD'),'dpe012.pdf','BIEN-012');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-035','Électricité',TO_DATE('2022-07-10','YYYY-MM-DD'),TO_DATE('2032-07-10','YYYY-MM-DD'),'elec012.pdf','BIEN-012');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-036','Gaz',TO_DATE('2022-07-15','YYYY-MM-DD'),TO_DATE('2032-07-15','YYYY-MM-DD'),'gaz012.pdf','BIEN-012');
+
+-- BIEN-013
+INSERT INTO SAE_Diagnostics VALUES ('DIA-037','DPE',TO_DATE('2022-07-20','YYYY-MM-DD'),TO_DATE('2032-07-20','YYYY-MM-DD'),'dpe013.pdf','BIEN-013');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-038','Électricité',TO_DATE('2022-07-25','YYYY-MM-DD'),TO_DATE('2032-07-25','YYYY-MM-DD'),'elec013.pdf','BIEN-013');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-039','Gaz',TO_DATE('2022-07-30','YYYY-MM-DD'),TO_DATE('2032-07-30','YYYY-MM-DD'),'gaz013.pdf','BIEN-013');
+
+-- BIEN-014
+INSERT INTO SAE_Diagnostics VALUES ('DIA-040','DPE',TO_DATE('2022-08-05','YYYY-MM-DD'),TO_DATE('2032-08-05','YYYY-MM-DD'),'dpe014.pdf','BIEN-014');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-041','Électricité',TO_DATE('2022-08-10','YYYY-MM-DD'),TO_DATE('2032-08-10','YYYY-MM-DD'),'elec014.pdf','BIEN-014');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-042','Gaz',TO_DATE('2022-08-15','YYYY-MM-DD'),TO_DATE('2032-08-15','YYYY-MM-DD'),'gaz014.pdf','BIEN-014');
+
+-- BIEN-015
+INSERT INTO SAE_Diagnostics VALUES ('DIA-043','DPE',TO_DATE('2022-08-20','YYYY-MM-DD'),TO_DATE('2032-08-20','YYYY-MM-DD'),'dpe015.pdf','BIEN-015');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-044','Électricité',TO_DATE('2022-08-25','YYYY-MM-DD'),TO_DATE('2032-08-25','YYYY-MM-DD'),'elec015.pdf','BIEN-015');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-045','Gaz',TO_DATE('2022-08-30','YYYY-MM-DD'),TO_DATE('2032-08-30','YYYY-MM-DD'),'gaz015.pdf','BIEN-015');
+
+-- BIEN-016
+INSERT INTO SAE_Diagnostics VALUES ('DIA-046','DPE',TO_DATE('2022-09-05','YYYY-MM-DD'),TO_DATE('2032-09-05','YYYY-MM-DD'),'dpe016.pdf','BIEN-016');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-047','Électricité',TO_DATE('2022-09-10','YYYY-MM-DD'),TO_DATE('2032-09-10','YYYY-MM-DD'),'elec016.pdf','BIEN-016');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-048','Gaz',TO_DATE('2022-09-15','YYYY-MM-DD'),TO_DATE('2032-09-15','YYYY-MM-DD'),'gaz016.pdf','BIEN-016');
+
+-- BIEN-017
+INSERT INTO SAE_Diagnostics VALUES ('DIA-049','DPE',TO_DATE('2022-09-20','YYYY-MM-DD'),TO_DATE('2032-09-20','YYYY-MM-DD'),'dpe017.pdf','BIEN-017');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-050','Électricité',TO_DATE('2022-09-25','YYYY-MM-DD'),TO_DATE('2032-09-25','YYYY-MM-DD'),'elec017.pdf','BIEN-017');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-051','Gaz',TO_DATE('2022-09-30','YYYY-MM-DD'),TO_DATE('2032-09-30','YYYY-MM-DD'),'gaz017.pdf','BIEN-017');
+
+-- BIEN-018
+INSERT INTO SAE_Diagnostics VALUES ('DIA-052','DPE',TO_DATE('2022-10-05','YYYY-MM-DD'),TO_DATE('2032-10-05','YYYY-MM-DD'),'dpe018.pdf','BIEN-018');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-053','Électricité',TO_DATE('2022-10-10','YYYY-MM-DD'),TO_DATE('2032-10-10','YYYY-MM-DD'),'elec018.pdf','BIEN-018');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-054','Gaz',TO_DATE('2022-10-15','YYYY-MM-DD'),TO_DATE('2032-10-15','YYYY-MM-DD'),'gaz018.pdf','BIEN-018');
+
+-- BIEN-019
+INSERT INTO SAE_Diagnostics VALUES ('DIA-055','DPE',TO_DATE('2022-10-20','YYYY-MM-DD'),TO_DATE('2032-10-20','YYYY-MM-DD'),'dpe019.pdf','BIEN-019');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-056','Électricité',TO_DATE('2022-10-25','YYYY-MM-DD'),TO_DATE('2032-10-25','YYYY-MM-DD'),'elec019.pdf','BIEN-019');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-057','Gaz',TO_DATE('2022-10-30','YYYY-MM-DD'),TO_DATE('2032-10-30','YYYY-MM-DD'),'gaz019.pdf','BIEN-019');
 
 
 
@@ -672,22 +611,122 @@ INSERT INTO SAE_IRL (Annee, IRL) VALUES (2018,126.3);
 
 INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
     VALUES ('PAY-001',900,TO_DATE('2023-02-01','YYYY-MM-DD'),'CTR-001');
+
 INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
     VALUES ('PAY-002',750,TO_DATE('2023-03-01','YYYY-MM-DD'),'CTR-002');
+
 INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
     VALUES ('PAY-003',1100,TO_DATE('2023-01-01','YYYY-MM-DD'),'CTR-003');
+
 INSERT INTO SAE_Paiement(Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
     VALUES ('PAY-004',950,TO_DATE('2023-04-05','YYYY-MM-DD'),'CTR-004');
+
 INSERT INTO SAE_Paiement(Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
     VALUES ('PAY-005',700,TO_DATE('2023-06-01','YYYY-MM-DD'),'CTR-005');
+
 INSERT INTO SAE_Paiement(Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
     VALUES ('PAY-006',1050,TO_DATE('2023-10-01','YYYY-MM-DD'),'CTR-006');
-    
+
+INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
+    VALUES ('PAY-007',900,TO_DATE('2023-02-01','YYYY-MM-DD'),'CTR-007');
+
+INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
+    VALUES ('PAY-008',750,TO_DATE('2023-03-01','YYYY-MM-DD'),'CTR-008');
+
+INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
+    VALUES ('PAY-009',1100,TO_DATE('2023-01-01','YYYY-MM-DD'),'CTR-009');
+
+INSERT INTO SAE_Paiement(Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
+    VALUES ('PAY-010',950,TO_DATE('2023-04-05','YYYY-MM-DD'),'CTR-010');
+
+INSERT INTO SAE_Paiement(Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
+    VALUES ('PAY-011',700,TO_DATE('2023-06-01','YYYY-MM-DD'),'CTR-011');
+
+INSERT INTO SAE_Paiement(Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
+    VALUES ('PAY-012',1050,TO_DATE('2023-10-01','YYYY-MM-DD'),'CTR-012');
+
+INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
+    VALUES ('PAY-013',900,TO_DATE('2023-02-01','YYYY-MM-DD'),'CTR-013');
 
 
 
+INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
+    VALUES ('PAY-014',900,TO_DATE('2023-03-01','YYYY-MM-DD'),'CTR-001');
 
+INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
+    VALUES ('PAY-015',750,TO_DATE('2023-04-01','YYYY-MM-DD'),'CTR-002');
 
+INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
+    VALUES ('PAY-016',1100,TO_DATE('2023-02-01','YYYY-MM-DD'),'CTR-003');
+
+INSERT INTO SAE_Paiement(Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
+    VALUES ('PAY-017',950,TO_DATE('2023-05-05','YYYY-MM-DD'),'CTR-004');
+
+INSERT INTO SAE_Paiement(Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
+    VALUES ('PAY-018',700,TO_DATE('2023-07-01','YYYY-MM-DD'),'CTR-005');
+
+INSERT INTO SAE_Paiement(Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
+    VALUES ('PAY-019',1050,TO_DATE('2023-08-01','YYYY-MM-DD'),'CTR-006');
+
+INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
+    VALUES ('PAY-020',900,TO_DATE('2023-09-01','YYYY-MM-DD'),'CTR-007');
+
+INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
+    VALUES ('PAY-021',750,TO_DATE('2023-04-01','YYYY-MM-DD'),'CTR-008');
+
+INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
+    VALUES ('PAY-022',1100,TO_DATE('2023-02-01','YYYY-MM-DD'),'CTR-009');
+
+INSERT INTO SAE_Paiement(Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
+    VALUES ('PAY-023',950,TO_DATE('2023-05-05','YYYY-MM-DD'),'CTR-010');
+
+INSERT INTO SAE_Paiement(Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
+    VALUES ('PAY-024',700,TO_DATE('2023-07-01','YYYY-MM-DD'),'CTR-011');
+
+INSERT INTO SAE_Paiement(Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
+    VALUES ('PAY-025',1050,TO_DATE('2023-11-01','YYYY-MM-DD'),'CTR-012');
+
+INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
+    VALUES ('PAY-026',900,TO_DATE('2023-03-01','YYYY-MM-DD'),'CTR-013');
+
+INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
+    VALUES ('PAY-027',900,TO_DATE('2023-02-01','YYYY-MM-DD'),'CTR-001');
+
+INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
+    VALUES ('PAY-028',750,TO_DATE('2023-03-01','YYYY-MM-DD'),'CTR-002');
+
+INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
+    VALUES ('PAY-029',1100,TO_DATE('2023-01-01','YYYY-MM-DD'),'CTR-003');
+
+INSERT INTO SAE_Paiement(Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
+    VALUES ('PAY-030',950,TO_DATE('2023-04-05','YYYY-MM-DD'),'CTR-004');
+
+INSERT INTO SAE_Paiement(Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
+    VALUES ('PAY-031',700,TO_DATE('2023-06-01','YYYY-MM-DD'),'CTR-005');
+
+INSERT INTO SAE_Paiement(Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
+    VALUES ('PAY-032',1050,TO_DATE('2023-12-01','YYYY-MM-DD'),'CTR-006');
+
+INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
+    VALUES ('PAY-033',900,TO_DATE('2023-04-01','YYYY-MM-DD'),'CTR-007');
+
+INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
+    VALUES ('PAY-034',750,TO_DATE('2023-05-01','YYYY-MM-DD'),'CTR-008');
+
+INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
+    VALUES ('PAY-035',1100,TO_DATE('2023-03-01','YYYY-MM-DD'),'CTR-009');
+
+INSERT INTO SAE_Paiement(Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
+    VALUES ('PAY-036',950,TO_DATE('2023-06-05','YYYY-MM-DD'),'CTR-010');
+
+INSERT INTO SAE_Paiement(Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
+    VALUES ('PAY-037',700,TO_DATE('2023-08-01','YYYY-MM-DD'),'CTR-011');
+
+INSERT INTO SAE_Paiement(Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
+    VALUES ('PAY-038',1050,TO_DATE('2023-12-01','YYYY-MM-DD'),'CTR-012');
+
+INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
+    VALUES ('PAY-039',900,TO_DATE('2023-04-01','YYYY-MM-DD'),'CTR-013');
 
 
 
@@ -709,23 +748,22 @@ INSERT INTO SAE_Paiement(Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contr
 
 ----------------------------------------------------------------------------------------------------------------
 INSERT INTO SAE_Assurance (Numero_d_assurance, Prime, Montant, Type_assurance, Agence, Adresse_agence, Tel_agence, fk_Adresse)
- VALUES ('ASS-001',200,120,'Habitation','AXA','12 Rue Blanche','0145002001','BAT-001');
+ VALUES ('ASS-001',200,120,'Habitation','AXA','12 Rue Blanche','0145002001','20 Chemin La Fayette');
 
 INSERT INTO SAE_Assurance (Numero_d_assurance, Prime, Montant, Type_assurance, Agence, Adresse_agence, Tel_agence, fk_Adresse)
- VALUES ('ASS-002',250,140,'Locataire','MAIF','8 Rue des Arts','0145203001','BAT-002');
+ VALUES ('ASS-002',250,140,'Locataire','MAIF','8 Rue des Arts','0145203001','31 Rue de la Paix');
 
 INSERT INTO SAE_Assurance (Numero_d_assurance, Prime, Montant, Type_assurance, Agence, Adresse_agence, Tel_agence, fk_Adresse)
- VALUES ('ASS-003',300,160,'Propriétaire','Groupama','5 Rue du Moulin','0145304001','BAT-003');
+ VALUES ('ASS-003',300,160,'Propriétaire','Groupama','5 Rue du Moulin','0145304001','15 Allée de la Gare');
 
 INSERT INTO SAE_Assurance (Numero_d_assurance, Prime, Montant, Type_assurance, Agence, Adresse_agence, Tel_agence, fk_Adresse)
- VALUES ('ASS-004',180,100,'Incendie','Allianz','3 Rue Verte','0145506001','BAT-004');
+ VALUES ('ASS-004',180,100,'Incendie','Allianz','3 Rue Verte','0145506001','7 Rue de la Croix');
 
 INSERT INTO SAE_Assurance (Numero_d_assurance, Prime, Montant, Type_assurance, Agence, Adresse_agence, Tel_agence, fk_Adresse)
- VALUES ('ASS-005',220,130,'Multirisque','AXA','15 Avenue Est','0145607001','BAT-005'); 
+ VALUES ('ASS-005',220,130,'Multirisque','AXA','15 Avenue Est','0145607001','24 Impasse des tomates'); 
 
 INSERT INTO SAE_Assurance (Numero_d_assurance, Prime, Montant, Type_assurance, Agence, Adresse_agence, Tel_agence, fk_Adresse)
- VALUES ('ASS-006',240,150,'Habitation','MAIF','9 Rue Royale','0145708001','BAT-006');
-
+ VALUES ('ASS-006',240,150,'Habitation','MAIF','9 Rue Royale','0145708001','26 Chemin des pissenlits');
 
 
 
@@ -754,38 +792,138 @@ INSERT INTO SAE_Assurance (Numero_d_assurance, Prime, Montant, Type_assurance, A
 INSERT INTO SAE_Compteur (Id_Compteur,Partie_Fixe, Partie_Variable, Total, TypeCompteur, Date_Installation,
  Index_ancien, Index_nouveau, fk_Id_BienLouable)
  VALUES ('COMP-001',30,12,42,'Eau',TO_DATE('2019-01-01','YYYY-MM-DD'),100,120,'BIEN-001');
- INSERT INTO SAE_Compteur VALUES ('COMP-014',48,22,70,'Électricité',TO_DATE('2018-05-15','YYYY-MM-DD'),125,150,'BIEN-001');
-INSERT INTO SAE_Compteur VALUES ('COMP-015',33,18,51,'Gaz',TO_DATE('2019-02-11','YYYY-MM-DD'),510,545,'BIEN-001');
+ 
+ INSERT INTO SAE_Compteur (Id_Compteur,Partie_Fixe, Partie_Variable, Total, TypeCompteur, Date_Installation,
+ Index_ancien, Index_nouveau, fk_Id_BienLouable)
+ VALUES ('COMP-014',48,22,70,'Électricité',TO_DATE('2018-05-15','YYYY-MM-DD'),125,150,'BIEN-001');
+
+INSERT INTO SAE_Compteur (Id_Compteur,Partie_Fixe, Partie_Variable, Total, TypeCompteur, Date_Installation,
+ Index_ancien, Index_nouveau, fk_Id_BienLouable)
+ VALUES ('COMP-015',33,18,51,'Gaz',TO_DATE('2019-02-11','YYYY-MM-DD'),510,545,'BIEN-001');
+
+
 
 INSERT INTO SAE_Compteur (Id_Compteur,Partie_Fixe, Partie_Variable, Total, TypeCompteur, Date_Installation,
  Index_ancien, Index_nouveau, fk_Id_BienLouable)
  VALUES ('COMP-002',40,18,58,'Électricité',TO_DATE('2020-05-12','YYYY-MM-DD'),2300,2350,'BIEN-002');
-INSERT INTO SAE_Compteur VALUES ('COMP-016',28,9,37,'Eau',TO_DATE('2017-07-01','YYYY-MM-DD'),300,320,'BIEN-002');
-INSERT INTO SAE_Compteur VALUES ('COMP-017',30,12,42,'Gaz',TO_DATE('2019-10-22','YYYY-MM-DD'),560,600,'BIEN-002');
+INSERT INTO SAE_Compteur (Id_Compteur,Partie_Fixe, Partie_Variable, Total, TypeCompteur, Date_Installation,
+ Index_ancien, Index_nouveau, fk_Id_BienLouable)
+  VALUES ('COMP-016',28,9,37,'Eau',TO_DATE('2017-07-01','YYYY-MM-DD'),300,320,'BIEN-002');
+INSERT INTO SAE_Compteur (Id_Compteur,Partie_Fixe, Partie_Variable, Total, TypeCompteur, Date_Installation,
+ Index_ancien, Index_nouveau, fk_Id_BienLouable)
+ VALUES ('COMP-017',30,12,42,'Gaz',TO_DATE('2019-10-22','YYYY-MM-DD'),560,600,'BIEN-002');
+
+
 
 INSERT INTO SAE_Compteur (Id_Compteur,Partie_Fixe, Partie_Variable, Total, TypeCompteur, Date_Installation,
  Index_ancien, Index_nouveau, fk_Id_BienLouable)
  VALUES ('COMP-003',35,20,55,'Gaz',TO_DATE('2018-08-08','YYYY-MM-DD'),500,540,'BIEN-003');
- INSERT INTO SAE_Compteur VALUES ('COMP-018',40,16,56,'Eau',TO_DATE('2018-05-09','YYYY-MM-DD'),350,380,'BIEN-003');
-INSERT INTO SAE_Compteur VALUES ('COMP-019',55,25,80,'Électricité',TO_DATE('2020-01-15','YYYY-MM-DD'),1800,1850,'BIEN-003');
+ 
+ INSERT INTO SAE_Compteur (Id_Compteur,Partie_Fixe, Partie_Variable, Total, TypeCompteur, Date_Installation,
+ Index_ancien, Index_nouveau, fk_Id_BienLouable)
+  VALUES ('COMP-018',40,16,56,'Eau',TO_DATE('2018-05-09','YYYY-MM-DD'),350,380,'BIEN-003');
+
+INSERT INTO SAE_Compteur (Id_Compteur,Partie_Fixe, Partie_Variable, Total, TypeCompteur, Date_Installation,
+ Index_ancien, Index_nouveau, fk_Id_BienLouable)
+ VALUES ('COMP-019',55,25,80,'Électricité',TO_DATE('2020-01-15','YYYY-MM-DD'),1800,1850,'BIEN-003');
+
 
 INSERT INTO SAE_Compteur (Id_Compteur,Partie_Fixe, Partie_Variable, Total, TypeCompteur, Date_Installation,
  Index_ancien, Index_nouveau, fk_Id_BienLouable)
  VALUES ('COMP-004',45,15,60,'Eau',TO_DATE('2021-02-02','YYYY-MM-DD'),300,320,'BIEN-004');
- INSERT INTO SAE_Compteur VALUES ('COMP-020',47,21,68,'Électricité',TO_DATE('2021-04-04','YYYY-MM-DD'),390,430,'BIEN-004');
-INSERT INTO SAE_Compteur VALUES ('COMP-021',32,14,46,'Gaz',TO_DATE('2022-06-06','YYYY-MM-DD'),600,650,'BIEN-004');
+
+ INSERT INTO SAE_Compteur (Id_Compteur,Partie_Fixe, Partie_Variable, Total, TypeCompteur, Date_Installation,
+ Index_ancien, Index_nouveau, fk_Id_BienLouable)
+ VALUES ('COMP-020',47,21,68,'Électricité',TO_DATE('2021-04-04','YYYY-MM-DD'),390,430,'BIEN-004');
+
+INSERT INTO SAE_Compteur (Id_Compteur,Partie_Fixe, Partie_Variable, Total, TypeCompteur, Date_Installation,
+ Index_ancien, Index_nouveau, fk_Id_BienLouable)
+ VALUES ('COMP-021',32,14,46,'Gaz',TO_DATE('2022-06-06','YYYY-MM-DD'),600,650,'BIEN-004');
+
+
 
 INSERT INTO SAE_Compteur (Id_Compteur,Partie_Fixe, Partie_Variable, Total, TypeCompteur, Date_Installation,
  Index_ancien, Index_nouveau, fk_Id_BienLouable)
  VALUES ('COMP-005',50,25,75,'Électricité',TO_DATE('2020-09-17','YYYY-MM-DD'),800,850,'BIEN-005');
- INSERT INTO SAE_Compteur VALUES ('COMP-022',18,7,25,'Eau',TO_DATE('2020-11-10','YYYY-MM-DD'),135,150,'BIEN-005');
-INSERT INTO SAE_Compteur VALUES ('COMP-023',27,11,38,'Gaz',TO_DATE('2021-09-14','YYYY-MM-DD'),480,520,'BIEN-005');
+ 
+ INSERT INTO SAE_Compteur (Id_Compteur,Partie_Fixe, Partie_Variable, Total, TypeCompteur, Date_Installation,
+ Index_ancien, Index_nouveau, fk_Id_BienLouable)
+ VALUES ('COMP-022',18,7,25,'Eau',TO_DATE('2020-11-10','YYYY-MM-DD'),135,150,'BIEN-005');
+
+INSERT INTO SAE_Compteur (Id_Compteur,Partie_Fixe, Partie_Variable, Total, TypeCompteur, Date_Installation,
+ Index_ancien, Index_nouveau, fk_Id_BienLouable)
+VALUES ('COMP-023',27,11,38,'Gaz',TO_DATE('2021-09-14','YYYY-MM-DD'),480,520,'BIEN-005');
+
+
 
 INSERT INTO SAE_Compteur (Id_Compteur,Partie_Fixe, Partie_Variable, Total, TypeCompteur, Date_Installation,
  Index_ancien, Index_nouveau, fk_Id_BienLouable)
  VALUES ('COMP-006',38,17,55,'Gaz',TO_DATE('2022-03-10','YYYY-MM-DD'),1000,1060,'BIEN-006');
- INSERT INTO SAE_Compteur VALUES ('COMP-024',36,15,51,'Eau',TO_DATE('2018-02-15','YYYY-MM-DD'),250,280,'BIEN-006');
-INSERT INTO SAE_Compteur VALUES ('COMP-025',52,26,78,'Électricité',TO_DATE('2021-03-03','YYYY-MM-DD'),900,950,'BIEN-006');
+
+ INSERT INTO SAE_Compteur(Id_Compteur,Partie_Fixe, Partie_Variable, Total, TypeCompteur, Date_Installation,
+ Index_ancien, Index_nouveau, fk_Id_BienLouable)
+  VALUES ('COMP-024',36,15,51,'Eau',TO_DATE('2018-02-15','YYYY-MM-DD'),250,280,'BIEN-006');
+
+INSERT INTO SAE_Compteur(Id_Compteur,Partie_Fixe, Partie_Variable, Total, TypeCompteur, Date_Installation,
+ Index_ancien, Index_nouveau, fk_Id_BienLouable)
+ VALUES ('COMP-025',52,26,78,'Électricité',TO_DATE('2021-03-03','YYYY-MM-DD'),900,950,'BIEN-006');
+
+
+ INSERT INTO SAE_Compteur VALUES ('COMP-026',40,19,59,'Électricité',TO_DATE('2021-10-21','YYYY-MM-DD'),500,545,'BIEN-007');
+INSERT INTO SAE_Compteur VALUES ('COMP-027',22,9,31,'Eau',TO_DATE('2019-06-09','YYYY-MM-DD'),150,172,'BIEN-007');
+INSERT INTO SAE_Compteur VALUES ('COMP-028',34,16,50,'Gaz',TO_DATE('2020-02-13','YYYY-MM-DD'),360,395,'BIEN-007');
+
+
+INSERT INTO SAE_Compteur VALUES ('COMP-029',47,23,70,'Électricité',TO_DATE('2020-11-30','YYYY-MM-DD'),820,870,'BIEN-008');
+INSERT INTO SAE_Compteur VALUES ('COMP-030',21,8,29,'Eau',TO_DATE('2017-09-08','YYYY-MM-DD'),110,130,'BIEN-008');
+INSERT INTO SAE_Compteur VALUES ('COMP-031',32,12,44,'Gaz',TO_DATE('2019-05-16','YYYY-MM-DD'),280,320,'BIEN-008');
+
+INSERT INTO SAE_Compteur VALUES ('COMP-032',52,26,78,'Électricité',TO_DATE('2021-03-15','YYYY-MM-DD'),900,960,'BIEN-009');
+INSERT INTO SAE_Compteur VALUES ('COMP-033',24,11,35,'Eau',TO_DATE('2020-06-10','YYYY-MM-DD'),200,225,'BIEN-009');
+INSERT INTO SAE_Compteur VALUES ('COMP-034',38,18,56,'Gaz',TO_DATE('2018-08-25','YYYY-MM-DD'),500,540,'BIEN-009');
+
+
+INSERT INTO SAE_Compteur VALUES ('COMP-035',46,21,67,'Électricité',TO_DATE('2019-10-10','YYYY-MM-DD'),650,700,'BIEN-010');
+INSERT INTO SAE_Compteur VALUES ('COMP-036',26,12,38,'Eau',TO_DATE('2020-02-03','YYYY-MM-DD'),170,200,'BIEN-010');
+INSERT INTO SAE_Compteur VALUES ('COMP-037',37,16,53,'Gaz',TO_DATE('2021-09-12','YYYY-MM-DD'),450,490,'BIEN-010');
+
+INSERT INTO SAE_Compteur VALUES ('COMP-038',49,23,72,'Électricité',TO_DATE('2021-04-18','YYYY-MM-DD'),720,780,'BIEN-011');
+INSERT INTO SAE_Compteur VALUES ('COMP-039',27,11,38,'Eau',TO_DATE('2019-07-22','YYYY-MM-DD'),210,235,'BIEN-011');
+INSERT INTO SAE_Compteur VALUES ('COMP-040',39,17,56,'Gaz',TO_DATE('2020-11-03','YYYY-MM-DD'),520,560,'BIEN-011');
+
+INSERT INTO SAE_Compteur VALUES ('COMP-041',44,19,63,'Électricité',TO_DATE('2020-05-14','YYYY-MM-DD'),680,730,'BIEN-012');
+INSERT INTO SAE_Compteur VALUES ('COMP-042',23,10,33,'Eau',TO_DATE('2018-09-11','YYYY-MM-DD'),160,185,'BIEN-012');
+INSERT INTO SAE_Compteur VALUES ('COMP-043',35,14,49,'Gaz',TO_DATE('2019-12-07','YYYY-MM-DD'),390,430,'BIEN-012');
+
+INSERT INTO SAE_Compteur VALUES ('COMP-044',51,25,76,'Électricité',TO_DATE('2021-08-29','YYYY-MM-DD'),840,900,'BIEN-013');
+INSERT INTO SAE_Compteur VALUES ('COMP-045',28,12,40,'Eau',TO_DATE('2019-01-25','YYYY-MM-DD'),230,260,'BIEN-013');
+INSERT INTO SAE_Compteur VALUES ('COMP-046',36,15,51,'Gaz',TO_DATE('2020-03-22','YYYY-MM-DD'),420,455,'BIEN-013');
+
+INSERT INTO SAE_Compteur VALUES ('COMP-047',43,20,63,'Électricité',TO_DATE('2019-12-03','YYYY-MM-DD'),710,755,'BIEN-014');
+INSERT INTO SAE_Compteur VALUES ('COMP-048',24,9,33,'Eau',TO_DATE('2020-04-19','YYYY-MM-DD'),180,205,'BIEN-014');
+INSERT INTO SAE_Compteur VALUES ('COMP-049',34,13,47,'Gaz',TO_DATE('2018-11-14','YYYY-MM-DD'),310,345,'BIEN-014');
+
+INSERT INTO SAE_Compteur VALUES ('COMP-050',48,22,70,'Électricité',TO_DATE('2021-03-12','YYYY-MM-DD'),760,815,'BIEN-015');
+INSERT INTO SAE_Compteur VALUES ('COMP-051',25,11,36,'Eau',TO_DATE('2019-06-07','YYYY-MM-DD'),195,220,'BIEN-015');
+INSERT INTO SAE_Compteur VALUES ('COMP-052',37,17,54,'Gaz',TO_DATE('2020-09-09','YYYY-MM-DD'),470,510,'BIEN-015');
+
+INSERT INTO SAE_Compteur VALUES ('COMP-053',46,21,67,'Électricité',TO_DATE('2018-04-30','YYYY-MM-DD'),640,690,'BIEN-016');
+INSERT INTO SAE_Compteur VALUES ('COMP-054',22,10,32,'Eau',TO_DATE('2017-10-10','YYYY-MM-DD'),150,172,'BIEN-016');
+INSERT INTO SAE_Compteur VALUES ('COMP-055',33,14,47,'Gaz',TO_DATE('2019-05-05','YYYY-MM-DD'),340,375,'BIEN-016');
+
+INSERT INTO SAE_Compteur VALUES ('COMP-056',52,26,78,'Électricité',TO_DATE('2020-12-01','YYYY-MM-DD'),880,940,'BIEN-017');
+INSERT INTO SAE_Compteur VALUES ('COMP-057',29,12,41,'Eau',TO_DATE('2019-04-02','YYYY-MM-DD'),260,290,'BIEN-017');
+INSERT INTO SAE_Compteur VALUES ('COMP-058',38,16,54,'Gaz',TO_DATE('2021-07-08','YYYY-MM-DD'),510,550,'BIEN-017');
+
+INSERT INTO SAE_Compteur VALUES ('COMP-059',45,20,65,'Électricité',TO_DATE('2021-09-14','YYYY-MM-DD'),700,750,'BIEN-018');
+INSERT INTO SAE_Compteur VALUES ('COMP-060',21,9,30,'Eau',TO_DATE('2018-08-08','YYYY-MM-DD'),140,165,'BIEN-018');
+INSERT INTO SAE_Compteur VALUES ('COMP-061',31,12,43,'Gaz',TO_DATE('2019-02-28','YYYY-MM-DD'),320,350,'BIEN-018');
+
+INSERT INTO SAE_Compteur VALUES ('COMP-062',49,24,73,'Électricité',TO_DATE('2020-07-07','YYYY-MM-DD'),780,835,'BIEN-019');
+INSERT INTO SAE_Compteur VALUES ('COMP-063',27,10,37,'Eau',TO_DATE('2019-10-17','YYYY-MM-DD'),210,235,'BIEN-019');
+INSERT INTO SAE_Compteur VALUES ('COMP-064',36,15,51,'Gaz',TO_DATE('2021-02-11','YYYY-MM-DD'),430,470,'BIEN-019');
+
+
 
 
 
@@ -886,8 +1024,63 @@ INSERT INTO SAE_Facture (Numero_Facture, Montant, Date_de_facture, Compte_Bancai
  VALUES ('FAC-006',950,TO_DATE('2023-05-22','YYYY-MM-DD'),'FR210067009988',900,TO_DATE('2023-05-29','YYYY-MM-DD'),'Travaux peinture','BIEN-006','SIRET006');
 
 
+INSERT INTO SAE_Facture VALUES 
+('FAC-007',180,TO_DATE('2023-07-10','YYYY-MM-DD'),'FR761234567891',160,TO_DATE('2023-07-15','YYYY-MM-DD'),
+ 'Dépannage fuite sous évier','BIEN-001','SIRET001');
+
+INSERT INTO SAE_Facture VALUES
+('FAC-008',520,TO_DATE('2023-09-05','YYYY-MM-DD'),'FR761234567892',500,TO_DATE('2023-09-12','YYYY-MM-DD'),
+ 'Remplacement colonne d’évacuation','BIEN-003','SIRET001');
 
 
+INSERT INTO SAE_Facture VALUES
+('FAC-009',260,TO_DATE('2023-06-22','YYYY-MM-DD'),'FR098765432101',240,TO_DATE('2023-06-30','YYYY-MM-DD'),
+ 'Remplacement disjoncteur','BIEN-002','SIRET002');
+
+INSERT INTO SAE_Facture VALUES
+('FAC-010',680,TO_DATE('2023-08-18','YYYY-MM-DD'),'FR098765432102',650,TO_DATE('2023-08-25','YYYY-MM-DD'),
+ 'Mise aux normes tableau électrique','BIEN-006','SIRET002');
+
+
+INSERT INTO SAE_Facture VALUES
+('FAC-011',2100,TO_DATE('2023-10-01','YYYY-MM-DD'),'FR230045678902',2000,TO_DATE('2023-10-18','YYYY-MM-DD'),
+ 'Rénovation salle de bains','BIEN-003','SIRET003');
+
+INSERT INTO SAE_Facture VALUES
+('FAC-012',980,TO_DATE('2023-11-12','YYYY-MM-DD'),'FR230045678903',950,TO_DATE('2023-11-20','YYYY-MM-DD'),
+ 'Travaux de menuiserie intérieure','BIEN-005','SIRET003');
+
+
+INSERT INTO SAE_Facture VALUES
+('FAC-013',320,TO_DATE('2023-03-28','YYYY-MM-DD'),'FR560123980002',300,TO_DATE('2023-04-02','YYYY-MM-DD'),
+ 'Révision annuelle chaudière','BIEN-004','SIRET004');
+
+INSERT INTO SAE_Facture VALUES
+('FAC-014',1050,TO_DATE('2023-12-01','YYYY-MM-DD'),'FR560123980003',1000,TO_DATE('2023-12-10','YYYY-MM-DD'),
+ 'Installation radiateurs thermostatiques','BIEN-006','SIRET004');
+
+
+INSERT INTO SAE_Facture VALUES
+('FAC-015',310,TO_DATE('2023-07-02','YYYY-MM-DD'),'FR670098123457',290,TO_DATE('2023-07-08','YYYY-MM-DD'),
+ 'Recharge gaz clim','BIEN-005','SIRET005');
+
+INSERT INTO SAE_Facture VALUES
+('FAC-016',1350,TO_DATE('2023-09-25','YYYY-MM-DD'),'FR670098123458',1300,TO_DATE('2023-10-03','YYYY-MM-DD'),
+ 'Installation clim split','BIEN-001','SIRET005');
+
+
+INSERT INTO SAE_Facture VALUES
+('FAC-017',480,TO_DATE('2023-04-14','YYYY-MM-DD'),'FR210067009989',450,TO_DATE('2023-04-21','YYYY-MM-DD'),
+ 'Peinture chambre et salon','BIEN-002','SIRET006');
+
+INSERT INTO SAE_Facture VALUES
+('FAC-018',1270,TO_DATE('2023-10-06','YYYY-MM-DD'),'FR210067009990',1200,TO_DATE('2023-10-17','YYYY-MM-DD'),
+ 'Rafraîchissement complet appartement','BIEN-005','SIRET006');
+
+
+
+------------------------------------^ A REVOIR ^-----^ A REVOIR ^-----^ A REVOIR ^-----^ A REVOIR ^-----^ A REVOIR ^-----^ A REVOIR ^-----------------------------
+-----------------------------------EN METTRE PLUSIEURS PAR ENTREPRISES
 
 
 
@@ -928,6 +1121,23 @@ INSERT INTO SAE_Contrat_Locataire (Id_Locataire, Numero_de_contrat)
 INSERT INTO SAE_Contrat_Locataire (Id_Locataire, Numero_de_contrat)
  VALUES ('LOC-006','CTR-006');
 
- ------------------------------------^ A REVOIR ^-----^ A REVOIR ^-----^ A REVOIR ^-----^ A REVOIR ^-----^ A REVOIR ^-----^ A REVOIR ^-----------------------------
+ INSERT INTO SAE_Contrat_Locataire (Id_Locataire, Numero_de_contrat)
+ VALUES ('LOC-007','CTR-007');
 
--------------------------- IL FAUT MODIFIER LES LOCATAIRES ASSOCIES AUX CONTRATS
+INSERT INTO SAE_Contrat_Locataire (Id_Locataire, Numero_de_contrat)
+ VALUES ('LOC-008','CTR-008');
+
+INSERT INTO SAE_Contrat_Locataire (Id_Locataire, Numero_de_contrat)
+ VALUES ('LOC-009','CTR-009');
+
+INSERT INTO SAE_Contrat_Locataire (Id_Locataire, Numero_de_contrat)
+ VALUES ('LOC-010','CTR-010');
+
+INSERT INTO SAE_Contrat_Locataire (Id_Locataire, Numero_de_contrat)
+ VALUES ('LOC-011','CTR-011');
+
+INSERT INTO SAE_Contrat_Locataire (Id_Locataire, Numero_de_contrat)
+ VALUES ('LOC-012','CTR-012');
+
+INSERT INTO SAE_Contrat_Locataire (Id_Locataire, Numero_de_contrat)
+ VALUES ('LOC-013','CTR-013');

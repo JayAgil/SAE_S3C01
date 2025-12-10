@@ -1,6 +1,4 @@
 package modele.dao;
-
-import java.sql.Date;
 import java.sql.ResultSet;
 import modele.dao.requetes.*;
 import java.sql.SQLException;
@@ -52,8 +50,10 @@ public class DaoBienLouable extends DaoModele<BienLouable> implements Dao<BienLo
 		DaoBatiment daoBat = new DaoBatiment();
 		Batiment b = daoBat.findById(a);
 		String id = curseur.getString(7);
+		DaoBienLouable daoBl = new DaoBienLouable();
+		BienLouable bl = daoBl.findById(id);
 		
-		return new BienLouable(id_bienLouable,numFiscale,adresse,surface,nbPieces,typeBienLouable, b, id);
+		return new BienLouable(id_bienLouable,numFiscale,adresse,surface,nbPieces,typeBienLouable, b,bl );
 	}
 
 }

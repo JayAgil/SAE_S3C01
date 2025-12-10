@@ -11,8 +11,8 @@ import modele.ChargesGenerales;
 public class DaoChargesGenerales extends DaoModele<ChargesGenerales>implements Dao<ChargesGenerales> {
 
 	@Override
-	public void create(ChargesGenerales t) {
-		DaoTest.insertChargesGenerales(t);
+	public int create(ChargesGenerales t) throws SQLException {
+		return miseAJour(new RequeteInsertChargeGenerale(), t);
 		
 	}
 
@@ -44,10 +44,11 @@ public class DaoChargesGenerales extends DaoModele<ChargesGenerales>implements D
 		double montant = curseur.getDouble(3);
 		float pourcentage = curseur.getFloat(4);
 		double quotite = curseur.getDouble(5);
-		String id = curseur.getString(6);
+		String mois = curseur.getString(6);
+		String id = curseur.getString(7);
 		DaoBienLouable daoBL = new DaoBienLouable();
 		BienLouable bl = daoBL.findById(id);
-		return new ChargesGenerales(id_ChargesGenerale,type,montant,pourcentage,quotite,bl);
+		return new ChargesGenerales(id_ChargesGenerale,type,montant,pourcentage,quotite,mois,bl);
 	}
 
 }

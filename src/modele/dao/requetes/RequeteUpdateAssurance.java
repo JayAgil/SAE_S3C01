@@ -8,7 +8,7 @@ import modele.Assurance;
 public class RequeteUpdateAssurance extends Requete<Assurance> {
 	@Override
 	public String requete() {
-		return "UPDATE SAE_Assurance " + "SET Prime = ?, " + "Montant = ?, " + "Type_assurance = ?, "
+		return "UPDATE MSF5131A.SAE_ASSURANCE " + "SET Prime = ?, " + "Montant = ?, " + "Type_assurance = ?, "
 				+ "Agence = ?, " + "Adresse_agence = ?, " + "Tel_agence = ?, " + "WHERE Numero_d_assurance = ?";
 	}
 

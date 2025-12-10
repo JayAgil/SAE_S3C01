@@ -10,7 +10,7 @@ public class RequeteInsertBatiment extends Requete<Batiment> {
 	@Override
 	public String requete() {
 		// TODO Auto-generated method stub
-		return "INSERT INTO SAE_BATIMENT VALUES (?,?)";
+		return "INSERT INTO MSF5131A.SAE_Batiment VALUES (?,?)";
 	}
 	
 	@Override

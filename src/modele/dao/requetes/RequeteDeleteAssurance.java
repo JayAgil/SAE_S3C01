@@ -8,7 +8,7 @@ import modele.Assurance;
 public class RequeteDeleteAssurance extends Requete<Assurance>{
 	
 	public String requete() {
-		return " Delete from Assurance where Numero_d_assurance = ? " ;
+		return " Delete from MSF5131A.SAE_Assurance  where Numero_d_assurance = ? " ;
 		
 	}
 
@@ -16,8 +16,5 @@ public class RequeteDeleteAssurance extends Requete<Assurance>{
 		prSt.setString(1, id[0]);
 	}
 
-	public void parametres(PreparedStatement prSt, Assurance donnee) {
-		
-	}
 
 }

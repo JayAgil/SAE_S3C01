@@ -11,12 +11,12 @@ import modele.dao.requetes.*;
 
 public class DaoPaiement extends DaoModele<Paiement> implements Dao<Paiement> {
 
-	public void create(Paiement t) {
-		DaoTest.insertPaiement(t);
+	public int create(Paiement t) throws SQLException {
+		return miseAJour(new RequeteInsertPaiement(), t);	
 	}
 
-	public void update(Paiement t) {
-		DaoTest.updatePaiement(t);
+	public int update(Paiement t) throws SQLException {
+		return miseAJour(new RequeteUpdatePaiement(), t);
 	}
 
 	public int delete(Paiement t) throws SQLException {

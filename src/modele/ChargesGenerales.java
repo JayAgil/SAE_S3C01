@@ -9,19 +9,27 @@ public class ChargesGenerales {
 	private double montant;
 	private float pourcentage;
 	private double quotite;
+	private String mois;
 	private BienLouable bienLouable;
 	
 	public ChargesGenerales(String idChargesGenerales, String typeCharge, double montant, float pourcentage,
-			double quotite, BienLouable bienLouable) {
+			double quotite,String mois, BienLouable bienLouable) {
 		super();
 		this.idChargesGenerales = idChargesGenerales;
 		this.typeCharge = typeCharge;
 		this.montant = montant;
 		this.pourcentage = pourcentage;
 		this.quotite = quotite;
+		this.mois = mois;
 		this.bienLouable = bienLouable;
 	}
-	
+	public String getMois() {
+		return mois;
+	}
+
+	public void setMois(String mois) {
+		this.mois = mois;
+	}
 	public BienLouable getBienLouable() {
 		return bienLouable;
 	}

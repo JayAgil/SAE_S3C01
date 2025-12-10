@@ -11,9 +11,9 @@ public class BienLouable {
 	private int nbPieces;
 	private String typeBienLouable;
 	private Batiment batiment;
-	private String bienLouableLie;
+	private BienLouable bienLouableLie;
 	public BienLouable(String idBienLouable, String numeroFiscale, String adresse, double surfaceHabituable,
-			int nbPieces, String typeBienLouable, Batiment batiment, String l) {
+			int nbPieces, String typeBienLouable, Batiment batiment, BienLouable bl) {
 		this.idBienLouable = idBienLouable;
 		this.numeroFiscale = numeroFiscale;
 		this.adresse = adresse;
@@ -21,12 +21,12 @@ public class BienLouable {
 		this.nbPieces = nbPieces;
 		this.typeBienLouable = typeBienLouable;
 		this.batiment = batiment;
-		this.bienLouableLie = l;
+		this.bienLouableLie = bl;
 	}
-	public String getLogement() {
+	public BienLouable getLogement() {
 		return bienLouableLie;
 	}
-	public void setLogement(String logement) {
+	public void setLogement(BienLouable logement) {
 		bienLouableLie = logement;
 	}
 	public Batiment getBatiment() {
@@ -110,9 +110,34 @@ public class BienLouable {
 	}
 	
 	public boolean verifParent() {
-		if(this.getTypeBienLouable() == "Appartement" || this.getTypeBienLouable() == "Studio" || this.getTypeBienLouable() == "Maison") {
-			return this.idBienLouable
-		}
+		
+	    if (this.bienLouableLie == null) {
+	        return false; 
+	    }
+	    
+	    String typeA = this.typeBienLouable;
+	    String typeB = this.bienLouableLie.getTypeBienLouable();
+	    
+	    boolean aIsLogement = typeA.equalsIgnoreCase("Appartement") ||
+	                          typeA.equalsIgnoreCase("Studio") ||
+	                          typeA.equalsIgnoreCase("Maison");
+
+	    boolean bIsLogement = typeB.equalsIgnoreCase("Appartement") ||
+	                          typeB.equalsIgnoreCase("Studio") ||
+	                          typeB.equalsIgnoreCase("Maison");
+	    
+	    boolean aIsGarage = typeA.equalsIgnoreCase("Garage");
+	    boolean bIsGarage = typeB.equalsIgnoreCase("Garage");
+	    
+	    if (aIsLogement && bIsGarage) { 
+	    	return true;
+	    }
+	    if (aIsGarage && bIsLogement) {
+	    	return true;
+	    }
+	    
+	    return false;
 	}
+
 	
 }
