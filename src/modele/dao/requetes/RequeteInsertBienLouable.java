@@ -15,7 +15,7 @@ public class RequeteInsertBienLouable extends Requete<BienLouable> {
 	
 	@Override
     public void parametres(PreparedStatement ps, BienLouable b) throws SQLException {
-		 ps.setString(1, b.getIdBienLouable());          
+		 	ps.setString(1, b.getIdBienLouable());          
 		    ps.setString(2, b.getNumeroFiscale());          
 		    ps.setString(3, b.getAdresse());                
 		    ps.setDouble(4, b.getSurfaceHabituable());       
