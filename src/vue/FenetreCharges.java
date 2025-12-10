@@ -199,10 +199,12 @@ public class FenetreCharges extends FenetreBase {
 	    JPanel panel_3 = new JPanel();
 	    panel_3.setBorder(new TitledBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)), "Charges Moyen Par Bien", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
 	    panel.add(panel_3);
+	    panel_3.setLayout(new BorderLayout(0, 0));
 	    
 	    JLabel lblNewLabel = new JLabel("\r\n238");
+	    lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 	    lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 99));
-	    panel_3.add(lblNewLabel);
+	    panel_3.add(lblNewLabel, BorderLayout.CENTER);
 
 	    // Bottom panel for buttons
 	    JPanel buttonPanel = new JPanel();
