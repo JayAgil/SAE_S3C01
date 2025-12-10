@@ -10,19 +10,13 @@ import modele.IRL;
 public class DaoIRL extends DaoModele<IRL> implements Dao<IRL> {
 
 	@Override
-	public void create(IRL t) {
-		DaoTest.insertIRL(t);
-	}
-
-	@Override
-	public void update(IRL t) {
-		DaoTest.updateIRL(t);
-
+	public int create(IRL t) throws SQLException {
+		return this.miseAJour(new RequeteInsertIRL(), t);
 	}
 
 	@Override
 	public int delete(IRL t) throws SQLException {
-		return this.miseAJour(new RequeteDeleteIRL(), t);
+		return 0;
 	}
 
 	@Override
@@ -38,6 +32,11 @@ public class DaoIRL extends DaoModele<IRL> implements Dao<IRL> {
 	@Override
 	protected IRL creerInstance(ResultSet rs) throws SQLException {
 		return new IRL(rs.getDouble(1), rs.getInt(2));
+	}
+
+	@Override
+	public int update(IRL t) throws SQLException {
+		return 0;
 	}
 
 }

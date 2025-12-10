@@ -9,7 +9,7 @@ public class RequeteSelectPaiement extends Requete<Paiement> {
 
 	@Override
 	public String requete() {
-		return "Select * from Paiement";
+		return "Select * from MSF5131A.SAE_PAIEMENT";
 	}
 	
 
