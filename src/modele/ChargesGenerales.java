@@ -10,15 +10,6 @@ public class ChargesGenerales {
 	private float pourcentage;
 	private double quotite;
 	private String mois;
-	public String getMois() {
-		return mois;
-	}
-
-	public void setMois(String mois) {
-		this.mois = mois;
-	}
-
-
 	private BienLouable bienLouable;
 	
 	public ChargesGenerales(String idChargesGenerales, String typeCharge, double montant, float pourcentage,
@@ -32,7 +23,13 @@ public class ChargesGenerales {
 		this.mois = mois;
 		this.bienLouable = bienLouable;
 	}
-	
+	public String getMois() {
+		return mois;
+	}
+
+	public void setMois(String mois) {
+		this.mois = mois;
+	}
 	public BienLouable getBienLouable() {
 		return bienLouable;
 	}

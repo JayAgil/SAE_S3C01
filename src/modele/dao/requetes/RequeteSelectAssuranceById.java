@@ -15,7 +15,4 @@ public class RequeteSelectAssuranceById extends Requete<Assurance> {
 		prSt.setString(1, id[0]);
 	}
 
-	public void parametres(PreparedStatement prSt, Assurance donnee) {
-		
-	}
 }

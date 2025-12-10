@@ -2,13 +2,11 @@ package modele.dao.requetes;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
-import modele.Assurance;
 import modele.BienLouable;
 
 public class RequeteSelectBienLouableById extends Requete<BienLouable> {
 	public String requete() {
-		return " Select * from SAE_BienLouable where Id_BienLouable = ? " ;
+		return " Select * from MSF5131A.SAE_BienLouable where Id_BienLouable = ? " ;
 		
 	}
 
@@ -16,7 +14,5 @@ public class RequeteSelectBienLouableById extends Requete<BienLouable> {
 		prSt.setString(1, id[0]);
 	}
 
-	public void parametres(PreparedStatement prSt, Assurance donnee) {
-		
-	}
+
 }
