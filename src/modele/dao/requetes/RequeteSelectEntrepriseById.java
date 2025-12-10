@@ -9,7 +9,7 @@ public class RequeteSelectEntrepriseById extends Requete<Entreprise> {
 
 	@Override
 	public String requete() {
-		return "Select * from Entreprise where numero_siret = ?";
+		return "Select * from MSF5131A.SAE_Entreprise where numero_siret = ?";
 	}
 	
 	public void parametres(PreparedStatement prSt, String... id) throws SQLException {

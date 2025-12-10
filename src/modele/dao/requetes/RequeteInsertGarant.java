@@ -9,7 +9,7 @@ public class RequeteInsertGarant extends Requete<Garant> {
 	
 	@Override
 	public String requete() {
-		return "INSERT INTO SAE_Garant VALUES (?,?,?,?,?)";
+		return "INSERT INTO MSF5131A.SAE_Garant VALUES (?,?,?,?,?)";
 	}
 	
 	@Override

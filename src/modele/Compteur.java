@@ -9,21 +9,21 @@ public class Compteur {
 	private double partieFixe;
 	private double partieVariable;
 	private double total;
-	private Date dataDernierChangement;
+	private Date dateInstallation;
 	private BienLouable bienLouable;
 	private double indexAncien;
 	private double indexNouveau;
 	private String type;
 
 	public Compteur(String idCompteur, double partieFixe, double partieVariable, double total,
-			Date dataDernierChangement, BienLouable bienLouable, double indexAncien, double indexNouveau,
+			Date dateInstallation, BienLouable bienLouable, double indexAncien, double indexNouveau,
 			String type) {
 		super();
 		this.idCompteur = idCompteur;
 		this.partieFixe = partieFixe;
 		this.partieVariable = partieVariable;
 		this.total = total;
-		this.dataDernierChangement = dataDernierChangement;
+		this.dateInstallation = dateInstallation;
 		this.bienLouable = bienLouable;
 		this.indexAncien = indexAncien;
 		this.indexNouveau = indexNouveau;
@@ -62,12 +62,12 @@ public class Compteur {
 		this.total = total;
 	}
 
-	public Date getDataDernierChangement() {
-		return dataDernierChangement;
+	public Date getDateInstallation() {
+		return dateInstallation;
 	}
 
-	public void setDataDernierChangement(Date dataDernierChangement) {
-		this.dataDernierChangement = dataDernierChangement;
+	public void setDateInstallation(Date dateInstallation) {
+		this.dateInstallation = dateInstallation;
 	}
 
 	public BienLouable getBienLouable() {
