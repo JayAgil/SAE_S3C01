@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
 
 
 import controleur.GestionFenetreCharges;
-
+import modele.ChargesGenerales;
 
 import javax.swing.JScrollPane;
 import javax.swing.BorderFactory;
@@ -25,6 +25,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Panel;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.Font;
 import java.awt.Component;
 import javax.swing.Box;
@@ -54,9 +56,7 @@ public class FenetreCharges extends FenetreBase {
 	private JLabel lbl1er;
 	private JLabel lbl2nde;
 	private JLabel lbl3eme;
-	private JLabel lblchargesmoyen;
-	
-	
+	private JLabel lblchargesmoyen;	
 	
 	public JTable getTable() {
 		return table;
@@ -129,7 +129,7 @@ public class FenetreCharges extends FenetreBase {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FenetreCharges frame = new FenetreCharges("");
+					FenetreCharges frame = new FenetreCharges("", null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -142,11 +142,11 @@ public class FenetreCharges extends FenetreBase {
 	 * Create the frame.
 	 * @throws SQLException 
 	 */
-	public FenetreCharges(String FenetreAvant) throws SQLException {
+	public FenetreCharges(String FenetreAvant, List<ChargesGenerales> list) throws SQLException {
 		super();
 	    this.fenetreAvant = FenetreAvant;
 	    setExtendedState(JFrame.MAXIMIZED_BOTH);
-	    this.gestionClic = new GestionFenetreCharges(this);
+	    this.gestionClic = new GestionFenetreCharges(this, list);
 
 	    // Header
 	    this.setJMenuBar(createHeader());
@@ -356,6 +356,7 @@ public class FenetreCharges extends FenetreBase {
 	public String getFenetreAvant() {
 		return fenetreAvant;
 	}
+	
 
 	
 }

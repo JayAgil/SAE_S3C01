@@ -1,5 +1,6 @@
 package controleur;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,16 +8,17 @@ import java.util.Map;
 import javax.swing.table.DefaultTableModel;
 
 import modele.ChargesGenerales;
-import modele.dao.DaoChargesGenerales;
 import vue.*;
 
 public class GestionFenetreCharges extends GestionHeaderEtFooter{
 
     private FenetreCharges fenetre;
+    private List<ChargesGenerales> donnees = new ArrayList<>();
 
-    public GestionFenetreCharges(FenetreCharges fenetre) {
+    public GestionFenetreCharges(FenetreCharges fenetre, List<ChargesGenerales> list) throws SQLException {
         super(fenetre);
         this.fenetre = fenetre;
+        this.donnees = list;
     }
    
 
@@ -38,10 +40,7 @@ public class GestionFenetreCharges extends GestionHeaderEtFooter{
     }
     
     public void chargerDonnees() throws SQLException {
-
-        DaoChargesGenerales dao = new DaoChargesGenerales();
-        List<ChargesGenerales> liste = dao.findAll();
-
+        List<ChargesGenerales> liste = this.donnees;
         DefaultTableModel model = (DefaultTableModel) fenetre.getTable().getModel();
         model.setRowCount(0);
 

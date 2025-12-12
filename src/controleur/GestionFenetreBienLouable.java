@@ -31,7 +31,7 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
                 break;
 
             case "Charges":
-                new FenetreCharges("FenetreBienLouable").setVisible(true);
+                new FenetreCharges("FenetreBienLouable", null).setVisible(true);
                 fenetrebienlouable.dispose();
                 break;
 
