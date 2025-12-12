@@ -35,10 +35,17 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 			fenetrebienlouable.dispose();
 			break;
 
+<<<<<<< HEAD
 		case "Charges":
 			new FenetreCharges("FenetreBienLouable").setVisible(true);
 			fenetrebienlouable.dispose();
 			break;
+=======
+            case "Charges":
+                new FenetreCharges("FenetreBienLouable", null).setVisible(true);
+                fenetrebienlouable.dispose();
+                break;
+>>>>>>> 13728cea4d5a5eb9fcb07be5b17c2eef4c78f470
 
 		case "Travaux":
 			new FenetreTravaux().setVisible(true);

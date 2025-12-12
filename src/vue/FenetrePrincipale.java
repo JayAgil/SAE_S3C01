@@ -41,6 +41,11 @@ public class FenetrePrincipale extends FenetreBase {
     private JLabel lblRevenu_1;
     private JLabel lblPasPaye;
     private JLabel lblPasPaye_1;
+    private JComboBox<String> cbBatiment;
+    
+    public String getChosenBatiment() {
+    	return cbBatiment.getSelectedItem().toString();
+    }
     
     public JTable getTable() {
     	return this.table;
@@ -288,7 +293,7 @@ public class FenetrePrincipale extends FenetreBase {
         panelCenter.add(panelCenterNorth, BorderLayout.NORTH);
         panelCenterNorth.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-        JComboBox<String> cbBatiment = new JComboBox<String>();
+        cbBatiment = new JComboBox<String>();
         cbBatiment.setFont(new Font("Tahoma", Font.PLAIN, 14));
         cbBatiment.addActionListener(this.gestionClic);
         cbBatiment.setModel(new DefaultComboBoxModel(new String[] { "Bat1",
@@ -342,6 +347,7 @@ public class FenetrePrincipale extends FenetreBase {
     	this.mntmCharge.setEnabled(actif);
     	this.mntmCompteur.setEnabled(actif);
     }
+    
 	public JLabel getLblRevenu() {
 		return lblRevenu;
 	}

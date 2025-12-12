@@ -1,5 +1,6 @@
 package controleur;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,16 +8,17 @@ import java.util.Map;
 import javax.swing.table.DefaultTableModel;
 
 import modele.ChargesGenerales;
-import modele.dao.DaoChargesGenerales;
 import vue.*;
 
 public class GestionFenetreCharges extends GestionHeaderEtFooter{
 
     private FenetreCharges fenetre;
+    private List<ChargesGenerales> donnees = new ArrayList<>();
 
-    public GestionFenetreCharges(FenetreCharges fenetre) {
+    public GestionFenetreCharges(FenetreCharges fenetre, List<ChargesGenerales> list) throws SQLException {
         super(fenetre);
         this.fenetre = fenetre;
+        this.donnees = list;
     }
    
 
@@ -38,10 +40,7 @@ public class GestionFenetreCharges extends GestionHeaderEtFooter{
     }
     
     public void chargerDonnees() throws SQLException {
-
-        DaoChargesGenerales dao = new DaoChargesGenerales();
-        List<ChargesGenerales> liste = dao.findAll();
-
+        List<ChargesGenerales> liste = this.donnees;
         DefaultTableModel model = (DefaultTableModel) fenetre.getTable().getModel();
         model.setRowCount(0);
 
@@ -65,7 +64,7 @@ public class GestionFenetreCharges extends GestionHeaderEtFooter{
                 case "Entretien":
                     totalEntretien += c.getMontant();
                     break;
-                case "Ordures":
+                case "Nettoyage":
                     totalOrdures += c.getMontant();
                     break;
                 case "Ascenseur":
@@ -78,9 +77,9 @@ public class GestionFenetreCharges extends GestionHeaderEtFooter{
                     totalParBien.getOrDefault(bien, 0.0) + c.getMontant()
             );
         }
-        fenetre.getLbltotalentretien().setText(String.valueOf(totalEntretien));
-        fenetre.getLbltotalorduremenageres().setText(String.valueOf(totalOrdures));
-        fenetre.getLbltotalascenceur().setText(String.valueOf(totalAscenseur));
+        fenetre.getLbltotalentretien().setText(String.valueOf(totalEntretien + " €"));
+        fenetre.getLbltotalorduremenageres().setText(String.valueOf(totalOrdures + " €"));
+        fenetre.getLbltotalascenceur().setText(String.valueOf(totalAscenseur + " €"));
         List<Map.Entry<String, Double>> sorted =
                 totalParBien.entrySet().stream()
                         .sorted((a, b) -> Double.compare(b.getValue(), a.getValue()))
@@ -92,7 +91,9 @@ public class GestionFenetreCharges extends GestionHeaderEtFooter{
                 .mapToDouble(Double::doubleValue)
                 .average()
                 .orElse(0);
-        fenetre.getLblchargesmoyen().setText(String.format("%.2f", moyenne));
+        int scale = 2;
+        double rounded = Math.round(moyenne * Math.pow(10, scale)) / Math.pow(10, scale);
+        fenetre.getLblchargesmoyen().setText(String.valueOf(rounded + " €"));
     }
 
     
