@@ -4,7 +4,6 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-
 import modele.Garant;
 import modele.Locataire;
 import modele.dao.requetes.*;;
@@ -41,6 +40,11 @@ public class DaoLocataire extends DaoModele<Locataire> implements Dao<Locataire>
 	public List<Locataire> findAll() throws SQLException {
 		return find(new RequeteSelectLocataire());
 	}
+	
+	public List<Locataire> findLocataireByBienLouable(String... id) throws SQLException {
+		return find(new RequeteSelectLocataireByBienLouable(),id);
+	}
+	
 
 	@Override
 	protected Locataire creerInstance(ResultSet rs) throws SQLException {

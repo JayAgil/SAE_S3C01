@@ -15,6 +15,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import controleur.GestionFenetreLocataire;
+import modele.Locataire;
 
 import java.awt.Font;
 
@@ -24,6 +25,7 @@ import javax.swing.JButton;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.util.List;
 
 public class FenetreLocataire extends FenetreBase {
 
@@ -43,10 +45,9 @@ public class FenetreLocataire extends FenetreBase {
 	private JTable table;
 	private String nomFenAvant;
 	private JScrollPane scrollPane;
+	private List<Locataire> liste;
 
-	public String getNomFenAvant() {
-		return this.nomFenAvant;
-	}
+	
 
 	/**
 	 * Launch the application.
@@ -56,7 +57,7 @@ public class FenetreLocataire extends FenetreBase {
 			@Override
 			public void run() {
 				try {
-					FenetreLocataire frame = new FenetreLocataire("a");
+					FenetreLocataire frame = new FenetreLocataire("a",null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -68,11 +69,12 @@ public class FenetreLocataire extends FenetreBase {
 	/**
 	 * Create the frame.
 	 */
-	public FenetreLocataire(String nomFenAvant) {
+	public FenetreLocataire(String nomFenAvant, List<Locataire> locataires) {
 		super();
 		this.nomFenAvant = nomFenAvant;
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
-		this.gestionClic = new GestionFenetreLocataire(this);
+		this.gestionClic = new GestionFenetreLocataire(this,locataires);
+		gestionClic.chargerDonnes();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1200, 800);
 
@@ -398,6 +400,15 @@ public class FenetreLocataire extends FenetreBase {
 		scrollPane.setViewportView(table);
 
 	}
+	
+
+	public List<Locataire> getListe() {
+		return liste;
+	}
+
+	public void setListe(List<Locataire> liste) {
+		this.liste = liste;
+	}
 
 	public void disableMenuItems(boolean actif) {
 
@@ -496,6 +507,9 @@ public class FenetreLocataire extends FenetreBase {
 
 	public void setTable(JTable table) {
 		this.table = table;
+	}
+	public String getNomFenAvant() {
+		return this.nomFenAvant;
 	}
 	
 	
