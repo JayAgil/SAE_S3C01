@@ -5,6 +5,7 @@ import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
 import controleur.GestionFenetreAssurance;
+import modele.Assurance;
 
 public class FenetreAssurance extends FenetreBase {
 
@@ -246,8 +247,6 @@ public class FenetreAssurance extends FenetreBase {
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
-	
-	
 
 	public JTextField getTextFieldNumAssurance() {
 		return textFieldNumAssurance;
@@ -317,5 +316,16 @@ public class FenetreAssurance extends FenetreBase {
 		this.mntmAssurance.setEnabled(actif);
 		this.mnBienLouable.setEnabled(actif);
 		this.mnPaiement.setEnabled(actif);
+	}
+	
+	public void afficherAssuranceBatiment(Assurance assurance, int nbBiens) {
+	    this.textFieldNumAssurance.setText(assurance.getNumeroAssurance());
+	    this.txtFieldPrime.setText(String.valueOf(assurance.getPrime()));
+	    this.txtFieldType.setText(assurance.getTypeAssurance());
+	    this.textFieldAgence.setText(assurance.getAgence());
+	    this.textFieldAdresseAgence.setText(assurance.getAdresseAgence());
+	    this.textFieldTelAgence.setText(assurance.getTelAgence());
+
+	    lblNbBien.setText(String.valueOf(nbBiens));
 	}
 }
