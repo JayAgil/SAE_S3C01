@@ -9,6 +9,11 @@ import modele.Garant;
 
 public class DaoGarant extends DaoModele<Garant> implements Dao<Garant> {
 
+	public DaoGarant() throws SQLException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public int create(Garant t) throws SQLException {
 		return miseAJour(new RequeteInsertGarant(), t);	

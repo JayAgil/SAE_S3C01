@@ -10,6 +10,11 @@ import modele.ChargesGenerales;
 
 public class DaoChargesGenerales extends DaoModele<ChargesGenerales>implements Dao<ChargesGenerales> {
 
+	public DaoChargesGenerales() throws SQLException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public int create(ChargesGenerales t) throws SQLException {
 		return miseAJour(new RequeteInsertChargeGenerale(), t);

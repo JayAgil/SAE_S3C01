@@ -9,6 +9,11 @@ import modele.dao.requetes.*;
 
 public class DaoEntreprise extends DaoModele<Entreprise> implements Dao<Entreprise> {
 	
+	public DaoEntreprise() throws SQLException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public int create(Entreprise t) throws SQLException {
 		return miseAJour(new RequeteInsertEntreprise(), t);	

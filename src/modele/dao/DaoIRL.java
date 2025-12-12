@@ -9,6 +9,11 @@ import modele.IRL;
 
 public class DaoIRL extends DaoModele<IRL> implements Dao<IRL> {
 
+	public DaoIRL() throws SQLException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public int create(IRL t) throws SQLException {
 		return this.miseAJour(new RequeteInsertIRL(), t);

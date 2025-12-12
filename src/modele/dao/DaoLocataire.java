@@ -11,6 +11,11 @@ import modele.dao.requetes.*;;
 
 public class DaoLocataire extends DaoModele<Locataire> implements Dao<Locataire> {
 
+	public DaoLocataire() throws SQLException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public int create(Locataire t) throws SQLException {
 		return miseAJour(new RequeteInsertLocataire(), t);
