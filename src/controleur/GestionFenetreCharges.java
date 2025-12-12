@@ -1,4 +1,13 @@
 package controleur;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.swing.table.DefaultTableModel;
+
+import modele.ChargesGenerales;
+import modele.dao.DaoChargesGenerales;
 import vue.*;
 
 public class GestionFenetreCharges extends GestionHeaderEtFooter{
@@ -27,6 +36,65 @@ public class GestionFenetreCharges extends GestionHeaderEtFooter{
                 break;
         }
     }
+    
+    public void chargerDonnees() throws SQLException {
+
+        DaoChargesGenerales dao = new DaoChargesGenerales();
+        List<ChargesGenerales> liste = dao.findAll();
+
+        DefaultTableModel model = (DefaultTableModel) fenetre.getTable().getModel();
+        model.setRowCount(0);
+
+        double totalEntretien = 0;
+        double totalOrdures = 0;
+        double totalAscenseur = 0;
+
+        Map<String, Double> totalParBien = new HashMap<>();
+
+        for (ChargesGenerales c : liste) {
+
+            model.addRow(new Object[]{
+                    c.getTypeCharge(),
+                    c.getMontant(),
+                    c.getPourcentage(),
+                    c.getQuotite(),
+                    c.getMontant() * c.getPourcentage(),
+                    c.getMois()
+            });
+            switch (c.getTypeCharge()) {
+                case "Entretien":
+                    totalEntretien += c.getMontant();
+                    break;
+                case "Ordures":
+                    totalOrdures += c.getMontant();
+                    break;
+                case "Ascenseur":
+                    totalAscenseur += c.getMontant();
+                    break;
+            }
+            String bien = c.getBienLouable().getIdBienLouable();
+            totalParBien.put(
+                    bien,
+                    totalParBien.getOrDefault(bien, 0.0) + c.getMontant()
+            );
+        }
+        fenetre.getLbltotalentretien().setText(String.valueOf(totalEntretien));
+        fenetre.getLbltotalorduremenageres().setText(String.valueOf(totalOrdures));
+        fenetre.getLbltotalascenceur().setText(String.valueOf(totalAscenseur));
+        List<Map.Entry<String, Double>> sorted =
+                totalParBien.entrySet().stream()
+                        .sorted((a, b) -> Double.compare(b.getValue(), a.getValue()))
+                        .toList();
+        if (sorted.size() > 0) fenetre.getLbl1er().setText(sorted.get(0).getKey());
+        if (sorted.size() > 1) fenetre.getLbl2nde().setText(sorted.get(1).getKey());
+        if (sorted.size() > 2) fenetre.getLbl3eme().setText(sorted.get(2).getKey());
+        double moyenne = totalParBien.values().stream()
+                .mapToDouble(Double::doubleValue)
+                .average()
+                .orElse(0);
+        fenetre.getLblchargesmoyen().setText(String.format("%.2f", moyenne));
+    }
+
     
     @Override
     protected void gererBoutonRetour(String texte) {

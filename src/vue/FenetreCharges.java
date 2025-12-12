@@ -24,6 +24,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Panel;
+import java.sql.SQLException;
 import java.awt.Font;
 import java.awt.Component;
 import javax.swing.Box;
@@ -139,8 +140,9 @@ public class FenetreCharges extends FenetreBase {
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 */
-	public FenetreCharges(String FenetreAvant) {
+	public FenetreCharges(String FenetreAvant) throws SQLException {
 		super();
 	    this.fenetreAvant = FenetreAvant;
 	    setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -293,7 +295,7 @@ public class FenetreCharges extends FenetreBase {
 	    btnRetour.addActionListener(this.gestionClic);
 	    buttonPanel.add(btnRetour);
 
-	    this.gestionClic.initialize();
+
 
 	    // Footer panel (if needed)
 	    JPanel footerPanel = new JPanel(new BorderLayout());
@@ -329,6 +331,9 @@ public class FenetreCharges extends FenetreBase {
         lbltotalascenceur.setFont(new Font("Tahoma", Font.PLAIN, 45));
         lbltotalascenceur.setHorizontalAlignment(SwingConstants.CENTER);
         panel_7.add(lbltotalascenceur, BorderLayout.CENTER);
+        
+	    this.gestionClic.initialize();
+	    this.gestionClic.chargerDonnees();
 	}
 
 	

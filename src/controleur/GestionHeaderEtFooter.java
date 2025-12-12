@@ -2,6 +2,8 @@ package controleur;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+
 import javax.swing.*;
 
 import vue.*;
@@ -38,18 +40,35 @@ public abstract class GestionHeaderEtFooter implements ActionListener {
 
         Object src = e.getSource();
         if (src instanceof JButton btn) {
-            gererBoutonCommun(btn.getText());
-            gererBoutonSpecifique(btn.getText());
+            try {
+				gererBoutonCommun(btn.getText());
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+            try {
+				gererBoutonSpecifique(btn.getText());
+			} catch (SQLException e1) {
+
+				e1.printStackTrace();
+			}
             gererBoutonRetour(btn.getText());
         }
         if (src instanceof JMenuItem item) {
             String texte = item.getText();
-            gererMenuCommun(texte);
-            gererMenuSpecifique(texte); 
+            try {
+				gererMenuCommun(texte);
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+            try {
+				gererMenuSpecifique(texte);
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			} 
         }
     }
 
-    protected void gererMenuCommun(String texte) {
+    protected void gererMenuCommun(String texte) throws SQLException {
 
         switch (texte) {
 
@@ -124,7 +143,7 @@ public abstract class GestionHeaderEtFooter implements ActionListener {
 	    }
     }
 
-    protected void gererBoutonCommun(String texte) {}
-    protected void gererMenuSpecifique(String texte) {}
-    protected void gererBoutonSpecifique(String texte) {}
+    protected void gererBoutonCommun(String texte) throws SQLException{}
+    protected void gererMenuSpecifique(String texte) throws SQLException{}
+    protected void gererBoutonSpecifique(String texte) throws SQLException {}
 }

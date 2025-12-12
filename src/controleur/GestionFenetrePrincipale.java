@@ -2,6 +2,7 @@ package controleur;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
+import java.sql.SQLException;
 
 import javax.swing.JFileChooser;
 import javax.swing.JTable;
@@ -19,7 +20,7 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
     
     
     @Override
-    protected void gererBoutonSpecifique(String texte) {
+    protected void gererBoutonSpecifique(String texte) throws SQLException {
         switch (texte) {
             case "Quitter":
                 fenetre.dispose();

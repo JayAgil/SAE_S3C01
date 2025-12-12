@@ -1,6 +1,7 @@
 package controleur;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
 
 import javax.swing.JTable;
 
@@ -16,7 +17,7 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
     }
 
     @Override
-    protected void gererBoutonSpecifique(String texte) {
+    protected void gererBoutonSpecifique(String texte) throws SQLException {
         switch (texte) {
 
             case "Diagnostics":
