@@ -379,30 +379,6 @@ public class FenetreContratLocation extends FenetreBase {
         panel_3.add(panel_5, gbc_panel_5);
 	}
 	
-	public GestionFenetreContratLocation getGestionClicContratLocation() {
-		return gestionClicContratLocation;
-	}
-	public void setGestionClicContratLocation(GestionFenetreContratLocation gestionClicContratLocation) {
-		this.gestionClicContratLocation = gestionClicContratLocation;
-	}
-	public JPanel getContentPane() {
-		return contentPane;
-	}
-	public void setContentPane(JPanel contentPane) {
-		this.contentPane = contentPane;
-	}
-	public JTable getTable() {
-		return table;
-	}
-	public void setTable(JTable table) {
-		this.table = table;
-	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	public void setFenDavant(String fenDavant) {
-		this.fenDavant = fenDavant;
-	}
 	@Override
 	public void disableMenuItems(boolean actif) {
 		this.mnBatiment.setEnabled(actif);
