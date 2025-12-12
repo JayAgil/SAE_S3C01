@@ -44,7 +44,6 @@ public class GestionConnexion implements ActionListener{
                     FenetrePrincipale fp = new FenetrePrincipale();
                     fp.setVisible(true);
                     fenLogin.dispose();
-                    UtOracleDataSource.Deconnecter();
                 } catch (SQLException ex) {
                     fenLogin.getLblMessage().setForeground(Color.RED);
                     fenLogin.getLblMessage()

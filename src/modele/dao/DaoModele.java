@@ -11,7 +11,15 @@ import modele.dao.requetes.Requete;
 
 public abstract class DaoModele<T> implements Dao<T> {
 	
-	protected Connection connexion = UtOracleDataSource.getConnectionBD();
+	protected Connection connexion;
+
+	public DaoModele() throws SQLException {
+	    this.connexion = UtOracleDataSource.getConnectionBD();
+	    if (this.connexion == null) {
+	        throw new SQLException("Database connection not initialized. Call CreerAcces() first.");
+	    }
+	}
+
 
 	protected abstract T creerInstance(ResultSet curseur) throws SQLException;
 

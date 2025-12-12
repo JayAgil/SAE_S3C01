@@ -11,6 +11,11 @@ import modele.Compteur;
 
 public class DaoCompteur extends DaoModele<Compteur> implements Dao<Compteur> {
 
+	public DaoCompteur() throws SQLException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public int create(Compteur t) throws SQLException {
 		return miseAJour(new RequeteInsertCompteur(), t);	

@@ -10,6 +10,11 @@ import modele.Batiment;
 
 public class DaoBatiment extends DaoModele<Batiment> implements Dao<Batiment> {
 
+	public DaoBatiment() throws SQLException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public int create(Batiment t) throws SQLException {
 		return miseAJour(new RequeteInsertBatiment(), t);

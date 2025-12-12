@@ -10,6 +10,11 @@ import modele.Diagnostics;
 
 public class DaoDiagnostics extends DaoModele<Diagnostics> implements Dao<Diagnostics> {
 
+	public DaoDiagnostics() throws SQLException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public int create(Diagnostics t) throws SQLException {
 		return miseAJour(new RequeteInsertDiagnostics(), t);	

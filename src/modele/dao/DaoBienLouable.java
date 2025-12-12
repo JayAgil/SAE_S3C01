@@ -9,6 +9,11 @@ import modele.BienLouable;
 
 public class DaoBienLouable extends DaoModele<BienLouable> implements Dao<BienLouable> {
 
+	public DaoBienLouable() throws SQLException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public int create(BienLouable t) throws SQLException {
 		return miseAJour(new RequeteInsertBienLouable(), t);

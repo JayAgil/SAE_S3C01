@@ -11,6 +11,11 @@ import modele.ContratLocation;
 
 public class DaoContratLocation extends DaoModele<ContratLocation> implements Dao<ContratLocation> {
 
+	public DaoContratLocation() throws SQLException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public int create(ContratLocation t) throws SQLException {
 		return miseAJour(new RequeteInsertContratLocation(), t);	

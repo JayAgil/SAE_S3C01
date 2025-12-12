@@ -11,6 +11,11 @@ import modele.Facture;
 
 public class DaoFacture extends DaoModele<Facture> implements Dao<Facture> {
 
+	public DaoFacture() throws SQLException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public int create(Facture t) throws SQLException {
 		return miseAJour(new RequeteInsertFacture(), t);	

@@ -11,6 +11,11 @@ import modele.dao.requetes.*;
 
 public class DaoPaiement extends DaoModele<Paiement> implements Dao<Paiement> {
 
+	public DaoPaiement() throws SQLException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public int create(Paiement t) throws SQLException {
 		return miseAJour(new RequeteInsertPaiement(), t);	
 	}
