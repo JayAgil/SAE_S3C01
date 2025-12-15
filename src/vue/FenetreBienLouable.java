@@ -585,6 +585,7 @@ public class FenetreBienLouable extends FenetreBase {
 	        // clear other fields as needed
 	    }
 	}
+	
 
 	
 }
