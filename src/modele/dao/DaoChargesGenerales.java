@@ -40,6 +40,10 @@ public class DaoChargesGenerales extends DaoModele<ChargesGenerales>implements D
 	public List<ChargesGenerales> findByIdBatiment(String... id) throws SQLException {
 		return this.find(new RequeteSelectChargesByBatiment(),id);
 	}
+	
+	public List<ChargesGenerales> findByIdBien(String... id) throws SQLException {
+		return this.find(new RequeteSelectChargesByBien(),id);
+	}
 
 	@Override
 	public List<ChargesGenerales> findAll() throws SQLException {
