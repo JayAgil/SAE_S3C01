@@ -24,6 +24,8 @@ import controleur.GestionFenetrePrincipale;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
 import java.awt.Toolkit;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 public class FenetrePrincipale extends FenetreBase {
@@ -226,6 +228,13 @@ public class FenetrePrincipale extends FenetreBase {
 
         JPanel panelSouthEast = new JPanel();
         panelSouth.add(panelSouthEast, BorderLayout.EAST);
+        
+        JButton btnGénéré = new JButton("Généré");
+        btnGénéré.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
+        });
+        panelSouthEast.add(btnGénéré);
 
         JButton btnCharges = new JButton("Charges");
         panelSouthEast.add(btnCharges);
