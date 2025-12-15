@@ -3,11 +3,18 @@ package controleur;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
+import java.util.List;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
+<<<<<<< HEAD
 import modele.BienLouable;
 import modele.dao.DaoBienLouable;
+=======
+import modele.Locataire;
+import modele.dao.DaoLocataire;
+>>>>>>> ccb73dfcce1dff7a70f95fa21bc340b3367dccd0
 import vue.*;
 
 public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements MouseListener {
@@ -32,6 +39,7 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 			new FenetreContratLocation("FenBienLouable").setVisible(true);
 			fenetrebienlouable.dispose();
 			break;
+<<<<<<< HEAD
 
 		case "Charges":
 			new FenetreCharges("FenetreBienLouable").setVisible(true);
@@ -101,6 +109,69 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 	    
 	}
 
+=======
+        case "Charges":
+            new FenetreCharges("FenetreBienLouable", null).setVisible(true);
+            fenetrebienlouable.dispose();
+            break;
+		case "Travaux":
+			new FenetreTravaux().setVisible(true);
+			fenetrebienlouable.dispose();
+			break;
+
+		case "Compteur":
+			new FenetreCompteurs("FenereBienLouable").setVisible(true);
+			fenetrebienlouable.dispose();
+			break;
+
+		case "Revaloriser":
+			break;
+		}
+	}
+
+	public void mouseClicked(MouseEvent e) {
+
+	    if (e.getClickCount() == 2 && e.getSource() instanceof JTable) {
+
+	        JTable table = (JTable) e.getSource();
+	        int row = table.rowAtPoint(e.getPoint());
+	        int column = table.columnAtPoint(e.getPoint());
+
+	        int targetColumn = 0;
+
+	        if (row != -1 && column == targetColumn) {
+
+	            String idBien = (String) table.getValueAt(row, 0);
+
+	            try {
+	                DaoLocataire dl = new DaoLocataire();
+	                List<Locataire> locataires = dl.findLocataireByBienLouable(idBien);
+	                FenetreLocataire fen = new FenetreLocataire("FenetreLocataire",locataires);
+	                fen.setVisible(true);
+	                fenetre.dispose();
+
+	            } catch (Exception ex) {
+	                ex.printStackTrace();
+	                JOptionPane.showMessageDialog(null, "Erreur lors du chargement des locataires");
+	            }
+	        }
+	    }
+	}
+
+    
+
+	public void mousePressed(MouseEvent e) {
+	}
+
+	public void mouseReleased(MouseEvent e) {
+	}
+
+	public void mouseEntered(MouseEvent e) {
+	}
+
+	public void mouseExited(MouseEvent e) {
+	}
+>>>>>>> ccb73dfcce1dff7a70f95fa21bc340b3367dccd0
 
 	@Override
 	protected void gererBoutonRetour(String texte) {
@@ -110,9 +181,12 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 			fp.setVisible(true);
 		}
 	}
+<<<<<<< HEAD
 	
 	public void mousePressed(MouseEvent e) {}
 	public void mouseReleased(MouseEvent e) {}
 	public void mouseEntered(MouseEvent e) {}
 	public void mouseExited(MouseEvent e) {}
+=======
+>>>>>>> ccb73dfcce1dff7a70f95fa21bc340b3367dccd0
 }

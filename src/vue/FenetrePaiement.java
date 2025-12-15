@@ -1,11 +1,15 @@
 package vue;
 
 import java.awt.*;
+import java.util.List;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controleur.GestionFenetrePaiement;
+import modele.Locataire;
+
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
 
@@ -19,13 +23,13 @@ public class FenetrePaiement extends FenetreBase{
     private JLabel lblNewLabel_1;
     private JLabel lblNewLabel_2;
     private JLabel lblNewLabel;
-	
+	private List<Locataire> locataires;
     
 
 	public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
             try {
-                FenetrePaiement frame = new FenetrePaiement();
+                FenetrePaiement frame = new FenetrePaiement(null);
                 frame.setVisible(true);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -33,10 +37,11 @@ public class FenetrePaiement extends FenetreBase{
         });
     }
 
-    public FenetrePaiement() {
+    public FenetrePaiement(List<Locataire> locataires) {
     	super();
     	setExtendedState(JFrame.MAXIMIZED_BOTH);
     	gestionClic = new GestionFenetrePaiement(this);
+    	this.setLocataires(locataires);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 1200, 800);
         setLocationRelativeTo(null);
@@ -279,6 +284,14 @@ public class FenetrePaiement extends FenetreBase{
 
 	public void setTable(JTable table) {
 		this.table = table;
+	}
+
+	public List<Locataire> getLocataires() {
+		return locataires;
+	}
+
+	public void setLocataires(List<Locataire> locataires) {
+		this.locataires = locataires;
 	}
     
     

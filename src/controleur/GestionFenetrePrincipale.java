@@ -3,10 +3,13 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.swing.JFileChooser;
 import javax.swing.JTable;
 
+import modele.ChargesGenerales;
+import modele.dao.DaoChargesGenerales;
 import vue.*;
 
 public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements MouseListener{
@@ -16,6 +19,13 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
     public GestionFenetrePrincipale(FenetrePrincipale fenetre) {
         super(fenetre);
         this.fenetre = fenetre;
+    }
+    
+    public List<ChargesGenerales> getDonneesChargesGenerale() throws SQLException {
+        DaoChargesGenerales dao = new DaoChargesGenerales();
+        String[] id = new String[1];
+        id[0] = this.fenetre.getChosenBatiment();
+        return dao.findAll();
     }
     
     
@@ -38,7 +48,7 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
                 break;
 
             case "Charges":
-                new FenetreCharges("FenetrePrincipale").setVisible(true);
+                new FenetreCharges("FenetrePrincipale", getDonneesChargesGenerale()).setVisible(true);
                 fenetre.dispose();
                 break;
 

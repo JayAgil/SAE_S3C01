@@ -1,11 +1,7 @@
 package controleur;
-
-
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import javax.swing.JOptionPane;
-import javax.swing.text.Document;
 
 import vue.*;
 
@@ -43,7 +39,7 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter implements Mou
     @Override
     protected void gererBoutonRetour(String texte) {
         if ("Retour".equals(texte)) {
-            FenetreLocataire fen = new FenetreLocataire("Paiement");
+            FenetreLocataire fen = new FenetreLocataire("Paiement",fenetre.getLocataires());
             fen.setVisible(true);
             fenetre.dispose();
         }
