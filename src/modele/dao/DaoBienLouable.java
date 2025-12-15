@@ -11,7 +11,6 @@ public class DaoBienLouable extends DaoModele<BienLouable> implements Dao<BienLo
 
 	public DaoBienLouable() throws SQLException {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -39,6 +38,10 @@ public class DaoBienLouable extends DaoModele<BienLouable> implements Dao<BienLo
 	@Override
 	public List<BienLouable> findAll() throws SQLException {
 		return this.find(new RequeteSelectBienLouable());
+	}
+	
+	public List<BienLouable> findByIdBat(String... id) throws SQLException {
+		return this.find(new RequeteSelectBienLouableByBat(), id);
 	}
 
 	@Override

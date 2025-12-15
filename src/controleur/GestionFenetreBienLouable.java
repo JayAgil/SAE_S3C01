@@ -3,45 +3,55 @@ package controleur;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import modele.BienLouable;
 import modele.ChargesGenerales;
+import modele.ContratLocation;
+import modele.Locataire;
 import modele.dao.DaoBienLouable;
+import modele.dao.DaoChargesGenerales;
+import modele.dao.DaoContratLocation;
+import modele.dao.DaoLocataire;
 import vue.*;
 
 public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements MouseListener {
 
 	private FenetreBienLouable fenetrebienlouable;
-	private BienLouable donnee;
+	private BienLouable bien; // currently selected bien
 
-	public GestionFenetreBienLouable(FenetreBienLouable fenetre, BienLouable bienLouable) {
+	public GestionFenetreBienLouable(FenetreBienLouable fenetre, BienLouable bien) {
 		super(fenetre);
 		this.fenetrebienlouable = fenetre;
-		this.donnee = bienLouable;
+		this.bien = bien;
 	}
-	
+
 	public List<BienLouable> getListBienWithTheBienNow() {
-		// use the bien that we have as an attribut to find the other biens and then fill the table
-		return null;
+		try {
+			DaoBienLouable daoBL = new DaoBienLouable();
+			String idBatiment = bien.getBatiment().getAdresse();
+			return daoBL.findByIdBat(idBatiment);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return List.of();
 	}
-	
-	public List<ChargesGenerales> getDonnesChargesByBien(){
-		return null;
+
+	public List<ChargesGenerales> getDonneesChargesGeneraleByBien() throws SQLException {
+		DaoChargesGenerales dao = new DaoChargesGenerales();
+		return dao.findByIdBien(bien.getIdBienLouable());
 	}
-	
+
 	public BienLouable getBien() {
-		return this.donnee;
+		return bien;
 	}
 
 	@Override
 	protected void gererBoutonSpecifique(String texte) throws SQLException {
+
 		switch (texte) {
 
 		case "Diagnostics":
@@ -55,7 +65,7 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 			break;
 
 		case "Charges":
-			new FenetreCharges("FenetreBienLouable", getDonnesChargesByBien()).setVisible(true);
+			new FenetreCharges("FenetreBienLouable", getDonneesChargesGeneraleByBien()).setVisible(true);
 			fenetrebienlouable.dispose();
 			break;
 
@@ -65,7 +75,7 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 			break;
 
 		case "Compteur":
-			new FenetreCompteurs("FenereBienLouable").setVisible(true);
+			new FenetreCompteurs("FenetreBienLouable").setVisible(true);
 			fenetrebienlouable.dispose();
 			break;
 
@@ -78,122 +88,94 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 	public void mouseClicked(MouseEvent e) {
 		if (!(e.getSource() instanceof JTable))
 			return;
+
 		JTable table = (JTable) e.getSource();
 		int row = table.rowAtPoint(e.getPoint());
 		if (row == -1)
 			return;
+
 		int modelRow = table.convertRowIndexToModel(row);
 		String idBien = table.getModel().getValueAt(modelRow, 0).toString();
 		if (e.getClickCount() == 2) {
-			int column = table.columnAtPoint(e.getPoint());
-			int targetColumn = 0;
-			if (column == targetColumn) {
-				FenetreLocataire fen = new FenetreLocataire("FenetreLocataire", null);
-				fen.setVisible(true);
-				fenetre.dispose();
-			}
+			ouvrirFenetreLocataire(idBien);
 			return;
 		}
+		chargerBienEtRemplirFormulaire(idBien);
+	}
+
+	private void chargerBienEtRemplirFormulaire(String idBien) {
 		try {
 			DaoBienLouable daoBien = new DaoBienLouable();
-			BienLouable bien = daoBien.findById(idBien);
-			if (bien != null) {
-				remplirFormulaire(bien);
+			BienLouable bienSelectionne = daoBien.findById(idBien);
+			DaoContratLocation daoCL = new DaoContratLocation();
+			ContratLocation cl = daoCL.findCLByBien(idBien);
+			DaoChargesGenerales daoCharge = new DaoChargesGenerales();
+			ChargesGenerales charge = daoCharge.findTotalChargesByBien(idBien);
+			if (bienSelectionne != null) {
+				this.bien = bienSelectionne;
+				remplirFormulaire(bienSelectionne,cl,charge);
 			}
-		} catch (SQLException ex) {
-			ex.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
-	
-	private void remplirFormulaire(BienLouable b) {
 
-	    fenetrebienlouable.getTextFieldNom().setText(b.get);
-	    fenetrebienlouable.getTextFieldLoyerMen(String.valueOf(b.getLoyerMensuel()));
-	    fenetrebienlouable.getTextFieldNF().setText(b.getNumeroFiscale());
-	    fenetrebienlouable.getTextFieldAdresse().setText(b.getAdresse());
-	    fenetrebienlouable.getTextFieldSurfaceHab().setText(String.valueOf(b.getSurfaceHabitable()));
-	    fenetrebienlouable.getTextFieldNbDPieces().setText(String.valueOf(b.getNombrePieces()));
-	    fenetrebienlouable.getTextFieldBienLoauble().setText(b.getTypeBien());
-	    fenetrebienlouable.getTextFieldBatiment().setText(b.getBatiment());
-	    fenetrebienlouable.getTextFieldDT(String.valueOf(b.getTotalCharges()));
-	    fenetrebienlouable.getTextFieldTotalCharges().setText(b.getDateFinContrat());
-	    fenetrebienlouable.getTextFieldDFC().setText(b.getDateFinContrat());
-	    fenetrebienlouable.getTextFieldDP().setText(b.getDateFinContrat());
-	    
+	private void ouvrirFenetreLocataire(String idBien) {
+		try {
+			DaoLocataire daoLocataire = new DaoLocataire();
+			List<Locataire> locataires = daoLocataire.findLocataireByBienLouable(idBien);
+			FenetreLocataire fen = new FenetreLocataire("FenetreLocataire", locataires);
+			fen.setVisible(true);
+			fenetre.dispose();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
-	
+
 	public void chargerDonnees() throws SQLException {
-        List<ChargesGenerales> liste = this.donnees;
-        DefaultTableModel model = (DefaultTableModel) fenetre.getTable().getModel();
-        model.setRowCount(0);
 
-        double totalEntretien = 0;
-        double totalOrdures = 0;
-        double totalAscenseur = 0;
+		List<BienLouable> liste = getListBienWithTheBienNow();
+		DefaultTableModel model = (DefaultTableModel) fenetrebienlouable.getTable().getModel();
 
-        Map<String, Double> totalParBien = new HashMap<>();
+		model.setRowCount(0);
 
-        for (ChargesGenerales c : liste) {
+		for (BienLouable b : liste) {
+			model.addRow(
+					new Object[] { b.getIdBienLouable(), b.getAdresse(), b.getNbPieces(), b.getTypeBienLouable() });
+		}
+	}
 
-            model.addRow(new Object[]{
-                    c.getTypeCharge(),
-                    c.getMontant(),
-                    c.getPourcentage(),
-                    c.getQuotite(),
-                    c.getMontant() * c.getPourcentage(),
-                    c.getMois()
-            });
-            switch (c.getTypeCharge()) {
-                case "Entretien":
-                    totalEntretien += c.getMontant();
-                    break;
-                case "Nettoyage":
-                    totalOrdures += c.getMontant();
-                    break;
-                case "Ascenseur":
-                    totalAscenseur += c.getMontant();
-                    break;
-            }
-            String bien = c.getBienLouable().getIdBienLouable();
-            totalParBien.put(
-                    bien,
-                    totalParBien.getOrDefault(bien, 0.0) + c.getMontant()
-            );
-        }
-        fenetre.getLbltotalentretien().setText(String.valueOf(totalEntretien + " €"));
-        fenetre.getLbltotalorduremenageres().setText(String.valueOf(totalOrdures + " €"));
-        fenetre.getLbltotalascenceur().setText(String.valueOf(totalAscenseur + " €"));
-        List<Map.Entry<String, Double>> sorted =
-                totalParBien.entrySet().stream()
-                        .sorted((a, b) -> Double.compare(b.getValue(), a.getValue()))
-                        .toList();
-        if (sorted.size() > 0) fenetre.getLbl1er().setText(sorted.get(0).getKey());
-        if (sorted.size() > 1) fenetre.getLbl2nde().setText(sorted.get(1).getKey());
-        if (sorted.size() > 2) fenetre.getLbl3eme().setText(sorted.get(2).getKey());
-        double moyenne = totalParBien.values().stream()
-                .mapToDouble(Double::doubleValue)
-                .average()
-                .orElse(0);
-        int scale = 2;
-        double rounded = Math.round(moyenne * Math.pow(10, scale)) / Math.pow(10, scale);
-        fenetre.getLblchargesmoyen().setText(String.valueOf(rounded + " €"));
-    }
-
+	public void remplirFormulaire(BienLouable bien, ContratLocation cl,ChargesGenerales charge) {
+		fenetrebienlouable.getTextFieldLoyerMen().setText(String.valueOf(cl.getMontantMensuel()));
+		fenetrebienlouable.getTextFieldNF().setText(bien.getNumeroFiscale());
+		fenetrebienlouable.getTextFieldAdresse().setText(bien.getAdresse());
+		fenetrebienlouable.getTextFieldSurfaceHab().setText(String.valueOf(bien.getSurfaceHabituable()));
+		fenetrebienlouable.getTextFieldNbDPieces().setText(String.valueOf(bien.getNbPieces()));
+		fenetrebienlouable.getTextFieldBienLoauble().setText(bien.getTypeBienLouable());
+		if (bien.getBatiment() != null) {
+			fenetrebienlouable.getTextFieldBatiment().setText(bien.getBatiment().getAdresse());
+		}
+		fenetrebienlouable.getTextFieldDFC().setText(String.valueOf(cl.getDateFin()));
+		fenetrebienlouable.getTextFieldTotalCharges().setText(String.valueOf(charge.getMontant()));
+	}
 
 	@Override
 	protected void gererBoutonRetour(String texte) {
 		if ("Retour".equals(texte)) {
 			fenetre.dispose();
-			FenetrePrincipale fp = new FenetrePrincipale();
-			fp.setVisible(true);
+			new FenetrePrincipale().setVisible(true);
 		}
 	}
-	
-	public void mousePressed(MouseEvent e) {}
 
-	public void mouseReleased(MouseEvent e) {}
+	public void mousePressed(MouseEvent e) {
+	}
 
-	public void mouseEntered(MouseEvent e) {}
+	public void mouseReleased(MouseEvent e) {
+	}
 
-	public void mouseExited(MouseEvent e) {}
+	public void mouseEntered(MouseEvent e) {
+	}
+
+	public void mouseExited(MouseEvent e) {
+	}
 }
