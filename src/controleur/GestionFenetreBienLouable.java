@@ -11,11 +11,15 @@ import javax.swing.table.DefaultTableModel;
 import modele.BienLouable;
 import modele.ChargesGenerales;
 import modele.ContratLocation;
+import modele.Facture;
 import modele.Locataire;
+import modele.Paiement;
 import modele.dao.DaoBienLouable;
 import modele.dao.DaoChargesGenerales;
 import modele.dao.DaoContratLocation;
+import modele.dao.DaoFacture;
 import modele.dao.DaoLocataire;
+import modele.dao.DaoPaiement;
 import vue.FenetreBienLouable;
 import vue.FenetreCharges;
 import vue.FenetreCompteurs;
@@ -118,9 +122,16 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 			ContratLocation cl = daoCL.findCLByBien(idBien);
 			DaoChargesGenerales daoCharge = new DaoChargesGenerales();
 			ChargesGenerales charge = daoCharge.findTotalChargesByBien(idBien);
+			DaoLocataire daoLoc = new DaoLocataire();
+			String idCL = cl.getNumeroDeContrat();
+			List<Locataire> locataires = daoLoc.findNomLocataireByContrat(idCL);
+			DaoFacture daoFac = new DaoFacture();
+			Facture fac = daoFac.findDateDernierTravauxByBien(idBien);
+			DaoPaiement daoPaiement = new DaoPaiement();
+			Paiement datePaiement = daoPaiement.findDateDernierPaiementByCL(idCL);
 			if (bienSelectionne != null) {
 				this.bien = bienSelectionne;
-				remplirFormulaire(bienSelectionne,cl,charge);
+				remplirFormulaire(bienSelectionne,cl,charge,locataires,fac,datePaiement);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -152,7 +163,10 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 		}
 	}
 
-	public void remplirFormulaire(BienLouable bien, ContratLocation cl,ChargesGenerales charge) {
+	public void remplirFormulaire(BienLouable bien, ContratLocation cl,ChargesGenerales charge,List<Locataire> loc,Facture fac,Paiement date) {
+		String nom = loc.get(0).toString();
+		String datePaiement = date.getDatepaiement().toString();
+		fenetrebienlouable.getTextFieldNom().setText(nom);
 		fenetrebienlouable.getTextFieldLoyerMen().setText(String.valueOf(cl.getMontantMensuel()));
 		fenetrebienlouable.getTextFieldNF().setText(bien.getNumeroFiscale());
 		fenetrebienlouable.getTextFieldAdresse().setText(bien.getAdresse());
@@ -163,7 +177,10 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 			fenetrebienlouable.getTextFieldBatiment().setText(bien.getBatiment().getAdresse());
 		}
 		fenetrebienlouable.getTextFieldDFC().setText(String.valueOf(cl.getDateFin()));
+		fenetrebienlouable.getTextFieldDT().setText(String.valueOf(fac.getDateDeFacture()));
 		fenetrebienlouable.getTextFieldTotalCharges().setText(String.valueOf(charge.getMontant()));
+		fenetrebienlouable.getTextFieldDP().setText(datePaiement);
+
 	}
 
 	@Override

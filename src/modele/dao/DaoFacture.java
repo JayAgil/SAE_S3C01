@@ -41,6 +41,10 @@ public class DaoFacture extends DaoModele<Facture> implements Dao<Facture> {
 	public List<Facture> findAll() throws SQLException {
 		return find(new RequeteSelectFacture());
 	}
+	
+	public Facture findDateDernierTravauxByBien(String idBien) throws SQLException {
+		return this.findById(new RequeteSelectDateFactureByBien(),idBien);
+	}
 
 	@Override
 	protected Facture creerInstance(ResultSet rs) throws SQLException {

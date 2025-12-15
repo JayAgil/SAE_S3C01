@@ -35,6 +35,10 @@ public class DaoPaiement extends DaoModele<Paiement> implements Dao<Paiement> {
 	public List<Paiement> findAll() throws SQLException {
 		return find(new RequeteSelectPaiement());
 	}
+	
+	public Paiement findDateDernierPaiementByCL(String idCL) throws SQLException {
+		return this.findById(new RequeteSelectDatePaiementByCL(),idCL);
+	}
 
 	@Override
 	protected Paiement creerInstance(ResultSet rs) throws SQLException {
