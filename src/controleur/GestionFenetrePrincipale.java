@@ -31,7 +31,7 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
         DaoChargesGenerales dao = new DaoChargesGenerales();
         String[] id = new String[1];
         id[0] = this.fenetre.getChosenBatiment();
-        return dao.findAll();
+        return dao.findByIdBatiment(id);
     }
     
     @Override
