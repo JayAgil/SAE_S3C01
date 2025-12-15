@@ -14,6 +14,8 @@ import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 
 import controleur.GestionFenetreBienLouable;
+import modele.Assurance;
+import modele.BienLouable;
 
 import javax.swing.JScrollPane;
 import java.awt.BorderLayout;
@@ -557,5 +559,32 @@ public class FenetreBienLouable extends FenetreBase {
 		this.mnBatiment.setEnabled(actif);
 		this.mnPaiement.setEnabled(actif);
     }
+	
+	public void afficherBienLouable() {
+	    int selectedRow = table.getSelectedRow();
+	    if (selectedRow != -1) { // Make sure a row is selected
+	        // Assuming your table columns are: "Id Bien Louable", "Adresse", "Nombre Pieces", "Type Bien"
+	        this.te.setText(table.getValueAt(selectedRow, 0).toString()); // or map to the right field
+	        textFieldAdresse.setText(table.getValueAt(selectedRow, 1).toString());
+	        textFieldNbDPieces.setText(table.getValueAt(selectedRow, 2).toString());
+	        textFieldBienLoauble.setText(table.getValueAt(selectedRow, 3).toString());
+	        
+	        // If you have more detailed info (like loyer, batiment, etc.), 
+	        // you either store the full BienLouable objects elsewhere or fetch them from a data source
+	        // For example:
+	        // BienLouable bien = listBiens.get(selectedRow);
+	        // textFieldLoyerMen.setText(String.valueOf(bien.getLoyerMensuel()));
+	        // textFieldBatiment.setText(bien.getBatiment());
+	        // ...
+	    } else {
+	        // Clear fields if no selection
+	        textFieldNom.setText("");
+	        textFieldAdresse.setText("");
+	        textFieldNbDPieces.setText("");
+	        textFieldBienLoauble.setText("");
+	        // clear other fields as needed
+	    }
+	}
+
 	
 }

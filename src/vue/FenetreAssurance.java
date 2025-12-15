@@ -325,7 +325,6 @@ public class FenetreAssurance extends FenetreBase {
 	    this.textFieldAgence.setText(assurance.getAgence());
 	    this.textFieldAdresseAgence.setText(assurance.getAdresseAgence());
 	    this.textFieldTelAgence.setText(assurance.getTelAgence());
-
 	    lblNbBien.setText(String.valueOf(nbBiens));
 	}
 }
