@@ -90,6 +90,7 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
     	        fenetre.dispose();
     	        FenetreBienLouable fen;
 				try {
+					// pass the bien selected by the user here i have put here null but there must be a bien that the user clicked
 					fen = new FenetreBienLouable("FenetrePrincipale", null);
 	    	        fen.setVisible(true);
 				} catch (SQLException e1) {

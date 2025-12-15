@@ -27,8 +27,17 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 		this.donnee = bienLouable;
 	}
 	
+	public List<BienLouable> getListBienWithTheBienNow() {
+		// use the bien that we have as an attribut to find the other biens and then fill the table
+		return null;
+	}
+	
 	public List<ChargesGenerales> getDonnesChargesByBien(){
 		return null;
+	}
+	
+	public BienLouable getBien() {
+		return this.donnee;
 	}
 
 	@Override
