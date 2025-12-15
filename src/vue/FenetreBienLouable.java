@@ -28,6 +28,8 @@ import javax.swing.Box;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.util.List;
+
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
@@ -69,12 +71,11 @@ public class FenetreBienLouable extends FenetreBase {
 	/**
 	 * Create the frame.
 	 */
-	public FenetreBienLouable() {
+	public FenetreBienLouable(String nomFenAvant, List<BienLouable> bienLouables) {
 		super();
     	setExtendedState(JFrame.MAXIMIZED_BOTH);
-		this.gestionClicBienLouable = new GestionFenetreBienLouable(this);
-		
-		
+		this.gestionClicBienLouable = new GestionFenetreBienLouable(this,bienLouables);
+		this.gestionClicBienLouable.chargerDonnees();
 		//header
         this.setJMenuBar(createHeader());
         
