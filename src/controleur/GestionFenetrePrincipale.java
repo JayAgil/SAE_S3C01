@@ -134,7 +134,7 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
     	}
 
         if(e.getSource() == fenetre.getPanelRevenu()) {
-        	FenetreContratLocation fCL = new FenetreContratLocation("FenPrincipale");
+        	FenetreContratLocation fCL = new FenetreContratLocation("FenPrincipale", null);
         	fCL.setVisible(true);
         }
         if(e.getSource() == fenetre.getPanelNbLoyerPasPaye()) {
@@ -151,7 +151,7 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
         	fp.setVisible(true);
         }
         if(e.getSource() == fenetre.getPanelNbLoyePasPaye_1()) {
-        	FenetreContratLocation fCL = new FenetreContratLocation("FenPrincipale");
+        	FenetreContratLocation fCL = new FenetreContratLocation("FenPrincipale", null);
         	fCL.setVisible(true);
         }
         

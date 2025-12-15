@@ -5,16 +5,18 @@ import java.sql.SQLException;
 
 import javax.swing.JTable;
 
+import modele.ContratLocation;
 import vue.*;
 
 public class GestionFenetreContratLocation extends GestionHeaderEtFooter implements MouseListener{
 
     private FenetreContratLocation fenetre;
+    private ContratLocation cl;
 
-    public GestionFenetreContratLocation(FenetreContratLocation fenetre) {
+    public GestionFenetreContratLocation(FenetreContratLocation fenetre, ContratLocation cl) {
         super(fenetre);
         this.fenetre = fenetre;
-
+        this.cl = cl;
     }
 
     @Override

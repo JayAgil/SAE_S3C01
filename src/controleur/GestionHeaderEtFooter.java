@@ -92,7 +92,7 @@ public abstract class GestionHeaderEtFooter implements ActionListener {
             break;
 
         case "Contrat location":
-            new FenetreContratLocation("FenPrincipale").setVisible(true);
+            new FenetreContratLocation("FenPrincipale", null).setVisible(true);
             fenetre.dispose();
             break;
 

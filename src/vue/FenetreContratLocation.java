@@ -1,7 +1,7 @@
 package vue;
 
 import controleur.GestionFenetreContratLocation;
-
+import modele.ContratLocation;
 
 import java.awt.EventQueue;
 import javax.swing.JFrame;
@@ -36,6 +36,7 @@ public class FenetreContratLocation extends FenetreBase {
 	private JPanel contentPane;
 	private JTable table;
 	private String fenDavant;
+	private ContratLocation cl;
 	
 	public String getFenDavant() {
 		return this.fenDavant;
@@ -47,7 +48,7 @@ public class FenetreContratLocation extends FenetreBase {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FenetreContratLocation frame = new FenetreContratLocation(null);
+					FenetreContratLocation frame = new FenetreContratLocation(null, null);
 					frame.setVisible(true);
 					 UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
 				} catch (Exception e) {
@@ -60,11 +61,12 @@ public class FenetreContratLocation extends FenetreBase {
 	/**
 	 * Create the frame.
 	 */
-	public FenetreContratLocation(String f) {
+	public FenetreContratLocation(String f, ContratLocation cl) {
 		super();
 		this.fenDavant = f;
     	setExtendedState(JFrame.MAXIMIZED_BOTH);
-		this.gestionClicContratLocation = new GestionFenetreContratLocation(this);
+    	this.cl = cl;
+		this.gestionClicContratLocation = new GestionFenetreContratLocation(this, this.cl);
 
 		//header
         this.setJMenuBar(createHeader());

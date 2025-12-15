@@ -6,7 +6,7 @@ public class RequeteSelectContratLocation extends Requete<ContratLocation> {
 	@Override
 	public String requete() {
 		// TODO Auto-generated method stub
-		return " Select * from ContratLocation " ;
+		return " Select * from MSF5131A.ContratLocation " ;
 	}
 
 }

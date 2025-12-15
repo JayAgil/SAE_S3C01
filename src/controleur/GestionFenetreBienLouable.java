@@ -16,7 +16,14 @@ import modele.dao.DaoBienLouable;
 import modele.dao.DaoChargesGenerales;
 import modele.dao.DaoContratLocation;
 import modele.dao.DaoLocataire;
-import vue.*;
+import vue.FenetreBienLouable;
+import vue.FenetreCharges;
+import vue.FenetreCompteurs;
+import vue.FenetreContratLocation;
+import vue.FenetreDiagnostic;
+import vue.FenetreLocataire;
+import vue.FenetrePrincipale;
+import vue.FenetreTravaux;
 
 public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements MouseListener {
 
@@ -60,7 +67,7 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 			break;
 
 		case "Contrat":
-			new FenetreContratLocation("FenBienLouable").setVisible(true);
+			new FenetreContratLocation("FenBienLouable", null).setVisible(true);
 			fenetrebienlouable.dispose();
 			break;
 

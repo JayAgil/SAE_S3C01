@@ -53,7 +53,7 @@ public class GestionFenetreLocataire extends GestionHeaderEtFooter {
 				fp2.setVisible(true);
 				break;
 			case "FenContratLocation":
-				FenetreContratLocation fp3 = new FenetreContratLocation("FenBienLouable");
+				FenetreContratLocation fp3 = new FenetreContratLocation("FenBienLouable",null);
 				fp3.setVisible(true);
 				break;
 			default:
