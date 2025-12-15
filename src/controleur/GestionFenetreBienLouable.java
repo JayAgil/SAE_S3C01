@@ -8,13 +8,10 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
-<<<<<<< HEAD
 import modele.BienLouable;
 import modele.dao.DaoBienLouable;
-=======
 import modele.Locataire;
 import modele.dao.DaoLocataire;
->>>>>>> ccb73dfcce1dff7a70f95fa21bc340b3367dccd0
 import vue.*;
 
 public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements MouseListener {
@@ -39,7 +36,6 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 			new FenetreContratLocation("FenBienLouable").setVisible(true);
 			fenetrebienlouable.dispose();
 			break;
-<<<<<<< HEAD
 
 		case "Charges":
 			new FenetreCharges("FenetreBienLouable").setVisible(true);
@@ -108,8 +104,6 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 	    fenetrebienlouable.getTextFieldDP().setText(b.getDateFinContrat());
 	    
 	}
-
-=======
         case "Charges":
             new FenetreCharges("FenetreBienLouable", null).setVisible(true);
             fenetrebienlouable.dispose();
@@ -171,8 +165,6 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 
 	public void mouseExited(MouseEvent e) {
 	}
->>>>>>> ccb73dfcce1dff7a70f95fa21bc340b3367dccd0
-
 	@Override
 	protected void gererBoutonRetour(String texte) {
 		if ("Retour".equals(texte)) {
@@ -181,12 +173,9 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 			fp.setVisible(true);
 		}
 	}
-<<<<<<< HEAD
-	
 	public void mousePressed(MouseEvent e) {}
 	public void mouseReleased(MouseEvent e) {}
 	public void mouseEntered(MouseEvent e) {}
 	public void mouseExited(MouseEvent e) {}
-=======
->>>>>>> ccb73dfcce1dff7a70f95fa21bc340b3367dccd0
+
 }
