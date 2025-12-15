@@ -80,7 +80,7 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {
+    public void mouseClicked(MouseEvent e){
     	if (e.getClickCount() == 2 && e.getSource() instanceof JTable) {
     	    JTable table = (JTable) e.getSource();
     	    int row = table.rowAtPoint(e.getPoint());
@@ -88,8 +88,13 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
     	    int targetColumn = 2;
     	    if (row != -1 && column == targetColumn) {
     	        fenetre.dispose();
-    	        FenetreBienLouable fen = new FenetreBienLouable();
-    	        fen.setVisible(true);
+    	        FenetreBienLouable fen;
+				try {
+					fen = new FenetreBienLouable("FenetrePrincipale", null);
+	    	        fen.setVisible(true);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
     	    }
     	}
     	
@@ -100,7 +105,7 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
     	    int targetColumn = 3;
     	    if (row != -1 && column == targetColumn) {
     	        fenetre.dispose();
-    	        FenetreLocataire fen = new FenetreLocataire("FenetrePrincipale");
+    	        FenetreLocataire fen = new FenetreLocataire("FenetrePrincipale", null);
     	        fen.setVisible(true);
     	    }
     	}
@@ -110,11 +115,16 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
         	fCL.setVisible(true);
         }
         if(e.getSource() == fenetre.getPanelNbLoyerPasPaye()) {
-        	FenetreBienLouable fBL = new FenetreBienLouable();
-        	fBL.setVisible(true);
+        	FenetreBienLouable fBL;
+			try {
+				fBL = new FenetreBienLouable("FenetrePrincipale", null);
+	        	fBL.setVisible(true);
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
         }
         if(e.getSource() == fenetre.getPanelRevenu_1()) {
-        	FenetrePaiement fp = new FenetrePaiement();
+        	FenetrePaiement fp = new FenetrePaiement(null);
         	fp.setVisible(true);
         }
         if(e.getSource() == fenetre.getPanelNbLoyePasPaye_1()) {

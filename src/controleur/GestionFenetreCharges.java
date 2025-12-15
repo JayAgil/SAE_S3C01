@@ -98,7 +98,7 @@ public class GestionFenetreCharges extends GestionHeaderEtFooter{
 
     
     @Override
-    protected void gererBoutonRetour(String texte) {
+    protected void gererBoutonRetour(String texte) throws SQLException {
     	if ("Retour".equals(texte)) {
     	    fenetre.dispose();
     	    String fenAvant = fenetre.getFenetreAvant();
@@ -109,12 +109,18 @@ public class GestionFenetreCharges extends GestionHeaderEtFooter{
     	            fp1.setVisible(true);
     	            break;
     	        case "FenetreBienLouable":
-    	            FenetreBienLouable fp2 = new FenetreBienLouable();
+    	            FenetreBienLouable fp2 = new FenetreBienLouable(null, null);
     	            fp2.setVisible(true);
     	            break;
     	        default:
-    	            FenetreBienLouable fpDefault = new FenetreBienLouable();
+				FenetreBienLouable fpDefault;
+				try {
+					fpDefault = new FenetreBienLouable(null, null);
     	            fpDefault.setVisible(true);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
     	            break;
     	    }
     	}

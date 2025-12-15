@@ -28,6 +28,7 @@ import javax.swing.Box;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.swing.JTextField;
@@ -51,6 +52,7 @@ public class FenetreBienLouable extends FenetreBase {
 	private JTextField textFieldTotalCharges;
 	private JTextField textFieldDFC;
 	private JTextField textFieldDP;
+	private BienLouable bienLouable;
 
 	/**
 	 * Launch the application.
@@ -59,7 +61,7 @@ public class FenetreBienLouable extends FenetreBase {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FenetreBienLouable frame = new FenetreBienLouable();
+					FenetreBienLouable frame = new FenetreBienLouable(null, null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -70,11 +72,12 @@ public class FenetreBienLouable extends FenetreBase {
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 */
-	public FenetreBienLouable(String nomFenAvant, List<BienLouable> bienLouables) {
+	public FenetreBienLouable(String nomFenAvant, BienLouable bienLouables) throws SQLException {
 		super();
     	setExtendedState(JFrame.MAXIMIZED_BOTH);
-		this.gestionClicBienLouable = new GestionFenetreBienLouable(this,bienLouables);
+		this.gestionClicBienLouable = new GestionFenetreBienLouable(this, this.bienLouable);
 		this.gestionClicBienLouable.chargerDonnees();
 		//header
         this.setJMenuBar(createHeader());

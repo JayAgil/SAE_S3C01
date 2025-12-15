@@ -1,5 +1,6 @@
 package controleur;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.swing.JTable;
@@ -37,7 +38,7 @@ public class GestionFenetreLocataire extends GestionHeaderEtFooter {
 	}
 
 	@Override
-	protected void gererBoutonRetour(String texte) {
+	protected void gererBoutonRetour(String texte) throws SQLException {
 		if ("Retour".equals(texte)) {
 			fenetre.dispose();
 			String fenAvant = fenetre.getNomFenAvant();
@@ -48,7 +49,7 @@ public class GestionFenetreLocataire extends GestionHeaderEtFooter {
 				fp1.setVisible(true);
 				break;
 			case "BienLouable":
-				FenetreBienLouable fp2 = new FenetreBienLouable();
+				FenetreBienLouable fp2 = new FenetreBienLouable(null, null);
 				fp2.setVisible(true);
 				break;
 			case "FenContratLocation":
@@ -56,7 +57,7 @@ public class GestionFenetreLocataire extends GestionHeaderEtFooter {
 				fp3.setVisible(true);
 				break;
 			default:
-				FenetreBienLouable fpDefault = new FenetreBienLouable();
+				FenetreBienLouable fpDefault = new FenetreBienLouable(null, null);
 				fpDefault.setVisible(true);
 				break;
 			}

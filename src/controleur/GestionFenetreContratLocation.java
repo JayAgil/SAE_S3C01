@@ -1,6 +1,7 @@
 package controleur;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
 
 import javax.swing.JTable;
 
@@ -33,10 +34,10 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
     }
     
     @Override
-    protected void gererBoutonRetour(String texte) {
+    protected void gererBoutonRetour(String texte) throws SQLException {
         if ("Retour".equals(texte)) {
         	if(fenetre.getFenDavant().equals("FenBienLouable")) {
-	            FenetreBienLouable fp = new FenetreBienLouable();
+	            FenetreBienLouable fp = new FenetreBienLouable(null, null);
 	            fp.setVisible(true);
 	            fenetre.dispose();
         	}
@@ -57,7 +58,7 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
     	    int targetColumn = 0;
     	    if (row != -1 && column == targetColumn) {
     	        fenetre.dispose();
-    	        FenetreLocataire fen = new FenetreLocataire("FenContratLocation");
+    	        FenetreLocataire fen = new FenetreLocataire("FenContratLocation", null);
     	        fen.setVisible(true);
     	    }
     	}

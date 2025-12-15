@@ -51,7 +51,11 @@ public abstract class GestionHeaderEtFooter implements ActionListener {
 
 				e1.printStackTrace();
 			}
-            gererBoutonRetour(btn.getText());
+            try {
+				gererBoutonRetour(btn.getText());
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
         }
         if (src instanceof JMenuItem item) {
             String texte = item.getText();
@@ -113,12 +117,12 @@ public abstract class GestionHeaderEtFooter implements ActionListener {
             break;
 
         case "Locataires":
-            new FenetreLocataire("Principal").setVisible(true);
+            new FenetreLocataire("Principal", null).setVisible(true);
             fenetre.dispose();
             break;
 
         case "Historique de paiement":
-            new FenetrePaiement().setVisible(true);
+            new FenetrePaiement(null).setVisible(true);
             fenetre.dispose();
             break;
             
@@ -137,7 +141,7 @@ public abstract class GestionHeaderEtFooter implements ActionListener {
         }
     }
     
-    protected void gererBoutonRetour(String texte) {
+    protected void gererBoutonRetour(String texte) throws SQLException {
 	    if ("Retour".equals(texte)) {
 	        fenetre.dispose();
 	    }

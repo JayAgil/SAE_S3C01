@@ -1,5 +1,7 @@
 package controleur;
 
+import java.sql.SQLException;
+
 import vue.*;
 
 public class GestionFenetreCompteurs extends GestionHeaderEtFooter {
@@ -24,7 +26,7 @@ public class GestionFenetreCompteurs extends GestionHeaderEtFooter {
     }
 
     @Override
-    protected void gererBoutonRetour(String texte) {
+    protected void gererBoutonRetour(String texte) throws SQLException {
     	if ("Retour".equals(texte)) {
     	    fenetre.dispose();
     	    String fenAvant = fenetre.getFenetreAvant();
@@ -35,12 +37,17 @@ public class GestionFenetreCompteurs extends GestionHeaderEtFooter {
     	            fp1.setVisible(true);
     	            break;
     	        case "FenetreBienLouable":
-    	            FenetreBienLouable fp2 = new FenetreBienLouable();
+    	            FenetreBienLouable fp2 = new FenetreBienLouable(null, null);
     	            fp2.setVisible(true);
     	            break;
     	        default:
-    	            FenetreBienLouable fpDefault = new FenetreBienLouable();
+				FenetreBienLouable fpDefault;
+				try {
+					fpDefault = new FenetreBienLouable(null, null);
     	            fpDefault.setVisible(true);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
     	            break;
     	    }
     	}

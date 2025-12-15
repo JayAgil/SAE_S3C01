@@ -3,6 +3,7 @@ package controleur;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -73,9 +74,9 @@ public class GestionFenetreTravaux extends GestionHeaderEtFooter implements Mous
 
 
 	@Override
-	protected void gererBoutonRetour(String texte) {
+	protected void gererBoutonRetour(String texte) throws SQLException {
 		if ("Retour".equals(texte)) {
-			FenetreBienLouable fenetreBienLouable = new FenetreBienLouable();
+			FenetreBienLouable fenetreBienLouable = new FenetreBienLouable("fp", null);
 			fenetreBienLouable.setVisible(true);
 			fenetreTravaux.dispose();
 		}

@@ -19,12 +19,16 @@ import vue.*;
 public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements MouseListener {
 
 	private FenetreBienLouable fenetrebienlouable;
-	private List<BienLouable> donnee = new ArrayList<>();
+	private BienLouable donnee;
 
-	public GestionFenetreBienLouable(FenetreBienLouable fenetre, List<BienLouable> donnee) {
+	public GestionFenetreBienLouable(FenetreBienLouable fenetre, BienLouable bienLouable) {
 		super(fenetre);
 		this.fenetrebienlouable = fenetre;
-		this.donnee = donnee;
+		this.donnee = bienLouable;
+	}
+	
+	public List<ChargesGenerales> getDonnesChargesByBien(){
+		return null;
 	}
 
 	@Override
@@ -42,7 +46,7 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 			break;
 
 		case "Charges":
-			new FenetreCharges("FenetreBienLouable").setVisible(true);
+			new FenetreCharges("FenetreBienLouable", getDonnesChargesByBien()).setVisible(true);
 			fenetrebienlouable.dispose();
 			break;
 
@@ -75,7 +79,7 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 			int column = table.columnAtPoint(e.getPoint());
 			int targetColumn = 0;
 			if (column == targetColumn) {
-				FenetreLocataire fen = new FenetreLocataire("FenetreLocataire");
+				FenetreLocataire fen = new FenetreLocataire("FenetreLocataire", null);
 				fen.setVisible(true);
 				fenetre.dispose();
 			}
