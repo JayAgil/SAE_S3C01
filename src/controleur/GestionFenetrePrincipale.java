@@ -30,7 +30,6 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
         return dao.findAll();
     }
     
-    
     @Override
     protected void gererBoutonSpecifique(String texte) throws SQLException {
         switch (texte) {
