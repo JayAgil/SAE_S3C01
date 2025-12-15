@@ -8,7 +8,9 @@ import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.JTable;
 
+import modele.BienLouable;
 import modele.ChargesGenerales;
+import modele.dao.DaoBienLouable;
 import modele.dao.DaoChargesGenerales;
 import vue.*;
 
@@ -90,8 +92,11 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
     	        fenetre.dispose();
     	        FenetreBienLouable fen;
 				try {
+					String idBien = table.getValueAt(row, column).toString();
+					DaoBienLouable daoBL = new DaoBienLouable();
+					BienLouable bien = daoBL.findById(idBien);
 					// pass the bien selected by the user here i have put here null but there must be a bien that the user clicked
-					fen = new FenetreBienLouable("FenetrePrincipale", null);
+					fen = new FenetreBienLouable("FenetrePrincipale", bien);
 	    	        fen.setVisible(true);
 				} catch (SQLException e1) {
 					e1.printStackTrace();
