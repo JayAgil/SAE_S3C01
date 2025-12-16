@@ -45,6 +45,10 @@ public class DaoLocataire extends DaoModele<Locataire> implements Dao<Locataire>
 		return find(new RequeteSelectLocataireByBienLouable(),id);
 	}
 	
+	public List<Locataire> findLocataireByContrat(String... id) throws SQLException {
+		return find(new RequeteSelectLocataireByContrat(),id);
+	}
+	
 	public List<Locataire> findNomLocataireByContrat(String numeroContrat) throws SQLException {
 	    return this.find(new RequeteSelectNomLocataireByCL(), numeroContrat);
 	}

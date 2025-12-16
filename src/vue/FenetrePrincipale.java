@@ -230,10 +230,7 @@ public class FenetrePrincipale extends FenetreBase {
         panelSouth.add(panelSouthEast, BorderLayout.EAST);
         
         JButton btnGénéré = new JButton("Généré");
-        btnGénéré.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        	}
-        });
+        btnGénéré.addActionListener(this.gestionClic);
         panelSouthEast.add(btnGénéré);
 
         JButton btnCharges = new JButton("Charges");
@@ -274,7 +271,7 @@ public class FenetrePrincipale extends FenetreBase {
                 { null, null, null, null }, { null, null, null, null },
                 { null, null, null, null }, { null, null, null, null },
                 { null, null, null, null }, },
-            new String[] { "Contrat Location", "Date", "Bien Louable",
+            new String[] { "Contrat Location", "Nombre de piece", "Bien Louable",
                 "Locataire Référent" }) {
             Class[] columnTypes = new Class[] { String.class, String.class,
                 String.class, String.class };

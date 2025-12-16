@@ -3,6 +3,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFileChooser;
@@ -12,9 +13,12 @@ import javax.swing.table.DefaultTableModel;
 import modele.BienLouable;
 import modele.ChargesGenerales;
 import modele.ContratLocation;
+import modele.Locataire;
+import modele.UtOracleDataSource;
 import modele.dao.DaoBienLouable;
 import modele.dao.DaoChargesGenerales;
 import modele.dao.DaoContratLocation;
+import modele.dao.DaoLocataire;
 import vue.*;
 
 public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements MouseListener{
@@ -22,9 +26,9 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
     private FenetrePrincipale fenetre;
 	private DaoBienLouable daoBienLouable;
 
-    public GestionFenetrePrincipale(FenetrePrincipale fenetre) {
+    public GestionFenetrePrincipale(FenetrePrincipale fenetre){
         super(fenetre);
-        this.fenetre = fenetre;
+        this.fenetre = fenetre;        
     }
     
     public List<ChargesGenerales> getDonneesChargesGenerale() throws SQLException {
@@ -39,6 +43,7 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
         switch (texte) {
             case "Quitter":
                 fenetre.dispose();
+                UtOracleDataSource.Deconnecter();
                 break;
 
             case "Assurance":
@@ -70,22 +75,32 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
                     File selectedFile = chooser.getSelectedFile();
                     System.out.println("Selected file: " + selectedFile.getAbsolutePath());
                     mAJDeBaseDeDonnees(selectedFile);
-            	break;
-            	}
+                }
+                break;
             case "Généré":
-                this.daoBienLouable = new DaoBienLouable();
+            	try {
+        			this.daoBienLouable = new DaoBienLouable();
+        		} catch (SQLException e) {
+        			e.printStackTrace();
+        		}
                 List<BienLouable> listBienLouable;
                 try {
                     listBienLouable = daoBienLouable.findAll();
                     for (int i = 0; i < listBienLouable.size(); i++) {
-                        EcrireLigneTableBienLouable(i, listBienLouable.get(i));
+                    	DaoContratLocation daoContrat = new DaoContratLocation();
+                    	DaoLocataire daoLocataire = new DaoLocataire();
+                        List<ContratLocation> listContrat = daoContrat.findByBienLouable(listBienLouable.get(i).getIdBienLouable());
+                        if (listContrat != null) {
+                        	//List<Locataire> listLocataire = daoLocataire.findLocataireByContrat(listContrat.get(0).getNumeroDeContrat());
+                        	//System.out.println(listLocataire);
+                        	EcrireLigneTableBienLouable(i, listBienLouable.get(i), listContrat.get(0));
+                        }
                     }
                 } catch (SQLException e1) {
                     e1.printStackTrace();
                 }
                 break;
-                
-                }
+             }
         }
     
         
@@ -158,28 +173,21 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
     }
     
     public void EcrireLigneTableBienLouable(int numeroLigne,
-            BienLouable bienLouable) throws SQLException {
+            BienLouable bienLouable, ContratLocation contrat) throws SQLException {
             JTable table = fenetre.getTableBienLouable();
             DefaultTableModel model = (DefaultTableModel) table.getModel();
             if (model.getColumnCount() == 0) {
                 model.setColumnIdentifiers(new String[] { "Contrat Location",
-                    "Date", "Bien Louable", "Locataire Référent" });
+                    "Nombre de piece", "Bien Louable", "Locataire Référent" });
             }
-            model.setRowCount(0);
-            while (model.getRowCount() <= numeroLigne) {
+        	if (model.getRowCount() == numeroLigne) {
                 model.addRow(new Object[] { null, null, null, null });
             }
-            DaoContratLocation daoContrat = new DaoContratLocation();
-            List<ContratLocation> listContrat = daoContrat
-                .findByBienLouable(bienLouable.getIdBienLouable());
-            if (listContrat != null) {
-                model.setValueAt(listContrat.get(0).getNumeroDeContrat(),
-                    numeroLigne, 0);
-                model.setValueAt(bienLouable.getNbPieces(), numeroLigne, 1);
-                model.setValueAt(bienLouable.getTypeBienLouable(), numeroLigne, 2);
-                model.setValueAt(bienLouable.getSurfaceHabituable(), numeroLigne,
-                    3);
-            }
+            model.setValueAt(contrat.getNumeroDeContrat(), numeroLigne, 0);
+            model.setValueAt(bienLouable.getNbPieces(), numeroLigne, 1);
+            model.setValueAt(bienLouable.getTypeBienLouable(), numeroLigne, 2);
+            model.setValueAt("Pablo", numeroLigne, 3);
+            
         }
 
     @Override public void mousePressed(MouseEvent e) {}
