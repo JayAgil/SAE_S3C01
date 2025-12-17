@@ -8,6 +8,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controleur.GestionFenetrePaiement;
+import modele.Facture;
 import modele.Locataire;
 
 import javax.swing.border.TitledBorder;
@@ -106,10 +107,6 @@ public class FenetrePaiement extends FenetreBase{
         btnAjouterPaiement.addActionListener(this.gestionClic);
         panelButtons.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         panelButtons.add(btnAjouterPaiement);
-        
-        JButton btnGenFac = new JButton("Générer facture");
-        btnGenFac.addActionListener(this.gestionClic);
-        panelButtons.add(btnGenFac);
         
         JButton btnRetour = new JButton("Retour");
         panelButtons.add(btnRetour);
@@ -293,6 +290,6 @@ public class FenetrePaiement extends FenetreBase{
 	public void setLocataires(List<Locataire> locataires) {
 		this.locataires = locataires;
 	}
-    
+
     
 }

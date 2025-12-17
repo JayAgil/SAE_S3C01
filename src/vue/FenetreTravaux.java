@@ -272,13 +272,17 @@ public class FenetreTravaux extends FenetreBase {
 	    }
 	}
 	
-	public Facture getFactureSelectionnee() {
-	    int row = table.getSelectedRow();
-	    if (row == -1) {
-	        return null;
-	    }
+	public Facture getFactureSelectionnee(int row) {
+	    if (row < 0 || row >= factures.size()) return null;
 	    return factures.get(row);
 	}
+	
+	public Facture getFactureSelectionnee() {
+        int row = table.getSelectedRow();
+        if (row == -1) return null;
+        return getFactureSelectionnee(row);
+    }
+
 
 
 	
