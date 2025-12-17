@@ -351,10 +351,10 @@ public class FenetrePrincipale extends FenetreBase {
     @Override
     public void disableMenuItems(boolean actif) {
     	mnBienLouable.setEnabled(actif);
-    	mnPaiement.setEnabled(actif);
+    	/*mnPaiement.setEnabled(actif);
     	this.mntmAssurance.setEnabled(actif);
     	this.mntmCharge.setEnabled(actif);
-    	this.mntmCompteur.setEnabled(actif);
+    	this.mntmCompteur.setEnabled(actif);*/
     }
     
 	public JLabel getLblRevenu() {

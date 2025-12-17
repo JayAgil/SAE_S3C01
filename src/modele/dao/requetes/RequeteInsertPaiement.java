@@ -15,6 +15,6 @@ public class RequeteInsertPaiement extends Requete<Paiement>{
 		 ps.setString(1, p.getId_paiement());          
 		    ps.setDouble(2, p.getMontant());          
 		    ps.setDate(3, p.getDatepaiement());                
-		    ps.setString(4, p.getContratLocation().getNumeroDeContrat());       
+		    ps.setString(4, p.getContratLocation());//.getNumeroDeContrat());       
     }
 }

@@ -143,4 +143,6 @@ public class FenetreAjouterPaiement extends JInternalFrame {
         fields.add(textFieldIdPaiement);
         return fields;
     }
+    
+    
 }

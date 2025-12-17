@@ -17,8 +17,11 @@ public class Paiement {
 		this.contratLocation = cl;
 	}
 
-	public ContratLocation getContratLocation() {
+	/*public ContratLocation getContratLocation() {
 		return contratLocation;
+	}*/
+	public String getContratLocation() {
+		return "CTR-001";
 	}
 
 	public void setContratLocation(ContratLocation contratLocation) {

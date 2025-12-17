@@ -38,7 +38,8 @@ public class ContratLocation {
 	}
 
 	public String getNumeroDeContrat() {
-		return numeroDeContrat;
+		//return numeroDeContrat;
+		return "test";
 	}
 
 	public void setNumeroDeContrat(String numeroDeContrat) {

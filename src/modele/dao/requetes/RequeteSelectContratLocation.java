@@ -8,5 +8,7 @@ public class RequeteSelectContratLocation extends Requete<ContratLocation> {
 		// TODO Auto-generated method stub
 		return " Select * from ContratLocation " ;
 	}
-
 }
+
+
+
