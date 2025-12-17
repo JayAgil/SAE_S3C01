@@ -51,9 +51,10 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 		return List.of();
 	}
 	
-	public List<ContratLocation> getListContratByBien() throws SQLException{
+	public ContratLocation getDonneesContratByBien() throws SQLException{
 		DaoContratLocation dCL = new DaoContratLocation();
-		return 0;
+		String idBien = this.fenetrebienlouable.getChosenBien();
+		return dCL.findCLByBien(idBien);
 	}
 
 	public List<ChargesGenerales> getDonneesChargesGeneraleByBien() throws SQLException {
@@ -129,7 +130,7 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 			ChargesGenerales charge = daoCharge.findTotalChargesByBien(idBien);
 			DaoLocataire daoLoc = new DaoLocataire();
 			String idCL = cl.getNumeroDeContrat();
-			List<Locataire> locataires = daoLoc.findNomLocataireByContrat(idCL);
+			List<Locataire> locataires = daoLoc.findLocataireByContrat(idCL);
 			DaoFacture daoFac = new DaoFacture();
 			Facture fac = daoFac.findDateDernierTravauxByBien(idBien);
 			DaoPaiement daoPaiement = new DaoPaiement();

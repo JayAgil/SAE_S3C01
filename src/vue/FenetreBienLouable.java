@@ -563,6 +563,15 @@ public class FenetreBienLouable extends FenetreBase {
 		this.mnBatiment.setEnabled(actif);
 		this.mnPaiement.setEnabled(actif);
     }
+	
+	public String getChosenBien() {
+		int selectedRow = table.getSelectedRow();
+		if (selectedRow != -1) {
+		    String value = table.getValueAt(selectedRow, 0).toString();
+		    return value;
+		}
+		return "";
+	}
 
 	
 }
