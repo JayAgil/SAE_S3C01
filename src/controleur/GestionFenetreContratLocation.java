@@ -10,6 +10,7 @@ import javax.swing.table.DefaultTableModel;
 
 import modele.ContratLocation;
 import modele.dao.DaoContratLocation;
+import modele.dao.DaoLocataire;
 import vue.*;
 
 public class GestionFenetreContratLocation extends GestionHeaderEtFooter implements MouseListener{
@@ -105,19 +106,24 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 	}
 	
 	public void initialize() {
-	    remplirTable();
+	    try {
+			remplirTable();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		if (!contrats.isEmpty()) {
 		    afficherContrat(cl);
 		}
 	}
 	
-	private void remplirTable() {
+	private void remplirTable() throws SQLException {
 	    DefaultTableModel model = (DefaultTableModel) this.fenetre.getTable().getModel();
 	    model.setRowCount(0); 
-
+	    DaoLocataire dL = new DaoLocataire();
 	    for (ContratLocation c : contrats) {
+	    	String nomLoc = dL.findLocataireByContrat(c.getNumeroDeContrat()).get(0).getNom();
 	        model.addRow(new Object[] {
-	            "—", 
+	            nomLoc, 
 	            c.getNumeroDeContrat(),
 	            c.getDateFin(),
 	            c.getMontantMensuel(),
