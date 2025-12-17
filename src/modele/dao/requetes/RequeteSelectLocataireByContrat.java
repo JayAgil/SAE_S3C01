@@ -10,7 +10,7 @@ public class RequeteSelectLocataireByContrat extends Requete<Locataire> {
     @Override
     public String requete() {
         return "SELECT * "
-             + "FROM MSF5131A.SAE_LOCATAIRE "
+             + "FROM MSF5131A.SAE_Locataire "
              + "WHERE Id_locataire IN ( "
              + "    SELECT Id_locataire "
              + "    FROM MSF5131A.SAE_CONTRAT_LOCATAIRE "

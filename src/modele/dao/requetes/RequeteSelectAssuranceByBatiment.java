@@ -11,7 +11,7 @@ public class RequeteSelectAssuranceByBatiment extends Requete<Assurance> {
     public String requete() {
         return "SELECT * "
              + "FROM MSF5131A.SAE_ASSURANCE "
-             + "WHERE fk_Adresse_Bat = ?";
+             + "WHERE fk_Adresse = ?";
     }
 
     @Override

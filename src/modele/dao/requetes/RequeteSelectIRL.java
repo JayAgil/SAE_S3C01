@@ -6,7 +6,7 @@ public class RequeteSelectIRL extends Requete<IRL>{
 
 	@Override
 	public String requete() {
-		return "Select * from MSF5131A.SAE_IRL";
+		return "Select * from MSF5131A.SAE_IRL ";
 	}
 
 }

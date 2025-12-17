@@ -8,7 +8,7 @@ import modele.Compteur;
 
 public class RequeteDeleteCompteur extends Requete<Compteur>{
 	public String requete() {
-		return " Select * from ChargesGenerales where id_Compteur = ? " ;
+		return " Select * from MSF5131A.SAE_Compteur where Id_Compteur = ? " ;
 	}
 
 	public void parametres(PreparedStatement prSt, String... id) throws SQLException {

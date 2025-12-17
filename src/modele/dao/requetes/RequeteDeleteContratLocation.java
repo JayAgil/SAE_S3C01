@@ -3,12 +3,11 @@ package modele.dao.requetes;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import modele.Assurance;
 import modele.ContratLocation;
 
 public class RequeteDeleteContratLocation extends Requete<ContratLocation> {
 	public String requete() {
-		return " Delete from MSF5131A.SAE_ContratLocation where numero_De_Contrat = ? " ;
+		return " Delete from MSF5131A.SAE_ContratLocation where Numero_de_contrat = ? " ;
 	}
 
 	public void parametres(PreparedStatement prSt, String... id) throws SQLException {
