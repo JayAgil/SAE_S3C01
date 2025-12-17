@@ -2,7 +2,9 @@ package controleur;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.JOptionPane;
 
+import modele.Facture;
 import vue.*;
 
 public class GestionFenetrePaiement extends GestionHeaderEtFooter implements MouseListener{
@@ -23,14 +25,6 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter implements Mou
                 FenetreAjouterPaiement fenAjouterPaiement = new FenetreAjouterPaiement();
                 fenetre.getLayeredPane().add(fenAjouterPaiement);
                 fenAjouterPaiement.setVisible(true);
-                break;
-
-            case "Générer facture":
-            	int[][] data = new int[5][5];
-            	String[] cNames = new String[5];
-            	String tabName = "";
-                FenetreFacture fenFacture = new FenetreFacture();
-                fenFacture.setVisible(true);
                 break;
         }
     }
