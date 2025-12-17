@@ -9,8 +9,7 @@ public class RequeteSelectAssuranceByBatiment extends Requete<Assurance> {
 
     @Override
     public String requete() {
-        return "SELECT Numero_d_assurance, Prime, Montant, Type_assurance, "
-             + "Agence, Adresse_agence, Tel_agence "
+        return "SELECT * "
              + "FROM MSF5131A.SAE_ASSURANCE "
              + "WHERE fk_Adresse_Bat = ?";
     }

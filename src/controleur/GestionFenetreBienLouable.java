@@ -10,12 +10,14 @@ import javax.swing.table.DefaultTableModel;
 
 import modele.BienLouable;
 import modele.ChargesGenerales;
+import modele.Compteur;
 import modele.ContratLocation;
 import modele.Facture;
 import modele.Locataire;
 import modele.Paiement;
 import modele.dao.DaoBienLouable;
 import modele.dao.DaoChargesGenerales;
+import modele.dao.DaoCompteur;
 import modele.dao.DaoContratLocation;
 import modele.dao.DaoFacture;
 import modele.dao.DaoLocataire;
@@ -50,10 +52,22 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 		}
 		return List.of();
 	}
+	
+	public ContratLocation getDonneesContratByBien() throws SQLException{
+		DaoContratLocation dCL = new DaoContratLocation();
+		String idBien = this.fenetrebienlouable.getChosenBien();
+		return dCL.findCLByBien(idBien);
+	}
 
 	public List<ChargesGenerales> getDonneesChargesGeneraleByBien() throws SQLException {
 		DaoChargesGenerales dao = new DaoChargesGenerales();
 		return dao.findByIdBien(bien.getIdBienLouable());
+	}
+	
+	public List<Compteur> getDonneesCompteur() throws SQLException {
+		DaoCompteur dao = new DaoCompteur();
+		String idBien = this.fenetrebienlouable.getChosenBien();
+		return dao.findByIdBien(idBien);
 	}
 
 	public BienLouable getBien() {
@@ -86,7 +100,7 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 			break;
 
 		case "Compteur":
-			new FenetreCompteurs("FenetreBienLouable").setVisible(true);
+			new FenetreCompteurs("FenetreBienLouable", getDonneesCompteur()).setVisible(true);
 			fenetrebienlouable.dispose();
 			break;
 
@@ -115,28 +129,37 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 	}
 
 	private void chargerBienEtRemplirFormulaire(String idBien) {
-		try {
-			DaoBienLouable daoBien = new DaoBienLouable();
-			BienLouable bienSelectionne = daoBien.findById(idBien);
-			DaoContratLocation daoCL = new DaoContratLocation();
-			ContratLocation cl = daoCL.findCLByBien(idBien);
-			DaoChargesGenerales daoCharge = new DaoChargesGenerales();
-			ChargesGenerales charge = daoCharge.findTotalChargesByBien(idBien);
-			DaoLocataire daoLoc = new DaoLocataire();
-			String idCL = cl.getNumeroDeContrat();
-			List<Locataire> locataires = daoLoc.findNomLocataireByContrat(idCL);
-			DaoFacture daoFac = new DaoFacture();
-			Facture fac = daoFac.findDateDernierTravauxByBien(idBien);
-			DaoPaiement daoPaiement = new DaoPaiement();
-			Paiement datePaiement = daoPaiement.findDateDernierPaiementByCL(idCL);
-			if (bienSelectionne != null) {
-				this.bien = bienSelectionne;
-				remplirFormulaire(bienSelectionne,cl,charge,locataires,fac,datePaiement);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+	    try {
+	        DaoBienLouable daoBien = new DaoBienLouable();
+	        BienLouable bienSelectionne = daoBien.findById(idBien);
+	        if (bienSelectionne == null) return;
+
+	        DaoContratLocation daoCL = new DaoContratLocation();
+	        ContratLocation contrat = daoCL.findCLByBien(idBien);
+
+	        DaoChargesGenerales daoCharge = new DaoChargesGenerales();
+	        List<ChargesGenerales> charges = daoCharge.findByIdBien(idBien);
+	        double totalCharge = charges.stream()
+	                                    .mapToDouble(ChargesGenerales::getMontant)
+	                                    .sum();
+	        
+	        DaoLocataire daoLoc = new DaoLocataire();
+	        List<Locataire> locataires = daoLoc.findLocataireByContrat(contrat.getNumeroDeContrat());
+
+	        DaoFacture daoFacture = new DaoFacture();
+	        Facture facture = daoFacture.findDateDernierTravauxByBien(idBien);
+
+	        DaoPaiement daoPaiement = new DaoPaiement();
+	        Paiement dernierPaiement = daoPaiement.findDateDernierPaiementByCL(contrat.getNumeroDeContrat());
+
+	        this.bien = bienSelectionne;
+	        remplirFormulaire(bienSelectionne, contrat, totalCharge, locataires, facture, dernierPaiement);
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
 	}
+
 
 	private void ouvrirFenetreLocataire(String idBien) {
 		try {
@@ -163,7 +186,7 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 		}
 	}
 
-	public void remplirFormulaire(BienLouable bien, ContratLocation cl,ChargesGenerales charge,List<Locataire> loc,Facture fac,Paiement date) {
+	public void remplirFormulaire(BienLouable bien, ContratLocation cl,double charge,List<Locataire> loc,Facture fac,Paiement date) {
 		String nom = loc.get(0).toString();
 		String datePaiement = date.getDatepaiement().toString();
 		fenetrebienlouable.getTextFieldNom().setText(nom);
@@ -178,7 +201,7 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 		}
 		fenetrebienlouable.getTextFieldDFC().setText(String.valueOf(cl.getDateFin()));
 		fenetrebienlouable.getTextFieldDT().setText(String.valueOf(fac.getDateDeFacture()));
-		fenetrebienlouable.getTextFieldTotalCharges().setText(String.valueOf(charge.getMontant()));
+		fenetrebienlouable.getTextFieldTotalCharges().setText(String.valueOf(charge));
 		fenetrebienlouable.getTextFieldDP().setText(datePaiement);
 
 	}

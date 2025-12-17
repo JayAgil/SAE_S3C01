@@ -6,10 +6,12 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="Test"/>
 	<classpathentry kind="lib" path="src/ojdbc/ojdbc11.jar">
 		<attributes>
 			<attribute name="javadoc_location" value="jar:file:/C:/Users/User/Documents/GitHub/SAE_S3C01/src/ojdbc/ojdbc11-21.7.0.0-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

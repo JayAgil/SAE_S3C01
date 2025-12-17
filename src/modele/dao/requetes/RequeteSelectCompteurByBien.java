@@ -3,12 +3,13 @@ package modele.dao.requetes;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import modele.ChargesGenerales;
+import modele.Compteur;
 
-public class RequeteSelectTotalChargesByBien extends Requete<ChargesGenerales> {
+public class RequeteSelectCompteurByBien extends Requete<Compteur>{
+
 	@Override
 	public String requete() {
-		return "Select * from MSF5131A.SAE_Charges_Generale where fk_Id_BienLouable = ?";
+		return "SELECT * FROM Compteur WHERE idBienLouable = ?";
 	}
 	
 	public void parametres(PreparedStatement prSt, String... id) throws SQLException {

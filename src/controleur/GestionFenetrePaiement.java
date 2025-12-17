@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+<<<<<<< HEAD
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -13,6 +14,8 @@ import modele.Locataire;
 import modele.Paiement;
 import modele.dao.DaoLocataire;
 import modele.dao.DaoPaiement;
+=======
+>>>>>>> f4d78edcdbd736dc31da42b3d82936a873d53807
 import vue.*;
 
 public class GestionFenetrePaiement extends GestionHeaderEtFooter {

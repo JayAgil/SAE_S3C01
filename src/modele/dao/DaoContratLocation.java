@@ -84,6 +84,15 @@ public class DaoContratLocation extends DaoModele<ContratLocation> implements Da
 	        return res;
 	    }
 	
+	public List<ContratLocation> findByBatiment(String... id) throws SQLException {
+        return this.find(new RequeteSelectContratLocationByBatiment(), id);
+	}
+	
+	public List<ContratLocation> findByContrat(String... id) throws SQLException {
+		return this.find(new RequeteSelectContratLocationFromOneContratUnderTheBatiment(), id);
+	}
+
+	
 	public List<ContratLocation> findByBienLouable(String... id)
 	        throws SQLException {
 	        return this.findByBienLouable(

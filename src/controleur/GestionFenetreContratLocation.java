@@ -2,21 +2,33 @@ package controleur;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 import modele.ContratLocation;
+import modele.dao.DaoContratLocation;
+import modele.dao.DaoLocataire;
 import vue.*;
 
 public class GestionFenetreContratLocation extends GestionHeaderEtFooter implements MouseListener{
 
     private FenetreContratLocation fenetre;
     private ContratLocation cl;
+    private List<ContratLocation> contrats;
 
-    public GestionFenetreContratLocation(FenetreContratLocation fenetre, ContratLocation cl) {
+    public GestionFenetreContratLocation(FenetreContratLocation fenetre, ContratLocation cl) throws SQLException {
         super(fenetre);
         this.fenetre = fenetre;
         this.cl = cl;
+        this.contrats = new ArrayList<>(this.getDonneesContrats());
+    }
+    
+    public List<ContratLocation> getDonneesContrats() throws SQLException{
+    	DaoContratLocation dCl = new DaoContratLocation();
+    	return dCl.findByContrat(this.cl.getNumeroDeContrat());
     }
 
     @Override
@@ -53,18 +65,20 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if (e.getClickCount() == 2 && e.getSource() instanceof JTable) {
-    	    JTable table = (JTable) e.getSource();
-    	    int row = table.rowAtPoint(e.getPoint());
-    	    int column = table.columnAtPoint(e.getPoint()); 
-    	    int targetColumn = 0;
-    	    if (row != -1 && column == targetColumn) {
-    	        fenetre.dispose();
-    	        FenetreLocataire fen = new FenetreLocataire("FenContratLocation", null);
-    	        fen.setVisible(true);
-    	    }
-    	}
-		
+		 if (e.getSource() instanceof JTable) {
+	        JTable table = (JTable) e.getSource();
+	        int row = table.getSelectedRow();
+
+	        if (row >= 0) {
+	            ContratLocation contratSelectionne = contrats.get(row);
+	            afficherContrat(contratSelectionne);
+	        }
+	        if (e.getClickCount() == 2 && row >= 0) {
+	            fenetre.dispose();
+	            FenetreLocataire fen = new FenetreLocataire("FenContratLocation", null);
+	            fen.setVisible(true);
+	        }
+	    }
 	}
 
 	@Override
@@ -90,4 +104,48 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public void initialize() {
+	    try {
+			remplirTable();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		if (!contrats.isEmpty()) {
+		    afficherContrat(cl);
+		}
+	}
+	
+	private void remplirTable() throws SQLException {
+	    DefaultTableModel model = (DefaultTableModel) this.fenetre.getTable().getModel();
+	    model.setRowCount(0); 
+	    DaoLocataire dL = new DaoLocataire();
+	    for (ContratLocation c : contrats) {
+	    	String nomLoc = dL.findLocataireByContrat(c.getNumeroDeContrat()).get(0).getNom();
+	        model.addRow(new Object[] {
+	            nomLoc, 
+	            c.getNumeroDeContrat(),
+	            c.getDateFin(),
+	            c.getMontantMensuel(),
+	            c.getSolde()
+	        });
+	    }
+	}
+	
+	private void afficherContrat(ContratLocation c) {
+	    fenetre.getTextFieldNdC().setText(c.getNumeroDeContrat());
+	    fenetre.getTextFieldPeriode().setText(
+	        c.getDateDebut() + " → " + c.getDateFin()
+	    );
+	    fenetre.getTextFieldMontantC().setText(String.valueOf(c.getMontantDeCaution()));
+	    fenetre.getTextFieldProvCharge().setText(String.valueOf(c.getProvisionCharge()));
+	    fenetre.getTextFieldLoyerMen().setText(String.valueOf(c.getMontantMensuel()));
+	    fenetre.getTextFieldCptEau().setText(String.valueOf(c.getIndexCompteurEau()));
+	    fenetre.getTextFieldCptElec().setText(String.valueOf(c.getIndexCompteurElectricite()));
+	    fenetre.getTextFieldCptGaz().setText(String.valueOf(c.getIndexCompteurGaz()));
+	    fenetre.getTextFieldSolde().setText(String.valueOf(c.getSolde()));
+	}
+
+
+
 }

@@ -8,8 +8,9 @@ import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
+
 import javax.swing.Box;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -18,15 +19,11 @@ import javax.swing.JMenu;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controleur.GestionFenetrePrincipale;
-import javax.swing.border.TitledBorder;
-import javax.swing.border.EtchedBorder;
-import java.awt.Toolkit;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
 
 public class FenetrePrincipale extends FenetreBase {
 
@@ -44,37 +41,38 @@ public class FenetrePrincipale extends FenetreBase {
     private JLabel lblPasPaye;
     private JLabel lblPasPaye_1;
     private JComboBox<String> cbBatiment;
-    
+
     public String getChosenBatiment() {
-    	return cbBatiment.getSelectedItem().toString();
+        return cbBatiment.getSelectedItem().toString();
     }
-    
+
     public JTable getTable() {
-    	return this.table;
+        return this.table;
     }
-	public JMenu getMnBienLouable() {
-		return mnBienLouable;
-	}
-    
+
+    public JMenu getMnBienLouable() {
+        return mnBienLouable;
+    }
+
     public JPanel getPanelRevenu() {
-    	return this.panelRevenu;
+        return this.panelRevenu;
     }
-    
+
     public JPanel getPanelNbLoyerPasPaye() {
-    	return this.panelNbLoyePasPaye;
+        return this.panelNbLoyePasPaye;
     }
-    
+
     public JPanel getPanelRevenu_1() {
-    	return this.panelRevenu_1;
+        return this.panelRevenu_1;
     }
-    
+
     public JPanel getPanelNbLoyePasPaye_1() {
-    	return this.panelNbLoyePasPaye_1;
+        return this.panelNbLoyePasPaye_1;
     }
+
     public JTable getTableBienLouable() {
-        return table; 
+        return table;
     }
-    
 
     /**
      * Launch the application.
@@ -96,10 +94,12 @@ public class FenetrePrincipale extends FenetreBase {
     /**
      * Create the frame.
      */
-	public FenetrePrincipale() {
-		super();
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\anees\\Documents\\GitHub\\SAE_S3C01\\img\\bat.png"));
-    	setExtendedState(JFrame.MAXIMIZED_BOTH);
+    public FenetrePrincipale() {
+        super();
+        setIconImage(Toolkit.getDefaultToolkit()
+            .getImage(
+                "C:\\Users\\anees\\Documents\\GitHub\\SAE_S3C01\\img\\bat.png"));
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         gestionClic = new GestionFenetrePrincipale(this);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         contentPane = new JPanel();
@@ -125,7 +125,11 @@ public class FenetrePrincipale extends FenetreBase {
         panelRevenu.addMouseListener(this.gestionClic);
         FlowLayout fl_panelRevenu = (FlowLayout) panelRevenu.getLayout();
         fl_panelRevenu.setHgap(15);
-        panelRevenu.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Location Cumul\u00E9e", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+        panelRevenu.setBorder(new TitledBorder(
+            new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255),
+                new Color(160, 160, 160)),
+            "Location Cumul\u00E9e", TitledBorder.LEADING, TitledBorder.TOP,
+            null, new Color(0, 0, 0)));
         panelRevenu.setFont(new Font("Tahoma", Font.BOLD, 30));
         panelNorthCenter.add(panelRevenu);
 
@@ -142,9 +146,14 @@ public class FenetrePrincipale extends FenetreBase {
 
         panelNbLoyePasPaye = new JPanel();
         panelNbLoyePasPaye.addMouseListener(this.gestionClic);
-        FlowLayout fl_panelNbLoyePasPaye = (FlowLayout) panelNbLoyePasPaye.getLayout();
+        FlowLayout fl_panelNbLoyePasPaye = (FlowLayout) panelNbLoyePasPaye
+            .getLayout();
         fl_panelNbLoyePasPaye.setHgap(15);
-        panelNbLoyePasPaye.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Taux d'occupation", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+        panelNbLoyePasPaye.setBorder(new TitledBorder(
+            new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255),
+                new Color(160, 160, 160)),
+            "Taux d'occupation", TitledBorder.LEADING, TitledBorder.TOP, null,
+            new Color(0, 0, 0)));
         panelNorthCenter.add(panelNbLoyePasPaye);
 
         lblPasPaye = new JLabel("      0      ");
@@ -153,7 +162,6 @@ public class FenetrePrincipale extends FenetreBase {
 
         Component horizontalStrut_3 = Box.createHorizontalStrut(20);
         panelNorthCenter.add(horizontalStrut_3);
-
 
         Component verticalStrut = Box.createVerticalStrut(20);
         verticalStrut.setPreferredSize(new Dimension(0, 10));
@@ -179,7 +187,11 @@ public class FenetrePrincipale extends FenetreBase {
         panelRevenu_1.addMouseListener(this.gestionClic);
         FlowLayout fl_panelRevenu_1 = (FlowLayout) panelRevenu_1.getLayout();
         fl_panelRevenu_1.setHgap(15);
-        panelRevenu_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Total B\u00E9n\u00E9fice", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+        panelRevenu_1.setBorder(new TitledBorder(
+            new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255),
+                new Color(160, 160, 160)),
+            "Total B\u00E9n\u00E9fice", TitledBorder.LEADING, TitledBorder.TOP,
+            null, new Color(0, 0, 0)));
         panelRevenu_1.setFont(new Font("Tahoma", Font.BOLD, 30));
         panelNorthCenter_1.add(panelRevenu_1);
 
@@ -195,9 +207,12 @@ public class FenetrePrincipale extends FenetreBase {
 
         panelNbLoyePasPaye_1 = new JPanel();
         panelNbLoyePasPaye_1.addMouseListener(this.gestionClic);
-        FlowLayout fl_panelNbLoyePasPaye_1 = (FlowLayout) panelNbLoyePasPaye_1.getLayout();
+        FlowLayout fl_panelNbLoyePasPaye_1 = (FlowLayout) panelNbLoyePasPaye_1
+            .getLayout();
         fl_panelNbLoyePasPaye_1.setHgap(15);
-        panelNbLoyePasPaye_1.setBorder(new TitledBorder(null, "Contrats expirant ce mois", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+        panelNbLoyePasPaye_1
+            .setBorder(new TitledBorder(null, "Contrats expirant ce mois",
+                TitledBorder.LEADING, TitledBorder.TOP, null, null));
         panelNorthCenter_1.add(panelNbLoyePasPaye_1);
 
         lblPasPaye_1 = new JLabel("      8      ");
@@ -207,11 +222,10 @@ public class FenetrePrincipale extends FenetreBase {
         Component horizontalStrut_3_1 = Box.createHorizontalStrut(20);
         panelNorthCenter_1.add(horizontalStrut_3_1);
 
-
         Component verticalStrut_2 = Box.createVerticalStrut(50);
         verticalStrut_2.setPreferredSize(new Dimension(0, 10));
 
-		Component verticalStrut_3 = Box.createVerticalStrut(10);
+        Component verticalStrut_3 = Box.createVerticalStrut(10);
         verticalStrut_2.setPreferredSize(new Dimension(0, 15));
         panel.add(verticalStrut_2, BorderLayout.SOUTH);
 
@@ -228,10 +242,6 @@ public class FenetrePrincipale extends FenetreBase {
 
         JPanel panelSouthEast = new JPanel();
         panelSouth.add(panelSouthEast, BorderLayout.EAST);
-        
-        JButton btnGénéré = new JButton("Généré");
-        btnGénéré.addActionListener(this.gestionClic);
-        panelSouthEast.add(btnGénéré);
 
         JButton btnCharges = new JButton("Charges");
         panelSouthEast.add(btnCharges);
@@ -241,10 +251,10 @@ public class FenetrePrincipale extends FenetreBase {
 
         JButton btnAssurance = new JButton("Assurance");
         panelSouthEast.add(btnAssurance);
-        
+
         btnImporter = new JButton("Importer Un Fichier CSV");
         panelSouthEast.add(btnImporter);
-        
+
         btnAssurance.addActionListener(this.gestionClic);
         btnCompteurs.addActionListener(this.gestionClic);
         btnCharges.addActionListener(this.gestionClic);
@@ -263,7 +273,7 @@ public class FenetrePrincipale extends FenetreBase {
 
         table = new JTable();
         table.addMouseListener(this.gestionClic);
-        //getTable().addMouseListener(this);
+        // getTable().addMouseListener(this);
         getTableBienLouable().setModel(new DefaultTableModel(
             new Object[][] { { null, null, null, null },
                 { null, null, null, null }, { null, null, null, null },
@@ -271,8 +281,8 @@ public class FenetrePrincipale extends FenetreBase {
                 { null, null, null, null }, { null, null, null, null },
                 { null, null, null, null }, { null, null, null, null },
                 { null, null, null, null }, },
-            new String[] { "Contrat Location", "Nombre de piece", "Bien Louable",
-                "Locataire Référent" }) {
+            new String[] { "Contrat Location", "Nombre de piece",
+                "Bien Louable", "Locataire Référent" }) {
             Class[] columnTypes = new Class[] { String.class, String.class,
                 String.class, String.class };
 
@@ -302,15 +312,17 @@ public class FenetrePrincipale extends FenetreBase {
         cbBatiment = new JComboBox<String>();
         cbBatiment.setFont(new Font("Tahoma", Font.PLAIN, 14));
         cbBatiment.addActionListener(this.gestionClic);
-        cbBatiment.setModel(new DefaultComboBoxModel(new String[] { "Bat1",
-            "Bat2", "Bat3"}));
+        /**
+         * cbBatiment.setModel( new DefaultComboBoxModel(new String[] { "20
+         * Chemin La Fayette", "31 Rue de la Paix", "7 Rue de la Croix" }));
+         */
         panelCenterNorth.add(cbBatiment);
 
         JButton btnAjouterBatiment = new JButton("Ajouter");
         btnAjouterBatiment.addActionListener(this.gestionClic);
         btnAjouterBatiment.setFont(new Font("Tahoma", Font.BOLD, 10));
         panelCenterNorth.add(btnAjouterBatiment);
-        
+
         JPanel panelChart = new JPanel();
         panelCenter.add(panelChart, BorderLayout.SOUTH);
 
@@ -318,16 +330,14 @@ public class FenetrePrincipale extends FenetreBase {
         contentPane.add(panelMenuBar, BorderLayout.NORTH);
         panelMenuBar.setLayout(new GridLayout(0, 1, 0, 0));
 
-      
-
-      //header
-       this.setJMenuBar(createHeader());
+        // header
+        this.setJMenuBar(createHeader());
         gestionClic.initialize();
         JPanel panelFooter = new JPanel();
         contentPane.add(panelFooter, BorderLayout.SOUTH);
-        panelFooter.setLayout(new GridLayout(1,0, 0, 0));
+        panelFooter.setLayout(new GridLayout(1, 0, 0, 0));
         panelFooter.add(createFooter());
-   
+
         Component horizontalStrut_4 = Box.createHorizontalStrut(10);
         horizontalStrut_4.setPreferredSize(new Dimension(10, 0));
         contentPane.add(horizontalStrut_4, BorderLayout.WEST);
@@ -336,52 +346,65 @@ public class FenetrePrincipale extends FenetreBase {
         horizontalStrut_5.setPreferredSize(new Dimension(10, 0));
         contentPane.add(horizontalStrut_5, BorderLayout.EAST);
 
+        gestionClic.remplirComboBatiment();
+        gestionClic.RemplirTableau();
+
         this.setPreferredSize(new Dimension(1200, 800));
         this.setMinimumSize(new Dimension(1200, 800));
         this.setMaximumSize(new Dimension(1200, 800));
         this.setSize(new Dimension(1200, 800));
         this.pack();
         this.setLocationRelativeTo(null);
- 
+
     }
 
     @Override
     public void disableMenuItems(boolean actif) {
-    	mnBienLouable.setEnabled(actif);
-    	mnPaiement.setEnabled(actif);
-    	this.mntmAssurance.setEnabled(actif);
-    	this.mntmCharge.setEnabled(actif);
-    	this.mntmCompteur.setEnabled(actif);
+        mnBienLouable.setEnabled(actif);
+        mnPaiement.setEnabled(actif);
+        this.mntmAssurance.setEnabled(actif);
+        this.mntmCharge.setEnabled(actif);
+        this.mntmCompteur.setEnabled(actif);
     }
-    
-	public JLabel getLblRevenu() {
-		return lblRevenu;
-	}
-	public void setLblRevenu(JLabel lblRevenu) {
-		this.lblRevenu = lblRevenu;
-	}
-	public JLabel getLblRevenu_1() {
-		return lblRevenu_1;
-	}
-	public void setLblRevenu_1(JLabel lblRevenu_1) {
-		this.lblRevenu_1 = lblRevenu_1;
-	}
-	public JLabel getLblPasPaye() {
-		return lblPasPaye;
-	}
-	public void setLblPasPaye(JLabel lblPasPaye) {
-		this.lblPasPaye = lblPasPaye;
-	}
-	public JLabel getLblPasPaye_1() {
-		return lblPasPaye_1;
-	}
-	public void setLblPasPaye_1(JLabel lblPasPaye_1) {
-		this.lblPasPaye_1 = lblPasPaye_1;
-	}
-	public void setTable(JTable table) {
-		this.table = table;
-	}
-    
-    
+
+    public JLabel getLblRevenu() {
+        return lblRevenu;
+    }
+
+    public void setLblRevenu(JLabel lblRevenu) {
+        this.lblRevenu = lblRevenu;
+    }
+
+    public JLabel getLblRevenu_1() {
+        return lblRevenu_1;
+    }
+
+    public void setLblRevenu_1(JLabel lblRevenu_1) {
+        this.lblRevenu_1 = lblRevenu_1;
+    }
+
+    public JLabel getLblPasPaye() {
+        return lblPasPaye;
+    }
+
+    public void setLblPasPaye(JLabel lblPasPaye) {
+        this.lblPasPaye = lblPasPaye;
+    }
+
+    public JLabel getLblPasPaye_1() {
+        return lblPasPaye_1;
+    }
+
+    public void setLblPasPaye_1(JLabel lblPasPaye_1) {
+        this.lblPasPaye_1 = lblPasPaye_1;
+    }
+
+    public void setTable(JTable table) {
+        this.table = table;
+    }
+
+    public JComboBox<String> getCbBatiment() {
+        return cbBatiment;
+    }
 
 }
