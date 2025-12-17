@@ -37,11 +37,20 @@ public class DaoCompteur extends DaoModele<Compteur> implements Dao<Compteur> {
 	public Compteur findById(String... id) throws SQLException {
 		return this.findById(new RequeteSelectCompteurById(), id);
 	}
+	
+	public List<Compteur> findByIdBatiment(String... id) throws SQLException {
+		return this.find(new RequeteSelectCompteurByBatiment(), id);
+	}
+	
+	public List<Compteur> findByIdBien(String... id) throws SQLException {
+		return this.find(new RequeteSelectCompteurByBien(), id);
+	}
 
 	@Override
 	public List<Compteur> findAll() throws SQLException {
 		return this.find(new RequeteSelectCompteur());
 	}
+	
 
 	@Override
 	protected Compteur creerInstance(ResultSet curseur) throws SQLException {
@@ -54,7 +63,7 @@ public class DaoCompteur extends DaoModele<Compteur> implements Dao<Compteur> {
 		Date d = curseur.getDate(6);
 		double index_ancien = curseur.getDouble(7);
 		double index_nouveau = curseur.getDouble(8);
-		String id = curseur.getString(6);
+		String id = curseur.getString(9);
 		DaoBienLouable daoBL = new DaoBienLouable();
 		BienLouable bl = daoBL.findById(id);
 		return new Compteur(id_Compteur,partie_fixe,partie_variable,total,d,bl,index_ancien,index_nouveau,type);
