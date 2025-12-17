@@ -40,6 +40,9 @@ public class DaoPaiement extends DaoModele<Paiement> implements Dao<Paiement> {
 		return this.findById(new RequeteSelectDatePaiementByCL(),idCL);
 	}
 
+	public List<Paiement> findPaiementsByLocataire (String idLoc) throws SQLException {
+		return this.find(new RequeteSelectPaiementsByLoc(), idLoc);
+	}
 	@Override
 	protected Paiement creerInstance(ResultSet rs) throws SQLException {
 		DaoContratLocation dCL = new DaoContratLocation();

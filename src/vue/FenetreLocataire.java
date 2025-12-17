@@ -33,7 +33,7 @@ public class FenetreLocataire extends FenetreBase {
 	private JPanel contentPane;
 	private JTextField textFieldNom;
 	private JTextField textFieldPrenom;
-	private JTextField textField;
+	private JTextField textFieldAdresse;
 	private JTextField textFieldTel;
 	private JTextField textFieldEmail;
 	private JTextField textFieldDateNaissance;
@@ -46,6 +46,7 @@ public class FenetreLocataire extends FenetreBase {
 	private String nomFenAvant;
 	private JScrollPane scrollPane;
 	private List<Locataire> liste;
+	private JLabel lblPhoto;
 
 	
 
@@ -136,7 +137,7 @@ public class FenetreLocataire extends FenetreBase {
 		gbl_panel_2.rowWeights = new double[] { 0.0, Double.MIN_VALUE };
 		panel_2.setLayout(gbl_panel_2);
 
-		JLabel lblPhoto = new JLabel("Photo");
+		lblPhoto = new JLabel("Photo");
 		GridBagConstraints gbc_lblPhoto = new GridBagConstraints();
 		gbc_lblPhoto.fill = GridBagConstraints.BOTH;
 		gbc_lblPhoto.insets = new Insets(0, 0, 0, 5);
@@ -212,16 +213,16 @@ public class FenetreLocataire extends FenetreBase {
 		gbc_lblAdresse.weightx = 0.2;
 		panel_3.add(lblAdresse, gbc_lblAdresse);
 
-		textField = new JTextField();
-		textField.setEditable(false);
-		textField.setBorder(null);
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField.insets = new Insets(0, 0, 5, 0);
-		gbc_textField.gridx = 1;
-		gbc_textField.gridy = 2;
-		gbc_textField.weightx = 0.8;
-		panel_3.add(textField, gbc_textField);
+		textFieldAdresse = new JTextField();
+		textFieldAdresse.setEditable(false);
+		textFieldAdresse.setBorder(null);
+		GridBagConstraints gbc_textFieldAdresse = new GridBagConstraints();
+		gbc_textFieldAdresse.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldAdresse.insets = new Insets(0, 0, 5, 0);
+		gbc_textFieldAdresse.gridx = 1;
+		gbc_textFieldAdresse.gridy = 2;
+		gbc_textFieldAdresse.weightx = 0.8;
+		panel_3.add(textFieldAdresse, gbc_textFieldAdresse);
 
 		// Repeat the same pattern for the remaining rows
 		// Tél
@@ -402,6 +403,10 @@ public class FenetreLocataire extends FenetreBase {
 	}
 	
 
+	public JLabel getLblPhoto() {
+		return lblPhoto;
+	}
+
 	public List<Locataire> getListe() {
 		return liste;
 	}
@@ -437,12 +442,12 @@ public class FenetreLocataire extends FenetreBase {
 		this.textFieldPrenom = textFieldPrenom;
 	}
 
-	public JTextField getTextField() {
-		return textField;
+	public JTextField getTextFieldAdresse() {
+		return textFieldAdresse;
 	}
 
-	public void setTextField(JTextField textField) {
-		this.textField = textField;
+	public void setTextFieldAdresse(JTextField textField) {
+		this.textFieldAdresse = textField;
 	}
 
 	public JTextField getTextFieldTel() {
