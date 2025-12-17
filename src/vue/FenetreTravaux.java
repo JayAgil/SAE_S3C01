@@ -2,8 +2,6 @@ package vue;
 
 import java.awt.EventQueue;
 import java.awt.GridLayout;
-import java.awt.Image;
-
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
@@ -13,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
 import controleur.GestionFenetreTravaux;
+import modele.Facture;
 
 import javax.swing.JScrollPane;
 import java.awt.Font;
@@ -21,12 +20,13 @@ import javax.swing.SwingConstants;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.util.List;
+
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
 
 public class FenetreTravaux extends FenetreBase {
 
@@ -36,6 +36,8 @@ public class FenetreTravaux extends FenetreBase {
 	private JScrollPane scrollPane;
 	private JLabel lblMontantTotal;
 	private JLabel lblNewLabel;
+	private List<Facture> factures;
+
 
 	/**
 	 * Launch the application.
@@ -241,6 +243,46 @@ public class FenetreTravaux extends FenetreBase {
 	public void setTable(JTable table) {
 		this.table = table;
 	}
+
+	public List<Facture> getFactures() {
+		return factures;
+	}
+	
+	public void setFactures(List<Facture> factures) {
+	    this.factures = factures;
+	    remplirTable();
+	}
+
+	private void remplirTable() {
+
+	    DefaultTableModel model = (DefaultTableModel) table.getModel();
+	    model.setRowCount(0);
+
+	    for (Facture f : factures) {
+	        model.addRow(new Object[]{
+	            f.getNumeroFacture(),
+	            f.getMontant(),
+	            f.getDateDeFacture(),
+	            f.getCompteBancaire(),
+	            f.getMontantDevis(),
+	            f.getDatePaiement(),
+	            f.getDesignationDeTravaux(),
+	            f.getEntreprise().getNom()
+	        });
+	    }
+	}
+	
+	public Facture getFactureSelectionnee() {
+	    int row = table.getSelectedRow();
+	    if (row == -1) {
+	        return null;
+	    }
+	    return factures.get(row);
+	}
+
+
+	
+	
 	
 	
 

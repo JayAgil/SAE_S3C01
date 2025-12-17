@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import modele.Facture;
 import vue.FenetreAjouterEntreprise;
 import vue.FenetreAjouterTravaux;
 import vue.FenetreBienLouable;
@@ -55,21 +56,14 @@ public class GestionFenetreTravaux extends GestionHeaderEtFooter implements Mous
 	}
 
 	private void genererFactureDepuisSelection() {
-	    JTable table = fenetreTravaux.getTable();
-	    int selectedRow = table.getSelectedRow();    
-	    if (selectedRow == -1) {
-	        JOptionPane.showMessageDialog(null, "Veuillez sélectionner une ligne.");
-	        return;
-	    }
-	    DefaultTableModel model = (DefaultTableModel) table.getModel();
-	    Object[] rowData = new Object[model.getColumnCount()];
-	    String[] columnNames = new String[model.getColumnCount()];
-	    for (int i = 0; i < model.getColumnCount(); i++) {
-	        rowData[i] = model.getValueAt(selectedRow, i);
-	        columnNames[i] = model.getColumnName(i);
-	    }
-	    new FenetreFacture(rowData, columnNames, "Travaux").setVisible(true);
-	    
+		Facture facture = fenetreTravaux.getFactureSelectionnee();
+        if (facture == null) {
+            JOptionPane.showMessageDialog(
+                    fenetreTravaux,
+                    "Veuillez sélectionner une facture");
+            return;
+        }
+        new FenetreFacture(facture).setVisible(true);    
 	}
 
 

@@ -45,10 +45,6 @@ public class DaoChargesGenerales extends DaoModele<ChargesGenerales>implements D
 		return this.find(new RequeteSelectChargesByBien(),id);
 	}
 	
-	public ChargesGenerales findTotalChargesByBien(String... id) throws SQLException {
-		return this.findById(new RequeteSelectTotalChargesByBien(), id);
-	}
-
 	@Override
 	public List<ChargesGenerales> findAll() throws SQLException {
 		return this.find(new RequeteSelectChargesGenerales());
