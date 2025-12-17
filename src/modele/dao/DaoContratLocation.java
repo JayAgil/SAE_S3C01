@@ -67,10 +67,22 @@ public class DaoContratLocation extends DaoModele<ContratLocation> implements Da
 		BienLouable bl = daoBL.findById(id);
 		return new ContratLocation(numeroDeContrat,dateDebut,dateFin,montantCaution,provisionCharge,solde,montantMensuel,dateVersement,indexCompteurEau,indexCompteurElectricite,indexCompteurGaz,bl);
 	}
-	
-	public List<ContratLocation> findByBienLouable(String... id) throws SQLException {
-	        return this.find(new RequeteSelectContratLocation(), id);
-	}
+
+
+	private List<ContratLocation> findByBienLouable(
+	        RequeteSelectContratLocationByBienLouable req, String[] id)
+	        throws SQLException {
+	        List<ContratLocation> res = new ArrayList<>();
+	        try (PreparedStatement prSt = connexion
+	            .prepareStatement(req.requete())) {
+	            req.parametres(prSt, id);
+	            res = select(prSt);
+	        }
+	        if (res.size() == 0) {
+	            return null;
+	        }
+	        return res;
+	    }
 	
 	public List<ContratLocation> findByBatiment(String... id) throws SQLException {
         return this.find(new RequeteSelectContratLocationByBatiment(), id);
@@ -79,5 +91,12 @@ public class DaoContratLocation extends DaoModele<ContratLocation> implements Da
 	public List<ContratLocation> findByContrat(String... id) throws SQLException {
 		return this.find(new RequeteSelectContratLocationFromOneContratUnderTheBatiment(), id);
 	}
+
+	
+	public List<ContratLocation> findByBienLouable(String... id)
+	        throws SQLException {
+	        return this.findByBienLouable(
+	            new RequeteSelectContratLocationByBienLouable(), id);
+	    }
 
 }
