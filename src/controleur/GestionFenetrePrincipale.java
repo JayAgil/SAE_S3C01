@@ -15,12 +15,14 @@ import javax.swing.table.DefaultTableModel;
 import modele.Batiment;
 import modele.BienLouable;
 import modele.ChargesGenerales;
+import modele.Compteur;
 import modele.ContratLocation;
 import modele.Locataire;
 import modele.UtOracleDataSource;
 import modele.dao.DaoBatiment;
 import modele.dao.DaoBienLouable;
 import modele.dao.DaoChargesGenerales;
+import modele.dao.DaoCompteur;
 import modele.dao.DaoContratLocation;
 import modele.dao.DaoLocataire;
 import vue.FenetreAjouterBatiment;
@@ -50,6 +52,13 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter
         String[] id = new String[1];
         id[0] = this.fenetre.getChosenBatiment();
         return dao.findByIdBatiment(id);
+    }
+    
+    public List<Compteur> getDonneesCompteur() throws SQLException {
+    	DaoCompteur dao = new DaoCompteur();
+    	String[] id = new String[1];
+    	id[0] = this.fenetre.getChosenBatiment();
+    	return dao.findByIdBatiment(id);
     }
 
     @Override
@@ -86,7 +95,7 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter
             break;
 
         case "Compteurs":
-            new FenetreCompteurs("FenetrePrincipale").setVisible(true);
+            new FenetreCompteurs("FenetrePrincipale", this.getDonneesCompteur()).setVisible(true);
             fenetre.dispose();
             break;
 

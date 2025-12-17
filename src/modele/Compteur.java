@@ -126,4 +126,14 @@ public class Compteur {
 		return total;
 	}
 
+	@Override
+	public String toString() {
+		return "Compteur [idCompteur=" + idCompteur + ", partieFixe=" + partieFixe + ", partieVariable="
+				+ partieVariable + ", total=" + total + ", dateInstallation=" + dateInstallation + ", bienLouable="
+				+ bienLouable + ", indexAncien=" + indexAncien + ", indexNouveau=" + indexNouveau + ", type=" + type
+				+ "]";
+	}
+	
+	
+
 }

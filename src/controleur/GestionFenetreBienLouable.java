@@ -10,12 +10,14 @@ import javax.swing.table.DefaultTableModel;
 
 import modele.BienLouable;
 import modele.ChargesGenerales;
+import modele.Compteur;
 import modele.ContratLocation;
 import modele.Facture;
 import modele.Locataire;
 import modele.Paiement;
 import modele.dao.DaoBienLouable;
 import modele.dao.DaoChargesGenerales;
+import modele.dao.DaoCompteur;
 import modele.dao.DaoContratLocation;
 import modele.dao.DaoFacture;
 import modele.dao.DaoLocataire;
@@ -61,6 +63,12 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 		DaoChargesGenerales dao = new DaoChargesGenerales();
 		return dao.findByIdBien(bien.getIdBienLouable());
 	}
+	
+	public List<Compteur> getDonneesCompteur() throws SQLException {
+		DaoCompteur dao = new DaoCompteur();
+		String idBien = this.fenetrebienlouable.getChosenBien();
+		return dao.findByIdBien(idBien);
+	}
 
 	public BienLouable getBien() {
 		return bien;
@@ -92,7 +100,7 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 			break;
 
 		case "Compteur":
-			new FenetreCompteurs("FenetreBienLouable").setVisible(true);
+			new FenetreCompteurs("FenetreBienLouable", getDonneesCompteur()).setVisible(true);
 			fenetrebienlouable.dispose();
 			break;
 

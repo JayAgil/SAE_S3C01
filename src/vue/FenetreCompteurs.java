@@ -19,6 +19,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import controleur.GestionFenetreCompteurs;
+import modele.Compteur;
 
 import java.awt.Component;
 import javax.swing.Box;
@@ -30,6 +31,8 @@ import java.awt.Image;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.util.List;
+
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.MatteBorder;
@@ -45,6 +48,7 @@ public class FenetreCompteurs extends FenetreBase {
     private JLabel lnltotalelec;
     private JLabel lbltotalgaz;
     private JScrollPane scrollPane;
+    private List<Compteur> cpt;
 	
     
     /**
@@ -55,7 +59,7 @@ public class FenetreCompteurs extends FenetreBase {
             @Override
             public void run() {
                 try {
-                    FenetreCompteurs frame = new FenetreCompteurs("");
+                    FenetreCompteurs frame = new FenetreCompteurs("", null);
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -67,11 +71,12 @@ public class FenetreCompteurs extends FenetreBase {
     /**
      * Create the frame.
      */
-    public FenetreCompteurs(String fenetreAvant) {
+    public FenetreCompteurs(String fenetreAvant, List<Compteur> cpt) {
     	super();
     	this.fenetreAvant = fenetreAvant;
+    	this.cpt = cpt;
     	setExtendedState(JFrame.MAXIMIZED_BOTH);
-    	this.gestionClic = new GestionFenetreCompteurs(this);
+    	this.gestionClic = new GestionFenetreCompteurs(this, cpt);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 1200, 800);
 
@@ -83,7 +88,6 @@ public class FenetreCompteurs extends FenetreBase {
 
         setContentPane(contentPane);
         contentPane.setLayout(new BorderLayout(0, 0));
-        this.gestionClic.initialize();
         
         //footer
         getContentPane().add(createFooter(), BorderLayout.SOUTH);
@@ -281,7 +285,8 @@ public class FenetreCompteurs extends FenetreBase {
         gbc_lbltotalgaz.gridx = 0;
         gbc_lbltotalgaz.gridy = 1;
         panel_4_2.add(lbltotalgaz, gbc_lbltotalgaz);
-
+        
+        this.gestionClic.initialize();
 
     }
     public JTable getTableCompteurs() {
