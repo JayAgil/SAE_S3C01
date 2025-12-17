@@ -50,6 +50,11 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 		}
 		return List.of();
 	}
+	
+	public List<ContratLocation> getListContratByBien() throws SQLException{
+		DaoContratLocation dCL = new DaoContratLocation();
+		return 0;
+	}
 
 	public List<ChargesGenerales> getDonneesChargesGeneraleByBien() throws SQLException {
 		DaoChargesGenerales dao = new DaoChargesGenerales();
