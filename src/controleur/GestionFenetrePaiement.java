@@ -29,7 +29,7 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter implements Mou
             	int[][] data = new int[5][5];
             	String[] cNames = new String[5];
             	String tabName = "";
-                FenetreFacture fenFacture = new FenetreFacture(data, cNames, tabName);
+                FenetreFacture fenFacture = new FenetreFacture();
                 fenFacture.setVisible(true);
                 break;
         }

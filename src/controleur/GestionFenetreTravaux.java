@@ -59,14 +59,12 @@ public class GestionFenetreTravaux extends GestionHeaderEtFooter implements Mous
     }
 
     private void visualiserFactureSelectionnee() {
-    	int row = fenetreTravaux.getTable().getSelectedRow();
-    	if (row == -1) {
-    	    JOptionPane.showMessageDialog(fenetreTravaux, "Veuillez sélectionner une facture");
-    	    return;
-    	}
-    	Facture facture = fenetreTravaux.getFactureSelectionnee(row);
-    	new FenetreFacture(facture).setVisible(true);
-
+        Facture facture = fenetreTravaux.getFactureSelectionnee();
+        if (facture == null) {
+            JOptionPane.showMessageDialog(fenetreTravaux, "Veuillez sélectionner une facture");
+            return;
+        }
+        new FenetreFacture(facture).setVisible(true);
     }
 
     @Override
