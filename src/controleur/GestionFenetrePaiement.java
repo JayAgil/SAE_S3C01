@@ -2,9 +2,6 @@ package controleur;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import javax.swing.JOptionPane;
-
-import modele.Facture;
 import vue.*;
 
 public class GestionFenetrePaiement extends GestionHeaderEtFooter implements MouseListener{
