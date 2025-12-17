@@ -6,12 +6,7 @@ import java.util.List;
 
 import modele.Batiment;
 import modele.BienLouable;
-import modele.dao.requetes.RequeteDeleteBienLouable;
-import modele.dao.requetes.RequeteInsertBienLouable;
-import modele.dao.requetes.RequeteSelectBienLouable;
-import modele.dao.requetes.RequeteSelectBienLouableByBat;
-import modele.dao.requetes.RequeteSelectBienLouableById;
-import modele.dao.requetes.RequeteUpdateBienLouable;
+import modele.dao.requetes.*;
 
 public class DaoBienLouable extends DaoModele<BienLouable>
     implements Dao<BienLouable> {
@@ -40,6 +35,10 @@ public class DaoBienLouable extends DaoModele<BienLouable>
     @Override
     public BienLouable findById(String... id) throws SQLException {
         return this.findById(new RequeteSelectBienLouableById(), id);
+    }
+    
+    public BienLouable findByIdContrat(String... id) throws SQLException {
+        return this.findById(new RequeteSelectBienFromContrat(), id);
     }
 
     @Override

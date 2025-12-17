@@ -138,14 +138,14 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter
             JTable table = (JTable) e.getSource();
             int row = table.rowAtPoint(e.getPoint());
             int column = table.columnAtPoint(e.getPoint());
-            int targetColumn = 2;
+            int targetColumn = 0;
             if (row != -1 && column == targetColumn) {
                 fenetre.dispose();
                 FenetreBienLouable fen;
                 try {
-                    String idBien = table.getValueAt(row, column).toString();
+                    String idCtrt = table.getValueAt(row, column).toString();
                     DaoBienLouable daoBL = new DaoBienLouable();
-                    BienLouable bien = daoBL.findById(idBien);
+                    BienLouable bien = daoBL.findByIdContrat(idCtrt);
                     // pass the bien selected by the user here i have put here
                     // null but there must be a bien that the user clicked
                     fen = new FenetreBienLouable("FenetrePrincipale", bien);
