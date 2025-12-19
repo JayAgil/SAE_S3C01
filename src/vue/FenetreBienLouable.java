@@ -77,8 +77,8 @@ public class FenetreBienLouable extends FenetreBase {
 	public FenetreBienLouable(String nomFenAvant, BienLouable bienLouables) throws SQLException {
 		super();
     	setExtendedState(JFrame.MAXIMIZED_BOTH);
+    	this.bienLouable = bienLouables;
 		this.gestionClicBienLouable = new GestionFenetreBienLouable(this, this.bienLouable);
-		this.gestionClicBienLouable.chargerDonnees();
 		//header
         this.setJMenuBar(createHeader());
         
@@ -450,7 +450,9 @@ public class FenetreBienLouable extends FenetreBase {
         JLabel lblTitre = new JLabel("Bien louable");
         lblTitre.setFont(new Font("Tahoma", Font.BOLD, 18));
         panel_1.add(lblTitre);
-
+        
+        this.gestionClicBienLouable.chargerDonnees();
+		this.gestionClicBienLouable.chargerBienEtRemplirFormulaire(this.bienLouable.getIdBienLouable());
 	}
 	
 	

@@ -128,7 +128,7 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 		chargerBienEtRemplirFormulaire(idBien);
 	}
 
-	private void chargerBienEtRemplirFormulaire(String idBien) {
+	public void chargerBienEtRemplirFormulaire(String idBien) {
 	    try {
 	        DaoBienLouable daoBien = new DaoBienLouable();
 	        BienLouable bienSelectionne = daoBien.findById(idBien);
