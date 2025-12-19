@@ -8,10 +8,9 @@ import modele.ChargesGenerales;
 public class RequeteSelectChargesByBien extends Requete<ChargesGenerales>{
 	@Override
 	public String requete() {
-		return "SELECT *"
+		return "SELECT * "
 				+ "FROM MSF5131A.SAE_Charges_Generale "
-				+ "WHERE fk_Id_BienLouable = ? "
-				+ "";
+				+ "WHERE fk_Id_BienLouable = ? ";
 	}
 	
 	public void parametres(PreparedStatement prSt, String... id) throws SQLException {

@@ -8,7 +8,7 @@ import modele.ContratLocation;
 public class RequeteSelectContratLocationByBien extends Requete<ContratLocation> {
 	
 	public String requete() {
-		return " Select * from MSF5131A.SAE_Charges_Generale where fk_Id_BienLouable = ? ";
+		return " Select * from MSF5131A.SAE_ContratLocation where fk_Id_BienLouable = ? ";
 	}
 
 	public void parametres(PreparedStatement prSt, String... id) throws SQLException {

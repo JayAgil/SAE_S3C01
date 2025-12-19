@@ -6,7 +6,7 @@ import modele.Batiment;
 
 public class RequeteSelectBatimentById extends Requete<Batiment> {
 	public String requete() {
-		return " Select * from MSF5131A.SAE_Batiment where adresse = ? " ;
+		return " Select * from MSF5131A.SAE_Batiment where Adresse = ? " ;
 		
 	}
 

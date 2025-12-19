@@ -6,7 +6,7 @@ import modele.Batiment;
 
 public class RequeteDeleteBatiment extends Requete<Batiment> {
 	public String requete() {
-		return " Delete from MSF5131A.SAE_Batiment  where adresse = ? " ;
+		return " Delete from MSF5131A.SAE_Batiment where adresse = ? " ;
 		
 	}
 

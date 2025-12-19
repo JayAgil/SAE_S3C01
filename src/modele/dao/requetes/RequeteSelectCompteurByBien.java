@@ -9,7 +9,7 @@ public class RequeteSelectCompteurByBien extends Requete<Compteur>{
 
 	@Override
 	public String requete() {
-		return "SELECT * FROM Compteur WHERE idBienLouable = ?";
+		return "SELECT * FROM MSF5131A.SAE_Compteur WHERE idBienLouable = ?";
 	}
 	
 	public void parametres(PreparedStatement prSt, String... id) throws SQLException {

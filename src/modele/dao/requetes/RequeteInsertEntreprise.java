@@ -9,7 +9,7 @@ public class RequeteInsertEntreprise extends Requete<Entreprise> {
 	
 	@Override
 	public String requete() {
-		return "INSERT INTO SAE_FACTURE VALUES (?,?,?,?,?,?,?)";
+		return "INSERT INTO MSF5131A.SAE_Entreprise VALUES (?,?,?,?,?,?,?)";
 	}
 	
 	@Override

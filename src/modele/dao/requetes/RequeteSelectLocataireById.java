@@ -9,7 +9,7 @@ public class RequeteSelectLocataireById extends Requete<Locataire> {
 	
 	@Override
 	public String requete() {
-		return "Select * from MSF5131A.SAE_LOCATAIRE where id_locataire = ?";
+		return "Select * from MSF5131A.SAE_Locataire where id_locataire = ?";
 	}
 	
 	public void parametres(PreparedStatement prSt, String... id) throws SQLException {

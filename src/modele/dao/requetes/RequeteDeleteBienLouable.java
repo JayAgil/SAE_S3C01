@@ -5,7 +5,7 @@ import modele.BienLouable;
 
 public class RequeteDeleteBienLouable extends Requete<BienLouable>{
 	public String requete() {
-		return " Delete from MSF5131A.SAE_BienLouable  where id_bienLouable = ? " ;
+		return "Delete from MSF5131A.SAE_BienLouable where Id_BienLouable = ? " ;
 		
 	}
 
