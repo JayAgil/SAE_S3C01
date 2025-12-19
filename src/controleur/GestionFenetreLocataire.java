@@ -26,7 +26,7 @@ public class GestionFenetreLocataire extends GestionHeaderEtFooter {
 	}
 
 	@Override
-	protected void gererBoutonSpecifique(String texte) {
+	protected void gererBoutonSpecifique(String texte) throws SQLException {
 
 		switch (texte) {
 

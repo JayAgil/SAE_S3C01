@@ -355,6 +355,8 @@ public class FenetrePrincipale extends FenetreBase {
         this.setSize(new Dimension(1200, 800));
         this.pack();
         this.setLocationRelativeTo(null);
+        
+        
 
     }
 

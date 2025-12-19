@@ -187,7 +187,7 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 	}
 
 	public void remplirFormulaire(BienLouable bien, ContratLocation cl,double charge,List<Locataire> loc,Facture fac,Paiement date) {
-		String nom = loc.get(0).toString();
+		String nom = loc.get(0).getNom();
 		String datePaiement = date.getDatepaiement().toString();
 		fenetrebienlouable.getTextFieldNom().setText(nom);
 		fenetrebienlouable.getTextFieldLoyerMen().setText(String.valueOf(cl.getMontantMensuel()));

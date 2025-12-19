@@ -452,7 +452,11 @@ public class FenetreBienLouable extends FenetreBase {
         panel_1.add(lblTitre);
         
         this.gestionClicBienLouable.chargerDonnees();
-		this.gestionClicBienLouable.chargerBienEtRemplirFormulaire(this.bienLouable.getIdBienLouable());
+
+        if (this.bienLouable != null) {
+            this.gestionClicBienLouable
+                .chargerBienEtRemplirFormulaire(this.bienLouable.getIdBienLouable());
+        }
 	}
 	
 	

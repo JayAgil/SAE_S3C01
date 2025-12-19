@@ -8,8 +8,7 @@ import modele.Batiment;
 import modele.BienLouable;
 import modele.dao.requetes.*;
 
-public class DaoBienLouable extends DaoModele<BienLouable>
-    implements Dao<BienLouable> {
+public class DaoBienLouable extends DaoModele<BienLouable> implements Dao<BienLouable> {
 
     public DaoBienLouable() throws SQLException {
         super();
@@ -18,13 +17,11 @@ public class DaoBienLouable extends DaoModele<BienLouable>
     @Override
     public int create(BienLouable t) throws SQLException {
         return miseAJour(new RequeteInsertBienLouable(), t);
-
     }
 
     @Override
     public int update(BienLouable t) throws SQLException {
         return miseAJour(new RequeteUpdateBienLouable(), t);
-
     }
 
     @Override
@@ -36,7 +33,7 @@ public class DaoBienLouable extends DaoModele<BienLouable>
     public BienLouable findById(String... id) throws SQLException {
         return this.findById(new RequeteSelectBienLouableById(), id);
     }
-    
+
     public BienLouable findByIdContrat(String... id) throws SQLException {
         return this.findById(new RequeteSelectBienFromContrat(), id);
     }
@@ -56,21 +53,37 @@ public class DaoBienLouable extends DaoModele<BienLouable>
 
     @Override
     protected BienLouable creerInstance(ResultSet curseur) throws SQLException {
-        String id_bienLouable = curseur.getString(1);
+        String idBienLouable = curseur.getString(1);
         String numFiscale = curseur.getString(2);
         String adresse = curseur.getString(3);
         double surface = curseur.getDouble(4);
         int nbPieces = curseur.getInt(5);
         String typeBienLouable = curseur.getString(6);
-        String a = curseur.getString(8);
-        DaoBatiment daoBat = new DaoBatiment();
-        Batiment b = daoBat.findById(a);
-        String id = curseur.getString(7);
-        DaoBienLouable daoBl = new DaoBienLouable();
-        BienLouable bl = daoBl.findById(id);
 
-        return new BienLouable(id_bienLouable, numFiscale, adresse, surface,
-            nbPieces, typeBienLouable, b, bl);
+        String idBien2 = curseur.getString(7); 
+        String idBatiment = curseur.getString(8);
+
+        Batiment batiment = null;
+        if (idBatiment != null && !idBatiment.isEmpty()) {
+            DaoBatiment daoBat = new DaoBatiment();
+            batiment = daoBat.findById(idBatiment);
+        }
+
+        BienLouable bien2 = null;
+        if (idBien2 != null && !idBien2.isEmpty()) {
+            DaoBienLouable daoBl = new DaoBienLouable();
+            bien2 = daoBl.findById(idBien2);
+        }
+
+        return new BienLouable(
+            idBienLouable,
+            numFiscale,
+            adresse,
+            surface,
+            nbPieces,
+            typeBienLouable,
+            batiment,
+            bien2
+        );
     }
-
 }

@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -140,16 +141,19 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter
             int column = table.columnAtPoint(e.getPoint());
             int targetColumn = 0;
             if (row != -1 && column == targetColumn) {
-                fenetre.dispose();
-                FenetreBienLouable fen;
                 try {
                     String idCtrt = table.getValueAt(row, column).toString();
                     DaoBienLouable daoBL = new DaoBienLouable();
                     BienLouable bien = daoBL.findByIdContrat(idCtrt);
+                    if (bien == null) {
+                        JOptionPane.showMessageDialog(null, "Aucun bien louable trouvé pour ce contrat.");
+                        return;
+                    }
                     // pass the bien selected by the user here i have put here
                     // null but there must be a bien that the user clicked
-                    fen = new FenetreBienLouable("FenetrePrincipale", bien);
+                    FenetreBienLouable fen = new FenetreBienLouable("FenetrePrincipale", bien);
                     fen.setVisible(true);
+                    fenetre.dispose();
                 } catch (SQLException e1) {
                     e1.printStackTrace();
                 }
@@ -190,8 +194,15 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter
             }
         }
         if (e.getSource() == fenetre.getPanelRevenu_1()) {
-            FenetrePaiement fp = new FenetrePaiement(null);
-            fp.setVisible(true);
+            FenetrePaiement fp;
+			try {
+				fp = new FenetrePaiement(null);
+				fp.setVisible(true);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+            
         }
         if (e.getSource() == fenetre.getPanelNbLoyePasPaye_1()) {
             FenetreContratLocation fCL;
