@@ -438,11 +438,5 @@ public class FenetrePaiement extends FenetreBase {
 	public JLabel getLblValPaiement() {
 		return lblValPaiement;
 	}
-<<<<<<< HEAD
-	
 
-=======
-
-    
->>>>>>> f4d78edcdbd736dc31da42b3d82936a873d53807
 }
