@@ -1,12 +1,9 @@
 package controleur;
 import java.awt.event.ActionEvent;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-
-<<<<<<< HEAD
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -14,8 +11,6 @@ import modele.Locataire;
 import modele.Paiement;
 import modele.dao.DaoLocataire;
 import modele.dao.DaoPaiement;
-=======
->>>>>>> f4d78edcdbd736dc31da42b3d82936a873d53807
 import vue.*;
 
 public class GestionFenetrePaiement extends GestionHeaderEtFooter {
@@ -25,7 +20,7 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter {
     private List<Paiement> paiements;
 
 
-    public GestionFenetrePaiement(FenetrePaiement fenetre, String idLoc) {
+    public GestionFenetrePaiement(FenetrePaiement fenetre, String idLoc) throws SQLException {
         super(fenetre);
         this.fenetre = fenetre;
         this.idLoc = idLoc;
@@ -198,7 +193,7 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter {
         }
     }
     
-    private void setProgressBar() {
+    private void setProgressBar() throws SQLException {
     	DaoPaiement dao = new DaoPaiement();
     	List<Paiement> listeToutesPaiements = dao.findAll();
     	double totalPaiement = 0;
