@@ -49,17 +49,10 @@ public class DaoLocataire extends DaoModele<Locataire> implements Dao<Locataire>
 		return find(new RequeteSelectLocataireByContrat(),id);
 	}
 	
-<<<<<<< HEAD
-	public List<Locataire> findNomLocataireByContrat(String numeroContrat) throws SQLException {
-	    return this.find(new RequeteSelectNomLocataireByCL(), numeroContrat);
-	}
 	public List<Locataire> findLocatairesMemeBien(String idLoc) throws SQLException {
 	    return this.find(new RequeteSelectLocatairesMemeBien(), idLoc);
 	}
 	
-=======
->>>>>>> f4d78edcdbd736dc31da42b3d82936a873d53807
-
 	@Override
 	protected Locataire creerInstance(ResultSet rs) throws SQLException {
 		DaoGarant dG = new DaoGarant();
