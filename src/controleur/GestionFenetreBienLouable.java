@@ -69,6 +69,12 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 		String idBien = this.fenetrebienlouable.getChosenBien();
 		return dao.findByIdBien(idBien);
 	}
+	
+	public List<Facture> getDonneesTravauxByBien() throws SQLException {
+		DaoFacture dao = new DaoFacture();
+		return dao.findFactureByBienLouable(this.bien.getIdBienLouable());
+		
+	}
 
 	public BienLouable getBien() {
 		return bien;
@@ -95,7 +101,7 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 			break;
 
 		case "Travaux":
-			new FenetreTravaux().setVisible(true);
+			new FenetreTravaux(getDonneesTravauxByBien(),bien).setVisible(true);
 			fenetrebienlouable.dispose();
 			break;
 

@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
 import controleur.GestionFenetreTravaux;
+import modele.BienLouable;
 import modele.Facture;
 
 import javax.swing.JScrollPane;
@@ -35,18 +36,21 @@ public class FenetreTravaux extends FenetreBase {
 	private JTable table;
 	private JScrollPane scrollPane;
 	private JLabel lblMontantTotal;
-	private JLabel lblNewLabel;
+	private JLabel lblNbTravaux;
 	private List<Facture> factures;
+	private JComboBox comboBox_Mois;
+	private JComboBox comboBox_Annee;
+	private BienLouable bien;
 
+	public BienLouable getBien() {
+		return bien;
+	}
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FenetreTravaux frame = new FenetreTravaux();
+					FenetreTravaux frame = new FenetreTravaux(null,null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -55,24 +59,18 @@ public class FenetreTravaux extends FenetreBase {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
-	public FenetreTravaux() {
+	public FenetreTravaux(List<Facture> liste,BienLouable bien) {
 		super();
+		this.bien = bien;
+		this.factures = liste;
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
-		this.gestionClic = new GestionFenetreTravaux(this);
 		setBounds(100, 100, 1200, 800);
 		getContentPane().setLayout(new BorderLayout(0, 0));
 
-		// header
-
 		this.setJMenuBar(createHeader());
-		this.gestionClic.initialize();
 
 		JPanel panel_12 = new JPanel();
 		getContentPane().add(panel_12, BorderLayout.SOUTH);
-
 		panel_12.add(createFooter());
 		panel_12.setLayout(new GridLayout(1, 0, 0, 0));
 
@@ -84,81 +82,77 @@ public class FenetreTravaux extends FenetreBase {
 		panel.add(panel_1, BorderLayout.SOUTH);
 
 		JButton btnAjouterTravaux = new JButton("Ajouter travaux");
-		btnAjouterTravaux.addActionListener(this.gestionClic);
 		panel_1.add(btnAjouterTravaux);
 
 		JButton btnAjouterEntreprise = new JButton("Ajouter entreprise");
-		btnAjouterEntreprise.addActionListener(this.gestionClic);
 		panel_1.add(btnAjouterEntreprise);
 
 		JButton btnGenFacture = new JButton("Visualiser facture");
-		btnGenFacture.addActionListener(this.gestionClic);
 		panel_1.add(btnGenFacture);
 
 		JButton btnRetour = new JButton("Retour");
-		btnRetour.addActionListener(this.gestionClic);
 		panel_1.add(btnRetour);
-		
+
 		JPanel panel_2 = new JPanel();
 		panel.add(panel_2, BorderLayout.NORTH);
-		
+
 		JLabel lblTravaux = new JLabel("Travaux");
 		lblTravaux.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTravaux.setFont(new Font("Tahoma", Font.BOLD, 18));
 		panel_2.add(lblTravaux);
-		
+
 		JPanel panel_3 = new JPanel();
 		panel.add(panel_3, BorderLayout.CENTER);
 		scrollPane = new JScrollPane();
 		table = new JTable();
 		table.setModel(new DefaultTableModel(new Object[][] { { null, null, null, null, null, null, null, null },
-		{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
-		{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
-		{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
-		{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
-		{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
-		{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
-		{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
-		{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
-		{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
-		{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
-		{ null, null, null, null, null, null, null, null }, },
-		new String[] { "Num\u00E9ro facture", "Montant", "Date de facture", "Compte bancaire", "Montant devis",
-		"Date de paiement", "D\u00E9signation travaux", "Entreprise" }) {
-		@SuppressWarnings("rawtypes")
-		Class[] columnTypes = new Class[] { String.class, String.class, String.class, String.class, Float.class,
-		String.class, String.class, String.class };
+				{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
+				{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
+				{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
+				{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
+				{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
+				{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
+				{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
+				{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
+				{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
+				{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
+				{ null, null, null, null, null, null, null, null }, },
+				new String[] { "Num\u00E9ro facture", "Montant", "Date de facture", "Compte bancaire", "Montant devis",
+						"Date de paiement", "D\u00E9signation travaux", "Entreprise" }) {
+			@SuppressWarnings("rawtypes")
+			Class[] columnTypes = new Class[] { String.class, String.class, String.class, String.class, Float.class,
+					String.class, String.class, String.class };
 
-		@SuppressWarnings({ "unchecked", "rawtypes" })
-		public Class getColumnClass(int columnIndex) {
-		return columnTypes[columnIndex];
-		}
+			@SuppressWarnings({ "unchecked", "rawtypes" })
+			public Class getColumnClass(int columnIndex) {
+				return columnTypes[columnIndex];
+			}
 
-		boolean[] columnEditables = new boolean[] { false, false, false, false, false, false, false, false };
+			boolean[] columnEditables = new boolean[] { false, false, false, false, false, false, false, false };
 
-		public boolean isCellEditable(int row, int column) {
-		return columnEditables[column];
-		}
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
 		});
 		table.getColumnModel().getColumn(1).setPreferredWidth(58);
-		table.getColumnModel().getColumn(2).setPreferredWidth(91);
-		table.addMouseListener(this.gestionClic);
 		panel_3.setLayout(new BorderLayout(0, 0));
 
 		scrollPane.setViewportView(table);
 		panel_3.add(scrollPane, BorderLayout.NORTH);
-		
+
 		JPanel panel_4 = new JPanel();
 		panel_3.add(panel_4, BorderLayout.CENTER);
 		GridBagLayout gbl_panel_4 = new GridBagLayout();
-		gbl_panel_4.columnWidths = new int[] {100, 100};
-		gbl_panel_4.rowHeights = new int[] {50};
-		gbl_panel_4.columnWeights = new double[]{1.0, 1.0};
-		gbl_panel_4.rowWeights = new double[]{1.0};
+		gbl_panel_4.columnWidths = new int[] { 100, 100 };
+		gbl_panel_4.rowHeights = new int[] { 50 };
+		gbl_panel_4.columnWeights = new double[] { 1.0, 1.0 };
+		gbl_panel_4.rowWeights = new double[] { 1.0 };
 		panel_4.setLayout(gbl_panel_4);
-		
+
 		JPanel panel_5 = new JPanel();
-		panel_5.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Montant Total", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_5.setBorder(new TitledBorder(
+				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)),
+				"Montant Total", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		GridBagConstraints gbc_panel_5 = new GridBagConstraints();
 		gbc_panel_5.insets = new Insets(0, 0, 0, 5);
 		gbc_panel_5.fill = GridBagConstraints.BOTH;
@@ -166,58 +160,83 @@ public class FenetreTravaux extends FenetreBase {
 		gbc_panel_5.gridy = 0;
 		panel_4.add(panel_5, gbc_panel_5);
 		panel_5.setLayout(new BorderLayout(0, 0));
-		
+
 		lblMontantTotal = new JLabel("14,200");
 		lblMontantTotal.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMontantTotal.setFont(new Font("Tahoma", Font.BOLD, 95));
 		panel_5.add(lblMontantTotal);
-		
+
 		JPanel panel_8 = new JPanel();
 		FlowLayout flowLayout_1 = (FlowLayout) panel_8.getLayout();
 		flowLayout_1.setVgap(15);
 		flowLayout_1.setHgap(10);
 		panel_5.add(panel_8, BorderLayout.NORTH);
-		
-		
+
 		JPanel panel_6 = new JPanel();
-		panel_6.setBorder(new TitledBorder(null, "Nombre de travaux effectu\u00E9s", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_6.setBorder(new TitledBorder(null, "Nombre de travaux effectu\u00E9s", TitledBorder.LEADING,
+				TitledBorder.TOP, null, null));
 		GridBagConstraints gbc_panel_6 = new GridBagConstraints();
 		gbc_panel_6.fill = GridBagConstraints.BOTH;
 		gbc_panel_6.gridx = 1;
 		gbc_panel_6.gridy = 0;
 		panel_4.add(panel_6, gbc_panel_6);
 		panel_6.setLayout(new BorderLayout(0, 0));
-		
-		lblNewLabel = new JLabel("3");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 95));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_6.add(lblNewLabel);
-		
+
+		lblNbTravaux = new JLabel("3");
+		lblNbTravaux.setFont(new Font("Tahoma", Font.BOLD, 95));
+		lblNbTravaux.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_6.add(lblNbTravaux);
+
 		JPanel panel_7 = new JPanel();
 		FlowLayout flowLayout = (FlowLayout) panel_7.getLayout();
 		flowLayout.setAlignment(FlowLayout.LEFT);
 		panel_6.add(panel_7, BorderLayout.NORTH);
-		
+
 		JLabel lblMois = new JLabel("Mois : ");
 		panel_7.add(lblMois);
-		
-		JComboBox comboBox_Mois = new JComboBox();
-		comboBox_Mois.setModel(new DefaultComboBoxModel(new String[] {"", "janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre ", "novembre", "décembre"}));
+
+		comboBox_Mois = new JComboBox();
+		comboBox_Mois.setModel(new DefaultComboBoxModel(new String[] { "Tous", "Janvier", "Février", "Mars", "Avril",
+				"Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre" }));
 		panel_7.add(comboBox_Mois);
-		
+
 		JLabel lblAnnee = new JLabel("Annee :");
 		panel_7.add(lblAnnee);
-		
-		JComboBox comboBox_Annee = new JComboBox();
-		comboBox_Annee.setModel(new DefaultComboBoxModel(new String[] {"", "2024", "2025", "2026"}));
+
+		comboBox_Annee = new JComboBox();
+		comboBox_Annee.setModel(new DefaultComboBoxModel(new String[] { "Tous", "2023", "2024", "2025", "2026" }));
 		panel_7.add(comboBox_Annee);
+
+		this.gestionClic = new GestionFenetreTravaux(this, this.factures);
+		btnAjouterTravaux.addActionListener(this.gestionClic);
+		btnAjouterEntreprise.addActionListener(this.gestionClic);
+		btnGenFacture.addActionListener(this.gestionClic);
+		btnRetour.addActionListener(this.gestionClic);
+		comboBox_Mois.addActionListener(this.gestionClic);
+		comboBox_Annee.addActionListener(this.gestionClic);
+		this.gestionClic.initialize();
+	}
+
+	public JComboBox getComboBox_Mois() {
+		return comboBox_Mois;
+	}
+
+	public void setComboBox_Mois(JComboBox comboBox_Mois) {
+		this.comboBox_Mois = comboBox_Mois;
+	}
+
+	public JComboBox getComboBox_Annee() {
+		return comboBox_Annee;
+	}
+
+	public void setComboBox_Annee(JComboBox comboBox_Annee) {
+		this.comboBox_Annee = comboBox_Annee;
 	}
 
 	public void disableMenuItems(boolean actif) {
 		this.mnBatiment.setEnabled(actif);
 		this.mnPaiement.setEnabled(actif);
 		this.mntmTravaux.setEnabled(actif);
-
 	}
 
 	public JTable getTable() {
@@ -232,12 +251,12 @@ public class FenetreTravaux extends FenetreBase {
 		this.lblMontantTotal = lblMontantTotal;
 	}
 
-	public JLabel getLblNewLabel() {
-		return lblNewLabel;
+	public JLabel getLblNbTravaux() {
+		return lblNbTravaux;
 	}
 
-	public void setLblNewLabel(JLabel lblNewLabel) {
-		this.lblNewLabel = lblNewLabel;
+	public void setLblNbTravaux(JLabel lblNewLabel) {
+		this.lblNbTravaux = lblNewLabel;
 	}
 
 	public void setTable(JTable table) {
@@ -247,47 +266,32 @@ public class FenetreTravaux extends FenetreBase {
 	public List<Facture> getFactures() {
 		return factures;
 	}
-	
+
 	public void setFactures(List<Facture> factures) {
-	    this.factures = factures;
-	    remplirTable();
+		this.factures = factures;
+		remplirTable();
 	}
 
 	private void remplirTable() {
-
-	    DefaultTableModel model = (DefaultTableModel) table.getModel();
-	    model.setRowCount(0);
-
-	    for (Facture f : factures) {
-	        model.addRow(new Object[]{
-	            f.getNumeroFacture(),
-	            f.getMontant(),
-	            f.getDateDeFacture(),
-	            f.getCompteBancaire(),
-	            f.getMontantDevis(),
-	            f.getDatePaiement(),
-	            f.getDesignationDeTravaux(),
-	            f.getEntreprise().getNom()
-	        });
-	    }
+		DefaultTableModel model = (DefaultTableModel) table.getModel();
+		model.setRowCount(0);
+		for (Facture f : factures) {
+			model.addRow(new Object[] { f.getNumeroFacture(), f.getMontant(), f.getDateDeFacture(),
+					f.getCompteBancaire(), f.getMontantDevis(), f.getDatePaiement(), f.getDesignationDeTravaux(),
+					f.getEntreprise().getNom() });
+		}
 	}
-	
+
 	public Facture getFactureSelectionnee(int row) {
-	    if (row < 0 || row >= factures.size()) return null;
-	    return factures.get(row);
+		if (row < 0 || row >= factures.size())
+			return null;
+		return factures.get(row);
 	}
-	
+
 	public Facture getFactureSelectionnee() {
-        int row = table.getSelectedRow();
-        if (row == -1) return null;
-        return getFactureSelectionnee(row);
-    }
-
-
-
-	
-	
-	
-	
-
+		int row = table.getSelectedRow();
+		if (row == -1)
+			return null;
+		return getFactureSelectionnee(row);
+	}
 }

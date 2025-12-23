@@ -47,6 +47,7 @@ public class FenetreLocataire extends FenetreBase {
 	private JScrollPane scrollPane;
 	private List<Locataire> liste;
 	private JLabel lblPhoto;
+	
 
 	
 
@@ -73,9 +74,8 @@ public class FenetreLocataire extends FenetreBase {
 	public FenetreLocataire(String nomFenAvant, List<Locataire> locataires) {
 		super();
 		this.nomFenAvant = nomFenAvant;
+		this.liste = locataires;
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
-		this.gestionClic = new GestionFenetreLocataire(this,locataires);
-		gestionClic.chargerDonnes();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1200, 800);
 
@@ -89,16 +89,14 @@ public class FenetreLocataire extends FenetreBase {
 		contentPane.setLayout(new BorderLayout(0, 0));
 
 		JPanel bottomContainer = new JPanel(new BorderLayout());
-		this.gestionClic.initialize();
 
 		// === BUTTONS PANEL ===
 		JPanel panelButtons = new JPanel();
 		panelButtons.setBorder(new EmptyBorder(10, 10, 10, 10));
 		JButton btnAjouterLocataire = new JButton("Ajouter locataire");
-		btnAjouterLocataire.addActionListener(this.gestionClic);
 
+	
 		JButton btnPaiement = new JButton("Paiement");
-		btnPaiement.addActionListener(this.gestionClic);
 		panelButtons.add(btnPaiement);
 		panelButtons.add(btnAjouterLocataire);
 
@@ -106,7 +104,6 @@ public class FenetreLocataire extends FenetreBase {
 		bottomContainer.add(panelButtons, BorderLayout.NORTH);
 
 		JButton btnRetour = new JButton("Retour");
-		btnRetour.addActionListener(this.gestionClic);
 		panelButtons.add(btnRetour);
 
 		// === FOOTER PANEL ===
@@ -387,7 +384,6 @@ public class FenetreLocataire extends FenetreBase {
 
 		scrollPane = new JScrollPane();
 		panel_5.add(scrollPane);
-
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
 				new Object[][] { { null, null, null, null, null, null }, { null, null, null, null, null, null },
@@ -399,6 +395,14 @@ public class FenetreLocataire extends FenetreBase {
 						{ null, null, null, null, null, null }, { null, null, null, null, null, null }, },
 				new String[] { "Id Locataire", "Nom", "Prenom", "Adresse", "Tel", "Email" }));
 		scrollPane.setViewportView(table);
+
+		
+		this.gestionClic = new GestionFenetreLocataire(this,locataires);
+		this.gestionClic.initialize();
+		btnAjouterLocataire.addActionListener(this.gestionClic);
+		btnPaiement.addActionListener(this.gestionClic);
+		btnRetour.addActionListener(this.gestionClic);
+
 
 	}
 	

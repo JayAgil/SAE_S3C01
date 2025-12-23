@@ -13,7 +13,6 @@ public class DaoFacture extends DaoModele<Facture> implements Dao<Facture> {
 
 	public DaoFacture() throws SQLException {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -44,6 +43,11 @@ public class DaoFacture extends DaoModele<Facture> implements Dao<Facture> {
 	
 	public Facture findDateDernierTravauxByBien(String idBien) throws SQLException {
 		return this.findById(new RequeteSelectDateFactureByBien(),idBien);
+	}
+	
+	public List<Facture> findFactureByBienLouable(String idBien) throws SQLException {
+		return this.find(new RequeteSelectFactureByBien(),idBien);
+
 	}
 
 	@Override

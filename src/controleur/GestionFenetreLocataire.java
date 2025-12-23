@@ -22,8 +22,15 @@ public class GestionFenetreLocataire extends GestionHeaderEtFooter {
 		super(fenetre);
 		this.fenetre = fenetre;
 		this.locataires = locataires;
+		chargerDonnes();
 		afficherTextFields();
-	}
+		
+		if (locataires != null && !locataires.isEmpty()) {
+	        locataireSelectionne = locataires.get(0);
+	        fenetre.getTable().setRowSelectionInterval(0, 0);
+	        afficherDetails(locataireSelectionne);
+	    }
+		}
 
 	@Override
 	protected void gererBoutonSpecifique(String texte) throws SQLException {
@@ -52,14 +59,13 @@ public class GestionFenetreLocataire extends GestionHeaderEtFooter {
 		if ("Retour".equals(texte)) {
 			fenetre.dispose();
 			String fenAvant = fenetre.getNomFenAvant();
-
 			switch (fenAvant) {
 			case "FenetrePrincipale":
 				FenetrePrincipale fp1 = new FenetrePrincipale();
 				fp1.setVisible(true);
 				break;
 			case "BienLouable":
-				FenetreBienLouable fp2 = new FenetreBienLouable(null, null);
+				FenetreBienLouable fp2 = new FenetreBienLouable("FenPrincipale", null);
 				fp2.setVisible(true);
 				break;
 			case "FenContratLocation":
@@ -78,7 +84,7 @@ public class GestionFenetreLocataire extends GestionHeaderEtFooter {
 		JTable table = fenetre.getTable();
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
 	    model.setRowCount(0); 
-		for (Locataire loc : fenetre.getListe()) {
+		for (Locataire loc : locataires) {
 			Object[] ligne = { loc.getIdLocataire(), loc.getNom(), loc.getPrenom(), loc.getTel(), loc.getAdresse() };
 			model.addRow(ligne);
 		}
@@ -112,7 +118,7 @@ fenetre.getTextFieldDateNaissance().setText(dateNaissance);	    fenetre.getTextF
 	    fenetre.getTextFieldSalaire().setText(String.valueOf(loc.getSalaire()));
 	    fenetre.getTextFieldSituationFamiliale().setText(loc.getSituationFamiliale());
 	    fenetre.getTextFieldAdresse().setText(loc.getAdresse());
-	    ImageIcon icon = new ImageIcon("images/locataire1.jpg");
+	    ImageIcon icon = new ImageIcon(loc.getImage());
 	    fenetre.getLblPhoto().setIcon(icon);
 	}
 
