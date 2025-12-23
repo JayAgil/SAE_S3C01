@@ -101,8 +101,23 @@ public class FenetrePaiement extends FenetreBase {
 
 		/* ---------- TABLE ---------- */
 		table = new JTable(new DefaultTableModel(
-				new Object[][]{},
-				new String[]{"ID Paiement", "ID Contrat", "Date Paiement", "Montant"}
+			new Object[][] {
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+			},
+			new String[] {
+				"ID Paiement", "ID Contrat", "Date Paiement", "Montant"
+			}
 		));
 
 		JScrollPane scrollPane = new JScrollPane(table);
@@ -112,7 +127,7 @@ public class FenetrePaiement extends FenetreBase {
 		gbcTable.gridx = 0;
 		gbcTable.gridy = 2;
 		gbcTable.weightx = 1;
-		gbcTable.weighty = 0.55;
+		gbcTable.weighty = 0.3;
 		gbcTable.fill = GridBagConstraints.BOTH;
 		gbcTable.insets = new Insets(5, 5, 5, 5);
 		mainPanel.add(scrollPane, gbcTable);
