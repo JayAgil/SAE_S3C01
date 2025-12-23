@@ -2,7 +2,6 @@ package vue;
 
 import java.awt.*;
 import java.sql.SQLException;
-
 import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.table.DefaultTableModel;
@@ -46,15 +45,18 @@ public class FenetrePaiement extends FenetreBase {
 
 		gestionClic.initialize();
 
+		/* ================= HEADER ================= */
 		JPanel header = new JPanel();
 		JLabel lblTitre = new JLabel("Paiement");
 		lblTitre.setFont(new Font("Tahoma", Font.BOLD, 18));
 		header.add(lblTitre);
 		contentPane.add(header, BorderLayout.NORTH);
 
-		JPanel mainPanel = new JPanel(new BorderLayout());
+		/* ================= MAIN PANEL ================= */
+		JPanel mainPanel = new JPanel(new GridBagLayout());
 		contentPane.add(mainPanel, BorderLayout.CENTER);
 
+		/* ---------- INFO PANEL ---------- */
 		JPanel infoPanel = new JPanel(new GridLayout(1, 2));
 
 		JPanel leftInfo = new JPanel();
@@ -69,8 +71,17 @@ public class FenetrePaiement extends FenetreBase {
 
 		infoPanel.add(leftInfo);
 		infoPanel.add(rightInfo);
-		mainPanel.add(infoPanel, BorderLayout.NORTH);
 
+		GridBagConstraints gbcInfo = new GridBagConstraints();
+		gbcInfo.gridx = 0;
+		gbcInfo.gridy = 0;
+		gbcInfo.weightx = 1;
+		gbcInfo.weighty = 0;
+		gbcInfo.fill = GridBagConstraints.BOTH;
+		gbcInfo.insets = new Insets(5, 5, 5, 5);
+		mainPanel.add(infoPanel, gbcInfo);
+
+		/* ---------- FILTER PANEL ---------- */
 		JPanel filterPanel = new JPanel();
 		comboBoxMois = new JComboBox<>(new String[]{
 				"Mois", "Janvier", "Février", "Mars", "Avril", "Mai",
@@ -78,31 +89,76 @@ public class FenetrePaiement extends FenetreBase {
 		});
 		comboBoxMois.addActionListener(gestionClic);
 		filterPanel.add(comboBoxMois);
-		mainPanel.add(filterPanel, BorderLayout.BEFORE_FIRST_LINE);
 
+		GridBagConstraints gbcFilter = new GridBagConstraints();
+		gbcFilter.gridx = 0;
+		gbcFilter.gridy = 1;
+		gbcFilter.weightx = 1;
+		gbcFilter.weighty = 0;
+		gbcFilter.fill = GridBagConstraints.BOTH;
+		gbcFilter.insets = new Insets(5, 5, 5, 5);
+		mainPanel.add(filterPanel, gbcFilter);
+
+		/* ---------- TABLE ---------- */
 		table = new JTable(new DefaultTableModel(
 				new Object[][]{},
 				new String[]{"ID Paiement", "ID Contrat", "Date Paiement", "Montant"}
 		));
-		mainPanel.add(new JScrollPane(table), BorderLayout.CENTER);
 
-		JPanel totals = new JPanel(new GridLayout(1, 3));
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setPreferredSize(new Dimension(600, 260));
 
-		lblTotalPaiementAnnees = createBigLabel("3600", "Total Année");
-		lblTotalPaiementMois = createBigLabel("1200", "Total Mois");
-		lblDateDernierPaiement = createBigLabel("—", "Dernier Paiement");
+		GridBagConstraints gbcTable = new GridBagConstraints();
+		gbcTable.gridx = 0;
+		gbcTable.gridy = 2;
+		gbcTable.weightx = 1;
+		gbcTable.weighty = 0.55;
+		gbcTable.fill = GridBagConstraints.BOTH;
+		gbcTable.insets = new Insets(5, 5, 5, 5);
+		mainPanel.add(scrollPane, gbcTable);
 
-		totals.add(wrap(lblTotalPaiementAnnees, "Total Année"));
-		totals.add(wrap(lblTotalPaiementMois, "Total Mois"));
-		totals.add(wrap(lblDateDernierPaiement, "Dernier Paiement"));
+		/* ---------- TOTALS ---------- */
+		JPanel totalsPanel = new JPanel(new GridLayout(1, 3, 10, 10));
 
-		mainPanel.add(totals, BorderLayout.SOUTH);
+		lblTotalPaiementAnnees = new JLabel("3600", SwingConstants.CENTER);
+		lblTotalPaiementAnnees.setFont(new Font("Tahoma", Font.PLAIN, 40));
 
+		lblTotalPaiementMois = new JLabel("1200", SwingConstants.CENTER);
+		lblTotalPaiementMois.setFont(new Font("Tahoma", Font.PLAIN, 40));
+
+		lblDateDernierPaiement = new JLabel("—", SwingConstants.CENTER);
+		lblDateDernierPaiement.setFont(new Font("Tahoma", Font.PLAIN, 40));
+
+		JPanel p1 = new JPanel(new BorderLayout());
+		p1.setBorder(new TitledBorder("Total Année"));
+		p1.add(lblTotalPaiementAnnees);
+
+		JPanel p2 = new JPanel(new BorderLayout());
+		p2.setBorder(new TitledBorder("Total Mois"));
+		p2.add(lblTotalPaiementMois);
+
+		JPanel p3 = new JPanel(new BorderLayout());
+		p3.setBorder(new TitledBorder("Dernier Paiement"));
+		p3.add(lblDateDernierPaiement);
+
+		totalsPanel.add(p1);
+		totalsPanel.add(p2);
+		totalsPanel.add(p3);
+
+		GridBagConstraints gbcTotals = new GridBagConstraints();
+		gbcTotals.gridx = 0;
+		gbcTotals.gridy = 3;
+		gbcTotals.weightx = 1;
+		gbcTotals.weighty = 0.25;
+		gbcTotals.fill = GridBagConstraints.BOTH;
+		gbcTotals.insets = new Insets(5, 5, 5, 5);
+		mainPanel.add(totalsPanel, gbcTotals);
+
+		/* ================= BOTTOM ================= */
 		progressBar = new JProgressBar();
 		progressBar.setValue(30);
 		progressBar.setStringPainted(true);
 		progressBar.setString("30 % de paiements reçus");
-		contentPane.add(progressBar, BorderLayout.SOUTH);
 
 		JPanel buttons = new JPanel();
 		JButton btnAjouter = new JButton("Ajouter paiement");
@@ -114,22 +170,14 @@ public class FenetrePaiement extends FenetreBase {
 		buttons.add(btnAjouter);
 		buttons.add(btnRetour);
 
-		contentPane.add(buttons, BorderLayout.PAGE_END);
+		JPanel bottomPanel = new JPanel(new BorderLayout());
+		bottomPanel.add(progressBar, BorderLayout.NORTH);
+		bottomPanel.add(buttons, BorderLayout.SOUTH);
+
+		contentPane.add(bottomPanel, BorderLayout.SOUTH);
 	}
 
-	private JLabel createBigLabel(String text, String title) {
-		JLabel lbl = new JLabel(text, SwingConstants.CENTER);
-		lbl.setFont(new Font("Tahoma", Font.PLAIN, 48));
-		return lbl;
-	}
-
-	private JPanel wrap(JComponent c, String title) {
-		JPanel p = new JPanel(new BorderLayout());
-		p.setBorder(new TitledBorder(title));
-		p.add(c);
-		return p;
-	}
-
+	/* ================= GETTERS ================= */
 
 	public JTable getTable() {
 		return table;
