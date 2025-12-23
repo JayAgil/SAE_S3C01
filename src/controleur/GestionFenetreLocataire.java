@@ -60,11 +60,8 @@ public class GestionFenetreLocataire extends GestionHeaderEtFooter {
 			fenetre.dispose();
 			String fenAvant = fenetre.getNomFenAvant();
 			switch (fenAvant) {
-			case "FenetrePrincipale":
-				FenetrePrincipale fp1 = new FenetrePrincipale();
-				fp1.setVisible(true);
-				break;
 			case "BienLouable":
+				
 				FenetreBienLouable fp2 = new FenetreBienLouable("FenPrincipale", null);
 				fp2.setVisible(true);
 				break;

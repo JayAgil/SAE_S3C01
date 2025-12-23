@@ -9,7 +9,7 @@ public class RequeteSelectLocataireByBienLouable extends Requete<Locataire> {
 
 	@Override
 	public String requete() {
-		return  "SELECT L.* " +
+		return  "SELECT L.* , C.Date_debut, C.Date_Fin " +
 		        "FROM MSF5131A.SAE_Locataire L " +
 		        "JOIN MSF5131A.SAE_Contrat_Locataire CL ON L.Id_Locataire = CL.Id_Locataire " +
 		        "JOIN MSF5131A.SAE_ContratLocation C ON C.Numero_de_contrat = CL.Numero_de_contrat " +
