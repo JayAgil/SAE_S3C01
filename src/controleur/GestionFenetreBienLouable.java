@@ -181,6 +181,8 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 		}
 	}
 
+	
+	
 	public void chargerDonnees() throws SQLException {
 
 		List<BienLouable> liste = getListBienWithTheBienNow();
