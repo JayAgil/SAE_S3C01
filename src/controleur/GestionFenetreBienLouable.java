@@ -171,7 +171,9 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 		try {
 			DaoLocataire daoLocataire = new DaoLocataire();
 			List<Locataire> locataires = daoLocataire.findLocataireByBienLouable(idBien);
-			FenetreLocataire fen = new FenetreLocataire("FenetreLocataire", locataires);
+			DaoBienLouable db = new DaoBienLouable();
+			BienLouable bien = db.findById(idBien);
+			FenetreLocataire fen = new FenetreLocataire("FenetreBienLouable", locataires, bien);
 			fen.setVisible(true);
 			fenetre.dispose();
 		} catch (SQLException e) {

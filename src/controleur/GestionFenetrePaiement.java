@@ -50,7 +50,7 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter {
         if ("Retour".equals(texte)) {
         	DaoLocataire dl = new DaoLocataire();
         	List<Locataire> liste = dl.findLocatairesMemeBien(idLoc);
-            FenetreLocataire fen = new FenetreLocataire("Paiement",liste);
+            FenetreLocataire fen = new FenetreLocataire("Paiement",liste,);
             fen.setVisible(true);
             fenetre.dispose();
         }

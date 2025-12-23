@@ -53,6 +53,7 @@ public class GestionFenetreLocataire extends GestionHeaderEtFooter {
 	            break;
 		}
 	}
+	
 
 	@Override
 	protected void gererBoutonRetour(String texte) throws SQLException {
@@ -60,21 +61,17 @@ public class GestionFenetreLocataire extends GestionHeaderEtFooter {
 			fenetre.dispose();
 			String fenAvant = fenetre.getNomFenAvant();
 			switch (fenAvant) {
-			case "BienLouable":
-				
-				FenetreBienLouable fp2 = new FenetreBienLouable("FenPrincipale", null);
+			case "FenetreBienLouable":
+				FenetreBienLouable fp2 = new FenetreBienLouable("FenPrincipale", this.fenetre.getBl());
 				fp2.setVisible(true);
+				this.fenetre.dispose();
 				break;
 			case "FenContratLocation":
 				FenetreContratLocation fp3 = new FenetreContratLocation("FenBienLouable",null);
 				fp3.setVisible(true);
 				break;
-			default:
-				FenetreBienLouable fpDefault = new FenetreBienLouable(null, null);
-				fpDefault.setVisible(true);
-				break;
-			}
-		}
+			}}
+		
 	}
 
 	public void chargerDonnes() {
@@ -82,7 +79,7 @@ public class GestionFenetreLocataire extends GestionHeaderEtFooter {
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
 	    model.setRowCount(0); 
 		for (Locataire loc : locataires) {
-			Object[] ligne = { loc.getIdLocataire(), loc.getNom(), loc.getPrenom(), loc.getTel(), loc.getAdresse() };
+			Object[] ligne = { loc.getIdLocataire(), loc.getNom(), loc.getPrenom(), loc.getTel(), loc.getAdresse(), loc.getEmail() };
 			model.addRow(ligne);
 		}
 

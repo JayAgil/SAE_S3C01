@@ -15,6 +15,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import controleur.GestionFenetreLocataire;
+import modele.BienLouable;
 import modele.Locataire;
 
 import java.awt.Font;
@@ -47,6 +48,7 @@ public class FenetreLocataire extends FenetreBase {
 	private JScrollPane scrollPane;
 	private List<Locataire> liste;
 	private JLabel lblPhoto;
+	private BienLouable bl;
 	
 
 	
@@ -59,7 +61,7 @@ public class FenetreLocataire extends FenetreBase {
 			@Override
 			public void run() {
 				try {
-					FenetreLocataire frame = new FenetreLocataire("a",null);
+					FenetreLocataire frame = new FenetreLocataire("a",null,null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -71,10 +73,11 @@ public class FenetreLocataire extends FenetreBase {
 	/**
 	 * Create the frame.
 	 */
-	public FenetreLocataire(String nomFenAvant, List<Locataire> locataires) {
+	public FenetreLocataire(String nomFenAvant, List<Locataire> locataires, BienLouable bl) {
 		super();
 		this.nomFenAvant = nomFenAvant;
 		this.liste = locataires;
+		this.bl = bl;
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1200, 800);
@@ -387,23 +390,9 @@ public class FenetreLocataire extends FenetreBase {
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
 			},
 			new String[] {
-				"Id Locataire", "Nom", "Prenom", "Adresse", "Tel", "Email", "Date Debut", "Date Fin"
+				"Id Locataire", "Nom", "Prenom", "Adresse", "Tel", "Email"
 			}
 		));
 		scrollPane.setViewportView(table);
@@ -531,6 +520,10 @@ public class FenetreLocataire extends FenetreBase {
 	}
 	public String getNomFenAvant() {
 		return this.nomFenAvant;
+	}
+
+	public BienLouable getBl() {
+		return bl;
 	}
 	
 	
