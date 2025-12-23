@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 import javax.swing.*;
 
+import modele.dao.DaoLocataire;
 import vue.*;
 
 public abstract class GestionHeaderEtFooter implements ActionListener {
@@ -117,7 +118,8 @@ public abstract class GestionHeaderEtFooter implements ActionListener {
             break;
 
         case "Locataires":
-            new FenetreLocataire("Principal", null).setVisible(true);
+        	DaoLocataire dl = new DaoLocataire();
+            new FenetreLocataire("Principal", dl.findAll(),nullNRK).setVisible(true);
             fenetre.dispose();
             break;
 
