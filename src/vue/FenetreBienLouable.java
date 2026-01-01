@@ -571,13 +571,16 @@ public class FenetreBienLouable extends FenetreBase {
     }
 	
 	public String getChosenBien() {
-		int selectedRow = table.getSelectedRow();
-		if (selectedRow != -1) {
-		    String value = table.getValueAt(selectedRow, 0).toString();
-		    return value;
-		}
-		return "";
+	    int selectedRow = table.getSelectedRow();
+	    if (selectedRow != -1) {
+	        return table.getValueAt(selectedRow, 0).toString();
+	    }
+	    if (table.getRowCount() > 0) {
+	        return table.getValueAt(0, 0).toString(); 
+	    }
+	    return "";
 	}
+
 
 	
 }
