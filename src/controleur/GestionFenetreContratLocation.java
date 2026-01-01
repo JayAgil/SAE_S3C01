@@ -8,7 +8,10 @@ import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import modele.BienLouable;
 import modele.ContratLocation;
+import modele.Locataire;
+import modele.dao.DaoBienLouable;
 import modele.dao.DaoContratLocation;
 import modele.dao.DaoLocataire;
 import vue.*;
@@ -51,7 +54,9 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
     protected void gererBoutonRetour(String texte) throws SQLException {
         if ("Retour".equals(texte)) {
         	if(fenetre.getFenDavant().equals("FenBienLouable")) {
-	            FenetreBienLouable fp = new FenetreBienLouable(null, null);
+        		DaoBienLouable dBL = new DaoBienLouable();
+        		BienLouable bL = dBL.findByIdContrat(this.cl.getNumeroDeContrat());
+	            FenetreBienLouable fp = new FenetreBienLouable("FenPrincipale", bL);
 	            fp.setVisible(true);
 	            fenetre.dispose();
         	}
@@ -63,23 +68,23 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
         }
     }
 
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		 if (e.getSource() instanceof JTable) {
-	        JTable table = (JTable) e.getSource();
-	        int row = table.getSelectedRow();
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        if (e.getSource() instanceof JTable) {
+            JTable table = (JTable) e.getSource();
+            int row = table.getSelectedRow();
+            if (row >= 0 && row < contrats.size()) {
+                ContratLocation contratSelectionne = contrats.get(row);
+                afficherContrat(contratSelectionne);
+                if (e.getClickCount() == 2) {
+                    fenetre.dispose();
+                    FenetreLocataire fen = new FenetreLocataire("FenContratLocation", null, null);
+                    fen.setVisible(true);
+                }
+            }
+        }
+    }
 
-	        if (row >= 0) {
-	            ContratLocation contratSelectionne = contrats.get(row);
-	            afficherContrat(contratSelectionne);
-	        }
-	        if (e.getClickCount() == 2 && row >= 0) {
-	            fenetre.dispose();
-	            FenetreLocataire fen = new FenetreLocataire("FenContratLocation", null);
-	            fen.setVisible(true);
-	        }
-	    }
-	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
@@ -107,14 +112,17 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 	
 	public void initialize() {
 	    try {
-			remplirTable();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		if (!contrats.isEmpty()) {
-		    afficherContrat(cl);
-		}
+	        remplirTable();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    if (!contrats.isEmpty()) {
+	        fenetre.getTable().setRowSelectionInterval(0, 0); 
+	        afficherContrat(contrats.get(0));                 
+	    }
+	    fenetre.getTable().addMouseListener(this);
 	}
+
 	
 	private void remplirTable() throws SQLException {
 	    DefaultTableModel model = (DefaultTableModel) this.fenetre.getTable().getModel();
@@ -130,6 +138,7 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 	            c.getSolde()
 	        });
 	    }
+	    fenetre.getTable().addMouseListener(this);
 	}
 	
 	private void afficherContrat(ContratLocation c) {
@@ -144,7 +153,21 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 	    fenetre.getTextFieldCptElec().setText(String.valueOf(c.getIndexCompteurElectricite()));
 	    fenetre.getTextFieldCptGaz().setText(String.valueOf(c.getIndexCompteurGaz()));
 	    fenetre.getTextFieldSolde().setText(String.valueOf(c.getSolde()));
+
+	    try {
+	        DaoLocataire dL = new DaoLocataire();
+	        List<Locataire> locataires = dL.findLocataireByContrat(c.getNumeroDeContrat());
+	        if (!locataires.isEmpty()) {
+	            fenetre.getTextFieldNomLoc().setText(locataires.get(0).getNom());
+	        } else {
+	            fenetre.getTextFieldNomLoc().setText("");
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        fenetre.getTextFieldNomLoc().setText("");
+	    }
 	}
+
 
 
 

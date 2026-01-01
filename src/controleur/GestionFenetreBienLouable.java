@@ -91,7 +91,9 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 			break;
 
 		case "Contrat":
-			new FenetreContratLocation("FenBienLouable", null).setVisible(true);
+			DaoContratLocation dCl = new DaoContratLocation();
+			ContratLocation cl = dCl.findCLByBien(this.bien.getIdBienLouable());
+			new FenetreContratLocation("FenBienLouable", cl).setVisible(true);
 			fenetrebienlouable.dispose();
 			break;
 
