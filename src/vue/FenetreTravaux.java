@@ -42,9 +42,7 @@ public class FenetreTravaux extends FenetreBase {
 	private JComboBox comboBox_Annee;
 	private BienLouable bien;
 
-	public BienLouable getBien() {
-		return bien;
-	}
+	
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -265,6 +263,10 @@ public class FenetreTravaux extends FenetreBase {
 
 	public List<Facture> getFactures() {
 		return factures;
+	}
+	
+	public BienLouable getBien() {
+		return bien;
 	}
 
 	public void setFactures(List<Facture> factures) {

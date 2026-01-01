@@ -47,19 +47,6 @@ public class FenetreAssurance extends FenetreBase {
 		contentPane.setLayout(new BorderLayout(10, 10));
 		this.setJMenuBar(createHeader());
 
-		mntmDeconnecter.addActionListener(this.gestionClic);
-		mntmAjouterBat.addActionListener(this.gestionClic);
-	    mntmAssurance.addActionListener(this.gestionClic);
-		mntmCompteur.addActionListener(this.gestionClic);
-		mntmCharge.addActionListener(this.gestionClic);
-		mntmContratLocation.addActionListener(this.gestionClic);
-		mntmCompteurBL.addActionListener(this.gestionClic);
-		mntmTravaux.addActionListener(this.gestionClic);
-		mntmChargesBL.addActionListener(this.gestionClic);
-		mntmDiagnostic.addActionListener(this.gestionClic);
-		mntmLocataire.addActionListener(this.gestionClic);
-		mntmHistorique.addActionListener(this.gestionClic);
-		mntmAjout.addActionListener(this.gestionClic);
 		
 		this.gestionClic.initialize();
 		JPanel panelCenter = new JPanel(new GridBagLayout());

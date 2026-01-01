@@ -9,6 +9,7 @@ import javax.swing.table.DefaultTableModel;
 
 import modele.Locataire;
 import modele.Paiement;
+import modele.dao.DaoBienLouable;
 import modele.dao.DaoLocataire;
 import modele.dao.DaoPaiement;
 import vue.*;
@@ -27,8 +28,6 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter {
         chargerDonnees();
         afficherDetailsPaiement();
         setProgressBar();
-
-
     }
 
     @Override
@@ -50,7 +49,8 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter {
         if ("Retour".equals(texte)) {
         	DaoLocataire dl = new DaoLocataire();
         	List<Locataire> liste = dl.findLocatairesMemeBien(idLoc);
-            FenetreLocataire fen = new FenetreLocataire("Paiement",liste,);
+        	DaoBienLouable daoBl = new DaoBienLouable();
+            FenetreLocataire fen = new FenetreLocataire("FenPrincipale",liste,daoBl.findByIdLoc(idLoc));
             fen.setVisible(true);
             fenetre.dispose();
         }
@@ -60,7 +60,7 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter {
     	DaoPaiement dao;
         try {
             dao = new DaoPaiement();
-            paiements = dao.findPaiementsByLocataire(idLoc); // store in field
+            paiements = dao.findPaiementsByLocataire(idLoc); 
             DefaultTableModel model = (DefaultTableModel) fenetre.getTable().getModel();
             model.setRowCount(0);
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");

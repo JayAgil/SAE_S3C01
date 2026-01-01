@@ -287,10 +287,6 @@ public class FenetreCharges extends FenetreBase {
 	    btnAjouter.addActionListener(this.gestionClic);
 	    buttonPanel.add(btnAjouter);
 
-	    JButton btnAnnuler = new JButton("Annuler");
-	    btnAnnuler.addActionListener(this.gestionClic);
-	    buttonPanel.add(btnAnnuler);
-
 	    JButton btnRetour = new JButton("Retour");
 	    btnRetour.addActionListener(this.gestionClic);
 	    buttonPanel.add(btnRetour);

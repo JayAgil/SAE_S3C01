@@ -47,13 +47,11 @@ public abstract class FenetreBase extends JFrame {
 
 	    mntmAjouterBat = new JMenuItem("Ajouter bâtiment");
 	    mntmAssurance = new JMenuItem("Assurance");
-	    mntmCompteur = new JMenuItem("Compteurs bâtiment");
-	    mntmCharge = new JMenuItem("Charges bâtiment");
+	    mntmCompteur = new JMenuItem("Compteurs");
+	    mntmCharge = new JMenuItem("Charges");
 
 	    mntmContratLocation = new JMenuItem("Contrat location");
-	    mntmCompteurBL = new JMenuItem("Compteurs bien louable");
 	    mntmTravaux = new JMenuItem("Travaux");
-	    mntmChargesBL = new JMenuItem("Charges bien louable");
 	    mntmDiagnostic = new JMenuItem("Diagnostics");
 	    mntmLocataire = new JMenuItem("Locataires");
 
@@ -72,15 +70,12 @@ public abstract class FenetreBase extends JFrame {
 
 	    menuBar.add(mnBatiment);
 	    mnBatiment.add(mntmAjouterBat);
-	    mnBatiment.add(mntmAssurance);
 	    mnBatiment.add(mntmCompteur);
 	    mnBatiment.add(mntmCharge);
 
 	    menuBar.add(mnBienLouable);
 	    mnBienLouable.add(mntmContratLocation);
-	    mnBienLouable.add(mntmCompteurBL);
 	    mnBienLouable.add(mntmTravaux);
-	    mnBienLouable.add(mntmChargesBL);
 	    mnBienLouable.add(mntmDiagnostic);
 	    mnBienLouable.add(mntmLocataire);
 

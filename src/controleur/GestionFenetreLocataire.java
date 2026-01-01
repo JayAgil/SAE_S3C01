@@ -79,7 +79,7 @@ public class GestionFenetreLocataire extends GestionHeaderEtFooter {
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
 	    model.setRowCount(0); 
 		for (Locataire loc : locataires) {
-			Object[] ligne = { loc.getIdLocataire(), loc.getNom(), loc.getPrenom(), loc.getTel(), loc.getAdresse(), loc.getEmail() };
+			Object[] ligne = { loc.getIdLocataire(), loc.getNom(), loc.getPrenom(), loc.getAdresse(), loc.getTel(), loc.getEmail() };
 			model.addRow(ligne);
 		}
 
