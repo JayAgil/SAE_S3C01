@@ -196,25 +196,62 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 		}
 	}
 
-	public void remplirFormulaire(BienLouable bien, ContratLocation cl,double charge,List<Locataire> loc,Facture fac,Paiement date) {
-		String nom = loc.get(0).getNom();
-		String datePaiement = date.getDatepaiement().toString();
-		fenetrebienlouable.getTextFieldNom().setText(nom);
-		fenetrebienlouable.getTextFieldLoyerMen().setText(String.valueOf(cl.getMontantMensuel()));
-		fenetrebienlouable.getTextFieldNF().setText(bien.getNumeroFiscale());
-		fenetrebienlouable.getTextFieldAdresse().setText(bien.getAdresse());
-		fenetrebienlouable.getTextFieldSurfaceHab().setText(String.valueOf(bien.getSurfaceHabituable()));
-		fenetrebienlouable.getTextFieldNbDPieces().setText(String.valueOf(bien.getNbPieces()));
-		fenetrebienlouable.getTextFieldBienLoauble().setText(bien.getTypeBienLouable());
-		if (bien.getBatiment() != null) {
-			fenetrebienlouable.getTextFieldBatiment().setText(bien.getBatiment().getAdresse());
-		}
-		fenetrebienlouable.getTextFieldDFC().setText(String.valueOf(cl.getDateFin()));
-		fenetrebienlouable.getTextFieldDT().setText(String.valueOf(fac.getDateDeFacture()));
-		fenetrebienlouable.getTextFieldTotalCharges().setText(String.valueOf(charge));
-		fenetrebienlouable.getTextFieldDP().setText(datePaiement);
+	public void remplirFormulaire(
+	        BienLouable bien,
+	        ContratLocation cl,
+	        double charge,
+	        List<Locataire> loc,
+	        Facture fac,
+	        Paiement date) {
+	    if (loc != null && !loc.isEmpty()) {
+	        fenetrebienlouable.getTextFieldNom().setText(loc.get(0).getNom());
+	    } else {
+	        fenetrebienlouable.getTextFieldNom().setText("");
+	    }
 
+	    fenetrebienlouable.getTextFieldLoyerMen()
+	            .setText(cl != null ? String.valueOf(cl.getMontantMensuel()) : "");
+
+	    fenetrebienlouable.getTextFieldNF()
+	            .setText(bien.getNumeroFiscale());
+
+	    fenetrebienlouable.getTextFieldAdresse()
+	            .setText(bien.getAdresse());
+
+	    fenetrebienlouable.getTextFieldSurfaceHab()
+	            .setText(String.valueOf(bien.getSurfaceHabituable()));
+
+	    fenetrebienlouable.getTextFieldNbDPieces()
+	            .setText(String.valueOf(bien.getNbPieces()));
+
+	    fenetrebienlouable.getTextFieldBienLoauble()
+	            .setText(bien.getTypeBienLouable());
+
+	    if (bien.getBatiment() != null) {
+	        fenetrebienlouable.getTextFieldBatiment()
+	                .setText(bien.getBatiment().getAdresse());
+	    } else {
+	        fenetrebienlouable.getTextFieldBatiment().setText("");
+	    }
+	    fenetrebienlouable.getTextFieldDFC()
+	            .setText(cl != null ? String.valueOf(cl.getDateFin()) : "");
+	    if (fac != null && fac.getDateDeFacture() != null) {
+	        fenetrebienlouable.getTextFieldDT()
+	                .setText(fac.getDateDeFacture().toString());
+	    } else {
+	        fenetrebienlouable.getTextFieldDT().setText("");
+	    }
+
+	    fenetrebienlouable.getTextFieldTotalCharges()
+	            .setText(String.valueOf(charge));
+	    if (date != null && date.getDatepaiement() != null) {
+	        fenetrebienlouable.getTextFieldDP()
+	                .setText(date.getDatepaiement().toString());
+	    } else {
+	        fenetrebienlouable.getTextFieldDP().setText("");
+	    }
 	}
+
 
 	@Override
 	protected void gererBoutonRetour(String texte) {
