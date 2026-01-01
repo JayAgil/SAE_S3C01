@@ -2,19 +2,15 @@ package vue;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import controleur.GestionFenetreDiagnostic;
+import modele.BienLouable;
+
 import java.awt.Font;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -22,11 +18,8 @@ import javax.swing.JScrollPane;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import java.awt.Panel;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
-import javax.swing.JList;
-import javax.swing.AbstractListModel;
 
 public class FenetreDiagnostic extends FenetreBase {
 
@@ -35,6 +28,7 @@ public class FenetreDiagnostic extends FenetreBase {
 	private JTable table;
 	private JLabel lblnbDiag;
 	private JLabel lblnbDiagExp;
+	private BienLouable bL;
 
 	/**
 	 * Launch the application.
@@ -44,7 +38,7 @@ public class FenetreDiagnostic extends FenetreBase {
 			@Override
 			public void run() {
 				try {
-					FenetreDiagnostic frame = new FenetreDiagnostic();
+					FenetreDiagnostic frame = new FenetreDiagnostic(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -56,7 +50,7 @@ public class FenetreDiagnostic extends FenetreBase {
 	/**
 	 * Create the frame.
 	 */
-	public FenetreDiagnostic() {
+	public FenetreDiagnostic(BienLouable bL) {
 		super();
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -68,6 +62,7 @@ public class FenetreDiagnostic extends FenetreBase {
 		this.setJMenuBar(createHeader());
 
 		this.gestionClic.initialize();
+		this.bL = bL;
 
 		JPanel panelFooter = new JPanel();
 		getContentPane().add(panelFooter, BorderLayout.SOUTH);
@@ -186,10 +181,16 @@ public class FenetreDiagnostic extends FenetreBase {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
+	
+	public BienLouable getBien() {
+		return this.bL;
+	}
+	
 	public void disableMenuItems(boolean actif) {
 		this.mnBatiment.setEnabled(actif);
 		this.mnPaiement.setEnabled(actif);
 		this.mntmDiagnostic.setEnabled(actif);
 	}
+	
+	
 }

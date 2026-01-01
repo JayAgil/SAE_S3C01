@@ -5,8 +5,12 @@ import java.sql.ResultSet;
 import modele.dao.requetes.*;
 import java.sql.SQLException;
 import java.util.List;
+
+import javax.tools.Diagnostic;
+
 import modele.BienLouable;
 import modele.Diagnostics;
+import modele.Locataire;
 
 public class DaoDiagnostics extends DaoModele<Diagnostics> implements Dao<Diagnostics> {
 
@@ -39,6 +43,10 @@ public class DaoDiagnostics extends DaoModele<Diagnostics> implements Dao<Diagno
 	@Override
 	public List<Diagnostics> findAll() throws SQLException {
 		return find(new RequeteSelectDiagnostics());
+	}
+	
+	public List<Diagnostics> findDiagnosticsByIdBien(String idBien) throws SQLException {
+	    return this.find(new RequeteSelectDiagnosticFromBien(), idBien);
 	}
 
 	@Override

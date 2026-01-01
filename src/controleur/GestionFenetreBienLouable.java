@@ -82,11 +82,12 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 
 	@Override
 	protected void gererBoutonSpecifique(String texte) throws SQLException {
-
 		switch (texte) {
 
 		case "Diagnostics":
-			new FenetreDiagnostic().setVisible(true);
+			DaoBienLouable dBL = new DaoBienLouable();
+			BienLouable bL = dBL.findById(this.fenetrebienlouable.getChosenBien());
+			new FenetreDiagnostic(bL).setVisible(true);
 			fenetrebienlouable.dispose();
 			break;
 
