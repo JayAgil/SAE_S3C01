@@ -82,7 +82,6 @@ public class FenetreContratLocation extends FenetreBase {
 		this.fenDavant = f;
     	setExtendedState(JFrame.MAXIMIZED_BOTH);
     	this.cl = cl;
-		this.gestionClicContratLocation = new GestionFenetreContratLocation(this, this.cl);
 
 		//header
         this.setJMenuBar(createHeader());
@@ -96,7 +95,6 @@ public class FenetreContratLocation extends FenetreBase {
 		
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.SOUTH);
-		this.gestionClicContratLocation.initialize();
 		
 		//footer
         getContentPane().add(createFooter(), BorderLayout.SOUTH);
@@ -116,15 +114,12 @@ public class FenetreContratLocation extends FenetreBase {
         panel_1.add(panel_2, BorderLayout.SOUTH);
         
         JButton btnAjouter = new JButton("Ajouter");
-        btnAjouter.addActionListener(this.gestionClicContratLocation);
         panel_2.add(btnAjouter);
         
         JButton btnAnnuler = new JButton("Annuler");
-        btnAnnuler.addActionListener(gestionClicContratLocation);
         panel_2.add(btnAnnuler);
         
         JButton btnRetour = new JButton("Retour");
-        btnRetour.addActionListener(this.gestionClicContratLocation);
         panel_2.add(btnRetour);
         
         JPanel panel_3 = new JPanel();
@@ -395,6 +390,13 @@ public class FenetreContratLocation extends FenetreBase {
         gbc_panel_5.gridx = 0;
         gbc_panel_5.gridy = 2;
         panel_3.add(panel_5, gbc_panel_5);
+        
+		this.gestionClicContratLocation = new GestionFenetreContratLocation(this, this.cl);
+		this.gestionClicContratLocation.initialize();
+        btnAjouter.addActionListener(gestionClicContratLocation);
+        btnAnnuler.addActionListener(gestionClicContratLocation);
+        btnRetour.addActionListener(gestionClicContratLocation);
+      
 	}
 	
 	@Override

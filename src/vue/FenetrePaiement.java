@@ -2,13 +2,14 @@ package vue;
 
 import java.awt.*;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controleur.GestionFenetrePaiement;
-
+import modele.Paiement;
 
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
@@ -20,19 +21,19 @@ public class FenetrePaiement extends FenetreBase {
 	private JPanel contentPane;
 	private GestionFenetrePaiement gestionClic;
 	private JTable table;
-	private JProgressBar progressBar;
+	private String idLoc;
+	private List<Paiement> paiements;
 	private JLabel lblTotalPaiementAnnees;
-	private JLabel lblTotalPaiementMois;
 	private JLabel lblDateDernierPaiement;
-	private String idLocataire;
 	private JLabel lblValDate;
 	private JLabel lblValPaiement;
 	private JComboBox comboBoxMois;
+	private JComboBox comboBoxAnnee;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(() -> {
 			try {
-				FenetrePaiement frame = new FenetrePaiement(null);
+				FenetrePaiement frame = new FenetrePaiement(null,null);
 				frame.setVisible(true);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -40,10 +41,11 @@ public class FenetrePaiement extends FenetreBase {
 		});
 	}
 
-	public FenetrePaiement(String idLocataire) throws SQLException {
+	public FenetrePaiement(List<Paiement> liste, String idLoc) throws SQLException {
 		super();
+		this.paiements = liste;
+		this.idLoc = idLoc;
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
-		this.idLocataire = idLocataire;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1200, 800);
 		setLocationRelativeTo(null);
@@ -62,168 +64,115 @@ public class FenetrePaiement extends FenetreBase {
 		mainPanel.setLayout(new BorderLayout());
 
 		contentPane.add(mainPanel, BorderLayout.CENTER);
-        contentPane.add(mainPanel, BorderLayout.CENTER);
-        
-        JPanel panel = new JPanel();
-        mainPanel.add(panel, BorderLayout.NORTH);
-        panel.setLayout(new GridLayout(2, 2, 0, 5));
-        
-        JPanel panel_4 = new JPanel();
-        panel.add(panel_4);
-        panel_4.setLayout(new GridLayout(0, 2, 0, 0));
-        
-        JPanel panel_1 = new JPanel();
-        panel_4.add(panel_1);
-        
-        JLabel lblDatePaiement = new JLabel("Date paiement :");
-        panel_1.add(lblDatePaiement);
-        
-        JLabel lblValDate = new JLabel("ValDate");
-        panel_1.add(lblValDate);
-        
-        Component horizontalStrut = Box.createHorizontalStrut(600);
-        panel_1.add(horizontalStrut);
-        
-        JPanel panel_2 = new JPanel();
-        panel.add(panel_2);
-        panel_2.setLayout(new GridLayout(0, 2, 0, 0));
-        
-        JPanel panel_5 = new JPanel();
-        panel_2.add(panel_5);
-        
-        JLabel lblMontant = new JLabel("Montant paiement :");
-        panel_5.add(lblMontant);
-        
-        JLabel lblValPaiement = new JLabel("euro");
-        panel_5.add(lblValPaiement);
-        
-        Component horizontalStrut_1 = Box.createHorizontalStrut(600);
-        panel_5.add(horizontalStrut_1);
-        
-        JPanel panelButtons = new JPanel();
-        mainPanel.add(panelButtons, BorderLayout.SOUTH);
-        
-        JButton btnAjouterPaiement = new JButton("Ajouter paiement");
-        panelButtons.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-        panelButtons.add(btnAjouterPaiement);
-        
-        JButton btnRetour = new JButton("Retour");
-        panelButtons.add(btnRetour);
-        
-        JPanel panel_7 = new JPanel();
-        mainPanel.add(panel_7, BorderLayout.CENTER);
-        panel_7.setLayout(new BorderLayout(0, 0));
-        
-        JPanel panel_8 = new JPanel();
-        panel_7.add(panel_8, BorderLayout.NORTH);
-        
-        JComboBox comboBoxMois = new JComboBox();
-        comboBoxMois.setModel(new DefaultComboBoxModel(new String[] {"Mois", "Janvier", "Février", "Mars", "Avril ", "Mai", "Juin Juillet", "Août", "Septembre", "Octobre", "Novembre", "Decembre"}));
-        panel_8.add(comboBoxMois);
-        
-        JComboBox comboBoxLocataire = new JComboBox();
-        comboBoxLocataire.setModel(new DefaultComboBoxModel(new String[] {"Locataire", "Koshua", "Aneesa", "Luca", "Frank"}));
-        panel_8.add(comboBoxLocataire);
-        
-        JPanel panel_9 = new JPanel();
-        panel_7.add(panel_9, BorderLayout.CENTER);
-        panel_9.setLayout(new BorderLayout(0, 0));
-        
-        JScrollPane scrollPane_1 = new JScrollPane();
-        panel_9.add(scrollPane_1);
-        
-        table = new JTable();
-        table.setModel(new DefaultTableModel(
-        	new Object[][] {
-        		{null, null, null, null, null},
-        		{null, null, null, null, null},
-        		{null, null, null, null, null},
-        		{null, null, null, null, null},
-        		{null, null, null, null, null},
-        		{null, null, null, null, null},
-        		{null, null, null, null, null},
-        		{null, null, null, null, null},
-        		{null, null, null, null, null},
-        		{null, null, null, null, null},
-        	},
-        	new String[] {
-        		"Nom Locataire", "Batiment", "Montant", "Id Contrat", "Designation"
-        	}
-        ));
-        scrollPane_1.setViewportView(table);
-        
-        JPanel panel_10 = new JPanel();
-        panel_7.add(panel_10, BorderLayout.SOUTH);
-        GridBagLayout gbl_panel_10 = new GridBagLayout();
-        gbl_panel_10.columnWidths = new int[] {200, 200, 200};
-        gbl_panel_10.rowHeights = new int[] {100, 200};
-        gbl_panel_10.columnWeights = new double[]{1.0, 1.0, 1.0};
-        gbl_panel_10.rowWeights = new double[]{0.0};
-        panel_10.setLayout(gbl_panel_10);
-        
-        JPanel panel_12 = new JPanel();
-        panel_12.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Totals Paiements Recu Ann\u00E9es", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-        GridBagConstraints gbc_panel_12 = new GridBagConstraints();
-        gbc_panel_12.insets = new Insets(0, 0, 5, 5);
-        gbc_panel_12.fill = GridBagConstraints.BOTH;
-        gbc_panel_12.gridx = 0;
-        gbc_panel_12.gridy = 0;
-        panel_10.add(panel_12, gbc_panel_12);
-        
-        
-        
-        JPanel panel_13 = new JPanel();
-        panel_13.setBorder(new TitledBorder(null, "Totals Paiements Recu Ce Mois", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-        GridBagConstraints gbc_panel_13 = new GridBagConstraints();
-        gbc_panel_13.insets = new Insets(0, 0, 5, 5);
-        gbc_panel_13.fill = GridBagConstraints.HORIZONTAL;
-        gbc_panel_13.gridx = 1;
-        gbc_panel_13.gridy = 0;
-        panel_10.add(panel_13, gbc_panel_13);
-        
-       
-        
-        JPanel panel_11 = new JPanel();
-        panel_11.setBorder(new TitledBorder(null, "Montant Total Pr\u00E9vu", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-        GridBagConstraints gbc_panel_11 = new GridBagConstraints();
-        gbc_panel_11.insets = new Insets(0, 0, 5, 0);
-        gbc_panel_11.fill = GridBagConstraints.HORIZONTAL;
-        gbc_panel_11.gridx = 2;
-        gbc_panel_11.gridy = 0;
-        panel_10.add(panel_11, gbc_panel_11);
-        
-        
-        
-        progressBar = new JProgressBar();
-        progressBar.setToolTipText("");
-        progressBar.setValue(20);
-        GridBagConstraints gbc_progressBar = new GridBagConstraints();
-        gbc_progressBar.fill = GridBagConstraints.HORIZONTAL;
-        gbc_progressBar.insets = new Insets(0, 0, 0, 5);
-        gbc_progressBar.gridx = 1;
-        gbc_progressBar.gridy = 1;
-        panel_10.add(progressBar, gbc_progressBar);
-        progressBar.setStringPainted(true);
-        setString("30 Pourcent de paiement reçus");
+		contentPane.add(mainPanel, BorderLayout.CENTER);
 
+		JPanel panel = new JPanel();
+		mainPanel.add(panel, BorderLayout.NORTH);
+		panel.setLayout(new GridLayout(2, 2, 0, 5));
 
+		JPanel panel_4 = new JPanel();
+		panel.add(panel_4);
+		panel_4.setLayout(new GridLayout(0, 2, 0, 0));
 
+		JPanel panel_1 = new JPanel();
+		panel_4.add(panel_1);
+
+		JLabel lblDatePaiement = new JLabel("Date paiement :");
+		lblDatePaiement.setHorizontalAlignment(SwingConstants.LEFT);
+		panel_1.add(lblDatePaiement);
+
+	    lblValDate = new JLabel("");
+		panel_1.add(lblValDate);
+
+		Component horizontalStrut = Box.createHorizontalStrut(600);
+		panel_1.add(horizontalStrut);
+
+		JPanel panel_2 = new JPanel();
+		panel.add(panel_2);
+		panel_2.setLayout(new GridLayout(0, 2, 0, 0));
+
+		JPanel panel_5 = new JPanel();
+		panel_2.add(panel_5);
+
+		JLabel lblMontant = new JLabel("Montant paiement :");
+		lblMontant.setHorizontalAlignment(SwingConstants.LEFT);
+		panel_5.add(lblMontant);
+
+		lblValPaiement = new JLabel("");
+		panel_5.add(lblValPaiement);
+
+		Component horizontalStrut_1 = Box.createHorizontalStrut(600);
+		panel_5.add(horizontalStrut_1);
+
+		JPanel panelButtons = new JPanel();
+		mainPanel.add(panelButtons, BorderLayout.SOUTH);
+
+		JButton btnAjouterPaiement = new JButton("Ajouter paiement");
+		panelButtons.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		panelButtons.add(btnAjouterPaiement);
+
+		JButton btnRetour = new JButton("Retour");
+		panelButtons.add(btnRetour);
+
+		JPanel panel_7 = new JPanel();
+		mainPanel.add(panel_7, BorderLayout.CENTER);
+		panel_7.setLayout(new BorderLayout(0, 0));
+
+		JPanel panel_8 = new JPanel();
+		panel_7.add(panel_8, BorderLayout.NORTH);
+
+		JPanel panel_9 = new JPanel();
+		panel_7.add(panel_9, BorderLayout.CENTER);
+		panel_9.setLayout(new BorderLayout(0, 0));
+
+		JScrollPane scrollPane_1 = new JScrollPane();
+		panel_9.add(scrollPane_1);
+
+		JPanel panel_10 = new JPanel();
+		panel_7.add(panel_10, BorderLayout.SOUTH);
+		GridBagLayout gbl_panel_10 = new GridBagLayout();
+		gbl_panel_10.columnWidths = new int[] { 300, 300 };
+		gbl_panel_10.rowHeights = new int[] { 150 };
+		gbl_panel_10.columnWeights = new double[] { 1.0, 1.0 };
+		gbl_panel_10.rowWeights = new double[] { 0.0 };
+		panel_10.setLayout(gbl_panel_10);
+
+		JPanel panel_12 = new JPanel();
+		panel_12.setBorder(new TitledBorder(
+				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)),
+				"Total Paiement Recu Ann\u00E9e", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		GridBagConstraints gbc_panel_12 = new GridBagConstraints();
+		gbc_panel_12.insets = new Insets(0, 0, 5, 5);
+		gbc_panel_12.fill = GridBagConstraints.BOTH;
+		gbc_panel_12.gridx = 0;
+		gbc_panel_12.gridy = 0;
+		panel_10.add(panel_12, gbc_panel_12);
+
+		JPanel panel_11 = new JPanel();
+		panel_11.setBorder(new TitledBorder(
+				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)),
+				"Date Dernier Paiement", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		GridBagConstraints gbc_panel_11 = new GridBagConstraints();
+		gbc_panel_11.insets = new Insets(0, 0, 5, 5);
+		gbc_panel_11.fill = GridBagConstraints.HORIZONTAL;
+		gbc_panel_11.gridx = 1;
+		gbc_panel_11.gridy = 0;
+		panel_10.add(panel_11, gbc_panel_11);
+
+		lblDateDernierPaiement = new JLabel("1300");
+		lblDateDernierPaiement.setFont(new Font("Tahoma", Font.PLAIN, 99));
+		panel_11.add(lblDateDernierPaiement);
 		
+		comboBoxAnnee = new JComboBox();
+		comboBoxAnnee.setModel(new DefaultComboBoxModel(new String[] {"Année", "2023", "2024", "2025", "2026"}));
+		panel_8.add(comboBoxAnnee);
 
-		
 		comboBoxMois = new JComboBox();
 		comboBoxMois.setModel(new DefaultComboBoxModel(new String[] { "Mois", "Janvier", "Février", "Mars", "Avril ",
 				"Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Decembre" }));
 		panel_8.add(comboBoxMois);
-
-		
-
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
-				new Object[][] { { null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, },
+		table.setModel(new DefaultTableModel(new Object[][] {},
 				new String[] { "ID Paiement", "ID Contrat", "Date Paiement", "Montant" }) {
 			boolean[] columnEditables = new boolean[] { false, true, true, true };
 
@@ -233,24 +182,10 @@ public class FenetrePaiement extends FenetreBase {
 		});
 		scrollPane_1.setViewportView(table);
 
-	
-
 		lblTotalPaiementAnnees = new JLabel("3600");
 		lblTotalPaiementAnnees.setFont(new Font("Tahoma", Font.PLAIN, 99));
 		panel_12.add(lblTotalPaiementAnnees);
 
-
-
-		lblTotalPaiementMois = new JLabel("1200");
-		lblTotalPaiementMois.setFont(new Font("Tahoma", Font.PLAIN, 99));
-		panel_13.add(lblTotalPaiementMois);
-
-
-		lblDateDernierPaiement = new JLabel("1300");
-		lblDateDernierPaiement.setFont(new Font("Tahoma", Font.PLAIN, 99));
-		panel_11.add(lblDateDernierPaiement);
-
-	
 		contentPane.add(createFooter(), BorderLayout.SOUTH);
 
 		JPanel panel_3 = new JPanel();
@@ -263,14 +198,17 @@ public class FenetrePaiement extends FenetreBase {
 		JPanel panel_6 = new JPanel();
 		contentPane.add(panel_6, BorderLayout.SOUTH);
 
-		
-		gestionClic = new GestionFenetrePaiement(this, idLocataire);
+		gestionClic = new GestionFenetrePaiement(this,this.paiements,idLoc);
 		this.gestionClic.initialize();
 		comboBoxMois.addActionListener(gestionClic);
-        btnAjouterPaiement.addActionListener(this.gestionClic);
+		comboBoxAnnee.addActionListener(gestionClic);
+		btnAjouterPaiement.addActionListener(this.gestionClic);
 		btnRetour.addActionListener(gestionClic);
 
+	}
 
+	public JComboBox getComboBoxAnnee() {
+		return comboBoxAnnee;
 	}
 
 	public JComboBox getComboBoxMois() {
@@ -278,7 +216,6 @@ public class FenetrePaiement extends FenetreBase {
 	}
 
 	public void disableMenuItems(boolean actif) {
-		
 
 	}
 
@@ -286,24 +223,8 @@ public class FenetrePaiement extends FenetreBase {
 		return table;
 	}
 
-	public void setString(String s) {
-		progressBar.setString(s);
-	}
-
-	public JProgressBar getProgressBar() {
-		return progressBar;
-	}
-
-	public void setProgressBar(JProgressBar progressBar) {
-		this.progressBar = progressBar;
-	}
-
 	public JLabel getLblTotalPaiementAnnees() {
 		return lblTotalPaiementAnnees;
-	}
-
-	public JLabel getLblPaiementMois() {
-		return lblTotalPaiementMois;
 	}
 
 	public JLabel getLblDateDernierPaiement() {

@@ -10,6 +10,8 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import modele.Locataire;
+import modele.Paiement;
+import modele.dao.DaoPaiement;
 import vue.*;
 
 public class GestionFenetreLocataire extends GestionHeaderEtFooter {
@@ -43,9 +45,10 @@ public class GestionFenetreLocataire extends GestionHeaderEtFooter {
 			fenAjouterLocataire.setVisible(true);
 			break;
 		case "Paiement":
-			
+			 DaoPaiement dao = new DaoPaiement();
+	         List<Paiement> paiements = dao.findPaiementsByLocataire(locataireSelectionne.getIdLocataire()); 
 			 if (locataireSelectionne != null) {
-	                new FenetrePaiement(locataireSelectionne.getIdLocataire()).setVisible(true);
+	                new FenetrePaiement(paiements,locataireSelectionne.getIdLocataire()).setVisible(true);
 	                fenetre.dispose();
 	            } else {
 	                JOptionPane.showMessageDialog(fenetre, "Veuillez sélectionner un locataire !");
@@ -70,7 +73,13 @@ public class GestionFenetreLocataire extends GestionHeaderEtFooter {
 				FenetreContratLocation fp3 = new FenetreContratLocation("FenBienLouable",null);
 				fp3.setVisible(true);
 				break;
+			case "FenPrincipale":
+				FenetrePrincipale fp4 = new FenetrePrincipale();
+				fp4.setVisible(true);
+				break;
+				
 			}}
+		
 		
 	}
 

@@ -96,12 +96,12 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter
             break;
 
         case "Compteurs":
-            new FenetreCompteurs("FenetrePrincipale", this.getDonneesCompteur()).setVisible(true);
+            new FenetreCompteurs("FenPrincipale", this.getDonneesCompteur()).setVisible(true);
             fenetre.dispose();
             break;
 
         case "Charges":
-            new FenetreCharges("FenetrePrincipale", getDonneesChargesGenerale())
+            new FenetreCharges("FenPrincipale", getDonneesChargesGenerale())
                 .setVisible(true);
             fenetre.dispose();
             break;
@@ -162,48 +162,7 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter
 
        
 
-        if (e.getSource() == fenetre.getPanelRevenu()) {
-            FenetreContratLocation fCL;
-			try {
-				fCL = new FenetreContratLocation(
-				    "FenPrincipale", null);
-	            fCL.setVisible(true);
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-        }
-        if (e.getSource() == fenetre.getPanelNbLoyerPasPaye()) {
-            FenetreBienLouable fBL;
-            try {
-                fBL = new FenetreBienLouable("FenetrePrincipale", null);
-                fBL.setVisible(true);
-            } catch (SQLException e1) {
-                e1.printStackTrace();
-            }
-        }
-        if (e.getSource() == fenetre.getPanelRevenu_1()) {
-            FenetrePaiement fp;
-			try {
-				fp = new FenetrePaiement(null);
-				fp.setVisible(true);
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-            
-        }
-        if (e.getSource() == fenetre.getPanelNbLoyePasPaye_1()) {
-            FenetreContratLocation fCL;
-			try {
-				fCL = new FenetreContratLocation(
-				    "FenPrincipale", null);
-				fCL.setVisible(true);
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-        }
+       
 
     }
 

@@ -3,9 +3,11 @@ package controleur;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.swing.*;
 
+import modele.ContratLocation;
 import modele.dao.*;
 import vue.*;
 
@@ -93,7 +95,8 @@ public abstract class GestionHeaderEtFooter implements ActionListener {
 
 		case "Contrat location":
 			DaoContratLocation daoContratLocation = new DaoContratLocation();
-			new FenetreContratLocation("FenPrincipale", null).setVisible(true);
+			List<ContratLocation> liste = daoContratLocation.findAll();
+			new FenetreContratLocation("FenPrincipale", liste.get(0)).setVisible(true);
 			fenetre.dispose();
 			break;
 
@@ -115,7 +118,8 @@ public abstract class GestionHeaderEtFooter implements ActionListener {
 			break;
 
 		case "Historique de paiement":
-			new FenetrePaiement(null).setVisible(true);
+			DaoPaiement daoPaiement = new DaoPaiement();
+			new FenetrePaiement(daoPaiement.findAll(),null).setVisible(true);
 			fenetre.dispose();
 			break;
 
