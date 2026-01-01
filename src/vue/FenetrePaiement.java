@@ -29,11 +29,16 @@ public class FenetrePaiement extends FenetreBase {
 	private JLabel lblValPaiement;
 	private JComboBox comboBoxMois;
 	private JComboBox comboBoxAnnee;
+	private String nomFenAvant;
+
+	public String getNomFenAvant() {
+		return nomFenAvant;
+	}
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(() -> {
 			try {
-				FenetrePaiement frame = new FenetrePaiement(null,null);
+				FenetrePaiement frame = new FenetrePaiement(null,null,null);
 				frame.setVisible(true);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -41,8 +46,9 @@ public class FenetrePaiement extends FenetreBase {
 		});
 	}
 
-	public FenetrePaiement(List<Paiement> liste, String idLoc) throws SQLException {
+	public FenetrePaiement(String nomFenAvant,List<Paiement> liste, String idLoc) throws SQLException {
 		super();
+		this.nomFenAvant = nomFenAvant;
 		this.paiements = liste;
 		this.idLoc = idLoc;
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -138,9 +144,7 @@ public class FenetrePaiement extends FenetreBase {
 		panel_10.setLayout(gbl_panel_10);
 
 		JPanel panel_12 = new JPanel();
-		panel_12.setBorder(new TitledBorder(
-				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)),
-				"Total Paiement Recu Ann\u00E9e", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_12.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Montant Total", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		GridBagConstraints gbc_panel_12 = new GridBagConstraints();
 		gbc_panel_12.insets = new Insets(0, 0, 5, 5);
 		gbc_panel_12.fill = GridBagConstraints.BOTH;

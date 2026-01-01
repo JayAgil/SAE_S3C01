@@ -347,7 +347,7 @@ public class FenetrePrincipale extends FenetreBase {
         contentPane.add(horizontalStrut_5, BorderLayout.EAST);
 
         gestionClic.remplirComboBatiment();
-        gestionClic.RemplirTableau();
+        gestionClic.remplirTableau();
 
         this.setPreferredSize(new Dimension(1200, 800));
         this.setMinimumSize(new Dimension(1200, 800));

@@ -15,7 +15,6 @@ public class DaoContratLocation extends DaoModele<ContratLocation> implements Da
 
 	public DaoContratLocation() throws SQLException {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -99,4 +98,7 @@ public class DaoContratLocation extends DaoModele<ContratLocation> implements Da
 	            new RequeteSelectContratLocationByBienLouable(), id);
 	    }
 
+	public ContratLocation findContratLocataionByLocataire(String... id) throws SQLException {
+		return this.findById(new RequeteSelectContratLocationByLoc(), id);
+	}
 }

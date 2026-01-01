@@ -31,9 +31,6 @@ import vue.FenetreAssurance;
 import vue.FenetreBienLouable;
 import vue.FenetreCharges;
 import vue.FenetreCompteurs;
-import vue.FenetreContratLocation;
-import vue.FenetreLocataire;
-import vue.FenetrePaiement;
 import vue.FenetrePrincipale;
 
 public class GestionFenetrePrincipale extends GestionHeaderEtFooter
@@ -68,7 +65,7 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter
         if (source instanceof JComboBox) {
             fenetre.getTableBienLouable().clearSelection();
             viderTable();
-            RemplirTableau();
+            remplirTableau();
         } else {
             super.actionPerformed(e);
         }
@@ -160,10 +157,6 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter
             }
         }
 
-       
-
-       
-
     }
 
     public void remplirComboBatiment() {
@@ -183,7 +176,7 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter
         }
     }
 
-    public void RemplirTableau() {
+    public void remplirTableau() {
         try {
             daoBienLouable = new DaoBienLouable();
             String batiment = fenetre.getChosenBatiment();
@@ -198,7 +191,7 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter
                         listBienLouable.get(i).getIdBienLouable());
 
                 if (listContrat != null && !listContrat.isEmpty()) {
-                    EcrireLigneTableBienLouable(i, listBienLouable.get(i),
+                    ecrireLigneTableBienLouable(i, listBienLouable.get(i),
                         listContrat.get(0));
                 }
             }
@@ -208,7 +201,7 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter
         }
     }
 
-    public void EcrireLigneTableBienLouable(int numeroLigne,
+    public void ecrireLigneTableBienLouable(int numeroLigne,
         BienLouable bienLouable, ContratLocation contrat) throws SQLException {
         DaoLocataire daoLocataire = new DaoLocataire();
         List<Locataire> listLocataire = daoLocataire
