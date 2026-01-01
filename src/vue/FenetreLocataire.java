@@ -392,7 +392,7 @@ public class FenetreLocataire extends FenetreBase {
 			new Object[][] {
 			},
 			new String[] {
-				"Id Locataire", "Nom", "Prenom", "Adresse", "Tel", "Email"
+				"ID Locataire", "Nom", "Prenom", "Adresse", "Tel", "Email", "Date debut", "Date Fin"
 			}
 		));
 		scrollPane.setViewportView(table);

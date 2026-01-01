@@ -42,14 +42,26 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter {
 
     @Override
     protected void gererBoutonRetour(String texte) throws SQLException {
-        if ("Retour".equals(texte)) {
-        	DaoLocataire dl = new DaoLocataire();
-        	List<Locataire> liste = dl.findLocatairesMemeBien(idLoc);
-        	DaoBienLouable daoBl = new DaoBienLouable();
-            FenetreLocataire fen = new FenetreLocataire("FenPrincipale",liste,daoBl.findByIdLoc(idLoc));
-            fen.setVisible(true);
-            fenetre.dispose();
-        }
+    	
+    	if ("Retour".equals(texte)) {
+			fenetre.dispose();
+			String fenAvant = fenetre.getNomFenAvant();
+			switch (fenAvant) {
+			case "FenLocataire":
+				DaoLocataire dl = new DaoLocataire();
+	        	List<Locataire> liste = dl.findLocatairesMemeBien(idLoc);
+	        	DaoBienLouable daoBl = new DaoBienLouable();
+	            FenetreLocataire fen = new FenetreLocataire("FenPrincipale",liste,daoBl.findByIdLoc(idLoc));
+	            fen.setVisible(true);
+	            fenetre.dispose();
+	            break;
+			case "FenPrincipale":
+				FenetrePrincipale fp4 = new FenetrePrincipale();
+				fp4.setVisible(true);
+				break;
+				
+			}}
+        
     }
     
     public void chargerDonnees()  {
@@ -68,7 +80,7 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter {
 		);
 		fenetre.getLblTotalPaiementAnnees()
 		.setText(String.format("%.2f €",
-		        getMontantTotalPourAnnee(
+				getMontantTotalFiltre((String) fenetre.getComboBoxMois().getSelectedItem(),
 		                (String) fenetre.getComboBoxAnnee().getSelectedItem()
 		        )));
     }
@@ -134,9 +146,9 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter {
                 model.addRow(ligne);
             }
         }
-        double totalAnnee = getMontantTotalPourAnnee(annee);
+        double totalFiltre = getMontantTotalFiltre(mois, annee);
         fenetre.getLblTotalPaiementAnnees()
-                .setText(String.format("%.2f €", totalAnnee));
+                .setText(String.format("%.2f €", totalFiltre));
 
     }
 
@@ -159,25 +171,34 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter {
     	}
     }
     
-    private double getMontantTotalPourAnnee(String annee) {
+    private double getMontantTotalFiltre(String mois, String annee) {
 
-        if ("Année".equals(annee)) {
-            return paiements.stream()
-                    .mapToDouble(Paiement::getMontant)
-                    .sum();
-        }
-
-        int anneeInt = Integer.parseInt(annee);
         double total = 0;
 
         for (Paiement p : paiements) {
-            LocalDate dateP = p.getDatepaiement().toLocalDate();
-            if (dateP.getYear() == anneeInt) {
+            LocalDate date = p.getDatepaiement().toLocalDate();
+
+            boolean moisValide = true;
+            boolean anneeValide = true;
+
+            if (!"Mois".equals(mois)) {
+                int moisInt = convertirMoisEnInt(mois);
+                moisValide = date.getMonthValue() == moisInt;
+            }
+
+            if (!"Année".equals(annee)) {
+                int anneeInt = Integer.parseInt(annee);
+                anneeValide = date.getYear() == anneeInt;
+            }
+
+            if (moisValide && anneeValide) {
                 total += p.getMontant();
             }
         }
+
         return total;
     }
+
 
     
     @Override
