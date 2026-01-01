@@ -27,7 +27,6 @@ public abstract class GestionHeaderEtFooter implements ActionListener {
 
 		fenetre.mntmContratLocation.addActionListener(this);
 		fenetre.mntmTravaux.addActionListener(this);
-		fenetre.mntmDiagnostic.addActionListener(this);
 		fenetre.mntmLocataire.addActionListener(this);
 
 		fenetre.mntmHistorique.addActionListener(this);
@@ -106,10 +105,7 @@ public abstract class GestionHeaderEtFooter implements ActionListener {
 			fenetre.dispose();
 			break;
 
-		case "Diagnostics":
-			new FenetreDiagnostic().setVisible(true);
-			fenetre.dispose();
-			break;
+		
 
 		case "Locataires":
 			DaoLocataire dl = new DaoLocataire();
