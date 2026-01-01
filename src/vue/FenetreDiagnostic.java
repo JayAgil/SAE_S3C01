@@ -18,6 +18,8 @@ import javax.swing.JScrollPane;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.sql.SQLException;
+
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
 
@@ -49,8 +51,9 @@ public class FenetreDiagnostic extends FenetreBase {
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 */
-	public FenetreDiagnostic(BienLouable bL) {
+	public FenetreDiagnostic(BienLouable bL) throws SQLException {
 		super();
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -143,7 +146,7 @@ public class FenetreDiagnostic extends FenetreBase {
 										panel_6.add(lblnbDiagExp);
 		table.getColumnModel().getColumn(0).setPreferredWidth(96);
 		table.getColumnModel().getColumn(1).setPreferredWidth(96);
-
+		this.gestionClic.chargerDonnees();
 	}
 
 	public JLabel getLblnbDiag() {
