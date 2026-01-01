@@ -334,21 +334,24 @@ public class FenetreCharges extends FenetreBase {
 
 	
 	@Override
-    public void disableMenuItems(boolean actif) {
-		this.mnPaiement.setEnabled(actif);
+	public void disableMenuItems(boolean actif) {
 
-    	if (this.fenetreAvant == "FenetrePrincipale"){
-    			this.mnBienLouable.setEnabled(actif);
-    			this.mnPaiement.setEnabled(actif);
-    			this.mntmAjouterBat.setEnabled(actif);
-    			mntmCharge.setEnabled(actif);
-    	}
-    	if (this.fenetreAvant == "FenetreBienLouable"){
-			this.mntmChargesBL.setEnabled(actif);
-			this.mnBatiment.setEnabled(actif);	
+	    if (this.mnPaiement != null)
+	        this.mnPaiement.setEnabled(actif);
+
+	    if ("FenetrePrincipale".equals(this.fenetreAvant)) {
+	        if (this.mnBienLouable != null) this.mnBienLouable.setEnabled(actif);
+	        if (this.mnPaiement != null) this.mnPaiement.setEnabled(actif);
+	        if (this.mntmAjouterBat != null) this.mntmAjouterBat.setEnabled(actif);
+	        if (this.mntmCharge != null) this.mntmCharge.setEnabled(actif);
+	    }
+
+	    if ("FenetreBienLouable".equals(this.fenetreAvant)) {
+	        if (this.mntmChargesBL != null) this.mntmChargesBL.setEnabled(actif);
+	        if (this.mnBatiment != null) this.mnBatiment.setEnabled(actif);
+	    }
 	}
-    	
-    }
+
 	public String getFenetreAvant() {
 		return fenetreAvant;
 	}

@@ -5,7 +5,9 @@ import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
 
+import modele.BienLouable;
 import modele.Compteur;
+import modele.dao.DaoBienLouable;
 import vue.*;
 
 public class GestionFenetreCompteurs extends GestionHeaderEtFooter {
@@ -17,7 +19,6 @@ public class GestionFenetreCompteurs extends GestionHeaderEtFooter {
         super(fenetre);
         this.fenetre = fenetre;
         this.cpt = cpt;
-
     }
     
     public void initialize() {
@@ -96,12 +97,14 @@ public class GestionFenetreCompteurs extends GestionHeaderEtFooter {
     	    fenetre.dispose();
     	    String fenAvant = fenetre.getFenetreAvant();
     	    switch (fenAvant) {
-    	        case "FenetrePrincipale":
+    	        case "FenPrincipale":
     	            FenetrePrincipale fp1 = new FenetrePrincipale();
     	            fp1.setVisible(true);
     	            break;
     	        case "FenetreBienLouable":
-    	            FenetreBienLouable fp2 = new FenetreBienLouable(null, null);
+    	        	DaoBienLouable dBL = new DaoBienLouable();
+    	        	BienLouable data = dBL.findByIdCompteur(cpt.get(0).getIdCompteur());
+    	            FenetreBienLouable fp2 = new FenetreBienLouable("FenPrincipale", data);
     	            fp2.setVisible(true);
     	            break;
     	        default:

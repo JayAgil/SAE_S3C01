@@ -54,6 +54,14 @@ public class DaoBienLouable extends DaoModele<BienLouable> implements Dao<BienLo
     public BienLouable findByIdLoc(String...id) throws SQLException {
         return this.findById(new RequeteSelectBienLouableByIdLoc(), id);
     }
+    
+    public BienLouable findByIdCharge(String...id) throws SQLException {
+        return this.findById(new RequeteSelectBienByIdCharge(), id);
+    }
+    
+    public BienLouable findByIdCompteur(String...id) throws SQLException {
+        return this.findById(new RequeteSelectBienFromCompteur(), id);
+    }
 
     @Override
     protected BienLouable creerInstance(ResultSet curseur) throws SQLException {

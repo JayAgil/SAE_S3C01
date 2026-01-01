@@ -34,7 +34,7 @@ import vue.FenetreTravaux;
 public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements MouseListener {
 
 	private FenetreBienLouable fenetrebienlouable;
-	private BienLouable bien; // currently selected bien
+	private BienLouable bien; 
 
 	public GestionFenetreBienLouable(FenetreBienLouable fenetre, BienLouable bien) {
 		super(fenetre);

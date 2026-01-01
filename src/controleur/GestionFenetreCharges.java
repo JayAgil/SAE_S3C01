@@ -7,7 +7,9 @@ import java.util.Map;
 
 import javax.swing.table.DefaultTableModel;
 
+import modele.BienLouable;
 import modele.ChargesGenerales;
+import modele.dao.DaoBienLouable;
 import vue.*;
 
 public class GestionFenetreCharges extends GestionHeaderEtFooter{
@@ -104,12 +106,14 @@ public class GestionFenetreCharges extends GestionHeaderEtFooter{
     	    String fenAvant = fenetre.getFenetreAvant();
 
     	    switch (fenAvant) {
-    	        case "FenetrePrincipale":
+    	        case "FenPrincipale":
     	            FenetrePrincipale fp1 = new FenetrePrincipale();
     	            fp1.setVisible(true);
     	            break;
     	        case "FenetreBienLouable":
-    	            FenetreBienLouable fp2 = new FenetreBienLouable(null, null);
+    	        	DaoBienLouable dBL = new DaoBienLouable();
+    	        	BienLouable data = dBL.findByIdCharge(donnees.get(0).getIdChargesGenerales());
+    	            FenetreBienLouable fp2 = new FenetreBienLouable("FenPrincipale", data);
     	            fp2.setVisible(true);
     	            break;
     	        default:
