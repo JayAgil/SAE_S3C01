@@ -24,6 +24,8 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controleur.GestionFenetrePrincipale;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FenetrePrincipale extends FenetreBase {
 
@@ -33,11 +35,11 @@ public class FenetrePrincipale extends FenetreBase {
     private JTable table;
     private JPanel panelRevenu;
     private JPanel panelNbLoyePasPaye;
-    private JPanel panelRevenu_1;
+    private JPanel panelSoldeNonPaye;
     private JPanel panelNbLoyePasPaye_1;
     private JButton btnImporter;
     private JLabel lblRevenu;
-    private JLabel lblRevenu_1;
+    private JLabel lblSolde;
     private JLabel lblPasPaye;
     private JLabel lblPasPaye_1;
     private JComboBox<String> cbBatiment;
@@ -61,9 +63,11 @@ public class FenetrePrincipale extends FenetreBase {
     public JPanel getPanelNbLoyerPasPaye() {
         return this.panelNbLoyePasPaye;
     }
+    
+
 
     public JPanel getPanelRevenu_1() {
-        return this.panelRevenu_1;
+        return this.panelSoldeNonPaye;
     }
 
     public JPanel getPanelNbLoyePasPaye_1() {
@@ -183,21 +187,17 @@ public class FenetrePrincipale extends FenetreBase {
         Component horizontalStrut_6 = Box.createHorizontalStrut(10);
         panelNorthCenter_1.add(horizontalStrut_6);
 
-        panelRevenu_1 = new JPanel();
-        panelRevenu_1.addMouseListener(this.gestionClic);
-        FlowLayout fl_panelRevenu_1 = (FlowLayout) panelRevenu_1.getLayout();
-        fl_panelRevenu_1.setHgap(15);
-        panelRevenu_1.setBorder(new TitledBorder(
-            new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255),
-                new Color(160, 160, 160)),
-            "Total B\u00E9n\u00E9fice", TitledBorder.LEADING, TitledBorder.TOP,
-            null, new Color(0, 0, 0)));
-        panelRevenu_1.setFont(new Font("Tahoma", Font.BOLD, 30));
-        panelNorthCenter_1.add(panelRevenu_1);
+        panelSoldeNonPaye = new JPanel();
+        panelSoldeNonPaye.addMouseListener(this.gestionClic);
+        FlowLayout fl_panelSoldeNonPaye = (FlowLayout) panelSoldeNonPaye.getLayout();
+        fl_panelSoldeNonPaye.setHgap(15);
+        panelSoldeNonPaye.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Total Solde Non Pay\u00E9", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+        panelSoldeNonPaye.setFont(new Font("Tahoma", Font.BOLD, 30));
+        panelNorthCenter_1.add(panelSoldeNonPaye);
 
-        lblRevenu_1 = new JLabel("180.000\r\n");
-        lblRevenu_1.setFont(new Font("Tahoma", Font.BOLD, 30));
-        panelRevenu_1.add(lblRevenu_1);
+        lblSolde = new JLabel("180.000\r\n");
+        lblSolde.setFont(new Font("Tahoma", Font.BOLD, 30));
+        panelSoldeNonPaye.add(lblSolde);
 
         Component horizontalStrut_1_1 = Box.createHorizontalStrut(40);
         panelNorthCenter_1.add(horizontalStrut_1_1);
@@ -242,6 +242,10 @@ public class FenetrePrincipale extends FenetreBase {
 
         JPanel panelSouthEast = new JPanel();
         panelSouth.add(panelSouthEast, BorderLayout.EAST);
+        
+        JButton btnAjouterIRL = new JButton("Ajouter IRL");
+        btnAjouterIRL.addActionListener(this.gestionClic);
+        panelSouthEast.add(btnAjouterIRL);
 
         JButton btnCharges = new JButton("Charges");
         panelSouthEast.add(btnCharges);
@@ -355,9 +359,7 @@ public class FenetrePrincipale extends FenetreBase {
         this.setSize(new Dimension(1200, 800));
         this.pack();
         this.setLocationRelativeTo(null);
-        
-        
-
+        this.gestionClic.remplirStatistiques();
     }
 
    
@@ -371,14 +373,23 @@ public class FenetrePrincipale extends FenetreBase {
     }
 
     public JLabel getLblRevenu_1() {
-        return lblRevenu_1;
+        return lblSolde;
     }
+     
 
     public void setLblRevenu_1(JLabel lblRevenu_1) {
-        this.lblRevenu_1 = lblRevenu_1;
+        this.lblSolde = lblRevenu_1;
     }
 
-    public JLabel getLblPasPaye() {
+    public JLabel getLblSolde() {
+		return lblSolde;
+	}
+
+	public void setLblSolde(JLabel lblSolde) {
+		this.lblSolde = lblSolde;
+	}
+
+	public JLabel getLblPasPaye() {
         return lblPasPaye;
     }
 

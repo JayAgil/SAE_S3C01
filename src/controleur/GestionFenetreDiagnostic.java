@@ -29,7 +29,7 @@ public class GestionFenetreDiagnostic extends GestionHeaderEtFooter {
                 fenAjouterDiagnostic.setVisible(true);
                 break;
             case "Retour" :
-            	FenetreBienLouable fenBienLouable = new FenetreBienLouable(null, null);
+            	FenetreBienLouable fenBienLouable = new FenetreBienLouable("FenPrincipale", this.bL);
 	            fenBienLouable.setVisible(true);
 	            fenetre.dispose();
 	            break;
@@ -45,7 +45,6 @@ public class GestionFenetreDiagnostic extends GestionHeaderEtFooter {
         DaoDiagnostics daoDiag = new DaoDiagnostics();
         try {
             List<Diagnostics> diagnostics = daoDiag.findDiagnosticsByIdBien(bL.getIdBienLouable());
-
             DefaultTableModel model = (DefaultTableModel) fenetre.getTable().getModel();
             model.setRowCount(0); 
 

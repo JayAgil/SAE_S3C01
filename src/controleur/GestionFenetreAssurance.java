@@ -2,6 +2,7 @@ package controleur;
 import java.sql.SQLException;
 
 import modele.Assurance;
+import modele.Batiment;
 import modele.dao.DaoAssurance;
 import vue.FenetreAjouterAssurance;
 import vue.FenetreAssurance;
@@ -10,10 +11,12 @@ import vue.FenetrePrincipale;
 public class GestionFenetreAssurance extends GestionHeaderEtFooter {
 
     private FenetreAssurance fenetre;
+    private String bat;
 
     public GestionFenetreAssurance(FenetreAssurance fenetre) {
     	super(fenetre);
         this.fenetre = fenetre;
+        this.bat = this.fenetre.getBat();
     }
     
     @Override
@@ -41,13 +44,25 @@ public class GestionFenetreAssurance extends GestionHeaderEtFooter {
         Assurance assurance = daoAssurance.findByBatiment(batiment);
         try {
             int nbBiens = daoAssurance.countBiensAssures(batiment);
-            this.fenetre.afficherAssuranceBatiment(assurance, nbBiens);
+            this.afficherAssuranceBatiment(assurance, nbBiens);
         } catch (SQLException e) {
             e.printStackTrace();
-            this.fenetre.afficherAssuranceBatiment(assurance, 0);
+            this.afficherAssuranceBatiment(assurance, 0);
         }
 
     }
+    
+	public void afficherAssuranceBatiment(Assurance assurance, int nbBiens) {
+	    this.fenetre.getTextFieldNumAssurance().setText(assurance.getNumeroAssurance());
+	    this.fenetre.getTxtFieldPrime().setText(String.valueOf(assurance.getPrime()));
+	    this.fenetre.getTxtFieldType().setText(assurance.getTypeAssurance());
+	    this.fenetre.getTextFieldAgence().setText(assurance.getAgence());
+	    this.fenetre.getTextFieldTelAgence().setText(assurance.getAdresseAgence());
+	    this.fenetre.getTextFieldTelAgence().setText(assurance.getTelAgence());
+	    this.fenetre.getLblNbBien().setText(String.valueOf(nbBiens));
+	    this.fenetre.getTxtFieldMontant().setText(String.valueOf(assurance.getMontant()));
+	    this.fenetre.getTextFieldAdresseAgence().setText(assurance.getAdresseAgence());
+	}
 
 
 }

@@ -1,6 +1,8 @@
 package vue;
 
 import java.awt.*;
+import java.sql.SQLException;
+
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
@@ -21,13 +23,14 @@ public class FenetreAssurance extends FenetreBase {
 	private JTextField textFieldTelAgence;
 	private JPanel panelNombreBien;
 	private JLabel lblNbBien;
+	private String bat;
 	
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FenetreAssurance frame = new FenetreAssurance();
+					FenetreAssurance frame = new FenetreAssurance(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -36,8 +39,9 @@ public class FenetreAssurance extends FenetreBase {
 		});
 	}
 
-	public FenetreAssurance() {
+	public FenetreAssurance(String bat) throws SQLException {
 		super();
+		this.bat = bat;
 		setTitle("Assurance");
 		setSize(600, 650);
 		setResizable(false);
@@ -67,7 +71,7 @@ public class FenetreAssurance extends FenetreBase {
 		panelNombreBien.setBorder(
 				new TitledBorder(new EtchedBorder(), "Biens louables assurés", TitledBorder.CENTER, TitledBorder.TOP));
 		panelNombreBien.setPreferredSize(new Dimension(200, 80));
-		lblNbBien = new JLabel("3", SwingConstants.CENTER);
+		lblNbBien = new JLabel("2", SwingConstants.CENTER);
 		lblNbBien.setFont(new Font("Tahoma", Font.BOLD, 24));
 		panelNombreBien.add(lblNbBien);
 
@@ -91,6 +95,7 @@ public class FenetreAssurance extends FenetreBase {
 		panelCenter.add(lblNumAssurance, gbcLabel1);
 
 		textFieldNumAssurance = new JTextField(15);
+		textFieldNumAssurance.setEditable(false);
 		GridBagConstraints gbcTextField1 = new GridBagConstraints();
 		gbcTextField1.insets = new Insets(10, 10, 10, 10);
 		gbcTextField1.fill = GridBagConstraints.HORIZONTAL;
@@ -110,6 +115,7 @@ public class FenetreAssurance extends FenetreBase {
 		panelCenter.add(lblPrime, gbcLabel2);
 
 		txtFieldPrime = new JTextField(15);
+		txtFieldPrime.setEditable(false);
 		GridBagConstraints gbcTextField2 = new GridBagConstraints();
 		gbcTextField2.insets = new Insets(10, 10, 10, 10);
 		gbcTextField2.fill = GridBagConstraints.HORIZONTAL;
@@ -129,6 +135,7 @@ public class FenetreAssurance extends FenetreBase {
 		panelCenter.add(lblMontant, gbcLabel3);
 
 		txtFieldMontant = new JTextField(15);
+		txtFieldMontant.setEditable(false);
 		GridBagConstraints gbcTextField3 = new GridBagConstraints();
 		gbcTextField3.insets = new Insets(10, 10, 10, 10);
 		gbcTextField3.fill = GridBagConstraints.HORIZONTAL;
@@ -148,6 +155,7 @@ public class FenetreAssurance extends FenetreBase {
 		panelCenter.add(lblType, gbcLabel4);
 
 		txtFieldType = new JTextField(15);
+		txtFieldType.setEditable(false);
 		GridBagConstraints gbcTextField4 = new GridBagConstraints();
 		gbcTextField4.insets = new Insets(10, 10, 10, 10);
 		gbcTextField4.fill = GridBagConstraints.HORIZONTAL;
@@ -167,6 +175,7 @@ public class FenetreAssurance extends FenetreBase {
 		panelCenter.add(lblAgence, gbcLabel5);
 
 		textFieldAgence = new JTextField(15);
+		textFieldAgence.setEditable(false);
 		GridBagConstraints gbcTextField5 = new GridBagConstraints();
 		gbcTextField5.insets = new Insets(10, 10, 10, 10);
 		gbcTextField5.fill = GridBagConstraints.HORIZONTAL;
@@ -186,6 +195,7 @@ public class FenetreAssurance extends FenetreBase {
 		panelCenter.add(lblAdresse, gbcLabel6);
 
 		textFieldAdresseAgence = new JTextField(15);
+		textFieldAdresseAgence.setEditable(false);
 		GridBagConstraints gbcTextField6 = new GridBagConstraints();
 		gbcTextField6.insets = new Insets(10, 10, 10, 10);
 		gbcTextField6.fill = GridBagConstraints.HORIZONTAL;
@@ -205,6 +215,7 @@ public class FenetreAssurance extends FenetreBase {
 		panelCenter.add(lblTel, gbcLabel7);
 
 		textFieldTelAgence = new JTextField(15);
+		textFieldTelAgence.setEditable(false);
 		GridBagConstraints gbcTextField7 = new GridBagConstraints();
 		gbcTextField7.insets = new Insets(10, 10, 10, 10);
 		gbcTextField7.fill = GridBagConstraints.HORIZONTAL;
@@ -233,6 +244,7 @@ public class FenetreAssurance extends FenetreBase {
 		contentPane.add(southPanel, BorderLayout.SOUTH);
 		setLocationRelativeTo(null);
 		setVisible(true);
+		this.gestionClic.chargerAssuranceBatiment(this.getBat());
 	}
 
 	public JTextField getTextFieldNumAssurance() {
@@ -305,13 +317,7 @@ public class FenetreAssurance extends FenetreBase {
 		this.mnPaiement.setEnabled(actif);
 	}
 	
-	public void afficherAssuranceBatiment(Assurance assurance, int nbBiens) {
-	    this.textFieldNumAssurance.setText(assurance.getNumeroAssurance());
-	    this.txtFieldPrime.setText(String.valueOf(assurance.getPrime()));
-	    this.txtFieldType.setText(assurance.getTypeAssurance());
-	    this.textFieldAgence.setText(assurance.getAgence());
-	    this.textFieldAdresseAgence.setText(assurance.getAdresseAgence());
-	    this.textFieldTelAgence.setText(assurance.getTelAgence());
-	    lblNbBien.setText(String.valueOf(nbBiens));
+	public String getBat() {
+		return this.bat;
 	}
 }

@@ -4,8 +4,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.time.Month;
+import java.time.ZoneId;
 
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
@@ -19,6 +25,7 @@ import modele.ChargesGenerales;
 import modele.Compteur;
 import modele.ContratLocation;
 import modele.Locataire;
+import modele.Paiement;
 import modele.UtOracleDataSource;
 import modele.dao.DaoBatiment;
 import modele.dao.DaoBienLouable;
@@ -26,7 +33,10 @@ import modele.dao.DaoChargesGenerales;
 import modele.dao.DaoCompteur;
 import modele.dao.DaoContratLocation;
 import modele.dao.DaoLocataire;
+import modele.dao.DaoPaiement;
 import vue.FenetreAjouterBatiment;
+import vue.FenetreAjouterIRL;
+import vue.FenetreAjouterPaiement;
 import vue.FenetreAssurance;
 import vue.FenetreBienLouable;
 import vue.FenetreCharges;
@@ -77,6 +87,64 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter
             .getModel();
         model.setRowCount(0);
     }
+    
+    public double calculerTauxOccupation() throws SQLException {
+    	DaoBienLouable bienLouableDAO = new DaoBienLouable();
+    	DaoContratLocation contratLocationDAO = new DaoContratLocation();
+        List<BienLouable> biens = bienLouableDAO.findAll();
+        List<ContratLocation> contrats = contratLocationDAO.findAll();
+
+        if (biens.isEmpty()) {
+            return 0.0;
+        }
+        Set<String> biensLoues = new HashSet<>();
+        for (ContratLocation c : contrats) {
+            biensLoues.add(c.getBienLouable().getIdBienLouable());
+        }
+        double taux = ((double) biensLoues.size() / biens.size()) * 100;
+        return Math.round(taux * 100.0) / 100.0; 
+    }
+    
+    public double calculerBeneficeTotal() throws SQLException {
+    	DaoPaiement paiementDAO = new DaoPaiement();
+        List<Paiement> paiements = paiementDAO.findAll();
+        double total = 0.0;
+        for (Paiement p : paiements) {
+            total += p.getMontant();
+        }
+        return Math.round(total * 100.0) / 100.0;
+    }
+    
+    public int nombreContratsExpirantCeMois() throws SQLException {
+        DaoContratLocation contratLocationDAO = new DaoContratLocation();
+        List<ContratLocation> contrats = contratLocationDAO.findAll();
+        LocalDate now = LocalDate.now();
+        int count = 0;
+        for (ContratLocation c : contrats) {
+            Date dateFinDate = c.getDateFin();
+            if (dateFinDate != null) {
+                LocalDate dateFin = dateFinDate.toInstant()
+                                      .atZone(ZoneId.systemDefault())
+                                      .toLocalDate();
+                if (dateFin.getMonth() == now.getMonth() &&
+                    dateFin.getYear() == now.getYear()) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+    
+    public double totalSoldeNonPayé() throws SQLException {
+        DaoContratLocation dao = new DaoContratLocation();
+        List<ContratLocation> contrats = dao.findAll();
+        double totalSolde = 0;
+        for (ContratLocation c : contrats) {
+            totalSolde += c.getSolde();
+        }
+        return totalSolde;
+    }
+
 
     @Override
     protected void gererBoutonSpecifique(String texte) throws SQLException {
@@ -87,7 +155,7 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter
             break;
 
         case "Assurance":
-            FenetreAssurance assurance = new FenetreAssurance();
+            FenetreAssurance assurance = new FenetreAssurance(this.getBatimentId());
             assurance.setVisible(true);
             fenetre.dispose();
             break;
@@ -119,7 +187,13 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter
                 mAJDeBaseDeDonnees(selectedFile);
             }
             break;
-        }
+            
+	    case "Ajouter IRL":
+           FenetreAjouterIRL fen = new FenetreAjouterIRL();
+           fenetre.getLayeredPane().add(fen);
+           fen.setVisible(true);
+           break;
+	    }
     }
 
     private void mAJDeBaseDeDonnees(File file) {
@@ -158,6 +232,28 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter
         }
 
     }
+    
+    /**
+     * Fill all the info panels on the main window
+     */
+    public void remplirStatistiques() {
+        try {
+            double beneficeTotal = calculerBeneficeTotal();
+            fenetre.getLblRevenu().setText(String.format("%.2f €", beneficeTotal));
+
+            double tauxOccupation = calculerTauxOccupation();
+            fenetre.getLblPasPaye().setText(String.format("%.2f %%", tauxOccupation));
+
+            double soldeNonPaye = totalSoldeNonPayé();
+            fenetre.getLblSolde().setText(String.format("%.2f €", soldeNonPaye));
+
+            int contratsExpirant = nombreContratsExpirantCeMois();
+            fenetre.getLblPasPaye_1().setText(String.valueOf(contratsExpirant));
+
+        } catch (SQLException e) {
+        }
+    }
+
 
     public void remplirComboBatiment() {
         try {
@@ -220,6 +316,17 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter
         model.setValueAt(bienLouable.getTypeBienLouable(), numeroLigne, 2);
         model.setValueAt(listLocataire.get(0).getNomComplet(), numeroLigne, 3);
     }
+    
+    public Batiment getChosenBatiment() throws SQLException {
+        String idBat = (String)this.fenetre.getCbBatiment().getSelectedItem();
+        DaoBatiment dB = new DaoBatiment();
+        return dB.findById(idBat);
+    }
+    
+    public String getBatimentId() {
+    	return (String)this.fenetre.getCbBatiment().getSelectedItem();
+    }
+
 
     @Override
     public void mousePressed(MouseEvent e) {

@@ -55,6 +55,7 @@ public class FenetreDiagnostic extends FenetreBase {
 	 */
 	public FenetreDiagnostic(BienLouable bL) throws SQLException {
 		super();
+		this.bL = bL;
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.gestionClic = new GestionFenetreDiagnostic(this);
@@ -65,8 +66,6 @@ public class FenetreDiagnostic extends FenetreBase {
 		this.setJMenuBar(createHeader());
 
 		this.gestionClic.initialize();
-		this.bL = bL;
-
 		JPanel panelFooter = new JPanel();
 		getContentPane().add(panelFooter, BorderLayout.SOUTH);
 		panelFooter.setLayout(new GridLayout(0, 1, 0, 0));
