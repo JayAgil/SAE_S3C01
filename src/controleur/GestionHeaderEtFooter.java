@@ -106,7 +106,7 @@ public abstract class GestionHeaderEtFooter implements ActionListener {
 			break;
 
 		
-
+			
 		case "Locataires":
 			DaoLocataire dl = new DaoLocataire();
 			new FenetreLocataire("FenPrincipale", dl.findAll(), null).setVisible(true);
