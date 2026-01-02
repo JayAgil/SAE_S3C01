@@ -31,7 +31,7 @@ public class GestionFenetreAjouterDiagnostic extends GestionButtonFenetreAjouter
     }
     
     @Override
-    protected void GererAction(String buttonText, ActionEvent e) {
+	protected void gererAction() {
     	
     }
 

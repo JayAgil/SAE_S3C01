@@ -33,13 +33,9 @@ public class GestionAjouterIRL extends GestionButtonFenetreAjouter {
     }
     
     @Override
-    protected void GererAction(String buttonText, ActionEvent e) {
-        if ("Ajouter".equals(buttonText)) {
-            try {
-            
-            } catch (Exception exc) {
-                exc.printStackTrace();    
-            }                
-        }
+	protected void gererAction() {
+        
     }
+
+	
 }

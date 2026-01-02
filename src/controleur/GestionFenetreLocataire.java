@@ -48,7 +48,7 @@ public class GestionFenetreLocataire extends GestionHeaderEtFooter {
 			 DaoPaiement dao = new DaoPaiement();
 	         List<Paiement> paiements = dao.findPaiementsByLocataire(locataireSelectionne.getIdLocataire()); 
 			 if (locataireSelectionne != null) {
-	                new FenetrePaiement(paiements,locataireSelectionne.getIdLocataire()).setVisible(true);
+	                new FenetrePaiement("FenLocataire",paiements,locataireSelectionne.getIdLocataire()).setVisible(true);
 	                fenetre.dispose();
 	            } else {
 	                JOptionPane.showMessageDialog(fenetre, "Veuillez sélectionner un locataire !");

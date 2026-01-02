@@ -58,7 +58,7 @@ public class GestionFenetreTravaux extends GestionHeaderEtFooter implements Mous
     }
 
     private void ouvrirFenetreAjouterTravaux() {
-        FenetreAjouterTravaux fen = new FenetreAjouterTravaux();
+        FenetreAjouterTravaux fen = new FenetreAjouterTravaux(this,this.fenetreTravaux.getBien());
         fenetreTravaux.getLayeredPane().add(fen);
         fen.setVisible(true);
     }
@@ -101,7 +101,7 @@ public class GestionFenetreTravaux extends GestionHeaderEtFooter implements Mous
         }
     }
     
-    private void chargerDonnes() {
+    public void chargerDonnes() {
 		JTable table = this.fenetreTravaux.getTable();
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
 	    model.setRowCount(0); 
@@ -186,6 +186,10 @@ public class GestionFenetreTravaux extends GestionHeaderEtFooter implements Mous
             case "Décembre": return 12;
             default: return 0;
         }
+    }
+    
+    public void setListe(List<Facture> liste){
+    	this.travaux = liste;
     }
 
     @Override public void mousePressed(MouseEvent e) {}

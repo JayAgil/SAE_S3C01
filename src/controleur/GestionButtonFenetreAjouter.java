@@ -13,7 +13,7 @@ public abstract class GestionButtonFenetreAjouter implements ActionListener {
     
     protected abstract JInternalFrame getFrame();
     
-    protected abstract void GererAction(String texte, ActionEvent e);
+    protected abstract void gererAction();
     
     public void actionPerformed(ActionEvent e) {
         String texte = ((JButton) e.getSource()).getText(); 
@@ -24,10 +24,10 @@ public abstract class GestionButtonFenetreAjouter implements ActionListener {
                 }
                 break;
             case "Retour":
-                ((JInternalFrame) getFrame()).dispose();
+                 getFrame().dispose();
                 break;
-            default:
-            	GererAction(texte, e);
+            case "Ajouter":
+            	gererAction();
                 break;
         }
     }

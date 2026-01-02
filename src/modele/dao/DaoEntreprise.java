@@ -8,7 +8,7 @@ import modele.Entreprise;
 import modele.dao.requetes.*;
 
 public class DaoEntreprise extends DaoModele<Entreprise> implements Dao<Entreprise> {
-	
+
 	public DaoEntreprise() throws SQLException {
 		super();
 		// TODO Auto-generated constructor stub
@@ -16,9 +16,9 @@ public class DaoEntreprise extends DaoModele<Entreprise> implements Dao<Entrepri
 
 	@Override
 	public int create(Entreprise t) throws SQLException {
-		return miseAJour(new RequeteInsertEntreprise(), t);	
+		return miseAJour(new RequeteInsertEntreprise(), t);
 	}
-	
+
 	@Override
 	public int update(Entreprise t) throws SQLException {
 		return miseAJour(new RequeteUpdateEntreprise(), t);
@@ -27,7 +27,6 @@ public class DaoEntreprise extends DaoModele<Entreprise> implements Dao<Entrepri
 	@Override
 	public int delete(Entreprise t) throws SQLException {
 		return this.miseAJour(new RequeteDeleteEntreprise(), t);
-	
 	}
 
 	@Override
@@ -38,6 +37,10 @@ public class DaoEntreprise extends DaoModele<Entreprise> implements Dao<Entrepri
 	@Override
 	public List<Entreprise> findAll() throws SQLException {
 		return find(new RequeteSelectEntreprise());
+	}
+
+	public Entreprise findEntrepriseByNom(String... id) throws SQLException {
+		return findById(new RequeteSelectEntrepriseByNom(), id);
 	}
 
 	@Override

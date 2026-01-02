@@ -33,6 +33,8 @@ public class FenetreTravaux extends FenetreBase {
 
 	private static final long serialVersionUID = 1L;
 	private GestionFenetreTravaux gestionClic;
+	
+
 	private JTable table;
 	private JScrollPane scrollPane;
 	private JLabel lblMontantTotal;
@@ -296,4 +298,5 @@ public class FenetreTravaux extends FenetreBase {
 			return null;
 		return getFactureSelectionnee(row);
 	}
+	
 }

@@ -4,6 +4,8 @@ import java.util.Objects;
 
 public class Entreprise {
 
+	
+
 	private String numSiret;
 	private String adresse;
 	private String ville;
@@ -96,4 +98,8 @@ public class Entreprise {
 		return Objects.equals(numSiret, other.numSiret);
 	}
 
+	@Override
+	public String toString() {
+		return nom;
+	}
 }

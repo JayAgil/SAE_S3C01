@@ -1,6 +1,5 @@
 package controleur;
 
-import java.awt.event.ActionEvent;
 import java.util.List;
 
 import javax.swing.JInternalFrame;
@@ -27,7 +26,7 @@ public class GestionFenetreAjouterBienLouable extends GestionButtonFenetreAjoute
     }
     
     @Override
-    protected void GererAction(String buttonText, ActionEvent e) {
+	protected void gererAction() {
     	
     }
 
