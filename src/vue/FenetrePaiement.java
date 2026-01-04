@@ -14,7 +14,6 @@ import modele.Paiement;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
 
-
 public class FenetrePaiement extends FenetreBase {
 
 	private static final long serialVersionUID = 1L;
@@ -38,7 +37,7 @@ public class FenetrePaiement extends FenetreBase {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(() -> {
 			try {
-				FenetrePaiement frame = new FenetrePaiement(null,null,null);
+				FenetrePaiement frame = new FenetrePaiement(null, null, null);
 				frame.setVisible(true);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -46,7 +45,7 @@ public class FenetrePaiement extends FenetreBase {
 		});
 	}
 
-	public FenetrePaiement(String nomFenAvant,List<Paiement> liste, String idLoc) throws SQLException {
+	public FenetrePaiement(String nomFenAvant, List<Paiement> liste, String idLoc) throws SQLException {
 		super();
 		this.nomFenAvant = nomFenAvant;
 		this.paiements = liste;
@@ -87,7 +86,7 @@ public class FenetrePaiement extends FenetreBase {
 		lblDatePaiement.setHorizontalAlignment(SwingConstants.LEFT);
 		panel_1.add(lblDatePaiement);
 
-	    lblValDate = new JLabel("");
+		lblValDate = new JLabel("");
 		panel_1.add(lblValDate);
 
 		Component horizontalStrut = Box.createHorizontalStrut(600);
@@ -144,7 +143,9 @@ public class FenetrePaiement extends FenetreBase {
 		panel_10.setLayout(gbl_panel_10);
 
 		JPanel panel_12 = new JPanel();
-		panel_12.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Montant Total", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_12.setBorder(new TitledBorder(
+				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)),
+				"Montant Total", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		GridBagConstraints gbc_panel_12 = new GridBagConstraints();
 		gbc_panel_12.insets = new Insets(0, 0, 5, 5);
 		gbc_panel_12.fill = GridBagConstraints.BOTH;
@@ -166,9 +167,9 @@ public class FenetrePaiement extends FenetreBase {
 		lblDateDernierPaiement = new JLabel("1300");
 		lblDateDernierPaiement.setFont(new Font("Tahoma", Font.PLAIN, 99));
 		panel_11.add(lblDateDernierPaiement);
-		
+
 		comboBoxAnnee = new JComboBox();
-		comboBoxAnnee.setModel(new DefaultComboBoxModel(new String[] {"Année", "2023", "2024", "2025", "2026"}));
+		comboBoxAnnee.setModel(new DefaultComboBoxModel(new String[] { "Année", "2023", "2024", "2025", "2026" }));
 		panel_8.add(comboBoxAnnee);
 
 		comboBoxMois = new JComboBox();
@@ -202,7 +203,7 @@ public class FenetrePaiement extends FenetreBase {
 		JPanel panel_6 = new JPanel();
 		contentPane.add(panel_6, BorderLayout.SOUTH);
 
-		gestionClic = new GestionFenetrePaiement(this,this.paiements,idLoc);
+		gestionClic = new GestionFenetrePaiement(this, this.paiements, idLoc);
 		this.gestionClic.initialize();
 		comboBoxMois.addActionListener(gestionClic);
 		comboBoxAnnee.addActionListener(gestionClic);
@@ -217,10 +218,6 @@ public class FenetrePaiement extends FenetreBase {
 
 	public JComboBox getComboBoxMois() {
 		return comboBoxMois;
-	}
-
-	public void disableMenuItems(boolean actif) {
-
 	}
 
 	public JTable getTable() {

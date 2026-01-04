@@ -14,78 +14,63 @@ public abstract class FenetreBase extends JFrame {
 	// ===== MENU ITEMS =====
 	public JMenuItem mntmDeconnecter;
 	public JMenuItem mntmAjouterBat;
-	public JMenuItem mntmAssurance;
 	public JMenuItem mntmCompteur;
 	public JMenuItem mntmCharge;
 
 	public JMenuItem mntmContratLocation;
-	public JMenuItem mntmCompteurBL;
 	public JMenuItem mntmTravaux;
-	public JMenuItem mntmChargesBL;
-	public JMenuItem mntmDiagnostic;
 	public JMenuItem mntmLocataire;
-
 
 	public JMenuItem mntmHistorique;
 	public JMenuItem mntmAjout;
 
-
-	public void disableMenuItems(boolean actif) {
-		// default behaviour: do nothing
-	}
-	
 	public FenetreBase() {
 
-	    // Menus
-	    mnProfil = new JMenu("Profil");
-	    mnBatiment = new JMenu("Batiment");
-	    mnBienLouable = new JMenu("Bien louable");
-	    mnPaiement = new JMenu("Paiement");
+		// Menus
+		mnProfil = new JMenu("Profil");
+		mnBatiment = new JMenu("Batiment");
+		mnBienLouable = new JMenu("Bien louable");
+		mnPaiement = new JMenu("Paiement");
 
-	    // Menu items
-	    mntmDeconnecter = new JMenuItem("Déconnecter");
+		// Menu items
+		mntmDeconnecter = new JMenuItem("Déconnecter");
 
-	    mntmAjouterBat = new JMenuItem("Ajouter bâtiment");
-	    mntmAssurance = new JMenuItem("Assurance");
-	    mntmCompteur = new JMenuItem("Compteurs");
-	    mntmCharge = new JMenuItem("Charges");
+		mntmAjouterBat = new JMenuItem("Ajouter bâtiment");
+		mntmCompteur = new JMenuItem("Compteurs");
+		mntmCharge = new JMenuItem("Charges");
 
-	    mntmContratLocation = new JMenuItem("Contrat location");
-	    mntmTravaux = new JMenuItem("Travaux");
-	    mntmDiagnostic = new JMenuItem("Diagnostics");
-	    mntmLocataire = new JMenuItem("Locataires");
+		mntmContratLocation = new JMenuItem("Contrat location");
+		mntmTravaux = new JMenuItem("Travaux");
+		mntmLocataire = new JMenuItem("Locataires");
 
-	    mntmHistorique = new JMenuItem("Historique de paiement");
-	    mntmAjout = new JMenuItem("Ajouter paiement");
+		mntmHistorique = new JMenuItem("Historique de paiement");
+		mntmAjout = new JMenuItem("Ajouter paiement");
 	}
-
 
 	protected JMenuBar createHeader() {
-	    JMenuBar menuBar = new JMenuBar();
-	    menuBar.setBackground(new Color(214, 214, 214));
-	    setJMenuBar(menuBar);
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBackground(new Color(214, 214, 214));
+		setJMenuBar(menuBar);
 
-	    menuBar.add(mnProfil);
-	    mnProfil.add(mntmDeconnecter);
+		menuBar.add(mnProfil);
+		mnProfil.add(mntmDeconnecter);
 
-	    menuBar.add(mnBatiment);
-	    mnBatiment.add(mntmAjouterBat);
-	    mnBatiment.add(mntmCompteur);
-	    mnBatiment.add(mntmCharge);
+		menuBar.add(mnBatiment);
+		mnBatiment.add(mntmAjouterBat);
+		mnBatiment.add(mntmCompteur);
+		mnBatiment.add(mntmCharge);
 
-	    menuBar.add(mnBienLouable);
-	    mnBienLouable.add(mntmContratLocation);
-	    mnBienLouable.add(mntmTravaux);
-	    mnBienLouable.add(mntmDiagnostic);
-	    mnBienLouable.add(mntmLocataire);
+		menuBar.add(mnBienLouable);
+		mnBienLouable.add(mntmContratLocation);
+		mnBienLouable.add(mntmTravaux);
+		mnBienLouable.add(mntmLocataire);
 
-	    menuBar.add(mnPaiement);
-	    mnPaiement.add(mntmHistorique);
-	    mnPaiement.add(mntmAjout);
+		menuBar.add(mnPaiement);
+		mnPaiement.add(mntmHistorique);
+		mnPaiement.add(mntmAjout);
 
-	    return menuBar;
+		return menuBar;
 	}
-
 
 	protected JPanel createFooter() {
 		JPanel footerPanel = new JPanel();

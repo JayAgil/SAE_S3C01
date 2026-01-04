@@ -20,7 +20,6 @@ public abstract class GestionHeaderEtFooter implements ActionListener {
 	}
 
 	public void initialize() {
-		fenetre.mntmAssurance.addActionListener(this);
 		fenetre.mntmCharge.addActionListener(this);
 		fenetre.mntmCompteur.addActionListener(this);
 		fenetre.mntmAjouterBat.addActionListener(this);
@@ -31,7 +30,6 @@ public abstract class GestionHeaderEtFooter implements ActionListener {
 
 		fenetre.mntmHistorique.addActionListener(this);
 		fenetre.mntmAjout.addActionListener(this);
-		this.fenetre.disableMenuItems(false);
 	}
 
 	@Override
@@ -101,12 +99,10 @@ public abstract class GestionHeaderEtFooter implements ActionListener {
 
 		case "Travaux":
 			DaoFacture daoFacture = new DaoFacture();
-			new FenetreTravaux(daoFacture.findAll(), null).setVisible(true);
+			new FenetreTravaux("FenPrincipale",daoFacture.findAll(), null).setVisible(true);
 			fenetre.dispose();
 			break;
 
-		
-			
 		case "Locataires":
 			DaoLocataire dl = new DaoLocataire();
 			new FenetreLocataire("FenPrincipale", dl.findAll(), null).setVisible(true);
@@ -115,14 +111,13 @@ public abstract class GestionHeaderEtFooter implements ActionListener {
 
 		case "Historique de paiement":
 			DaoPaiement daoPaiement = new DaoPaiement();
-			new FenetrePaiement("FenPrincipale",daoPaiement.findAll(),null).setVisible(true);
+			new FenetrePaiement("FenPrincipale", daoPaiement.findAll(), null).setVisible(true);
 			fenetre.dispose();
 			break;
 
 		case "Ajouter bâtiment":
 			fenetre.getLayeredPane().add(new FenetreAjouterBatiment()).setVisible(true);
 			break;
-
 
 		case "Ajouter paiement":
 			fenetre.getLayeredPane().add(new FenetreAjouterPaiement()).setVisible(true);

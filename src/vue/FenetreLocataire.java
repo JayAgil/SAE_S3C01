@@ -49,9 +49,6 @@ public class FenetreLocataire extends FenetreBase {
 	private List<Locataire> liste;
 	private JLabel lblPhoto;
 	private BienLouable bl;
-	
-
-	
 
 	/**
 	 * Launch the application.
@@ -61,7 +58,7 @@ public class FenetreLocataire extends FenetreBase {
 			@Override
 			public void run() {
 				try {
-					FenetreLocataire frame = new FenetreLocataire("a",null,null);
+					FenetreLocataire frame = new FenetreLocataire("a", null, null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -84,7 +81,7 @@ public class FenetreLocataire extends FenetreBase {
 
 		// header
 		this.setJMenuBar(createHeader());
-		
+
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -98,7 +95,6 @@ public class FenetreLocataire extends FenetreBase {
 		panelButtons.setBorder(new EmptyBorder(10, 10, 10, 10));
 		JButton btnAjouterLocataire = new JButton("Ajouter locataire");
 
-	
 		JButton btnPaiement = new JButton("Paiement");
 		panelButtons.add(btnPaiement);
 		panelButtons.add(btnAjouterLocataire);
@@ -255,7 +251,6 @@ public class FenetreLocataire extends FenetreBase {
 		gbc_lblEmail.gridy = 4;
 		gbc_lblEmail.weightx = 0.2;
 		panel_3.add(lblEmail, gbc_lblEmail);
-		
 
 		textFieldEmail = new JTextField();
 		textFieldEmail.setBorder(null);
@@ -277,7 +272,6 @@ public class FenetreLocataire extends FenetreBase {
 		gbc_lblDateNaissance.gridy = 5;
 		gbc_lblDateNaissance.weightx = 0.2;
 		panel_3.add(lblDateNaissance, gbc_lblDateNaissance);
-		
 
 		textFieldDateNaissance = new JTextField();
 		textFieldDateNaissance.setBorder(null);
@@ -299,8 +293,7 @@ public class FenetreLocataire extends FenetreBase {
 		gbc_lblLieuNaissance.gridy = 6;
 		gbc_lblLieuNaissance.weightx = 0.2;
 		panel_3.add(lblLieuNaissance, gbc_lblLieuNaissance);
-		
-	
+
 		textFieldLieuNaissance = new JTextField();
 		textFieldLieuNaissance.setBorder(null);
 		textFieldLieuNaissance.setEditable(false);
@@ -321,7 +314,6 @@ public class FenetreLocataire extends FenetreBase {
 		gbc_lblSalaire.gridy = 7;
 		gbc_lblSalaire.weightx = 0.2;
 		panel_3.add(lblSalaire, gbc_lblSalaire);
-		
 
 		textFieldSalaire = new JTextField();
 		textFieldSalaire.setBorder(null);
@@ -343,8 +335,7 @@ public class FenetreLocataire extends FenetreBase {
 		gbc_lblProfession.gridy = 8;
 		gbc_lblProfession.weightx = 0.2;
 		panel_3.add(lblProfession, gbc_lblProfession);
-		
-		
+
 		textFieldProfession = new JTextField();
 		textFieldProfession.setBorder(null);
 		textFieldProfession.setEditable(false);
@@ -365,7 +356,7 @@ public class FenetreLocataire extends FenetreBase {
 		gbc_lblSituationFamiliale.gridy = 9;
 		gbc_lblSituationFamiliale.weightx = 0.2;
 		panel_3.add(lblSituationFamiliale, gbc_lblSituationFamiliale);
-		
+
 		textFieldSituationFamiliale = new JTextField();
 		textFieldSituationFamiliale.setBorder(null);
 		textFieldSituationFamiliale.setEditable(false);
@@ -388,25 +379,17 @@ public class FenetreLocataire extends FenetreBase {
 		scrollPane = new JScrollPane();
 		panel_5.add(scrollPane);
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"ID Locataire", "Nom", "Prenom", "Adresse", "Tel", "Email", "Date debut", "Date Fin"
-			}
-		));
+		table.setModel(new DefaultTableModel(new Object[][] {},
+				new String[] { "ID Locataire", "Nom", "Prenom", "Adresse", "Tel", "Email", "Date debut", "Date Fin" }));
 		scrollPane.setViewportView(table);
 
-		
-		this.gestionClic = new GestionFenetreLocataire(this,locataires);
+		this.gestionClic = new GestionFenetreLocataire(this, locataires);
 		this.gestionClic.initialize();
 		btnAjouterLocataire.addActionListener(this.gestionClic);
 		btnPaiement.addActionListener(this.gestionClic);
 		btnRetour.addActionListener(this.gestionClic);
 
-
 	}
-	
 
 	public JLabel getLblPhoto() {
 		return lblPhoto;
@@ -418,17 +401,6 @@ public class FenetreLocataire extends FenetreBase {
 
 	public void setListe(List<Locataire> liste) {
 		this.liste = liste;
-	}
-
-	public void disableMenuItems(boolean actif) {
-
-		if (this.nomFenAvant == "FenetrePrincipale") {
-			this.mnBatiment.setEnabled(actif);
-		}
-		if (this.nomFenAvant == "FenetreBienLouable") {
-			this.mnBatiment.setEnabled(actif);
-			this.mntmLocataire.setEnabled(actif);
-		}
 	}
 
 	public JTextField getTextFieldNom() {
@@ -518,6 +490,7 @@ public class FenetreLocataire extends FenetreBase {
 	public void setTable(JTable table) {
 		this.table = table;
 	}
+
 	public String getNomFenAvant() {
 		return this.nomFenAvant;
 	}
@@ -525,7 +498,5 @@ public class FenetreLocataire extends FenetreBase {
 	public BienLouable getBl() {
 		return bl;
 	}
-	
-	
 
 }

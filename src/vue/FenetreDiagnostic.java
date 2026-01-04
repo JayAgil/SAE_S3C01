@@ -51,7 +51,8 @@ public class FenetreDiagnostic extends FenetreBase {
 
 	/**
 	 * Create the frame.
-	 * @throws SQLException 
+	 * 
+	 * @throws SQLException
 	 */
 	public FenetreDiagnostic(BienLouable bL) throws SQLException {
 		super();
@@ -95,54 +96,59 @@ public class FenetreDiagnostic extends FenetreBase {
 
 		JPanel panel_3 = new JPanel();
 		panel.add(panel_3, BorderLayout.CENTER);
-				GridBagLayout gbl_panel_3 = new GridBagLayout();
-				gbl_panel_3.columnWidths = new int[]{1186, 0};
-				gbl_panel_3.rowHeights = new int[] {400, 208, 100};
-				gbl_panel_3.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-				gbl_panel_3.rowWeights = new double[]{0.0, 1.0};
-				panel_3.setLayout(gbl_panel_3);
-						
-								JScrollPane scrollPane = new JScrollPane();
-								GridBagConstraints gbc_scrollPane = new GridBagConstraints();
-								gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
-								gbc_scrollPane.fill = GridBagConstraints.BOTH;
-								gbc_scrollPane.gridx = 0;
-								gbc_scrollPane.gridy = 0;
-								panel_3.add(scrollPane, gbc_scrollPane);
-								
-										table = new JTable();
-										scrollPane.setViewportView(table);
-										table.setModel(new DefaultTableModel(
-												new Object[][] { { null, null, null, null, null }, { null, null, null, null, null },
-														{ null, null, null, null, null }, { null, null, null, null, null },
-														{ null, null, null, null, null }, { null, null, null, null, null },
-														{ null, null, null, null, null }, { null, null, null, null, null }, },
-												new String[] { "Type Diagnostics", "Date R\u00E9alisation", "Date Validit\u00E9", "Fichier",
-														"Bien Associ\u00E9" }));
-										
-										JPanel panel_4 = new JPanel();
-										GridBagConstraints gbc_panel_4 = new GridBagConstraints();
-										gbc_panel_4.fill = GridBagConstraints.BOTH;
-										gbc_panel_4.gridx = 0;
-										gbc_panel_4.gridy = 1;
-										panel_3.add(panel_4, gbc_panel_4);
-										panel_4.setLayout(new GridLayout(0, 2, 0, 0));
-										
-										JPanel panel_5 = new JPanel();
-										panel_5.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Nombre de Diagnostics Valide Aujourd'hui", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
-										panel_4.add(panel_5);
-										
-										lblnbDiag = new JLabel("32");
-										lblnbDiag.setFont(new Font("Tahoma", Font.PLAIN, 95));
-										panel_5.add(lblnbDiag);
-										
-										JPanel panel_6 = new JPanel();
-										panel_6.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Diagnostics expirant ce mois", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
-										panel_4.add(panel_6);
-										
-										lblnbDiagExp = new JLabel("33\r\n");
-										lblnbDiagExp.setFont(new Font("Tahoma", Font.PLAIN, 95));
-										panel_6.add(lblnbDiagExp);
+		GridBagLayout gbl_panel_3 = new GridBagLayout();
+		gbl_panel_3.columnWidths = new int[] { 1186, 0 };
+		gbl_panel_3.rowHeights = new int[] { 400, 208, 100 };
+		gbl_panel_3.columnWeights = new double[] { 1.0, Double.MIN_VALUE };
+		gbl_panel_3.rowWeights = new double[] { 0.0, 1.0 };
+		panel_3.setLayout(gbl_panel_3);
+
+		JScrollPane scrollPane = new JScrollPane();
+		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
+		gbc_scrollPane.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane.gridx = 0;
+		gbc_scrollPane.gridy = 0;
+		panel_3.add(scrollPane, gbc_scrollPane);
+
+		table = new JTable();
+		scrollPane.setViewportView(table);
+		table.setModel(new DefaultTableModel(
+				new Object[][] { { null, null, null, null, null }, { null, null, null, null, null },
+						{ null, null, null, null, null }, { null, null, null, null, null },
+						{ null, null, null, null, null }, { null, null, null, null, null },
+						{ null, null, null, null, null }, { null, null, null, null, null }, },
+				new String[] { "Type Diagnostics", "Date R\u00E9alisation", "Date Validit\u00E9", "Fichier",
+						"Bien Associ\u00E9" }));
+
+		JPanel panel_4 = new JPanel();
+		GridBagConstraints gbc_panel_4 = new GridBagConstraints();
+		gbc_panel_4.fill = GridBagConstraints.BOTH;
+		gbc_panel_4.gridx = 0;
+		gbc_panel_4.gridy = 1;
+		panel_3.add(panel_4, gbc_panel_4);
+		panel_4.setLayout(new GridLayout(0, 2, 0, 0));
+
+		JPanel panel_5 = new JPanel();
+		panel_5.setBorder(new TitledBorder(
+				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)),
+				"Nombre de Diagnostics Valide Aujourd'hui", TitledBorder.CENTER, TitledBorder.TOP, null,
+				new Color(0, 0, 0)));
+		panel_4.add(panel_5);
+
+		lblnbDiag = new JLabel("32");
+		lblnbDiag.setFont(new Font("Tahoma", Font.PLAIN, 95));
+		panel_5.add(lblnbDiag);
+
+		JPanel panel_6 = new JPanel();
+		panel_6.setBorder(new TitledBorder(
+				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)),
+				"Diagnostics expirant ce mois", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_4.add(panel_6);
+
+		lblnbDiagExp = new JLabel("33\r\n");
+		lblnbDiagExp.setFont(new Font("Tahoma", Font.PLAIN, 95));
+		panel_6.add(lblnbDiagExp);
 		table.getColumnModel().getColumn(0).setPreferredWidth(96);
 		table.getColumnModel().getColumn(1).setPreferredWidth(96);
 		this.gestionClic.chargerDonnees();
@@ -183,16 +189,9 @@ public class FenetreDiagnostic extends FenetreBase {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
+
 	public BienLouable getBien() {
 		return this.bL;
 	}
-	
-	public void disableMenuItems(boolean actif) {
-		this.mnBatiment.setEnabled(actif);
-		this.mnPaiement.setEnabled(actif);
-		this.mntmDiagnostic.setEnabled(actif);
-	}
-	
-	
+
 }

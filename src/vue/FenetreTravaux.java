@@ -33,7 +33,6 @@ public class FenetreTravaux extends FenetreBase {
 
 	private static final long serialVersionUID = 1L;
 	private GestionFenetreTravaux gestionClic;
-	
 
 	private JTable table;
 	private JScrollPane scrollPane;
@@ -43,14 +42,13 @@ public class FenetreTravaux extends FenetreBase {
 	private JComboBox comboBox_Mois;
 	private JComboBox comboBox_Annee;
 	private BienLouable bien;
-
-	
+	private String fenetreAvant;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FenetreTravaux frame = new FenetreTravaux(null,null);
+					FenetreTravaux frame = new FenetreTravaux(null, null, null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -59,8 +57,9 @@ public class FenetreTravaux extends FenetreBase {
 		});
 	}
 
-	public FenetreTravaux(List<Facture> liste,BienLouable bien) {
+	public FenetreTravaux(String fenAvant, List<Facture> liste, BienLouable bien) {
 		super();
+		this.fenetreAvant = fenAvant;
 		this.bien = bien;
 		this.factures = liste;
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -266,9 +265,13 @@ public class FenetreTravaux extends FenetreBase {
 	public List<Facture> getFactures() {
 		return factures;
 	}
-	
+
 	public BienLouable getBien() {
 		return bien;
+	}
+
+	public String getFenetreAvant() {
+		return fenetreAvant;
 	}
 
 	public void setFactures(List<Facture> factures) {
@@ -298,5 +301,5 @@ public class FenetreTravaux extends FenetreBase {
 			return null;
 		return getFactureSelectionnee(row);
 	}
-	
+
 }

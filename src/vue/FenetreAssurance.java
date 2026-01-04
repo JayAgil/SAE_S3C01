@@ -24,7 +24,6 @@ public class FenetreAssurance extends FenetreBase {
 	private JPanel panelNombreBien;
 	private JLabel lblNbBien;
 	private String bat;
-	
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -51,7 +50,6 @@ public class FenetreAssurance extends FenetreBase {
 		contentPane.setLayout(new BorderLayout(10, 10));
 		this.setJMenuBar(createHeader());
 
-		
 		this.gestionClic.initialize();
 		JPanel panelCenter = new JPanel(new GridBagLayout());
 		contentPane.add(panelCenter, BorderLayout.CENTER);
@@ -240,7 +238,6 @@ public class FenetreAssurance extends FenetreBase {
 
 		southPanel.add(createFooter(), BorderLayout.SOUTH);
 
-
 		contentPane.add(southPanel, BorderLayout.SOUTH);
 		setLocationRelativeTo(null);
 		setVisible(true);
@@ -311,12 +308,6 @@ public class FenetreAssurance extends FenetreBase {
 		this.lblNbBien = lblNbBien;
 	}
 
-	public void disableMenuItems(boolean actif) {
-		this.mntmAssurance.setEnabled(actif);
-		this.mnBienLouable.setEnabled(actif);
-		this.mnPaiement.setEnabled(actif);
-	}
-	
 	public String getBat() {
 		return this.bat;
 	}

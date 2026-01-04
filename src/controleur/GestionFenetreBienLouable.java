@@ -104,7 +104,7 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 			break;
 
 		case "Travaux":
-			new FenetreTravaux(getDonneesTravauxByBien(),bien).setVisible(true);
+			new FenetreTravaux("FenetreBienLouable",getDonneesTravauxByBien(),bien).setVisible(true);
 			fenetrebienlouable.dispose();
 			break;
 
