@@ -9,20 +9,21 @@ import java.awt.Insets;
 
 import javax.swing.JButton;
 import javax.swing.JDesktopPane;
+import javax.swing.JFormattedTextField;
 import javax.swing.JInternalFrame;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.text.DateFormatter;
 
 import controleur.GestionFenetreAjouterCharge;
 
 import java.awt.Component;
 import javax.swing.Box;
-import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.awt.event.ActionEvent;
 
 public class FenetreAjouterCharge extends JInternalFrame {
 
@@ -33,6 +34,9 @@ public class FenetreAjouterCharge extends JInternalFrame {
 	private JTextField txtPourcentage;
 	private JTextField txtQuotite;
 	private GestionFenetreAjouterCharge gestionClic;
+	private JTextField txtIdCharge;
+
+	private JTextField textFieldDateCharge;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(() -> {
@@ -76,26 +80,30 @@ public class FenetreAjouterCharge extends JInternalFrame {
 		getContentPane().add(panelHeader, BorderLayout.NORTH);
 
 		JPanel panelCenter = new JPanel();
-		panelCenter.setLayout(new GridBagLayout());
+		GridBagLayout gbl_panelCenter = new GridBagLayout();
+		gbl_panelCenter.columnWidths = new int[] { 180, 120 };
+		gbl_panelCenter.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
+		gbl_panelCenter.columnWeights = new double[] { 0.0, 1.0 };
+		panelCenter.setLayout(gbl_panelCenter);
 		getContentPane().add(panelCenter, BorderLayout.CENTER);
 
 		Insets pad = new Insets(10, 10, 10, 10);
 
 		GridBagConstraints idLabel = new GridBagConstraints();
+		idLabel.anchor = GridBagConstraints.EAST;
 		idLabel.insets = pad;
-		idLabel.anchor = GridBagConstraints.LINE_END;
 		idLabel.gridx = 0;
 		idLabel.gridy = 0;
 		JLabel label = new JLabel("ID Charge :");
 		panelCenter.add(label, idLabel);
 
-		GridBagConstraints idField = new GridBagConstraints();
-		idField.insets = pad;
-		idField.anchor = GridBagConstraints.LINE_START;
-		idField.gridx = 1;
-		idField.gridy = 0;
-		JTextField txtIdCharge = new JTextField(15);
-		panelCenter.add(txtIdCharge, idField);
+		GridBagConstraints gbc_txtIdCharge = new GridBagConstraints();
+		gbc_txtIdCharge.insets = pad;
+		gbc_txtIdCharge.anchor = GridBagConstraints.LINE_START;
+		gbc_txtIdCharge.gridx = 1;
+		gbc_txtIdCharge.gridy = 0;
+		txtIdCharge = new JTextField(15);
+		panelCenter.add(txtIdCharge, gbc_txtIdCharge);
 
 		GridBagConstraints c1 = new GridBagConstraints();
 		c1.insets = pad;
@@ -150,12 +158,35 @@ public class FenetreAjouterCharge extends JInternalFrame {
 		panelCenter.add(new JLabel("Quotité :"), c7);
 
 		GridBagConstraints gbc_txtQuotite = new GridBagConstraints();
+		gbc_txtQuotite.anchor = GridBagConstraints.WEST;
 		gbc_txtQuotite.insets = pad;
-		gbc_txtQuotite.anchor = GridBagConstraints.LINE_START;
 		gbc_txtQuotite.gridx = 1;
 		gbc_txtQuotite.gridy = 4;
 		txtQuotite = new JTextField(15);
 		panelCenter.add(txtQuotite, gbc_txtQuotite);
+
+		JLabel lblDateCharge = new JLabel("Date charge :");
+		GridBagConstraints gbc_lblDateCharge = new GridBagConstraints();
+		gbc_lblDateCharge.anchor = GridBagConstraints.EAST;
+		gbc_lblDateCharge.insets = new Insets(0, 0, 0, 5);
+		gbc_lblDateCharge.gridx = 0;
+		gbc_lblDateCharge.gridy = 5;
+		panelCenter.add(lblDateCharge, gbc_lblDateCharge);
+
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		DateFormatter dateFormatter = new DateFormatter(format);
+
+		textFieldDateCharge = new JFormattedTextField(dateFormatter);
+		textFieldDateCharge.setColumns(15);
+		textFieldDateCharge.setToolTipText("Format attendu : yyyy-MM-dd");
+
+		GridBagConstraints gbc_textFieldDateCharge = new GridBagConstraints();
+		gbc_textFieldDateCharge.insets = new Insets(10, 10, 10, 10);
+		gbc_textFieldDateCharge.anchor = GridBagConstraints.WEST;
+		gbc_textFieldDateCharge.gridx = 1;
+		gbc_textFieldDateCharge.gridy = 5;
+
+		panelCenter.add(textFieldDateCharge, gbc_textFieldDateCharge);
 
 		JPanel panelFooter = new JPanel();
 
@@ -177,10 +208,12 @@ public class FenetreAjouterCharge extends JInternalFrame {
 
 	public List<JTextField> getAllChargeTextFields() {
 		List<JTextField> fields = new ArrayList<>();
+		fields.add(txtIdCharge);
 		fields.add(txtTypeCharge);
 		fields.add(txtMontant);
 		fields.add(txtPourcentage);
 		fields.add(txtQuotite);
+		fields.add(textFieldDateCharge);
 		return fields;
 	}
 }

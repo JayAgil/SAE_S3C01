@@ -114,7 +114,7 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 		case "Ajouter":
 			DaoBatiment dao = new DaoBatiment();
 			Batiment b = dao.findBatimentByBien(bien.getIdBienLouable());
-            FenetreAjouterBienLouable ajout = new FenetreAjouterBienLouable(b);
+            FenetreAjouterBienLouable ajout = new FenetreAjouterBienLouable(b,this);
             fenetre.getLayeredPane().add(ajout);
             ajout.setVisible(true);
             break;

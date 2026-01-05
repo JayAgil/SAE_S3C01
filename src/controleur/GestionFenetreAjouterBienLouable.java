@@ -17,10 +17,12 @@ public class GestionFenetreAjouterBienLouable extends GestionButtonFenetreAjoute
 
 	private FenetreAjouterBienLouable fenetre;
 	private Batiment b;
+	private GestionFenetreBienLouable parent;
 
-	public GestionFenetreAjouterBienLouable(FenetreAjouterBienLouable fenetre, Batiment b) {
+	public GestionFenetreAjouterBienLouable(FenetreAjouterBienLouable fenetre, Batiment b, GestionFenetreBienLouable parent) {
 		this.fenetre = fenetre;
 		this.b = b;
+		this.parent = parent;
 		chargerComboBoxBienLouable();
 	}
 
@@ -52,6 +54,8 @@ public class GestionFenetreAjouterBienLouable extends GestionButtonFenetreAjoute
 			if (dao.create(bNouveau) == 1) {
 				JOptionPane.showMessageDialog(null, "Bien louable ajoutée avec succès !", "Succès",
 						JOptionPane.INFORMATION_MESSAGE);
+				this.parent.chargerDonnees();
+				this.fenetre.dispose();
 
 			} else {
 				JOptionPane.showMessageDialog(null, "Échec de l'ajout du bien louable.", "Erreur",
