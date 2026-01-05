@@ -127,9 +127,9 @@ public class FenetreBienLouable extends FenetreBase {
 		panel_2.add(panel_3, BorderLayout.CENTER);
 		GridBagLayout gbl_panel_3 = new GridBagLayout();
 		gbl_panel_3.columnWidths = new int[] { 1176, 0 };
-		gbl_panel_3.rowHeights = new int[] { 450, 0, 250, 0 };
+		gbl_panel_3.rowHeights = new int[] { 450, 0, 0, 250, 0 };
 		gbl_panel_3.columnWeights = new double[] { 1.0, Double.MIN_VALUE };
-		gbl_panel_3.rowWeights = new double[] { 0.0, 1.0, 0.0, Double.MIN_VALUE };
+		gbl_panel_3.rowWeights = new double[] { 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE };
 		panel_3.setLayout(gbl_panel_3);
 
 		JPanel panel_4 = new JPanel();
@@ -387,13 +387,21 @@ public class FenetreBienLouable extends FenetreBase {
 		gbc_textFieldDP.gridy = 11;
 		panel_4.add(textFieldDP, gbc_textFieldDP);
 		textFieldDP.setColumns(10);
+		
+		JLabel lblTitreT = new JLabel("Tous les biens sous le batiment");
+		lblTitreT.setFont(new Font("Tahoma", Font.BOLD, 15));
+		GridBagConstraints gbc_lblTitreT = new GridBagConstraints();
+		gbc_lblTitreT.insets = new Insets(0, 0, 5, 0);
+		gbc_lblTitreT.gridx = 0;
+		gbc_lblTitreT.gridy = 1;
+		panel_3.add(lblTitreT, gbc_lblTitreT);
 
 		JPanel panel_6 = new JPanel();
 		GridBagConstraints gbc_panel_6 = new GridBagConstraints();
 		gbc_panel_6.insets = new Insets(0, 0, 5, 0);
 		gbc_panel_6.fill = GridBagConstraints.BOTH;
 		gbc_panel_6.gridx = 0;
-		gbc_panel_6.gridy = 1;
+		gbc_panel_6.gridy = 2;
 		panel_3.add(panel_6, gbc_panel_6);
 
 		JLabel lblTitreTable = new JLabel("Tous les biens sous le batiment");
@@ -404,7 +412,7 @@ public class FenetreBienLouable extends FenetreBase {
 		GridBagConstraints gbc_panel_5 = new GridBagConstraints();
 		gbc_panel_5.fill = GridBagConstraints.BOTH;
 		gbc_panel_5.gridx = 0;
-		gbc_panel_5.gridy = 2;
+		gbc_panel_5.gridy = 3;
 		panel_3.add(panel_5, gbc_panel_5);
 		panel_5.setLayout(new BorderLayout(0, 0));
 
