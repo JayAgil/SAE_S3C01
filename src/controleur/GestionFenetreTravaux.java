@@ -15,7 +15,6 @@ import modele.Facture;
 import vue.FenetreAjouterEntreprise;
 import vue.FenetreAjouterTravaux;
 import vue.FenetreBienLouable;
-import vue.FenetreContratLocation;
 import vue.FenetreFacture;
 import vue.FenetrePrincipale;
 import vue.FenetreTravaux;
@@ -73,7 +72,7 @@ public class GestionFenetreTravaux extends GestionHeaderEtFooter implements Mous
 	}
 
 	private void visualiserFactureSelectionnee() {
-		Facture facture = fenetreTravaux.getFactureSelectionnee();
+		Facture facture = this.getFactureSelectionnee();
 		if (facture == null) {
 			JOptionPane.showMessageDialog(fenetreTravaux, "Veuillez sélectionner une facture");
 			return;
@@ -106,7 +105,7 @@ public class GestionFenetreTravaux extends GestionHeaderEtFooter implements Mous
 			JTable table = (JTable) e.getSource();
 			int row = table.rowAtPoint(e.getPoint());
 			if (row != -1) {
-				Facture facture = fenetreTravaux.getFactureSelectionnee(row);
+				Facture facture = this.getFactureSelectionnee(row);
 				if (facture != null) {
 					new FenetreFacture(facture).setVisible(true);
 				}
@@ -211,6 +210,34 @@ public class GestionFenetreTravaux extends GestionHeaderEtFooter implements Mous
 
 	public void setListe(List<Facture> liste) {
 		this.travaux = liste;
+	}
+	
+	public void setFactures(List<Facture> factures) {
+		this.travaux = factures;
+		remplirTable();
+	}
+
+	private void remplirTable() {
+		DefaultTableModel model = (DefaultTableModel) fenetreTravaux.getTable().getModel();
+		model.setRowCount(0);
+		for (Facture f : this.travaux) {
+			model.addRow(new Object[] { f.getNumeroFacture(), f.getMontant(), f.getDateDeFacture(),
+					f.getCompteBancaire(), f.getMontantDevis(), f.getDatePaiement(), f.getDesignationDeTravaux(),
+					f.getEntreprise().getNom() });
+		}
+	}
+
+	public Facture getFactureSelectionnee(int row) {
+		if (row < 0 || row >= this.travaux.size())
+			return null;
+		return this.travaux.get(row);
+	}
+
+	public Facture getFactureSelectionnee() {
+		int row = fenetreTravaux.getTable().getSelectedRow();
+		if (row == -1)
+			return null;
+		return getFactureSelectionnee(row);
 	}
 
 	@Override
