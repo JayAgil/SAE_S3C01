@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.text.DateFormatter;
 
 import controleur.GestionFenetreAjouterCharge;
+import modele.BienLouable;
 
 import java.awt.Component;
 import javax.swing.Box;
@@ -35,6 +36,7 @@ public class FenetreAjouterCharge extends JInternalFrame {
 	private JTextField txtQuotite;
 	private GestionFenetreAjouterCharge gestionClic;
 	private JTextField txtIdCharge;
+	private BienLouable bl;
 
 	private JTextField textFieldDateCharge;
 
@@ -48,7 +50,7 @@ public class FenetreAjouterCharge extends JInternalFrame {
 				JDesktopPane desktopPane = new JDesktopPane();
 				frame.setContentPane(desktopPane);
 
-				FenetreAjouterCharge internalFrame = new FenetreAjouterCharge();
+				FenetreAjouterCharge internalFrame = new FenetreAjouterCharge(null);
 				internalFrame.setVisible(true);
 				desktopPane.add(internalFrame);
 
@@ -59,8 +61,9 @@ public class FenetreAjouterCharge extends JInternalFrame {
 		});
 	}
 
-	public FenetreAjouterCharge() {
-		gestionClic = new GestionFenetreAjouterCharge(this);
+	public FenetreAjouterCharge(BienLouable bl) {
+		this.bl = bl;
+		gestionClic = new GestionFenetreAjouterCharge(this,bl);
 		setResizable(false);
 		setClosable(true);
 		setIconifiable(true);

@@ -32,7 +32,7 @@ public class GestionFenetreCharges extends GestionHeaderEtFooter{
         switch (texte) {
 
             case "Ajouter charge":
-                FenetreAjouterCharge fenAjouterCharge = new FenetreAjouterCharge();
+                FenetreAjouterCharge fenAjouterCharge = new FenetreAjouterCharge(this.fenetre.getBl());
                 fenetre.getLayeredPane().add(fenAjouterCharge);
                 fenAjouterCharge.setVisible(true);
                 break;
