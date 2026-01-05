@@ -106,10 +106,16 @@ public class GestionFenetreCharges extends GestionHeaderEtFooter{
         fenetre.getLbltotalorduremenageres().setText(String.format("%.2f €", totalOrdures));
         fenetre.getLbltotalascenceur().setText(String.format("%.2f €", totalAscenseur));
 
+        Map<String, Double> totalParBienAll = new HashMap<>();
+        for (ChargesGenerales c : donnees) {
+            String bien = c.getBienLouable().getIdBienLouable();
+            totalParBienAll.put(bien, totalParBienAll.getOrDefault(bien, 0.0) + c.getMontant());
+        }
+
         List<Map.Entry<String, Double>> sorted =
-                totalParBien.entrySet().stream()
-                        .sorted((a, b) -> Double.compare(b.getValue(), a.getValue()))
-                        .toList();
+                totalParBienAll.entrySet().stream()
+                    .sorted((a, b) -> Double.compare(b.getValue(), a.getValue()))
+                    .toList();
 
         fenetre.getLbl1er().setText(sorted.size() > 0 ? sorted.get(0).getKey() : "");
         fenetre.getLbl2nde().setText(sorted.size() > 1 ? sorted.get(1).getKey() : "");
