@@ -1,9 +1,11 @@
 package controleur;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.sql.Date;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -41,10 +43,19 @@ public class GestionFenetreCharges extends GestionHeaderEtFooter{
         }
     }
     
+    
     public void chargerDonnees() throws SQLException {
         List<ChargesGenerales> liste = this.donnees;
         DefaultTableModel model = (DefaultTableModel) fenetre.getTable().getModel();
         model.setRowCount(0);
+
+        String selectedAnnee = (String) fenetre.getComboBoxAnnee().getSelectedItem();
+        Integer annee = null; 
+        if (!"Année".equals(selectedAnnee)) {
+            annee = Integer.parseInt(selectedAnnee);
+        }
+
+        int mois = fenetre.getComboBoxMois().getSelectedIndex(); 
 
         double totalEntretien = 0;
         double totalOrdures = 0;
@@ -53,50 +64,65 @@ public class GestionFenetreCharges extends GestionHeaderEtFooter{
         Map<String, Double> totalParBien = new HashMap<>();
 
         for (ChargesGenerales c : liste) {
+            Date d = c.getDateCharge();
+            if (d != null) {
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(d);
+                int chargeAnnee = cal.get(Calendar.YEAR);
+                int chargeMois = cal.get(Calendar.MONTH) + 1; 
 
-            model.addRow(new Object[]{
-                    c.getTypeCharge(),
-                    c.getMontant(),
-                    c.getPourcentage(),
-                    c.getQuotite(),
-                    c.getMontant() * c.getPourcentage(),
-                    c.getMois()
-            });
-            switch (c.getTypeCharge()) {
-                case "Entretien":
-                    totalEntretien += c.getMontant();
-                    break;
-                case "Nettoyage":
-                    totalOrdures += c.getMontant();
-                    break;
-                case "Ascenseur":
-                    totalAscenseur += c.getMontant();
-                    break;
+                boolean memeAnnee = (annee == null || chargeAnnee == annee);
+                boolean memeMois = (mois == 0 || chargeMois == mois);
+
+                if (memeAnnee && memeMois) {
+                    model.addRow(new Object[]{
+                            c.getTypeCharge(),
+                            c.getMontant(),
+                            c.getPourcentage(),
+                            c.getQuotite(),
+                            c.getMontant() * c.getPourcentage(),
+                            c.getDateCharge()
+                    });
+
+                    switch (c.getTypeCharge()) {
+                        case "Entretien":
+                            totalEntretien += c.getMontant();
+                            break;
+                        case "Nettoyage":
+                            totalOrdures += c.getMontant();
+                            break;
+                        case "Ascenseur":
+                            totalAscenseur += c.getMontant();
+                            break;
+                    }
+
+                    String bien = c.getBienLouable().getIdBienLouable();
+                    totalParBien.put(bien, totalParBien.getOrDefault(bien, 0.0) + c.getMontant());
+                }
             }
-            String bien = c.getBienLouable().getIdBienLouable();
-            totalParBien.put(
-                    bien,
-                    totalParBien.getOrDefault(bien, 0.0) + c.getMontant()
-            );
         }
-        fenetre.getLbltotalentretien().setText(String.valueOf(totalEntretien + " €"));
-        fenetre.getLbltotalorduremenageres().setText(String.valueOf(totalOrdures + " €"));
-        fenetre.getLbltotalascenceur().setText(String.valueOf(totalAscenseur + " €"));
+
+        fenetre.getLbltotalentretien().setText(String.format("%.2f €", totalEntretien));
+        fenetre.getLbltotalorduremenageres().setText(String.format("%.2f €", totalOrdures));
+        fenetre.getLbltotalascenceur().setText(String.format("%.2f €", totalAscenseur));
+
         List<Map.Entry<String, Double>> sorted =
                 totalParBien.entrySet().stream()
                         .sorted((a, b) -> Double.compare(b.getValue(), a.getValue()))
                         .toList();
-        if (sorted.size() > 0) fenetre.getLbl1er().setText(sorted.get(0).getKey());
-        if (sorted.size() > 1) fenetre.getLbl2nde().setText(sorted.get(1).getKey());
-        if (sorted.size() > 2) fenetre.getLbl3eme().setText(sorted.get(2).getKey());
+
+        fenetre.getLbl1er().setText(sorted.size() > 0 ? sorted.get(0).getKey() : "");
+        fenetre.getLbl2nde().setText(sorted.size() > 1 ? sorted.get(1).getKey() : "");
+        fenetre.getLbl3eme().setText(sorted.size() > 2 ? sorted.get(2).getKey() : "");
+
         double moyenne = totalParBien.values().stream()
                 .mapToDouble(Double::doubleValue)
                 .average()
                 .orElse(0);
-        int scale = 2;
-        double rounded = Math.round(moyenne * Math.pow(10, scale)) / Math.pow(10, scale);
-        fenetre.getLblchargesmoyen().setText(String.valueOf(rounded + " €"));
+
+        fenetre.getLblchargesmoyen().setText(String.format("%.2f €", moyenne));
     }
+
 
     
     @Override
