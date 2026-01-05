@@ -159,6 +159,7 @@ public class FenetrePrincipale extends FenetreBase {
 
 		lblSolde = new JLabel("180.000\r\n");
 		lblSolde.setFont(new Font("Tahoma", Font.BOLD, 30));
+		panelSoldeNonPaye.setPreferredSize(new Dimension (180,70));
 		panelSoldeNonPaye.add(lblSolde);
 
 		Component horizontalStrut_1_1 = Box.createHorizontalStrut(40);
@@ -177,6 +178,7 @@ public class FenetrePrincipale extends FenetreBase {
 
 		lblPasPaye_1 = new JLabel("      8      ");
 		lblPasPaye_1.setFont(new Font("Tahoma", Font.BOLD, 30));
+		panelNbLoyePasPaye_1.setPreferredSize(new Dimension (180,70));
 		panelNbLoyePasPaye_1.add(lblPasPaye_1);
 
 		Component horizontalStrut_3_1 = Box.createHorizontalStrut(20);

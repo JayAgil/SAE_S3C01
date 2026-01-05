@@ -1,5 +1,6 @@
 package modele;
 
+import java.sql.Date;
 import java.util.Objects;
 
 public class ChargesGenerales {
@@ -9,26 +10,26 @@ public class ChargesGenerales {
 	private double montant;
 	private float pourcentage;
 	private double quotite;
-	private String mois;
+	private Date dateCharge;
 	private BienLouable bienLouable;
 	
 	public ChargesGenerales(String idChargesGenerales, String typeCharge, double montant, float pourcentage,
-			double quotite,String mois, BienLouable bienLouable) {
+			double quotite, Date dateCharge, BienLouable bienLouable) {
 		super();
 		this.idChargesGenerales = idChargesGenerales;
 		this.typeCharge = typeCharge;
 		this.montant = montant;
 		this.pourcentage = pourcentage;
 		this.quotite = quotite;
-		this.mois = mois;
+		this.dateCharge = dateCharge;
 		this.bienLouable = bienLouable;
 	}
-	public String getMois() {
-		return mois;
+	public Date getDateCharge() {
+		return this.dateCharge;
 	}
 
-	public void setMois(String mois) {
-		this.mois = mois;
+	public void setDateCharge(Date dateCharge) {
+		this.dateCharge = dateCharge;
 	}
 	public BienLouable getBienLouable() {
 		return bienLouable;

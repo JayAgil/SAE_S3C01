@@ -17,7 +17,7 @@ public class RequeteInsertChargeGenerale extends Requete<ChargesGenerales>{
 		    ps.setDouble(3, cg.getMontant());                
 		    ps.setDouble(4, cg.getPourcentage());       
 		    ps.setDouble(5, cg.getQuotite());            
-		    ps.setString(6, cg.getMois());        
+		    ps.setDate(6, cg.getDateCharge());        
 		    ps.setString(7, cg.getBienLouable().getIdBienLouable());    
     }
 

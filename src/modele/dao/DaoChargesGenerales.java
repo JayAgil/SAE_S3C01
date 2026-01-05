@@ -1,5 +1,6 @@
 package modele.dao;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import modele.dao.requetes.*;
 import java.sql.SQLException;
@@ -57,11 +58,11 @@ public class DaoChargesGenerales extends DaoModele<ChargesGenerales>implements D
 		double montant = curseur.getDouble(3);
 		float pourcentage = curseur.getFloat(4);
 		double quotite = curseur.getDouble(5);
-		String mois = curseur.getString(6);
+		Date dateCharge = curseur.getDate(6);
 		String id = curseur.getString(7);
 		DaoBienLouable daoBL = new DaoBienLouable();
 		BienLouable bl = daoBL.findById(id);
-		return new ChargesGenerales(id_ChargesGenerale,type,montant,pourcentage,quotite,mois,bl);
+		return new ChargesGenerales(id_ChargesGenerale,type,montant,pourcentage,quotite,dateCharge,bl);
 	}
 
 }

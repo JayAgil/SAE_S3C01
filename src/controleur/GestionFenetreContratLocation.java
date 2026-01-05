@@ -51,20 +51,56 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
                 fenetre.dispose();
                 break;
             case "Revaloriser":
-            	String id = String.valueOf(Year.now().getValue());
+            	String id1 = String.valueOf(Year.now().getValue());
+            	String id2 = String.valueOf(Year.now().getValue() - 1);
+
             	DaoIRL dIRL = new DaoIRL();
-            	IRL courant = dIRL.findById(id);
-            	double val = courant.getIRL();
-            	String input = JOptionPane.showInputDialog(
-            		    null,
-            		    "Veuillez entrer une valeur entre:",
-            		    "Input",
-            		    JOptionPane.INFORMATION_MESSAGE
-            		);
-            		if (input != null && !input.trim().isEmpty()) {
-            		    System.out.println("User entered: " + input);
-            		}
-                break;
+            	DaoContratLocation dCL = new DaoContratLocation();
+
+            	IRL courant = dIRL.findById(id1);
+            	IRL precedent = dIRL.findById(id2);
+
+            	if(courant == null || precedent == null) {
+            	    JOptionPane.showMessageDialog(null,
+            	        "IRL non trouvée. Ajouter IRL avant de revaloriser",
+            	        "Error", JOptionPane.ERROR_MESSAGE);
+            	    break;
+            	}
+
+            	double val1 = courant.getIRL();
+            	double val2 = precedent.getIRL();
+
+            	double min = this.selected.getMontantMensuel();
+            	double max = min * (val1 / val2);
+
+            	String input = JOptionPane.showInputDialog(null,
+            	    String.format("Veuillez entrer le loyer entre %.2f et %.2f", min, max),
+            	    "Input", JOptionPane.INFORMATION_MESSAGE);
+
+            	if(input != null && !input.trim().isEmpty()) {
+            	    double inputValue;
+            	    try {
+            	        inputValue = Double.parseDouble(input);
+            	    } catch (NumberFormatException ex) {
+            	        JOptionPane.showMessageDialog(null,
+            	            "Entrée invalide. Veuillez entrer un nombre.",
+            	            "Error", JOptionPane.ERROR_MESSAGE);
+            	        break;
+            	    }
+
+            	    if(inputValue < min || inputValue > max) {
+            	        JOptionPane.showMessageDialog(null,
+            	            String.format("Le loyer doit être compris entre %.2f et %.2f", min, max),
+            	            "Error", JOptionPane.ERROR_MESSAGE);
+            	    } else {
+            	        inputValue = Math.round(inputValue * 100.0) / 100.0;
+            	        this.selected.setMontantMensuel(inputValue);
+            	        dCL.update(selected);
+            	        JOptionPane.showMessageDialog(null, 
+            	            "Loyer mis à jour avec succès : " + inputValue + " €");
+            	    }
+            	}
+              break;
         }
     }
     @Override
@@ -96,6 +132,7 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
             int row = table.getSelectedRow();
             if (row >= 0 && row < contrats.size()) {
                 ContratLocation contratSelectionne = contrats.get(row);
+                this.selected = contrats.get(row);
                 afficherContrat(contratSelectionne);
                 if (e.getClickCount() == 2) {
                     fenetre.dispose();
