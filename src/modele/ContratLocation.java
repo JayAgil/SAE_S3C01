@@ -37,6 +37,11 @@ public class ContratLocation {
 		this.bienLouable = bienLouable;
 	}
 
+	@Override
+	public String toString() {
+		return numeroDeContrat;
+	}
+
 	public String getNumeroDeContrat() {
 		return numeroDeContrat;
 	}

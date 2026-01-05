@@ -147,10 +147,10 @@ public class FenetreAjouterEntreprise extends JInternalFrame  {
 	public List<JTextField> getAllEntrepriseTextFields() {
 	    List<JTextField> fields = new ArrayList<>();
 	    fields.add(textFieldSiret);
-	    fields.add(textFieldNom);
 	    fields.add(textFieldAdresse);
 	    fields.add(textFieldVille);
 	    fields.add(textFieldCodePostal);
+	    fields.add(textFieldNom);
 	    fields.add(textFieldTel);
 	    fields.add(textFieldSpecialite);
 	    return fields;

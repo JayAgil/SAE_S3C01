@@ -10,6 +10,7 @@ import java.util.List;
 
 import modele.BienLouable;
 import modele.ContratLocation;
+import modele.Locataire;
 
 public class DaoContratLocation extends DaoModele<ContratLocation> implements Dao<ContratLocation> {
 
@@ -19,9 +20,9 @@ public class DaoContratLocation extends DaoModele<ContratLocation> implements Da
 
 	@Override
 	public int create(ContratLocation t) throws SQLException {
-		return miseAJour(new RequeteInsertContratLocation(), t);	
+		return miseAJour(new RequeteInsertContratLocation(), t);
 	}
-	
+
 	@Override
 	public int update(ContratLocation t) throws SQLException {
 		return miseAJour(new RequeteUpdateContratLocation(), t);
@@ -30,7 +31,7 @@ public class DaoContratLocation extends DaoModele<ContratLocation> implements Da
 	@Override
 	public int delete(ContratLocation t) throws SQLException {
 		return miseAJour(new RequeteDeleteContratLocation(), t);
-		
+
 	}
 
 	@Override
@@ -43,7 +44,7 @@ public class DaoContratLocation extends DaoModele<ContratLocation> implements Da
 	public List<ContratLocation> findAll() throws SQLException {
 		return this.find(new RequeteSelectContratLocation());
 	}
-	
+
 	public ContratLocation findCLByBien(String... id) throws SQLException {
 		return this.findById(new RequeteSelectContratLocationByBien(), id);
 	}
@@ -64,41 +65,38 @@ public class DaoContratLocation extends DaoModele<ContratLocation> implements Da
 		String id = curseur.getString(12);
 		DaoBienLouable daoBL = new DaoBienLouable();
 		BienLouable bl = daoBL.findById(id);
-		return new ContratLocation(numeroDeContrat,dateDebut,dateFin,montantCaution,provisionCharge,solde,montantMensuel,dateVersement,indexCompteurEau,indexCompteurElectricite,indexCompteurGaz,bl);
+		return new ContratLocation(numeroDeContrat, dateDebut, dateFin, montantCaution, provisionCharge, solde,
+				montantMensuel, dateVersement, indexCompteurEau, indexCompteurElectricite, indexCompteurGaz, bl);
 	}
 
+	private List<ContratLocation> findByBienLouable(RequeteSelectContratLocationByBienLouable req, String[] id)
+			throws SQLException {
+		List<ContratLocation> res = new ArrayList<>();
+		try (PreparedStatement prSt = connexion.prepareStatement(req.requete())) {
+			req.parametres(prSt, id);
+			res = select(prSt);
+		}
+		if (res.size() == 0) {
+			return null;
+		}
+		return res;
+	}
 
-	private List<ContratLocation> findByBienLouable(
-	        RequeteSelectContratLocationByBienLouable req, String[] id)
-	        throws SQLException {
-	        List<ContratLocation> res = new ArrayList<>();
-	        try (PreparedStatement prSt = connexion
-	            .prepareStatement(req.requete())) {
-	            req.parametres(prSt, id);
-	            res = select(prSt);
-	        }
-	        if (res.size() == 0) {
-	            return null;
-	        }
-	        return res;
-	    }
-	
 	public List<ContratLocation> findByBatiment(String... id) throws SQLException {
-        return this.find(new RequeteSelectContratLocationByBatiment(), id);
+		return this.find(new RequeteSelectContratLocationByBatiment(), id);
 	}
-	
+
 	public List<ContratLocation> findByContrat(String... id) throws SQLException {
 		return this.find(new RequeteSelectContratLocationFromOneContratUnderTheBatiment(), id);
 	}
 
-	
-	public List<ContratLocation> findByBienLouable(String... id)
-	        throws SQLException {
-	        return this.findByBienLouable(
-	            new RequeteSelectContratLocationByBienLouable(), id);
-	    }
+	public List<ContratLocation> findByBienLouable(String... id) throws SQLException {
+		return this.findByBienLouable(new RequeteSelectContratLocationByBienLouable(), id);
+	}
 
 	public ContratLocation findContratLocataionByLocataire(String... id) throws SQLException {
 		return this.findById(new RequeteSelectContratLocationByLoc(), id);
 	}
+
+	
 }
