@@ -118,12 +118,11 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter
         List<ContratLocation> contrats = contratLocationDAO.findAll();
         LocalDate now = LocalDate.now();
         int count = 0;
+
         for (ContratLocation c : contrats) {
             Date dateFinDate = c.getDateFin();
             if (dateFinDate != null) {
-                LocalDate dateFin = dateFinDate.toInstant()
-                                      .atZone(ZoneId.systemDefault())
-                                      .toLocalDate();
+                LocalDate dateFin = dateFinDate.toLocalDate();
                 if (dateFin.getMonth() == now.getMonth() &&
                     dateFin.getYear() == now.getYear()) {
                     count++;
@@ -132,6 +131,7 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter
         }
         return count;
     }
+
     
     public double totalSoldeNonPayé() throws SQLException {
         DaoContratLocation dao = new DaoContratLocation();
