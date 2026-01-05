@@ -13,6 +13,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import controleur.GestionFenetreCharges;
+import modele.BienLouable;
 import modele.ChargesGenerales;
 
 import javax.swing.JScrollPane;
@@ -62,70 +63,7 @@ public class FenetreCharges extends FenetreBase {
 	private JLabel lblchargesmoyen;
 	private JComboBox comboBoxMois;
 	private JComboBox comboBoxAnnee;
-
-	public JTable getTable() {
-		return table;
-	}
-
-	public void setTable(JTable table) {
-		this.table = table;
-	}
-
-	public JLabel getLbltotalentretien() {
-		return lbltotalentretien;
-	}
-
-	public void setLbltotalentretien(JLabel lbltotalentretien) {
-		this.lbltotalentretien = lbltotalentretien;
-	}
-
-	public JLabel getLbltotalorduremenageres() {
-		return lbltotalorduremenageres;
-	}
-
-	public void setLbltotalorduremenageres(JLabel lbltotalorduremenageres) {
-		this.lbltotalorduremenageres = lbltotalorduremenageres;
-	}
-
-	public JLabel getLbltotalascenceur() {
-		return lbltotalascenceur;
-	}
-
-	public void setLbltotalascenceur(JLabel lbltotalascenceur) {
-		this.lbltotalascenceur = lbltotalascenceur;
-	}
-
-	public JLabel getLbl1er() {
-		return lbl1er;
-	}
-
-	public void setLbl1er(JLabel lbl1er) {
-		this.lbl1er = lbl1er;
-	}
-
-	public JLabel getLbl2nde() {
-		return lbl2nde;
-	}
-
-	public void setLbl2nde(JLabel lbl2nde) {
-		this.lbl2nde = lbl2nde;
-	}
-
-	public JLabel getLbl3eme() {
-		return lbl3eme;
-	}
-
-	public void setLbl3eme(JLabel lbl3eme) {
-		this.lbl3eme = lbl3eme;
-	}
-
-	public JLabel getLblchargesmoyen() {
-		return lblchargesmoyen;
-	}
-
-	public void setLblchargesmoyen(JLabel lblchargesmoyen) {
-		this.lblchargesmoyen = lblchargesmoyen;
-	}
+	private BienLouable bl;
 
 	/**
 	 * Launch the application.
@@ -134,7 +72,7 @@ public class FenetreCharges extends FenetreBase {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FenetreCharges frame = new FenetreCharges("", null);
+					FenetreCharges frame = new FenetreCharges("", null,null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -148,9 +86,10 @@ public class FenetreCharges extends FenetreBase {
 	 * 
 	 * @throws SQLException
 	 */
-	public FenetreCharges(String FenetreAvant, List<ChargesGenerales> list) throws SQLException {
+	public FenetreCharges(String FenetreAvant, List<ChargesGenerales> list, BienLouable bl) throws SQLException {
 		super();
 		this.fenetreAvant = FenetreAvant;
+		this.bl = bl;
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.gestionClic = new GestionFenetreCharges(this, list);
 
@@ -172,23 +111,25 @@ public class FenetreCharges extends FenetreBase {
 		JPanel topPanel = new JPanel();
 		topPanel.setLayout(new GridLayout(2, 1, 0, 0));
 		mainPanel.add(topPanel, BorderLayout.NORTH);
-		
+
 		JPanel panel_10 = new JPanel();
 		topPanel.add(panel_10);
-		
+
 		JLabel lblTitre = new JLabel("Charges");
 		lblTitre.setFont(new Font("Tahoma", Font.BOLD, 18));
 		panel_10.add(lblTitre);
-		
+
 		JPanel panel_11 = new JPanel();
 		topPanel.add(panel_11);
-		
+
 		comboBoxMois = new JComboBox();
-		comboBoxMois.setModel(new DefaultComboBoxModel(new String[] {"Mois", "Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Decembre"}));
+		comboBoxMois.setModel(new DefaultComboBoxModel(new String[] { "Mois", "Janvier", "Fevrier", "Mars", "Avril",
+				"Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Decembre" }));
 		panel_11.add(comboBoxMois);
-		
+
 		comboBoxAnnee = new JComboBox();
-		comboBoxAnnee.setModel(new DefaultComboBoxModel(new String[] {"Année", "2023", "2024", "2025", "                 "}));
+		comboBoxAnnee.setModel(
+				new DefaultComboBoxModel(new String[] { "Année", "2023", "2024", "2025", "                 " }));
 		panel_11.add(comboBoxAnnee);
 
 		// Center panel to hold the table and scroll pane
@@ -381,6 +322,70 @@ public class FenetreCharges extends FenetreBase {
 
 	public String getFenetreAvant() {
 		return fenetreAvant;
+	}
+
+	public JTable getTable() {
+		return table;
+	}
+
+	public void setTable(JTable table) {
+		this.table = table;
+	}
+
+	public JLabel getLbltotalentretien() {
+		return lbltotalentretien;
+	}
+
+	public void setLbltotalentretien(JLabel lbltotalentretien) {
+		this.lbltotalentretien = lbltotalentretien;
+	}
+
+	public JLabel getLbltotalorduremenageres() {
+		return lbltotalorduremenageres;
+	}
+
+	public void setLbltotalorduremenageres(JLabel lbltotalorduremenageres) {
+		this.lbltotalorduremenageres = lbltotalorduremenageres;
+	}
+
+	public JLabel getLbltotalascenceur() {
+		return lbltotalascenceur;
+	}
+
+	public void setLbltotalascenceur(JLabel lbltotalascenceur) {
+		this.lbltotalascenceur = lbltotalascenceur;
+	}
+
+	public JLabel getLbl1er() {
+		return lbl1er;
+	}
+
+	public void setLbl1er(JLabel lbl1er) {
+		this.lbl1er = lbl1er;
+	}
+
+	public JLabel getLbl2nde() {
+		return lbl2nde;
+	}
+
+	public void setLbl2nde(JLabel lbl2nde) {
+		this.lbl2nde = lbl2nde;
+	}
+
+	public JLabel getLbl3eme() {
+		return lbl3eme;
+	}
+
+	public void setLbl3eme(JLabel lbl3eme) {
+		this.lbl3eme = lbl3eme;
+	}
+
+	public JLabel getLblchargesmoyen() {
+		return lblchargesmoyen;
+	}
+
+	public void setLblchargesmoyen(JLabel lblchargesmoyen) {
+		this.lblchargesmoyen = lblchargesmoyen;
 	}
 
 }

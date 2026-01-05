@@ -22,14 +22,12 @@ public abstract class GestionHeaderEtFooter implements ActionListener {
 	public void initialize() {
 		fenetre.mntmCharge.addActionListener(this);
 		fenetre.mntmCompteur.addActionListener(this);
-		fenetre.mntmAjouterBat.addActionListener(this);
 
 		fenetre.mntmContratLocation.addActionListener(this);
 		fenetre.mntmTravaux.addActionListener(this);
 		fenetre.mntmLocataire.addActionListener(this);
 
 		fenetre.mntmHistorique.addActionListener(this);
-		fenetre.mntmAjout.addActionListener(this);
 	}
 
 	@Override
@@ -86,7 +84,7 @@ public abstract class GestionHeaderEtFooter implements ActionListener {
 
 		case "Charges":
 			DaoChargesGenerales daoCharges = new DaoChargesGenerales();
-			new FenetreCharges("FenPrincipale", daoCharges.findAll()).setVisible(true);
+			new FenetreCharges("FenPrincipale", daoCharges.findAll(),null).setVisible(true);
 			fenetre.dispose();
 			break;
 
