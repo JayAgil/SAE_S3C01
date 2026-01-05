@@ -184,11 +184,11 @@ public class FenetreCharges extends FenetreBase {
 		topPanel.add(panel_11);
 		
 		comboBoxMois = new JComboBox();
-		comboBoxMois.setModel(new DefaultComboBoxModel(new String[] {"Mois", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"}));
+		comboBoxMois.setModel(new DefaultComboBoxModel(new String[] {"Mois", "Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Decembre"}));
 		panel_11.add(comboBoxMois);
 		
 		comboBoxAnnee = new JComboBox();
-		comboBoxAnnee.setModel(new DefaultComboBoxModel(new String[] {"Année", "2023", "2024", "2025"}));
+		comboBoxAnnee.setModel(new DefaultComboBoxModel(new String[] {"Année", "2023", "2024", "2025", "                 "}));
 		panel_11.add(comboBoxAnnee);
 
 		// Center panel to hold the table and scroll pane

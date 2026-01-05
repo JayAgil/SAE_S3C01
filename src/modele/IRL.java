@@ -29,11 +29,7 @@ public class IRL {
         this.trimestre = trimestre;
     }
 
-    public double getValeur() {
-        return valeur;
-    }
-
-    public void setValeur(double valeur) {
+    public void setIRL(double valeur) {
         this.valeur = valeur;
     }
 
@@ -51,4 +47,8 @@ public class IRL {
                trimestre == other.trimestre &&
                Double.doubleToLongBits(valeur) == Double.doubleToLongBits(other.valeur);
     }
+
+	public double getIRL() {
+		return valeur;
+	}
 }
