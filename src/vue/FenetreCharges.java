@@ -4,6 +4,9 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTable;
@@ -13,22 +16,35 @@ import controleur.GestionFenetreCharges;
 import modele.ChargesGenerales;
 
 import javax.swing.JScrollPane;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Panel;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.awt.Font;
+import java.awt.Component;
+import javax.swing.Box;
 import javax.swing.ImageIcon;
 
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 
 import javax.swing.border.TitledBorder;
+import javax.swing.border.EtchedBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
+import javax.swing.JComboBox;
 import javax.swing.JTextField;
+import javax.swing.DefaultComboBoxModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FenetreCharges extends FenetreBase {
 
@@ -44,6 +60,8 @@ public class FenetreCharges extends FenetreBase {
 	private JLabel lbl2nde;
 	private JLabel lbl3eme;
 	private JLabel lblchargesmoyen;
+	private JComboBox comboBoxMois;
+	private JComboBox comboBoxAnnee;
 
 	public JTable getTable() {
 		return table;
@@ -152,10 +170,26 @@ public class FenetreCharges extends FenetreBase {
 
 		// Top panel (e.g., title or summary)
 		JPanel topPanel = new JPanel();
+		topPanel.setLayout(new GridLayout(2, 1, 0, 0));
+		mainPanel.add(topPanel, BorderLayout.NORTH);
+		
+		JPanel panel_10 = new JPanel();
+		topPanel.add(panel_10);
+		
 		JLabel lblTitre = new JLabel("Charges");
 		lblTitre.setFont(new Font("Tahoma", Font.BOLD, 18));
-		topPanel.add(lblTitre);
-		mainPanel.add(topPanel, BorderLayout.NORTH);
+		panel_10.add(lblTitre);
+		
+		JPanel panel_11 = new JPanel();
+		topPanel.add(panel_11);
+		
+		comboBoxMois = new JComboBox();
+		comboBoxMois.setModel(new DefaultComboBoxModel(new String[] {"Mois", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"}));
+		panel_11.add(comboBoxMois);
+		
+		comboBoxAnnee = new JComboBox();
+		comboBoxAnnee.setModel(new DefaultComboBoxModel(new String[] {"Année", "2023", "2024", "2025"}));
+		panel_11.add(comboBoxAnnee);
 
 		// Center panel to hold the table and scroll pane
 		JPanel tablePanel = new JPanel();
@@ -322,9 +356,27 @@ public class FenetreCharges extends FenetreBase {
 		lbltotalascenceur.setFont(new Font("Tahoma", Font.PLAIN, 45));
 		lbltotalascenceur.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_7.add(lbltotalascenceur, BorderLayout.CENTER);
-
+		comboBoxMois.addActionListener(this.gestionClic);
+		comboBoxAnnee.addActionListener(this.gestionClic);
 		this.gestionClic.initialize();
 		this.gestionClic.chargerDonnees();
+
+	}
+
+	public JComboBox getComboBoxMois() {
+		return comboBoxMois;
+	}
+
+	public void setComboBoxMois(JComboBox comboBoxMois) {
+		this.comboBoxMois = comboBoxMois;
+	}
+
+	public JComboBox getComboBoxAnnee() {
+		return comboBoxAnnee;
+	}
+
+	public void setComboBoxAnnee(JComboBox comboBoxAnnee) {
+		this.comboBoxAnnee = comboBoxAnnee;
 	}
 
 	public String getFenetreAvant() {
