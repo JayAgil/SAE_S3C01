@@ -50,15 +50,10 @@ public class GestionFenetreAssurance extends GestionHeaderEtFooter {
     
     public void chargerAssuranceBatiment(String batiment) throws SQLException {
         DaoAssurance daoAssurance = new DaoAssurance();
+        DaoBatiment dB = new DaoBatiment();
         Assurance assurance = daoAssurance.findByBatiment(batiment);
-        try {
-            int nbBiens = daoAssurance.countBiensAssures(batiment);
-            this.afficherAssuranceBatiment(assurance, nbBiens);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            this.afficherAssuranceBatiment(assurance, 0);
-        }
-
+        int nbBiens = dB.findBatimentByAssurance(assurance.getNumeroAssurance()).size();
+        this.afficherAssuranceBatiment(assurance, nbBiens);
     }
     
 	public void afficherAssuranceBatiment(Assurance assurance, int nbBiens) {

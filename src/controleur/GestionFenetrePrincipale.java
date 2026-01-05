@@ -162,7 +162,7 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter
             break;
 
         case "Compteurs":
-            new FenetreCompteurs("FenPrincipale", this.getDonneesCompteur()).setVisible(true);
+            new FenetreCompteurs("FenPrincipale", this.getDonneesCompteur(),null).setVisible(true);
             fenetre.dispose();
             break;
 
@@ -198,7 +198,6 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter
     }
 
     private void mAJDeBaseDeDonnees(File file) throws SQLException {
-
         DaoContratLocation daoContrat = new DaoContratLocation();
         DaoPaiement daoPaiement = new DaoPaiement();
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
@@ -212,9 +211,7 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter
                 double montantLoyer = Double.parseDouble(data[3].trim());
                 double provisionCharge = Double.parseDouble(data[4].trim());
                 ContratLocation contrat = daoContrat.findContratByLocataireAndBien(idLocataire, idBien);
-                
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
