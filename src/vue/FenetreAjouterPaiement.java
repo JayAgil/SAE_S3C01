@@ -29,6 +29,7 @@ public class FenetreAjouterPaiement extends JInternalFrame {
     private JTextField textFieldDate;
     private JTextField textFieldMontant;
     private JTextField textFieldIdPaiement;
+    private JTextField textFieldDesignation;
 
     /**
      * Launch the application.
@@ -132,6 +133,15 @@ public class FenetreAjouterPaiement extends JInternalFrame {
         JLabel lblIdPaiement = new JLabel("ID Paiement :");
         lblIdPaiement.setBounds(74, 72, 96, 13);
         panel_3.add(lblIdPaiement);
+        
+        JLabel lblDesignation = new JLabel("Désignation :");
+        lblDesignation.setBounds(74, 273, 82, 14);
+        panel_3.add(lblDesignation);
+        
+        textFieldDesignation = new JTextField();
+        textFieldDesignation.setBounds(234, 270, 96, 20);
+        panel_3.add(textFieldDesignation);
+        textFieldDesignation.setColumns(10);
         
      
     }
