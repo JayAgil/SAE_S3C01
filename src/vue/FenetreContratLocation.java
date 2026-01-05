@@ -30,6 +30,8 @@ import javax.swing.UIManager;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FenetreContratLocation extends FenetreBase {
 	private GestionFenetreContratLocation gestionClicContratLocation;
@@ -123,6 +125,9 @@ public class FenetreContratLocation extends FenetreBase {
 
 		JButton btnRetour = new JButton("Retour");
 		panel_2.add(btnRetour);
+		
+		JButton btnReval = new JButton("Revaloriser");
+		panel_2.add(btnReval);
 
 		JPanel panel_3 = new JPanel();
 		panel_1.add(panel_3, BorderLayout.CENTER);
@@ -381,8 +386,8 @@ public class FenetreContratLocation extends FenetreBase {
 		this.gestionClicContratLocation.initialize();
 		btnAjouter.addActionListener(gestionClicContratLocation);
 		btnAnnuler.addActionListener(gestionClicContratLocation);
-		btnRetour.addActionListener(gestionClicContratLocation);
-
+		btnRetour.addActionListener((ActionListener) gestionClicContratLocation);
+		btnReval.addActionListener(this.gestionClicContratLocation);
 	}
 
 	public JTextField getTextFieldNomLoc() {

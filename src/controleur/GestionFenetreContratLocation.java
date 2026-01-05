@@ -2,17 +2,21 @@ package controleur;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import modele.BienLouable;
 import modele.ContratLocation;
+import modele.IRL;
 import modele.Locataire;
 import modele.dao.DaoBienLouable;
 import modele.dao.DaoContratLocation;
+import modele.dao.DaoIRL;
 import modele.dao.DaoLocataire;
 import vue.*;
 
@@ -21,6 +25,8 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
     private FenetreContratLocation fenetre;
     private ContratLocation cl;
     private List<ContratLocation> contrats;
+    
+    private ContratLocation selected;
 
     public GestionFenetreContratLocation(FenetreContratLocation fenetre, ContratLocation cl) throws SQLException {
         super(fenetre);
@@ -35,7 +41,7 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
     }
 
     @Override
-    protected void gererBoutonSpecifique(String texte) {
+    protected void gererBoutonSpecifique(String texte) throws SQLException {
         switch (texte) {
             case "Ajouter":
                 FenetreAjouterContratLocation fACL = new FenetreAjouterContratLocation();
@@ -43,6 +49,21 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
                 break;
             case "Annuler":
                 fenetre.dispose();
+                break;
+            case "Revaloriser":
+            	String id = String.valueOf(Year.now().getValue());
+            	DaoIRL dIRL = new DaoIRL();
+            	IRL courant = dIRL.findById(id);
+            	double val = courant.getIRL();
+            	String input = JOptionPane.showInputDialog(
+            		    null,
+            		    "Veuillez entrer une valeur entre:",
+            		    "Input",
+            		    JOptionPane.INFORMATION_MESSAGE
+            		);
+            		if (input != null && !input.trim().isEmpty()) {
+            		    System.out.println("User entered: " + input);
+            		}
                 break;
         }
     }
