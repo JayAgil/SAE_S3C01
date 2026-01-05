@@ -394,6 +394,15 @@ INSERT INTO SAE_Charges_Generale (Id_Charges_Generale,Type_Charge, Montant_Total
  VALUES ('CHG-0039','Nettoyage',60,8,0.8,TO_DATE('2022-01-11','YYYY-MM-DD'),'BIEN-002');
 
 
+INSERT INTO SAE_Charges_Generale (Id_Charges_Generale,Type_Charge, Montant_Total, Pourcentage, Quotite, Date_Charge, fk_Id_BienLouable)
+ VALUES ('CHG-047','Entretien',42,5,0.5,TO_DATE('2022-01-19','YYYY-MM-DD'),'BIEN-003');
+
+INSERT INTO SAE_Charges_Generale (Id_Charges_Generale,Type_Charge, Montant_Total, Pourcentage, Quotite, Date_Charge, fk_Id_BienLouable)
+ VALUES ('CHG-048','Ascenseur',55,7,0.7,TO_DATE('2022-01-20','YYYY-MM-DD'),'BIEN-003');
+
+INSERT INTO SAE_Charges_Generale (Id_Charges_Generale,Type_Charge, Montant_Total, Pourcentage, Quotite, Date_Charge, fk_Id_BienLouable)
+ VALUES ('CHG-049','Nettoyage',55,7,0.7,TO_DATE('2022-01-20','YYYY-MM-DD'),'BIEN-003');
+
 
 INSERT INTO SAE_Charges_Generale (Id_Charges_Generale,Type_Charge, Montant_Total, Pourcentage, Quotite, Date_Charge, fk_Id_BienLouable)
  VALUES ('CHG-009','Entretien',90,12,1.2,TO_DATE('2022-01-14','YYYY-MM-DD'),'BIEN-009');
