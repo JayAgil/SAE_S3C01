@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import modele.Assurance;
 import modele.Batiment;
 import modele.dao.DaoAssurance;
+import modele.dao.DaoBatiment;
 import vue.FenetreAjouterAssurance;
 import vue.FenetreAssurance;
 import vue.FenetrePrincipale;
@@ -23,10 +24,18 @@ public class GestionFenetreAssurance extends GestionHeaderEtFooter {
     protected void gererBoutonSpecifique(String texte) {
         switch (texte) {
             case "Ajouter assurance":
-                FenetreAjouterAssurance fenAjouterAssurance = new FenetreAjouterAssurance();
+			try {
+            	DaoBatiment dao = new DaoBatiment();
+				Batiment b = dao.findById(this.bat);
+				FenetreAjouterAssurance fenAjouterAssurance = new FenetreAjouterAssurance(b);
                 fenetre.getLayeredPane().add(fenAjouterAssurance);
                 fenAjouterAssurance.setVisible(true);
                 break;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+                
         }
     }
     

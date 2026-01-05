@@ -4,9 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
+
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTable;
@@ -14,14 +12,11 @@ import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 
 import controleur.GestionFenetreBienLouable;
-import modele.Assurance;
 import modele.BienLouable;
 
 import javax.swing.JScrollPane;
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import javax.swing.BorderFactory;
+
 import java.awt.Font;
 import java.awt.Component;
 import javax.swing.Box;
@@ -29,7 +24,6 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.sql.SQLException;
-import java.util.List;
 
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -124,6 +118,10 @@ public class FenetreBienLouable extends FenetreBase {
 		JButton btnContrat = new JButton("Contrat");
 		btnContrat.addActionListener(this.gestionClicBienLouable);
 		panel.add(btnContrat);
+
+		JButton btnAjouter = new JButton("Ajouter");
+		btnAjouter.addActionListener(gestionClicBienLouable);
+		panel.add(btnAjouter);
 
 		JPanel panel_3 = new JPanel();
 		panel_2.add(panel_3, BorderLayout.CENTER);
@@ -263,7 +261,6 @@ public class FenetreBienLouable extends FenetreBase {
 		textFieldNbDPieces.setEditable(false);
 		textFieldNbDPieces.setBorder(null);
 
-		
 		GridBagConstraints gbc_textFieldNbDPieces = new GridBagConstraints();
 		gbc_textFieldNbDPieces.insets = new Insets(0, 0, 5, 0);
 		gbc_textFieldNbDPieces.fill = GridBagConstraints.HORIZONTAL;
@@ -390,7 +387,7 @@ public class FenetreBienLouable extends FenetreBase {
 		gbc_textFieldDP.gridy = 11;
 		panel_4.add(textFieldDP, gbc_textFieldDP);
 		textFieldDP.setColumns(10);
-		
+
 		JPanel panel_6 = new JPanel();
 		GridBagConstraints gbc_panel_6 = new GridBagConstraints();
 		gbc_panel_6.insets = new Insets(0, 0, 5, 0);
@@ -398,7 +395,7 @@ public class FenetreBienLouable extends FenetreBase {
 		gbc_panel_6.gridx = 0;
 		gbc_panel_6.gridy = 1;
 		panel_3.add(panel_6, gbc_panel_6);
-		
+
 		JLabel lblTitreTable = new JLabel("Tous les biens sous le batiment");
 		lblTitreTable.setFont(new Font("Tahoma", Font.BOLD, 15));
 		panel_6.add(lblTitreTable);
@@ -456,7 +453,7 @@ public class FenetreBienLouable extends FenetreBase {
 
 		if (this.bienLouable != null) {
 			this.gestionClicBienLouable.chargerBienEtRemplirFormulaire(this.bienLouable.getIdBienLouable());
-			
+
 		}
 	}
 
