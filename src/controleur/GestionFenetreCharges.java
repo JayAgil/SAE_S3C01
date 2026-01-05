@@ -19,7 +19,9 @@ public class GestionFenetreCharges extends GestionHeaderEtFooter{
     private FenetreCharges fenetre;
     private List<ChargesGenerales> donnees = new ArrayList<>();
 
-    public GestionFenetreCharges(FenetreCharges fenetre, List<ChargesGenerales> list) throws SQLException {
+   
+
+	public GestionFenetreCharges(FenetreCharges fenetre, List<ChargesGenerales> list) throws SQLException {
         super(fenetre);
         this.fenetre = fenetre;
         this.donnees = list;
@@ -32,7 +34,7 @@ public class GestionFenetreCharges extends GestionHeaderEtFooter{
         switch (texte) {
 
             case "Ajouter charge":
-                FenetreAjouterCharge fenAjouterCharge = new FenetreAjouterCharge(this.fenetre.getBl());
+                FenetreAjouterCharge fenAjouterCharge = new FenetreAjouterCharge(this.fenetre.getBl(),this);
                 fenetre.getLayeredPane().add(fenAjouterCharge);
                 fenAjouterCharge.setVisible(true);
                 break;
@@ -161,5 +163,9 @@ public class GestionFenetreCharges extends GestionHeaderEtFooter{
     	    }
     	}
     }
+    public void setDonnees(List<ChargesGenerales> donnees) {
+		this.donnees = donnees;
+	}
+
 
 }
