@@ -396,7 +396,7 @@ INSERT INTO SAE_Charges_Generale (Id_Charges_Generale,Type_Charge, Montant_Total
 
 INSERT INTO SAE_Charges_Generale (Id_Charges_Generale,Type_Charge, Montant_Total, Pourcentage, Quotite, Date_Charge, fk_Id_BienLouable)
  VALUES ('CHG-047','Entretien',42,5,0.5,TO_DATE('2022-01-19','YYYY-MM-DD'),'BIEN-003');
-
+    
 INSERT INTO SAE_Charges_Generale (Id_Charges_Generale,Type_Charge, Montant_Total, Pourcentage, Quotite, Date_Charge, fk_Id_BienLouable)
  VALUES ('CHG-048','Ascenseur',55,7,0.7,TO_DATE('2022-01-20','YYYY-MM-DD'),'BIEN-003');
 
