@@ -36,7 +36,7 @@ public class DaoIRL extends DaoModele<IRL> implements Dao<IRL> {
 
 	@Override
 	protected IRL creerInstance(ResultSet rs) throws SQLException {
-		return new IRL(rs.getDouble(1), rs.getInt(2));
+		return new IRL(rs.getInt(1),rs.getDouble(2));
 	}
 
 	@Override

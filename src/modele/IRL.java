@@ -6,7 +6,7 @@ public class IRL {
 	public double IRL;
 	public int annee;
 	
-	public IRL(double IRL, int anne) {
+	public IRL(int anne,double IRL) {
 		this.IRL = IRL;
 		this.annee = anne;
 	}
