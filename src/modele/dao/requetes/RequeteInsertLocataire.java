@@ -12,8 +12,8 @@ public class RequeteInsertLocataire extends Requete<Locataire> {
         return "INSERT INTO MSF5131A.SAE_LOCATAIRE (" +
                 "Id_Locataire, Nom, Prenom, Adresse, Tel, Email, Code_Postale, Ville, " +
                 "Date_de_naissance, Lieu_de_naissance, Salaire, Profession, Situation_Familiale, " +
-                "Image_Locataire, fk_Id_Garant) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                "fk_Id_Garant) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     }
 
     @Override
@@ -32,7 +32,6 @@ public class RequeteInsertLocataire extends Requete<Locataire> {
         ps.setDouble(11, l.getSalaire());
         ps.setString(12, l.getProfession());
         ps.setString(13, l.getSituationFamiliale());
-        ps.setString(14, l.getImage());
 
         if (l.getGarant() != null)
             ps.setString(15, l.getGarant().getIdGarant());

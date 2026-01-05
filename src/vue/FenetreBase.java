@@ -35,7 +35,6 @@ public abstract class FenetreBase extends JFrame {
 		// Menu items
 		mntmDeconnecter = new JMenuItem("Déconnecter");
 
-		mntmAjouterBat = new JMenuItem("Ajouter bâtiment");
 		mntmCompteur = new JMenuItem("Compteurs");
 		mntmCharge = new JMenuItem("Charges");
 
@@ -44,7 +43,6 @@ public abstract class FenetreBase extends JFrame {
 		mntmLocataire = new JMenuItem("Locataires");
 
 		mntmHistorique = new JMenuItem("Historique de paiement");
-		mntmAjout = new JMenuItem("Ajouter paiement");
 	}
 
 	protected JMenuBar createHeader() {
@@ -56,7 +54,6 @@ public abstract class FenetreBase extends JFrame {
 		mnProfil.add(mntmDeconnecter);
 
 		menuBar.add(mnBatiment);
-		mnBatiment.add(mntmAjouterBat);
 		mnBatiment.add(mntmCompteur);
 		mnBatiment.add(mntmCharge);
 
@@ -67,7 +64,6 @@ public abstract class FenetreBase extends JFrame {
 
 		menuBar.add(mnPaiement);
 		mnPaiement.add(mntmHistorique);
-		mnPaiement.add(mntmAjout);
 
 		return menuBar;
 	}

@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controleur.GestionFenetreAjouterBienLouable;
+import controleur.GestionFenetreBienLouable;
 import modele.Batiment;
 
 import javax.swing.JLabel;
@@ -32,6 +33,7 @@ public class FenetreAjouterBienLouable extends JInternalFrame {
 	private JTextField textFieldType;
 	private GestionFenetreAjouterBienLouable gestionClic;
 	private JComboBox<String> comboBoxBienLouable;
+	private GestionFenetreBienLouable parent;
 
 	/**
 	 * Launch the application.
@@ -40,7 +42,7 @@ public class FenetreAjouterBienLouable extends JInternalFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FenetreAjouterBienLouable frame = new FenetreAjouterBienLouable(null);
+					FenetreAjouterBienLouable frame = new FenetreAjouterBienLouable(null,null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,8 +54,9 @@ public class FenetreAjouterBienLouable extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
-	public FenetreAjouterBienLouable(Batiment b) {
+	public FenetreAjouterBienLouable(Batiment b, GestionFenetreBienLouable parent) {
 		setResizable(false);
+		this.parent = parent;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, -17, 450, 500);
 		contentPane = new JPanel();
@@ -146,7 +149,7 @@ public class FenetreAjouterBienLouable extends JInternalFrame {
 		comboBoxBienLouable.setBounds(219, 359, 96, 21);
 		contentPane.add(comboBoxBienLouable);
 
-		this.gestionClic = new GestionFenetreAjouterBienLouable(this,b);
+		this.gestionClic = new GestionFenetreAjouterBienLouable(this,b,parent);
 		btnVider.addActionListener(this.gestionClic);
 		btnAjouter.addActionListener(this.gestionClic);
 		btnRetour.addActionListener(this.gestionClic);

@@ -15,9 +15,11 @@ import vue.FenetreAjouterBatiment;
 public class GestionFenetreAjouterBatiment extends GestionButtonFenetreAjouter {
 
     private FenetreAjouterBatiment fenetre;
+    private GestionFenetrePrincipale parent;
 
-    public GestionFenetreAjouterBatiment(FenetreAjouterBatiment fenetre) {
+    public GestionFenetreAjouterBatiment(FenetreAjouterBatiment fenetre, GestionFenetrePrincipale parent) {
         this.fenetre = fenetre;
+        this.parent = parent;
     }
 
     @Override
@@ -39,7 +41,9 @@ public class GestionFenetreAjouterBatiment extends GestionButtonFenetreAjouter {
 			if (dao.create(b) == 1) {
 				JOptionPane.showMessageDialog(null, "Batiment ajoutée avec succès !", "Succès",
 						JOptionPane.INFORMATION_MESSAGE);
+				this.parent.remplirComboBatiment();
 				this.fenetre.dispose();
+				
 			} else {
 				JOptionPane.showMessageDialog(null, "Échec de l'ajout du batiment.", "Erreur", JOptionPane.ERROR_MESSAGE);
 			}

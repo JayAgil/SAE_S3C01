@@ -170,7 +170,7 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter
             break;
 
         case "Ajouter":
-            FenetreAjouterBatiment ajout = new FenetreAjouterBatiment();
+            FenetreAjouterBatiment ajout = new FenetreAjouterBatiment(this);
             fenetre.getLayeredPane().add(ajout);
             ajout.setVisible(true);
             break;

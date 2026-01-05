@@ -19,6 +19,7 @@ import javax.swing.SwingConstants;
 import javax.swing.text.DateFormatter;
 
 import controleur.GestionFenetreAjouterBatiment;
+import controleur.GestionFenetrePrincipale;
 
 import java.awt.Component;
 import javax.swing.Box;
@@ -29,6 +30,7 @@ public class FenetreAjouterBatiment extends JInternalFrame {
 	private JTextField textFieldAdresse;
 	private JTextField textFieldDate;
 	private GestionFenetreAjouterBatiment gestionClic;
+	private GestionFenetrePrincipale parent;
 
 	/**
 	 * Launch the application.
@@ -38,7 +40,7 @@ public class FenetreAjouterBatiment extends JInternalFrame {
 			@Override
 			public void run() {
 				try {
-					FenetreAjouterBatiment frame = new FenetreAjouterBatiment();
+					FenetreAjouterBatiment frame = new FenetreAjouterBatiment(null);
 					frame.setVisible(true);
 					frame.setResizable(false);
 				} catch (Exception e) {
@@ -51,9 +53,10 @@ public class FenetreAjouterBatiment extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
-	public FenetreAjouterBatiment() {
+	public FenetreAjouterBatiment(GestionFenetrePrincipale parent) {
 		setResizable(false);
-		this.gestionClic = new GestionFenetreAjouterBatiment(this);
+		this.parent = parent;
+		this.gestionClic = new GestionFenetreAjouterBatiment(this, parent);
 		setBounds(100, 100, 450, 500);
 		getContentPane().setLayout(new BorderLayout(0, 0));
 
