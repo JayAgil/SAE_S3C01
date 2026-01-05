@@ -84,9 +84,10 @@ CREATE TABLE SAE_Diagnostics (
 );
 
 CREATE TABLE SAE_IRL (
-    Annee NUMBER PRIMARY KEY,
+    Annee NUMBER ,
     IRL NUMBER,
-    Trismetre NUMBER
+    Trimestre NUMBER,
+    CONSTRAINT deuxClesPrimaire PRIMARY KEY (Annee, Trimestre)
 );
 
 CREATE TABLE SAE_Paiement (

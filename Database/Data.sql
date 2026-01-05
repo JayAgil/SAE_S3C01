@@ -274,57 +274,61 @@ INSERT INTO SAE_Locataire (Id_Locataire, Nom, Prenom, Adresse, Tel, Email, Code_
 
 
 ----------------------------------------------------------------------------------------------------------------
+
+--Date_Fin NULL et Date_versement NULL, à remplacer, check pour les index aussi
+
+---TESTER avec 0000-00-Jour  -> Mois et année non accepté, '0001-01-12' -> Fonctionne
 INSERT INTO SAE_ContratLocation (Numero_de_contrat,Date_debut, Date_Fin, Montant_de_caution, Provision_Charge, Solde, Montant_Mensuel,
  Date_versement, Index_Compteur_Eau, Index_Compteur_Electrcite, Index_Compteur_Gaz, fk_Id_BienLouable)
- VALUES ('CTR-001',TO_DATE('2023-01-01','YYYY-MM-DD'),NULL,800,40,0,900,NULL,0,0,0,'BIEN-001');
+ VALUES ('CTR-001',TO_DATE('2023-01-01','YYYY-MM-DD'),TO_DATE('2026-01-01','YYYY-MM-DD'),800,40,0,900,TO_DATE('0001-01-12','YYYY-MM-DD'),0,0,0,'BIEN-001');
 
 INSERT INTO SAE_ContratLocation (Numero_de_contrat,Date_debut, Date_Fin, Montant_de_caution, Provision_Charge, Solde, Montant_Mensuel,
  Date_versement, Index_Compteur_Eau, Index_Compteur_Electrcite, Index_Compteur_Gaz, fk_Id_BienLouable)
- VALUES ('CTR-002',TO_DATE('2023-02-15','YYYY-MM-DD'),NULL,600,30,0,750,NULL,0,0,0,'BIEN-002');
+ VALUES ('CTR-002',TO_DATE('2023-02-15','YYYY-MM-DD'),TO_DATE('2026-02-15','YYYY-MM-DD'),600,30,0,750,NULL,0,0,0,'BIEN-002');
 
 INSERT INTO SAE_ContratLocation (Numero_de_contrat,Date_debut, Date_Fin, Montant_de_caution, Provision_Charge, Solde, Montant_Mensuel,
  Date_versement, Index_Compteur_Eau, Index_Compteur_Electrcite, Index_Compteur_Gaz, fk_Id_BienLouable)
- VALUES ('CTR-003',TO_DATE('2022-10-01','YYYY-MM-DD'),NULL,1200,50,0,1100,NULL,0,0,0,'BIEN-003');
+ VALUES ('CTR-003',TO_DATE('2022-10-01','YYYY-MM-DD'),TO_DATE('2025-10-01','YYYY-MM-DD'),1200,50,0,1100,NULL,0,0,0,'BIEN-003');
 
 INSERT INTO SAE_ContratLocation (Numero_de_contrat,Date_debut, Date_Fin, Montant_de_caution, Provision_Charge, Solde, Montant_Mensuel,
  Date_versement, Index_Compteur_Eau, Index_Compteur_Electrcite, Index_Compteur_Gaz, fk_Id_BienLouable)
- VALUES ('CTR-004',TO_DATE('2023-03-20','YYYY-MM-DD'),NULL,900,40,0,950,NULL,0,0,0,'BIEN-004');
+ VALUES ('CTR-004',TO_DATE('2023-03-20','YYYY-MM-DD'),TO_DATE('2026-03-20','YYYY-MM-DD'),900,40,0,950,NULL,0,0,0,'BIEN-004');
 
 INSERT INTO SAE_ContratLocation (Numero_de_contrat,Date_debut, Date_Fin, Montant_de_caution, Provision_Charge, Solde, Montant_Mensuel,
  Date_versement, Index_Compteur_Eau, Index_Compteur_Electrcite, Index_Compteur_Gaz, fk_Id_BienLouable)
- VALUES ('CTR-005',TO_DATE('2023-05-01','YYYY-MM-DD'),NULL,500,20,0,700,NULL,0,0,0,'BIEN-005');
+ VALUES ('CTR-005',TO_DATE('2023-05-01','YYYY-MM-DD'),TO_DATE('2026-05-01','YYYY-MM-DD'),500,20,0,700,NULL,0,0,0,'BIEN-005');
 
 INSERT INTO SAE_ContratLocation (Numero_de_contrat,Date_debut, Date_Fin, Montant_de_caution, Provision_Charge, Solde, Montant_Mensuel,
  Date_versement, Index_Compteur_Eau, Index_Compteur_Electrcite, Index_Compteur_Gaz, fk_Id_BienLouable)
- VALUES ('CTR-006',TO_DATE('2022-09-10','YYYY-MM-DD'),NULL,1000,35,0,1050,NULL,0,0,0,'BIEN-006');
+ VALUES ('CTR-006',TO_DATE('2022-09-10','YYYY-MM-DD'),TO_DATE('2025-09-10','YYYY-MM-DD'),1000,35,0,1050,NULL,0,0,0,'BIEN-006');
 
 INSERT INTO SAE_ContratLocation (Numero_de_contrat,Date_debut, Date_Fin, Montant_de_caution, Provision_Charge, Solde, Montant_Mensuel,
  Date_versement, Index_Compteur_Eau, Index_Compteur_Electrcite, Index_Compteur_Gaz, fk_Id_BienLouable)
- VALUES ('CTR-007',TO_DATE('2023-02-01','YYYY-MM-DD'),NULL,850,50,0,850,NULL,0,0,0,'BIEN-007');
+ VALUES ('CTR-007',TO_DATE('2023-02-01','YYYY-MM-DD'),TO_DATE('2026-02-01','YYYY-MM-DD'),850,50,0,850,NULL,0,0,0,'BIEN-007');
 
 INSERT INTO SAE_ContratLocation (Numero_de_contrat,Date_debut, Date_Fin, Montant_de_caution, Provision_Charge, Solde, Montant_Mensuel,
  Date_versement, Index_Compteur_Eau, Index_Compteur_Electrcite, Index_Compteur_Gaz, fk_Id_BienLouable)
- VALUES ('CTR-008',TO_DATE('2023-03-01','YYYY-MM-DD'),NULL,950,50,0,950,NULL,0,0,0,'BIEN-008');
+ VALUES ('CTR-008',TO_DATE('2023-03-01','YYYY-MM-DD'),TO_DATE('2026-03-01','YYYY-MM-DD'),950,50,0,950,NULL,0,0,0,'BIEN-008');
 
 INSERT INTO SAE_ContratLocation (Numero_de_contrat,Date_debut, Date_Fin, Montant_de_caution, Provision_Charge, Solde, Montant_Mensuel,
  Date_versement, Index_Compteur_Eau, Index_Compteur_Electrcite, Index_Compteur_Gaz, fk_Id_BienLouable)
- VALUES ('CTR-009',TO_DATE('2023-03-15','YYYY-MM-DD'),NULL,650,40,0,800,NULL,0,0,0,'BIEN-009');
+ VALUES ('CTR-009',TO_DATE('2023-03-15','YYYY-MM-DD'),TO_DATE('2026-03-15','YYYY-MM-DD'),650,40,0,800,NULL,0,0,0,'BIEN-009');
 
 INSERT INTO SAE_ContratLocation (Numero_de_contrat,Date_debut, Date_Fin, Montant_de_caution, Provision_Charge, Solde, Montant_Mensuel,
  Date_versement, Index_Compteur_Eau, Index_Compteur_Electrcite, Index_Compteur_Gaz, fk_Id_BienLouable)
- VALUES ('CTR-010',TO_DATE('2023-04-15','YYYY-MM-DD'),NULL,650,50,0,900,NULL,0,0,0,'BIEN-010');
+ VALUES ('CTR-010',TO_DATE('2023-04-15','YYYY-MM-DD'),TO_DATE('2026-04-15','YYYY-MM-DD'),650,50,0,900,NULL,0,0,0,'BIEN-010');
 
  INSERT INTO SAE_ContratLocation (Numero_de_contrat,Date_debut, Date_Fin, Montant_de_caution, Provision_Charge, Solde, Montant_Mensuel,
  Date_versement, Index_Compteur_Eau, Index_Compteur_Electrcite, Index_Compteur_Gaz, fk_Id_BienLouable)
- VALUES ('CTR-011',TO_DATE('2022-11-01','YYYY-MM-DD'),NULL,1250,100,0,1100,NULL,0,0,0,'BIEN-011');
+ VALUES ('CTR-011',TO_DATE('2022-11-01','YYYY-MM-DD'),('2025-11-01','YYYY-MM-DD'),1250,100,0,1100,NULL,0,0,0,'BIEN-011');
 
 INSERT INTO SAE_ContratLocation (Numero_de_contrat,Date_debut, Date_Fin, Montant_de_caution, Provision_Charge, Solde, Montant_Mensuel,
  Date_versement, Index_Compteur_Eau, Index_Compteur_Electrcite, Index_Compteur_Gaz, fk_Id_BienLouable)
- VALUES ('CTR-012',TO_DATE('2022-12-01','YYYY-MM-DD'),NULL,1250,150,0,1100,NULL,0,0,0,'BIEN-012');
+ VALUES ('CTR-012',TO_DATE('2022-12-01','YYYY-MM-DD'),TO_DATE('2025-12-01','YYYY-MM-DD'),1250,150,0,1100,NULL,0,0,0,'BIEN-012');
 
  INSERT INTO SAE_ContratLocation (Numero_de_contrat,Date_debut, Date_Fin, Montant_de_caution, Provision_Charge, Solde, Montant_Mensuel,
  Date_versement, Index_Compteur_Eau, Index_Compteur_Electrcite, Index_Compteur_Gaz, fk_Id_BienLouable)
- VALUES ('CTR-013',TO_DATE('2023-03-17','YYYY-MM-DD'),NULL,700,50,0,800,NULL,0,0,0,'BIEN-013');
+ VALUES ('CTR-013',TO_DATE('2023-03-17','YYYY-MM-DD'),TO_DATE('2026-03-17','YYYY-MM-DD'),700,50,0,800,NULL,0,0,0,'BIEN-013');
 
 
 
@@ -588,12 +592,46 @@ INSERT INTO SAE_Diagnostics VALUES ('DIA-057','Gaz',TO_DATE('2025-10-30','YYYY-M
 
 
 ----------------------------------------------------------------------------------------------------------------
-INSERT INTO SAE_IRL (Annee, IRL, Trismetre) VALUES (2020,130.5,1);
-INSERT INTO SAE_IRL (Annee, IRL, Trismetre) VALUES (2021,132.2,3);
-INSERT INTO SAE_IRL (Annee, IRL, Trismetre) VALUES (2022,135.6,1);
-INSERT INTO SAE_IRL (Annee, IRL, Trismetre) VALUES (2023,138.5,2);
-INSERT INTO SAE_IRL (Annee, IRL, Trismetre) VALUES (2019,128.4,3);
-INSERT INTO SAE_IRL (Annee, IRL, Trismetre) VALUES (2018,126.3,3);
+INSERT INTO SAE_IRL (Annee, IRL, Trimestre) VALUES (2018, 127.22, 1);
+INSERT INTO SAE_IRL (Annee, IRL, Trimestre) VALUES (2018, 127.77, 2);
+INSERT INTO SAE_IRL (Annee, IRL, Trimestre) VALUES (2018, 128.45, 3);
+INSERT INTO SAE_IRL (Annee, IRL, Trimestre) VALUES (2018, 129.03, 4);
+
+INSERT INTO SAE_IRL (Annee, IRL, Trimestre) VALUES (2019, 129.38, 1);
+INSERT INTO SAE_IRL (Annee, IRL, Trimestre) VALUES (2019, 129.72, 2);
+INSERT INTO SAE_IRL (Annee, IRL, Trimestre) VALUES (2019, 129.99, 3);
+INSERT INTO SAE_IRL (Annee, IRL, Trimestre) VALUES (2019, 130.26, 4);
+
+INSERT INTO SAE_IRL (Annee, IRL, Trimestre) VALUES (2020, 130.57, 1);
+INSERT INTO SAE_IRL (Annee, IRL, Trimestre) VALUES (2020, 130.57 ,2);
+INSERT INTO SAE_IRL (Annee, IRL, Trimestre) VALUES (2020, 130.59 ,3);
+INSERT INTO SAE_IRL (Annee, IRL, Trimestre) VALUES (2020, 130.52 ,4);
+
+INSERT INTO SAE_IRL (Annee, IRL, Trimestre) VALUES (2021, 130.69, 1);
+INSERT INTO SAE_IRL (Annee, IRL, Trimestre) VALUES (2021, 131.12, 2);
+INSERT INTO SAE_IRL (Annee, IRL, Trimestre) VALUES (2021, 131.67, 3);
+INSERT INTO SAE_IRL (Annee, IRL, Trimestre) VALUES (2021, 132.62, 4);
+
+INSERT INTO SAE_IRL (Annee, IRL, Trimestre) VALUES (2022, 133.93, 1);
+INSERT INTO SAE_IRL (Annee, IRL, Trimestre) VALUES (2022, 135.84, 2);
+INSERT INTO SAE_IRL (Annee, IRL, Trimestre) VALUES (2022, 136.27, 3);
+INSERT INTO SAE_IRL (Annee, IRL, Trimestre) VALUES (2022, 137.26, 4);
+
+INSERT INTO SAE_IRL (Annee, IRL, Trimestre) VALUES (2023, 138.61, 1);
+INSERT INTO SAE_IRL (Annee, IRL, Trimestre) VALUES (2023, 140.59, 2);
+INSERT INTO SAE_IRL (Annee, IRL, Trimestre) VALUES (2023, 141.03, 3);
+INSERT INTO SAE_IRL (Annee, IRL, Trimestre) VALUES (2023, 142.06, 4);
+
+INSERT INTO SAE_IRL (Annee, IRL, Trimestre) VALUES (2024, 143.46, 1);
+INSERT INTO SAE_IRL (Annee, IRL, Trimestre) VALUES (2024, 145.17, 2);
+INSERT INTO SAE_IRL (Annee, IRL, Trimestre) VALUES (2024, 144.51, 3);
+INSERT INTO SAE_IRL (Annee, IRL, Trimestre) VALUES (2024, 144.64, 4);
+
+INSERT INTO SAE_IRL (Annee, IRL, Trimestre) VALUES (2025, 145.47, 1);
+INSERT INTO SAE_IRL (Annee, IRL, Trimestre) VALUES (2025, 146.68, 2);
+INSERT INTO SAE_IRL (Annee, IRL, Trimestre) VALUES (2025, 145.77, 3);
+
+
 
 
 
@@ -758,22 +796,22 @@ INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_cont
 
 ----------------------------------------------------------------------------------------------------------------
 INSERT INTO SAE_Assurance (Numero_d_assurance, Prime, Montant, Type_assurance, Agence, Adresse_agence, Tel_agence, fk_Adresse)
- VALUES ('ASS-001',200,120,'Habitation','AXA','12 Rue Blanche','0145002001','20 Chemin La Fayette');
+ VALUES ('ASS-001',200,120,'Proprietaire','LesFurets','12 Rue Blanche','0145002001','20 Chemin La Fayette');
 
 INSERT INTO SAE_Assurance (Numero_d_assurance, Prime, Montant, Type_assurance, Agence, Adresse_agence, Tel_agence, fk_Adresse)
- VALUES ('ASS-002',250,140,'Locataire','MAIF','8 Rue des Arts','0145203001','31 Rue de la Paix');
+ VALUES ('ASS-002',250,140,'Aide juridique','MAIF','8 Rue des Arts','0145203001','31 Rue de la Paix');
 
 INSERT INTO SAE_Assurance (Numero_d_assurance, Prime, Montant, Type_assurance, Agence, Adresse_agence, Tel_agence, fk_Adresse)
- VALUES ('ASS-003',300,160,'Proprietaire','Groupama','5 Rue du Moulin','0145304001','15 Allee de la Gare');
+ VALUES ('ASS-003',300,160,'Proprietaire','LeLynx','5 Rue du Moulin','0145304001','15 Allee de la Gare');
 
 INSERT INTO SAE_Assurance (Numero_d_assurance, Prime, Montant, Type_assurance, Agence, Adresse_agence, Tel_agence, fk_Adresse)
- VALUES ('ASS-004',180,100,'Incendie','Allianz','3 Rue Verte','0145506001','7 Rue de la Croix');
+ VALUES ('ASS-004',180,100,'Proprietaire','LaMAE','3 Rue Verte','0145506001','7 Rue de la Croix');
 
 INSERT INTO SAE_Assurance (Numero_d_assurance, Prime, Montant, Type_assurance, Agence, Adresse_agence, Tel_agence, fk_Adresse)
- VALUES ('ASS-005',220,130,'Multirisque','AXA','15 Avenue Est','0145607001','24 Impasse des tomates'); 
+ VALUES ('ASS-005',220,130,'Proprietaire','AbeilleAssurance','15 Avenue Est','0145607001','24 Impasse des tomates'); 
 
 INSERT INTO SAE_Assurance (Numero_d_assurance, Prime, Montant, Type_assurance, Agence, Adresse_agence, Tel_agence, fk_Adresse)
- VALUES ('ASS-006',240,150,'Habitation','MAIF','9 Rue Royale','0145708001','26 Chemin des pissenlits');
+ VALUES ('ASS-006',240,150,'Aide juridique','ABE','9 Rue Royale','0145708001','26 Chemin des pissenlits');
 
 
 
