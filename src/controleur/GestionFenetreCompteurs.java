@@ -15,7 +15,9 @@ public class GestionFenetreCompteurs extends GestionHeaderEtFooter {
     private FenetreCompteurs fenetre;
     private List<Compteur> cpt;
 
-    public GestionFenetreCompteurs(FenetreCompteurs fenetre, List<Compteur> cpt) {
+   
+
+	public GestionFenetreCompteurs(FenetreCompteurs fenetre, List<Compteur> cpt) {
         super(fenetre);
         this.fenetre = fenetre;
         this.cpt = cpt;
@@ -26,7 +28,7 @@ public class GestionFenetreCompteurs extends GestionHeaderEtFooter {
         calculerTotaux();
     }
     
-    private void remplirTableCompteurs() {
+    public void remplirTableCompteurs() {
         DefaultTableModel model =
             (DefaultTableModel) fenetre.getTableCompteurs().getModel();
         model.setRowCount(0); 
@@ -84,7 +86,7 @@ public class GestionFenetreCompteurs extends GestionHeaderEtFooter {
     protected void gererBoutonSpecifique(String texte) {
         switch (texte) {
             case "Ajouter compteur":
-                FenetreAjouterCompteur fenAjouterCompteur = new FenetreAjouterCompteur();
+                FenetreAjouterCompteur fenAjouterCompteur = new FenetreAjouterCompteur(this.fenetre.getB(),this);
                 fenetre.getLayeredPane().add(fenAjouterCompteur);
                 fenAjouterCompteur.setVisible(true);
                 break;
@@ -120,4 +122,7 @@ public class GestionFenetreCompteurs extends GestionHeaderEtFooter {
     	}
     		
     }
+    public void setCpt(List<Compteur> cpt) {
+		this.cpt = cpt;
+	}
 }

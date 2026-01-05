@@ -34,7 +34,7 @@ public class GestionAjouterIRL extends GestionButtonFenetreAjouter {
 		try {
 			DaoIRL dao = new DaoIRL();
 			List<JTextField> donnees = this.getTextFields();
-			IRL irl = new IRL(Integer.parseInt(donnees.get(0).getText()), Double.parseDouble(donnees.get(1).getText()));
+			IRL irl = new IRL(Integer.parseInt(donnees.get(0).getText()), Integer.parseInt(donnees.get(1).getText()), Double.parseDouble(donnees.get(2).getText()));
 			if (dao.create(irl) == 1) {
 				JOptionPane.showMessageDialog(null, "IRL ajoutée avec succès !", "Succès",
 						JOptionPane.INFORMATION_MESSAGE);

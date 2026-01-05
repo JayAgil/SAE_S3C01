@@ -78,7 +78,7 @@ public abstract class GestionHeaderEtFooter implements ActionListener {
 
 		case "Compteurs":
 			DaoCompteur dao = new DaoCompteur();
-			new FenetreCompteurs("FenPrincipale", dao.findAll()).setVisible(true);
+			new FenetreCompteurs("FenPrincipale", dao.findAll(),null).setVisible(true);
 			fenetre.dispose();
 			break;
 

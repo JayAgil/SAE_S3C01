@@ -120,7 +120,7 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
             break;
 
 		case "Compteur":
-			new FenetreCompteurs("FenetreBienLouable", getDonneesCompteur()).setVisible(true);
+			new FenetreCompteurs("FenetreBienLouable", getDonneesCompteur(),bien).setVisible(true);
 			fenetrebienlouable.dispose();
 			break;
 
