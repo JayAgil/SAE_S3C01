@@ -3,10 +3,12 @@ package vue;
 import java.awt.EventQueue;
 
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.DateFormatter;
 
 import controleur.GestionFenetreAjouterDiagnostic;
 import controleur.GestionFenetreDiagnostic;
@@ -15,6 +17,7 @@ import modele.BienLouable;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,17 +98,24 @@ public class FenetreAjouterDiagnostic extends JInternalFrame {
 		lblDateRealisation.setBounds(27, 209, labelW, 20);
 		contentPane.add(lblDateRealisation);
 
-		textFieldDateRealisation = new JTextField();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		DateFormatter dateFormatter = new DateFormatter(format);
+		dateFormatter.setAllowsInvalid(false);
+
+		textFieldDateRealisation = new JFormattedTextField(dateFormatter);
 		textFieldDateRealisation.setBounds(fieldX, 209, fieldW, fieldH);
+		textFieldDateRealisation.setToolTipText("Format attendu : yyyy-MM-dd");
 		contentPane.add(textFieldDateRealisation);
+
 
 		JLabel lblTypeDateValidite = new JLabel("Date Validité :");
 		lblTypeDateValidite.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblTypeDateValidite.setBounds(27, 257, 110, 20);
 		contentPane.add(lblTypeDateValidite);
 
-		textFieldDateValidité = new JTextField();
+		textFieldDateValidité = new JFormattedTextField(dateFormatter);
 		textFieldDateValidité.setBounds(fieldX, 257, fieldW, fieldH);
+		textFieldDateValidité.setToolTipText("Format attendu : yyyy-MM-dd");
 		contentPane.add(textFieldDateValidité);
 
 		JLabel lblFichier = new JLabel("Fichier : ");
