@@ -39,4 +39,5 @@ LEFT JOIN (
         WHERE EXTRACT(YEAR FROM Date_de_facture) = 2022
         GROUP BY fk_Id_BienLouable
     ) f ON b.Id_BienLouable = f.fk_Id_BienLouable
-) charges ON cl.fk_Id_BienLouable = charges.Id_BienLouable;
+) charges ON cl.fk_Id_BienLouable = charges.Id_BienLouable
+ORDER BY cl.Numero_de_contrat;
