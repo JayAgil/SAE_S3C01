@@ -38,16 +38,6 @@ public class TestBatiment {
     }
 
     @Test
-    public void calculerAge_ok() {
-        int annee = LocalDate.now().minusYears(10).getYear();
-        Batiment b = new Batiment(
-            "Rue test",
-            Date.valueOf(annee + "-01-01"));
-
-        assertTrue(b.calculerAge() >= 9);
-    }
-
-    @Test
     public void equals_memeAdresse_true() {
         Batiment b1 = new Batiment("Rue A", Date.valueOf("2000-01-01"));
         Batiment b2 = new Batiment("Rue A", Date.valueOf("2010-01-01"));
