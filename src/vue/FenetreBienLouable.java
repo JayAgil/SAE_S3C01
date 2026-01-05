@@ -455,6 +455,7 @@ public class FenetreBienLouable extends FenetreBase {
 
 		if (this.bienLouable != null) {
 			this.gestionClicBienLouable.chargerBienEtRemplirFormulaire(this.bienLouable.getIdBienLouable());
+			
 		}
 	}
 
