@@ -56,7 +56,7 @@ CREATE TABLE SAE_ContratLocation (
     Montant_Mensuel NUMBER,
     Date_versement DATE,
     Index_Compteur_Eau NUMBER,
-    Index_Compteur_Electrcite NUMBER,
+    Index_Compteur_Electricite NUMBER,
     Index_Compteur_Gaz NUMBER,
     fk_Id_BienLouable VARCHAR2(50),
     CONSTRAINT fk_contrat_bien FOREIGN KEY (fk_Id_BienLouable) REFERENCES SAE_BienLouable(Id_BienLouable)
@@ -95,6 +95,7 @@ CREATE TABLE SAE_Paiement (
     Montant NUMBER,
     Date_Paiement DATE,
     fk_Numero_de_contrat VARCHAR2(50),
+    Designation_Paiement VARCHAR2(50),
     CONSTRAINT fk_paiement_contrat FOREIGN KEY (fk_Numero_de_contrat) REFERENCES SAE_ContratLocation(Numero_de_contrat)
 );
 
@@ -154,3 +155,7 @@ CREATE TABLE SAE_Contrat_Locataire (
     CONSTRAINT fk_cl_loc FOREIGN KEY (Id_Locataire) REFERENCES SAE_Locataire(Id_Locataire),
     CONSTRAINT fk_cl_con FOREIGN KEY (Numero_de_contrat) REFERENCES SAE_ContratLocation(Numero_de_contrat)
 );
+
+
+SET AUTOCOMMIT ON;
+SHOW AUTOCOMMIT;
