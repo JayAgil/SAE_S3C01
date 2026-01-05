@@ -274,32 +274,4 @@ public class FenetreTravaux extends FenetreBase {
 		return fenetreAvant;
 	}
 
-	public void setFactures(List<Facture> factures) {
-		this.factures = factures;
-		remplirTable();
-	}
-
-	private void remplirTable() {
-		DefaultTableModel model = (DefaultTableModel) table.getModel();
-		model.setRowCount(0);
-		for (Facture f : factures) {
-			model.addRow(new Object[] { f.getNumeroFacture(), f.getMontant(), f.getDateDeFacture(),
-					f.getCompteBancaire(), f.getMontantDevis(), f.getDatePaiement(), f.getDesignationDeTravaux(),
-					f.getEntreprise().getNom() });
-		}
-	}
-
-	public Facture getFactureSelectionnee(int row) {
-		if (row < 0 || row >= factures.size())
-			return null;
-		return factures.get(row);
-	}
-
-	public Facture getFactureSelectionnee() {
-		int row = table.getSelectedRow();
-		if (row == -1)
-			return null;
-		return getFactureSelectionnee(row);
-	}
-
 }
