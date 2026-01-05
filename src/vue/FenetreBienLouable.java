@@ -263,6 +263,7 @@ public class FenetreBienLouable extends FenetreBase {
 		textFieldNbDPieces.setEditable(false);
 		textFieldNbDPieces.setBorder(null);
 
+		
 		GridBagConstraints gbc_textFieldNbDPieces = new GridBagConstraints();
 		gbc_textFieldNbDPieces.insets = new Insets(0, 0, 5, 0);
 		gbc_textFieldNbDPieces.fill = GridBagConstraints.HORIZONTAL;
