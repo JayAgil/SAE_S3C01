@@ -3,45 +3,52 @@ package modele;
 import java.util.Objects;
 
 public class IRL {
-	public double IRL;
-	public int annee;
-	
-	public IRL(int anne,double IRL) {
-		this.IRL = IRL;
-		this.annee = anne;
-	}
+    private int annee;
+    private int trimestre; 
+    private double valeur; 
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(IRL, annee);
-	}
+    public IRL(int annee, int trimestre, double valeur) {
+        this.annee = annee;
+        this.trimestre = trimestre;
+        this.valeur = valeur;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (!(obj instanceof IRL)) {
-			return false;
-		}
-		IRL other = (IRL) obj;
-		return Double.doubleToLongBits(IRL) == Double.doubleToLongBits(other.IRL) && Objects.equals(annee, other.annee);
-	}
+    public int getAnnee() {
+        return annee;
+    }
 
-	public int getAnnee() {
-		return annee;
-	}
+    public void setAnnee(int annee) {
+        this.annee = annee;
+    }
 
-	public void setAnnee(int anne) {
-		this.annee = anne;
-	}
+    public int getTrimestre() {
+        return trimestre;
+    }
 
-	public void setIRL(double iRL) {
-		IRL = iRL;
-	}
+    public void setTrimestre(int trimestre) {
+        this.trimestre = trimestre;
+    }
 
-	public double getIRL() {
-		return IRL;
-	}
-	
+    public double getValeur() {
+        return valeur;
+    }
+
+    public void setValeur(double valeur) {
+        this.valeur = valeur;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(annee, trimestre, valeur);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof IRL)) return false;
+        IRL other = (IRL) obj;
+        return annee == other.annee &&
+               trimestre == other.trimestre &&
+               Double.doubleToLongBits(valeur) == Double.doubleToLongBits(other.valeur);
+    }
 }

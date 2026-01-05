@@ -207,29 +207,29 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter
         if (e.getClickCount() == 2 && e.getSource() instanceof JTable) {
             JTable table = (JTable) e.getSource();
             int row = table.rowAtPoint(e.getPoint());
-            int column = table.columnAtPoint(e.getPoint());
-            int targetColumn = 0;
-            if (row != -1 && column == targetColumn) {
+            if (row != -1) {
                 try {
-                    String idCtrt = table.getValueAt(row, column).toString();
+                    int idColumn = 0; 
+                    String idCtrt = table.getValueAt(row, idColumn).toString();
                     DaoBienLouable daoBL = new DaoBienLouable();
                     BienLouable bien = daoBL.findByIdContrat(idCtrt);
+
                     if (bien == null) {
-                        JOptionPane.showMessageDialog(null, "Aucun bien louable trouvé pour ce contrat.");
+                        JOptionPane.showMessageDialog(null,
+                                "Aucun bien louable trouvé pour ce contrat.");
                         return;
                     }
-                    // pass the bien selected by the user here i have put here
-                    // null but there must be a bien that the user clicked
-                    FenetreBienLouable fen = new FenetreBienLouable("FenetrePrincipale", bien);
+                    FenetreBienLouable fen =
+                            new FenetreBienLouable("FenetrePrincipale", bien);
                     fen.setVisible(true);
                     fenetre.dispose();
-                } catch (SQLException e1) {
-                    e1.printStackTrace();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
                 }
             }
         }
-
     }
+
     
     /**
      * Fill all the info panels on the main window
