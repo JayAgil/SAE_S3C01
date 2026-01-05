@@ -6,9 +6,6 @@ import modele.ContratLocation;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
@@ -19,7 +16,6 @@ import javax.swing.JScrollPane;
 import javax.swing.BorderFactory;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Panel;
 import java.awt.Font;
 import java.awt.GridBagLayout;
@@ -27,11 +23,8 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class FenetreContratLocation extends FenetreBase {
 	private GestionFenetreContratLocation gestionClicContratLocation;
@@ -126,8 +119,11 @@ public class FenetreContratLocation extends FenetreBase {
 		JButton btnRetour = new JButton("Retour");
 		panel_2.add(btnRetour);
 		
-		JButton btnReval = new JButton("Revaloriser");
-		panel_2.add(btnReval);
+		JButton btnRevalLoyer = new JButton("Revaloriser loyer");
+		panel_2.add(btnRevalLoyer);
+		
+		JButton btnRevalCharge = new JButton("Revaloriser charge");
+		panel_2.add(btnRevalCharge);
 
 		JPanel panel_3 = new JPanel();
 		panel_1.add(panel_3, BorderLayout.CENTER);
@@ -387,7 +383,8 @@ public class FenetreContratLocation extends FenetreBase {
 		btnAjouter.addActionListener(gestionClicContratLocation);
 		btnAnnuler.addActionListener(gestionClicContratLocation);
 		btnRetour.addActionListener((ActionListener) gestionClicContratLocation);
-		btnReval.addActionListener(this.gestionClicContratLocation);
+		btnRevalLoyer.addActionListener(this.gestionClicContratLocation);
+		btnRevalCharge.addActionListener(this.gestionClicContratLocation);
 	}
 
 	public JTextField getTextFieldNomLoc() {

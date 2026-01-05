@@ -1,4 +1,5 @@
 package controleur;
+
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -12,79 +13,76 @@ import vue.*;
 
 public class GestionFenetreDiagnostic extends GestionHeaderEtFooter {
 
-    private FenetreDiagnostic fenetre;
-    private BienLouable bL;
+	private FenetreDiagnostic fenetre;
+	private BienLouable bL;
 
-    public GestionFenetreDiagnostic(FenetreDiagnostic fenetre) {
-        super(fenetre);
-        this.fenetre = fenetre;
-        this.bL = fenetre.getBien();
-    }
+	public GestionFenetreDiagnostic(FenetreDiagnostic fenetre) {
+		super(fenetre);
+		this.fenetre = fenetre;
+		this.bL = fenetre.getBien();
+	}
 
-    @Override
-    protected void gererBoutonSpecifique(String texte) throws SQLException {
-        switch (texte) {
-            case "Ajouter":
-                FenetreAjouterDiagnostic fenAjouterDiagnostic = new FenetreAjouterDiagnostic();
-                fenAjouterDiagnostic.setVisible(true);
-                break;
-            case "Retour" :
-            	FenetreBienLouable fenBienLouable = new FenetreBienLouable("FenPrincipale", this.bL);
-	            fenBienLouable.setVisible(true);
-	            fenetre.dispose();
-	            break;
-        }
-    }
+	@Override
+	protected void gererBoutonSpecifique(String texte) throws SQLException {
+		switch (texte) {
+		case "Ajouter":
+			FenetreAjouterDiagnostic fenAjouterDiagnostic = new FenetreAjouterDiagnostic(bL, this);
+			fenAjouterDiagnostic.setVisible(true);
+			break;
+		case "Retour":
+			FenetreBienLouable fenBienLouable = new FenetreBienLouable("FenPrincipale", this.bL);
+			fenBienLouable.setVisible(true);
+			fenetre.dispose();
+			break;
+		}
+	}
 
-    protected void gererMenuSpecifique(String texte) {
-    }
-    
-    public void chargerDonnees() throws SQLException {
-        if (bL == null) return; 
+	protected void gererMenuSpecifique(String texte) {
+	}
 
-        DaoDiagnostics daoDiag = new DaoDiagnostics();
-        try {
-            List<Diagnostics> diagnostics = daoDiag.findDiagnosticsByIdBien(bL.getIdBienLouable());
-            DefaultTableModel model = (DefaultTableModel) fenetre.getTable().getModel();
-            model.setRowCount(0); 
+	public void chargerDonnees() throws SQLException {
+		if (bL == null)
+			return;
 
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		DaoDiagnostics daoDiag = new DaoDiagnostics();
+		try {
+			List<Diagnostics> diagnostics = daoDiag.findDiagnosticsByIdBien(bL.getIdBienLouable());
+			DefaultTableModel model = (DefaultTableModel) fenetre.getTable().getModel();
+			model.setRowCount(0);
 
-            for (Diagnostics d : diagnostics) {
-                model.addRow(new Object[] {
-                    d.getTypeDiagnostics(),
-                    d.getDateRealisation() != null ? sdf.format(d.getDateRealisation()) : "",
-                    d.getDateValidite() != null ? sdf.format(d.getDateValidite()) : "",
-                    d.getFichier(),
-                    d.getBienLouable() != null ? d.getBienLouable().getIdBienLouable() : ""
-                });
-            }
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-            int nbValides = (int) diagnostics.stream()
-                    .filter(d -> d.getDateValidite() != null && d.getDateValidite().after(new java.util.Date()))
-                    .count();
+			for (Diagnostics d : diagnostics) {
+				model.addRow(new Object[] { d.getTypeDiagnostics(),
+						d.getDateRealisation() != null ? sdf.format(d.getDateRealisation()) : "",
+						d.getDateValidite() != null ? sdf.format(d.getDateValidite()) : "", d.getFichier(),
+						d.getBienLouable() != null ? d.getBienLouable().getIdBienLouable() : "" });
+			}
 
-            int nbExpirant = (int) diagnostics.stream()
-                    .filter(d -> d.getDateValidite() != null && isExpiringThisMonth(d.getDateValidite()))
-                    .count();
+			int nbValides = (int) diagnostics.stream()
+					.filter(d -> d.getDateValidite() != null && d.getDateValidite().after(new java.util.Date()))
+					.count();
 
-            fenetre.getLblnbDiag().setText(String.valueOf(nbValides));
-            fenetre.getLblnbDiagExp().setText(String.valueOf(nbExpirant));
+			int nbExpirant = (int) diagnostics.stream()
+					.filter(d -> d.getDateValidite() != null && isExpiringThisMonth(d.getDateValidite())).count();
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-    
-    private boolean isExpiringThisMonth(java.util.Date date) {
-        java.util.Calendar cal = java.util.Calendar.getInstance();
-        int monthNow = cal.get(java.util.Calendar.MONTH);
-        int yearNow = cal.get(java.util.Calendar.YEAR);
+			fenetre.getLblnbDiag().setText(String.valueOf(nbValides));
+			fenetre.getLblnbDiagExp().setText(String.valueOf(nbExpirant));
 
-        cal.setTime(date);
-        int monthDiag = cal.get(java.util.Calendar.MONTH);
-        int yearDiag = cal.get(java.util.Calendar.YEAR);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
-        return monthNow == monthDiag && yearNow == yearDiag;
-    }
+	private boolean isExpiringThisMonth(java.util.Date date) {
+		java.util.Calendar cal = java.util.Calendar.getInstance();
+		int monthNow = cal.get(java.util.Calendar.MONTH);
+		int yearNow = cal.get(java.util.Calendar.YEAR);
+
+		cal.setTime(date);
+		int monthDiag = cal.get(java.util.Calendar.MONTH);
+		int yearDiag = cal.get(java.util.Calendar.YEAR);
+
+		return monthNow == monthDiag && yearNow == yearDiag;
+	}
 }
