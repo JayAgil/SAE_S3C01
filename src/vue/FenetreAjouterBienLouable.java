@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controleur.GestionFenetreAjouterBienLouable;
+import modele.Batiment;
 
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JTextField;
+import javax.swing.JComboBox;
 
 public class FenetreAjouterBienLouable extends JInternalFrame {
 
@@ -29,6 +31,7 @@ public class FenetreAjouterBienLouable extends JInternalFrame {
 	private JTextField textFieldNbPieces;
 	private JTextField textFieldType;
 	private GestionFenetreAjouterBienLouable gestionClic;
+	private JComboBox<String> comboBoxBienLouable;
 
 	/**
 	 * Launch the application.
@@ -37,7 +40,7 @@ public class FenetreAjouterBienLouable extends JInternalFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FenetreAjouterBienLouable frame = new FenetreAjouterBienLouable();
+					FenetreAjouterBienLouable frame = new FenetreAjouterBienLouable(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,9 +52,8 @@ public class FenetreAjouterBienLouable extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
-	public FenetreAjouterBienLouable() {
+	public FenetreAjouterBienLouable(Batiment b) {
 		setResizable(false);
-		this.gestionClic = new GestionFenetreAjouterBienLouable(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, -17, 450, 500);
 		contentPane = new JPanel();
@@ -135,13 +137,26 @@ public class FenetreAjouterBienLouable extends JInternalFrame {
 		JButton btnRetour = new JButton("Retour");
 		btnRetour.setBounds(283, 414, 85, 21);
 		contentPane.add(btnRetour);
+		
+		JLabel lblBienLouable = new JLabel("Bien louable lié :");
+		lblBienLouable.setBounds(106, 363, 80, 13);
+		contentPane.add(lblBienLouable);
+		
+		comboBoxBienLouable = new JComboBox<String>();
+		comboBoxBienLouable.setBounds(219, 359, 96, 21);
+		contentPane.add(comboBoxBienLouable);
 
+		this.gestionClic = new GestionFenetreAjouterBienLouable(this,b);
 		btnVider.addActionListener(this.gestionClic);
 		btnAjouter.addActionListener(this.gestionClic);
 		btnRetour.addActionListener(this.gestionClic);
 
 	}
 	
+	public JComboBox<String> getComboBoxBienLouable() {
+		return comboBoxBienLouable;
+	}
+
 	public List<JTextField> getAllBienLouableTextFields() {
 	    List<JTextField> fields = new ArrayList<>();
 	    fields.add(txtFieldBienLouable);

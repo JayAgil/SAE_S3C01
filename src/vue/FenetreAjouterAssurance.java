@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controleur.GestionFenetreAjouterAssurance;
+import modele.Batiment;
 
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -38,7 +39,7 @@ public class FenetreAjouterAssurance extends JInternalFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FenetreAjouterAssurance frame = new FenetreAjouterAssurance();
+					FenetreAjouterAssurance frame = new FenetreAjouterAssurance(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -50,9 +51,9 @@ public class FenetreAjouterAssurance extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
-	public FenetreAjouterAssurance() {
+	public FenetreAjouterAssurance(Batiment b) {
 		setResizable(false);
-		this.gestionClic = new GestionFenetreAjouterAssurance(this);
+		this.gestionClic = new GestionFenetreAjouterAssurance(this,b);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 500);
 		contentPane = new JPanel();
