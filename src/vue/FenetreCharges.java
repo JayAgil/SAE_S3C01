@@ -4,9 +4,6 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTable;
@@ -16,30 +13,22 @@ import controleur.GestionFenetreCharges;
 import modele.ChargesGenerales;
 
 import javax.swing.JScrollPane;
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Panel;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.awt.Font;
-import java.awt.Component;
-import javax.swing.Box;
 import javax.swing.ImageIcon;
 
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 
 import javax.swing.border.TitledBorder;
-import javax.swing.border.EtchedBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.SwingConstants;
-import javax.swing.border.LineBorder;
+import javax.swing.JTextField;
 
 public class FenetreCharges extends FenetreBase {
 
