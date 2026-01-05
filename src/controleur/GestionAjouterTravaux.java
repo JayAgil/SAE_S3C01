@@ -75,6 +75,21 @@ public class GestionAjouterTravaux extends GestionButtonFenetreAjouter {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			if (e.getErrorCode() == 1) { 
+		        JOptionPane.showMessageDialog(
+		            null,
+		            "Ce travaux existe déjà (clé primaire).",
+		            "Doublon",
+		            JOptionPane.WARNING_MESSAGE
+		        );
+		    } else {
+		        JOptionPane.showMessageDialog(
+		            null,
+		            "Erreur SQL : " + e.getMessage(),
+		            "Erreur base de données",
+		            JOptionPane.ERROR_MESSAGE
+		        );
+		    }
 		}
 		
 	}

@@ -8,6 +8,7 @@ import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import modele.Batiment;
 import modele.BienLouable;
 import modele.ChargesGenerales;
 import modele.Compteur;
@@ -15,6 +16,7 @@ import modele.ContratLocation;
 import modele.Facture;
 import modele.Locataire;
 import modele.Paiement;
+import modele.dao.DaoBatiment;
 import modele.dao.DaoBienLouable;
 import modele.dao.DaoChargesGenerales;
 import modele.dao.DaoCompteur;
@@ -22,6 +24,7 @@ import modele.dao.DaoContratLocation;
 import modele.dao.DaoFacture;
 import modele.dao.DaoLocataire;
 import modele.dao.DaoPaiement;
+import vue.FenetreAjouterBienLouable;
 import vue.FenetreBienLouable;
 import vue.FenetreCharges;
 import vue.FenetreCompteurs;
@@ -107,14 +110,21 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 			new FenetreTravaux("FenetreBienLouable",getDonneesTravauxByBien(),bien).setVisible(true);
 			fenetrebienlouable.dispose();
 			break;
+			
+		case "Ajouter":
+			DaoBatiment dao = new DaoBatiment();
+			Batiment b = dao.findBatimentByBien(bien.getIdBienLouable());
+            FenetreAjouterBienLouable ajout = new FenetreAjouterBienLouable(b);
+            fenetre.getLayeredPane().add(ajout);
+            ajout.setVisible(true);
+            break;
 
 		case "Compteur":
 			new FenetreCompteurs("FenetreBienLouable", getDonneesCompteur()).setVisible(true);
 			fenetrebienlouable.dispose();
 			break;
 
-		case "Revaloriser":
-			break;
+
 		}
 	}
 
