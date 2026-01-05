@@ -18,11 +18,14 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import controleur.GestionFenetreAjouterCompteur;
+import controleur.GestionFenetreCompteurs;
+import modele.BienLouable;
 
 import java.awt.Component;
 import javax.swing.Box;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Color;
+import javax.swing.JComboBox;
 
 public class FenetreAjouterCompteur extends JInternalFrame {
 
@@ -30,10 +33,15 @@ public class FenetreAjouterCompteur extends JInternalFrame {
 
 	private JTextField txtPartieFixe;
 	private JTextField txtPartieVariable;
-	private JTextField txtDate;
 	private JTextField txtTotal;
-	private JTextField txtD;
+	private JTextField txtDate;
 	private GestionFenetreAjouterCompteur gestionClic;
+	private JTextField txtIdCompteur;
+	private JComboBox<String> comboType;
+	private JTextField txtIndexAncien;
+	private JTextField txtIndexNouveau;
+	private BienLouable b;
+	private GestionFenetreCompteurs parent;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(() -> {
@@ -45,7 +53,7 @@ public class FenetreAjouterCompteur extends JInternalFrame {
 				JDesktopPane desktopPane = new JDesktopPane();
 				frame.setContentPane(desktopPane);
 
-				FenetreAjouterCompteur internalFrame = new FenetreAjouterCompteur();
+				FenetreAjouterCompteur internalFrame = new FenetreAjouterCompteur(null, null);
 				internalFrame.setVisible(true);
 				desktopPane.add(internalFrame);
 				frame.setResizable(false);
@@ -57,8 +65,10 @@ public class FenetreAjouterCompteur extends JInternalFrame {
 		});
 	}
 
-	public FenetreAjouterCompteur() {
-		gestionClic = new GestionFenetreAjouterCompteur(this);
+	public FenetreAjouterCompteur(BienLouable b, GestionFenetreCompteurs parent) {
+		this.b = b;
+		this.parent = parent;
+		gestionClic = new GestionFenetreAjouterCompteur(this, b, parent);
 		setResizable(false);
 		setClosable(true);
 		setIconifiable(true);
@@ -96,7 +106,7 @@ public class FenetreAjouterCompteur extends JInternalFrame {
 		gbc_txtIdCompteur.anchor = GridBagConstraints.LINE_START;
 		gbc_txtIdCompteur.gridx = 1;
 		gbc_txtIdCompteur.gridy = 0;
-		JTextField txtIdCompteur = new JTextField(15);
+		txtIdCompteur = new JTextField(15);
 		panelCenter.add(txtIdCompteur, gbc_txtIdCompteur);
 
 		GridBagConstraints c1 = new GridBagConstraints();
@@ -144,31 +154,31 @@ public class FenetreAjouterCompteur extends JInternalFrame {
 		JLabel lblType = new JLabel("Type : ");
 		panelCenter.add(lblType, gbc_lblType);
 
-		GridBagConstraints c6 = new GridBagConstraints();
-		c6.insets = pad;
-		c6.anchor = GridBagConstraints.LINE_START;
-		c6.gridx = 1;
-		c6.gridy = 4;
+		GridBagConstraints gbc_comboType = new GridBagConstraints();
+		gbc_comboType.insets = pad;
+		gbc_comboType.anchor = GridBagConstraints.LINE_START;
+		gbc_comboType.gridx = 1;
+		gbc_comboType.gridy = 4;
 
 		String[] types = { "Eau", "Électricité", "Gaz", "Chauffage" };
-		javax.swing.JComboBox<String> comboType = new javax.swing.JComboBox<>(types);
+		comboType = new javax.swing.JComboBox<>(types);
 		comboType.setModel(new DefaultComboBoxModel(new String[] { "Eau", "Électricité", "Gaz" }));
-		panelCenter.add(comboType, c6);
+		panelCenter.add(comboType, gbc_comboType);
 
 		GridBagConstraints c7 = new GridBagConstraints();
 		c7.insets = pad;
 		c7.anchor = GridBagConstraints.LINE_END;
 		c7.gridx = 0;
 		c7.gridy = 5;
-		panelCenter.add(new JLabel("Date :"), c7);
+		panelCenter.add(new JLabel("Date installation :"), c7);
 
-		GridBagConstraints gbc_txtD = new GridBagConstraints();
-		gbc_txtD.insets = pad;
-		gbc_txtD.anchor = GridBagConstraints.LINE_START;
-		gbc_txtD.gridx = 1;
-		gbc_txtD.gridy = 5;
-		txtD = new JTextField(15);
-		panelCenter.add(txtD, gbc_txtD);
+		GridBagConstraints gbc_txtDate = new GridBagConstraints();
+		gbc_txtDate.insets = pad;
+		gbc_txtDate.anchor = GridBagConstraints.LINE_START;
+		gbc_txtDate.gridx = 1;
+		gbc_txtDate.gridy = 5;
+		txtDate = new JTextField(15);
+		panelCenter.add(txtDate, gbc_txtDate);
 
 		GridBagConstraints gbc_txtTotal = new GridBagConstraints();
 		gbc_txtTotal.insets = pad;
@@ -187,13 +197,13 @@ public class FenetreAjouterCompteur extends JInternalFrame {
 		c9.gridy = 6;
 		panelCenter.add(new JLabel("Index ancien :"), c9);
 
-		GridBagConstraints c10 = new GridBagConstraints();
-		c10.insets = pad;
-		c10.anchor = GridBagConstraints.LINE_START;
-		c10.gridx = 1;
-		c10.gridy = 6;
-		JTextField txtIndexAncien = new JTextField(15);
-		panelCenter.add(txtIndexAncien, c10);
+		GridBagConstraints gbc_txtIndexAncien = new GridBagConstraints();
+		gbc_txtIndexAncien.insets = pad;
+		gbc_txtIndexAncien.anchor = GridBagConstraints.LINE_START;
+		gbc_txtIndexAncien.gridx = 1;
+		gbc_txtIndexAncien.gridy = 6;
+		txtIndexAncien = new JTextField(15);
+		panelCenter.add(txtIndexAncien, gbc_txtIndexAncien);
 
 		GridBagConstraints c11 = new GridBagConstraints();
 		c11.insets = pad;
@@ -202,13 +212,13 @@ public class FenetreAjouterCompteur extends JInternalFrame {
 		c11.gridy = 7;
 		panelCenter.add(new JLabel("Index nouveau :"), c11);
 
-		GridBagConstraints c12 = new GridBagConstraints();
-		c12.insets = pad;
-		c12.anchor = GridBagConstraints.LINE_START;
-		c12.gridx = 1;
-		c12.gridy = 7;
-		JTextField txtIndexNouveau = new JTextField(15);
-		panelCenter.add(txtIndexNouveau, c12);
+		GridBagConstraints gbc_txtIndexNouveau = new GridBagConstraints();
+		gbc_txtIndexNouveau.insets = pad;
+		gbc_txtIndexNouveau.anchor = GridBagConstraints.LINE_START;
+		gbc_txtIndexNouveau.gridx = 1;
+		gbc_txtIndexNouveau.gridy = 7;
+		txtIndexNouveau = new JTextField(15);
+		panelCenter.add(txtIndexNouveau, gbc_txtIndexNouveau);
 
 		JPanel panelFooter = new JPanel();
 
@@ -228,13 +238,19 @@ public class FenetreAjouterCompteur extends JInternalFrame {
 		getContentPane().add(panelFooter, BorderLayout.SOUTH);
 	}
 
+	public JComboBox<String> getComboType() {
+		return comboType;
+	}
+
 	public List<JTextField> getAllCompteurTextFields() {
 		List<JTextField> fields = new ArrayList<>();
+		fields.add(txtIdCompteur);
 		fields.add(txtPartieFixe);
 		fields.add(txtPartieVariable);
-		fields.add(txtDate);
 		fields.add(txtTotal);
-		fields.add(txtD);
+		fields.add(txtDate);
+		fields.add(txtIndexAncien);
+		fields.add(txtIndexNouveau);
 		return fields;
 	}
 

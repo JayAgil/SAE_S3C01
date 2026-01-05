@@ -5,12 +5,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 
-import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
+
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Font;
@@ -19,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import controleur.GestionFenetreCompteurs;
+import modele.BienLouable;
 import modele.Compteur;
 
 import java.awt.Component;
@@ -26,7 +24,6 @@ import javax.swing.Box;
 import javax.swing.ImageIcon;
 
 import java.awt.FlowLayout;
-import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -34,7 +31,6 @@ import java.awt.Insets;
 import java.util.List;
 
 import javax.swing.border.TitledBorder;
-import javax.swing.border.EtchedBorder;
 import javax.swing.border.MatteBorder;
 
 public class FenetreCompteurs extends FenetreBase {
@@ -49,6 +45,7 @@ public class FenetreCompteurs extends FenetreBase {
 	private JLabel lbltotalgaz;
 	private JScrollPane scrollPane;
 	private List<Compteur> cpt;
+	private BienLouable b;
 
 	/**
 	 * Launch the application.
@@ -58,7 +55,7 @@ public class FenetreCompteurs extends FenetreBase {
 			@Override
 			public void run() {
 				try {
-					FenetreCompteurs frame = new FenetreCompteurs("", null);
+					FenetreCompteurs frame = new FenetreCompteurs("", null, null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -70,8 +67,9 @@ public class FenetreCompteurs extends FenetreBase {
 	/**
 	 * Create the frame.
 	 */
-	public FenetreCompteurs(String fenetreAvant, List<Compteur> cpt) {
+	public FenetreCompteurs(String fenetreAvant, List<Compteur> cpt, BienLouable b) {
 		super();
+		this.b = b;
 		this.fenetreAvant = fenetreAvant;
 		this.cpt = cpt;
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -310,6 +308,10 @@ public class FenetreCompteurs extends FenetreBase {
 
 	public String getFenetreAvant() {
 		return fenetreAvant;
+	}
+
+	public BienLouable getB() {
+		return b;
 	}
 
 }

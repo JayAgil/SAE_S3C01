@@ -67,6 +67,7 @@ LEFT JOIN (
 
 
 -- RÉGULARISATION DES CHARGES (RÉSULTAT FINAL) --
+-- Select Finale
 SELECT
     cl.Numero_de_contrat,
     NVL(prov.Total_Provisions, 0) AS Total_Provisions,
@@ -81,7 +82,7 @@ LEFT JOIN (
     FROM MSF5131A.SAE_Paiement p
     JOIN MSF5131A.SAE_ContratLocation cl
         ON p.fk_Numero_de_contrat = cl.Numero_de_contrat
-    WHERE EXTRACT(YEAR FROM p.Date_Paiement) = 2022
+    WHERE EXTRACT(YEAR FROM p.Date_Paiement) = 2023
     GROUP BY cl.Numero_de_contrat, cl.Provision_Charge
 ) prov ON cl.Numero_de_contrat = prov.Numero_de_contrat
 LEFT JOIN (
@@ -94,7 +95,7 @@ LEFT JOIN (
     LEFT JOIN (
         SELECT fk_Id_BienLouable, SUM(Montant_Total) AS Total_Charges_Generales
         FROM MSF5131A.SAE_Charges_Generale
-        WHERE EXTRACT(YEAR FROM Date_Charge) = 2022
+        WHERE EXTRACT(YEAR FROM Date_Charge) = 2023
         GROUP BY fk_Id_BienLouable
     ) cg ON b.Id_BienLouable = cg.fk_Id_BienLouable
     LEFT JOIN (
@@ -105,7 +106,7 @@ LEFT JOIN (
     LEFT JOIN (
         SELECT fk_Id_BienLouable, SUM(Montant) AS Total_Factures
         FROM MSF5131A.SAE_Facture
-        WHERE EXTRACT(YEAR FROM Date_de_facture) = 2022
+        WHERE EXTRACT(YEAR FROM Date_de_facture) = 2023
         GROUP BY fk_Id_BienLouable
     ) f ON b.Id_BienLouable = f.fk_Id_BienLouable
 ) charges ON cl.fk_Id_BienLouable = charges.Id_BienLouable
@@ -178,3 +179,17 @@ WHERE
     cl.Numero_de_contrat = prov.Numero_de_contrat(+)
     AND cl.fk_Id_BienLouable = charges.Id_BienLouable(+)
 Order by cl.Numero_de_contrat;
+
+SELECT
+    cl2.Numero_de_contrat,
+    COUNT(p.Id_Paiement) * cl2.Provision_Charge AS Total_Provisions
+FROM MSF5131A.SAE_Paiement p, MSF5131A.SAE_ContratLocation cl2
+WHERE p.fk_Numero_de_contrat = cl2.Numero_de_contrat
+  AND EXTRACT(YEAR FROM p.Date_Paiement) = 2022
+GROUP BY cl2.Numero_de_contrat, cl2.Provision_Charge;
+
+SELECT Id_Paiement, Date_Paiement
+FROM MSF5131A.SAE_Paiement;
+
+SELECT DISTINCT EXTRACT(YEAR FROM Date_Paiement) AS annee
+FROM MSF5131A.SAE_Paiement;

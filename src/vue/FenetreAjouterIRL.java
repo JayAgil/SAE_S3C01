@@ -25,6 +25,7 @@ public class FenetreAjouterIRL extends JInternalFrame {
 	private JTextField textFieldAnnee;
 	private JTextField textFieldVal;
 	private GestionAjouterIRL gestionClic;
+	private JTextField textFieldTrimestre;
 
 	/**
 	 * Launch the application.
@@ -72,11 +73,11 @@ public class FenetreAjouterIRL extends JInternalFrame {
 		textFieldAnnee.setColumns(10);
 
 		JLabel lblVal = new JLabel("Valeur :");
-		lblVal.setBounds(90, 247, 48, 13);
+		lblVal.setBounds(90, 223, 48, 13);
 		contentPane.add(lblVal);
 
 		textFieldVal = new JTextField();
-		textFieldVal.setBounds(219, 243, 96, 19);
+		textFieldVal.setBounds(219, 219, 96, 19);
 		contentPane.add(textFieldVal);
 		textFieldVal.setColumns(10);
 
@@ -91,6 +92,15 @@ public class FenetreAjouterIRL extends JInternalFrame {
 		JButton btnRetour = new JButton("Retour");
 		btnRetour.setBounds(274, 325, 85, 21);
 		contentPane.add(btnRetour);
+		
+		JLabel lblTrimestre = new JLabel("Trimestre :");
+		lblTrimestre.setBounds(90, 275, 76, 13);
+		contentPane.add(lblTrimestre);
+		
+		textFieldTrimestre = new JTextField();
+		textFieldTrimestre.setBounds(219, 269, 96, 19);
+		contentPane.add(textFieldTrimestre);
+		textFieldTrimestre.setColumns(10);
 
 		btnVider.addActionListener(this.gestionClic);
 		btnAjouter.addActionListener(this.gestionClic);
@@ -101,6 +111,7 @@ public class FenetreAjouterIRL extends JInternalFrame {
 	public List<JTextField> getAllTextFields() {
 	    List<JTextField> fields = new ArrayList<>();
 	    fields.add(textFieldAnnee);
+	    fields.add(textFieldTrimestre);
 	    fields.add(textFieldVal);
 	
 	    return fields;

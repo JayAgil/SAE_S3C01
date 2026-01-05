@@ -275,59 +275,70 @@ INSERT INTO SAE_Locataire (Id_Locataire, Nom, Prenom, Adresse, Tel, Email, Code_
 
 ----------------------------------------------------------------------------------------------------------------
 
+--------------------------------------------------------------------------------------------------------------------------
+------
+------
+------
+------
+------
+-----------------
+-----------------
+-----------------
+
+
 
 ---TESTER avec 0000-00-Jour  -> Mois et année non accepté, '0001-01-jour' -> Fonctionne
 INSERT INTO SAE_ContratLocation (Numero_de_contrat,Date_debut, Date_Fin, Montant_de_caution, Provision_Charge, Solde, Montant_Mensuel,
  Date_versement, Index_Compteur_Eau, Index_Compteur_Electrcite, Index_Compteur_Gaz, fk_Id_BienLouable)
- VALUES ('CTR-001',TO_DATE('2023-01-01','YYYY-MM-DD'),TO_DATE('2026-01-01','YYYY-MM-DD'),800,40,0,900,TO_DATE('0001-01-01','YYYY-MM-DD'),0,0,0,'BIEN-001');
+ VALUES ('CTR-001',TO_DATE('2023-01-01','YYYY-MM-DD'),TO_DATE('2026-01-01','YYYY-MM-DD'),800,40,0,900,TO_DATE('0001-01-01','YYYY-MM-DD'),1020,12500,5100,'BIEN-001');
 
 INSERT INTO SAE_ContratLocation (Numero_de_contrat,Date_debut, Date_Fin, Montant_de_caution, Provision_Charge, Solde, Montant_Mensuel,
  Date_versement, Index_Compteur_Eau, Index_Compteur_Electrcite, Index_Compteur_Gaz, fk_Id_BienLouable)
- VALUES ('CTR-002',TO_DATE('2023-02-15','YYYY-MM-DD'),TO_DATE('2026-02-15','YYYY-MM-DD'),600,30,0,750,TO_DATE('0001-01-01','YYYY-MM-DD'),0,0,0,'BIEN-002');
+ VALUES ('CTR-002',TO_DATE('2023-02-15','YYYY-MM-DD'),TO_DATE('2026-02-15','YYYY-MM-DD'),600,30,0,750,TO_DATE('0001-01-01','YYYY-MM-DD'),23000,3000,5600,'BIEN-002');
 
 INSERT INTO SAE_ContratLocation (Numero_de_contrat,Date_debut, Date_Fin, Montant_de_caution, Provision_Charge, Solde, Montant_Mensuel,
  Date_versement, Index_Compteur_Eau, Index_Compteur_Electrcite, Index_Compteur_Gaz, fk_Id_BienLouable)
- VALUES ('CTR-003',TO_DATE('2022-10-01','YYYY-MM-DD'),TO_DATE('2025-10-01','YYYY-MM-DD'),1200,50,0,1100,TO_DATE('0001-01-01','YYYY-MM-DD'),0,0,0,'BIEN-003');
+ VALUES ('CTR-003',TO_DATE('2022-10-01','YYYY-MM-DD'),TO_DATE('2025-10-01','YYYY-MM-DD'),1200,50,0,1100,TO_DATE('0001-01-01','YYYY-MM-DD'),5000,3500,18000,'BIEN-003');
 
 INSERT INTO SAE_ContratLocation (Numero_de_contrat,Date_debut, Date_Fin, Montant_de_caution, Provision_Charge, Solde, Montant_Mensuel,
  Date_versement, Index_Compteur_Eau, Index_Compteur_Electrcite, Index_Compteur_Gaz, fk_Id_BienLouable)
- VALUES ('CTR-004',TO_DATE('2023-03-20','YYYY-MM-DD'),TO_DATE('2026-03-20','YYYY-MM-DD'),900,40,0,950,TO_DATE('0001-01-01','YYYY-MM-DD'),0,0,0,'BIEN-004');
+ VALUES ('CTR-004',TO_DATE('2023-03-20','YYYY-MM-DD'),TO_DATE('2026-03-20','YYYY-MM-DD'),900,40,0,950,TO_DATE('0001-01-01','YYYY-MM-DD'),3000,3500,6000,'BIEN-004');
 
 INSERT INTO SAE_ContratLocation (Numero_de_contrat,Date_debut, Date_Fin, Montant_de_caution, Provision_Charge, Solde, Montant_Mensuel,
  Date_versement, Index_Compteur_Eau, Index_Compteur_Electrcite, Index_Compteur_Gaz, fk_Id_BienLouable)
- VALUES ('CTR-005',TO_DATE('2023-05-01','YYYY-MM-DD'),TO_DATE('2026-05-01','YYYY-MM-DD'),500,20,0,700,TO_DATE('0001-01-01','YYYY-MM-DD'),0,0,0,'BIEN-005');
+ VALUES ('CTR-005',TO_DATE('2023-05-01','YYYY-MM-DD'),TO_DATE('2026-05-01','YYYY-MM-DD'),500,20,0,700,TO_DATE('0001-01-01','YYYY-MM-DD'),8000,1350,4800,'BIEN-005');
 
 INSERT INTO SAE_ContratLocation (Numero_de_contrat,Date_debut, Date_Fin, Montant_de_caution, Provision_Charge, Solde, Montant_Mensuel,
  Date_versement, Index_Compteur_Eau, Index_Compteur_Electrcite, Index_Compteur_Gaz, fk_Id_BienLouable)
- VALUES ('CTR-006',TO_DATE('2022-09-10','YYYY-MM-DD'),TO_DATE('2025-09-10','YYYY-MM-DD'),1000,35,0,1050,TO_DATE('0001-01-01','YYYY-MM-DD'),0,0,0,'BIEN-006');
+ VALUES ('CTR-006',TO_DATE('2022-09-10','YYYY-MM-DD'),TO_DATE('2025-09-10','YYYY-MM-DD'),1000,35,0,1050,TO_DATE('0001-01-01','YYYY-MM-DD'),10000,2500,9000,'BIEN-006');
 
 INSERT INTO SAE_ContratLocation (Numero_de_contrat,Date_debut, Date_Fin, Montant_de_caution, Provision_Charge, Solde, Montant_Mensuel,
  Date_versement, Index_Compteur_Eau, Index_Compteur_Electrcite, Index_Compteur_Gaz, fk_Id_BienLouable)
- VALUES ('CTR-007',TO_DATE('2023-02-01','YYYY-MM-DD'),TO_DATE('2026-02-01','YYYY-MM-DD'),850,50,0,850,TO_DATE('0001-01-01','YYYY-MM-DD'),0,0,0,'BIEN-007');
+ VALUES ('CTR-007',TO_DATE('2023-02-01','YYYY-MM-DD'),TO_DATE('2026-02-01','YYYY-MM-DD'),850,50,0,850,TO_DATE('0001-01-01','YYYY-MM-DD'),5000,1500,3600,'BIEN-007');
 
 INSERT INTO SAE_ContratLocation (Numero_de_contrat,Date_debut, Date_Fin, Montant_de_caution, Provision_Charge, Solde, Montant_Mensuel,
  Date_versement, Index_Compteur_Eau, Index_Compteur_Electrcite, Index_Compteur_Gaz, fk_Id_BienLouable)
- VALUES ('CTR-008',TO_DATE('2023-03-01','YYYY-MM-DD'),TO_DATE('2026-03-01','YYYY-MM-DD'),950,50,0,950,TO_DATE('0001-01-01','YYYY-MM-DD'),0,0,0,'BIEN-008');
+ VALUES ('CTR-008',TO_DATE('2023-03-01','YYYY-MM-DD'),TO_DATE('2026-03-01','YYYY-MM-DD'),950,50,0,950,TO_DATE('0001-01-01','YYYY-MM-DD'),8200,1100,2800,'BIEN-008');
 
 INSERT INTO SAE_ContratLocation (Numero_de_contrat,Date_debut, Date_Fin, Montant_de_caution, Provision_Charge, Solde, Montant_Mensuel,
  Date_versement, Index_Compteur_Eau, Index_Compteur_Electrcite, Index_Compteur_Gaz, fk_Id_BienLouable)
- VALUES ('CTR-009',TO_DATE('2023-03-15','YYYY-MM-DD'),TO_DATE('2026-03-15','YYYY-MM-DD'),650,40,0,800,TO_DATE('0001-01-01','YYYY-MM-DD'),0,0,0,'BIEN-009');
+ VALUES ('CTR-009',TO_DATE('2023-03-15','YYYY-MM-DD'),TO_DATE('2026-03-15','YYYY-MM-DD'),650,40,0,800,TO_DATE('0001-01-01','YYYY-MM-DD'),9000,2000,5000,'BIEN-009');
 
 INSERT INTO SAE_ContratLocation (Numero_de_contrat,Date_debut, Date_Fin, Montant_de_caution, Provision_Charge, Solde, Montant_Mensuel,
  Date_versement, Index_Compteur_Eau, Index_Compteur_Electrcite, Index_Compteur_Gaz, fk_Id_BienLouable)
- VALUES ('CTR-010',TO_DATE('2023-04-15','YYYY-MM-DD'),TO_DATE('2026-04-15','YYYY-MM-DD'),650,50,0,900,TO_DATE('0001-01-01','YYYY-MM-DD'),0,0,0,'BIEN-010');
+ VALUES ('CTR-010',TO_DATE('2023-04-15','YYYY-MM-DD'),TO_DATE('2026-04-15','YYYY-MM-DD'),650,50,0,900,TO_DATE('0001-01-01','YYYY-MM-DD'),6500,1700,4500,'BIEN-010');
 
  INSERT INTO SAE_ContratLocation (Numero_de_contrat,Date_debut, Date_Fin, Montant_de_caution, Provision_Charge, Solde, Montant_Mensuel,
  Date_versement, Index_Compteur_Eau, Index_Compteur_Electrcite, Index_Compteur_Gaz, fk_Id_BienLouable)
- VALUES ('CTR-011',TO_DATE('2022-11-01','YYYY-MM-DD'),TO_DATE('2025-11-01','YYYY-MM-DD'),1250,100,0,1100,TO_DATE('0001-01-01','YYYY-MM-DD'),0,0,0,'BIEN-011');
+ VALUES ('CTR-011',TO_DATE('2022-11-01','YYYY-MM-DD'),TO_DATE('2025-11-01','YYYY-MM-DD'),1250,100,0,1100,TO_DATE('0001-01-01','YYYY-MM-DD'),7200,2100,5200,'BIEN-011');
 
 INSERT INTO SAE_ContratLocation (Numero_de_contrat,Date_debut, Date_Fin, Montant_de_caution, Provision_Charge, Solde, Montant_Mensuel,
  Date_versement, Index_Compteur_Eau, Index_Compteur_Electrcite, Index_Compteur_Gaz, fk_Id_BienLouable)
- VALUES ('CTR-012',TO_DATE('2022-12-01','YYYY-MM-DD'),TO_DATE('2025-12-01','YYYY-MM-DD'),1250,150,0,1100,TO_DATE('0001-01-01','YYYY-MM-DD'),0,0,0,'BIEN-012');
+ VALUES ('CTR-012',TO_DATE('2022-12-01','YYYY-MM-DD'),TO_DATE('2025-12-01','YYYY-MM-DD'),1250,150,0,1100,TO_DATE('0001-01-01','YYYY-MM-DD'),6800,1600,3900,'BIEN-012');
 
  INSERT INTO SAE_ContratLocation (Numero_de_contrat,Date_debut, Date_Fin, Montant_de_caution, Provision_Charge, Solde, Montant_Mensuel,
  Date_versement, Index_Compteur_Eau, Index_Compteur_Electrcite, Index_Compteur_Gaz, fk_Id_BienLouable)
- VALUES ('CTR-013',TO_DATE('2023-03-17','YYYY-MM-DD'),TO_DATE('2026-03-17','YYYY-MM-DD'),700,50,0,800,TO_DATE('0001-01-01','YYYY-MM-DD'),0,0,0,'BIEN-013');
+ VALUES ('CTR-013',TO_DATE('2023-03-17','YYYY-MM-DD'),TO_DATE('2026-03-17','YYYY-MM-DD'),700,50,0,800,TO_DATE('0001-01-01','YYYY-MM-DD'),8400,2300,4200,'BIEN-013');
 
 
 
@@ -830,146 +841,211 @@ INSERT INTO SAE_Assurance (Numero_d_assurance, Prime, Montant, Type_assurance, A
 
 
 
-
-
+--------------------------------------------------------------------------------------------------------------------------
+------
+------
+------
+------
+------
+-----------------
+-----------------
+-----------------
 
 
 
 ----------------------------------------------------------------------------------------------------------------
-INSERT INTO SAE_Compteur (Id_Compteur,Partie_Fixe, Partie_Variable, Total, TypeCompteur, Date_Installation,
- Index_ancien, Index_nouveau, fk_Id_BienLouable)
- VALUES ('COMP-001',30,12,42,'Eau',TO_DATE('2019-01-01','YYYY-MM-DD'),100,120,'BIEN-001');
- 
- INSERT INTO SAE_Compteur (Id_Compteur,Partie_Fixe, Partie_Variable, Total, TypeCompteur, Date_Installation,
- Index_ancien, Index_nouveau, fk_Id_BienLouable)
- VALUES ('COMP-014',48,22,70,'Electricite',TO_DATE('2018-05-15','YYYY-MM-DD'),125,150,'BIEN-001');
+INSERT INTO SAE_Compteur VALUES 
+('COMP-001',30,12,42,'Eau',TO_DATE('2019-01-01','YYYY-MM-DD'),1020,1085,'BIEN-001');
 
-INSERT INTO SAE_Compteur (Id_Compteur,Partie_Fixe, Partie_Variable, Total, TypeCompteur, Date_Installation,
- Index_ancien, Index_nouveau, fk_Id_BienLouable)
- VALUES ('COMP-015',33,18,51,'Gaz',TO_DATE('2019-02-11','YYYY-MM-DD'),510,545,'BIEN-001');
+INSERT INTO SAE_Compteur VALUES 
+('COMP-014',48,22,70,'Electricite',TO_DATE('2018-05-15','YYYY-MM-DD'),12500,13950,'BIEN-001');
+
+INSERT INTO SAE_Compteur VALUES 
+('COMP-015',33,18,51,'Gaz',TO_DATE('2019-02-11','YYYY-MM-DD'),5100,5900,'BIEN-001');
 
 
 
-INSERT INTO SAE_Compteur (Id_Compteur,Partie_Fixe, Partie_Variable, Total, TypeCompteur, Date_Installation,
- Index_ancien, Index_nouveau, fk_Id_BienLouable)
- VALUES ('COMP-002',40,18,58,'Electricite',TO_DATE('2020-05-12','YYYY-MM-DD'),2300,2350,'BIEN-002');
-INSERT INTO SAE_Compteur (Id_Compteur,Partie_Fixe, Partie_Variable, Total, TypeCompteur, Date_Installation,
- Index_ancien, Index_nouveau, fk_Id_BienLouable)
-  VALUES ('COMP-016',28,9,37,'Eau',TO_DATE('2017-07-01','YYYY-MM-DD'),300,320,'BIEN-002');
-INSERT INTO SAE_Compteur (Id_Compteur,Partie_Fixe, Partie_Variable, Total, TypeCompteur, Date_Installation,
- Index_ancien, Index_nouveau, fk_Id_BienLouable)
- VALUES ('COMP-017',30,12,42,'Gaz',TO_DATE('2019-10-22','YYYY-MM-DD'),560,600,'BIEN-002');
+INSERT INTO SAE_Compteur VALUES 
+('COMP-002',40,18,58,'Electricite',TO_DATE('2020-05-12','YYYY-MM-DD'),23000,24500,'BIEN-002');
+
+INSERT INTO SAE_Compteur VALUES 
+('COMP-016',28,9,37,'Eau',TO_DATE('2017-07-01','YYYY-MM-DD'),3000,3075,'BIEN-002');
+
+INSERT INTO SAE_Compteur VALUES 
+('COMP-017',30,12,42,'Gaz',TO_DATE('2019-10-22','YYYY-MM-DD'),5600,6400,'BIEN-002');
 
 
 
-INSERT INTO SAE_Compteur (Id_Compteur,Partie_Fixe, Partie_Variable, Total, TypeCompteur, Date_Installation,
- Index_ancien, Index_nouveau, fk_Id_BienLouable)
- VALUES ('COMP-003',35,20,55,'Gaz',TO_DATE('2018-08-08','YYYY-MM-DD'),500,540,'BIEN-003');
- 
- INSERT INTO SAE_Compteur (Id_Compteur,Partie_Fixe, Partie_Variable, Total, TypeCompteur, Date_Installation,
- Index_ancien, Index_nouveau, fk_Id_BienLouable)
-  VALUES ('COMP-018',40,16,56,'Eau',TO_DATE('2018-05-09','YYYY-MM-DD'),350,380,'BIEN-003');
 
-INSERT INTO SAE_Compteur (Id_Compteur,Partie_Fixe, Partie_Variable, Total, TypeCompteur, Date_Installation,
- Index_ancien, Index_nouveau, fk_Id_BienLouable)
- VALUES ('COMP-019',55,25,80,'Electricite',TO_DATE('2020-01-15','YYYY-MM-DD'),1800,1850,'BIEN-003');
+INSERT INTO SAE_Compteur VALUES 
+('COMP-003',35,20,55,'Gaz',TO_DATE('2018-08-08','YYYY-MM-DD'),5000,6100,'BIEN-003');
+
+INSERT INTO SAE_Compteur VALUES 
+('COMP-018',40,16,56,'Eau',TO_DATE('2018-05-09','YYYY-MM-DD'),3500,3580,'BIEN-003');
+
+INSERT INTO SAE_Compteur VALUES 
+('COMP-019',55,25,80,'Electricite',TO_DATE('2020-01-15','YYYY-MM-DD'),18000,19800,'BIEN-003');
 
 
-INSERT INTO SAE_Compteur (Id_Compteur,Partie_Fixe, Partie_Variable, Total, TypeCompteur, Date_Installation,
- Index_ancien, Index_nouveau, fk_Id_BienLouable)
- VALUES ('COMP-004',45,15,60,'Eau',TO_DATE('2021-02-02','YYYY-MM-DD'),300,320,'BIEN-004');
+INSERT INTO SAE_Compteur VALUES 
+('COMP-004',45,15,60,'Eau',TO_DATE('2021-02-02','YYYY-MM-DD'),3000,3065,'BIEN-004');
 
- INSERT INTO SAE_Compteur (Id_Compteur,Partie_Fixe, Partie_Variable, Total, TypeCompteur, Date_Installation,
- Index_ancien, Index_nouveau, fk_Id_BienLouable)
- VALUES ('COMP-020',47,21,68,'Electricite',TO_DATE('2021-04-04','YYYY-MM-DD'),390,430,'BIEN-004');
+INSERT INTO SAE_Compteur VALUES 
+('COMP-020',47,21,68,'Electricite',TO_DATE('2021-04-04','YYYY-MM-DD'),3900,5200,'BIEN-004');
 
-INSERT INTO SAE_Compteur (Id_Compteur,Partie_Fixe, Partie_Variable, Total, TypeCompteur, Date_Installation,
- Index_ancien, Index_nouveau, fk_Id_BienLouable)
- VALUES ('COMP-021',32,14,46,'Gaz',TO_DATE('2022-06-06','YYYY-MM-DD'),600,650,'BIEN-004');
+INSERT INTO SAE_Compteur VALUES 
+('COMP-021',32,14,46,'Gaz',TO_DATE('2022-06-06','YYYY-MM-DD'),6000,6900,'BIEN-004');
 
 
+INSERT INTO SAE_Compteur VALUES 
+('COMP-005',50,25,75,'Electricite',TO_DATE('2020-09-17','YYYY-MM-DD'),8000,9800,'BIEN-005');
 
-INSERT INTO SAE_Compteur (Id_Compteur,Partie_Fixe, Partie_Variable, Total, TypeCompteur, Date_Installation,
- Index_ancien, Index_nouveau, fk_Id_BienLouable)
- VALUES ('COMP-005',50,25,75,'Electricite',TO_DATE('2020-09-17','YYYY-MM-DD'),800,850,'BIEN-005');
- 
- INSERT INTO SAE_Compteur (Id_Compteur,Partie_Fixe, Partie_Variable, Total, TypeCompteur, Date_Installation,
- Index_ancien, Index_nouveau, fk_Id_BienLouable)
- VALUES ('COMP-022',18,7,25,'Eau',TO_DATE('2020-11-10','YYYY-MM-DD'),135,150,'BIEN-005');
+INSERT INTO SAE_Compteur VALUES 
+('COMP-022',18,7,25,'Eau',TO_DATE('2020-11-10','YYYY-MM-DD'),1350,1420,'BIEN-005');
 
-INSERT INTO SAE_Compteur (Id_Compteur,Partie_Fixe, Partie_Variable, Total, TypeCompteur, Date_Installation,
- Index_ancien, Index_nouveau, fk_Id_BienLouable)
-VALUES ('COMP-023',27,11,38,'Gaz',TO_DATE('2021-09-14','YYYY-MM-DD'),480,520,'BIEN-005');
+INSERT INTO SAE_Compteur VALUES 
+('COMP-023',27,11,38,'Gaz',TO_DATE('2021-09-14','YYYY-MM-DD'),4800,5600,'BIEN-005');
 
 
 
-INSERT INTO SAE_Compteur (Id_Compteur,Partie_Fixe, Partie_Variable, Total, TypeCompteur, Date_Installation,
- Index_ancien, Index_nouveau, fk_Id_BienLouable)
- VALUES ('COMP-006',38,17,55,'Gaz',TO_DATE('2022-03-10','YYYY-MM-DD'),1000,1060,'BIEN-006');
+INSERT INTO SAE_Compteur VALUES 
+('COMP-006',38,17,55,'Gaz',TO_DATE('2022-03-10','YYYY-MM-DD'),10000,11500,'BIEN-006');
 
- INSERT INTO SAE_Compteur(Id_Compteur,Partie_Fixe, Partie_Variable, Total, TypeCompteur, Date_Installation,
- Index_ancien, Index_nouveau, fk_Id_BienLouable)
-  VALUES ('COMP-024',36,15,51,'Eau',TO_DATE('2018-02-15','YYYY-MM-DD'),250,280,'BIEN-006');
+INSERT INTO SAE_Compteur VALUES 
+('COMP-024',36,15,51,'Eau',TO_DATE('2018-02-15','YYYY-MM-DD'),2500,2575,'BIEN-006');
 
-INSERT INTO SAE_Compteur(Id_Compteur,Partie_Fixe, Partie_Variable, Total, TypeCompteur, Date_Installation,
- Index_ancien, Index_nouveau, fk_Id_BienLouable)
- VALUES ('COMP-025',52,26,78,'Electricite',TO_DATE('2021-03-03','YYYY-MM-DD'),900,950,'BIEN-006');
+INSERT INTO SAE_Compteur VALUES 
+('COMP-025',52,26,78,'Electricite',TO_DATE('2021-03-03','YYYY-MM-DD'),9000,11000,'BIEN-006');
 
 
- INSERT INTO SAE_Compteur VALUES ('COMP-026',40,19,59,'Electricite',TO_DATE('2021-10-21','YYYY-MM-DD'),500,545,'BIEN-007');
-INSERT INTO SAE_Compteur VALUES ('COMP-027',22,9,31,'Eau',TO_DATE('2019-06-09','YYYY-MM-DD'),150,172,'BIEN-007');
-INSERT INTO SAE_Compteur VALUES ('COMP-028',34,16,50,'Gaz',TO_DATE('2020-02-13','YYYY-MM-DD'),360,395,'BIEN-007');
+
+INSERT INTO SAE_Compteur VALUES 
+('COMP-026',40,19,59,'Electricite',TO_DATE('2021-10-21','YYYY-MM-DD'),5000,6800,'BIEN-007');
+
+INSERT INTO SAE_Compteur VALUES 
+('COMP-027',22,9,31,'Eau',TO_DATE('2019-06-09','YYYY-MM-DD'),1500,1580,'BIEN-007');
+
+INSERT INTO SAE_Compteur VALUES 
+('COMP-028',34,16,50,'Gaz',TO_DATE('2020-02-13','YYYY-MM-DD'),3600,4500,'BIEN-007');
 
 
-INSERT INTO SAE_Compteur VALUES ('COMP-029',47,23,70,'Electricite',TO_DATE('2020-11-30','YYYY-MM-DD'),820,870,'BIEN-008');
-INSERT INTO SAE_Compteur VALUES ('COMP-030',21,8,29,'Eau',TO_DATE('2017-09-08','YYYY-MM-DD'),110,130,'BIEN-008');
-INSERT INTO SAE_Compteur VALUES ('COMP-031',32,12,44,'Gaz',TO_DATE('2019-05-16','YYYY-MM-DD'),280,320,'BIEN-008');
+INSERT INTO SAE_Compteur VALUES 
+('COMP-029',47,23,70,'Electricite',TO_DATE('2020-11-30','YYYY-MM-DD'),8200,10200,'BIEN-008');
 
-INSERT INTO SAE_Compteur VALUES ('COMP-032',52,26,78,'Electricite',TO_DATE('2021-03-15','YYYY-MM-DD'),900,960,'BIEN-009');
-INSERT INTO SAE_Compteur VALUES ('COMP-033',24,11,35,'Eau',TO_DATE('2020-06-10','YYYY-MM-DD'),200,225,'BIEN-009');
-INSERT INTO SAE_Compteur VALUES ('COMP-034',38,18,56,'Gaz',TO_DATE('2018-08-25','YYYY-MM-DD'),500,540,'BIEN-009');
+INSERT INTO SAE_Compteur VALUES 
+('COMP-030',21,8,29,'Eau',TO_DATE('2017-09-08','YYYY-MM-DD'),1100,1180,'BIEN-008');
+
+INSERT INTO SAE_Compteur VALUES 
+('COMP-031',32,12,44,'Gaz',TO_DATE('2019-05-16','YYYY-MM-DD'),2800,3600,'BIEN-008');
 
 
-INSERT INTO SAE_Compteur VALUES ('COMP-035',46,21,67,'Electricite',TO_DATE('2019-10-10','YYYY-MM-DD'),650,700,'BIEN-010');
-INSERT INTO SAE_Compteur VALUES ('COMP-036',26,12,38,'Eau',TO_DATE('2020-02-03','YYYY-MM-DD'),170,200,'BIEN-010');
-INSERT INTO SAE_Compteur VALUES ('COMP-037',37,16,53,'Gaz',TO_DATE('2021-09-12','YYYY-MM-DD'),450,490,'BIEN-010');
+INSERT INTO SAE_Compteur VALUES 
+('COMP-032',52,26,78,'Electricite',TO_DATE('2021-03-15','YYYY-MM-DD'),9000,11200,'BIEN-009');
 
-INSERT INTO SAE_Compteur VALUES ('COMP-038',49,23,72,'Electricite',TO_DATE('2021-04-18','YYYY-MM-DD'),720,780,'BIEN-011');
-INSERT INTO SAE_Compteur VALUES ('COMP-039',27,11,38,'Eau',TO_DATE('2019-07-22','YYYY-MM-DD'),210,235,'BIEN-011');
-INSERT INTO SAE_Compteur VALUES ('COMP-040',39,17,56,'Gaz',TO_DATE('2020-11-03','YYYY-MM-DD'),520,560,'BIEN-011');
+INSERT INTO SAE_Compteur VALUES 
+('COMP-033',24,11,35,'Eau',TO_DATE('2020-06-10','YYYY-MM-DD'),2000,2080,'BIEN-009');
 
-INSERT INTO SAE_Compteur VALUES ('COMP-041',44,19,63,'Electricite',TO_DATE('2020-05-14','YYYY-MM-DD'),680,730,'BIEN-012');
-INSERT INTO SAE_Compteur VALUES ('COMP-042',23,10,33,'Eau',TO_DATE('2018-09-11','YYYY-MM-DD'),160,185,'BIEN-012');
-INSERT INTO SAE_Compteur VALUES ('COMP-043',35,14,49,'Gaz',TO_DATE('2019-12-07','YYYY-MM-DD'),390,430,'BIEN-012');
+INSERT INTO SAE_Compteur VALUES 
+('COMP-034',38,18,56,'Gaz',TO_DATE('2018-08-25','YYYY-MM-DD'),5000,6200,'BIEN-009');
 
-INSERT INTO SAE_Compteur VALUES ('COMP-044',51,25,76,'Electricite',TO_DATE('2021-08-29','YYYY-MM-DD'),840,900,'BIEN-013');
-INSERT INTO SAE_Compteur VALUES ('COMP-045',28,12,40,'Eau',TO_DATE('2019-01-25','YYYY-MM-DD'),230,260,'BIEN-013');
-INSERT INTO SAE_Compteur VALUES ('COMP-046',36,15,51,'Gaz',TO_DATE('2020-03-22','YYYY-MM-DD'),420,455,'BIEN-013');
 
-INSERT INTO SAE_Compteur VALUES ('COMP-047',43,20,63,'Electricite',TO_DATE('2019-12-03','YYYY-MM-DD'),710,755,'BIEN-014');
-INSERT INTO SAE_Compteur VALUES ('COMP-048',24,9,33,'Eau',TO_DATE('2020-04-19','YYYY-MM-DD'),180,205,'BIEN-014');
-INSERT INTO SAE_Compteur VALUES ('COMP-049',34,13,47,'Gaz',TO_DATE('2018-11-14','YYYY-MM-DD'),310,345,'BIEN-014');
+INSERT INTO SAE_Compteur VALUES 
+('COMP-035',46,21,67,'Electricite',TO_DATE('2019-10-10','YYYY-MM-DD'),6500,8300,'BIEN-010');
 
-INSERT INTO SAE_Compteur VALUES ('COMP-050',48,22,70,'Electricite',TO_DATE('2021-03-12','YYYY-MM-DD'),760,815,'BIEN-015');
-INSERT INTO SAE_Compteur VALUES ('COMP-051',25,11,36,'Eau',TO_DATE('2019-06-07','YYYY-MM-DD'),195,220,'BIEN-015');
-INSERT INTO SAE_Compteur VALUES ('COMP-052',37,17,54,'Gaz',TO_DATE('2020-09-09','YYYY-MM-DD'),470,510,'BIEN-015');
+INSERT INTO SAE_Compteur VALUES 
+('COMP-036',26,12,38,'Eau',TO_DATE('2020-02-03','YYYY-MM-DD'),1700,1780,'BIEN-010');
 
-INSERT INTO SAE_Compteur VALUES ('COMP-053',46,21,67,'Electricite',TO_DATE('2018-04-30','YYYY-MM-DD'),640,690,'BIEN-016');
-INSERT INTO SAE_Compteur VALUES ('COMP-054',22,10,32,'Eau',TO_DATE('2017-10-10','YYYY-MM-DD'),150,172,'BIEN-016');
-INSERT INTO SAE_Compteur VALUES ('COMP-055',33,14,47,'Gaz',TO_DATE('2019-05-05','YYYY-MM-DD'),340,375,'BIEN-016');
+INSERT INTO SAE_Compteur VALUES 
+('COMP-037',37,16,53,'Gaz',TO_DATE('2021-09-12','YYYY-MM-DD'),4500,5400,'BIEN-010');
 
-INSERT INTO SAE_Compteur VALUES ('COMP-056',52,26,78,'Electricite',TO_DATE('2020-12-01','YYYY-MM-DD'),880,940,'BIEN-017');
-INSERT INTO SAE_Compteur VALUES ('COMP-057',29,12,41,'Eau',TO_DATE('2019-04-02','YYYY-MM-DD'),260,290,'BIEN-017');
-INSERT INTO SAE_Compteur VALUES ('COMP-058',38,16,54,'Gaz',TO_DATE('2021-07-08','YYYY-MM-DD'),510,550,'BIEN-017');
+INSERT INTO SAE_Compteur VALUES 
+('COMP-038',49,23,72,'Electricite',TO_DATE('2021-04-18','YYYY-MM-DD'),7200,9000,'BIEN-011');
 
-INSERT INTO SAE_Compteur VALUES ('COMP-059',45,20,65,'Electricite',TO_DATE('2021-09-14','YYYY-MM-DD'),700,750,'BIEN-018');
-INSERT INTO SAE_Compteur VALUES ('COMP-060',21,9,30,'Eau',TO_DATE('2018-08-08','YYYY-MM-DD'),140,165,'BIEN-018');
-INSERT INTO SAE_Compteur VALUES ('COMP-061',31,12,43,'Gaz',TO_DATE('2019-02-28','YYYY-MM-DD'),320,350,'BIEN-018');
+INSERT INTO SAE_Compteur VALUES 
+('COMP-039',27,11,38,'Eau',TO_DATE('2019-07-22','YYYY-MM-DD'),2100,2180,'BIEN-011');
 
-INSERT INTO SAE_Compteur VALUES ('COMP-062',49,24,73,'Electricite',TO_DATE('2020-07-07','YYYY-MM-DD'),780,835,'BIEN-019');
-INSERT INTO SAE_Compteur VALUES ('COMP-063',27,10,37,'Eau',TO_DATE('2019-10-17','YYYY-MM-DD'),210,235,'BIEN-019');
-INSERT INTO SAE_Compteur VALUES ('COMP-064',36,15,51,'Gaz',TO_DATE('2021-02-11','YYYY-MM-DD'),430,470,'BIEN-019');
+INSERT INTO SAE_Compteur VALUES 
+('COMP-040',39,17,56,'Gaz',TO_DATE('2020-11-03','YYYY-MM-DD'),5200,6200,'BIEN-011');
 
+
+INSERT INTO SAE_Compteur VALUES 
+('COMP-041',44,19,63,'Electricite',TO_DATE('2020-05-14','YYYY-MM-DD'),6800,8600,'BIEN-012');
+
+INSERT INTO SAE_Compteur VALUES 
+('COMP-042',23,10,33,'Eau',TO_DATE('2018-09-11','YYYY-MM-DD'),1600,1680,'BIEN-012');
+
+INSERT INTO SAE_Compteur VALUES 
+('COMP-043',35,14,49,'Gaz',TO_DATE('2019-12-07','YYYY-MM-DD'),3900,4700,'BIEN-012');
+
+
+INSERT INTO SAE_Compteur VALUES 
+('COMP-044',51,25,76,'Electricite',TO_DATE('2021-08-29','YYYY-MM-DD'),8400,10200,'BIEN-013');
+
+INSERT INTO SAE_Compteur VALUES 
+('COMP-045',28,12,40,'Eau',TO_DATE('2019-01-25','YYYY-MM-DD'),2300,2380,'BIEN-013');
+
+INSERT INTO SAE_Compteur VALUES 
+('COMP-046',36,15,51,'Gaz',TO_DATE('2020-03-22','YYYY-MM-DD'),4200,5200,'BIEN-013');
+
+
+INSERT INTO SAE_Compteur VALUES 
+('COMP-047',43,20,63,'Electricite',TO_DATE('2019-12-03','YYYY-MM-DD'),7100,8800,'BIEN-014');
+
+INSERT INTO SAE_Compteur VALUES 
+('COMP-048',24,9,33,'Eau',TO_DATE('2020-04-19','YYYY-MM-DD'),1800,1880,'BIEN-014');
+
+INSERT INTO SAE_Compteur VALUES 
+('COMP-049',34,13,47,'Gaz',TO_DATE('2018-11-14','YYYY-MM-DD'),3100,4000,'BIEN-014');
+
+
+INSERT INTO SAE_Compteur VALUES 
+('COMP-050',48,22,70,'Electricite',TO_DATE('2021-03-12','YYYY-MM-DD'),7600,9400,'BIEN-015');
+
+INSERT INTO SAE_Compteur VALUES 
+('COMP-051',25,11,36,'Eau',TO_DATE('2019-06-07','YYYY-MM-DD'),1950,2030,'BIEN-015');
+
+INSERT INTO SAE_Compteur VALUES 
+('COMP-052',37,17,54,'Gaz',TO_DATE('2020-09-09','YYYY-MM-DD'),4700,5600,'BIEN-015');
+
+
+INSERT INTO SAE_Compteur VALUES 
+('COMP-053',46,21,67,'Electricite',TO_DATE('2018-04-30','YYYY-MM-DD'),6400,8100,'BIEN-016');
+
+INSERT INTO SAE_Compteur VALUES 
+('COMP-054',22,10,32,'Eau',TO_DATE('2017-10-10','YYYY-MM-DD'),1500,1580,'BIEN-016');
+
+INSERT INTO SAE_Compteur VALUES 
+('COMP-055',33,14,47,'Gaz',TO_DATE('2019-05-05','YYYY-MM-DD'),3400,4300,'BIEN-016');
+
+
+INSERT INTO SAE_Compteur VALUES 
+('COMP-056',52,26,78,'Electricite',TO_DATE('2020-12-01','YYYY-MM-DD'),8800,10500,'BIEN-017');
+
+INSERT INTO SAE_Compteur VALUES 
+('COMP-057',29,12,41,'Eau',TO_DATE('2019-04-02','YYYY-MM-DD'),2600,2680,'BIEN-017');
+
+INSERT INTO SAE_Compteur VALUES 
+('COMP-058',38,16,54,'Gaz',TO_DATE('2021-07-08','YYYY-MM-DD'),5100,6000,'BIEN-017');
+
+
+INSERT INTO SAE_Compteur VALUES 
+('COMP-059',45,20,65,'Electricite',TO_DATE('2021-09-14','YYYY-MM-DD'),7000,8700,'BIEN-018');
+
+INSERT INTO SAE_Compteur VALUES 
+('COMP-060',21,9,30,'Eau',TO_DATE('2018-08-08','YYYY-MM-DD'),1400,1480,'BIEN-018');
+
+INSERT INTO SAE_Compteur VALUES 
+('COMP-061',31,12,43,'Gaz',TO_DATE('2019-02-28','YYYY-MM-DD'),3200,4100,'BIEN-018');
+
+
+INSERT INTO SAE_Compteur VALUES 
+('COMP-062',49,24,73,'Electricite',TO_DATE('2020-07-07','YYYY-MM-DD'),7800,9600,'BIEN-019');
+
+INSERT INTO SAE_Compteur VALUES 
+('COMP-063',27,10,37,'Eau',TO_DATE('2019-10-17','YYYY-MM-DD'),2100,2180,'BIEN-019');
+
+INSERT INTO SAE_Compteur VALUES 
+('COMP-064',36,15,51,'Gaz',TO_DATE('2021-02-11','YYYY-MM-DD'),4300,5200,'BIEN-019');
 
 
 
