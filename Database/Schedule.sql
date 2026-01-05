@@ -1,6 +1,6 @@
  
  --A modifier pour update le solde tout compte chaque mois (loyer + charges)
- 
+ --Rajouter aussi un pour signaler la fin du contrat de location
   DBMS_SCHEDULER.create_job (
     job_name        => 'UPDATE_BONUS_MONTHLY',
     job_type        => 'PLSQL_BLOCK',
@@ -25,7 +25,7 @@ END;
 BEGIN
   DBMS_SCHEDULER.create_program(
   program_name => 'plsql_program',
-  program_type => 'PLSQL_BLOCK',
+  program_type => 'PLSQL_BLOCK',    
   program_action => 'BEGIN DBMS_STATS.gather_schema_stats(''HR''); END;',
   enabled => TRUE,
   comments => 'Program to gather HR user statistics');
