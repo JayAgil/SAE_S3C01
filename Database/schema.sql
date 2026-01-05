@@ -1,4 +1,4 @@
--- Oracle SQL Schema (suivant exactement le modèle fourni)
+
 
 CREATE TABLE SAE_Garant (
     Id_Garant VARCHAR2(50) PRIMARY KEY,
@@ -13,6 +13,7 @@ CREATE TABLE SAE_Batiment (
     Date_construction DATE
 );
 
+----- Rajouter un trigger qui check si Id_BienLouable_2 est correspond bien à une id_BienLouable de garage
 CREATE TABLE SAE_BienLouable (
     Id_BienLouable VARCHAR2(50) PRIMARY KEY,
     NumeroFiscale VARCHAR2(50),
@@ -20,10 +21,12 @@ CREATE TABLE SAE_BienLouable (
     Surface_d_habituable NUMBER,
     Nombre_de_pieces NUMBER,
     Type_bien_louable VARCHAR2(50),
-    Id_BienLouable_2 NUMBER,
+    Id_BienLouable_2 VARCHAR2(50),
     fk_Adresse_Bat VARCHAR2(50),
     CONSTRAINT fk_bien_bat FOREIGN KEY (fk_Adresse_Bat) REFERENCES SAE_Batiment(Adresse)
 );
+
+
 
 CREATE TABLE SAE_Locataire (
     Id_Locataire VARCHAR2(50) PRIMARY KEY,
@@ -39,7 +42,6 @@ CREATE TABLE SAE_Locataire (
     Salaire NUMBER,
     Profession VARCHAR2(50),
     Situation_Familiale VARCHAR2(50),
-    Image_Locataire VARCHAR2(50),
     fk_Id_Garant VARCHAR2(50),
     CONSTRAINT fk_loc_garant FOREIGN KEY (fk_Id_Garant) REFERENCES SAE_Garant(Id_Garant)
 );
@@ -66,7 +68,7 @@ CREATE TABLE SAE_Charges_Generale (
     Montant_Total NUMBER,
     Pourcentage NUMBER,
     Quotite NUMBER(3,1),
-    Mois VARCHAR (15), 
+    Date_Charge Date, 
     fk_Id_BienLouable VARCHAR2(50),
     CONSTRAINT fk_chg_bien FOREIGN KEY (fk_Id_BienLouable) REFERENCES SAE_BienLouable(Id_BienLouable)
 );
@@ -83,7 +85,8 @@ CREATE TABLE SAE_Diagnostics (
 
 CREATE TABLE SAE_IRL (
     Annee NUMBER PRIMARY KEY,
-    IRL NUMBER
+    IRL NUMBER,
+    Trismetre NUMBER
 );
 
 CREATE TABLE SAE_Paiement (
