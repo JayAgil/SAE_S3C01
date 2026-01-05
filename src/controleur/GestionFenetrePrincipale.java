@@ -10,7 +10,6 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.time.Month;
 import java.time.ZoneId;
 
 import javax.swing.JComboBox;
@@ -36,7 +35,6 @@ import modele.dao.DaoLocataire;
 import modele.dao.DaoPaiement;
 import vue.FenetreAjouterBatiment;
 import vue.FenetreAjouterIRL;
-import vue.FenetreAjouterPaiement;
 import vue.FenetreAssurance;
 import vue.FenetreBienLouable;
 import vue.FenetreCharges;
