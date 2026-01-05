@@ -6,16 +6,19 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JDesktopPane;
+import javax.swing.JFormattedTextField;
 import javax.swing.JInternalFrame;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.text.DateFormatter;
 
 import controleur.GestionFenetreAjouterCompteur;
 import controleur.GestionFenetreCompteurs;
@@ -177,8 +180,14 @@ public class FenetreAjouterCompteur extends JInternalFrame {
 		gbc_txtDate.anchor = GridBagConstraints.LINE_START;
 		gbc_txtDate.gridx = 1;
 		gbc_txtDate.gridy = 5;
-		txtDate = new JTextField(15);
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		DateFormatter dateFormatter = new DateFormatter(format);
+		txtDate = new JFormattedTextField(dateFormatter);
+		txtDate.setColumns(15);
+		txtDate.setToolTipText("Format attendu : yyyy-MM-dd");
+
 		panelCenter.add(txtDate, gbc_txtDate);
+
 
 		GridBagConstraints gbc_txtTotal = new GridBagConstraints();
 		gbc_txtTotal.insets = pad;
