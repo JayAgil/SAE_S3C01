@@ -275,9 +275,8 @@ INSERT INTO SAE_Locataire (Id_Locataire, Nom, Prenom, Adresse, Tel, Email, Code_
 
 ----------------------------------------------------------------------------------------------------------------
 
---Date_Fin NULL et Date_versement NULL, à remplacer, check pour les index aussi
 
----TESTER avec 0000-00-Jour  -> Mois et année non accepté, '0001-01-12' -> Fonctionne
+---TESTER avec 0000-00-Jour  -> Mois et année non accepté, '0001-01-jour' -> Fonctionne
 INSERT INTO SAE_ContratLocation (Numero_de_contrat,Date_debut, Date_Fin, Montant_de_caution, Provision_Charge, Solde, Montant_Mensuel,
  Date_versement, Index_Compteur_Eau, Index_Compteur_Electrcite, Index_Compteur_Gaz, fk_Id_BienLouable)
  VALUES ('CTR-001',TO_DATE('2023-01-01','YYYY-MM-DD'),TO_DATE('2026-01-01','YYYY-MM-DD'),800,40,0,900,TO_DATE('0001-01-01','YYYY-MM-DD'),0,0,0,'BIEN-001');
@@ -320,7 +319,7 @@ INSERT INTO SAE_ContratLocation (Numero_de_contrat,Date_debut, Date_Fin, Montant
 
  INSERT INTO SAE_ContratLocation (Numero_de_contrat,Date_debut, Date_Fin, Montant_de_caution, Provision_Charge, Solde, Montant_Mensuel,
  Date_versement, Index_Compteur_Eau, Index_Compteur_Electrcite, Index_Compteur_Gaz, fk_Id_BienLouable)
- VALUES ('CTR-011',TO_DATE('2022-11-01','YYYY-MM-DD'),('2025-11-01','YYYY-MM-DD'),1250,100,0,1100,TO_DATE('0001-01-01','YYYY-MM-DD'),0,0,0,'BIEN-011');
+ VALUES ('CTR-011',TO_DATE('2022-11-01','YYYY-MM-DD'),TO_DATE('2025-11-01','YYYY-MM-DD'),1250,100,0,1100,TO_DATE('0001-01-01','YYYY-MM-DD'),0,0,0,'BIEN-011');
 
 INSERT INTO SAE_ContratLocation (Numero_de_contrat,Date_debut, Date_Fin, Montant_de_caution, Provision_Charge, Solde, Montant_Mensuel,
  Date_versement, Index_Compteur_Eau, Index_Compteur_Electrcite, Index_Compteur_Gaz, fk_Id_BienLouable)

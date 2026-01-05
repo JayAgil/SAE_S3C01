@@ -164,7 +164,7 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter
             break;
 
         case "Charges":
-            new FenetreCharges("FenPrincipale", getDonneesChargesGenerale())
+            new FenetreCharges("FenPrincipale", getDonneesChargesGenerale(),null)
                 .setVisible(true);
             fenetre.dispose();
             break;

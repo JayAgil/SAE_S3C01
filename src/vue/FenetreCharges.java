@@ -4,9 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
+
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTable;
@@ -17,35 +15,25 @@ import modele.BienLouable;
 import modele.ChargesGenerales;
 
 import javax.swing.JScrollPane;
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Panel;
+
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.awt.Font;
-import java.awt.Component;
-import javax.swing.Box;
 import javax.swing.ImageIcon;
 
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 
 import javax.swing.border.TitledBorder;
-import javax.swing.border.EtchedBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.SwingConstants;
-import javax.swing.border.LineBorder;
 import javax.swing.JComboBox;
-import javax.swing.JTextField;
 import javax.swing.DefaultComboBoxModel;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+
 
 public class FenetreCharges extends FenetreBase {
 
@@ -64,6 +52,7 @@ public class FenetreCharges extends FenetreBase {
 	private JComboBox comboBoxMois;
 	private JComboBox comboBoxAnnee;
 	private BienLouable bl;
+	
 
 	/**
 	 * Launch the application.
@@ -88,8 +77,8 @@ public class FenetreCharges extends FenetreBase {
 	 */
 	public FenetreCharges(String FenetreAvant, List<ChargesGenerales> list, BienLouable bl) throws SQLException {
 		super();
-		this.fenetreAvant = FenetreAvant;
 		this.bl = bl;
+		this.fenetreAvant = FenetreAvant;
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.gestionClic = new GestionFenetreCharges(this, list);
 
@@ -387,5 +376,7 @@ public class FenetreCharges extends FenetreBase {
 	public void setLblchargesmoyen(JLabel lblchargesmoyen) {
 		this.lblchargesmoyen = lblchargesmoyen;
 	}
-
+	public BienLouable getBl() {
+		return bl;
+	}
 }
