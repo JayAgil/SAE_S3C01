@@ -401,6 +401,7 @@ public class FenetreBienLouable extends FenetreBase {
 		
 		JLabel lblTitreTable = new JLabel("Tous les biens sous le batiment");
 		lblTitreTable.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblTitreTable.setVisible(true);
 		panel_6.add(lblTitreTable);
 
 		JPanel panel_5 = new JPanel();
