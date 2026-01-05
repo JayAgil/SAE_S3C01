@@ -5,6 +5,7 @@ import modele.Assurance;
 import modele.Batiment;
 import modele.dao.DaoAssurance;
 import modele.dao.DaoBatiment;
+import modele.dao.DaoBienLouable;
 import vue.FenetreAjouterAssurance;
 import vue.FenetreAssurance;
 import vue.FenetrePrincipale;
@@ -50,9 +51,9 @@ public class GestionFenetreAssurance extends GestionHeaderEtFooter {
     
     public void chargerAssuranceBatiment(String batiment) throws SQLException {
         DaoAssurance daoAssurance = new DaoAssurance();
-        DaoBatiment dB = new DaoBatiment();
+        DaoBienLouable dB = new DaoBienLouable();
         Assurance assurance = daoAssurance.findByBatiment(batiment);
-        int nbBiens = dB.findBatimentByAssurance(assurance.getNumeroAssurance()).size();
+        int nbBiens = dB.findByIdBat(batiment).size();
         this.afficherAssuranceBatiment(assurance, nbBiens);
     }
     
