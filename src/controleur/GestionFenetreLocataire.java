@@ -115,14 +115,12 @@ public class GestionFenetreLocataire extends GestionHeaderEtFooter {
 	    String dateNaissance = loc.getDateDeNaissance()
                 .toLocalDate()
                 .format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-fenetre.getTextFieldDateNaissance().setText(dateNaissance);	    fenetre.getTextFieldEmail().setText(loc.getEmail());
+	    fenetre.getTextFieldDateNaissance().setText(dateNaissance);	    fenetre.getTextFieldEmail().setText(loc.getEmail());
 	    fenetre.getTextFieldLieuNaissance().setText(loc.getLieuDeNaissance());
 	    fenetre.getTextFieldProfession().setText(loc.getProfession());
 	    fenetre.getTextFieldSalaire().setText(String.valueOf(loc.getSalaire()));
 	    fenetre.getTextFieldSituationFamiliale().setText(loc.getSituationFamiliale());
 	    fenetre.getTextFieldAdresse().setText(loc.getAdresse());
-	    ImageIcon icon = new ImageIcon(loc.getImage());
-	    fenetre.getLblPhoto().setIcon(icon);
 	}
 
 }

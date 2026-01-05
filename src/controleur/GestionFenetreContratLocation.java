@@ -4,6 +4,7 @@ import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import java.time.Year;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -51,56 +52,62 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
                 fenetre.dispose();
                 break;
             case "Revaloriser":
-            	String id1 = String.valueOf(Year.now().getValue());
-            	String id2 = String.valueOf(Year.now().getValue() - 1);
+                Calendar cal = Calendar.getInstance();
+                int annne1 = cal.get(Calendar.YEAR);
+                int annee2 = annne1 - 1;
 
-            	DaoIRL dIRL = new DaoIRL();
-            	DaoContratLocation dCL = new DaoContratLocation();
+                int mois = cal.get(Calendar.MONTH) + 1;
+                int trimester = (mois - 1) / 3 + 1; 
 
-            	IRL courant = dIRL.findById(id1);
-            	IRL precedent = dIRL.findById(id2);
+                DaoIRL daoIRL = new DaoIRL();
+                DaoContratLocation daoCL = new DaoContratLocation();
 
-            	if(courant == null || precedent == null) {
-            	    JOptionPane.showMessageDialog(null,
-            	        "IRL non trouvée. Ajouter IRL avant de revaloriser",
-            	        "Error", JOptionPane.ERROR_MESSAGE);
-            	    break;
-            	}
+                IRL irlCourant = daoIRL.findById(String.valueOf(annne1), String.valueOf(trimester));
+                IRL irlPrecedent = daoIRL.findById(String.valueOf(annee2), String.valueOf(trimester));
 
-            	double val1 = courant.getIRL();
-            	double val2 = precedent.getIRL();
+                if (irlCourant == null || irlPrecedent == null) {
+                    JOptionPane.showMessageDialog(null,
+                        "IRL non trouvée pour le trimestre correspondant. Ajouter IRL avant de revaloriser",
+                        "Erreur", JOptionPane.ERROR_MESSAGE);
+                    break;
+                }
 
-            	double min = this.selected.getMontantMensuel();
-            	double max = min * (val1 / val2);
+                double valCourant = irlCourant.getIRL();
+                double valPrecedent = irlPrecedent.getIRL();
 
-            	String input = JOptionPane.showInputDialog(null,
-            	    String.format("Veuillez entrer le loyer entre %.2f et %.2f", min, max),
-            	    "Input", JOptionPane.INFORMATION_MESSAGE);
+                double min = selected.getMontantMensuel();
+                double max = min * (valCourant / valPrecedent);
 
-            	if(input != null && !input.trim().isEmpty()) {
-            	    double inputValue;
-            	    try {
-            	        inputValue = Double.parseDouble(input);
-            	    } catch (NumberFormatException ex) {
-            	        JOptionPane.showMessageDialog(null,
-            	            "Entrée invalide. Veuillez entrer un nombre.",
-            	            "Error", JOptionPane.ERROR_MESSAGE);
-            	        break;
-            	    }
+                String input = JOptionPane.showInputDialog(null,
+                    String.format("Veuillez entrer le loyer entre %.2f et %.2f €", min, max),
+                    "Revalorisation du loyer", JOptionPane.QUESTION_MESSAGE);
 
-            	    if(inputValue < min || inputValue > max) {
-            	        JOptionPane.showMessageDialog(null,
-            	            String.format("Le loyer doit être compris entre %.2f et %.2f", min, max),
-            	            "Error", JOptionPane.ERROR_MESSAGE);
-            	    } else {
-            	        inputValue = Math.round(inputValue * 100.0) / 100.0;
-            	        this.selected.setMontantMensuel(inputValue);
-            	        dCL.update(selected);
-            	        JOptionPane.showMessageDialog(null, 
-            	            "Loyer mis à jour avec succès : " + inputValue + " €");
-            	    }
-            	}
-              break;
+                if (input != null && !input.trim().isEmpty()) {
+                    double loyerNouveau;
+                    try {
+                        loyerNouveau = Double.parseDouble(input);
+                    } catch (NumberFormatException ex) {
+                        JOptionPane.showMessageDialog(null,
+                            "Entrée invalide. Veuillez entrer un nombre.",
+                            "Erreur", JOptionPane.ERROR_MESSAGE);
+                        break;
+                    }
+                    if (loyerNouveau < min || loyerNouveau > max) {
+                        JOptionPane.showMessageDialog(null,
+                            String.format("Le loyer doit être compris entre %.2f et %.2f €", min, max),
+                            "Erreur", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        loyerNouveau = Math.round(loyerNouveau * 100.0) / 100.0;
+                        selected.setMontantMensuel(loyerNouveau);
+                        daoCL.update(selected);
+
+                        JOptionPane.showMessageDialog(null,
+                            String.format("Loyer mis à jour avec succès : %.2f €", loyerNouveau),
+                            "Succès", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                }
+                break;
+
         }
     }
     @Override

@@ -37,7 +37,6 @@ public class DaoIRL extends DaoModele<IRL> implements Dao<IRL> {
     public List<IRL> findAll() throws SQLException {
         return find(new RequeteSelectIRL());
     }
-
     @Override
     protected IRL creerInstance(ResultSet rs) throws SQLException {
         int annee = rs.getInt("Annee");

@@ -19,12 +19,11 @@ public class Locataire {
 	private double salaire;
 	private String profession;
 	private String situationFamiliale;
-	private String image;
 	private Garant garant;
 
 	public Locataire(String idLocataire, String nom, String prenom, String adresse, String tel, String email,
 			String codePostale, String ville, Date dateDeNaissance, String lieuDeNaissance, double salaire,
-			String profession, String situationFamiliale, String image, Garant garant) {
+			String profession, String situationFamiliale, Garant garant) {
 		super();
 		this.idLocataire = idLocataire;
 		this.nom = nom;
@@ -39,7 +38,6 @@ public class Locataire {
 		this.salaire = salaire;
 		this.profession = profession;
 		this.situationFamiliale = situationFamiliale;
-		this.image = image;
 		this.garant = garant;
 	}
 
@@ -145,14 +143,6 @@ public class Locataire {
 
 	public void setSituationFamiliale(String situationFamiliale) {
 		this.situationFamiliale = situationFamiliale;
-	}
-
-	public String getImage() {
-		return image;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
 	}
 
 	public Garant getGarant() {

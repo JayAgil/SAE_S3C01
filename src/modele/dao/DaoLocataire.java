@@ -69,10 +69,9 @@ public class DaoLocataire extends DaoModele<Locataire> implements Dao<Locataire>
 		double salaire = rs.getDouble(11);
 		String profession = rs.getString(12);
 		String situationFamiliale = rs.getString(13);
-		String image = rs.getString(14);
-		Garant garant = dG.findById(rs.getString(15));
+		Garant garant = dG.findById(rs.getString(14));
 		return new Locataire(idLocataire, nom, prenom, adresse, tel, email, codePostal, ville, dateDeNaissance,
-				lieuDeNaissance, salaire, profession, situationFamiliale, image, garant);
+				lieuDeNaissance, salaire, profession, situationFamiliale, garant);
 	}
 
 }
