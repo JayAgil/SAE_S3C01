@@ -118,7 +118,7 @@ public class FenetreCharges extends FenetreBase {
 
 		comboBoxAnnee = new JComboBox();
 		comboBoxAnnee.setModel(
-				new DefaultComboBoxModel(new String[] { "Année", "2023", "2024", "2025", "                 " }));
+				new DefaultComboBoxModel(new String[] {"Année", "2022", "2023", "2024", "2025", "                 "}));
 		panel_11.add(comboBoxAnnee);
 
 		// Center panel to hold the table and scroll pane
@@ -286,10 +286,11 @@ public class FenetreCharges extends FenetreBase {
 		lbltotalascenceur.setFont(new Font("Tahoma", Font.PLAIN, 45));
 		lbltotalascenceur.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_7.add(lbltotalascenceur, BorderLayout.CENTER);
-		comboBoxMois.addActionListener(this.gestionClic);
-		comboBoxAnnee.addActionListener(this.gestionClic);
 		this.gestionClic.initialize();
 		this.gestionClic.chargerDonnees();
+		this.gestionClic.initialiserFiltrage();
+		comboBoxMois.addActionListener(this.gestionClic);
+		comboBoxAnnee.addActionListener(this.gestionClic);
 
 	}
 

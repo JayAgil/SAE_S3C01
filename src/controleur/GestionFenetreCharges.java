@@ -166,6 +166,25 @@ public class GestionFenetreCharges extends GestionHeaderEtFooter{
     public void setDonnees(List<ChargesGenerales> donnees) {
 		this.donnees = donnees;
 	}
+    
+    public void initialiserFiltrage() {
+        fenetre.getComboBoxMois().addActionListener(e -> {
+            try {
+                chargerDonnees();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        });
+
+        fenetre.getComboBoxAnnee().addActionListener(e -> {
+            try {
+                chargerDonnees();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        });
+    }
+
 
 
 }
