@@ -134,7 +134,7 @@ FROM
             MSF5131A.SAE_ContratLocation cl2
         WHERE
             p.fk_Numero_de_contrat = cl2.Numero_de_contrat
-            AND EXTRACT(YEAR FROM p.Date_Paiement) = 2022
+            AND EXTRACT(YEAR FROM p.Date_Paiement) = 2025
         GROUP BY
             cl2.Numero_de_contrat,
             cl2.Provision_Charge
@@ -152,7 +152,7 @@ FROM
                     fk_Id_BienLouable,
                     SUM(Montant_Total) AS Total_Charges_Generales
                 FROM MSF5131A.SAE_Charges_Generale
-                WHERE EXTRACT(YEAR FROM Date_Charge) = 2022
+                WHERE EXTRACT(YEAR FROM Date_Charge) = 2025
                 GROUP BY fk_Id_BienLouable
             ) cg,
             (
@@ -167,7 +167,7 @@ FROM
                     fk_Id_BienLouable,
                     SUM(Montant) AS Total_Factures
                 FROM MSF5131A.SAE_Facture
-                WHERE EXTRACT(YEAR FROM Date_de_facture) = 2022
+                WHERE EXTRACT(YEAR FROM Date_de_facture) = 2025
                 GROUP BY fk_Id_BienLouable
             ) f
         WHERE

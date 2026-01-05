@@ -140,6 +140,7 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 
 			selected.setProvisionCharge(nouvelleCharge);
 			DaoContratLocation daoCLCharge = new DaoContratLocation();
+			System.out.print(selected);
 			daoCLCharge.update(selected);
 			fenetre.getTextFieldProvCharge().setText(String.valueOf(nouvelleCharge));
 			JOptionPane.showMessageDialog(fenetre,

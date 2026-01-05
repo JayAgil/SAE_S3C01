@@ -42,8 +42,13 @@ public class DaoBatiment extends DaoModele<Batiment> implements Dao<Batiment> {
 		return this.find(new RequeteSelectBatiment());
 	}
 	
+	
 	public Batiment findBatimentByBien(String... id) throws SQLException{
 		return this.findById(new RequeteSelectBatimentByBien(), id);
+	}
+	
+	public List<Batiment> findBatimentByAssurance(String... id) throws SQLException{
+		return this.find(new RequeteSelectBatimentByAssurance(), id);
 	}
 
 	@Override

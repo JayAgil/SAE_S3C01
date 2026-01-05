@@ -3,7 +3,10 @@ package controleur;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -159,7 +162,7 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter
             break;
 
         case "Compteurs":
-            new FenetreCompteurs("FenPrincipale", this.getDonneesCompteur()).setVisible(true);
+            new FenetreCompteurs("FenPrincipale", this.getDonneesCompteur(),null).setVisible(true);
             fenetre.dispose();
             break;
 
@@ -194,8 +197,24 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter
 	    }
     }
 
-    private void mAJDeBaseDeDonnees(File file) {
-        return;
+    private void mAJDeBaseDeDonnees(File file) throws SQLException {
+        DaoContratLocation daoContrat = new DaoContratLocation();
+        DaoPaiement daoPaiement = new DaoPaiement();
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                if (line.trim().isEmpty()) continue;
+                String[] data = line.split(";");
+                String idBien = data[0].trim();
+                String idLocataire = data[1].trim();
+                String moisAnnee = data[2].trim();   
+                double montantLoyer = Double.parseDouble(data[3].trim());
+                double provisionCharge = Double.parseDouble(data[4].trim());
+                ContratLocation contrat = daoContrat.findContratByLocataireAndBien(idLocataire, idBien);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

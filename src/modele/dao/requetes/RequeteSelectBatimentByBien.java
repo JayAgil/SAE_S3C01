@@ -8,8 +8,8 @@ import modele.Batiment;
 public class RequeteSelectBatimentByBien extends Requete<Batiment> {
 	public String requete() {
 		return "SELECT b.Adresse, b.Date_construction "
-			     + "FROM SAE_Batiment b "
-			     + "JOIN SAE_BienLouable bl ON bl.fk_Adresse_Bat = b.Adresse "
+			     + "FROM MSF5131A.SAE_Batiment b "
+			     + "JOIN MSF5131A.SAE_BienLouable bl ON bl.fk_Adresse_Bat = b.Adresse "
 			     + "WHERE bl.Id_BienLouable = ?";
 
 	}
