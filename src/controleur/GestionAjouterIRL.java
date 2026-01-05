@@ -1,22 +1,17 @@
 package controleur;
-
-import java.awt.event.ActionEvent;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.swing.JInternalFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import modele.IRL;
+import modele.dao.DaoIRL;
 import vue.FenetreAjouterIRL;
-import vue.FenetreAjouterTravaux;
 
 public class GestionAjouterIRL extends GestionButtonFenetreAjouter {
     
     private FenetreAjouterIRL fenetreAjouterIRL;
-    private Connection connection;
     
     public GestionAjouterIRL(FenetreAjouterIRL fenetreAjouterIRL) {
         this.fenetreAjouterIRL = fenetreAjouterIRL;
@@ -34,6 +29,15 @@ public class GestionAjouterIRL extends GestionButtonFenetreAjouter {
     
     @Override
 	protected void gererAction() {
+    	try {
+			DaoIRL dao = new DaoIRL();
+			List<JTextField> donnees = this.getTextFields();
+			IRL irl = new IRL(donnees.get(0).getText()),null);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
         
     }
 
