@@ -1,5 +1,6 @@
 package modele;
 
+import java.sql.Date;
 import java.util.Objects;
 
 public class ChargesGenerales {
@@ -9,7 +10,7 @@ public class ChargesGenerales {
 	private double montant;
 	private float pourcentage;
 	private double quotite;
-	private String mois;
+	private Date dateCharge;
 	private BienLouable bienLouable;
 	
 	public ChargesGenerales(String idChargesGenerales, String typeCharge, double montant, float pourcentage,
