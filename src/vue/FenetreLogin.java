@@ -130,6 +130,7 @@ public class FenetreLogin extends JFrame {
         });
 
         btnLogin.addActionListener(gestionClic);
+        getRootPane().setDefaultButton(btnLogin);
     }
 
    

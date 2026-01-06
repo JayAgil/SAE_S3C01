@@ -252,7 +252,7 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 	        fenetrebienlouable.getTextFieldDT()
 	                .setText(fac.getDateDeFacture().toString());
 	    } else {
-	        fenetrebienlouable.getTextFieldDT().setText("");
+	        fenetrebienlouable.getTextFieldDT().setText("Pas de travaux jusqu'à ce jour");
 	    }
 
 	    fenetrebienlouable.getTextFieldTotalCharges()
