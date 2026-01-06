@@ -1,6 +1,7 @@
 package vue;
 
 import controleur.GestionFenetreContratLocation;
+import modele.BienLouable;
 import modele.ContratLocation;
 
 import java.awt.EventQueue;
@@ -43,14 +44,9 @@ public class FenetreContratLocation extends FenetreBase {
 	private JTextField textFieldCptElec;
 	private JTextField textFieldCptGaz;
 	private JTextField textFieldSolde;
+	private BienLouable bl;
 
-	public String getFenDavant() {
-		return this.fenDavant;
-	}
-
-	public JTable getTable() {
-		return this.table;
-	}
+	
 
 	/**
 	 * Launch the application.
@@ -59,7 +55,7 @@ public class FenetreContratLocation extends FenetreBase {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FenetreContratLocation frame = new FenetreContratLocation(null, null);
+					FenetreContratLocation frame = new FenetreContratLocation(null,null, null);
 					frame.setVisible(true);
 					UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
 				} catch (Exception e) {
@@ -74,9 +70,10 @@ public class FenetreContratLocation extends FenetreBase {
 	 * 
 	 * @throws SQLException
 	 */
-	public FenetreContratLocation(String f, ContratLocation cl) throws SQLException {
+	public FenetreContratLocation(String f, ContratLocation cl, BienLouable bl) throws SQLException {
 		super();
 		this.fenDavant = f;
+		this.bl = bl;
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.cl = cl;
 
@@ -378,7 +375,7 @@ public class FenetreContratLocation extends FenetreBase {
 		gbc_panel_5.gridy = 2;
 		panel_3.add(panel_5, gbc_panel_5);
 
-		this.gestionClicContratLocation = new GestionFenetreContratLocation(this, this.cl);
+		this.gestionClicContratLocation = new GestionFenetreContratLocation(this, this.cl,bl);
 		this.gestionClicContratLocation.initialize();
 		btnAjouter.addActionListener(gestionClicContratLocation);
 		btnAnnuler.addActionListener(gestionClicContratLocation);
@@ -473,6 +470,13 @@ public class FenetreContratLocation extends FenetreBase {
 
 	public void setFenDavant(String fenDavant) {
 		this.fenDavant = fenDavant;
+	}
+	public String getFenDavant() {
+		return this.fenDavant;
+	}
+
+	public JTable getTable() {
+		return this.table;
 	}
 
 }

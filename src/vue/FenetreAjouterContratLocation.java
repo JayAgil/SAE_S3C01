@@ -7,6 +7,9 @@ import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import controleur.GestionFenetreAjouterContratLocation;
+import controleur.GestionFenetreContratLocation;
+import modele.BienLouable;
+
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
@@ -34,13 +37,13 @@ public class FenetreAjouterContratLocation extends JInternalFrame {
     private JTextField textFieldIdxEau;
     private JTextField textFieldElectrcité;
     private JTextField textFieldGaz;
-    private JTextField textField;
-
+    private BienLouable bl;
+    private GestionFenetreContratLocation parent;
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    FenetreAjouterContratLocation frame = new FenetreAjouterContratLocation();
+                    FenetreAjouterContratLocation frame = new FenetreAjouterContratLocation(null,null);
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -49,9 +52,11 @@ public class FenetreAjouterContratLocation extends JInternalFrame {
         });
     }
 
-    public FenetreAjouterContratLocation() {
+    public FenetreAjouterContratLocation(GestionFenetreContratLocation parent, BienLouable bl) {
+    	this.bl = bl;
+    	this.parent = parent;
         setResizable(false);
-        this.gestionClic = new GestionFenetreAjouterContratLocation(this);
+        this.gestionClic = new GestionFenetreAjouterContratLocation(this,bl,parent);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(0, -17, 450, 500);
         contentPane = new JPanel();
@@ -330,25 +335,6 @@ public class FenetreAjouterContratLocation extends JInternalFrame {
         textFieldGaz = new JTextField();
         textFieldGaz.setPreferredSize(fieldSize);
         contentPane.add(textFieldGaz, gbcField11);
-        
-        JLabel lblLoyer = new JLabel("Loyer : ");
-        lblLoyer.setHorizontalAlignment(SwingConstants.RIGHT);
-        GridBagConstraints gbc_lblLoyer = new GridBagConstraints();
-        gbc_lblLoyer.anchor = GridBagConstraints.EAST;
-        gbc_lblLoyer.insets = new Insets(0, 0, 5, 5);
-        gbc_lblLoyer.gridx = 0;
-        gbc_lblLoyer.gridy = 12;
-        contentPane.add(lblLoyer, gbc_lblLoyer);
-        
-        textField = new JTextField();
-        GridBagConstraints gbc_textField = new GridBagConstraints();
-        gbc_textField.gridwidth = 2;
-        gbc_textField.insets = new Insets(0, 0, 5, 0);
-        gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-        gbc_textField.gridx = 1;
-        gbc_textField.gridy = 12;
-        contentPane.add(textField, gbc_textField);
-        textField.setColumns(10);
         
         GridBagConstraints gbcButtonPanel = new GridBagConstraints();
         gbcButtonPanel.gridy = 13;

@@ -10,6 +10,7 @@ import javax.swing.table.DefaultTableModel;
 
 import modele.Locataire;
 import modele.Paiement;
+import modele.dao.DaoLocataire;
 import modele.dao.DaoPaiement;
 import vue.*;
 
@@ -43,6 +44,30 @@ public class GestionFenetreLocataire extends GestionHeaderEtFooter {
 			fenetre.getLayeredPane().add(fenAjouterLocataire);
 			fenAjouterLocataire.setVisible(true);
 			break;
+		case "Retirer locataire":
+		    if (locataireSelectionne != null) {
+		        int confirm = JOptionPane.showConfirmDialog(fenetre,
+		                "Voulez-vous vraiment supprimer ce locataire ?", "Confirmation",
+		                JOptionPane.YES_NO_OPTION);
+		        if (confirm == JOptionPane.YES_OPTION) {
+		            try {
+		                DaoLocataire dao = new DaoLocataire();
+		                dao.delete(locataireSelectionne);
+		                locataires.remove(locataireSelectionne);
+		                chargerDonnes();
+		                locataireSelectionne = null;
+		            } catch (SQLException ex) {
+		                ex.printStackTrace();
+		                JOptionPane.showMessageDialog(fenetre,
+		                        "Erreur lors de la suppression du locataire !");
+		            }
+		        }
+		    } else {
+		        JOptionPane.showMessageDialog(fenetre, "Veuillez sélectionner un locataire !");
+		    }
+		    break;
+
+			
 		case "Paiement":
 			 DaoPaiement dao = new DaoPaiement();
 	         List<Paiement> paiements = dao.findPaiementsByLocataire(locataireSelectionne.getIdLocataire()); 
@@ -67,10 +92,6 @@ public class GestionFenetreLocataire extends GestionHeaderEtFooter {
 				FenetreBienLouable fp2 = new FenetreBienLouable("FenPrincipale", this.fenetre.getBl());
 				fp2.setVisible(true);
 				this.fenetre.dispose();
-				break;
-			case "FenContratLocation":
-				FenetreContratLocation fp3 = new FenetreContratLocation("FenBienLouable",null);
-				fp3.setVisible(true);
 				break;
 			case "FenPrincipale":
 				FenetrePrincipale fp4 = new FenetrePrincipale();
@@ -125,5 +146,6 @@ public class GestionFenetreLocataire extends GestionHeaderEtFooter {
 	public void setLocataires(List<Locataire> locataires) {
 		this.locataires = locataires;
 	}
+	
 
 }

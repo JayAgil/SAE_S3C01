@@ -154,7 +154,43 @@ public class FenetreAjouterPaiement extends JInternalFrame {
      
     }
     
-    public JComboBox<ContratLocation> getComboBox() {
+    public JTextField getTextFieldDate() {
+		return textFieldDate;
+	}
+
+	public void setTextFieldDate(JTextField textFieldDate) {
+		this.textFieldDate = textFieldDate;
+	}
+
+	public JTextField getTextFieldMontant() {
+		return textFieldMontant;
+	}
+
+	public void setTextFieldMontant(JTextField textFieldMontant) {
+		this.textFieldMontant = textFieldMontant;
+	}
+
+	public JTextField getTextFieldIdPaiement() {
+		return textFieldIdPaiement;
+	}
+
+	public void setTextFieldIdPaiement(JTextField textFieldIdPaiement) {
+		this.textFieldIdPaiement = textFieldIdPaiement;
+	}
+
+	public JTextField getTextFieldDesignation() {
+		return textFieldDesignation;
+	}
+
+	public void setTextFieldDesignation(JTextField textFieldDesignation) {
+		this.textFieldDesignation = textFieldDesignation;
+	}
+
+	public void setComboBox(JComboBox<ContratLocation> comboBox) {
+		this.comboBox = comboBox;
+	}
+
+	public JComboBox<ContratLocation> getComboBox() {
 		return comboBox;
 	}
 

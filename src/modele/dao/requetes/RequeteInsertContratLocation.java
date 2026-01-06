@@ -9,7 +9,7 @@ public class RequeteInsertContratLocation extends Requete<ContratLocation> {
 	
 	@Override
 	public String requete() {
-		return "INSERT INTO MSF5131A.SAE_ContratLocation VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+		return "INSERT INTO MSF5131A.SAE_ContratLocation VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
 	}
 	
 	@Override
@@ -25,5 +25,6 @@ public class RequeteInsertContratLocation extends Requete<ContratLocation> {
         ps.setDouble(9, c.getIndexCompteurEau());
         ps.setDouble(10, c.getIndexCompteurElectricite());
         ps.setDouble(11, c.getIndexCompteurGaz());
+        ps.setString(12, c.getBienLouable().getIdBienLouable());
     }
 }

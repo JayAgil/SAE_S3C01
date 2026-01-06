@@ -17,6 +17,7 @@ public class FenetreQuittance extends JInternalFrame {
 
         setTitle("Quittance de loyer");
         setSize(600, 500);
+        setClosable(true); 
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout(10, 10));
 
