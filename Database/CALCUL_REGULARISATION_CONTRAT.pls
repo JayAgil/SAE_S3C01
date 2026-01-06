@@ -51,6 +51,10 @@ BEGIN
       AND b.Id_BienLouable = f.fk_Id_BienLouable(+);
 
     RETURN v_total_charges - v_total_provisions;
+    
+    -- Solde_Regularisation > 0  -> le locataire doit payer
+    -- Solde_Regularisation < 0  -> le propriétaire rembourse
+    -- Solde_Regularisation = 0  -> équilibre
 
 EXCEPTION
     WHEN NO_DATA_FOUND THEN

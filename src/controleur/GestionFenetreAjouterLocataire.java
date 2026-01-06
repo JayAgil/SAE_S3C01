@@ -9,6 +9,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import modele.BienLouable;
 import modele.ContratLocation;
 import modele.Garant;
 import modele.Locataire;
@@ -20,9 +21,13 @@ import vue.FenetreAjouterLocataire;
 public class GestionFenetreAjouterLocataire extends GestionButtonFenetreAjouter {
 
 	private FenetreAjouterLocataire fenetre;
+	private GestionFenetreLocataire gestion;
+	private BienLouable b;
 
-	public GestionFenetreAjouterLocataire(FenetreAjouterLocataire fenetre) {
+	public GestionFenetreAjouterLocataire(FenetreAjouterLocataire fenetre, GestionFenetreLocataire gestion, BienLouable b) {
 		this.fenetre = fenetre;
+		this.gestion = gestion;
+		this.b = b;
 		chargerComboBoxContrat();
 	}
 
@@ -64,6 +69,7 @@ public class GestionFenetreAjouterLocataire extends GestionButtonFenetreAjouter 
 
 			JOptionPane.showMessageDialog(null, "Garant et locataire ajoutés avec succès !", "Succès",
 					JOptionPane.INFORMATION_MESSAGE);
+			this.gestion.setLocataires(daoLocataire.findLocataireByBienLouable(b.getIdBienLouable()));
 			this.fenetre.dispose();
 
 		} catch (SQLException e) {

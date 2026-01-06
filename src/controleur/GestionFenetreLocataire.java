@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -40,7 +39,7 @@ public class GestionFenetreLocataire extends GestionHeaderEtFooter {
 		switch (texte) {
 
 		case "Ajouter locataire":
-			FenetreAjouterLocataire fenAjouterLocataire = new FenetreAjouterLocataire();
+			FenetreAjouterLocataire fenAjouterLocataire = new FenetreAjouterLocataire(this,this.fenetre.getBl());
 			fenetre.getLayeredPane().add(fenAjouterLocataire);
 			fenAjouterLocataire.setVisible(true);
 			break;
@@ -121,6 +120,10 @@ public class GestionFenetreLocataire extends GestionHeaderEtFooter {
 	    fenetre.getTextFieldSalaire().setText(String.valueOf(loc.getSalaire()));
 	    fenetre.getTextFieldSituationFamiliale().setText(loc.getSituationFamiliale());
 	    fenetre.getTextFieldAdresse().setText(loc.getAdresse());
+	}
+	
+	public void setLocataires(List<Locataire> locataires) {
+		this.locataires = locataires;
 	}
 
 }
