@@ -6,7 +6,7 @@
 CREATE OR REPLACE PROCEDURE MAJ_SOMME_MENSUELLE AS
 BEGIN
         UPDATE SAE_ContratLocation
-        SET Solde = NVL(Solde, 0) + Montant_Mensuel;
+        SET Solde = NVL(Solde, 0) - Montant_Mensuel;
         COMMIT;
 END;
 /
