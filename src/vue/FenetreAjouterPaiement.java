@@ -10,12 +10,14 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controleur.GestionFenetreAjouterPaiement;
+import controleur.GestionFenetrePaiement;
+import modele.ContratLocation;
+import modele.Locataire;
 
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import java.awt.Font;
 import javax.swing.JButton;
-import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.Component;
@@ -30,6 +32,9 @@ public class FenetreAjouterPaiement extends JInternalFrame {
     private JTextField textFieldMontant;
     private JTextField textFieldIdPaiement;
     private JTextField textFieldDesignation;
+	private JComboBox<ContratLocation> comboBox;
+	private GestionFenetrePaiement parent;
+	private Locataire locataireSelectionne;
 
     /**
      * Launch the application.
@@ -40,7 +45,7 @@ public class FenetreAjouterPaiement extends JInternalFrame {
             public void run() 
             {
                 try {
-                    FenetreAjouterPaiement frame = new FenetreAjouterPaiement();
+                    FenetreAjouterPaiement frame = new FenetreAjouterPaiement(null,null);
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -52,9 +57,10 @@ public class FenetreAjouterPaiement extends JInternalFrame {
     /**
      * Create the frame.
      */
-    public FenetreAjouterPaiement() {
+    public FenetreAjouterPaiement(GestionFenetrePaiement parent, Locataire locataireSelectionne) {
+    	this.locataireSelectionne = locataireSelectionne;
+    	this.parent = parent;
     	setResizable(false);
-    	this.gestionClic = new GestionFenetreAjouterPaiement(this);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 450, 500);
         contentPane = new JPanel();
@@ -81,14 +87,11 @@ public class FenetreAjouterPaiement extends JInternalFrame {
         panel_1.add(panel_2, BorderLayout.SOUTH);
         
         JButton btnRetour = new JButton("Retour");
-        btnRetour.addActionListener(this.gestionClic);
         
         JButton btnAjouter = new JButton("Ajouter");
-        btnAjouter.addActionListener(this.gestionClic);
         panel_2.add(btnAjouter);
         
         JButton btnVider = new JButton("Vider");
-        btnVider.addActionListener(this.gestionClic);
         
         Component verticalStrut_1 = Box.createVerticalStrut(60);
         panel_2.add(verticalStrut_1);
@@ -112,7 +115,7 @@ public class FenetreAjouterPaiement extends JInternalFrame {
         lblContratLocation.setBounds(74, 120, 96, 13);
         panel_3.add(lblContratLocation);
         
-        JComboBox comboBox = new JComboBox();
+        comboBox = new JComboBox<ContratLocation>();
         comboBox.setBounds(234, 116, 96, 21);
         panel_3.add(comboBox);
         
@@ -143,14 +146,24 @@ public class FenetreAjouterPaiement extends JInternalFrame {
         panel_3.add(textFieldDesignation);
         textFieldDesignation.setColumns(10);
         
+    	this.gestionClic = new GestionFenetreAjouterPaiement(this,parent,locataireSelectionne);
+        btnRetour.addActionListener(this.gestionClic);
+        btnAjouter.addActionListener(this.gestionClic);
+        btnVider.addActionListener(this.gestionClic);
+
      
     }
     
-    public List<JTextField> getPaiementTextFields() {
+    public JComboBox<ContratLocation> getComboBox() {
+		return comboBox;
+	}
+
+	public List<JTextField> getPaiementTextFields() {
         List<JTextField> fields = new ArrayList<>();
-        fields.add(textFieldDate);
-        fields.add(textFieldMontant);
         fields.add(textFieldIdPaiement);
+        fields.add(textFieldMontant);
+        fields.add(textFieldDate);
+        fields.add(textFieldDesignation);
         return fields;
     }
 }

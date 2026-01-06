@@ -109,7 +109,7 @@ public abstract class GestionHeaderEtFooter implements ActionListener {
 
 		case "Historique de paiement":
 			DaoPaiement daoPaiement = new DaoPaiement();
-			new FenetrePaiement("FenPrincipale", daoPaiement.findAll(), null).setVisible(true);
+			new FenetrePaiement("FenPrincipale", daoPaiement.findAll(), null,null).setVisible(true);
 			fenetre.dispose();
 			break;
 
