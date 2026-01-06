@@ -1,9 +1,12 @@
 package modele.dao;
 
 import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+
+import modele.ContratLocation;
 import modele.Garant;
 import modele.Locataire;
 import modele.dao.requetes.*;;
@@ -40,19 +43,28 @@ public class DaoLocataire extends DaoModele<Locataire> implements Dao<Locataire>
 	public List<Locataire> findAll() throws SQLException {
 		return find(new RequeteSelectLocataire());
 	}
-	
+
 	public List<Locataire> findLocataireByBienLouable(String... id) throws SQLException {
-		return find(new RequeteSelectLocataireByBienLouable(),id);
+		return find(new RequeteSelectLocataireByBienLouable(), id);
 	}
-	
+
 	public List<Locataire> findLocataireByContrat(String... id) throws SQLException {
-		return find(new RequeteSelectLocataireByContrat(),id);
+		return find(new RequeteSelectLocataireByContrat(), id);
 	}
-	
+
 	public List<Locataire> findLocatairesMemeBien(String idLoc) throws SQLException {
-	    return this.find(new RequeteSelectLocatairesMemeBien(), idLoc);
+		return this.find(new RequeteSelectLocatairesMemeBien(), idLoc);
 	}
-	
+
+	public int createContratLocataire(Locataire loc, ContratLocation cl) throws SQLException {
+		RequeteInsertContratLocataire reqCL = new RequeteInsertContratLocataire();
+		try (PreparedStatement ps = connexion.prepareStatement(reqCL.requete())) {
+			reqCL.parametres(ps, loc.getIdLocataire(), cl.getNumeroDeContrat());
+
+			return ps.executeUpdate();
+		}
+	}
+
 	@Override
 	protected Locataire creerInstance(ResultSet rs) throws SQLException {
 		DaoGarant dG = new DaoGarant();

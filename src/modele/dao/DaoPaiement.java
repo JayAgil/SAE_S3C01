@@ -50,7 +50,8 @@ public class DaoPaiement extends DaoModele<Paiement> implements Dao<Paiement> {
 		Double montant = rs.getDouble(2);
 		Date datePaiement = rs.getDate(3);
 		ContratLocation cl = dCL.findById(rs.getString(4));
-		return new Paiement(idpaiement, montant, datePaiement, cl);
+		String designation = rs.getString(5);
+		return new Paiement(idpaiement, montant, datePaiement, designation, cl);
 	}
 
 }

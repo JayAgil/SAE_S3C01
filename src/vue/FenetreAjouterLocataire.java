@@ -6,6 +6,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controleur.GestionFenetreAjouterLocataire;
+import controleur.GestionFenetreLocataire;
+import modele.BienLouable;
+import modele.ContratLocation;
 
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -14,6 +17,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JComboBox;
 
 public class FenetreAjouterLocataire extends JInternalFrame {
 
@@ -40,6 +44,10 @@ public class FenetreAjouterLocataire extends JInternalFrame {
 	private JTextField textIdLoc;
 	
 	private GestionFenetreAjouterLocataire gestionClic;
+	private JComboBox<ContratLocation> comboBoxContrat;
+	private JTextField textFieldIdGarant;
+	private GestionFenetreLocataire gestion;
+	private BienLouable b;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(() -> {
@@ -51,7 +59,7 @@ public class FenetreAjouterLocataire extends JInternalFrame {
 				javax.swing.JDesktopPane desktopPane = new javax.swing.JDesktopPane();
 				frame.setContentPane(desktopPane);
 
-				FenetreAjouterLocataire internalFrame = new FenetreAjouterLocataire();
+				FenetreAjouterLocataire internalFrame = new FenetreAjouterLocataire(null,null);
 				internalFrame.setVisible(true);
 				desktopPane.add(internalFrame);
 				frame.setResizable(false); 
@@ -62,9 +70,10 @@ public class FenetreAjouterLocataire extends JInternalFrame {
 		});
 	}
 
-	public FenetreAjouterLocataire() {
+	public FenetreAjouterLocataire(GestionFenetreLocataire gestion, BienLouable b) {
+		this.gestion = gestion;
+		this.b = b;
 		setResizable(false);
-		gestionClic = new GestionFenetreAjouterLocataire(this);
 		setClosable(true);
 		setIconifiable(true);
 		setMaximizable(true);
@@ -91,49 +100,49 @@ public class FenetreAjouterLocataire extends JInternalFrame {
 
 		// Locataire
 		JLabel lblNom = new JLabel("Nom :");
-		lblNom.setBounds(23, 36, 40, 25);
+		lblNom.setBounds(23, 72, 40, 25);
 		contentPane.add(lblNom);
 		textFieldNom = new JTextField();
-		textFieldNom.setBounds(85, 36, 105, 25);
+		textFieldNom.setBounds(85, 72, 105, 25);
 		contentPane.add(textFieldNom);
 
 		JLabel lblPrenom = new JLabel("Prénom :");
-		lblPrenom.setBounds(23, 72, 120, 25);
+		lblPrenom.setBounds(23, 108, 120, 25);
 		contentPane.add(lblPrenom);
 		textFieldPrenom = new JTextField();
-		textFieldPrenom.setBounds(85, 72, 105, 25);
+		textFieldPrenom.setBounds(85, 108, 105, 25);
 		contentPane.add(textFieldPrenom);
 
 		JLabel lblAdresse = new JLabel("Adresse :");
-		lblAdresse.setBounds(23, 108, 120, 25);
+		lblAdresse.setBounds(23, 144, 120, 25);
 		contentPane.add(lblAdresse);
 		textFieldAdresse = new JTextField();
-		textFieldAdresse.setBounds(85, 108, 105, 25);
+		textFieldAdresse.setBounds(85, 144, 105, 25);
 		contentPane.add(textFieldAdresse);
 
 		JLabel lblTel = new JLabel("Tel :");
 		lblTel.setBounds(200, 36, 120, 25);
 		contentPane.add(lblTel);
 		textFieldTel = new JTextField();
-		textFieldTel.setBounds(85, 144, 105, 25);
+		textFieldTel.setBounds(85, 180, 105, 25);
 		contentPane.add(textFieldTel);
 
 		JLabel lblEmail = new JLabel("Email :");
-		lblEmail.setBounds(23, 216, 120, 25);
+		lblEmail.setBounds(23, 252, 120, 25);
 		contentPane.add(lblEmail);
 		textFieldEmail = new JTextField();
-		textFieldEmail.setBounds(85, 180, 105, 25);
+		textFieldEmail.setBounds(85, 216, 105, 25);
 		contentPane.add(textFieldEmail);
 
 		JLabel lblCodePostal = new JLabel("Code postal :");
-		lblCodePostal.setBounds(23, 180, 120, 25);
+		lblCodePostal.setBounds(23, 216, 120, 25);
 		contentPane.add(lblCodePostal);
 		textFieldCodePostal = new JTextField();
-		textFieldCodePostal.setBounds(85, 216, 105, 25);
+		textFieldCodePostal.setBounds(85, 252, 105, 25);
 		contentPane.add(textFieldCodePostal);
 
 		JLabel lblVille = new JLabel("Ville :");
-		lblVille.setBounds(23, 144, 40, 25);
+		lblVille.setBounds(23, 180, 40, 25);
 		contentPane.add(lblVille);
 		textFieldVille = new JTextField();
 		textFieldVille.setBounds(291, 36, 110, 25);
@@ -176,17 +185,17 @@ public class FenetreAjouterLocataire extends JInternalFrame {
 
 		// Garant
 		JLabel lblGarantNom = new JLabel("Nom :");
-		lblGarantNom.setBounds(23, 319, 120, 25);
+		lblGarantNom.setBounds(23, 355, 120, 25);
 		contentPane.add(lblGarantNom);
 		textFieldGarantNom = new JTextField();
-		textFieldGarantNom.setBounds(85, 319, 105, 25);
+		textFieldGarantNom.setBounds(85, 355, 105, 25);
 		contentPane.add(textFieldGarantNom);
 
 		JLabel lblGarantPrenom = new JLabel("Prénom :");
-		lblGarantPrenom.setBounds(23, 355, 120, 25);
+		lblGarantPrenom.setBounds(23, 391, 120, 25);
 		contentPane.add(lblGarantPrenom);
 		textFieldGarantPrenom = new JTextField();
-		textFieldGarantPrenom.setBounds(85, 355, 105, 25);
+		textFieldGarantPrenom.setBounds(85, 391, 105, 25);
 		contentPane.add(textFieldGarantPrenom);
 
 		JLabel lblGarantAdresse = new JLabel("Adresse :");
@@ -204,34 +213,56 @@ public class FenetreAjouterLocataire extends JInternalFrame {
 		contentPane.add(textFieldGarantTel);
 		
 		JButton btnAjouter = new JButton("Ajouter");
-		btnAjouter.addActionListener(this.gestionClic);
-		btnAjouter.setBounds(44, 415, 98, 30);
+		btnAjouter.setBounds(44, 430, 98, 30);
 		contentPane.add(btnAjouter);
 
 		JButton btnVider = new JButton("Vider");
-		btnVider.addActionListener(this.gestionClic);
-		btnVider.setBounds(175, 415, 98, 30);
+		btnVider.setBounds(175, 430, 98, 30);
 		contentPane.add(btnVider);
 		
 		JButton btnRetour = new JButton("Retour");
-		btnRetour.addActionListener(this.gestionClic);
-		btnRetour.setBounds(303, 415, 98, 30);
+		btnRetour.setBounds(303, 430, 98, 30);
 		contentPane.add(btnRetour);
 		
 		textIdLoc = new JTextField();
-		textIdLoc.setBounds(85, 252, 105, 25);
+		textIdLoc.setBounds(85, 40, 105, 25);
 		contentPane.add(textIdLoc);
 		
 		JLabel lblIdLoc = new JLabel("ID locataire : ");
-		lblIdLoc.setBounds(23, 252, 120, 25);
+		lblIdLoc.setBounds(23, 40, 120, 25);
 		contentPane.add(lblIdLoc);
 		
+		JLabel lblContrat = new JLabel("Contrat location :");
+		lblContrat.setBounds(200, 258, 92, 13);
+		contentPane.add(lblContrat);
+		
+		comboBoxContrat = new JComboBox<ContratLocation>();
+		comboBoxContrat.setBounds(291, 254, 110, 21);
+		contentPane.add(comboBoxContrat);
+		
+		JLabel lblIdGarant = new JLabel("ID Garant :");
+		lblIdGarant.setHorizontalAlignment(SwingConstants.LEFT);
+		lblIdGarant.setBounds(23, 320, 120, 25);
+		contentPane.add(lblIdGarant);
+		
+		textFieldIdGarant = new JTextField();
+		textFieldIdGarant.setBounds(85, 320, 105, 25);
+		contentPane.add(textFieldIdGarant);
+		gestionClic = new GestionFenetreAjouterLocataire(this,gestion,b);
+		btnAjouter.addActionListener(this.gestionClic);
+		btnVider.addActionListener(this.gestionClic);
+		btnRetour.addActionListener(this.gestionClic);
 		
 	}
 	
+	public JComboBox<ContratLocation> getComboBoxContrat() {
+		return comboBoxContrat;
+	}
+
 	public List<JTextField> getAllLocataireTextFields() {
 	    List<JTextField> fields = new ArrayList<>();
 	    
+	    fields.add(textIdLoc);
 	    fields.add(textFieldNom);
 	    fields.add(textFieldPrenom);
 	    fields.add(textFieldAdresse);
@@ -245,13 +276,12 @@ public class FenetreAjouterLocataire extends JInternalFrame {
 	    fields.add(textFieldProfession);
 	    fields.add(textFieldSituationFamiliale);
 
+	    fields.add(textFieldIdGarant);
 	    fields.add(textFieldGarantNom);
 	    fields.add(textFieldGarantPrenom);
 	    fields.add(textFieldGarantAdresse);
 	    fields.add(textFieldGarantTel);
-	    fields.add(textIdLoc);
 	    
 	    return fields;
 	}
-	
 }

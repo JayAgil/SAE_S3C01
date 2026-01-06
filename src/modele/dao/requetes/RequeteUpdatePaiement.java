@@ -7,7 +7,7 @@ import modele.Paiement;
 public class RequeteUpdatePaiement extends Requete<Paiement>{
     @Override
     public String requete() {
-        return " Update MSF5131A.SAE_PAIEMENT set Montant =  ?, Date_Paiement = ? Where Id_Paiement = ? ";
+        return " Update MSF5131A.SAE_PAIEMENT set Montant =  ?, Date_Paiement = ?, Designation_Paiement = ?, fk_Numero_de_contrat = ? Where Id_Paiement = ? ";
 
     }
 
@@ -16,6 +16,8 @@ public class RequeteUpdatePaiement extends Requete<Paiement>{
         throws SQLException {
         prSt.setDouble(1, donnee.getMontant());
         prSt.setDate(2, donnee.getDatepaiement());
-        prSt.setString(3, donnee.getId_paiement());
+        prSt.setString(3, donnee.getDesignation());
+        prSt.setString(4, donnee.getContratLocation().getNumeroDeContrat());
+        prSt.setString(5, donnee.getId_paiement());
     }
 }
