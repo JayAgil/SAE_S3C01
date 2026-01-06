@@ -8,17 +8,27 @@ public class Paiement {
 	private String id_paiement;
 	private double montant;
 	private Date datepaiement;
+	private String designation;
 	private ContratLocation contratLocation;
 
-	public Paiement(String id_paiement, double montant, Date datepaiement, ContratLocation cl) {
+	public Paiement(String id_paiement, double montant, Date datepaiement, String designation, ContratLocation cl) {
 		this.id_paiement = id_paiement;
 		this.montant = montant;
 		this.datepaiement = datepaiement;
+		this.designation = designation;
 		this.contratLocation = cl;
 	}
 
 	public ContratLocation getContratLocation() {
 		return contratLocation;
+	}
+
+	public String getDesignation() {
+		return designation;
+	}
+
+	public void setDesignation(String designation) {
+		this.designation = designation;
 	}
 
 	public void setContratLocation(ContratLocation contratLocation) {
