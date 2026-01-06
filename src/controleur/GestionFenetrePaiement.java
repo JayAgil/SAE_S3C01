@@ -23,12 +23,14 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter implements Mou
 	private List<Paiement> paiements;
 	private String idLoc;
 	private Paiement paiementSelectionne;
+	private Locataire locataireSelectionne;
 
-	public GestionFenetrePaiement(FenetrePaiement fenetre, List<Paiement> liste, String idLoc) throws SQLException {
+	public GestionFenetrePaiement(FenetrePaiement fenetre, List<Paiement> liste, String idLoc, Locataire locataireSelectionne) throws SQLException {
 		super(fenetre);
 		this.fenetre = fenetre;
 		this.idLoc = idLoc;
 		this.paiements = liste;
+		this.locataireSelectionne = locataireSelectionne;
 		chargerDonnees();
 		afficherDetailsPaiement();
 	}
@@ -37,7 +39,7 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter implements Mou
 	protected void gererBoutonSpecifique(String texte) {
 		switch (texte) {
 		case "Ajouter paiement":
-			FenetreAjouterPaiement fenAjouterPaiement = new FenetreAjouterPaiement();
+			FenetreAjouterPaiement fenAjouterPaiement = new FenetreAjouterPaiement(this,locataireSelectionne);
 			fenetre.getLayeredPane().add(fenAjouterPaiement);
 			fenAjouterPaiement.setVisible(true);
 			break;
@@ -212,6 +214,10 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter implements Mou
 		}
 
 		return total;
+	}
+
+	public void setPaiements(List<Paiement> paiements) {
+		this.paiements = paiements;
 	}
 
 	@Override

@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controleur.GestionFenetrePaiement;
+import modele.Locataire;
 import modele.Paiement;
 
 import javax.swing.border.TitledBorder;
@@ -30,6 +31,7 @@ public class FenetrePaiement extends FenetreBase {
 	private JComboBox comboBoxAnnee;
 	private String nomFenAvant;
 	private JButton btnQuittance;
+	private Locataire locataireSelectionne;
 
 	public String getNomFenAvant() {
 		return nomFenAvant;
@@ -38,7 +40,7 @@ public class FenetrePaiement extends FenetreBase {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(() -> {
 			try {
-				FenetrePaiement frame = new FenetrePaiement(null, null, null);
+				FenetrePaiement frame = new FenetrePaiement(null,null, null, null);
 				frame.setVisible(true);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -46,11 +48,12 @@ public class FenetrePaiement extends FenetreBase {
 		});
 	}
 
-	public FenetrePaiement(String nomFenAvant, List<Paiement> liste, String idLoc) throws SQLException {
+	public FenetrePaiement(String nomFenAvant, List<Paiement> liste, String idLoc, Locataire locataireSelectionne) throws SQLException {
 		super();
 		this.nomFenAvant = nomFenAvant;
 		this.paiements = liste;
 		this.idLoc = idLoc;
+		this.locataireSelectionne = locataireSelectionne;
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1200, 800);
@@ -104,6 +107,7 @@ public class FenetrePaiement extends FenetreBase {
 		panel_5.add(lblMontant);
 
 		lblValPaiement = new JLabel("");
+		lblValPaiement.setHorizontalAlignment(SwingConstants.LEFT);
 		panel_5.add(lblValPaiement);
 
 		Component horizontalStrut_1 = Box.createHorizontalStrut(600);
@@ -224,7 +228,7 @@ public class FenetrePaiement extends FenetreBase {
 		JPanel panel_6 = new JPanel();
 		contentPane.add(panel_6, BorderLayout.SOUTH);
 
-		gestionClic = new GestionFenetrePaiement(this, this.paiements, idLoc);
+		gestionClic = new GestionFenetrePaiement(this, this.paiements, idLoc, locataireSelectionne);
 		this.gestionClic.initialize();
 		comboBoxMois.addActionListener(gestionClic);
 		comboBoxAnnee.addActionListener(gestionClic);
