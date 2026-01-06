@@ -100,6 +100,9 @@ public class FenetreLocataire extends FenetreBase {
 
 		// Add buttons to top
 		bottomContainer.add(panelButtons, BorderLayout.NORTH);
+		
+		JButton btnRetirerLocataire = new JButton("Retirer locataire");
+		panelButtons.add(btnRetirerLocataire);
 
 		JButton btnRetour = new JButton("Retour");
 		panelButtons.add(btnRetour);
@@ -370,6 +373,7 @@ public class FenetreLocataire extends FenetreBase {
 		btnAjouterLocataire.addActionListener(this.gestionClic);
 		btnPaiement.addActionListener(this.gestionClic);
 		btnRetour.addActionListener(this.gestionClic);
+		btnRetirerLocataire.addActionListener(this.gestionClic);
 
 	}
 
@@ -478,5 +482,4 @@ public class FenetreLocataire extends FenetreBase {
 	public BienLouable getBl() {
 		return bl;
 	}
-
 }
