@@ -1,4 +1,5 @@
 package controleur;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -18,255 +19,252 @@ import vue.*;
 
 public class GestionFenetrePaiement extends GestionHeaderEtFooter implements MouseListener {
 
-    private FenetrePaiement fenetre;
-    private List<Paiement> paiements;
-    private String idLoc;
+	private FenetrePaiement fenetre;
+	private List<Paiement> paiements;
+	private String idLoc;
+	private Paiement paiementSelectionne;
 
+	public GestionFenetrePaiement(FenetrePaiement fenetre, List<Paiement> liste, String idLoc) throws SQLException {
+		super(fenetre);
+		this.fenetre = fenetre;
+		this.idLoc = idLoc;
+		this.paiements = liste;
+		chargerDonnees();
+		afficherDetailsPaiement();
+	}
 
-    public GestionFenetrePaiement(FenetrePaiement fenetre, List<Paiement> liste, String idLoc) throws SQLException {
-        super(fenetre);
-        this.fenetre = fenetre;
-        this.idLoc = idLoc;
-        this.paiements = liste;
-        chargerDonnees();
-        afficherDetailsPaiement();
-    }
+	@Override
+	protected void gererBoutonSpecifique(String texte) {
+		switch (texte) {
+		case "Ajouter paiement":
+			FenetreAjouterPaiement fenAjouterPaiement = new FenetreAjouterPaiement();
+			fenetre.getLayeredPane().add(fenAjouterPaiement);
+			fenAjouterPaiement.setVisible(true);
+			break;
+		case "Quittance loyer":
+			if (paiementSelectionne == null) {
+				return;
+			}
+			FenetreQuittance fenQuittance = new FenetreQuittance(paiementSelectionne);
+			fenQuittance.setVisible(true);
+			break;
 
-    @Override
-    protected void gererBoutonSpecifique(String texte) {
-        switch (texte) {
-            case "Ajouter paiement":
-                FenetreAjouterPaiement fenAjouterPaiement = new FenetreAjouterPaiement();
-                fenetre.getLayeredPane().add(fenAjouterPaiement);
-                fenAjouterPaiement.setVisible(true);
-                break;
-            case "Quittance loyer" :
-            	this.fenetre.getButtonQuittance().setEnabled(false);
-            	mouseClicked();
-            	break;
-        }
-    }
+		}
+	}
 
-    @Override
-    protected void gererBoutonRetour(String texte) throws SQLException {
-    	
-    	if ("Retour".equals(texte)) {
+	@Override
+	protected void gererBoutonRetour(String texte) throws SQLException {
+
+		if ("Retour".equals(texte)) {
 			fenetre.dispose();
 			String fenAvant = fenetre.getNomFenAvant();
 			switch (fenAvant) {
 			case "FenLocataire":
 				DaoLocataire dl = new DaoLocataire();
-	        	List<Locataire> liste = dl.findLocatairesMemeBien(idLoc);
-	        	DaoBienLouable daoBl = new DaoBienLouable();
-	            FenetreLocataire fen = new FenetreLocataire("FenPrincipale",liste,daoBl.findByIdLoc(idLoc));
-	            fen.setVisible(true);
-	            fenetre.dispose();
-	            break;
+				List<Locataire> liste = dl.findLocatairesMemeBien(idLoc);
+				DaoBienLouable daoBl = new DaoBienLouable();
+				FenetreLocataire fen = new FenetreLocataire("FenPrincipale", liste, daoBl.findByIdLoc(idLoc));
+				fen.setVisible(true);
+				fenetre.dispose();
+				break;
 			case "FenPrincipale":
 				FenetrePrincipale fp4 = new FenetrePrincipale();
 				fp4.setVisible(true);
 				break;
-				
-			}}
-        
-    }
-    
-    public void chargerDonnees()  {
-        DefaultTableModel model = (DefaultTableModel) fenetre.getTable().getModel();
+
+			}
+		}
+
+	}
+
+	public void chargerDonnees() {
+		DefaultTableModel model = (DefaultTableModel) fenetre.getTable().getModel();
 		model.setRowCount(0);
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		for (Paiement p : paiements) {
-		    String dateFormatee = p.getDatepaiement().toLocalDate().format(formatter);
-		    Object[] ligne = {p.getId_paiement(), p.getContratLocation().getNumeroDeContrat(), dateFormatee, p.getMontant()};
-		    model.addRow(ligne);
+			String dateFormatee = p.getDatepaiement().toLocalDate().format(formatter);
+			Object[] ligne = { p.getId_paiement(), p.getContratLocation().getNumeroDeContrat(), dateFormatee,
+					p.getMontant(),p.getDesignation() };
+			model.addRow(ligne);
 		}
 
 		java.time.LocalDate dernier = getDateDernierPaiement();
 		fenetre.getLblDateDernierPaiement().setText(
-		    dernier != null ? dernier.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) : "Aucun paiement"
-		);
-		fenetre.getLblTotalPaiementAnnees()
-		.setText(String.format("%.2f €",
-				getMontantTotalFiltre((String) fenetre.getComboBoxMois().getSelectedItem(),
-		                (String) fenetre.getComboBoxAnnee().getSelectedItem()
-		        )));
-    }
-    
-    private void afficherDetailsPaiement() {
-        JTable table = fenetre.getTable();
-        table.getSelectionModel().addListSelectionListener(e -> {
-            if (!e.getValueIsAdjusting()) {
-                int selectedRow = table.getSelectedRow();
-                if (selectedRow >= 0) {
-                    Object montant = table.getValueAt(selectedRow, 3);
-                    Object date = table.getValueAt(selectedRow, 2);
-                    fenetre.getLblValDate().setText((String) date);
-                    fenetre.getLblValPaiement().setText(String.valueOf(montant) + " €");
-                }
-            }
-        });
-    }
+				dernier != null ? dernier.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) : "Aucun paiement");
+		fenetre.getLblTotalPaiementAnnees().setText(
+				String.format("%.2f €", getMontantTotalFiltre((String) fenetre.getComboBoxMois().getSelectedItem(),
+						(String) fenetre.getComboBoxAnnee().getSelectedItem())));
+	}
 
-    private LocalDate getDateDernierPaiement() {
-    	LocalDate dernier = null;
-        for (Paiement p : paiements) {
-            LocalDate dateP = p.getDatepaiement().toLocalDate();
-            if (dernier == null || dateP.isAfter(dernier)) {
-                dernier = dateP;
-            }
-        }
-        return dernier;
-    }
-    
+	private void afficherDetailsPaiement() {
+		JTable table = fenetre.getTable();
+		table.getSelectionModel().addListSelectionListener(e -> {
+			if (!e.getValueIsAdjusting()) {
+				int selectedRow = table.getSelectedRow();
+				if (selectedRow >= 0) {
+					Object montant = table.getValueAt(selectedRow, 3);
+					Object date = table.getValueAt(selectedRow, 2);
+					fenetre.getLblValDate().setText((String) date);
+					fenetre.getLblValPaiement().setText(String.valueOf(montant) + " €");
+				}
+			}
+		});
+	}
 
-    
-    private void filterPaiements(String mois, String annee) {
+	private LocalDate getDateDernierPaiement() {
+		LocalDate dernier = null;
+		for (Paiement p : paiements) {
+			LocalDate dateP = p.getDatepaiement().toLocalDate();
+			if (dernier == null || dateP.isAfter(dernier)) {
+				dernier = dateP;
+			}
+		}
+		return dernier;
+	}
 
-        DefaultTableModel model =
-                (DefaultTableModel) fenetre.getTable().getModel();
-        model.setRowCount(0);
+	private void filterPaiements(String mois, String annee) {
 
-        for (Paiement p : paiements) {
+		DefaultTableModel model = (DefaultTableModel) fenetre.getTable().getModel();
+		model.setRowCount(0);
 
-            LocalDate date = p.getDatepaiement().toLocalDate();
+		for (Paiement p : paiements) {
 
-            boolean moisValide = true;
-            boolean anneeValide = true;
+			LocalDate date = p.getDatepaiement().toLocalDate();
 
-            if (!"Mois".equals(mois)) {
-                int moisInt = convertirMoisEnInt(mois);
-                moisValide = date.getMonthValue() == moisInt;
-            }
+			boolean moisValide = true;
+			boolean anneeValide = true;
 
-            if (!"Année".equals(annee)) {
-                int anneeInt = Integer.parseInt(annee);
-                anneeValide = date.getYear() == anneeInt;
-            }
+			if (!"Mois".equals(mois)) {
+				int moisInt = convertirMoisEnInt(mois);
+				moisValide = date.getMonthValue() == moisInt;
+			}
 
-            if (moisValide && anneeValide) {
-                Object[] ligne = {
-                    p.getId_paiement(),
-                    p.getContratLocation().getNumeroDeContrat(),
-                    date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
-                    p.getMontant()
-                };
-                model.addRow(ligne);
-            }
-        }
-        double totalFiltre = getMontantTotalFiltre(mois, annee);
-        fenetre.getLblTotalPaiementAnnees()
-                .setText(String.format("%.2f €", totalFiltre));
+			if (!"Année".equals(annee)) {
+				int anneeInt = Integer.parseInt(annee);
+				anneeValide = date.getYear() == anneeInt;
+			}
 
-    }
+			if (moisValide && anneeValide) {
+				Object[] ligne = { p.getId_paiement(), p.getContratLocation().getNumeroDeContrat(),
+						date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")), p.getMontant() };
+				model.addRow(ligne);
+			}
+		}
+		double totalFiltre = getMontantTotalFiltre(mois, annee);
+		fenetre.getLblTotalPaiementAnnees().setText(String.format("%.2f €", totalFiltre));
 
-    
-    private int convertirMoisEnInt(String mois) {
-    	switch(mois) {
-        case "Janvier": return 1;
-        case "Février": return 2;
-        case "Mars": return 3;
-        case "Avril": return 4;
-        case "Mai": return 5;
-        case "Juin": return 6;
-        case "Juillet": return 7;
-        case "Août": return 8;
-        case "Septembre": return 9;
-        case "Octobre": return 10;
-        case "Novembre": return 11;
-        case "Décembre": return 12;
-        default: return 0;
-    	}
-    }
-    
-    private double getMontantTotalFiltre(String mois, String annee) {
+	}
 
-        double total = 0;
+	private int convertirMoisEnInt(String mois) {
+		switch (mois) {
+		case "Janvier":
+			return 1;
+		case "Février":
+			return 2;
+		case "Mars":
+			return 3;
+		case "Avril":
+			return 4;
+		case "Mai":
+			return 5;
+		case "Juin":
+			return 6;
+		case "Juillet":
+			return 7;
+		case "Août":
+			return 8;
+		case "Septembre":
+			return 9;
+		case "Octobre":
+			return 10;
+		case "Novembre":
+			return 11;
+		case "Décembre":
+			return 12;
+		default:
+			return 0;
+		}
+	}
 
-        for (Paiement p : paiements) {
-            LocalDate date = p.getDatepaiement().toLocalDate();
+	private double getMontantTotalFiltre(String mois, String annee) {
 
-            boolean moisValide = true;
-            boolean anneeValide = true;
+		double total = 0;
 
-            if (!"Mois".equals(mois)) {
-                int moisInt = convertirMoisEnInt(mois);
-                moisValide = date.getMonthValue() == moisInt;
-            }
+		for (Paiement p : paiements) {
+			LocalDate date = p.getDatepaiement().toLocalDate();
 
-            if (!"Année".equals(annee)) {
-                int anneeInt = Integer.parseInt(annee);
-                anneeValide = date.getYear() == anneeInt;
-            }
+			boolean moisValide = true;
+			boolean anneeValide = true;
 
-            if (moisValide && anneeValide) {
-                total += p.getMontant();
-            }
-        }
+			if (!"Mois".equals(mois)) {
+				int moisInt = convertirMoisEnInt(mois);
+				moisValide = date.getMonthValue() == moisInt;
+			}
 
-        return total;
-    }
+			if (!"Année".equals(annee)) {
+				int anneeInt = Integer.parseInt(annee);
+				anneeValide = date.getYear() == anneeInt;
+			}
 
+			if (moisValide && anneeValide) {
+				total += p.getMontant();
+			}
+		}
 
-    
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        super.actionPerformed(e);
+		return total;
+	}
 
-        if (e.getSource() == fenetre.getComboBoxMois()
-            || e.getSource() == fenetre.getComboBoxAnnee()) {
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		super.actionPerformed(e);
 
-            String mois = (String) fenetre.getComboBoxMois().getSelectedItem();
-            String annee = (String) fenetre.getComboBoxAnnee().getSelectedItem();
+		if (e.getSource() == fenetre.getComboBoxMois() || e.getSource() == fenetre.getComboBoxAnnee()) {
 
-            filterPaiements(mois, annee);
-        }
-    }
+			String mois = (String) fenetre.getComboBoxMois().getSelectedItem();
+			String annee = (String) fenetre.getComboBoxAnnee().getSelectedItem();
+
+			filterPaiements(mois, annee);
+		}
+	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		JTable table = (JTable) this.fenetre.getTable();
-		int row = table.getSelectedRow();
-		if (row != -1) {
-			try {
-				this.fenetre.getButtonQuittance().setEnabled(true);
-				String idPaiement = (String) table.getValueAt(row, 0);
-				DaoPaiement daoPaiement = new DaoPaiement();
-				Paiement paiement = daoPaiement.findById(idPaiement);
-				FenetreQuittance fenQuittance = new FenetreQuittance(paiement);
-				fenQuittance.setVisible(true);
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}
-			
-		}
-		
+	    JTable table = fenetre.getTable();
+	    int row = table.getSelectedRow();
+	    if (row == -1) return;
+	    try {
+	        String idPaiement = table.getValueAt(row, 0).toString();
+	        DaoPaiement daoPaiement = new DaoPaiement();
+	        paiementSelectionne = daoPaiement.findById(idPaiement);
+	        fenetre.getButtonQuittance().setEnabled(true);
+	    } catch (SQLException ex) {
+	        ex.printStackTrace();
+	    }
 	}
+
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
-	}
 
-    
- 
+	}
 
 }
