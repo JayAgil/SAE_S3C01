@@ -6,6 +6,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controleur.GestionFenetreAjouterLocataire;
+import controleur.GestionFenetreLocataire;
+import modele.BienLouable;
 import modele.ContratLocation;
 
 import javax.swing.JLabel;
@@ -44,6 +46,8 @@ public class FenetreAjouterLocataire extends JInternalFrame {
 	private GestionFenetreAjouterLocataire gestionClic;
 	private JComboBox<ContratLocation> comboBoxContrat;
 	private JTextField textFieldIdGarant;
+	private GestionFenetreLocataire gestion;
+	private BienLouable b;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(() -> {
@@ -55,7 +59,7 @@ public class FenetreAjouterLocataire extends JInternalFrame {
 				javax.swing.JDesktopPane desktopPane = new javax.swing.JDesktopPane();
 				frame.setContentPane(desktopPane);
 
-				FenetreAjouterLocataire internalFrame = new FenetreAjouterLocataire();
+				FenetreAjouterLocataire internalFrame = new FenetreAjouterLocataire(null,null);
 				internalFrame.setVisible(true);
 				desktopPane.add(internalFrame);
 				frame.setResizable(false); 
@@ -66,7 +70,9 @@ public class FenetreAjouterLocataire extends JInternalFrame {
 		});
 	}
 
-	public FenetreAjouterLocataire() {
+	public FenetreAjouterLocataire(GestionFenetreLocataire gestion, BienLouable b) {
+		this.gestion = gestion;
+		this.b = b;
 		setResizable(false);
 		setClosable(true);
 		setIconifiable(true);
@@ -242,7 +248,7 @@ public class FenetreAjouterLocataire extends JInternalFrame {
 		textFieldIdGarant = new JTextField();
 		textFieldIdGarant.setBounds(85, 320, 105, 25);
 		contentPane.add(textFieldIdGarant);
-		gestionClic = new GestionFenetreAjouterLocataire(this);
+		gestionClic = new GestionFenetreAjouterLocataire(this,gestion,b);
 		btnAjouter.addActionListener(this.gestionClic);
 		btnVider.addActionListener(this.gestionClic);
 		btnRetour.addActionListener(this.gestionClic);

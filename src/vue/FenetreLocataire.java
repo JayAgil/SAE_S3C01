@@ -47,7 +47,6 @@ public class FenetreLocataire extends FenetreBase {
 	private String nomFenAvant;
 	private JScrollPane scrollPane;
 	private List<Locataire> liste;
-	private JLabel lblPhoto;
 	private BienLouable bl;
 
 	/**
@@ -126,32 +125,15 @@ public class FenetreLocataire extends FenetreBase {
 
 		JPanel panel_2 = new JPanel();
 		panel_1.add(panel_2);
-		GridBagLayout gbl_panel_2 = new GridBagLayout();
-		gbl_panel_2.columnWidths = new int[] { 476, 700, 0 };
-		gbl_panel_2.rowHeights = new int[] { 355, 0 };
-		gbl_panel_2.columnWeights = new double[] { 0.0, 0.0, Double.MIN_VALUE };
-		gbl_panel_2.rowWeights = new double[] { 0.0, Double.MIN_VALUE };
-		panel_2.setLayout(gbl_panel_2);
-
-		lblPhoto = new JLabel("Photo");
-		GridBagConstraints gbc_lblPhoto = new GridBagConstraints();
-		gbc_lblPhoto.fill = GridBagConstraints.BOTH;
-		gbc_lblPhoto.insets = new Insets(0, 0, 0, 5);
-		gbc_lblPhoto.gridx = 0;
-		gbc_lblPhoto.gridy = 0;
-		panel_2.add(lblPhoto, gbc_lblPhoto);
 
 		Insets insets = new Insets(0, 0, 5, 5);
+		panel_2.setLayout(new BorderLayout(0, 0));
 
 		JPanel panel_3 = new JPanel();
-		GridBagConstraints gbc_panel_3 = new GridBagConstraints();
-		gbc_panel_3.fill = GridBagConstraints.BOTH;
-		gbc_panel_3.gridx = 1;
-		gbc_panel_3.gridy = 0;
-		panel_2.add(panel_3, gbc_panel_3);
+		panel_2.add(panel_3, BorderLayout.CENTER);
 		GridBagLayout gbl_panel_3 = new GridBagLayout();
 		// set column widths and row heights (rowHeights can remain as is)
-		gbl_panel_3.columnWidths = new int[] { 0, 0 };
+		gbl_panel_3.columnWidths = new int[] {600};
 		gbl_panel_3.rowHeights = new int[] { 31, 31, 31, 31, 31, 31, 31, 31, 31, 31 };
 		gbl_panel_3.columnWeights = new double[] { 0.2, 0.8 }; // 20% for labels, 80% for text fields
 		gbl_panel_3.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
@@ -235,7 +217,7 @@ public class FenetreLocataire extends FenetreBase {
 		textFieldTel.setEditable(false);
 		textFieldTel.setBorder(null);
 		GridBagConstraints gbc_textFieldTel = new GridBagConstraints();
-		gbc_textFieldTel.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldTel.anchor = GridBagConstraints.WEST;
 		gbc_textFieldTel.insets = new Insets(0, 0, 5, 0);
 		gbc_textFieldTel.gridx = 1;
 		gbc_textFieldTel.gridy = 3;
@@ -391,9 +373,7 @@ public class FenetreLocataire extends FenetreBase {
 
 	}
 
-	public JLabel getLblPhoto() {
-		return lblPhoto;
-	}
+	
 
 	public List<Locataire> getListe() {
 		return liste;
