@@ -26,13 +26,16 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 	private FenetreContratLocation fenetre;
 	private ContratLocation cl;
 	private List<ContratLocation> contrats;
+	
 
+	private BienLouable bl;
 	private ContratLocation selected;
 
-	public GestionFenetreContratLocation(FenetreContratLocation fenetre, ContratLocation cl) throws SQLException {
+	public GestionFenetreContratLocation(FenetreContratLocation fenetre, ContratLocation cl, BienLouable bl) throws SQLException {
 		super(fenetre);
 		this.fenetre = fenetre;
 		this.cl = cl;
+		this.bl = bl;
 		this.contrats = new ArrayList<>(this.getDonneesContrats());
 	}
 
@@ -45,7 +48,7 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 	protected void gererBoutonSpecifique(String texte) throws SQLException {
 		switch (texte) {
 		case "Ajouter":
-			FenetreAjouterContratLocation fACL = new FenetreAjouterContratLocation();
+			FenetreAjouterContratLocation fACL = new FenetreAjouterContratLocation(this,bl);
 			fenetre.getLayeredPane().add(fACL).setVisible(true);
 			break;
 			
@@ -229,7 +232,7 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 		fenetre.getTable().addMouseListener(this);
 	}
 
-	private void remplirTable() throws SQLException {
+	public void remplirTable() throws SQLException {
 		DefaultTableModel model = (DefaultTableModel) this.fenetre.getTable().getModel();
 		model.setRowCount(0);
 		DaoLocataire dL = new DaoLocataire();
@@ -264,6 +267,9 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 			e.printStackTrace();
 			fenetre.getTextFieldNomLoc().setText("");
 		}
+	}
+	public void setContrats(List<ContratLocation> contrats) {
+		this.contrats = contrats;
 	}
 
 }
