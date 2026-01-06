@@ -10,16 +10,19 @@ import javax.swing.JTextField;
 import modele.Assurance;
 import modele.Batiment;
 import modele.dao.DaoAssurance;
+import modele.dao.DaoBienLouable;
 import vue.FenetreAjouterAssurance;
 
 public class GestionFenetreAjouterAssurance extends GestionButtonFenetreAjouter {
 
 	private FenetreAjouterAssurance fenetre;
 	private Batiment bat;
+	private GestionFenetreAssurance parent;
 
-	public GestionFenetreAjouterAssurance(FenetreAjouterAssurance fenetre, Batiment b) {
+	public GestionFenetreAjouterAssurance(FenetreAjouterAssurance fenetre, Batiment b, GestionFenetreAssurance parent) {
 		this.fenetre = fenetre;
 		this.bat = b;
+		this.parent = parent;
 	}
 
 	@Override
@@ -43,6 +46,9 @@ public class GestionFenetreAjouterAssurance extends GestionButtonFenetreAjouter 
 			if (dao.create(a) == 1) {
 				JOptionPane.showMessageDialog(null, "Assurance ajoutée avec succès !", "Succès",
 						JOptionPane.INFORMATION_MESSAGE);
+				DaoBienLouable dB = new DaoBienLouable();
+			    int nbBiens = dB.findByIdBat(bat.getAdresse()).size();
+				this.parent.afficherAssuranceBatiment(a, nbBiens);
 				this.fenetre.dispose();
 			} else {
 				JOptionPane.showMessageDialog(null, "Échec de l'ajout de l'assurance.", "Erreur", JOptionPane.ERROR_MESSAGE);
