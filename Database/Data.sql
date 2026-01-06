@@ -740,88 +740,88 @@ INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_cont
     VALUES ('PAY-013',900,TO_DATE('2024-02-01','YYYY-MM-DD'),'CTR-013','Charges');
 
 
+--Rajouter par un update les désignations suivantes
+INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat,Designation_Paiement)
+    VALUES ('PAY-014',900,TO_DATE('2023-03-01','YYYY-MM-DD'),'CTR-001','Charges');
 
-INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
-    VALUES ('PAY-014',900,TO_DATE('2023-03-01','YYYY-MM-DD'),'CTR-001');
+INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat,Designation_Paiement)
+    VALUES ('PAY-015',750,TO_DATE('2024-04-01','YYYY-MM-DD'),'CTR-002','Charges');
 
-INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
-    VALUES ('PAY-015',750,TO_DATE('2024-04-01','YYYY-MM-DD'),'CTR-002');
+INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat,Designation_Paiement)
+    VALUES ('PAY-016',1100,TO_DATE('2025-02-01','YYYY-MM-DD'),'CTR-003','Loyer');
 
-INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
-    VALUES ('PAY-016',1100,TO_DATE('2025-02-01','YYYY-MM-DD'),'CTR-003');
+INSERT INTO SAE_Paiement(Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat,Designation_Paiement)
+    VALUES ('PAY-017',950,TO_DATE('2023-05-05','YYYY-MM-DD'),'CTR-004','Charges');
 
-INSERT INTO SAE_Paiement(Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
-    VALUES ('PAY-017',950,TO_DATE('2023-05-05','YYYY-MM-DD'),'CTR-004');
+INSERT INTO SAE_Paiement(Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat,Designation_Paiement)
+    VALUES ('PAY-018',700,TO_DATE('2025-07-01','YYYY-MM-DD'),'CTR-005','Loyer');
 
-INSERT INTO SAE_Paiement(Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
-    VALUES ('PAY-018',700,TO_DATE('2025-07-01','YYYY-MM-DD'),'CTR-005');
+INSERT INTO SAE_Paiement(Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat,Designation_Paiement)
+    VALUES ('PAY-019',1050,TO_DATE('2024-08-01','YYYY-MM-DD'),'CTR-006','Charges');
 
-INSERT INTO SAE_Paiement(Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
-    VALUES ('PAY-019',1050,TO_DATE('2024-08-01','YYYY-MM-DD'),'CTR-006');
+INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat,Designation_Paiement)
+    VALUES ('PAY-020',900,TO_DATE('2023-09-01','YYYY-MM-DD'),'CTR-007','Loyer');
 
-INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
-    VALUES ('PAY-020',900,TO_DATE('2023-09-01','YYYY-MM-DD'),'CTR-007');
+INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat,Designation_Paiement)
+    VALUES ('PAY-021',750,TO_DATE('2024-04-01','YYYY-MM-DD'),'CTR-008','Loyer');
 
-INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
-    VALUES ('PAY-021',750,TO_DATE('2024-04-01','YYYY-MM-DD'),'CTR-008');
+INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat,Designation_Paiement)
+    VALUES ('PAY-022',1100,TO_DATE('2023-02-01','YYYY-MM-DD'),'CTR-009','Charges');
 
-INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
-    VALUES ('PAY-022',1100,TO_DATE('2023-02-01','YYYY-MM-DD'),'CTR-009');
+INSERT INTO SAE_Paiement(Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat,Designation_Paiement)
+    VALUES ('PAY-023',950,TO_DATE('2025-05-05','YYYY-MM-DD'),'CTR-010','Loyer');
 
-INSERT INTO SAE_Paiement(Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
-    VALUES ('PAY-023',950,TO_DATE('2025-05-05','YYYY-MM-DD'),'CTR-010');
+INSERT INTO SAE_Paiement(Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat,Designation_Paiement)
+    VALUES ('PAY-024',700,TO_DATE('2025-07-01','YYYY-MM-DD'),'CTR-011','Loyer');
 
-INSERT INTO SAE_Paiement(Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
-    VALUES ('PAY-024',700,TO_DATE('2025-07-01','YYYY-MM-DD'),'CTR-011');
+INSERT INTO SAE_Paiement(Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat,Designation_Paiement)
+    VALUES ('PAY-025',1050,TO_DATE('2023-11-01','YYYY-MM-DD'),'CTR-012','Charges');
 
-INSERT INTO SAE_Paiement(Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
-    VALUES ('PAY-025',1050,TO_DATE('2023-11-01','YYYY-MM-DD'),'CTR-012');
-
-INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
-    VALUES ('PAY-026',900,TO_DATE('2024-03-01','YYYY-MM-DD'),'CTR-013');
-
-
+INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat,Designation_Paiement)
+    VALUES ('PAY-026',900,TO_DATE('2024-03-01','YYYY-MM-DD'),'CTR-013','Charges');
 
 
 
-INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
-    VALUES ('PAY-027',900,TO_DATE('2023-04-01','YYYY-MM-DD'),'CTR-001');
 
-INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
-    VALUES ('PAY-028',750,TO_DATE('2024-05-01','YYYY-MM-DD'),'CTR-002');
 
-INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
-    VALUES ('PAY-029',1100,TO_DATE('2025-03-01','YYYY-MM-DD'),'CTR-003');
+INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat,Designation_Paiement)
+    VALUES ('PAY-027',900,TO_DATE('2023-04-01','YYYY-MM-DD'),'CTR-001','Charges');
 
-INSERT INTO SAE_Paiement(Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
-    VALUES ('PAY-030',950,TO_DATE('2023-06-05','YYYY-MM-DD'),'CTR-004');
+INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat,Designation_Paiement)
+    VALUES ('PAY-028',750,TO_DATE('2024-05-01','YYYY-MM-DD'),'CTR-002','Loyer');
 
-INSERT INTO SAE_Paiement(Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
-    VALUES ('PAY-031',700,TO_DATE('2025-08-01','YYYY-MM-DD'),'CTR-005');
+INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat,Designation_Paiement)
+    VALUES ('PAY-029',1100,TO_DATE('2025-03-01','YYYY-MM-DD'),'CTR-003','Charges');
 
-INSERT INTO SAE_Paiement(Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
-    VALUES ('PAY-032',1050,TO_DATE('2024-09-01','YYYY-MM-DD'),'CTR-006');
+INSERT INTO SAE_Paiement(Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat,Designation_Paiement)
+    VALUES ('PAY-030',950,TO_DATE('2023-06-05','YYYY-MM-DD'),'CTR-004','Charges');
 
-INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
-    VALUES ('PAY-033',900,TO_DATE('2023-10-01','YYYY-MM-DD'),'CTR-007');
+INSERT INTO SAE_Paiement(Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat,Designation_Paiement)
+    VALUES ('PAY-031',700,TO_DATE('2025-08-01','YYYY-MM-DD'),'CTR-005','Loyer');
 
-INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
-    VALUES ('PAY-034',750,TO_DATE('2024-05-01','YYYY-MM-DD'),'CTR-008');
+INSERT INTO SAE_Paiement(Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat,Designation_Paiement)
+    VALUES ('PAY-032',1050,TO_DATE('2024-09-01','YYYY-MM-DD'),'CTR-006','Charges');
 
-INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
-    VALUES ('PAY-035',1100,TO_DATE('2023-03-01','YYYY-MM-DD'),'CTR-009');
+INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat,Designation_Paiement)
+    VALUES ('PAY-033',900,TO_DATE('2023-10-01','YYYY-MM-DD'),'CTR-007','Loyer');
 
-INSERT INTO SAE_Paiement(Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
-    VALUES ('PAY-036',950,TO_DATE('2025-06-05','YYYY-MM-DD'),'CTR-010');
+INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat,Designation_Paiement)
+    VALUES ('PAY-034',750,TO_DATE('2024-05-01','YYYY-MM-DD'),'CTR-008','Charges');
 
-INSERT INTO SAE_Paiement(Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
-    VALUES ('PAY-037',700,TO_DATE('2025-08-01','YYYY-MM-DD'),'CTR-011');
+INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat,Designation_Paiement)
+    VALUES ('PAY-035',1100,TO_DATE('2023-03-01','YYYY-MM-DD'),'CTR-009','Loyer');
 
-INSERT INTO SAE_Paiement(Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
-    VALUES ('PAY-038',1050,TO_DATE('2023-12-01','YYYY-MM-DD'),'CTR-012');
+INSERT INTO SAE_Paiement(Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat,Designation_Paiement)
+    VALUES ('PAY-036',950,TO_DATE('2025-06-05','YYYY-MM-DD'),'CTR-010','Charges');
 
-INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat)
-    VALUES ('PAY-039',900,TO_DATE('2024-04-01','YYYY-MM-DD'),'CTR-013');
+INSERT INTO SAE_Paiement(Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat,Designation_Paiement)
+    VALUES ('PAY-037',700,TO_DATE('2025-08-01','YYYY-MM-DD'),'CTR-011','Charges');
+
+INSERT INTO SAE_Paiement(Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat,Designation_Paiement)
+    VALUES ('PAY-038',1050,TO_DATE('2023-12-01','YYYY-MM-DD'),'CTR-012','Loyer');
+
+INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat,Designation_Paiement)
+    VALUES ('PAY-039',900,TO_DATE('2024-04-01','YYYY-MM-DD'),'CTR-013','Charges');
 
 
 
@@ -1149,7 +1149,7 @@ VALUES ('SIRET006', '33 Rue des ecoles', 'Nice', '06000', 'PeintureDesign', '010
 ----------------------------------------------------------------------------------------------------------------
 INSERT INTO SAE_Facture (Numero_Facture, Montant, Date_de_facture, Compte_Bancaire, Montant_Devis, Date_Paiement, 
  Designation_de_travaux, fk_Id_BienLouable, fk_Numero_Siret)
- VALUES ('FAC-001',350,TO_DATE('2023-03-01','YYYY-MM-DD'),'FR761234567890',300,TO_DATE('2023-03-10','YYYY-MM-DD'),'eéparation plomberie','BIEN-001','SIRET001');
+ VALUES ('FAC-001',350,TO_DATE('2023-03-01','YYYY-MM-DD'),'FR761234567890',300,TO_DATE('2023-03-10','YYYY-MM-DD'),'Reparation plomberie','BIEN-001','SIRET001');
 
 INSERT INTO SAE_Facture (Numero_Facture, Montant, Date_de_facture, Compte_Bancaire, Montant_Devis, Date_Paiement, 
  Designation_de_travaux, fk_Id_BienLouable, fk_Numero_Siret)
@@ -1174,11 +1174,11 @@ INSERT INTO SAE_Facture (Numero_Facture, Montant, Date_de_facture, Compte_Bancai
 
 INSERT INTO SAE_Facture VALUES 
 ('FAC-007',180,TO_DATE('2024-07-10','YYYY-MM-DD'),'FR761234567891',160,TO_DATE('2024-07-15','YYYY-MM-DD'),
- 'Depannage fuite sous évier','BIEN-001','SIRET001');
+ 'Depannage fuite sous evier','BIEN-001','SIRET001');
 
 INSERT INTO SAE_Facture VALUES
 ('FAC-008',520,TO_DATE('2025-09-05','YYYY-MM-DD'),'FR761234567892',500,TO_DATE('2025-09-12','YYYY-MM-DD'),
- 'Remplacement colonne d évacuation','BIEN-003','SIRET001');
+ 'Remplacement colonne d evacuation','BIEN-003','SIRET001');
 
 
 INSERT INTO SAE_Facture VALUES
@@ -1201,7 +1201,7 @@ INSERT INTO SAE_Facture VALUES
 
 INSERT INTO SAE_Facture VALUES
 ('FAC-013',320,TO_DATE('2023-03-28','YYYY-MM-DD'),'FR560123980002',300,TO_DATE('2023-04-02','YYYY-MM-DD'),
- 'Révision annuelle chaudiere','BIEN-004','SIRET004');
+ 'Revision annuelle chaudiere','BIEN-004','SIRET004');
 
 INSERT INTO SAE_Facture VALUES
 ('FAC-014',1050,TO_DATE('2024-12-01','YYYY-MM-DD'),'FR560123980003',1000,TO_DATE('2024-12-10','YYYY-MM-DD'),
