@@ -29,6 +29,7 @@ public class FenetrePaiement extends FenetreBase {
 	private JComboBox comboBoxMois;
 	private JComboBox comboBoxAnnee;
 	private String nomFenAvant;
+	private JButton btnQuittance;
 
 	public String getNomFenAvant() {
 		return nomFenAvant;
@@ -56,7 +57,6 @@ public class FenetrePaiement extends FenetreBase {
 		setLocationRelativeTo(null);
 		setTitle("Application Gestion");
 
-		// header
 		this.setJMenuBar(createHeader());
 
 		contentPane = new JPanel();
@@ -115,6 +115,10 @@ public class FenetrePaiement extends FenetreBase {
 		JButton btnAjouterPaiement = new JButton("Ajouter paiement");
 		panelButtons.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		panelButtons.add(btnAjouterPaiement);
+		
+		btnQuittance = new JButton("Quittance loyer");
+		btnQuittance.addActionListener(this.gestionClic);
+		panelButtons.add(btnQuittance);
 
 		JButton btnRetour = new JButton("Retour");
 		panelButtons.add(btnRetour);
@@ -131,7 +135,7 @@ public class FenetrePaiement extends FenetreBase {
 		panel_9.setLayout(new BorderLayout(0, 0));
 
 		JScrollPane scrollPane_1 = new JScrollPane();
-		panel_9.add(scrollPane_1);
+		panel_9.add(scrollPane_1, BorderLayout.NORTH);
 
 		JPanel panel_10 = new JPanel();
 		panel_7.add(panel_10, BorderLayout.SOUTH);
@@ -177,10 +181,26 @@ public class FenetrePaiement extends FenetreBase {
 				"Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Decembre" }));
 		panel_8.add(comboBoxMois);
 		table = new JTable();
-		table.setModel(new DefaultTableModel(new Object[][] {},
-				new String[] { "ID Paiement", "ID Contrat", "Date Paiement", "Montant" }) {
-			boolean[] columnEditables = new boolean[] { false, true, true, true };
-
+		table.addMouseListener(this.gestionClic);
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+			},
+			new String[] {
+				"ID Paiement", "ID Contrat", "Date Paiement", "Montant", "D\u00E9signation"
+			}
+		) {
+			Class[] columnTypes = new Class[] {
+				Object.class, String.class, String.class, Double.class, String.class
+			};
+			public Class getColumnClass(int columnIndex) {
+				return columnTypes[columnIndex];
+			}
+			boolean[] columnEditables = new boolean[] {
+				false, false, false, false, false
+			};
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
 			}
@@ -223,6 +243,10 @@ public class FenetrePaiement extends FenetreBase {
 	public JTable getTable() {
 		return table;
 	}
+	
+	public JButton getButtonQuittance() {
+		return btnQuittance;
+	}
 
 	public JLabel getLblTotalPaiementAnnees() {
 		return lblTotalPaiementAnnees;
@@ -244,4 +268,6 @@ public class FenetrePaiement extends FenetreBase {
 		return lblValPaiement;
 	}
 
+
+	
 }

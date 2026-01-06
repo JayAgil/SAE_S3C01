@@ -1,5 +1,7 @@
 package controleur;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -11,9 +13,10 @@ import modele.Locataire;
 import modele.Paiement;
 import modele.dao.DaoBienLouable;
 import modele.dao.DaoLocataire;
+import modele.dao.DaoPaiement;
 import vue.*;
 
-public class GestionFenetrePaiement extends GestionHeaderEtFooter {
+public class GestionFenetrePaiement extends GestionHeaderEtFooter implements MouseListener {
 
     private FenetrePaiement fenetre;
     private List<Paiement> paiements;
@@ -37,6 +40,10 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter {
                 fenetre.getLayeredPane().add(fenAjouterPaiement);
                 fenAjouterPaiement.setVisible(true);
                 break;
+            case "Quittance loyer" :
+            	this.fenetre.getButtonQuittance().setEnabled(false);
+            	mouseClicked();
+            	break;
         }
     }
 
@@ -214,6 +221,50 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter {
             filterPaiements(mois, annee);
         }
     }
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		JTable table = (JTable) this.fenetre.getTable();
+		int row = table.getSelectedRow();
+		if (row != -1) {
+			try {
+				this.fenetre.getButtonQuittance().setEnabled(true);
+				String idPaiement = (String) table.getValueAt(row, 0);
+				DaoPaiement daoPaiement = new DaoPaiement();
+				Paiement paiement = daoPaiement.findById(idPaiement);
+				FenetreQuittance fenQuittance = new FenetreQuittance(paiement);
+				fenQuittance.setVisible(true);
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			
+		}
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 
     
  
