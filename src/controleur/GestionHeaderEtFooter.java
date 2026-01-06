@@ -91,7 +91,7 @@ public abstract class GestionHeaderEtFooter implements ActionListener {
 		case "Contrat location":
 			DaoContratLocation daoContratLocation = new DaoContratLocation();
 			List<ContratLocation> liste = daoContratLocation.findAll();
-			new FenetreContratLocation("FenPrincipale", liste.get(0)).setVisible(true);
+			new FenetreContratLocation("FenPrincipale", liste.get(0),null).setVisible(true);
 			fenetre.dispose();
 			break;
 
