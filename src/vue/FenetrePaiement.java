@@ -186,7 +186,6 @@ public class FenetrePaiement extends FenetreBase {
 				"Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Decembre" }));
 		panel_8.add(comboBoxMois);
 		table = new JTable();
-		table.addMouseListener(this.gestionClic);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null, null, null},
@@ -234,6 +233,7 @@ public class FenetrePaiement extends FenetreBase {
 		comboBoxAnnee.addActionListener(gestionClic);
 		btnAjouterPaiement.addActionListener(this.gestionClic);
 		btnRetour.addActionListener(gestionClic);
+		table.addMouseListener(this.gestionClic);
 
 	}
 

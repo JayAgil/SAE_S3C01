@@ -39,6 +39,7 @@ import modele.dao.DaoLocataire;
 import modele.dao.DaoPaiement;
 import vue.FenetreAjouterBatiment;
 import vue.FenetreAjouterIRL;
+import vue.FenetreAjouterPaiement;
 import vue.FenetreAssurance;
 import vue.FenetreBienLouable;
 import vue.FenetreCharges;
@@ -200,6 +201,7 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter
     private void mAJDeBaseDeDonnees(File file) throws SQLException {
         DaoContratLocation daoContrat = new DaoContratLocation();
         DaoPaiement daoPaiement = new DaoPaiement();
+
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = br.readLine()) != null) {
@@ -207,16 +209,36 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter
                 String[] data = line.split(";");
                 String idBien = data[0].trim();
                 String idLocataire = data[1].trim();
-                String moisAnnee = data[2].trim();   
+                String moisAnnee = data[2].trim();
                 String dateDePaiement = this.getDateDePaiementInFormat(moisAnnee);
                 double montantLoyer = Double.parseDouble(data[3].trim());
                 double provisionCharge = Double.parseDouble(data[4].trim());
                 ContratLocation contrat = daoContrat.findContratByLocataireAndBien(idLocataire, idBien);
+                if (contrat == null) continue; 
+                prefillPaiement(dateDePaiement, montantLoyer, "Loyer", contrat.getNumeroDeContrat());
+                prefillPaiement(dateDePaiement, provisionCharge, "Provision charge", contrat.getNumeroDeContrat());
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    
+    public void prefillPaiement( String date, double montant, String designation, String idContrat) {
+    	FenetreAjouterPaiement fap = new FenetreAjouterPaiement(null, null);
+        fap.getTextFieldDate().setText(date);
+        fap.getTextFieldMontant().setText(String.valueOf(montant));
+        fap.getTextFieldDesignation().setText(designation);
+        fap.getTextFieldIdPaiement().setText("");
+        for (int i = 0; i < fap.getComboBox().getItemCount(); i++) {
+            if (idContrat.equals(fap.getComboBox().getItemAt(i))) {
+            	fap.getComboBox().setSelectedIndex(i);
+            }
+        }
+        this.fenetre.getLayeredPane().add(fap);
+        fap.setVisible(true);
+    }
+
     
     private String getDateDePaiementInFormat(String moisAnnee) {
     	String[] parts = moisAnnee.split("/");

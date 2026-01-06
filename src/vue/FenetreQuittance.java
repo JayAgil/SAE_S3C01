@@ -7,7 +7,7 @@ import javax.swing.border.TitledBorder;
 import modele.Paiement;
 import modele.ContratLocation;
 
-public class FenetreQuittance extends JFrame {
+public class FenetreQuittance extends JInternalFrame {
 
     private static final long serialVersionUID = 1L;
 
@@ -17,7 +17,6 @@ public class FenetreQuittance extends JFrame {
 
         setTitle("Quittance de loyer");
         setSize(600, 500);
-        setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout(10, 10));
 
