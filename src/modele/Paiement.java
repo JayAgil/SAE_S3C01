@@ -5,6 +5,12 @@ import java.util.Objects;
 
 public class Paiement {
 
+	@Override
+	public String toString() {
+		return "Paiement [id_paiement=" + id_paiement + ", montant=" + montant + ", datepaiement=" + datepaiement
+				+ ", designation=" + designation + ", contratLocation=" + contratLocation + "]";
+	}
+
 	private String id_paiement;
 	private double montant;
 	private Date datepaiement;

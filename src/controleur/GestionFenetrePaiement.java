@@ -44,9 +44,11 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter implements Mou
 			fenAjouterPaiement.setVisible(true);
 			break;
 		case "Quittance loyer":
+			System.out.print("hello");
 			if (paiementSelectionne == null) {
 				return;
 			}
+			System.out.print(paiementSelectionne);
 			FenetreQuittance fenQuittance = new FenetreQuittance(paiementSelectionne);
 			fenetre.getLayeredPane().add(fenQuittance);
 			break;
