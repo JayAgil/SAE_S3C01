@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controleur.GestionFenetreAjouterAssurance;
+import controleur.GestionFenetreAssurance;
 import modele.Batiment;
 
 import javax.swing.JLabel;
@@ -31,6 +32,7 @@ public class FenetreAjouterAssurance extends JInternalFrame {
 	private JTextField textFieldAddrAgence;
 	private JTextField textFieldTelAgence;
 	private GestionFenetreAjouterAssurance gestionClic;
+	private GestionFenetreAssurance parent;
 
 	/**
 	 * Launch the application.
@@ -39,7 +41,7 @@ public class FenetreAjouterAssurance extends JInternalFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FenetreAjouterAssurance frame = new FenetreAjouterAssurance(null);
+					FenetreAjouterAssurance frame = new FenetreAjouterAssurance(null, null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -51,9 +53,10 @@ public class FenetreAjouterAssurance extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
-	public FenetreAjouterAssurance(Batiment b) {
+	public FenetreAjouterAssurance(Batiment b, GestionFenetreAssurance parent) {
 		setResizable(false);
-		this.gestionClic = new GestionFenetreAjouterAssurance(this,b);
+		this.parent = parent;
+		this.gestionClic = new GestionFenetreAjouterAssurance(this, b, parent);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 500);
 		contentPane = new JPanel();
@@ -149,16 +152,16 @@ public class FenetreAjouterAssurance extends JInternalFrame {
 		btnRetour.addActionListener(this.gestionClic);
 
 	}
-	
+
 	public List<JTextField> getAllTextFields() {
-	    List<JTextField> fields = new ArrayList<>();
-	    fields.add(textFieldNumAssurance);
-	    fields.add(textFieldPrime);
-	    fields.add(textFieldMontant);
-	    fields.add(textFieldTypeAssurance);
-	    fields.add(textFieldAgence);
-	    fields.add(textFieldAddrAgence);
-	    fields.add(textFieldTelAgence);
-	    return fields;
+		List<JTextField> fields = new ArrayList<>();
+		fields.add(textFieldNumAssurance);
+		fields.add(textFieldPrime);
+		fields.add(textFieldMontant);
+		fields.add(textFieldTypeAssurance);
+		fields.add(textFieldAgence);
+		fields.add(textFieldAddrAgence);
+		fields.add(textFieldTelAgence);
+		return fields;
 	}
 }

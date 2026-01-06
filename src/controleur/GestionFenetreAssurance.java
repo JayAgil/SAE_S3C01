@@ -28,7 +28,7 @@ public class GestionFenetreAssurance extends GestionHeaderEtFooter {
 			try {
             	DaoBatiment dao = new DaoBatiment();
 				Batiment b = dao.findById(this.bat);
-				FenetreAjouterAssurance fenAjouterAssurance = new FenetreAjouterAssurance(b);
+				FenetreAjouterAssurance fenAjouterAssurance = new FenetreAjouterAssurance(b,this);
                 fenetre.getLayeredPane().add(fenAjouterAssurance);
                 fenAjouterAssurance.setVisible(true);
                 break;
