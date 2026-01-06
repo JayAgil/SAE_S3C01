@@ -779,6 +779,8 @@ INSERT INTO SAE_Paiement(Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contr
 
 INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat,Designation_Paiement)
     VALUES ('PAY-026',900,TO_DATE('2024-03-01','YYYY-MM-DD'),'CTR-013','Charges');
+    
+
 
 
 
@@ -822,10 +824,6 @@ INSERT INTO SAE_Paiement(Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contr
 
 INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat,Designation_Paiement)
     VALUES ('PAY-039',900,TO_DATE('2024-04-01','YYYY-MM-DD'),'CTR-013','Charges');
-
-
-
-
 
 
 
