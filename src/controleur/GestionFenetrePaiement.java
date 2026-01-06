@@ -48,7 +48,7 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter implements Mou
 				return;
 			}
 			FenetreQuittance fenQuittance = new FenetreQuittance(paiementSelectionne);
-			fenQuittance.setVisible(true);
+			fenetre.getLayeredPane().add(fenQuittance);
 			break;
 
 		}
@@ -238,11 +238,11 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter implements Mou
 	    JTable table = fenetre.getTable();
 	    int row = table.getSelectedRow();
 	    if (row == -1) return;
+	    fenetre.getButtonQuittance().setEnabled(true);
 	    try {
 	        String idPaiement = table.getValueAt(row, 0).toString();
 	        DaoPaiement daoPaiement = new DaoPaiement();
 	        paiementSelectionne = daoPaiement.findById(idPaiement);
-	        fenetre.getButtonQuittance().setEnabled(true);
 	    } catch (SQLException ex) {
 	        ex.printStackTrace();
 	    }
