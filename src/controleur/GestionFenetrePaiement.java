@@ -24,7 +24,6 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter implements Mou
 	private String idLoc;
 	private Paiement paiementSelectionne;
 	private Locataire locataireSelectionne;
-	private FenetreAjouterPaiement fap;
 
 	public GestionFenetrePaiement(FenetrePaiement fenetre, List<Paiement> liste, String idLoc, Locataire locataireSelectionne) throws SQLException {
 		super(fenetre);
@@ -50,7 +49,6 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter implements Mou
 			}
 			FenetreQuittance fenQuittance = new FenetreQuittance(paiementSelectionne);
 			fenetre.getLayeredPane().add(fenQuittance);
-			fenQuittance.setVisible(true);
 			break;
 
 		}
