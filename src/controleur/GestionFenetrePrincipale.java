@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -180,7 +181,6 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter
         case "Importer Un Fichier CSV":
             JFileChooser chooser = new JFileChooser();
             int result = chooser.showOpenDialog(null);
-
             if (result == JFileChooser.APPROVE_OPTION) {
                 File selectedFile = chooser.getSelectedFile();
                 System.out.println(
@@ -208,6 +208,7 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter
                 String idBien = data[0].trim();
                 String idLocataire = data[1].trim();
                 String moisAnnee = data[2].trim();   
+                String dateDePaiement = this.getDateDePaiementInFormat(moisAnnee);
                 double montantLoyer = Double.parseDouble(data[3].trim());
                 double provisionCharge = Double.parseDouble(data[4].trim());
                 ContratLocation contrat = daoContrat.findContratByLocataireAndBien(idLocataire, idBien);
@@ -216,7 +217,22 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter
             e.printStackTrace();
         }
     }
-
+    
+    private String getDateDePaiementInFormat(String moisAnnee) {
+    	String[] parts = moisAnnee.split("/");
+    	int mois = Integer.parseInt(parts[0]);
+    	int annee = 2000 + Integer.parseInt(parts[1]); // 23 → 2023
+    	Calendar cal = Calendar.getInstance();
+    	int jour = cal.get(Calendar.DAY_OF_MONTH);
+    	String dateStr = String.format(
+    	        "%04d-%02d-%02d",
+    	        annee,
+    	        mois,
+    	        jour
+    	);
+    	return dateStr;
+    }
+    
     @Override
     protected void gererMenuSpecifique(String texte) {
     }
@@ -227,10 +243,9 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter
             JTable table = (JTable) e.getSource();
             int row = table.rowAtPoint(e.getPoint());
             int column = table.columnAtPoint(e.getPoint());
-            int targetColumn = 0;
-            if (row != -1 && column == targetColumn) {
+            if (row != -1 && (column == 0 || column == 1 || column == 2 || column == 3)) {
                 try {
-                    String idCtrt = table.getValueAt(row, column).toString();
+                    String idCtrt = table.getValueAt(row, 0).toString();
                     DaoBienLouable daoBL = new DaoBienLouable();
                     BienLouable bien = daoBL.findByIdContrat(idCtrt);
                     if (bien == null) {
