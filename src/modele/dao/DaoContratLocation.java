@@ -97,6 +97,13 @@ public class DaoContratLocation extends DaoModele<ContratLocation> implements Da
 	public ContratLocation findContratLocataionByLocataire(String... id) throws SQLException {
 		return this.findById(new RequeteSelectContratLocationByLoc(), id);
 	}
+<<<<<<< HEAD
 
 	
+=======
+	
+	public ContratLocation findContratByLocataireAndBien(String... id) throws SQLException {
+		return this.findById(new RequeteSelectContratFromBienAndLoc(), id);
+	}
+>>>>>>> 3cc028a85aae6060fdeab3b30da56b19d4fa74e9
 }
