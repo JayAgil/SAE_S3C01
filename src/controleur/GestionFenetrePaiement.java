@@ -24,6 +24,7 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter implements Mou
 	private String idLoc;
 	private Paiement paiementSelectionne;
 	private Locataire locataireSelectionne;
+	private FenetreAjouterPaiement fap;
 
 	public GestionFenetrePaiement(FenetrePaiement fenetre, List<Paiement> liste, String idLoc, Locataire locataireSelectionne) throws SQLException {
 		super(fenetre);
@@ -78,6 +79,8 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter implements Mou
 		}
 
 	}
+	
+
 
 	public void chargerDonnees() {
 		DefaultTableModel model = (DefaultTableModel) fenetre.getTable().getModel();
