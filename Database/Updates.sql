@@ -72,6 +72,3 @@ UPDATE SAE_Facture SET Designation_de_travaux = 'Peinture chambre et salon'
 UPDATE SAE_Facture SET Designation_de_travaux = 'Rafraichissement complet appartement'
        WHERE Numero_Facture = 'FAC-018'; 
 
-
-
--- A rajouter update aussi
