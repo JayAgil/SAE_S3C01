@@ -12,6 +12,7 @@ GRANT ALL ON SAE_Garant TO nrk4981a,rmj5159a,hmn4899a,dbl5595a;
 GRANT ALL ON SAE_IRL TO nrk4981a,rmj5159a,hmn4899a,dbl5595a;
 GRANT ALL ON SAE_locataire TO nrk4981a,rmj5159a,hmn4899a,dbl5595a;
 GRANT ALL ON SAE_Paiement TO nrk4981a,rmj5159a,hmn4899a,dbl5595a;
+GRANT EXECUTE ON calcul_regularisation_contrat TO nrk4981a,rmj5159a,hmn4899a,dbl5595a;
 SET AUTOCOMMIT ON;
 SHOW AUTOCOMMIT;
 --SET AUTOCOMMIT OFF;

@@ -27,12 +27,12 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 	private FenetreContratLocation fenetre;
 	private ContratLocation cl;
 	private List<ContratLocation> contrats;
-	
 
 	private BienLouable bl;
 	private ContratLocation selected;
 
-	public GestionFenetreContratLocation(FenetreContratLocation fenetre, ContratLocation cl, BienLouable bl) throws SQLException {
+	public GestionFenetreContratLocation(FenetreContratLocation fenetre, ContratLocation cl, BienLouable bl)
+			throws SQLException {
 		super(fenetre);
 		this.fenetre = fenetre;
 		this.cl = cl;
@@ -49,14 +49,14 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 	protected void gererBoutonSpecifique(String texte) throws SQLException {
 		switch (texte) {
 		case "Ajouter":
-			FenetreAjouterContratLocation fACL = new FenetreAjouterContratLocation(this,bl);
+			FenetreAjouterContratLocation fACL = new FenetreAjouterContratLocation(this, bl);
 			fenetre.getLayeredPane().add(fACL).setVisible(true);
 			break;
-			
+
 		case "Annuler":
 			fenetre.dispose();
 			break;
-			
+
 		case "Revaloriser loyer":
 			Calendar cal = Calendar.getInstance();
 			int annne1 = cal.get(Calendar.YEAR);
@@ -111,7 +111,7 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 				}
 			}
 			break;
-			
+
 		case "Revaloriser charge":
 			if (selected == null) {
 				JOptionPane.showMessageDialog(fenetre, "Veuillez sélectionner un contrat", "Erreur",
@@ -154,19 +154,15 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 
 		}
 	}
-	
+
 	private void ouvrirFenetreLocataire(String idBien) {
 		try {
 			DaoLocataire daoLocataire = new DaoLocataire();
 			List<Locataire> locataires = daoLocataire.findLocataireByBienLouable(idBien);
-			if(locataires == null) {
-				JOptionPane.showMessageDialog(
-					    null,
-					    "Ce bien n'a pas de locataire",
-					    "Information",
-					    JOptionPane.INFORMATION_MESSAGE
-					);
-			}else {
+			if (locataires == null) {
+				JOptionPane.showMessageDialog(null, "Ce bien n'a pas de locataire", "Information",
+						JOptionPane.INFORMATION_MESSAGE);
+			} else {
 				DaoBienLouable db = new DaoBienLouable();
 				BienLouable bien = db.findById(idBien);
 				FenetreLocataire fen = new FenetreLocataire("FenetreBienLouable", locataires, bien);
@@ -198,6 +194,12 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 				fenetre.dispose();
 			}
 		}
+	}
+
+	public void updateTitreContrat(BienLouable bien) {
+	    this.fenetre.getTitreTable().setText(
+	        "Tous les contrats sous le bien " + bien.getIdBienLouable()
+	    );
 	}
 
 	@Override
@@ -247,6 +249,7 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		updateTitreContrat(this.bl);
 		if (!contrats.isEmpty()) {
 			fenetre.getTable().setRowSelectionInterval(0, 0);
 			selected = contrats.get(0);
@@ -276,9 +279,9 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 		fenetre.getTextFieldCptEau().setText(String.valueOf(c.getIndexCompteurEau()));
 		fenetre.getTextFieldCptElec().setText(String.valueOf(c.getIndexCompteurElectricite()));
 		fenetre.getTextFieldCptGaz().setText(String.valueOf(c.getIndexCompteurGaz()));
-		if(c.getSolde()>=0) {
+		if (c.getSolde() >= 0) {
 			fenetre.getTextFieldSolde().setForeground(Color.GREEN);
-		}else {
+		} else {
 			fenetre.getTextFieldSolde().setForeground(Color.RED);
 		}
 		fenetre.getTextFieldSolde().setText(String.valueOf(c.getSolde()));
@@ -296,6 +299,7 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 			fenetre.getTextFieldNomLoc().setText("");
 		}
 	}
+
 	public void setContrats(List<ContratLocation> contrats) {
 		this.contrats = contrats;
 	}
