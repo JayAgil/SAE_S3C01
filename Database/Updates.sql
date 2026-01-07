@@ -16,8 +16,9 @@ UPDATE SAE_Paiement SET Designation_Paiement = 'Charges'
        OR Id_Paiement='PAY-039'
        ;
 
---UPDATE SAE_ContratLocation SET Solde = 0 - Montant_Mensuel;
+UPDATE SAE_ContratLocation SET Solde = 0 - Montant_Mensuel;
 UPDATE SAE_DateDernierLancement SET date_dernier_lancement = TO_DATE('2024-09-15','YYYY-MM-DD');
+
 
 UPDATE SAE_Paiement SET Designation_Paiement = 'Loyer'
        WHERE Id_Paiement= 'PAY-016' 

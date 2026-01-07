@@ -18,7 +18,7 @@ CREATE TABLE SAE_Batiment (
     Date_construction DATE
 );
 
------ Rajouter un trigger qui check si Id_BienLouable_2 est correspond bien à une id_BienLouable de garage
+
 CREATE TABLE SAE_BienLouable (
     Id_BienLouable VARCHAR2(50) PRIMARY KEY,
     NumeroFiscale VARCHAR2(50),
