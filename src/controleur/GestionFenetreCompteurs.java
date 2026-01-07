@@ -52,7 +52,7 @@ public class GestionFenetreCompteurs extends GestionHeaderEtFooter {
             });
         }
     }
-
+    
     
     private void calculerTotaux() {
         double totalEau = 0;
@@ -79,10 +79,10 @@ public class GestionFenetreCompteurs extends GestionHeaderEtFooter {
         fenetre.getLnltotalelec().setText(String.format("%.2f €", totalElec));
         fenetre.getLbltotalgaz().setText(String.format("%.2f €", totalGaz));
     }
-
-
-
-
+    
+    
+    
+    
     @Override
     protected void gererBoutonSpecifique(String texte) {
         switch (texte) {
@@ -93,7 +93,7 @@ public class GestionFenetreCompteurs extends GestionHeaderEtFooter {
                 break;
         }
     }
-
+    
     @Override
     protected void gererBoutonRetour(String texte) throws SQLException {
     	if ("Retour".equals(texte)) {

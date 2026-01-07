@@ -20,54 +20,47 @@ END;
 
 
 
---MONTHS_BETWEEN(DATE '2017-07-01', DATE '2017-07-01') A tester
-CREATE OR REPLACE PROCEDURE VerifierMoisLancement IS
-    v_date  DATE;
-    v_mois  NUMBER;
+CREATE OR REPLACE PROCEDURE VerifierDateLancement IS
+    v_date   DATE;
+    v_annees NUMBER;
+    v_mois   NUMBER;
 BEGIN
+    -- Récupérer la date du dernier lancement (mois civil)
     SELECT TRUNC(date_dernier_lancement,'MM')
     INTO v_date
     FROM SAE_DateDernierLancement
-    FOR UPDATE;
+    WHERE Id_Lock = 'X';
 
-    v_mois := FLOOR(MONTHS_BETWEEN(TRUNC(SYSDATE,'MM'), v_date));
-
-    IF v_mois > 0 THEN
-        UPDATE SAE_ContratLocation
-        SET Solde = Solde - (Montant_Mensuel * v_mois);
-
-        UPDATE SAE_DateDernierLancement
-        SET date_dernier_lancement = ADD_MONTHS(v_date, v_mois);
-    END IF;
-END VerifierMoisLancement;
-/
-
-CREATE OR REPLACE PROCEDURE VerifierAnneeLancement IS
-    v_date   DATE;
-    v_annees NUMBER;
-BEGIN
-    SELECT  TRUNC(date_dernier_lancement,'MM')
-    INTO v_date
-    FROM SAE_DateDernierLancement
-    FOR UPDATE;
-
+    -- Calcul des années complètes écoulées
     v_annees := FLOOR(MONTHS_BETWEEN(TRUNC(SYSDATE,'MM'), v_date) / 12);
 
     IF v_annees > 0 THEN
+        -- Mise à jour du solde pour toutes les années
         UPDATE SAE_ContratLocation
-        SET Solde = Solde - (Montant_Mensuel * v_annees);
+        SET Solde = Solde - (Montant_Mensuel * v_annees * 12);
 
-        UPDATE SAE_DateDernierLancement
-        SET date_dernier_lancement = ADD_MONTHS(v_date, v_annees * 12);
+        -- Avancer la date d'autant d'années
+        v_date := ADD_MONTHS(v_date, v_annees * 12);
     END IF;
-END VerifierAnneeLancement;
-/
 
+    -- Calcul des mois restants après les années
+    v_mois := MONTHS_BETWEEN(TRUNC(SYSDATE,'MM'), v_date);
 
-CREATE OR REPLACE PROCEDURE VerifierDateLancement IS
-BEGIN
-    VerifierAnneeLancement;
-    VerifierMoisLancement;
+    IF v_mois > 0 THEN
+        -- Mise à jour du solde pour les mois restants
+        UPDATE SAE_ContratLocation
+        SET Solde = Solde - (Montant_Mensuel * v_mois);
+
+        -- Avancer la date d'autant de mois
+        v_date := ADD_MONTHS(v_date, v_mois);
+    END IF;
+
+    -- Mettre à jour la date dernier lancement
+    UPDATE SAE_DateDernierLancement
+    SET date_dernier_lancement = v_date
+    WHERE Id_Lock = 'X';
+
+    COMMIT;
 END VerifierDateLancement;
 /
 
