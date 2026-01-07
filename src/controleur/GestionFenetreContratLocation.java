@@ -31,6 +31,7 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 	private BienLouable bl;
 	private ContratLocation selected;
 
+	@SuppressWarnings("deprecation")
 	public GestionFenetreContratLocation(FenetreContratLocation fenetre, ContratLocation cl, BienLouable bl)
 			throws SQLException {
 		super(fenetre);
@@ -38,6 +39,9 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 		this.cl = cl;
 		this.bl = bl;
 		this.contrats = new ArrayList<>(this.getDonneesContrats());
+		if (this.fenetre.getFenDavant() == "FenPrincipale") {
+			this.fenetre.getBtnAjouter().hide();
+		}
 	}
 
 	public List<ContratLocation> getDonneesContrats() throws SQLException {
@@ -152,14 +156,13 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 					JOptionPane.INFORMATION_MESSAGE);
 			break;
 		case "Regulariser charge":
-            DaoContratLocation dao = new DaoContratLocation();
-            float element = dao.RegularisationCharges(selected, 2025);
-            FenetreRegularisationCharges fn = new FenetreRegularisationCharges(
-                dao, selected, element);
-            fenetre.getLayeredPane().add(fn);
-            fn.setVisible(true);
-            break;
-        
+			DaoContratLocation dao = new DaoContratLocation();
+			float element = dao.RegularisationCharges(selected, 2025);
+			FenetreRegularisationCharges fn = new FenetreRegularisationCharges(dao, selected, element);
+			fenetre.getLayeredPane().add(fn);
+			fn.setVisible(true);
+			break;
+
 		}
 	}
 
@@ -205,9 +208,7 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 	}
 
 	public void updateTitreContrat(BienLouable bien) {
-	    this.fenetre.getTitreTable().setText(
-	        "Tous les contrats sous le bien " + bien.getIdBienLouable()
-	    );
+		this.fenetre.getTitreTable().setText("Tous les contrats sous le bien " + bien.getIdBienLouable());
 	}
 
 	@Override

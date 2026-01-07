@@ -21,10 +21,14 @@ public class GestionFenetreCharges extends GestionHeaderEtFooter{
 
    
 
+	@SuppressWarnings("deprecation")
 	public GestionFenetreCharges(FenetreCharges fenetre, List<ChargesGenerales> list) throws SQLException {
         super(fenetre);
         this.fenetre = fenetre;
         this.donnees = list;
+        if (this.fenetre.getFenetreAvant() == "FenPrincipale") {
+        	this.fenetre.getBtnAjouter().hide();
+        }
     }
    
 

@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -24,8 +23,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controleur.GestionFenetrePrincipale;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+
 
 public class FenetrePrincipale extends FenetreBase {
 
@@ -44,26 +42,7 @@ public class FenetrePrincipale extends FenetreBase {
 	private JLabel lblPasPaye_1;
 	private JComboBox<String> cbBatiment;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					FenetrePrincipale frame = new FenetrePrincipale();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
+	
 	public FenetrePrincipale() {
 		super();
 		setIconImage(

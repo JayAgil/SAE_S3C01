@@ -1,17 +1,14 @@
 package vue;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 import javax.swing.JButton;
-import javax.swing.JDesktopPane;
 import javax.swing.JFormattedTextField;
 import javax.swing.JInternalFrame;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -42,31 +39,10 @@ public class FenetreAjouterCharge extends JInternalFrame {
 
 	private JTextField textFieldDateCharge;
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(() -> {
-			try {
-				JFrame frame = new JFrame();
-				frame.setBounds(100, 100, 450, 500);
-				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-				JDesktopPane desktopPane = new JDesktopPane();
-				frame.setContentPane(desktopPane);
-
-				FenetreAjouterCharge internalFrame = new FenetreAjouterCharge(null,null);
-				internalFrame.setVisible(true);
-				desktopPane.add(internalFrame);
-
-				frame.setVisible(true);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		});
-	}
-
 	public FenetreAjouterCharge(BienLouable bl, GestionFenetreCharges parent) {
 		this.bl = bl;
 		this.parent = parent;
-		gestionClic = new GestionFenetreAjouterCharge(this,bl,parent);
+		gestionClic = new GestionFenetreAjouterCharge(this, bl, parent);
 		setResizable(false);
 		setClosable(true);
 		setIconifiable(true);

@@ -4,7 +4,6 @@ import controleur.GestionFenetreContratLocation;
 import modele.BienLouable;
 import modele.ContratLocation;
 
-import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -23,7 +22,6 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTextField;
-import javax.swing.UIManager;
 import java.sql.SQLException;
 import java.awt.event.ActionListener;
 
@@ -46,31 +44,8 @@ public class FenetreContratLocation extends FenetreBase {
 	private JTextField textFieldSolde;
 	private JLabel lblTitreTable;
 	private BienLouable bl;
+	private JButton btnAjouter;
 
-	
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FenetreContratLocation frame = new FenetreContratLocation(null,null, null);
-					frame.setVisible(true);
-					UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 * 
-	 * @throws SQLException
-	 */
 	public FenetreContratLocation(String f, ContratLocation cl, BienLouable bl) throws SQLException {
 		super();
 		this.fenDavant = f;
@@ -108,21 +83,22 @@ public class FenetreContratLocation extends FenetreBase {
 		JPanel panel_2 = new JPanel();
 		panel_1.add(panel_2, BorderLayout.SOUTH);
 
-		JButton btnAjouter = new JButton("Ajouter");
+		JButton btnRetour = new JButton("Retour");
+		panel_2.add(btnRetour);
+		btnRetour.addActionListener((ActionListener) gestionClicContratLocation);
+
+		btnAjouter = new JButton("Ajouter");
 		panel_2.add(btnAjouter);
 
 		JButton btnAnnuler = new JButton("Annuler");
 		panel_2.add(btnAnnuler);
 
-		JButton btnRetour = new JButton("Retour");
-		panel_2.add(btnRetour);
-		
 		JButton btnRevalLoyer = new JButton("Revaloriser loyer");
 		panel_2.add(btnRevalLoyer);
-		
+
 		JButton btnRevalCharge = new JButton("Revaloriser charge");
 		panel_2.add(btnRevalCharge);
-		
+
 		JButton btnReguCharges = new JButton("Regulariser charge");
 		panel_2.add(btnReguCharges);
 
@@ -346,7 +322,7 @@ public class FenetreContratLocation extends FenetreBase {
 		gbc_textFieldSolde.gridy = 9;
 		panel_4.add(textFieldSolde, gbc_textFieldSolde);
 		textFieldSolde.setColumns(10);
-		
+
 		lblTitreTable = new JLabel("Tous les contrats sous le bien");
 		lblTitreTable.setFont(new Font("Tahoma", Font.BOLD, 15));
 		GridBagConstraints gbc_lblTitreTable = new GridBagConstraints();
@@ -387,14 +363,17 @@ public class FenetreContratLocation extends FenetreBase {
 		gbc_panel_5.gridy = 3;
 		panel_3.add(panel_5, gbc_panel_5);
 
-		this.gestionClicContratLocation = new GestionFenetreContratLocation(this, this.cl,bl);
+		this.gestionClicContratLocation = new GestionFenetreContratLocation(this, this.cl, bl);
 		this.gestionClicContratLocation.initialize();
 		btnAjouter.addActionListener(gestionClicContratLocation);
 		btnAnnuler.addActionListener(gestionClicContratLocation);
-		btnRetour.addActionListener((ActionListener) gestionClicContratLocation);
 		btnRevalLoyer.addActionListener(this.gestionClicContratLocation);
 		btnRevalCharge.addActionListener(this.gestionClicContratLocation);
 		btnReguCharges.addActionListener(this.gestionClicContratLocation);
+	}
+
+	public JButton getBtnAjouter() {
+		return btnAjouter;
 	}
 
 	public JTextField getTextFieldNomLoc() {
@@ -476,7 +455,7 @@ public class FenetreContratLocation extends FenetreBase {
 	public void setTextFieldSolde(JTextField textFieldSolde) {
 		this.textFieldSolde = textFieldSolde;
 	}
-	
+
 	public JLabel getTitreTable() {
 		return lblTitreTable;
 	}
@@ -488,6 +467,7 @@ public class FenetreContratLocation extends FenetreBase {
 	public void setFenDavant(String fenDavant) {
 		this.fenDavant = fenDavant;
 	}
+
 	public String getFenDavant() {
 		return this.fenDavant;
 	}

@@ -1,7 +1,5 @@
 package vue;
 
-import java.awt.EventQueue;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -27,30 +25,11 @@ public class FenetreAjouterIRL extends JInternalFrame {
 	private GestionAjouterIRL gestionClic;
 	private JTextField textFieldTrimestre;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FenetreAjouterIRL frame = new FenetreAjouterIRL();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public FenetreAjouterIRL() {
 		setResizable(false);
 		this.gestionClic = new GestionAjouterIRL(this);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setBounds(100, 100, 450, 500);
+		setBounds(100, 100, 450, 500);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -92,11 +71,11 @@ public class FenetreAjouterIRL extends JInternalFrame {
 		JButton btnRetour = new JButton("Retour");
 		btnRetour.setBounds(274, 325, 85, 21);
 		contentPane.add(btnRetour);
-		
+
 		JLabel lblTrimestre = new JLabel("Trimestre :");
 		lblTrimestre.setBounds(90, 275, 76, 13);
 		contentPane.add(lblTrimestre);
-		
+
 		textFieldTrimestre = new JTextField();
 		textFieldTrimestre.setBounds(219, 269, 96, 19);
 		contentPane.add(textFieldTrimestre);
@@ -107,13 +86,13 @@ public class FenetreAjouterIRL extends JInternalFrame {
 		btnRetour.addActionListener(this.gestionClic);
 
 	}
-	
+
 	public List<JTextField> getAllTextFields() {
-	    List<JTextField> fields = new ArrayList<>();
-	    fields.add(textFieldAnnee);
-	    fields.add(textFieldTrimestre);
-	    fields.add(textFieldVal);
-	
-	    return fields;
+		List<JTextField> fields = new ArrayList<>();
+		fields.add(textFieldAnnee);
+		fields.add(textFieldTrimestre);
+		fields.add(textFieldVal);
+
+		return fields;
 	}
 }

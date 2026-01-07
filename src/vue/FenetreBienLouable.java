@@ -1,7 +1,5 @@
 package vue;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -47,27 +45,6 @@ public class FenetreBienLouable extends FenetreBase {
 	private JTextField textFieldDP;
 	private BienLouable bienLouable;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FenetreBienLouable frame = new FenetreBienLouable(null, null);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 * 
-	 * @throws SQLException
-	 */
 	public FenetreBienLouable(String nomFenAvant, BienLouable bienLouables) throws SQLException {
 		super();
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -387,7 +364,7 @@ public class FenetreBienLouable extends FenetreBase {
 		gbc_textFieldDP.gridy = 11;
 		panel_4.add(textFieldDP, gbc_textFieldDP);
 		textFieldDP.setColumns(10);
-		
+
 		JLabel lblTitreT = new JLabel("Tous les biens sous le batiment");
 		lblTitreT.setFont(new Font("Tahoma", Font.BOLD, 15));
 		GridBagConstraints gbc_lblTitreT = new GridBagConstraints();

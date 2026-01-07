@@ -15,10 +15,14 @@ public class GestionFenetreCompteurs extends GestionHeaderEtFooter {
     private FenetreCompteurs fenetre;
     private List<Compteur> cpt;
 
+	@SuppressWarnings("deprecation")
 	public GestionFenetreCompteurs(FenetreCompteurs fenetre, List<Compteur> cpt) {
         super(fenetre);
         this.fenetre = fenetre;
         this.cpt = cpt;
+        if (this.fenetre.getFenetreAvant() == "FenPrincipale") {
+        	this.fenetre.getBtnAjouterCompteur().hide();
+        }
     }
     
     public void initialize() {

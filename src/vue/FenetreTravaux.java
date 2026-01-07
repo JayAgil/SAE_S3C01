@@ -1,6 +1,5 @@
 package vue;
 
-import java.awt.EventQueue;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -43,19 +42,7 @@ public class FenetreTravaux extends FenetreBase {
 	private JComboBox comboBox_Annee;
 	private BienLouable bien;
 	private String fenetreAvant;
-
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FenetreTravaux frame = new FenetreTravaux(null, null, null);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private JButton btnAjouterTravaux;
 
 	public FenetreTravaux(String fenAvant, List<Facture> liste, BienLouable bien) {
 		super();
@@ -80,7 +67,11 @@ public class FenetreTravaux extends FenetreBase {
 		JPanel panel_1 = new JPanel();
 		panel.add(panel_1, BorderLayout.SOUTH);
 
-		JButton btnAjouterTravaux = new JButton("Ajouter travaux");
+		JButton btnRetour = new JButton("Retour");
+		panel_1.add(btnRetour);
+		btnRetour.addActionListener(this.gestionClic);
+
+		btnAjouterTravaux = new JButton("Ajouter travaux");
 		panel_1.add(btnAjouterTravaux);
 
 		JButton btnAjouterEntreprise = new JButton("Ajouter entreprise");
@@ -88,9 +79,6 @@ public class FenetreTravaux extends FenetreBase {
 
 		JButton btnGenFacture = new JButton("Visualiser facture");
 		panel_1.add(btnGenFacture);
-
-		JButton btnRetour = new JButton("Retour");
-		panel_1.add(btnRetour);
 
 		JPanel panel_2 = new JPanel();
 		panel.add(panel_2, BorderLayout.NORTH);
@@ -210,10 +198,13 @@ public class FenetreTravaux extends FenetreBase {
 		btnAjouterTravaux.addActionListener(this.gestionClic);
 		btnAjouterEntreprise.addActionListener(this.gestionClic);
 		btnGenFacture.addActionListener(this.gestionClic);
-		btnRetour.addActionListener(this.gestionClic);
 		comboBox_Mois.addActionListener(this.gestionClic);
 		comboBox_Annee.addActionListener(this.gestionClic);
 		this.gestionClic.initialize();
+	}
+
+	public JButton getBtnAjouterTravaux() {
+		return btnAjouterTravaux;
 	}
 
 	public JComboBox getComboBox_Mois() {

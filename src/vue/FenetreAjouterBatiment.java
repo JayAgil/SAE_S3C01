@@ -1,7 +1,6 @@
 package vue;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -32,27 +31,6 @@ public class FenetreAjouterBatiment extends JInternalFrame {
 	private GestionFenetreAjouterBatiment gestionClic;
 	private GestionFenetrePrincipale parent;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					FenetreAjouterBatiment frame = new FenetreAjouterBatiment(null);
-					frame.setVisible(true);
-					frame.setResizable(false);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public FenetreAjouterBatiment(GestionFenetrePrincipale parent) {
 		setResizable(false);
 		this.parent = parent;

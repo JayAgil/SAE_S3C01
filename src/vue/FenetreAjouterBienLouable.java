@@ -1,7 +1,5 @@
 package vue;
 
-import java.awt.EventQueue;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -35,25 +33,6 @@ public class FenetreAjouterBienLouable extends JInternalFrame {
 	private JComboBox<String> comboBoxBienLouable;
 	private GestionFenetreBienLouable parent;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FenetreAjouterBienLouable frame = new FenetreAjouterBienLouable(null,null);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public FenetreAjouterBienLouable(Batiment b, GestionFenetreBienLouable parent) {
 		setResizable(false);
 		this.parent = parent;
@@ -140,34 +119,34 @@ public class FenetreAjouterBienLouable extends JInternalFrame {
 		JButton btnRetour = new JButton("Retour");
 		btnRetour.setBounds(283, 414, 85, 21);
 		contentPane.add(btnRetour);
-		
+
 		JLabel lblBienLouable = new JLabel("Bien louable lié :");
 		lblBienLouable.setBounds(106, 363, 80, 13);
 		contentPane.add(lblBienLouable);
-		
+
 		comboBoxBienLouable = new JComboBox<String>();
 		comboBoxBienLouable.setBounds(219, 359, 96, 21);
 		contentPane.add(comboBoxBienLouable);
 
-		this.gestionClic = new GestionFenetreAjouterBienLouable(this,b,parent);
+		this.gestionClic = new GestionFenetreAjouterBienLouable(this, b, parent);
 		btnVider.addActionListener(this.gestionClic);
 		btnAjouter.addActionListener(this.gestionClic);
 		btnRetour.addActionListener(this.gestionClic);
 
 	}
-	
+
 	public JComboBox<String> getComboBoxBienLouable() {
 		return comboBoxBienLouable;
 	}
 
 	public List<JTextField> getAllBienLouableTextFields() {
-	    List<JTextField> fields = new ArrayList<>();
-	    fields.add(txtFieldBienLouable);
-	    fields.add(textFieldNumFiscale);
-	    fields.add(textFieldAddr);
-	    fields.add(txtFieldSurface);
-	    fields.add(textFieldNbPieces);
-	    fields.add(textFieldType);
-	    return fields;
+		List<JTextField> fields = new ArrayList<>();
+		fields.add(txtFieldBienLouable);
+		fields.add(textFieldNumFiscale);
+		fields.add(textFieldAddr);
+		fields.add(txtFieldSurface);
+		fields.add(textFieldNbPieces);
+		fields.add(textFieldType);
+		return fields;
 	}
 }

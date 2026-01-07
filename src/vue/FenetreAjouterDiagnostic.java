@@ -1,7 +1,5 @@
 package vue;
 
-import java.awt.EventQueue;
-
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
@@ -36,19 +34,6 @@ public class FenetreAjouterDiagnostic extends JInternalFrame {
 	private GestionFenetreDiagnostic parent;
 
 	private GestionFenetreAjouterDiagnostic gestionClic;
-
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FenetreAjouterDiagnostic frame = new FenetreAjouterDiagnostic(null, null);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	public FenetreAjouterDiagnostic(BienLouable b, GestionFenetreDiagnostic parent) {
 		setResizable(false);
@@ -106,7 +91,6 @@ public class FenetreAjouterDiagnostic extends JInternalFrame {
 		textFieldDateRealisation.setBounds(fieldX, 209, fieldW, fieldH);
 		textFieldDateRealisation.setToolTipText("Format attendu : yyyy-MM-dd");
 		contentPane.add(textFieldDateRealisation);
-
 
 		JLabel lblTypeDateValidite = new JLabel("Date Validité :");
 		lblTypeDateValidite.setHorizontalAlignment(SwingConstants.RIGHT);

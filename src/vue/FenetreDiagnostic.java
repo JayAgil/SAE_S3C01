@@ -2,7 +2,6 @@ package vue;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -32,28 +31,6 @@ public class FenetreDiagnostic extends FenetreBase {
 	private JLabel lblnbDiagExp;
 	private BienLouable bL;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					FenetreDiagnostic frame = new FenetreDiagnostic(null);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 * 
-	 * @throws SQLException
-	 */
 	public FenetreDiagnostic(BienLouable bL) throws SQLException {
 		super();
 		this.bL = bL;
@@ -148,7 +125,7 @@ public class FenetreDiagnostic extends FenetreBase {
 		panel_6.add(lblnbDiagExp);
 		table.getColumnModel().getColumn(0).setPreferredWidth(96);
 		table.getColumnModel().getColumn(1).setPreferredWidth(96);
-		
+
 		this.gestionClic = new GestionFenetreDiagnostic(this);
 		this.gestionClic.initialize();
 		btnRetour.addActionListener(this.gestionClic);

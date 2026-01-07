@@ -1,7 +1,5 @@
 package vue;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -34,7 +32,6 @@ import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
-
 public class FenetreCharges extends FenetreBase {
 
 	private static final long serialVersionUID = 1L;
@@ -52,35 +49,13 @@ public class FenetreCharges extends FenetreBase {
 	private JComboBox comboBoxMois;
 	private JComboBox comboBoxAnnee;
 	private BienLouable bl;
-	
+	private JButton btnAjouter;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FenetreCharges frame = new FenetreCharges("", null,null);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 * 
-	 * @throws SQLException
-	 */
 	public FenetreCharges(String FenetreAvant, List<ChargesGenerales> list, BienLouable bl) throws SQLException {
 		super();
 		this.bl = bl;
 		this.fenetreAvant = FenetreAvant;
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
-		this.gestionClic = new GestionFenetreCharges(this, list);
 
 		// Header
 		this.setJMenuBar(createHeader());
@@ -117,8 +92,8 @@ public class FenetreCharges extends FenetreBase {
 		panel_11.add(comboBoxMois);
 
 		comboBoxAnnee = new JComboBox();
-		comboBoxAnnee.setModel(
-				new DefaultComboBoxModel(new String[] {"Année", "2022", "2023", "2024", "2025", "                 "}));
+		comboBoxAnnee.setModel(new DefaultComboBoxModel(
+				new String[] { "Année", "2022", "2023", "2024", "2025", "                 " }));
 		panel_11.add(comboBoxAnnee);
 
 		// Center panel to hold the table and scroll pane
@@ -244,13 +219,11 @@ public class FenetreCharges extends FenetreBase {
 		JPanel buttonPanel = new JPanel();
 		mainPanel.add(buttonPanel, BorderLayout.SOUTH);
 
-		JButton btnAjouter = new JButton("Ajouter charge");
-		btnAjouter.addActionListener(this.gestionClic);
-		buttonPanel.add(btnAjouter);
-
 		JButton btnRetour = new JButton("Retour");
-		btnRetour.addActionListener(this.gestionClic);
 		buttonPanel.add(btnRetour);
+
+		btnAjouter = new JButton("Ajouter charge");
+		buttonPanel.add(btnAjouter);
 
 		// Footer panel (if needed)
 		JPanel footerPanel = new JPanel(new BorderLayout());
@@ -286,12 +259,20 @@ public class FenetreCharges extends FenetreBase {
 		lbltotalascenceur.setFont(new Font("Tahoma", Font.PLAIN, 45));
 		lbltotalascenceur.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_7.add(lbltotalascenceur, BorderLayout.CENTER);
+
+		this.gestionClic = new GestionFenetreCharges(this, list);
 		this.gestionClic.initialize();
 		this.gestionClic.chargerDonnees();
 		this.gestionClic.initialiserFiltrage();
 		comboBoxMois.addActionListener(this.gestionClic);
 		comboBoxAnnee.addActionListener(this.gestionClic);
+		btnRetour.addActionListener(this.gestionClic);
+		btnAjouter.addActionListener(this.gestionClic);
 
+	}
+
+	public JButton getBtnAjouter() {
+		return btnAjouter;
 	}
 
 	public JComboBox getComboBoxMois() {
@@ -377,6 +358,7 @@ public class FenetreCharges extends FenetreBase {
 	public void setLblchargesmoyen(JLabel lblchargesmoyen) {
 		this.lblchargesmoyen = lblchargesmoyen;
 	}
+
 	public BienLouable getBl() {
 		return bl;
 	}

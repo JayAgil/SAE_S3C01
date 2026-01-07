@@ -1,7 +1,5 @@
 package vue;
 
-import java.awt.EventQueue;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -34,25 +32,6 @@ public class FenetreAjouterAssurance extends JInternalFrame {
 	private GestionFenetreAjouterAssurance gestionClic;
 	private GestionFenetreAssurance parent;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FenetreAjouterAssurance frame = new FenetreAjouterAssurance(null, null);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public FenetreAjouterAssurance(Batiment b, GestionFenetreAssurance parent) {
 		setResizable(false);
 		this.parent = parent;

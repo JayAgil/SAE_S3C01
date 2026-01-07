@@ -25,6 +25,7 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter implements Mou
 	private Paiement paiementSelectionne;
 	private Locataire locataireSelectionne;
 
+	@SuppressWarnings("deprecation")
 	public GestionFenetrePaiement(FenetrePaiement fenetre, List<Paiement> liste, String idLoc, Locataire locataireSelectionne) throws SQLException {
 		super(fenetre);
 		this.fenetre = fenetre;
@@ -33,6 +34,9 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter implements Mou
 		this.locataireSelectionne = locataireSelectionne;
 		chargerDonnees();
 		afficherDetailsPaiement();
+		if (this.fenetre.getNomFenAvant() == "FenPrincipale") {
+			this.fenetre.getBtnAjouterPaiement().hide();
+		}
 	}
 
 	@Override

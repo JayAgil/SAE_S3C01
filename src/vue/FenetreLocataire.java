@@ -1,7 +1,6 @@
 package vue;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -48,27 +47,8 @@ public class FenetreLocataire extends FenetreBase {
 	private JScrollPane scrollPane;
 	private List<Locataire> liste;
 	private BienLouable bl;
+	private JButton btnAjouterLocataire;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					FenetreLocataire frame = new FenetreLocataire("a", null, null);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public FenetreLocataire(String nomFenAvant, List<Locataire> locataires, BienLouable bl) {
 		super();
 		this.nomFenAvant = nomFenAvant;
@@ -92,7 +72,11 @@ public class FenetreLocataire extends FenetreBase {
 		// === BUTTONS PANEL ===
 		JPanel panelButtons = new JPanel();
 		panelButtons.setBorder(new EmptyBorder(10, 10, 10, 10));
-		JButton btnAjouterLocataire = new JButton("Ajouter locataire");
+		btnAjouterLocataire = new JButton("Ajouter locataire");
+
+		JButton btnRetour = new JButton("Retour");
+		panelButtons.add(btnRetour);
+		btnRetour.addActionListener(this.gestionClic);
 
 		JButton btnPaiement = new JButton("Paiement");
 		panelButtons.add(btnPaiement);
@@ -100,12 +84,9 @@ public class FenetreLocataire extends FenetreBase {
 
 		// Add buttons to top
 		bottomContainer.add(panelButtons, BorderLayout.NORTH);
-		
+
 		JButton btnRetirerLocataire = new JButton("Retirer locataire");
 		panelButtons.add(btnRetirerLocataire);
-
-		JButton btnRetour = new JButton("Retour");
-		panelButtons.add(btnRetour);
 
 		// === FOOTER PANEL ===
 		bottomContainer.add(createFooter(), BorderLayout.SOUTH);
@@ -136,7 +117,7 @@ public class FenetreLocataire extends FenetreBase {
 		panel_2.add(panel_3, BorderLayout.CENTER);
 		GridBagLayout gbl_panel_3 = new GridBagLayout();
 		// set column widths and row heights (rowHeights can remain as is)
-		gbl_panel_3.columnWidths = new int[] {600};
+		gbl_panel_3.columnWidths = new int[] { 600 };
 		gbl_panel_3.rowHeights = new int[] { 31, 31, 31, 31, 31, 31, 31, 31, 31, 31 };
 		gbl_panel_3.columnWeights = new double[] { 0.2, 0.8 }; // 20% for labels, 80% for text fields
 		gbl_panel_3.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
@@ -372,12 +353,13 @@ public class FenetreLocataire extends FenetreBase {
 		this.gestionClic.initialize();
 		btnAjouterLocataire.addActionListener(this.gestionClic);
 		btnPaiement.addActionListener(this.gestionClic);
-		btnRetour.addActionListener(this.gestionClic);
 		btnRetirerLocataire.addActionListener(this.gestionClic);
 
 	}
 
-	
+	public JButton getBtnAjouterLocataire() {
+		return btnAjouterLocataire;
+	}
 
 	public List<Locataire> getListe() {
 		return liste;

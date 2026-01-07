@@ -32,23 +32,10 @@ public class FenetrePaiement extends FenetreBase {
 	private String nomFenAvant;
 	private JButton btnQuittance;
 	private Locataire locataireSelectionne;
+	private JButton btnAjouterPaiement;
 
-	public String getNomFenAvant() {
-		return nomFenAvant;
-	}
-
-	public static void main(String[] args) {
-		EventQueue.invokeLater(() -> {
-			try {
-				FenetrePaiement frame = new FenetrePaiement(null,null, null, null);
-				frame.setVisible(true);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		});
-	}
-
-	public FenetrePaiement(String nomFenAvant, List<Paiement> liste, String idLoc, Locataire locataireSelectionne) throws SQLException {
+	public FenetrePaiement(String nomFenAvant, List<Paiement> liste, String idLoc, Locataire locataireSelectionne)
+			throws SQLException {
 		super();
 		this.nomFenAvant = nomFenAvant;
 		this.paiements = liste;
@@ -116,16 +103,17 @@ public class FenetrePaiement extends FenetreBase {
 		JPanel panelButtons = new JPanel();
 		mainPanel.add(panelButtons, BorderLayout.SOUTH);
 
-		JButton btnAjouterPaiement = new JButton("Ajouter paiement");
+		btnAjouterPaiement = new JButton("Ajouter paiement");
 		panelButtons.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		panelButtons.add(btnAjouterPaiement);
-		
-		btnQuittance = new JButton("Quittance loyer");
-		panelButtons.add(btnQuittance);
-		btnQuittance.setEnabled(false);
 
 		JButton btnRetour = new JButton("Retour");
 		panelButtons.add(btnRetour);
+		btnRetour.addActionListener(gestionClic);
+		panelButtons.add(btnAjouterPaiement);
+
+		btnQuittance = new JButton("Quittance loyer");
+		panelButtons.add(btnQuittance);
+		btnQuittance.setEnabled(false);
 
 		JPanel panel_7 = new JPanel();
 		mainPanel.add(panel_7, BorderLayout.CENTER);
@@ -186,24 +174,17 @@ public class FenetrePaiement extends FenetreBase {
 		panel_8.add(comboBoxMois);
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-			},
-			new String[] {
-				"ID Paiement", "ID Contrat", "Date Paiement", "Montant", "D\u00E9signation"
-			}
-		) {
-			Class[] columnTypes = new Class[] {
-				Object.class, String.class, String.class, Double.class, String.class
-			};
+				new Object[][] { { null, null, null, null, null }, { null, null, null, null, null },
+						{ null, null, null, null, null }, },
+				new String[] { "ID Paiement", "ID Contrat", "Date Paiement", "Montant", "D\u00E9signation" }) {
+			Class[] columnTypes = new Class[] { Object.class, String.class, String.class, Double.class, String.class };
+
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
-			boolean[] columnEditables = new boolean[] {
-				false, false, false, false, false
-			};
+
+			boolean[] columnEditables = new boolean[] { false, false, false, false, false };
+
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
 			}
@@ -231,10 +212,13 @@ public class FenetrePaiement extends FenetreBase {
 		comboBoxMois.addActionListener(gestionClic);
 		comboBoxAnnee.addActionListener(gestionClic);
 		btnAjouterPaiement.addActionListener(this.gestionClic);
-		btnRetour.addActionListener(gestionClic);
 		table.addMouseListener(this.gestionClic);
 		btnQuittance.addActionListener(this.gestionClic);
 
+	}
+
+	public JButton getBtnAjouterPaiement() {
+		return btnAjouterPaiement;
 	}
 
 	public JComboBox getComboBoxAnnee() {
@@ -248,7 +232,7 @@ public class FenetrePaiement extends FenetreBase {
 	public JTable getTable() {
 		return table;
 	}
-	
+
 	public JButton getButtonQuittance() {
 		return btnQuittance;
 	}
@@ -273,6 +257,8 @@ public class FenetrePaiement extends FenetreBase {
 		return lblValPaiement;
 	}
 
+	public String getNomFenAvant() {
+		return nomFenAvant;
+	}
 
-	
 }

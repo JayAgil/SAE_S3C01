@@ -1,7 +1,6 @@
 package vue;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -11,10 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
-import javax.swing.JDesktopPane;
 import javax.swing.JFormattedTextField;
 import javax.swing.JInternalFrame;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -45,28 +42,6 @@ public class FenetreAjouterCompteur extends JInternalFrame {
 	private JTextField txtIndexNouveau;
 	private BienLouable b;
 	private GestionFenetreCompteurs parent;
-
-	public static void main(String[] args) {
-		EventQueue.invokeLater(() -> {
-			try {
-				JFrame frame = new JFrame();
-				frame.setBounds(100, 100, 450, 500);
-				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-				JDesktopPane desktopPane = new JDesktopPane();
-				frame.setContentPane(desktopPane);
-
-				FenetreAjouterCompteur internalFrame = new FenetreAjouterCompteur(null, null);
-				internalFrame.setVisible(true);
-				desktopPane.add(internalFrame);
-				frame.setResizable(false);
-
-				frame.setVisible(true);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		});
-	}
 
 	public FenetreAjouterCompteur(BienLouable b, GestionFenetreCompteurs parent) {
 		this.b = b;
@@ -187,7 +162,6 @@ public class FenetreAjouterCompteur extends JInternalFrame {
 		txtDate.setToolTipText("Format attendu : yyyy-MM-dd");
 
 		panelCenter.add(txtDate, gbc_txtDate);
-
 
 		GridBagConstraints gbc_txtTotal = new GridBagConstraints();
 		gbc_txtTotal.insets = pad;

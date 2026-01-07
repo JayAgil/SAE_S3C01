@@ -3,7 +3,6 @@ package vue;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -46,34 +45,14 @@ public class FenetreCompteurs extends FenetreBase {
 	private JScrollPane scrollPane;
 	private List<Compteur> cpt;
 	private BienLouable b;
+	private JButton btnAjouterCompteur;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					FenetreCompteurs frame = new FenetreCompteurs("", null, null);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public FenetreCompteurs(String fenetreAvant, List<Compteur> cpt, BienLouable b) {
 		super();
 		this.b = b;
 		this.fenetreAvant = fenetreAvant;
 		this.cpt = cpt;
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
-		this.gestionClic = new GestionFenetreCompteurs(this, cpt);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1200, 800);
 
@@ -134,12 +113,10 @@ public class FenetreCompteurs extends FenetreBase {
 		panel.add(panel_butons, BorderLayout.SOUTH);
 
 		JButton btnRetour = new JButton("Retour");
-		btnRetour.addActionListener(this.gestionClic);
 		panel_butons.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		panel_butons.add(btnRetour);
 
-		JButton btnAjouterCompteur = new JButton("Ajouter compteur");
-		btnAjouterCompteur.addActionListener(this.gestionClic);
+		btnAjouterCompteur = new JButton("Ajouter compteur");
 		panel_butons.add(btnAjouterCompteur);
 
 		JPanel panel_2 = new JPanel();
@@ -176,7 +153,8 @@ public class FenetreCompteurs extends FenetreBase {
 		panel_4.add(lblNewLabel, gbc_lblNewLabel);
 
 		JPanel panel_4_1 = new JPanel();
-		panel_4_1.setBorder(new TitledBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)), "Total \u00C9lectricit\u00E9", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_4_1.setBorder(new TitledBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)),
+				"Total \u00C9lectricit\u00E9", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		GridBagConstraints gbc_panel_4_1 = new GridBagConstraints();
 		gbc_panel_4_1.insets = new Insets(0, 0, 5, 5);
 		gbc_panel_4_1.fill = GridBagConstraints.BOTH;
@@ -269,8 +247,15 @@ public class FenetreCompteurs extends FenetreBase {
 		gbc_lbltotalgaz.gridy = 1;
 		panel_4_2.add(lbltotalgaz, gbc_lbltotalgaz);
 
+		this.gestionClic = new GestionFenetreCompteurs(this, cpt);
 		this.gestionClic.initialize();
+		btnAjouterCompteur.addActionListener(this.gestionClic);
+		btnRetour.addActionListener(this.gestionClic);
 
+	}
+
+	public JButton getBtnAjouterCompteur() {
+		return btnAjouterCompteur;
 	}
 
 	public JTable getTableCompteurs() {

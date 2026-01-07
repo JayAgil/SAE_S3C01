@@ -1,6 +1,5 @@
 package vue;
 
-import java.awt.EventQueue;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -16,8 +15,7 @@ import java.util.List;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-
-public class FenetreAjouterEntreprise extends JInternalFrame  {
+public class FenetreAjouterEntreprise extends JInternalFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -28,28 +26,6 @@ public class FenetreAjouterEntreprise extends JInternalFrame  {
 	private JTextField textFieldCodePostal;
 	private JTextField textFieldTel;
 	private JTextField textFieldSpecialite;
-
-	public static void main(String[] args) {
-		EventQueue.invokeLater(() -> {
-			try {
-				javax.swing.JFrame frame = new javax.swing.JFrame();
-				frame.setBounds(100, 100, 700, 600);
-				frame.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
-
-				javax.swing.JDesktopPane desktopPane = new javax.swing.JDesktopPane();
-				frame.setContentPane(desktopPane);
-
-				FenetreAjouterEntreprise internalFrame = new FenetreAjouterEntreprise();
-				internalFrame.setVisible(true);
-				desktopPane.add(internalFrame);
-				frame.setResizable(false); 
-
-				frame.setVisible(true);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		});
-	}
 
 	public FenetreAjouterEntreprise() {
 		setResizable(false);
@@ -137,23 +113,23 @@ public class FenetreAjouterEntreprise extends JInternalFrame  {
 		btnAjouter.addActionListener(gestionClic);
 		btnAjouter.setBounds(52, 390, 100, 30);
 		contentPane.add(btnAjouter);
-		
+
 		JButton btnRetour = new JButton("Retour");
 		btnRetour.addActionListener(gestionClic);
 		btnRetour.setBounds(294, 390, 100, 30);
 		contentPane.add(btnRetour);
 	}
-	
+
 	public List<JTextField> getAllEntrepriseTextFields() {
-	    List<JTextField> fields = new ArrayList<>();
-	    fields.add(textFieldSiret);
-	    fields.add(textFieldAdresse);
-	    fields.add(textFieldVille);
-	    fields.add(textFieldCodePostal);
-	    fields.add(textFieldNom);
-	    fields.add(textFieldTel);
-	    fields.add(textFieldSpecialite);
-	    return fields;
+		List<JTextField> fields = new ArrayList<>();
+		fields.add(textFieldSiret);
+		fields.add(textFieldAdresse);
+		fields.add(textFieldVille);
+		fields.add(textFieldCodePostal);
+		fields.add(textFieldNom);
+		fields.add(textFieldTel);
+		fields.add(textFieldSpecialite);
+		return fields;
 	}
-	
+
 }

@@ -1,6 +1,5 @@
 package vue;
 
-import java.awt.EventQueue;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -42,33 +41,12 @@ public class FenetreAjouterLocataire extends JInternalFrame {
 	private JTextField textFieldGarantAdresse;
 	private JTextField textFieldGarantTel;
 	private JTextField textIdLoc;
-	
+
 	private GestionFenetreAjouterLocataire gestionClic;
 	private JComboBox<ContratLocation> comboBoxContrat;
 	private JTextField textFieldIdGarant;
 	private GestionFenetreLocataire gestion;
 	private BienLouable b;
-
-	public static void main(String[] args) {
-		EventQueue.invokeLater(() -> {
-			try {
-				javax.swing.JFrame frame = new javax.swing.JFrame();
-				frame.setBounds(100, 100, 1000, 650);
-				frame.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
-
-				javax.swing.JDesktopPane desktopPane = new javax.swing.JDesktopPane();
-				frame.setContentPane(desktopPane);
-
-				FenetreAjouterLocataire internalFrame = new FenetreAjouterLocataire(null,null);
-				internalFrame.setVisible(true);
-				desktopPane.add(internalFrame);
-				frame.setResizable(false); 
-				frame.setVisible(true);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		});
-	}
 
 	public FenetreAjouterLocataire(GestionFenetreLocataire gestion, BienLouable b) {
 		this.gestion = gestion;
@@ -211,7 +189,7 @@ public class FenetreAjouterLocataire extends JInternalFrame {
 		textFieldGarantTel = new JTextField();
 		textFieldGarantTel.setBounds(296, 355, 105, 25);
 		contentPane.add(textFieldGarantTel);
-		
+
 		JButton btnAjouter = new JButton("Ajouter");
 		btnAjouter.setBounds(44, 430, 98, 30);
 		contentPane.add(btnAjouter);
@@ -219,69 +197,69 @@ public class FenetreAjouterLocataire extends JInternalFrame {
 		JButton btnVider = new JButton("Vider");
 		btnVider.setBounds(175, 430, 98, 30);
 		contentPane.add(btnVider);
-		
+
 		JButton btnRetour = new JButton("Retour");
 		btnRetour.setBounds(303, 430, 98, 30);
 		contentPane.add(btnRetour);
-		
+
 		textIdLoc = new JTextField();
 		textIdLoc.setBounds(85, 40, 105, 25);
 		contentPane.add(textIdLoc);
-		
+
 		JLabel lblIdLoc = new JLabel("ID locataire : ");
 		lblIdLoc.setBounds(23, 40, 120, 25);
 		contentPane.add(lblIdLoc);
-		
+
 		JLabel lblContrat = new JLabel("Contrat location :");
 		lblContrat.setBounds(200, 258, 92, 13);
 		contentPane.add(lblContrat);
-		
+
 		comboBoxContrat = new JComboBox<ContratLocation>();
 		comboBoxContrat.setBounds(291, 254, 110, 21);
 		contentPane.add(comboBoxContrat);
-		
+
 		JLabel lblIdGarant = new JLabel("ID Garant :");
 		lblIdGarant.setHorizontalAlignment(SwingConstants.LEFT);
 		lblIdGarant.setBounds(23, 320, 120, 25);
 		contentPane.add(lblIdGarant);
-		
+
 		textFieldIdGarant = new JTextField();
 		textFieldIdGarant.setBounds(85, 320, 105, 25);
 		contentPane.add(textFieldIdGarant);
-		gestionClic = new GestionFenetreAjouterLocataire(this,gestion,b);
+		gestionClic = new GestionFenetreAjouterLocataire(this, gestion, b);
 		btnAjouter.addActionListener(this.gestionClic);
 		btnVider.addActionListener(this.gestionClic);
 		btnRetour.addActionListener(this.gestionClic);
-		
+
 	}
-	
+
 	public JComboBox<ContratLocation> getComboBoxContrat() {
 		return comboBoxContrat;
 	}
 
 	public List<JTextField> getAllLocataireTextFields() {
-	    List<JTextField> fields = new ArrayList<>();
-	    
-	    fields.add(textIdLoc);
-	    fields.add(textFieldNom);
-	    fields.add(textFieldPrenom);
-	    fields.add(textFieldAdresse);
-	    fields.add(textFieldTel);
-	    fields.add(textFieldEmail);
-	    fields.add(textFieldCodePostal);
-	    fields.add(textFieldVille);
-	    fields.add(textFieldDateNaissance);
-	    fields.add(textFieldLieuNaissance);
-	    fields.add(textFieldSalaire);
-	    fields.add(textFieldProfession);
-	    fields.add(textFieldSituationFamiliale);
+		List<JTextField> fields = new ArrayList<>();
 
-	    fields.add(textFieldIdGarant);
-	    fields.add(textFieldGarantNom);
-	    fields.add(textFieldGarantPrenom);
-	    fields.add(textFieldGarantAdresse);
-	    fields.add(textFieldGarantTel);
-	    
-	    return fields;
+		fields.add(textIdLoc);
+		fields.add(textFieldNom);
+		fields.add(textFieldPrenom);
+		fields.add(textFieldAdresse);
+		fields.add(textFieldTel);
+		fields.add(textFieldEmail);
+		fields.add(textFieldCodePostal);
+		fields.add(textFieldVille);
+		fields.add(textFieldDateNaissance);
+		fields.add(textFieldLieuNaissance);
+		fields.add(textFieldSalaire);
+		fields.add(textFieldProfession);
+		fields.add(textFieldSituationFamiliale);
+
+		fields.add(textFieldIdGarant);
+		fields.add(textFieldGarantNom);
+		fields.add(textFieldGarantPrenom);
+		fields.add(textFieldGarantAdresse);
+		fields.add(textFieldGarantTel);
+
+		return fields;
 	}
 }

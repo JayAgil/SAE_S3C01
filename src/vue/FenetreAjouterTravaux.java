@@ -1,6 +1,5 @@
 package vue;
 
-import java.awt.EventQueue;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -38,25 +37,6 @@ public class FenetreAjouterTravaux extends JInternalFrame {
 	private BienLouable bl;
 	private GestionFenetreTravaux fen;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FenetreAjouterTravaux frame = new FenetreAjouterTravaux(null, null);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public FenetreAjouterTravaux(GestionFenetreTravaux fen, BienLouable bl) {
 		this.bl = bl;
 		this.fen = fen;

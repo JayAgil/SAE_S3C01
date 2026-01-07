@@ -7,7 +7,6 @@ import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
 import controleur.GestionFenetreAssurance;
-import modele.Assurance;
 
 public class FenetreAssurance extends FenetreBase {
 
@@ -24,19 +23,6 @@ public class FenetreAssurance extends FenetreBase {
 	private JPanel panelNombreBien;
 	private JLabel lblNbBien;
 	private String bat;
-
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FenetreAssurance frame = new FenetreAssurance(null);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	public FenetreAssurance(String bat) throws SQLException {
 		super();

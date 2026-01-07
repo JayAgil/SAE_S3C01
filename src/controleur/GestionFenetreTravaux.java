@@ -24,12 +24,16 @@ public class GestionFenetreTravaux extends GestionHeaderEtFooter implements Mous
 	private FenetreTravaux fenetreTravaux;
 	private List<Facture> travaux;
 
+	@SuppressWarnings("deprecation")
 	public GestionFenetreTravaux(FenetreTravaux fenetreTravaux, List<Facture> liste) {
 		super(fenetreTravaux);
 		this.fenetreTravaux = fenetreTravaux;
 		this.travaux = liste;
 		chargerDonnes();
 		majDonnees();
+		if (this.fenetreTravaux.getFenetreAvant() == "FenPrincipale") {
+			this.fenetreTravaux.getBtnAjouterTravaux().hide();
+		}
 	}
 
 	@Override
