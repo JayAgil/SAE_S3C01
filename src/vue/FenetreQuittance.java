@@ -31,14 +31,18 @@ public class FenetreQuittance extends JInternalFrame {
                 contrat.getBienLouable().getAdresse()));
 
         panelInfos.add(createField("Loyer",
-                String.format("%.2f €", contrat.getMontantMensuel())));
+                String.format("%.2f €", paiement.getMontant())));
 
         panelInfos.add(createField("Charges",
                 String.format("%.2f €", contrat.getProvisionCharge())));
 
-        double total = contrat.getMontantMensuel() + contrat.getProvisionCharge();
+        double total = paiement.getMontant();
         panelInfos.add(createField("Total payé",
                 String.format("%.2f €", total)));
+        
+        double reste = total - (contrat.getProvisionCharge() + contrat.getMontantMensuel());
+        panelInfos.add(createField("Reste à payer",
+                String.format("%.2f €", reste)));
 
         JTextArea areaBas = new JTextArea(
                 "Payé le : " + paiement.getDatepaiement() +
