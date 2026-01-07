@@ -2,10 +2,13 @@ package vue;
 
 import java.awt.EventQueue;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.DateFormatter;
+
 import controleur.GestionFenetreAjouterContratLocation;
 import controleur.GestionFenetreContratLocation;
 import modele.BienLouable;
@@ -19,6 +22,7 @@ import javax.swing.JTextField;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.text.SimpleDateFormat;
 import java.awt.Dimension;
 
 public class FenetreAjouterContratLocation extends JInternalFrame {
@@ -124,7 +128,10 @@ public class FenetreAjouterContratLocation extends JInternalFrame {
         gbcField2.insets = new Insets(2, 5, 5, 0);
         gbcField2.weightx = 0.6;
         gbcField2.ipadx = 5;
-        textFieldDateDebut = new JTextField();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		DateFormatter dateFormatter = new DateFormatter(format);
+		textFieldDateDebut = new JFormattedTextField(dateFormatter);
+		textFieldDateDebut.setToolTipText("Format attendu : yyyy-MM-dd");
         textFieldDateDebut.setPreferredSize(fieldSize);
         contentPane.add(textFieldDateDebut, gbcField2);
 
@@ -147,7 +154,8 @@ public class FenetreAjouterContratLocation extends JInternalFrame {
         gbcField3.insets = new Insets(2, 5, 5, 0);
         gbcField3.weightx = 0.6;
         gbcField3.ipadx = 5;
-        textFieldADateFin = new JTextField();
+        textFieldADateFin = new JFormattedTextField(dateFormatter);
+        textFieldADateFin.setToolTipText("Format attendu : yyyy-MM-dd");
         textFieldADateFin.setPreferredSize(fieldSize);
         contentPane.add(textFieldADateFin, gbcField3);
 
