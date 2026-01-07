@@ -1,5 +1,8 @@
 package controleur;
 
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.io.File;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -11,7 +14,7 @@ import modele.Diagnostics;
 import modele.dao.DaoDiagnostics;
 import vue.*;
 
-public class GestionFenetreDiagnostic extends GestionHeaderEtFooter {
+public class GestionFenetreDiagnostic extends GestionHeaderEtFooter  implements MouseListener{
 
 	private FenetreDiagnostic fenetre;
 	private BienLouable bL;
@@ -73,6 +76,39 @@ public class GestionFenetreDiagnostic extends GestionHeaderEtFooter {
 			e.printStackTrace();
 		}
 	}
+	
+	private void openSelectedPDF() {
+		int selectedRow = fenetre.getTable().getSelectedRow();
+		if (selectedRow == -1)
+			return; // nothing selected
+
+		String path = (String) fenetre.getTable().getValueAt(selectedRow, 3); // column 3 = Fichier
+		if (path == null || path.isEmpty()) {
+			System.out.println("No PDF path set for this diagnostic.");
+			return;
+		}
+
+		try {
+			// Construct file path relative to project
+			File file = new File(System.getProperty("user.dir"), path);
+			if (!file.exists()) {
+				System.out.println("File does not exist: " + file.getAbsolutePath());
+				return;
+			}
+
+			// Open the PDF
+			if (java.awt.Desktop.isDesktopSupported()) {
+				java.awt.Desktop.getDesktop().open(file);
+			} else {
+				System.out.println("Desktop not supported. Cannot open PDF.");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			javax.swing.JOptionPane.showMessageDialog(fenetre, "Impossible d'ouvrir le PDF : " + e.getMessage(),
+					"Erreur", javax.swing.JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
 
 	private boolean isExpiringThisMonth(java.util.Date date) {
 		java.util.Calendar cal = java.util.Calendar.getInstance();
@@ -84,5 +120,36 @@ public class GestionFenetreDiagnostic extends GestionHeaderEtFooter {
 		int yearDiag = cal.get(java.util.Calendar.YEAR);
 
 		return monthNow == monthDiag && yearNow == yearDiag;
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		if (e.getClickCount() == 2) {
+			openSelectedPDF();
+		}		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }

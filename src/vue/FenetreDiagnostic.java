@@ -59,14 +59,12 @@ public class FenetreDiagnostic extends FenetreBase {
 		this.bL = bL;
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		this.gestionClic = new GestionFenetreDiagnostic(this);
 		setBounds(100, 100, 1200, 800);
 		getContentPane().setLayout(new BorderLayout(0, 0));
 
 		// header
 		this.setJMenuBar(createHeader());
 
-		this.gestionClic.initialize();
 		JPanel panelFooter = new JPanel();
 		getContentPane().add(panelFooter, BorderLayout.SOUTH);
 		panelFooter.setLayout(new GridLayout(0, 1, 0, 0));
@@ -81,7 +79,6 @@ public class FenetreDiagnostic extends FenetreBase {
 		panel.add(panel_1, BorderLayout.SOUTH);
 
 		JButton btnRetour = new JButton("Retour");
-		btnRetour.addActionListener(this.gestionClic);
 
 		JButton btnAjouter = new JButton("Ajouter");
 		panel_1.add(btnAjouter);
@@ -151,6 +148,11 @@ public class FenetreDiagnostic extends FenetreBase {
 		panel_6.add(lblnbDiagExp);
 		table.getColumnModel().getColumn(0).setPreferredWidth(96);
 		table.getColumnModel().getColumn(1).setPreferredWidth(96);
+		
+		this.gestionClic = new GestionFenetreDiagnostic(this);
+		this.gestionClic.initialize();
+		btnRetour.addActionListener(this.gestionClic);
+		table.addMouseListener(this.gestionClic);
 		this.gestionClic.chargerDonnees();
 	}
 

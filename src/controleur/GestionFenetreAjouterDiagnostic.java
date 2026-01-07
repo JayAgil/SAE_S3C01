@@ -90,16 +90,25 @@ public class GestionFenetreAjouterDiagnostic extends GestionButtonFenetreAjouter
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        switch (((JButton) e.getSource()).getText()) {
-        case "Choisir":
-        	JFileChooser chooser = new JFileChooser();
+    	if (((JButton) e.getSource()).getText().equals("Choisir")) {
+            JFileChooser chooser = new JFileChooser();
             chooser.setFileFilter(new FileNameExtensionFilter("PDF Files", "pdf"));
+
             if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
                 File selectedFile = chooser.getSelectedFile();
-                fenetre.getTextFieldFichier().setText(selectedFile.getAbsolutePath());
+
+                File projectDir = new File(System.getProperty("user.dir"));
+                String path;
+
+                if (selectedFile.toPath().startsWith(projectDir.toPath())) {
+                    path = projectDir.toURI().relativize(selectedFile.toURI()).getPath();
+                } else {
+                    path = selectedFile.getAbsolutePath(); 
+                }
+
+                fenetre.getTextFieldFichier().setText(path);
             }
-            break;
-        }
+    }
     }
 
 }

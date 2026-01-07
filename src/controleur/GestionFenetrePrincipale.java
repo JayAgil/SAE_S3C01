@@ -1,5 +1,6 @@
 package controleur;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -285,6 +286,11 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 			fenetre.getLblPasPaye().setText(String.format("%.2f %%", tauxOccupation));
 
 			double soldeNonPaye = totalSoldeNonPayé();
+			if(soldeNonPaye>=0) {
+				fenetre.getLblSolde().setForeground(Color.GREEN);
+			}else {
+				fenetre.getLblSolde().setForeground(Color.RED);
+			}
 			fenetre.getLblSolde().setText(String.format("%.2f €", soldeNonPaye));
 
 			int contratsExpirant = nombreContratsExpirantCeMois();

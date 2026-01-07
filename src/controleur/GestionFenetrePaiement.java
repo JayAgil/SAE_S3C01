@@ -44,13 +44,12 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter implements Mou
 			fenAjouterPaiement.setVisible(true);
 			break;
 		case "Quittance loyer":
-			System.out.print("hello");
 			if (paiementSelectionne == null) {
 				return;
 			}
-			System.out.print(paiementSelectionne);
 			FenetreQuittance fenQuittance = new FenetreQuittance(paiementSelectionne);
 			fenetre.getLayeredPane().add(fenQuittance);
+			fenQuittance.setVisible(true);
 			break;
 
 		}
@@ -152,7 +151,7 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter implements Mou
 
 			if (moisValide && anneeValide) {
 				Object[] ligne = { p.getId_paiement(), p.getContratLocation().getNumeroDeContrat(),
-						date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")), p.getMontant() };
+						date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")), p.getMontant(),p.getDesignation() };
 				model.addRow(ligne);
 			}
 		}
@@ -241,16 +240,25 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter implements Mou
 	public void mouseClicked(MouseEvent e) {
 	    JTable table = fenetre.getTable();
 	    int row = table.getSelectedRow();
-	    if (row == -1) return;
-	    fenetre.getButtonQuittance().setEnabled(true);
-	    try {
-	        String idPaiement = table.getValueAt(row, 0).toString();
-	        DaoPaiement daoPaiement = new DaoPaiement();
-	        paiementSelectionne = daoPaiement.findById(idPaiement);
-	    } catch (SQLException ex) {
-	        ex.printStackTrace();
+
+	    if (row == -1) {
+	    	return;
+	    }
+
+	    String designation = table.getValueAt(row, 4).toString();
+
+	    if ("Loyer".equals(designation)) {
+	        fenetre.getButtonQuittance().setEnabled(true);
+	        try {
+	            String idPaiement = table.getValueAt(row, 0).toString();
+	            DaoPaiement daoPaiement = new DaoPaiement();
+	            paiementSelectionne = daoPaiement.findById(idPaiement);
+	        } catch (SQLException ex) {
+	            ex.printStackTrace();
+	        }
 	    }
 	}
+
 
 
 	@Override

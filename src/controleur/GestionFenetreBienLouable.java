@@ -5,6 +5,7 @@ import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -184,11 +185,20 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 		try {
 			DaoLocataire daoLocataire = new DaoLocataire();
 			List<Locataire> locataires = daoLocataire.findLocataireByBienLouable(idBien);
-			DaoBienLouable db = new DaoBienLouable();
-			BienLouable bien = db.findById(idBien);
-			FenetreLocataire fen = new FenetreLocataire("FenetreBienLouable", locataires, bien);
-			fen.setVisible(true);
-			fenetre.dispose();
+			if(locataires == null) {
+				JOptionPane.showMessageDialog(
+					    null,
+					    "Ce bien n'a pas de locataire",
+					    "Information",
+					    JOptionPane.INFORMATION_MESSAGE
+					);
+			}else {
+				DaoBienLouable db = new DaoBienLouable();
+				BienLouable bien = db.findById(idBien);
+				FenetreLocataire fen = new FenetreLocataire("FenetreBienLouable", locataires, bien);
+				fen.setVisible(true);
+				fenetre.dispose();
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

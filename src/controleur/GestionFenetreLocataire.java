@@ -8,8 +8,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import modele.ContratLocation;
 import modele.Locataire;
 import modele.Paiement;
+import modele.dao.DaoContratLocation;
 import modele.dao.DaoLocataire;
 import modele.dao.DaoPaiement;
 import vue.*;
@@ -103,14 +105,23 @@ public class GestionFenetreLocataire extends GestionHeaderEtFooter {
 		
 	}
 
-	public void chargerDonnes() {
-		JTable table = fenetre.getTable();
-		DefaultTableModel model = (DefaultTableModel) table.getModel();
-	    model.setRowCount(0); 
-		for (Locataire loc : locataires) {
-			Object[] ligne = { loc.getIdLocataire(), loc.getNom(), loc.getPrenom(), loc.getAdresse(), loc.getTel(), loc.getEmail() };
-			model.addRow(ligne);
+	public void chargerDonnes()  {
+		DaoContratLocation dao;
+		try {
+			dao = new DaoContratLocation();
+			JTable table = fenetre.getTable();
+			DefaultTableModel model = (DefaultTableModel) table.getModel();
+		    model.setRowCount(0); 
+			for (Locataire loc : locataires) {
+				ContratLocation cl = dao.findContratLocataionByLocataire(loc.getIdLocataire());
+				Object[] ligne = { loc.getIdLocataire(), loc.getNom(), loc.getPrenom(), loc.getAdresse(), loc.getTel(), loc.getEmail(), cl.getDateDebut(),cl.getDateFin() };
+				model.addRow(ligne);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
 
 	}
 	
