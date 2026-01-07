@@ -277,6 +277,7 @@ public class FenetrePrincipale extends FenetreBase {
 		this.pack();
 		this.setLocationRelativeTo(null);
 
+		gestionClic = new GestionFenetrePrincipale(this);
 		panelRevenu.addMouseListener(this.gestionClic);
 		panelNbLoyePasPaye.addMouseListener(this.gestionClic);
 		panelSoldeNonPaye.addMouseListener(this.gestionClic);
@@ -289,13 +290,10 @@ public class FenetrePrincipale extends FenetreBase {
 		btnImporter.addActionListener(this.gestionClic);
 		btnAjouterBatiment.addActionListener(this.gestionClic);
 		cbBatiment.addActionListener(this.gestionClic);
-
 		this.gestionClic.remplirStatistiques();
 		gestionClic.remplirComboBatiment();
 		gestionClic.remplirTableau();
 		table.addMouseListener(this.gestionClic);
-		gestionClic = new GestionFenetrePrincipale(this);
-
 		gestionClic.initialize();
 
 	}
