@@ -25,12 +25,12 @@ CREATE OR REPLACE PROCEDURE VerifierMoisLancement IS
     v_date  DATE;
     v_mois  NUMBER;
 BEGIN
-    SELECT date_dernier_lancement
+    SELECT TRUNC(date_dernier_lancement,'MM')
     INTO v_date
     FROM SAE_DateDernierLancement
     FOR UPDATE;
 
-    v_mois := FLOOR(MONTHS_BETWEEN(TRUNC(SYSDATE), v_date));
+    v_mois := FLOOR(MONTHS_BETWEEN(TRUNC(SYSDATE,'MM'), v_date));
 
     IF v_mois > 0 THEN
         UPDATE SAE_ContratLocation
@@ -46,12 +46,12 @@ CREATE OR REPLACE PROCEDURE VerifierAnneeLancement IS
     v_date   DATE;
     v_annees NUMBER;
 BEGIN
-    SELECT date_dernier_lancement
+    SELECT  TRUNC(date_dernier_lancement,'MM')
     INTO v_date
     FROM SAE_DateDernierLancement
     FOR UPDATE;
 
-    v_annees := FLOOR(MONTHS_BETWEEN(TRUNC(SYSDATE), v_date) / 12);
+    v_annees := FLOOR(MONTHS_BETWEEN(TRUNC(SYSDATE,'MM'), v_date) / 12);
 
     IF v_annees > 0 THEN
         UPDATE SAE_ContratLocation
