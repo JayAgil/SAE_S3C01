@@ -44,6 +44,7 @@ public class FenetreContratLocation extends FenetreBase {
 	private JTextField textFieldCptElec;
 	private JTextField textFieldCptGaz;
 	private JTextField textFieldSolde;
+	private JLabel lblTitreTable;
 	private BienLouable bl;
 
 	
@@ -343,7 +344,7 @@ public class FenetreContratLocation extends FenetreBase {
 		panel_4.add(textFieldSolde, gbc_textFieldSolde);
 		textFieldSolde.setColumns(10);
 		
-		JLabel lblTitreTable = new JLabel("Tous les contrats sous le bien");
+		lblTitreTable = new JLabel("Tous les contrats sous le bien");
 		lblTitreTable.setFont(new Font("Tahoma", Font.BOLD, 15));
 		GridBagConstraints gbc_lblTitreTable = new GridBagConstraints();
 		gbc_lblTitreTable.insets = new Insets(0, 0, 5, 0);
@@ -470,6 +471,10 @@ public class FenetreContratLocation extends FenetreBase {
 
 	public void setTextFieldSolde(JTextField textFieldSolde) {
 		this.textFieldSolde = textFieldSolde;
+	}
+	
+	public JLabel getTitreTable() {
+		return lblTitreTable;
 	}
 
 	public void setTable(JTable table) {
