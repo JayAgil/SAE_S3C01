@@ -103,13 +103,13 @@ public class FenetreCompteurs extends FenetreBase {
 			}
 		) {
 			Class[] columnTypes = new Class[] {
-				Object.class, Object.class, Object.class, Double.class, Double.class, Object.class, Double.class, Double.class, Object.class
+				String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class
 			};
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
 			boolean[] columnEditables = new boolean[] {
-				true, true, true, true, true, true, true, true, false
+				true, false, false, false, false, false, true, false, false
 			};
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
