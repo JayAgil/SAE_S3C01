@@ -22,7 +22,7 @@ public class GestionFenetreAssurance extends GestionHeaderEtFooter {
     }
     
     @Override
-    protected void gererBoutonSpecifique(String texte) {
+    protected void gererBoutonSpecifique(String texte) throws SQLException {
         switch (texte) {
             case "Ajouter assurance":
 			try {
@@ -36,7 +36,14 @@ public class GestionFenetreAssurance extends GestionHeaderEtFooter {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-                
+            case "Modifier":
+            	DaoAssurance dA = new DaoAssurance();
+            	Assurance a = dA.findById(this.fenetre.getTextFieldNumAssurance().getText());
+            	a.setAdresseAgence(this.fenetre.getTextFieldAdresseAgence().getText());
+            	a.setAgence(this.fenetre.getTextFieldAgence().getText());
+            	a.setTelAgence(this.fenetre.getTextFieldTelAgence().getText());
+            	dA.update(a);
+                break;
         }
     }
     
