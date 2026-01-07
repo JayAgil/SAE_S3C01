@@ -126,9 +126,9 @@ public class FenetreContratLocation extends FenetreBase {
 		panel_1.add(panel_3, BorderLayout.CENTER);
 		GridBagLayout gbl_panel_3 = new GridBagLayout();
 		gbl_panel_3.columnWidths = new int[] { 1176, 0 };
-		gbl_panel_3.rowHeights = new int[] { 430, 250, 0, 40 };
+		gbl_panel_3.rowHeights = new int[] { 430, 0, 250, 0, 40 };
 		gbl_panel_3.columnWeights = new double[] { 1.0, Double.MIN_VALUE };
-		gbl_panel_3.rowWeights = new double[] { 0.0, 0.0, 1.0, Double.MIN_VALUE };
+		gbl_panel_3.rowWeights = new double[] { 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
 		panel_3.setLayout(gbl_panel_3);
 
 		JPanel panel_4 = new JPanel();
@@ -342,13 +342,21 @@ public class FenetreContratLocation extends FenetreBase {
 		gbc_textFieldSolde.gridy = 9;
 		panel_4.add(textFieldSolde, gbc_textFieldSolde);
 		textFieldSolde.setColumns(10);
+		
+		JLabel lblTitreTable = new JLabel("Tous les contrats sous le bien");
+		lblTitreTable.setFont(new Font("Tahoma", Font.BOLD, 15));
+		GridBagConstraints gbc_lblTitreTable = new GridBagConstraints();
+		gbc_lblTitreTable.insets = new Insets(0, 0, 5, 0);
+		gbc_lblTitreTable.gridx = 0;
+		gbc_lblTitreTable.gridy = 1;
+		panel_3.add(lblTitreTable, gbc_lblTitreTable);
 
 		JScrollPane scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 		gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane.gridx = 0;
-		gbc_scrollPane.gridy = 1;
+		gbc_scrollPane.gridy = 2;
 		panel_3.add(scrollPane, gbc_scrollPane);
 
 		table = new JTable();
@@ -372,7 +380,7 @@ public class FenetreContratLocation extends FenetreBase {
 		GridBagConstraints gbc_panel_5 = new GridBagConstraints();
 		gbc_panel_5.fill = GridBagConstraints.BOTH;
 		gbc_panel_5.gridx = 0;
-		gbc_panel_5.gridy = 2;
+		gbc_panel_5.gridy = 3;
 		panel_3.add(panel_5, gbc_panel_5);
 
 		this.gestionClicContratLocation = new GestionFenetreContratLocation(this, this.cl,bl);
