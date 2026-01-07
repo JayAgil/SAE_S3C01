@@ -43,7 +43,7 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 			this.contrats = new ArrayList<>(this.getDonneesContrats());
 		}
 		
-		if (this.fenetre.getFenDavant() == "FenPrincipale") {
+		if (this.fenetre.getFenDavant().equals("FenPrincipale")) {
 			this.fenetre.getBtnAjouter().hide();
 		}
 	}
@@ -175,7 +175,7 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 		try {
 			DaoLocataire daoLocataire = new DaoLocataire();
 			List<Locataire> locataires = daoLocataire.findLocataireByBienLouable(idBien);
-			if (locataires == null) {
+			if (locataires == null || locataires.isEmpty()) {
 				JOptionPane.showMessageDialog(null, "Ce bien n'a pas de locataire", "Information",
 						JOptionPane.INFORMATION_MESSAGE);
 			} else {

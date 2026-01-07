@@ -47,7 +47,7 @@ public class FenetreCompteurs extends FenetreBase {
 	private BienLouable b;
 	private JButton btnAjouterCompteur;
 
-	public FenetreCompteurs(String fenetreAvant, List<Compteur> cpt, BienLouable b) {
+	public FenetreCompteurs(String fenetreAvant, List<Compteur> cpt, BienLouable b){
 		super();
 		this.b = b;
 		this.fenetreAvant = fenetreAvant;
