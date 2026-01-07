@@ -67,7 +67,9 @@ public class FenetreRegularisationCharges extends JInternalFrame implements Acti
 		txtrTest.setBackground(new Color(240, 240, 240));
 		txtrTest.setBounds(21, 20, 334, 73);
 		contentPane.add(txtrTest);
-
+		if (element == 0) {
+            btnValider.setEnabled(false);
+        }
 	}
 
 	@Override
