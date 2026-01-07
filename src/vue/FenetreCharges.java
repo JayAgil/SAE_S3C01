@@ -107,13 +107,40 @@ public class FenetreCharges extends FenetreBase {
 
 		table = new JTable();
 		scrollPane.setViewportView(table);
-		table.setModel(new DefaultTableModel(new Object[16][6], // your placeholder data
-				new String[] { "Types charges", "Montant Total", "Pourcentage", "Quotite", "Montant", "Mois" }) {
-			Class[] columnTypes = new Class[] { String.class, Float.class, Float.class, String.class, Object.class,
-					Object.class };
-
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+			},
+			new String[] {
+				"Types charges", "Montant Total", "Pourcentage", "Quotite", "Montant", "Date"
+			}
+		) {
+			Class[] columnTypes = new Class[] {
+				String.class, Float.class, Float.class, String.class, String.class, Object.class
+			};
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
+			}
+			boolean[] columnEditables = new boolean[] {
+				false, true, true, true, true, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
 			}
 		});
 		table.getColumnModel().getColumn(0).setPreferredWidth(92);
@@ -219,11 +246,15 @@ public class FenetreCharges extends FenetreBase {
 		JPanel buttonPanel = new JPanel();
 		mainPanel.add(buttonPanel, BorderLayout.SOUTH);
 
-		JButton btnRetour = new JButton("Retour");
-		buttonPanel.add(btnRetour);
-
 		btnAjouter = new JButton("Ajouter charge");
 		buttonPanel.add(btnAjouter);
+		
+		JButton btnMAJ = new JButton("Mettre à jour");
+		buttonPanel.add(btnMAJ);
+		
+				JButton btnRetour = new JButton("Retour");
+				buttonPanel.add(btnRetour);
+				btnRetour.addActionListener(this.gestionClic);
 
 		// Footer panel (if needed)
 		JPanel footerPanel = new JPanel(new BorderLayout());
@@ -266,8 +297,8 @@ public class FenetreCharges extends FenetreBase {
 		this.gestionClic.initialiserFiltrage();
 		comboBoxMois.addActionListener(this.gestionClic);
 		comboBoxAnnee.addActionListener(this.gestionClic);
-		btnRetour.addActionListener(this.gestionClic);
 		btnAjouter.addActionListener(this.gestionClic);
+		btnMAJ.addActionListener(this.gestionClic);
 
 	}
 

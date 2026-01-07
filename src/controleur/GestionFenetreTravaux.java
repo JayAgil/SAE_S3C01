@@ -12,6 +12,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import modele.Facture;
+import modele.dao.DaoFacture;
 import vue.FenetreAjouterEntreprise;
 import vue.FenetreAjouterTravaux;
 import vue.FenetreBienLouable;
@@ -59,6 +60,22 @@ public class GestionFenetreTravaux extends GestionHeaderEtFooter implements Mous
 			break;
 		case "Visualiser facture":
 			visualiserFactureSelectionnee();
+			break;
+		case "Mettre à jour" :
+			JTable table = fenetreTravaux.getTable();
+        	int row = table.getSelectedRow();
+        	if (row != -1) {
+        		Facture f = this.travaux.get(row);
+        		DaoFacture daoFacture;
+				try {
+					daoFacture = new DaoFacture();
+					f.setMontantDevis(Double.parseDouble(table.getValueAt(row, 4).toString()));
+					daoFacture.update(f);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+        		
+        	}
 			break;
 		}
 	}
