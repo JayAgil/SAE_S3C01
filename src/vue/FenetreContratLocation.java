@@ -23,7 +23,6 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTextField;
 import java.sql.SQLException;
-import java.awt.event.ActionListener;
 
 public class FenetreContratLocation extends FenetreBase {
 	private GestionFenetreContratLocation gestionClicContratLocation;
@@ -85,13 +84,9 @@ public class FenetreContratLocation extends FenetreBase {
 
 		JButton btnRetour = new JButton("Retour");
 		panel_2.add(btnRetour);
-		btnRetour.addActionListener((ActionListener) gestionClicContratLocation);
 
 		btnAjouter = new JButton("Ajouter");
 		panel_2.add(btnAjouter);
-
-		JButton btnAnnuler = new JButton("Annuler");
-		panel_2.add(btnAnnuler);
 
 		JButton btnRevalLoyer = new JButton("Revaloriser loyer");
 		panel_2.add(btnRevalLoyer);
@@ -340,7 +335,6 @@ public class FenetreContratLocation extends FenetreBase {
 		panel_3.add(scrollPane, gbc_scrollPane);
 
 		table = new JTable();
-		table.addMouseListener(this.gestionClicContratLocation);
 		table.setModel(new DefaultTableModel(new Object[][] { { null, null, null, null, null },
 				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
 				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
@@ -366,10 +360,12 @@ public class FenetreContratLocation extends FenetreBase {
 		this.gestionClicContratLocation = new GestionFenetreContratLocation(this, this.cl, bl);
 		this.gestionClicContratLocation.initialize();
 		btnAjouter.addActionListener(gestionClicContratLocation);
-		btnAnnuler.addActionListener(gestionClicContratLocation);
+		btnRetour.addActionListener(gestionClicContratLocation);
 		btnRevalLoyer.addActionListener(this.gestionClicContratLocation);
 		btnRevalCharge.addActionListener(this.gestionClicContratLocation);
 		btnReguCharges.addActionListener(this.gestionClicContratLocation);
+		table.addMouseListener(this.gestionClicContratLocation);
+
 	}
 
 	public JButton getBtnAjouter() {

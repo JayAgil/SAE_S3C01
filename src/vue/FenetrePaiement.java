@@ -108,7 +108,6 @@ public class FenetrePaiement extends FenetreBase {
 
 		JButton btnRetour = new JButton("Retour");
 		panelButtons.add(btnRetour);
-		btnRetour.addActionListener(gestionClic);
 		panelButtons.add(btnAjouterPaiement);
 
 		btnQuittance = new JButton("Quittance loyer");
@@ -214,6 +213,8 @@ public class FenetrePaiement extends FenetreBase {
 		btnAjouterPaiement.addActionListener(this.gestionClic);
 		table.addMouseListener(this.gestionClic);
 		btnQuittance.addActionListener(this.gestionClic);
+		btnRetour.addActionListener(gestionClic);
+
 
 	}
 

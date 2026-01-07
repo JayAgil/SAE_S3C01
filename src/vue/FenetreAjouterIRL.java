@@ -27,7 +27,6 @@ public class FenetreAjouterIRL extends JInternalFrame {
 
 	public FenetreAjouterIRL() {
 		setResizable(false);
-		this.gestionClic = new GestionAjouterIRL(this);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 500);
 		contentPane = new JPanel();
@@ -81,6 +80,7 @@ public class FenetreAjouterIRL extends JInternalFrame {
 		contentPane.add(textFieldTrimestre);
 		textFieldTrimestre.setColumns(10);
 
+		this.gestionClic = new GestionAjouterIRL(this);
 		btnVider.addActionListener(this.gestionClic);
 		btnAjouter.addActionListener(this.gestionClic);
 		btnRetour.addActionListener(this.gestionClic);

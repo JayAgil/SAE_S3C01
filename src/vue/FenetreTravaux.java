@@ -69,7 +69,6 @@ public class FenetreTravaux extends FenetreBase {
 
 		JButton btnRetour = new JButton("Retour");
 		panel_1.add(btnRetour);
-		btnRetour.addActionListener(this.gestionClic);
 
 		btnAjouterTravaux = new JButton("Ajouter travaux");
 		panel_1.add(btnAjouterTravaux);
@@ -201,6 +200,8 @@ public class FenetreTravaux extends FenetreBase {
 		comboBox_Mois.addActionListener(this.gestionClic);
 		comboBox_Annee.addActionListener(this.gestionClic);
 		this.gestionClic.initialize();
+		btnRetour.addActionListener(this.gestionClic);
+
 	}
 
 	public JButton getBtnAjouterTravaux() {

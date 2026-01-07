@@ -30,13 +30,11 @@ public class FenetreAssurance extends FenetreBase {
 		setTitle("Assurance");
 		setSize(600, 650);
 		setResizable(false);
-		gestionClic = new GestionFenetreAssurance(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Container contentPane = getContentPane();
 		contentPane.setLayout(new BorderLayout(10, 10));
 		this.setJMenuBar(createHeader());
 
-		this.gestionClic.initialize();
 		JPanel panelCenter = new JPanel(new GridBagLayout());
 		contentPane.add(panelCenter, BorderLayout.CENTER);
 
@@ -213,11 +211,9 @@ public class FenetreAssurance extends FenetreBase {
 
 		JPanel panelButtons = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 10));
 		JButton btnAjouter = new JButton("Ajouter assurance");
-		btnAjouter.addActionListener(gestionClic);
 		panelButtons.add(btnAjouter);
 
 		JButton btnRetour = new JButton("Retour");
-		btnRetour.addActionListener(gestionClic);
 		panelButtons.add(btnRetour);
 
 		southPanel.add(panelButtons, BorderLayout.NORTH);
@@ -227,7 +223,14 @@ public class FenetreAssurance extends FenetreBase {
 		contentPane.add(southPanel, BorderLayout.SOUTH);
 		setLocationRelativeTo(null);
 		setVisible(true);
+		
+		gestionClic = new GestionFenetreAssurance(this);
+		this.gestionClic.initialize();
 		this.gestionClic.chargerAssuranceBatiment(this.getBat());
+		btnAjouter.addActionListener(gestionClic);
+		btnRetour.addActionListener(gestionClic);
+
+
 	}
 
 	public JTextField getTextFieldNumAssurance() {

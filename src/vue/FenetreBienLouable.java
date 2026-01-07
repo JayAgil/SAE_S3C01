@@ -49,7 +49,6 @@ public class FenetreBienLouable extends FenetreBase {
 		super();
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.bienLouable = bienLouables;
-		this.gestionClicBienLouable = new GestionFenetreBienLouable(this, this.bienLouable);
 		// header
 		this.setJMenuBar(createHeader());
 
@@ -59,7 +58,6 @@ public class FenetreBienLouable extends FenetreBase {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
-		this.gestionClicBienLouable.initialize();
 
 		getContentPane().add(createFooter(), BorderLayout.SOUTH);
 
@@ -72,7 +70,6 @@ public class FenetreBienLouable extends FenetreBase {
 
 		JButton btnRetour = new JButton("Retour");
 		panel.add(btnRetour);
-		btnRetour.addActionListener(gestionClicBienLouable);
 
 		JButton btnCompteur = new JButton("Compteur");
 		panel.add(btnCompteur);
@@ -81,23 +78,19 @@ public class FenetreBienLouable extends FenetreBase {
 		panel.add(verticalStrut);
 
 		JButton btnDiagnostic = new JButton("Diagnostics");
-		btnDiagnostic.addActionListener(this.gestionClicBienLouable);
 		panel.add(btnDiagnostic);
 
 		JButton btnTravaux = new JButton("Travaux");
-		btnTravaux.addActionListener(this.gestionClicBienLouable);
+		
 		panel.add(btnTravaux);
 
 		JButton btnCharge = new JButton("Charges");
-		btnCharge.addActionListener(this.gestionClicBienLouable);
 		panel.add(btnCharge);
 
 		JButton btnContrat = new JButton("Contrat");
-		btnContrat.addActionListener(this.gestionClicBienLouable);
 		panel.add(btnContrat);
 
 		JButton btnAjouter = new JButton("Ajouter");
-		btnAjouter.addActionListener(gestionClicBienLouable);
 		panel.add(btnAjouter);
 
 		JPanel panel_3 = new JPanel();
@@ -397,7 +390,6 @@ public class FenetreBienLouable extends FenetreBase {
 		panel_5.add(scrollPane);
 
 		table = new JTable();
-		table.addMouseListener(this.gestionClicBienLouable);
 		table.setModel(new DefaultTableModel(
 				new Object[][] { { null, null, null, null }, { null, null, null, null }, { null, null, null, null },
 						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
@@ -425,7 +417,6 @@ public class FenetreBienLouable extends FenetreBase {
 		table.getColumnModel().getColumn(3).setPreferredWidth(100);
 		table.getColumnModel().getColumn(3).setMinWidth(100);
 		scrollPane.setViewportView(table);
-		btnCompteur.addActionListener(gestionClicBienLouable);
 
 		JPanel panel_1 = new JPanel();
 		contentPane.add(panel_1, BorderLayout.NORTH);
@@ -433,8 +424,19 @@ public class FenetreBienLouable extends FenetreBase {
 		JLabel lblTitre = new JLabel("Bien louable");
 		lblTitre.setFont(new Font("Tahoma", Font.BOLD, 18));
 		panel_1.add(lblTitre);
-
+		
+		this.gestionClicBienLouable = new GestionFenetreBienLouable(this, this.bienLouable);
 		this.gestionClicBienLouable.chargerDonnees();
+		btnCompteur.addActionListener(gestionClicBienLouable);
+		btnRetour.addActionListener(gestionClicBienLouable);
+		btnDiagnostic.addActionListener(this.gestionClicBienLouable);
+		btnTravaux.addActionListener(this.gestionClicBienLouable);
+		btnCharge.addActionListener(this.gestionClicBienLouable);
+		btnContrat.addActionListener(this.gestionClicBienLouable);
+		btnAjouter.addActionListener(gestionClicBienLouable);
+		table.addMouseListener(this.gestionClicBienLouable);
+		this.gestionClicBienLouable.initialize();
+
 
 		if (this.bienLouable != null) {
 			this.gestionClicBienLouable.chargerBienEtRemplirFormulaire(this.bienLouable.getIdBienLouable());
