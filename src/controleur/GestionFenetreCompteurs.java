@@ -3,11 +3,13 @@ package controleur;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import modele.BienLouable;
 import modele.Compteur;
 import modele.dao.DaoBienLouable;
+import modele.dao.DaoCompteur;
 import vue.*;
 
 public class GestionFenetreCompteurs extends GestionHeaderEtFooter {
@@ -84,13 +86,25 @@ public class GestionFenetreCompteurs extends GestionHeaderEtFooter {
     
     
     @Override
-    protected void gererBoutonSpecifique(String texte) {
+    protected void gererBoutonSpecifique(String texte) throws SQLException {
         switch (texte) {
             case "Ajouter compteur":
                 FenetreAjouterCompteur fenAjouterCompteur = new FenetreAjouterCompteur(this.fenetre.getB(),this);
                 fenetre.getLayeredPane().add(fenAjouterCompteur);
                 fenAjouterCompteur.setVisible(true);
                 break;
+            case "Mettre à jour" :
+            	JTable table = fenetre.getTableCompteurs();
+            	int row = table.getSelectedRow();
+            	if (row != -1) {
+            		Compteur c = this.cpt.get(row);
+            		DaoCompteur daoCompteur = new DaoCompteur();
+            		c.setType(table.getValueAt(row, 0).toString());
+            		c.setIndexNouveau(Double.parseDouble(table.getValueAt(row, 4).toString()));
+            		c.setPartieVariable(Double.parseDouble(table.getValueAt(row, 6).toString()));
+            		daoCompteur.update(c);
+            	}
+            	break;
         }
     }
     
