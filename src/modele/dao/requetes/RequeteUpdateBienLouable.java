@@ -8,7 +8,7 @@ import modele.BienLouable;
 public class RequeteUpdateBienLouable extends Requete<BienLouable> {
     @Override
     public String requete() {
-    	return "UPDATE SAE_BienLouable SET " +
+    	return "UPDATE MSF5131A.SAE_BienLouable SET " +
     	           "NumeroFiscale = ?, " +
     	           "Adresse = ?, " +
     	           "Surface_d_habituable = ?, " +
