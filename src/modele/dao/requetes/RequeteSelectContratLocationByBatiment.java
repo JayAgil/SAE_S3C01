@@ -13,7 +13,8 @@ public class RequeteSelectContratLocationByBatiment extends Requete<ContratLocat
 	             "FROM MSF5131A.SAE_Batiment bat " +
 	             "JOIN MSF5131A.SAE_BienLouable b ON b.fk_Adresse_Bat = bat.Adresse " +
 	             "JOIN MSF5131A.SAE_ContratLocation c ON c.fk_Id_BienLouable = b.Id_BienLouable " +
-	             "WHERE bat.Adresse = ?";
+	             "WHERE bat.Adresse = ? "
+	             + "Order by Date_debut DESC";
 
 	}
 	

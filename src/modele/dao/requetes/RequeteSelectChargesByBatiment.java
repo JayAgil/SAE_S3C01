@@ -13,7 +13,7 @@ public class RequeteSelectChargesByBatiment extends Requete<ChargesGenerales>{
 				+ "FROM MSF5131A.SAE_Charges_Generale cg "
 				+ "JOIN MSF5131A.SAE_BienLouable bl ON cg.fk_Id_BienLouable = bl.Id_BienLouable "
 				+ "WHERE bl.fk_Adresse_Bat = ? "
-				+ "";
+				+ "Order by Date_Charge";
 	}
 	
 	public void parametres(PreparedStatement prSt, String... id) throws SQLException {

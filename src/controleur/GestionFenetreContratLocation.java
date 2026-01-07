@@ -42,7 +42,7 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 
 	public List<ContratLocation> getDonneesContrats() throws SQLException {
 		DaoContratLocation dCl = new DaoContratLocation();
-		return dCl.findByContrat(this.cl.getNumeroDeContrat());
+		return dCl.findByBienLouable(bl.getIdBienLouable());
 	}
 
 	@Override
