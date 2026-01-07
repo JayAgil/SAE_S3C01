@@ -83,6 +83,26 @@ public class DaoContratLocation extends DaoModele<ContratLocation> implements Da
 	        return res;
 	    }
 	
+
+    public float RegularisationCharges(ContratLocation t, int annee)
+        throws SQLException {
+        RequeteRegularisationCharge req = new RequeteRegularisationCharge();
+        try (PreparedStatement prSt = connexion
+            .prepareStatement(req.requete())) {
+            req.parametres(prSt, t, annee);
+            try (ResultSet rs = prSt.executeQuery()) {
+                while (rs.next()) {
+                    float element = rs.getFloat(1);
+                    System.out.println(element);
+                    return element;
+                }
+            }
+        }
+        System.out.println("NAN");
+        return 0;
+    }
+
+	
 	public List<ContratLocation> findByBatiment(String... id) throws SQLException {
         return this.find(new RequeteSelectContratLocationByBatiment(), id);
 	}

@@ -151,7 +151,15 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 					String.format("Provision de charges mise à jour : %.2f €", nouvelleCharge), "Succès",
 					JOptionPane.INFORMATION_MESSAGE);
 			break;
-
+		case "Regulariser charge":
+            DaoContratLocation dao = new DaoContratLocation();
+            float element = dao.RegularisationCharges(selected, 2025);
+            FenetreRegularisationCharges fn = new FenetreRegularisationCharges(
+                dao, selected, element);
+            fenetre.getLayeredPane().add(fn);
+            fn.setVisible(true);
+            break;
+        
 		}
 	}
 
