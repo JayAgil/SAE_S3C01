@@ -86,20 +86,31 @@ public class FenetreCompteurs extends FenetreBase {
 		};
 
 		tableCompteurs = new JTable(new DefaultTableModel(
-				new Object[][] { { null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null }, },
-				new String[] { "Type", "Date", "Bien louable", "Index ancien", "Index nouveau", "Consommation",
-						"Partie Variable", "Partie Fixe", "Total" }) {
-			boolean[] columnEditables = new boolean[] { false, false, false, false, false, false, false, true, false };
-
+			new Object[][] {
+				{null, null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null, null},
+			},
+			new String[] {
+				"Type", "Date", "Bien louable", "Index ancien", "Index nouveau", "Consommation", "Partie Variable", "Partie Fixe", "Total"
+			}
+		) {
+			Class[] columnTypes = new Class[] {
+				Object.class, Object.class, Object.class, Double.class, Double.class, Object.class, Double.class, Double.class, Object.class
+			};
+			public Class getColumnClass(int columnIndex) {
+				return columnTypes[columnIndex];
+			}
+			boolean[] columnEditables = new boolean[] {
+				true, true, false, false, true, true, true, false, true
+			};
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
 			}
@@ -111,13 +122,17 @@ public class FenetreCompteurs extends FenetreBase {
 
 		JPanel panel_butons = new JPanel();
 		panel.add(panel_butons, BorderLayout.SOUTH);
-
-		JButton btnRetour = new JButton("Retour");
 		panel_butons.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		panel_butons.add(btnRetour);
 
 		btnAjouterCompteur = new JButton("Ajouter compteur");
 		panel_butons.add(btnAjouterCompteur);
+		
+		JButton btnMAJ = new JButton("Mettre à jour");
+		panel_butons.add(btnMAJ);
+		
+				JButton btnRetour = new JButton("Retour");
+				panel_butons.add(btnRetour);
+				btnRetour.addActionListener(this.gestionClic);
 
 		JPanel panel_2 = new JPanel();
 		panel.add(panel_2, BorderLayout.CENTER);
@@ -250,7 +265,7 @@ public class FenetreCompteurs extends FenetreBase {
 		this.gestionClic = new GestionFenetreCompteurs(this, cpt);
 		this.gestionClic.initialize();
 		btnAjouterCompteur.addActionListener(this.gestionClic);
-		btnRetour.addActionListener(this.gestionClic);
+		btnMAJ.addActionListener(this.gestionClic);
 
 	}
 
