@@ -27,7 +27,6 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 	private FenetreContratLocation fenetre;
 	private ContratLocation cl;
 	private List<ContratLocation> contrats;
-
 	private BienLouable bl;
 	private ContratLocation selected;
 
@@ -38,7 +37,12 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 		this.fenetre = fenetre;
 		this.cl = cl;
 		this.bl = bl;
-		this.contrats = new ArrayList<>(this.getDonneesContrats());
+		if (this.bl == null) {
+			this.contrats = new ArrayList<>(this.getAllContrats());
+		} else {
+			this.contrats = new ArrayList<>(this.getDonneesContrats());
+		}
+		
 		if (this.fenetre.getFenDavant() == "FenPrincipale") {
 			this.fenetre.getBtnAjouter().hide();
 		}
@@ -47,6 +51,11 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 	public List<ContratLocation> getDonneesContrats() throws SQLException {
 		DaoContratLocation dCl = new DaoContratLocation();
 		return dCl.findByBienLouable(bl.getIdBienLouable());
+	}
+	
+	public List<ContratLocation> getAllContrats() throws SQLException {
+		DaoContratLocation dCl = new DaoContratLocation();
+		return dCl.findAll();
 	}
 
 	@Override
@@ -253,8 +262,13 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 			remplirTable();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} 
+		if (this.bl != null) {
+			updateTitreContrat(this.bl);
+		} else {
+			this.fenetre.getTitreTable().setText("Tous les contrats");
 		}
-		updateTitreContrat(this.bl);
+		
 		if (!contrats.isEmpty()) {
 			fenetre.getTable().setRowSelectionInterval(0, 0);
 			selected = contrats.get(0);

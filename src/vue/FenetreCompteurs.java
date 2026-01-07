@@ -86,20 +86,25 @@ public class FenetreCompteurs extends FenetreBase {
 		};
 
 		tableCompteurs = new JTable(new DefaultTableModel(
-				new Object[][] { { null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null }, },
-				new String[] { "Type", "Date", "Bien louable", "Index ancien", "Index nouveau", "Consommation",
-						"Partie Variable", "Partie Fixe", "Total" }) {
-			boolean[] columnEditables = new boolean[] { false, false, false, false, false, false, false, true, false };
-
+			new Object[][] {
+				{null, null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null, null},
+			},
+			new String[] {
+				"Type", "Date", "Bien louable", "Index ancien", "Index nouveau", "Consommation", "Partie Variable", "Partie Fixe", "Total"
+			}
+		) {
+			boolean[] columnEditables = new boolean[] {
+				false, false, false, false, false, false, false, true, false
+			};
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
 			}
