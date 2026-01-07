@@ -5,7 +5,7 @@ WHERE owner = 'MSF5131A';
 Select * from MSF5131A.SAE_CHARGES_GENERALE;
 
 
--- TOTAL DES PROVISIONS PAYÉES PAR LE LOCATAIRE --
+-- TOTAL DES PROVISIONS PAYï¿½ES PAR LE LOCATAIRE --
 SELECT
     cl.Numero_de_contrat,
     COUNT(p.Id_Paiement) * cl.Provision_Charge AS Total_Provisions
@@ -15,9 +15,9 @@ JOIN MSF5131A.SAE_ContratLocation cl
 WHERE EXTRACT(YEAR FROM p.Date_Paiement) = 2025
 GROUP BY cl.Numero_de_contrat, cl.Provision_Charge;
 
--- TOTAL DES CHARGES RÉELLES PAYÉES PAR LE PROPRIÉTAIRE --
+-- TOTAL DES CHARGES Rï¿½ELLES PAYï¿½ES PAR LE PROPRIï¿½TAIRE --
 
--- Charges générales
+-- Charges gï¿½nï¿½rales
 SELECT
     fk_Id_BienLouable,
     SUM(Montant_Total) AS Total_Charges_Generales
@@ -25,14 +25,14 @@ FROM MSF5131A.SAE_Charges_Generale
 WHERE EXTRACT(YEAR FROM Date_Charge) = 2022
 GROUP BY fk_Id_BienLouable;
 
--- Charges liées aux compteurs (eau, élec, gaz)
+-- Charges liï¿½es aux compteurs (eau, ï¿½lec, gaz)
 SELECT
     fk_Id_BienLouable,
     SUM(Total) AS Total_Compteurs
 FROM MSF5131A.SAE_Compteur
 GROUP BY fk_Id_BienLouable;
 
--- Factures (supposées récupérables)
+-- Factures (supposï¿½es rï¿½cupï¿½rables)
 SELECT
     fk_Id_BienLouable,
     SUM(Montant) AS Total_Factures
@@ -40,7 +40,7 @@ FROM MSF5131A.SAE_Facture
 WHERE EXTRACT(YEAR FROM Date_de_facture) = 2025
 GROUP BY fk_Id_BienLouable;
 
--- TOTAL DES CHARGES RÉELLES (PAR BIEN) --
+-- TOTAL DES CHARGES Rï¿½ELLES (PAR BIEN) --
 SELECT
     b.Id_BienLouable,
     NVL(cg.Total_Charges_Generales, 0)
@@ -66,7 +66,7 @@ LEFT JOIN (
 ) f ON b.Id_BienLouable = f.fk_Id_BienLouable;
 
 
--- RÉGULARISATION DES CHARGES (RÉSULTAT FINAL) --
+-- Rï¿½GULARISATION DES CHARGES (Rï¿½SULTAT FINAL) --
 -- Select Finale
 SELECT
     cl.Numero_de_contrat,
@@ -159,8 +159,8 @@ Order by cl.Numero_de_contrat;
 
 
 -- Solde_Regularisation > 0  -> le locataire doit payer
--- Solde_Regularisation < 0  -> le propriétaire rembourse
--- Solde_Regularisation = 0  -> équilibre
+-- Solde_Regularisation < 0  -> le propriï¿½taire rembourse
+-- Solde_Regularisation = 0  -> ï¿½quilibre
 
 -- sans join
 SELECT
@@ -239,3 +239,70 @@ FROM MSF5131A.SAE_Paiement;
 
 SELECT DISTINCT EXTRACT(YEAR FROM Date_Paiement) AS annee
 FROM MSF5131A.SAE_Paiement;
+
+
+
+
+
+create or replace FUNCTION calcul_regularisation_contrat (
+    p_annee     IN NUMBER,
+    p_contrat   IN VARCHAR2
+) RETURN NUMBER
+IS
+    v_total_provisions      NUMBER := 0;
+    v_total_charges         NUMBER := 0;
+BEGIN
+
+    SELECT NVL(COUNT(p.Id_Paiement) * cl.Provision_Charge, 0)
+    INTO v_total_provisions
+    FROM MSF5131A.SAE_Paiement p,
+         MSF5131A.SAE_ContratLocation cl
+    WHERE p.fk_Numero_de_contrat = cl.Numero_de_contrat
+      AND cl.Numero_de_contrat = p_contrat
+      AND EXTRACT(YEAR FROM p.Date_Paiement) = p_annee
+    GROUP BY cl.Provision_Charge;
+
+    SELECT
+        NVL(cg.Total_Charges_Generales, 0)
+      + NVL(c.Total_Compteurs, 0)
+      + NVL(f.Total_Factures, 0)
+    INTO v_total_charges
+    FROM
+        MSF5131A.SAE_ContratLocation cl,
+        MSF5131A.SAE_BienLouable b,
+        (
+            SELECT fk_Id_BienLouable,
+                   SUM(Montant_Total) AS Total_Charges_Generales
+            FROM MSF5131A.SAE_Charges_Generale
+            WHERE EXTRACT(YEAR FROM Date_Charge) = p_annee
+            GROUP BY fk_Id_BienLouable
+        ) cg,
+        (
+            SELECT fk_Id_BienLouable,
+                   SUM(Total) AS Total_Compteurs
+            FROM MSF5131A.SAE_Compteur
+            GROUP BY fk_Id_BienLouable
+        ) c,
+        (
+            SELECT fk_Id_BienLouable,
+                   SUM(Montant) AS Total_Factures
+            FROM MSF5131A.SAE_Facture
+            WHERE EXTRACT(YEAR FROM Date_de_facture) = p_annee
+            GROUP BY fk_Id_BienLouable
+        ) f
+    WHERE cl.Numero_de_contrat = p_contrat
+      AND cl.fk_Id_BienLouable = b.Id_BienLouable
+      AND b.Id_BienLouable = cg.fk_Id_BienLouable(+)
+      AND b.Id_BienLouable = c.fk_Id_BienLouable(+)
+      AND b.Id_BienLouable = f.fk_Id_BienLouable(+);
+
+    RETURN v_total_charges - v_total_provisions;
+    
+    -- Solde_Regularisation > 0  -> le locataire doit payer
+    -- Solde_Regularisation < 0  -> le propriÃ©taire rembourse
+    -- Solde_Regularisation = 0  -> Ã©quilibre
+
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        RETURN 0;
+END;

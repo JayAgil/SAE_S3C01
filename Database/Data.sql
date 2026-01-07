@@ -1,4 +1,9 @@
+INSERT INTO SAE_DateDernierLancement(Id_Lock,Date_dernier_lancement) VALUES ('X',TO_DATE('2024-09-15','YYYY-MM-DD'));
+INSERT INTO SAE_DateDernierLancement(Id_Lock,Date_dernier_lancement) VALUES ('Z',TO_DATE('2024-09-15','YYYY-MM-DD'));
+--Le premier fonctionne, le deuxieme est un test
 
+
+----------------------------------------------------------------------------------------------------------------
 INSERT INTO SAE_Garant (Id_Garant,Prenom,Nom, Adresse, Tel) VALUES ('GAR-001', 'Martin', 'Dupont', '12 Rue des Lys', '0693765432');
 INSERT INTO SAE_Garant (Id_Garant,Prenom,Nom, Adresse, Tel) VALUES ('GAR-002', 'Claire', 'Renaud', '8 Avenue Victor Hugo', '0692654322');
 INSERT INTO SAE_Garant (Id_Garant,Prenom,Nom, Adresse, Tel) VALUES ('GAR-003', 'Pierre', 'Lamart', '5 Rue du Marché', '0693557204');
@@ -10,7 +15,7 @@ INSERT INTO SAE_Garant (Id_Garant,Prenom,Nom, Adresse, Tel) VALUES ('GAR-008', '
 INSERT INTO SAE_Garant (Id_Garant,Prenom,Nom, Adresse, Tel) VALUES ('GAR-009', 'Julien', 'Perrot', '9 Impasse des Cedres', '0609090909');
 INSERT INTO SAE_Garant (Id_Garant,Prenom,Nom, Adresse, Tel) VALUES ('GAR-010', 'Camille', 'Ruiz', '25 Rue du Stade', '0677001122');
 INSERT INTO SAE_Garant (Id_Garant,Prenom,Nom, Adresse, Tel) VALUES ('GAR-011', 'Thomas', 'Bailly', '18 Rue de Seze', '0633221100');
-INSERT INTO SAE_Garant (Id_Garant,Prenom,Nom, Adresse, Tel) VALUES ('GAR-012', 'Anaïs', 'Delorme', '11 Avenue des Acacias', '0699887766');
+INSERT INTO SAE_Garant (Id_Garant,Prenom,Nom, Adresse, Tel) VALUES ('GAR-012', 'Anais', 'Delorme', '11 Avenue des Acacias', '0699887766');
 INSERT INTO SAE_Garant (Id_Garant,Prenom,Nom, Adresse, Tel) VALUES ('GAR-013', 'Romain', 'Georges', '42 Boulevard Voltaire', '0655332211');
 
 
@@ -520,101 +525,101 @@ INSERT INTO SAE_Charges_Generale (Id_Charges_Generale,Type_Charge, Montant_Total
 ----------------------------------------------------------------------------------------------------------------
 
 
-INSERT INTO SAE_Diagnostics VALUES ('DIA-001','DPE',TO_DATE('2022-01-10','YYYY-MM-DD'),TO_DATE('2032-01-10','YYYY-MM-DD'),'dpe001.pdf','BIEN-001');
-INSERT INTO SAE_Diagnostics VALUES ('DIA-002','Electricite',TO_DATE('2025-02-10','YYYY-MM-DD'),TO_DATE('2035-02-10','YYYY-MM-DD'),'elec001.pdf','BIEN-001');
-INSERT INTO SAE_Diagnostics VALUES ('DIA-003','Gaz',TO_DATE('2023-03-10','YYYY-MM-DD'),TO_DATE('2033-03-10','YYYY-MM-DD'),'gaz001.pdf','BIEN-001');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-001','DPE',TO_DATE('2022-01-10','YYYY-MM-DD'),TO_DATE('2032-01-10','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-001');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-002','Electricite',TO_DATE('2025-02-10','YYYY-MM-DD'),TO_DATE('2035-02-10','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-001');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-003','Gaz',TO_DATE('2023-03-10','YYYY-MM-DD'),TO_DATE('2033-03-10','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-001');
 
 -- BIEN-002
-INSERT INTO SAE_Diagnostics VALUES ('DIA-004','DPE',TO_DATE('2023-01-15','YYYY-MM-DD'),TO_DATE('2033-01-15','YYYY-MM-DD'),'dpe002.pdf','BIEN-002');
-INSERT INTO SAE_Diagnostics VALUES ('DIA-005','Electricite',TO_DATE('2024-02-15','YYYY-MM-DD'),TO_DATE('2034-02-15','YYYY-MM-DD'),'elec002.pdf','BIEN-002');
-INSERT INTO SAE_Diagnostics VALUES ('DIA-006','Gaz',TO_DATE('2022-03-15','YYYY-MM-DD'),TO_DATE('2032-03-15','YYYY-MM-DD'),'gaz002.pdf','BIEN-002');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-004','DPE',TO_DATE('2023-01-15','YYYY-MM-DD'),TO_DATE('2033-01-15','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-002');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-005','Electricite',TO_DATE('2024-02-15','YYYY-MM-DD'),TO_DATE('2034-02-15','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-002');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-006','Gaz',TO_DATE('2022-03-15','YYYY-MM-DD'),TO_DATE('2032-03-15','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-002');
 
 -- BIEN-003
-INSERT INTO SAE_Diagnostics VALUES ('DIA-007','DPE',TO_DATE('2022-01-20','YYYY-MM-DD'),TO_DATE('2032-01-20','YYYY-MM-DD'),'dpe003.pdf','BIEN-003');
-INSERT INTO SAE_Diagnostics VALUES ('DIA-008','Electricite',TO_DATE('2024-02-20','YYYY-MM-DD'),TO_DATE('2034-02-20','YYYY-MM-DD'),'elec003.pdf','BIEN-003');
-INSERT INTO SAE_Diagnostics VALUES ('DIA-009','Gaz',TO_DATE('2023-03-20','YYYY-MM-DD'),TO_DATE('2033-03-20','YYYY-MM-DD'),'gaz003.pdf','BIEN-003');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-007','DPE',TO_DATE('2022-01-20','YYYY-MM-DD'),TO_DATE('2032-01-20','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-003');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-008','Electricite',TO_DATE('2024-02-20','YYYY-MM-DD'),TO_DATE('2034-02-20','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-003');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-009','Gaz',TO_DATE('2023-03-20','YYYY-MM-DD'),TO_DATE('2033-03-20','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-003');
 
 -- BIEN-004
-INSERT INTO SAE_Diagnostics VALUES ('DIA-010','DPE',TO_DATE('2023-01-25','YYYY-MM-DD'),TO_DATE('2033-01-25','YYYY-MM-DD'),'dpe004.pdf','BIEN-004');
-INSERT INTO SAE_Diagnostics VALUES ('DIA-011','Electricite',TO_DATE('2024-02-25','YYYY-MM-DD'),TO_DATE('2034-02-25','YYYY-MM-DD'),'elec004.pdf','BIEN-004');
-INSERT INTO SAE_Diagnostics VALUES ('DIA-012','Gaz',TO_DATE('2025-03-25','YYYY-MM-DD'),TO_DATE('2035-03-25','YYYY-MM-DD'),'gaz004.pdf','BIEN-004');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-010','DPE',TO_DATE('2023-01-25','YYYY-MM-DD'),TO_DATE('2033-01-25','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-004');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-011','Electricite',TO_DATE('2024-02-25','YYYY-MM-DD'),TO_DATE('2034-02-25','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-004');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-012','Gaz',TO_DATE('2025-03-25','YYYY-MM-DD'),TO_DATE('2035-03-25','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-004');
 
 -- BIEN-005
-INSERT INTO SAE_Diagnostics VALUES ('DIA-013','DPE',TO_DATE('2022-01-30','YYYY-MM-DD'),TO_DATE('2032-01-30','YYYY-MM-DD'),'dpe005.pdf','BIEN-005');
-INSERT INTO SAE_Diagnostics VALUES ('DIA-014','Electricite',TO_DATE('2024-02-28','YYYY-MM-DD'),TO_DATE('2034-02-28','YYYY-MM-DD'),'elec005.pdf','BIEN-005');
-INSERT INTO SAE_Diagnostics VALUES ('DIA-015','Gaz',TO_DATE('2023-03-30','YYYY-MM-DD'),TO_DATE('2033-03-30','YYYY-MM-DD'),'gaz005.pdf','BIEN-005');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-013','DPE',TO_DATE('2022-01-30','YYYY-MM-DD'),TO_DATE('2032-01-30','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-005');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-014','Electricite',TO_DATE('2024-02-28','YYYY-MM-DD'),TO_DATE('2034-02-28','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-005');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-015','Gaz',TO_DATE('2023-03-30','YYYY-MM-DD'),TO_DATE('2033-03-30','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-005');
 
 -- BIEN-006
-INSERT INTO SAE_Diagnostics VALUES ('DIA-016','DPE',TO_DATE('2022-04-05','YYYY-MM-DD'),TO_DATE('2032-04-05','YYYY-MM-DD'),'dpe006.pdf','BIEN-006');
-INSERT INTO SAE_Diagnostics VALUES ('DIA-017','Electricite',TO_DATE('2024-04-10','YYYY-MM-DD'),TO_DATE('2034-04-10','YYYY-MM-DD'),'elec006.pdf','BIEN-006');
-INSERT INTO SAE_Diagnostics VALUES ('DIA-018','Gaz',TO_DATE('2025-04-15','YYYY-MM-DD'),TO_DATE('2035-04-15','YYYY-MM-DD'),'gaz006.pdf','BIEN-006');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-016','DPE',TO_DATE('2022-04-05','YYYY-MM-DD'),TO_DATE('2032-04-05','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-006');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-017','Electricite',TO_DATE('2024-04-10','YYYY-MM-DD'),TO_DATE('2034-04-10','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-006');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-018','Gaz',TO_DATE('2025-04-15','YYYY-MM-DD'),TO_DATE('2035-04-15','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-006');
 
 -- BIEN-007
-INSERT INTO SAE_Diagnostics VALUES ('DIA-019','DPE',TO_DATE('2023-04-20','YYYY-MM-DD'),TO_DATE('2033-04-20','YYYY-MM-DD'),'dpe007.pdf','BIEN-007');
-INSERT INTO SAE_Diagnostics VALUES ('DIA-020','Electricite',TO_DATE('2024-04-25','YYYY-MM-DD'),TO_DATE('2034-04-25','YYYY-MM-DD'),'elec007.pdf','BIEN-007');
-INSERT INTO SAE_Diagnostics VALUES ('DIA-021','Gaz',TO_DATE('2022-04-30','YYYY-MM-DD'),TO_DATE('2032-04-30','YYYY-MM-DD'),'gaz007.pdf','BIEN-007');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-019','DPE',TO_DATE('2023-04-20','YYYY-MM-DD'),TO_DATE('2033-04-20','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-007');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-020','Electricite',TO_DATE('2024-04-25','YYYY-MM-DD'),TO_DATE('2034-04-25','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-007');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-021','Gaz',TO_DATE('2022-04-30','YYYY-MM-DD'),TO_DATE('2032-04-30','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-007');
 
 -- BIEN-008
-INSERT INTO SAE_Diagnostics VALUES ('DIA-022','DPE',TO_DATE('2023-05-05','YYYY-MM-DD'),TO_DATE('2033-05-05','YYYY-MM-DD'),'dpe008.pdf','BIEN-008');
-INSERT INTO SAE_Diagnostics VALUES ('DIA-023','Electricite',TO_DATE('2024-05-10','YYYY-MM-DD'),TO_DATE('2034-05-10','YYYY-MM-DD'),'elec008.pdf','BIEN-008');
-INSERT INTO SAE_Diagnostics VALUES ('DIA-024','Gaz',TO_DATE('2025-05-15','YYYY-MM-DD'),TO_DATE('2035-05-15','YYYY-MM-DD'),'gaz008.pdf','BIEN-008');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-022','DPE',TO_DATE('2023-05-05','YYYY-MM-DD'),TO_DATE('2033-05-05','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-008');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-023','Electricite',TO_DATE('2024-05-10','YYYY-MM-DD'),TO_DATE('2034-05-10','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-008');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-024','Gaz',TO_DATE('2025-05-15','YYYY-MM-DD'),TO_DATE('2035-05-15','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-008');
 
 
 
 -- BIEN-009
-INSERT INTO SAE_Diagnostics VALUES ('DIA-025','DPE',TO_DATE('2024-05-20','YYYY-MM-DD'),TO_DATE('2034-05-20','YYYY-MM-DD'),'dpe009.pdf','BIEN-009');
-INSERT INTO SAE_Diagnostics VALUES ('DIA-026','Electricite',TO_DATE('2022-05-25','YYYY-MM-DD'),TO_DATE('2032-05-25','YYYY-MM-DD'),'elec009.pdf','BIEN-009');
-INSERT INTO SAE_Diagnostics VALUES ('DIA-027','Gaz',TO_DATE('2023-05-30','YYYY-MM-DD'),TO_DATE('2033-05-30','YYYY-MM-DD'),'gaz009.pdf','BIEN-009');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-025','DPE',TO_DATE('2024-05-20','YYYY-MM-DD'),TO_DATE('2034-05-20','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-009');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-026','Electricite',TO_DATE('2022-05-25','YYYY-MM-DD'),TO_DATE('2032-05-25','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-009');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-027','Gaz',TO_DATE('2023-05-30','YYYY-MM-DD'),TO_DATE('2033-05-30','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-009');
 
 -- BIEN-010
-INSERT INTO SAE_Diagnostics VALUES ('DIA-028','DPE',TO_DATE('2024-06-05','YYYY-MM-DD'),TO_DATE('2034-06-05','YYYY-MM-DD'),'dpe010.pdf','BIEN-010');
-INSERT INTO SAE_Diagnostics VALUES ('DIA-029','Electricite',TO_DATE('2025-06-10','YYYY-MM-DD'),TO_DATE('2035-06-10','YYYY-MM-DD'),'elec010.pdf','BIEN-010');
-INSERT INTO SAE_Diagnostics VALUES ('DIA-030','Gaz',TO_DATE('2022-06-15','YYYY-MM-DD'),TO_DATE('2032-06-15','YYYY-MM-DD'),'gaz010.pdf','BIEN-010');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-028','DPE',TO_DATE('2024-06-05','YYYY-MM-DD'),TO_DATE('2034-06-05','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-010');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-029','Electricite',TO_DATE('2025-06-10','YYYY-MM-DD'),TO_DATE('2035-06-10','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-010');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-030','Gaz',TO_DATE('2022-06-15','YYYY-MM-DD'),TO_DATE('2032-06-15','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-010');
 
 -- BIEN-011
-INSERT INTO SAE_Diagnostics VALUES ('DIA-031','DPE',TO_DATE('2024-06-20','YYYY-MM-DD'),TO_DATE('2034-06-20','YYYY-MM-DD'),'dpe011.pdf','BIEN-011');
-INSERT INTO SAE_Diagnostics VALUES ('DIA-032','Electricite',TO_DATE('2022-06-25','YYYY-MM-DD'),TO_DATE('2032-06-25','YYYY-MM-DD'),'elec011.pdf','BIEN-011');
-INSERT INTO SAE_Diagnostics VALUES ('DIA-033','Gaz',TO_DATE('2023-06-30','YYYY-MM-DD'),TO_DATE('2033-06-30','YYYY-MM-DD'),'gaz011.pdf','BIEN-011');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-031','DPE',TO_DATE('2024-06-20','YYYY-MM-DD'),TO_DATE('2034-06-20','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-011');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-032','Electricite',TO_DATE('2022-06-25','YYYY-MM-DD'),TO_DATE('2032-06-25','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-011');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-033','Gaz',TO_DATE('2023-06-30','YYYY-MM-DD'),TO_DATE('2033-06-30','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-011');
 
 -- BIEN-012
-INSERT INTO SAE_Diagnostics VALUES ('DIA-034','DPE',TO_DATE('2022-07-05','YYYY-MM-DD'),TO_DATE('2032-07-05','YYYY-MM-DD'),'dpe012.pdf','BIEN-012');
-INSERT INTO SAE_Diagnostics VALUES ('DIA-035','Electricite',TO_DATE('2025-07-10','YYYY-MM-DD'),TO_DATE('2035-07-10','YYYY-MM-DD'),'elec012.pdf','BIEN-012');
-INSERT INTO SAE_Diagnostics VALUES ('DIA-036','Gaz',TO_DATE('2024-07-15','YYYY-MM-DD'),TO_DATE('2034-07-15','YYYY-MM-DD'),'gaz012.pdf','BIEN-012');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-034','DPE',TO_DATE('2022-07-05','YYYY-MM-DD'),TO_DATE('2032-07-05','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-012');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-035','Electricite',TO_DATE('2025-07-10','YYYY-MM-DD'),TO_DATE('2035-07-10','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-012');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-036','Gaz',TO_DATE('2024-07-15','YYYY-MM-DD'),TO_DATE('2034-07-15','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-012');
 
 -- BIEN-013
-INSERT INTO SAE_Diagnostics VALUES ('DIA-037','DPE',TO_DATE('2024-07-20','YYYY-MM-DD'),TO_DATE('2034-07-20','YYYY-MM-DD'),'dpe013.pdf','BIEN-013');
-INSERT INTO SAE_Diagnostics VALUES ('DIA-038','Electricite',TO_DATE('2023-07-25','YYYY-MM-DD'),TO_DATE('2033-07-25','YYYY-MM-DD'),'elec013.pdf','BIEN-013');
-INSERT INTO SAE_Diagnostics VALUES ('DIA-039','Gaz',TO_DATE('2022-07-30','YYYY-MM-DD'),TO_DATE('2032-07-30','YYYY-MM-DD'),'gaz013.pdf','BIEN-013');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-037','DPE',TO_DATE('2024-07-20','YYYY-MM-DD'),TO_DATE('2034-07-20','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-013');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-038','Electricite',TO_DATE('2023-07-25','YYYY-MM-DD'),TO_DATE('2033-07-25','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-013');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-039','Gaz',TO_DATE('2022-07-30','YYYY-MM-DD'),TO_DATE('2032-07-30','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-013');
 
 -- BIEN-014
-INSERT INTO SAE_Diagnostics VALUES ('DIA-040','DPE',TO_DATE('2023-08-05','YYYY-MM-DD'),TO_DATE('2033-08-05','YYYY-MM-DD'),'dpe014.pdf','BIEN-014');
-INSERT INTO SAE_Diagnostics VALUES ('DIA-041','Electricite',TO_DATE('2024-08-10','YYYY-MM-DD'),TO_DATE('2034-08-10','YYYY-MM-DD'),'elec014.pdf','BIEN-014');
-INSERT INTO SAE_Diagnostics VALUES ('DIA-042','Gaz',TO_DATE('2025-08-15','YYYY-MM-DD'),TO_DATE('2035-08-15','YYYY-MM-DD'),'gaz014.pdf','BIEN-014');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-040','DPE',TO_DATE('2023-08-05','YYYY-MM-DD'),TO_DATE('2033-08-05','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-014');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-041','Electricite',TO_DATE('2024-08-10','YYYY-MM-DD'),TO_DATE('2034-08-10','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-014');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-042','Gaz',TO_DATE('2025-08-15','YYYY-MM-DD'),TO_DATE('2035-08-15','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-014');
 
 -- BIEN-015
-INSERT INTO SAE_Diagnostics VALUES ('DIA-043','DPE',TO_DATE('2025-08-20','YYYY-MM-DD'),TO_DATE('2035-08-20','YYYY-MM-DD'),'dpe015.pdf','BIEN-015');
-INSERT INTO SAE_Diagnostics VALUES ('DIA-044','Electricite',TO_DATE('2024-08-25','YYYY-MM-DD'),TO_DATE('2034-08-25','YYYY-MM-DD'),'elec015.pdf','BIEN-015');
-INSERT INTO SAE_Diagnostics VALUES ('DIA-045','Gaz',TO_DATE('2023-08-30','YYYY-MM-DD'),TO_DATE('2033-08-30','YYYY-MM-DD'),'gaz015.pdf','BIEN-015');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-043','DPE',TO_DATE('2025-08-20','YYYY-MM-DD'),TO_DATE('2035-08-20','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-015');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-044','Electricite',TO_DATE('2024-08-25','YYYY-MM-DD'),TO_DATE('2034-08-25','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-015');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-045','Gaz',TO_DATE('2023-08-30','YYYY-MM-DD'),TO_DATE('2033-08-30','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-015');
 
 -- BIEN-016
-INSERT INTO SAE_Diagnostics VALUES ('DIA-046','DPE',TO_DATE('2023-09-05','YYYY-MM-DD'),TO_DATE('2033-09-05','YYYY-MM-DD'),'dpe016.pdf','BIEN-016');
-INSERT INTO SAE_Diagnostics VALUES ('DIA-047','Electricite',TO_DATE('2022-09-10','YYYY-MM-DD'),TO_DATE('2032-09-10','YYYY-MM-DD'),'elec016.pdf','BIEN-016');
-INSERT INTO SAE_Diagnostics VALUES ('DIA-048','Gaz',TO_DATE('2024-09-15','YYYY-MM-DD'),TO_DATE('2034-09-15','YYYY-MM-DD'),'gaz016.pdf','BIEN-016');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-046','DPE',TO_DATE('2023-09-05','YYYY-MM-DD'),TO_DATE('2033-09-05','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-016');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-047','Electricite',TO_DATE('2022-09-10','YYYY-MM-DD'),TO_DATE('2032-09-10','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-016');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-048','Gaz',TO_DATE('2024-09-15','YYYY-MM-DD'),TO_DATE('2034-09-15','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-016');
 
 -- BIEN-017
-INSERT INTO SAE_Diagnostics VALUES ('DIA-049','DPE',TO_DATE('2024-09-20','YYYY-MM-DD'),TO_DATE('2034-09-20','YYYY-MM-DD'),'dpe017.pdf','BIEN-017');
-INSERT INTO SAE_Diagnostics VALUES ('DIA-050','Electricite',TO_DATE('2025-09-25','YYYY-MM-DD'),TO_DATE('2035-09-25','YYYY-MM-DD'),'elec017.pdf','BIEN-017');
-INSERT INTO SAE_Diagnostics VALUES ('DIA-051','Gaz',TO_DATE('2022-09-30','YYYY-MM-DD'),TO_DATE('2032-09-30','YYYY-MM-DD'),'gaz017.pdf','BIEN-017');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-049','DPE',TO_DATE('2024-09-20','YYYY-MM-DD'),TO_DATE('2034-09-20','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-017');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-050','Electricite',TO_DATE('2025-09-25','YYYY-MM-DD'),TO_DATE('2035-09-25','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-017');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-051','Gaz',TO_DATE('2022-09-30','YYYY-MM-DD'),TO_DATE('2032-09-30','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-017');
 
 -- BIEN-018
-INSERT INTO SAE_Diagnostics VALUES ('DIA-052','DPE',TO_DATE('2022-10-05','YYYY-MM-DD'),TO_DATE('2032-10-05','YYYY-MM-DD'),'dpe018.pdf','BIEN-018');
-INSERT INTO SAE_Diagnostics VALUES ('DIA-053','Electricite',TO_DATE('2024-10-10','YYYY-MM-DD'),TO_DATE('2034-10-10','YYYY-MM-DD'),'elec018.pdf','BIEN-018');
-INSERT INTO SAE_Diagnostics VALUES ('DIA-054','Gaz',TO_DATE('2023-10-15','YYYY-MM-DD'),TO_DATE('2033-10-15','YYYY-MM-DD'),'gaz018.pdf','BIEN-018');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-052','DPE',TO_DATE('2022-10-05','YYYY-MM-DD'),TO_DATE('2032-10-05','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-018');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-053','Electricite',TO_DATE('2024-10-10','YYYY-MM-DD'),TO_DATE('2034-10-10','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-018');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-054','Gaz',TO_DATE('2023-10-15','YYYY-MM-DD'),TO_DATE('2033-10-15','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-018');
 
 -- BIEN-019
-INSERT INTO SAE_Diagnostics VALUES ('DIA-055','DPE',TO_DATE('2023-10-20','YYYY-MM-DD'),TO_DATE('2033-10-20','YYYY-MM-DD'),'dpe019.pdf','BIEN-019');
-INSERT INTO SAE_Diagnostics VALUES ('DIA-056','Electricite',TO_DATE('2022-10-25','YYYY-MM-DD'),TO_DATE('2032-10-25','YYYY-MM-DD'),'elec019.pdf','BIEN-019');
-INSERT INTO SAE_Diagnostics VALUES ('DIA-057','Gaz',TO_DATE('2025-10-30','YYYY-MM-DD'),TO_DATE('2035-10-30','YYYY-MM-DD'),'gaz019.pdf','BIEN-019');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-055','DPE',TO_DATE('2023-10-20','YYYY-MM-DD'),TO_DATE('2033-10-20','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-019');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-056','Electricite',TO_DATE('2022-10-25','YYYY-MM-DD'),TO_DATE('2032-10-25','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-019');
+INSERT INTO SAE_Diagnostics VALUES ('DIA-057','Gaz',TO_DATE('2025-10-30','YYYY-MM-DD'),TO_DATE('2035-10-30','YYYY-MM-DD'),'Diagnostics/Diagnostics.pdf','BIEN-019');
 
 
 
