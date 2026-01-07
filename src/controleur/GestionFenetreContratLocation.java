@@ -154,6 +154,29 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 
 		}
 	}
+	
+	private void ouvrirFenetreLocataire(String idBien) {
+		try {
+			DaoLocataire daoLocataire = new DaoLocataire();
+			List<Locataire> locataires = daoLocataire.findLocataireByBienLouable(idBien);
+			if(locataires == null) {
+				JOptionPane.showMessageDialog(
+					    null,
+					    "Ce bien n'a pas de locataire",
+					    "Information",
+					    JOptionPane.INFORMATION_MESSAGE
+					);
+			}else {
+				DaoBienLouable db = new DaoBienLouable();
+				BienLouable bien = db.findById(idBien);
+				FenetreLocataire fen = new FenetreLocataire("FenetreBienLouable", locataires, bien);
+				fen.setVisible(true);
+				fenetre.dispose();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 	@Override
 	protected void gererMenuSpecifique(String texte) {
@@ -187,9 +210,8 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 				this.selected = contrats.get(row);
 				afficherContrat(contratSelectionne);
 				if (e.getClickCount() == 2) {
+					this.ouvrirFenetreLocataire(this.bl.getIdBienLouable());
 					fenetre.dispose();
-					FenetreLocataire fen = new FenetreLocataire("FenContratLocation", null, null);
-					fen.setVisible(true);
 				}
 			}
 		}
