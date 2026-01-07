@@ -8,7 +8,7 @@ import modele.Compteur;
 
 public class RequeteSelectCompteurById extends Requete<Compteur> {
 	public String requete() {
-		return "Select * from MSF5131A.SAE_Compteur where Id_Compteur = ? " ;
+		return "Select * from MSF5131A.SAE_Compteur where Id_Compteur = ? Order by Index_nouveau DESC" ;
 	}
 
 	public void parametres(PreparedStatement prSt, String... id) throws SQLException {

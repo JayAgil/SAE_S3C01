@@ -9,7 +9,7 @@ import modele.Facture;
 public class RequeteSelectDateFactureByBien extends Requete<Facture> {
 	
 	public String requete() {
-		return " Select * from MSF5131A.SAE_Facture where fk_Id_BienLouable = ? " ;
+		return " Select * from MSF5131A.SAE_Facture where fk_Id_BienLouable = ? Order by Date_de_facture DESC" ;
 	}
 
 	public void parametres(PreparedStatement prSt, String... id) throws SQLException {

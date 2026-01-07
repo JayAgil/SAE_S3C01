@@ -96,9 +96,13 @@ public class GestionFenetreAjouterPaiement extends GestionButtonFenetreAjouter {
 		DaoContratLocation dao;
 		try {
 			dao = new DaoContratLocation();
+			ContratLocation cl = dao.findContratLocataionByLocataire(locataireSelectionne.getIdLocataire());
 			for (ContratLocation c : dao.findAll()) {
 				comboBox.addItem(c);
 			}
+			 if (cl != null) {
+			        comboBox.setSelectedItem(cl);
+			    }
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

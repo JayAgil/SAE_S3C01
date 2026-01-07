@@ -122,6 +122,9 @@ public class FenetreContratLocation extends FenetreBase {
 		
 		JButton btnRevalCharge = new JButton("Revaloriser charge");
 		panel_2.add(btnRevalCharge);
+		
+		JButton btnReguCharges = new JButton("Regulariser charge");
+		panel_2.add(btnReguCharges);
 
 		JPanel panel_3 = new JPanel();
 		panel_1.add(panel_3, BorderLayout.CENTER);
@@ -391,6 +394,7 @@ public class FenetreContratLocation extends FenetreBase {
 		btnRetour.addActionListener((ActionListener) gestionClicContratLocation);
 		btnRevalLoyer.addActionListener(this.gestionClicContratLocation);
 		btnRevalCharge.addActionListener(this.gestionClicContratLocation);
+		btnReguCharges.addActionListener(this.gestionClicContratLocation);
 	}
 
 	public JTextField getTextFieldNomLoc() {

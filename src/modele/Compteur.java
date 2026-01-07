@@ -121,11 +121,6 @@ public class Compteur {
 		return Objects.equals(idCompteur, other.idCompteur);
 	}
 
-	public double calculerTotal() {
-		total = partieFixe + (partieVariable * (indexNouveau - indexAncien));
-		return total;
-	}
-
 	@Override
 	public String toString() {
 		return "Compteur [idCompteur=" + idCompteur + ", partieFixe=" + partieFixe + ", partieVariable="

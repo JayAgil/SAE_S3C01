@@ -9,15 +9,16 @@ public class RequeteSelectPaiementByLoc extends Requete<Paiement> {
 
     @Override
     public String requete() {
-        return """
-            SELECT p.*
-            FROM MSF5131A.SAE_Paiement p
-            JOIN MSF5131A.SAE_ContratLocation c
-                ON p.fk_Numero_de_contrat = c.Numero_de_contrat
-            JOIN MSF5131A.SAE_Contrat_Locataire cl
-                ON c.Numero_de_contrat = cl.Numero_de_contrat
-            WHERE cl.Id_Locataire = ?
-        """;
+    	return """
+    		    SELECT p.*
+    		    FROM MSF5131A.SAE_Paiement p
+    		    JOIN MSF5131A.SAE_ContratLocation c
+    		        ON p.fk_Numero_de_contrat = c.Numero_de_contrat
+    		    JOIN MSF5131A.SAE_Contrat_Locataire cl
+    		        ON c.Numero_de_contrat = cl.Numero_de_contrat
+    		    WHERE cl.Id_Locataire = ?
+    		    ORDER BY p.Date_Paiement DESC
+    		""";
     }
 
     @Override

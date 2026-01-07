@@ -13,7 +13,8 @@ public class RequeteSelectContratFromBienAndLoc extends Requete<ContratLocation>
 				+ "JOIN MSF5131A.SAE_Contrat_Locataire cll "
 				+ "ON cll.Numero_de_contrat = cl.Numero_de_contrat "
 				+ "WHERE cll.Id_Locataire = ? "
-				+ "AND cl.fk_Id_BienLouable = ? ";
+				+ "AND cl.fk_Id_BienLouable = ? "
+				+ "Order by Date_debut DESC";
 	}
 
 	public void parametres(PreparedStatement prSt, String... id) throws SQLException {

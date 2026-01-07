@@ -14,7 +14,8 @@ public class RequeteSelectContratLocationFromOneContratUnderTheBatiment extends 
 	            "JOIN MSF5131A.SAE_BienLouable b1 ON c1.fk_Id_BienLouable = b1.Id_BienLouable " +
 	            "JOIN MSF5131A.SAE_BienLouable b2 ON b2.fk_Adresse_Bat = b1.fk_Adresse_Bat " +
 	            "JOIN MSF5131A.SAE_ContratLocation c2 ON c2.fk_Id_BienLouable = b2.Id_BienLouable " +
-	            "WHERE c1.Numero_de_contrat = ?";
+	            "WHERE c1.Numero_de_contrat = ? "
+	            + "Order by c2.Date_debut DESC";
 	}
 	
     @Override

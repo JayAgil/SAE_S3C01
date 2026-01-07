@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import modele.BienLouable;
@@ -14,7 +15,7 @@ import modele.Diagnostics;
 import modele.dao.DaoDiagnostics;
 import vue.*;
 
-public class GestionFenetreDiagnostic extends GestionHeaderEtFooter  implements MouseListener{
+public class GestionFenetreDiagnostic extends GestionHeaderEtFooter implements MouseListener {
 
 	private FenetreDiagnostic fenetre;
 	private BienLouable bL;
@@ -23,6 +24,7 @@ public class GestionFenetreDiagnostic extends GestionHeaderEtFooter  implements 
 		super(fenetre);
 		this.fenetre = fenetre;
 		this.bL = fenetre.getBien();
+		this.fenetre.getTable().addMouseListener(this);
 	}
 
 	@Override
@@ -76,39 +78,42 @@ public class GestionFenetreDiagnostic extends GestionHeaderEtFooter  implements 
 			e.printStackTrace();
 		}
 	}
-	
-	private void openSelectedPDF() {
-		int selectedRow = fenetre.getTable().getSelectedRow();
-		if (selectedRow == -1)
-			return; // nothing selected
 
-		String path = (String) fenetre.getTable().getValueAt(selectedRow, 3); // column 3 = Fichier
+	private void ouvrirPDF() {
+		int selectedRow = fenetre.getTable().getSelectedRow();
+		if (selectedRow == -1) {
+			JOptionPane.showMessageDialog(fenetre, "Veuillez sélectionner un diagnostic.", "Aucune sélection",
+					JOptionPane.WARNING_MESSAGE);
+			return;
+		}
+		String path = (String) fenetre.getTable().getValueAt(selectedRow, 3);
 		if (path == null || path.isEmpty()) {
-			System.out.println("No PDF path set for this diagnostic.");
+			JOptionPane.showMessageDialog(fenetre, "Aucun fichier associé à ce diagnostic.", "Fichier manquant",
+					JOptionPane.WARNING_MESSAGE);
 			return;
 		}
 
 		try {
-			// Construct file path relative to project
 			File file = new File(System.getProperty("user.dir"), path);
 			if (!file.exists()) {
-				System.out.println("File does not exist: " + file.getAbsolutePath());
+				JOptionPane.showMessageDialog(fenetre, "Le fichier PDF est introuvable :\n" + file.getAbsolutePath(),
+						"Fichier introuvable", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
 
-			// Open the PDF
 			if (java.awt.Desktop.isDesktopSupported()) {
 				java.awt.Desktop.getDesktop().open(file);
 			} else {
-				System.out.println("Desktop not supported. Cannot open PDF.");
+				JOptionPane.showMessageDialog(fenetre, "Votre système ne permet pas l'ouverture automatique des PDF.",
+						"Fonction non supportée", JOptionPane.ERROR_MESSAGE);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			javax.swing.JOptionPane.showMessageDialog(fenetre, "Impossible d'ouvrir le PDF : " + e.getMessage(),
 					"Erreur", javax.swing.JOptionPane.ERROR_MESSAGE);
 		}
-	}
 
+	}
 
 	private boolean isExpiringThisMonth(java.util.Date date) {
 		java.util.Calendar cal = java.util.Calendar.getInstance();
@@ -124,32 +129,32 @@ public class GestionFenetreDiagnostic extends GestionHeaderEtFooter  implements 
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if (e.getClickCount() == 2) {
-			openSelectedPDF();
-		}		
+		if (e.getClickCount() == 1) {
+			ouvrirPDF();
+		}
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

@@ -6,7 +6,7 @@ import modele.ContratLocation;
 
 public class RequeteSelectContratLocationById extends Requete<ContratLocation> {
 	public String requete() {
-		return " Select * from MSF5131A.SAE_ContratLocation where numero_De_Contrat = ? " ;
+		return " Select * from MSF5131A.SAE_ContratLocation where numero_De_Contrat = ? Order by Date_debut DESC" ;
 	}
 
 	public void parametres(PreparedStatement prSt, String... id) throws SQLException {

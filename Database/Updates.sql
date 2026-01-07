@@ -16,6 +16,8 @@ UPDATE SAE_Paiement SET Designation_Paiement = 'Charges'
        OR Id_Paiement='PAY-039'
        ;
 
+--UPDATE SAE_ContratLocation SET Solde = 0 - Montant_Mensuel;
+UPDATE SAE_DateDernierLancement SET date_dernier_lancement = TO_DATE('2024-09-15','YYYY-MM-DD');
 
 UPDATE SAE_Paiement SET Designation_Paiement = 'Loyer'
        WHERE Id_Paiement= 'PAY-016' 
@@ -72,3 +74,4 @@ UPDATE SAE_Facture SET Designation_de_travaux = 'Peinture chambre et salon'
 UPDATE SAE_Facture SET Designation_de_travaux = 'Rafraichissement complet appartement'
        WHERE Numero_Facture = 'FAC-018'; 
 
+UPDATE SAE_DIAGNOSTICS SET Fichier = 'Diagnostics/Diagnostics.pdf';

@@ -1,4 +1,9 @@
-
+CREATE TABLE SAE_DateDernierLancement(
+    Id_Lock VARCHAR2(50) DEFAULT '1',
+    Date_dernier_lancement DATE,
+    constraint PK_T1 PRIMARY KEY (Id_Lock),
+    constraint CK_T1_Locked CHECK (Id_Lock='X')
+);
 
 CREATE TABLE SAE_Garant (
     Id_Garant VARCHAR2(50) PRIMARY KEY,
