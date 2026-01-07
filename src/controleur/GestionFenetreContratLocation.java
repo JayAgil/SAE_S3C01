@@ -1,5 +1,6 @@
 package controleur;
 
+import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
@@ -253,6 +254,11 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 		fenetre.getTextFieldCptEau().setText(String.valueOf(c.getIndexCompteurEau()));
 		fenetre.getTextFieldCptElec().setText(String.valueOf(c.getIndexCompteurElectricite()));
 		fenetre.getTextFieldCptGaz().setText(String.valueOf(c.getIndexCompteurGaz()));
+		if(c.getSolde()>=0) {
+			fenetre.getTextFieldSolde().setForeground(Color.GREEN);
+		}else {
+			fenetre.getTextFieldSolde().setForeground(Color.RED);
+		}
 		fenetre.getTextFieldSolde().setText(String.valueOf(c.getSolde()));
 
 		try {
