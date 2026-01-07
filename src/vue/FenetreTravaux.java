@@ -27,6 +27,8 @@ import javax.swing.border.EtchedBorder;
 import java.awt.Color;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FenetreTravaux extends FenetreBase {
 
@@ -75,6 +77,9 @@ public class FenetreTravaux extends FenetreBase {
 
 		JButton btnAjouterEntreprise = new JButton("Ajouter entreprise");
 		panel_1.add(btnAjouterEntreprise);
+		
+		JButton btnMAJ = new JButton("Mettre à jour");
+		panel_1.add(btnMAJ);
 
 		JButton btnGenFacture = new JButton("Visualiser facture");
 		panel_1.add(btnGenFacture);
@@ -91,31 +96,44 @@ public class FenetreTravaux extends FenetreBase {
 		panel.add(panel_3, BorderLayout.CENTER);
 		scrollPane = new JScrollPane();
 		table = new JTable();
-		table.setModel(new DefaultTableModel(new Object[][] { { null, null, null, null, null, null, null, null },
-				{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
-				{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
-				{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
-				{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
-				{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
-				{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
-				{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
-				{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
-				{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
-				{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
-				{ null, null, null, null, null, null, null, null }, },
-				new String[] { "Num\u00E9ro facture", "Montant", "Date de facture", "Compte bancaire", "Montant devis",
-						"Date de paiement", "D\u00E9signation travaux", "Entreprise" }) {
-			@SuppressWarnings("rawtypes")
-			Class[] columnTypes = new Class[] { String.class, String.class, String.class, String.class, Float.class,
-					String.class, String.class, String.class };
-
-			@SuppressWarnings({ "unchecked", "rawtypes" })
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+			},
+			new String[] {
+				"Num\u00E9ro facture", "Montant", "Date de facture", "Compte bancaire", "Montant devis", "Date de paiement", "D\u00E9signation travaux", "Entreprise"
+			}
+		) {
+			Class[] columnTypes = new Class[] {
+				String.class, String.class, String.class, String.class, Float.class, String.class, String.class, String.class
+			};
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
-
-			boolean[] columnEditables = new boolean[] { false, false, false, false, false, false, false, false };
-
+			boolean[] columnEditables = new boolean[] {
+				false, false, false, false, true, false, false, false
+			};
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
 			}
@@ -201,6 +219,7 @@ public class FenetreTravaux extends FenetreBase {
 		comboBox_Annee.addActionListener(this.gestionClic);
 		this.gestionClic.initialize();
 		btnRetour.addActionListener(this.gestionClic);
+		btnMAJ.addActionListener(this.gestionClic);
 
 	}
 
@@ -265,5 +284,4 @@ public class FenetreTravaux extends FenetreBase {
 	public String getFenetreAvant() {
 		return fenetreAvant;
 	}
-
 }

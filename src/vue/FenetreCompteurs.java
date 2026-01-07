@@ -109,7 +109,7 @@ public class FenetreCompteurs extends FenetreBase {
 				return columnTypes[columnIndex];
 			}
 			boolean[] columnEditables = new boolean[] {
-				true, true, false, false, true, true, true, false, true
+				true, true, true, true, true, true, true, true, false
 			};
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
