@@ -1,6 +1,8 @@
 package controleur;
 import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
+
 import modele.Assurance;
 import modele.Batiment;
 import modele.dao.DaoAssurance;
@@ -33,7 +35,6 @@ public class GestionFenetreAssurance extends GestionHeaderEtFooter {
                 fenAjouterAssurance.setVisible(true);
                 break;
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
             case "Modifier":
@@ -42,7 +43,16 @@ public class GestionFenetreAssurance extends GestionHeaderEtFooter {
             	a.setAdresseAgence(this.fenetre.getTextFieldAdresseAgence().getText());
             	a.setAgence(this.fenetre.getTextFieldAgence().getText());
             	a.setTelAgence(this.fenetre.getTextFieldTelAgence().getText());
+            	a.setPrime(Double.parseDouble(this.fenetre.getTxtFieldPrime().getText()));
+            	a.setMontant(Double.parseDouble(this.fenetre.getTxtFieldMontant().getText()));
+            	a.setTypeAssurance(this.fenetre.getTxtFieldType().getText());
             	dA.update(a);
+            	JOptionPane.showMessageDialog(
+            		    null, 
+            		    "Modification succès", 
+            		    "Information",                  
+            		    JOptionPane.INFORMATION_MESSAGE 
+            		);
                 break;
         }
     }
