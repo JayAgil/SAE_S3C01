@@ -10,7 +10,7 @@ public class RequeteSelectLocatairesMemeBien extends Requete<Locataire> {
     @Override
     public String requete() {
     	return """
-    		    SELECT DISTINCT l2.*
+    		    SELECT DISTINCT l2.*, c2.Date_debut
     		    FROM MSF5131A.SAE_Locataire l2
     		    JOIN MSF5131A.SAE_Contrat_Locataire cl2
     		        ON l2.Id_Locataire = cl2.Id_Locataire

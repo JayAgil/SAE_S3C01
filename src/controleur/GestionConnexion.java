@@ -3,6 +3,8 @@ package controleur;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.CallableStatement;
+import java.sql.Connection;
 import java.sql.SQLException;
 
 import javax.swing.JButton;
@@ -39,6 +41,9 @@ public class GestionConnexion implements ActionListener{
                     fenLogin.getLblMessage()
                         .setForeground(new Color(0, 128, 0));
                     fenLogin.getLblMessage().setText("Connexion réussie !");
+                    Connection cn = UtOracleDataSource.getConnectionBD();
+                    CallableStatement cs = cn.prepareCall("{call MSF5131A.VerifierDateLancement()}");
+                    cs.execute();
                     JOptionPane.showMessageDialog(fenLogin,
                         "Bienvenue, M. Millan !");
                     FenetrePrincipale fp = new FenetrePrincipale();
