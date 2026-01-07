@@ -7,11 +7,13 @@ import java.util.List;
 import java.util.Map;
 import java.sql.Date;
 
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import modele.BienLouable;
 import modele.ChargesGenerales;
 import modele.dao.DaoBienLouable;
+import modele.dao.DaoChargesGenerales;
 import vue.*;
 
 public class GestionFenetreCharges extends GestionHeaderEtFooter{
@@ -43,8 +45,23 @@ public class GestionFenetreCharges extends GestionHeaderEtFooter{
                 fenAjouterCharge.setVisible(true);
                 break;
 
-            case "Quitter":
-                fenetre.dispose();
+            case "Mettre à jour":
+            	JTable table = fenetre.getTable();
+            	int row = table.getSelectedRow();
+            	if (row != -1) {
+            		ChargesGenerales c = this.donnees.get(row);
+            		DaoChargesGenerales daoCharge;
+    				try {
+    					daoCharge = new DaoChargesGenerales();
+    					c.setMontant(Double.parseDouble(table.getValueAt(row, 1).toString()));
+    					c.setPourcentage(Float.parseFloat(table.getValueAt(row, 2).toString()));
+    					c.setQuotite(Double.parseDouble(table.getValueAt(row, 3).toString()));
+    					daoCharge.update(c);
+    				} catch (SQLException e1) {
+    					e1.printStackTrace();
+    				}
+            		
+            	}
                 break;
         }
     }

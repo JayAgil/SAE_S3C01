@@ -22,7 +22,7 @@ public class GestionFenetreCompteurs extends GestionHeaderEtFooter {
         super(fenetre);
         this.fenetre = fenetre;
         this.cpt = cpt;
-        if (this.fenetre.getFenetreAvant() == "FenPrincipale") {
+        if (this.fenetre.getFenetreAvant().equals("FenPrincipale")) {
         	this.fenetre.getBtnAjouterCompteur().hide();
         }
     }
@@ -123,15 +123,6 @@ public class GestionFenetreCompteurs extends GestionHeaderEtFooter {
     	        	BienLouable data = dBL.findByIdCompteur(cpt.get(0).getIdCompteur());
     	            FenetreBienLouable fp2 = new FenetreBienLouable("FenPrincipale", data);
     	            fp2.setVisible(true);
-    	            break;
-    	        default:
-				FenetreBienLouable fpDefault;
-				try {
-					fpDefault = new FenetreBienLouable(null, null);
-    	            fpDefault.setVisible(true);
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
     	            break;
     	    }
     	}
