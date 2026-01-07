@@ -76,7 +76,6 @@ public class FenetreLocataire extends FenetreBase {
 
 		JButton btnRetour = new JButton("Retour");
 		panelButtons.add(btnRetour);
-		btnRetour.addActionListener(this.gestionClic);
 
 		JButton btnPaiement = new JButton("Paiement");
 		panelButtons.add(btnPaiement);
@@ -354,6 +353,7 @@ public class FenetreLocataire extends FenetreBase {
 		btnAjouterLocataire.addActionListener(this.gestionClic);
 		btnPaiement.addActionListener(this.gestionClic);
 		btnRetirerLocataire.addActionListener(this.gestionClic);
+		btnRetour.addActionListener(this.gestionClic);
 
 	}
 

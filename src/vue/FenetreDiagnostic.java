@@ -21,6 +21,8 @@ import java.sql.SQLException;
 
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FenetreDiagnostic extends FenetreBase {
 
@@ -56,10 +58,13 @@ public class FenetreDiagnostic extends FenetreBase {
 		panel.add(panel_1, BorderLayout.SOUTH);
 
 		JButton btnRetour = new JButton("Retour");
+		panel_1.add(btnRetour);
 
 		JButton btnAjouter = new JButton("Ajouter");
 		panel_1.add(btnAjouter);
-		panel_1.add(btnRetour);
+		
+		JButton btnModifier = new JButton("Modifier");
+		panel_1.add(btnModifier);
 
 		JPanel panel_2 = new JPanel();
 		panel.add(panel_2, BorderLayout.NORTH);
@@ -128,8 +133,10 @@ public class FenetreDiagnostic extends FenetreBase {
 
 		this.gestionClic = new GestionFenetreDiagnostic(this);
 		this.gestionClic.initialize();
-		btnRetour.addActionListener(this.gestionClic);
 		this.gestionClic.chargerDonnees();
+		btnRetour.addActionListener(this.gestionClic);
+		btnModifier.addActionListener(this.gestionClic);
+
 	}
 
 	public JLabel getLblnbDiag() {
