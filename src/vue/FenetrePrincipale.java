@@ -172,8 +172,7 @@ public class FenetrePrincipale extends FenetreBase {
 		panelNbLoyePasPaye_1.addMouseListener(this.gestionClic);
 		FlowLayout fl_panelNbLoyePasPaye_1 = (FlowLayout) panelNbLoyePasPaye_1.getLayout();
 		fl_panelNbLoyePasPaye_1.setHgap(15);
-		panelNbLoyePasPaye_1.setBorder(new TitledBorder(null, "Contrats expirant ce mois", TitledBorder.LEADING,
-				TitledBorder.TOP, null, null));
+		panelNbLoyePasPaye_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Contrats expirant ce mois", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panelNorthCenter_1.add(panelNbLoyePasPaye_1);
 
 		lblPasPaye_1 = new JLabel("      8      ");
