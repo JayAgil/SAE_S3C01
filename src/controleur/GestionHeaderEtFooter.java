@@ -3,11 +3,9 @@ package controleur;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.util.List;
 
 import javax.swing.*;
 
-import modele.ContratLocation;
 import modele.dao.*;
 import vue.*;
 
@@ -89,9 +87,7 @@ public abstract class GestionHeaderEtFooter implements ActionListener {
 			break;
 
 		case "Contrat location":
-			DaoContratLocation daoContratLocation = new DaoContratLocation();
-			List<ContratLocation> liste = daoContratLocation.findAll();
-			new FenetreContratLocation("FenPrincipale", liste.get(0),null).setVisible(true);
+			new FenetreContratLocation("FenPrincipale", null,null).setVisible(true);
 			fenetre.dispose();
 			break;
 
