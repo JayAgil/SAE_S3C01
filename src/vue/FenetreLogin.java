@@ -1,6 +1,7 @@
 package vue;
 
 import java.awt.Color;
+import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
@@ -26,6 +27,17 @@ public class FenetreLogin extends JFrame {
 	private JPasswordField txtPassword;
 	private JLabel lblMessage;
 	private GestionConnexion gestionClic;
+	
+	public static void main(String[] args) {
+        EventQueue.invokeLater(()-> {
+            try {
+                FenetreLogin frame = new FenetreLogin();
+                frame.setVisible(true);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
 
 	public FenetreLogin() {
 		this.gestionClic = new GestionConnexion(this);
