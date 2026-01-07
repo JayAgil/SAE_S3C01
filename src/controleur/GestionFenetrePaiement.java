@@ -48,9 +48,9 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter implements Mou
 			if (paiementSelectionne == null) {
 				return;
 			}
-			System.out.print(paiementSelectionne);
 			FenetreQuittance fenQuittance = new FenetreQuittance(paiementSelectionne);
 			fenetre.getLayeredPane().add(fenQuittance);
+			fenQuittance.setVisible(true);
 			break;
 
 		}
@@ -152,7 +152,7 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter implements Mou
 
 			if (moisValide && anneeValide) {
 				Object[] ligne = { p.getId_paiement(), p.getContratLocation().getNumeroDeContrat(),
-						date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")), p.getMontant() };
+						date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")), p.getMontant(),p.getDesignation() };
 				model.addRow(ligne);
 			}
 		}
