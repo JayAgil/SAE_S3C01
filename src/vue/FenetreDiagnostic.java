@@ -152,7 +152,6 @@ public class FenetreDiagnostic extends FenetreBase {
 		this.gestionClic = new GestionFenetreDiagnostic(this);
 		this.gestionClic.initialize();
 		btnRetour.addActionListener(this.gestionClic);
-		table.addMouseListener(this.gestionClic);
 		this.gestionClic.chargerDonnees();
 	}
 

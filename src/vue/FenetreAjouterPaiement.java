@@ -8,6 +8,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.DateFormatter;
 
 import controleur.GestionFenetreAjouterPaiement;
 import controleur.GestionFenetrePaiement;
@@ -16,7 +17,11 @@ import modele.Locataire;
 
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
+
 import java.awt.Font;
+import java.text.SimpleDateFormat;
+
 import javax.swing.JButton;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +33,7 @@ public class FenetreAjouterPaiement extends JInternalFrame {
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
     private GestionFenetreAjouterPaiement gestionClic;
-    private JTextField textFieldDate;
+    private JTextField champDate;
     private JTextField textFieldMontant;
     private JTextField textFieldIdPaiement;
     private JTextField textFieldDesignation;
@@ -118,11 +123,14 @@ public class FenetreAjouterPaiement extends JInternalFrame {
         comboBox = new JComboBox<ContratLocation>();
         comboBox.setBounds(234, 116, 96, 21);
         panel_3.add(comboBox);
-        
-        textFieldDate = new JTextField();
-        textFieldDate.setBounds(234, 220, 96, 19);
-        panel_3.add(textFieldDate);
-        textFieldDate.setColumns(10);
+		
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		DateFormatter dateFormatter = new DateFormatter(format);
+        champDate = new JFormattedTextField(dateFormatter);
+        champDate.setBounds(234, 220, 96, 19);
+        panel_3.add(champDate);
+        champDate.setColumns(10);
+        champDate.setToolTipText("Format attendu : yyyy-MM-dd");
         
         JLabel lblDatePaiement = new JLabel("Date paiement :");
         lblDatePaiement.setBounds(75, 224, 108, 13);
@@ -155,11 +163,11 @@ public class FenetreAjouterPaiement extends JInternalFrame {
     }
     
     public JTextField getTextFieldDate() {
-		return textFieldDate;
+		return champDate;
 	}
 
 	public void setTextFieldDate(JTextField textFieldDate) {
-		this.textFieldDate = textFieldDate;
+		this.champDate = textFieldDate;
 	}
 
 	public JTextField getTextFieldMontant() {
@@ -198,7 +206,7 @@ public class FenetreAjouterPaiement extends JInternalFrame {
         List<JTextField> fields = new ArrayList<>();
         fields.add(textFieldIdPaiement);
         fields.add(textFieldMontant);
-        fields.add(textFieldDate);
+        fields.add(champDate);
         fields.add(textFieldDesignation);
         return fields;
     }

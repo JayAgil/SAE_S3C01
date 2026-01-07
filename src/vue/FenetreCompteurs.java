@@ -176,8 +176,7 @@ public class FenetreCompteurs extends FenetreBase {
 		panel_4.add(lblNewLabel, gbc_lblNewLabel);
 
 		JPanel panel_4_1 = new JPanel();
-		panel_4_1.setBorder(new TitledBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)),
-				"Total \u00C9electricit\u00E9", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_4_1.setBorder(new TitledBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)), "Total \u00C9lectricit\u00E9", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		GridBagConstraints gbc_panel_4_1 = new GridBagConstraints();
 		gbc_panel_4_1.insets = new Insets(0, 0, 5, 5);
 		gbc_panel_4_1.fill = GridBagConstraints.BOTH;

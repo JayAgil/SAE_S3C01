@@ -7,6 +7,6 @@ public class RequeteSelectCompteur extends Requete<Compteur> {
 	@Override
 	public String requete() {
 		// TODO Auto-generated method stub
-		return " Select * from MSF5131A.SAE_Compteur " ;
+		return " Select * from MSF5131A.SAE_Compteur Order by Index_nouveau DESC" ;
 	}
 }

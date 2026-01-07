@@ -15,8 +15,6 @@ public class GestionFenetreCompteurs extends GestionHeaderEtFooter {
     private FenetreCompteurs fenetre;
     private List<Compteur> cpt;
 
-   
-
 	public GestionFenetreCompteurs(FenetreCompteurs fenetre, List<Compteur> cpt) {
         super(fenetre);
         this.fenetre = fenetre;
@@ -37,7 +35,6 @@ public class GestionFenetreCompteurs extends GestionHeaderEtFooter {
         }
         for (Compteur c : cpt) {
             double consommation = c.getIndexNouveau() - c.getIndexAncien();
-            double total = c.calculerTotal(); 
             model.addRow(new Object[] {
                 c.getType(),                                   
                 c.getDateInstallation(),                     
@@ -47,7 +44,7 @@ public class GestionFenetreCompteurs extends GestionHeaderEtFooter {
                 consommation,                                  
                 String.format("%.2f €", c.getPartieVariable()), 
                 String.format("%.2f €", c.getPartieFixe()),    
-                String.format("%.2f €", total)               
+                String.format("%.2f €", c.getTotal())               
             });
         }
     }
@@ -61,7 +58,7 @@ public class GestionFenetreCompteurs extends GestionHeaderEtFooter {
             return;
         }
         for (Compteur c : cpt) {
-            double total = c.calculerTotal();
+            double total = c.getTotal();
             switch (c.getType().toUpperCase()) {
                 case "EAU":
                     totalEau += total;

@@ -12,7 +12,8 @@ public class RequeteSelectCompteurByBatiment extends Requete<Compteur> {
 			    	    "FROM MSF5131A.SAE_Batiment bat " +
 			    	    "JOIN MSF5131A.SAE_BienLouable b ON b.fk_Adresse_Bat = bat.Adresse " +
 			    	    "JOIN MSF5131A.SAE_Compteur c ON c.fk_Id_BienLouable = b.Id_BienLouable " +
-			    	    "WHERE bat.Adresse = ?";
+			    	    "WHERE bat.Adresse = ? "
+			    	    + "Order by Index_nouveau DESC";
 
 	}
 	
