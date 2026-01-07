@@ -57,10 +57,6 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 			fenetre.getLayeredPane().add(fACL).setVisible(true);
 			break;
 
-		case "Annuler":
-			fenetre.dispose();
-			break;
-
 		case "Revaloriser loyer":
 			Calendar cal = Calendar.getInstance();
 			int annne1 = cal.get(Calendar.YEAR);

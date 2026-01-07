@@ -29,7 +29,6 @@ public class FenetreAjouterEntreprise extends JInternalFrame {
 
 	public FenetreAjouterEntreprise() {
 		setResizable(false);
-		GestionFenetreAjouterEntreprise gestionClic = new GestionFenetreAjouterEntreprise(this);
 		setClosable(true);
 		setIconifiable(true);
 		setMaximizable(true);
@@ -105,19 +104,22 @@ public class FenetreAjouterEntreprise extends JInternalFrame {
 		contentPane.add(textFieldSpecialite);
 
 		JButton btnVider = new JButton("Vider");
-		btnVider.addActionListener(gestionClic);
 		btnVider.setBounds(171, 390, 100, 30);
 		contentPane.add(btnVider);
 
 		JButton btnAjouter = new JButton("Ajouter");
-		btnAjouter.addActionListener(gestionClic);
 		btnAjouter.setBounds(52, 390, 100, 30);
 		contentPane.add(btnAjouter);
 
 		JButton btnRetour = new JButton("Retour");
-		btnRetour.addActionListener(gestionClic);
 		btnRetour.setBounds(294, 390, 100, 30);
 		contentPane.add(btnRetour);
+		
+		GestionFenetreAjouterEntreprise gestionClic = new GestionFenetreAjouterEntreprise(this);
+		btnVider.addActionListener(gestionClic);
+		btnAjouter.addActionListener(gestionClic);
+		btnRetour.addActionListener(gestionClic);
+
 	}
 
 	public List<JTextField> getAllEntrepriseTextFields() {

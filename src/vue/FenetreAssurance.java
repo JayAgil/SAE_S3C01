@@ -7,6 +7,8 @@ import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
 import controleur.GestionFenetreAssurance;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FenetreAssurance extends FenetreBase {
 
@@ -23,6 +25,7 @@ public class FenetreAssurance extends FenetreBase {
 	private JPanel panelNombreBien;
 	private JLabel lblNbBien;
 	private String bat;
+	private JButton btnModifier;
 
 	public FenetreAssurance(String bat) throws SQLException {
 		super();
@@ -30,13 +33,11 @@ public class FenetreAssurance extends FenetreBase {
 		setTitle("Assurance");
 		setSize(600, 650);
 		setResizable(false);
-		gestionClic = new GestionFenetreAssurance(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Container contentPane = getContentPane();
 		contentPane.setLayout(new BorderLayout(10, 10));
 		this.setJMenuBar(createHeader());
 
-		this.gestionClic.initialize();
 		JPanel panelCenter = new JPanel(new GridBagLayout());
 		contentPane.add(panelCenter, BorderLayout.CENTER);
 
@@ -99,7 +100,6 @@ public class FenetreAssurance extends FenetreBase {
 		panelCenter.add(lblPrime, gbcLabel2);
 
 		txtFieldPrime = new JTextField(15);
-		txtFieldPrime.setEditable(false);
 		GridBagConstraints gbcTextField2 = new GridBagConstraints();
 		gbcTextField2.insets = new Insets(10, 10, 10, 10);
 		gbcTextField2.fill = GridBagConstraints.HORIZONTAL;
@@ -119,7 +119,6 @@ public class FenetreAssurance extends FenetreBase {
 		panelCenter.add(lblMontant, gbcLabel3);
 
 		txtFieldMontant = new JTextField(15);
-		txtFieldMontant.setEditable(false);
 		GridBagConstraints gbcTextField3 = new GridBagConstraints();
 		gbcTextField3.insets = new Insets(10, 10, 10, 10);
 		gbcTextField3.fill = GridBagConstraints.HORIZONTAL;
@@ -139,7 +138,6 @@ public class FenetreAssurance extends FenetreBase {
 		panelCenter.add(lblType, gbcLabel4);
 
 		txtFieldType = new JTextField(15);
-		txtFieldType.setEditable(false);
 		GridBagConstraints gbcTextField4 = new GridBagConstraints();
 		gbcTextField4.insets = new Insets(10, 10, 10, 10);
 		gbcTextField4.fill = GridBagConstraints.HORIZONTAL;
@@ -159,7 +157,6 @@ public class FenetreAssurance extends FenetreBase {
 		panelCenter.add(lblAgence, gbcLabel5);
 
 		textFieldAgence = new JTextField(15);
-		textFieldAgence.setEditable(false);
 		GridBagConstraints gbcTextField5 = new GridBagConstraints();
 		gbcTextField5.insets = new Insets(10, 10, 10, 10);
 		gbcTextField5.fill = GridBagConstraints.HORIZONTAL;
@@ -179,7 +176,6 @@ public class FenetreAssurance extends FenetreBase {
 		panelCenter.add(lblAdresse, gbcLabel6);
 
 		textFieldAdresseAgence = new JTextField(15);
-		textFieldAdresseAgence.setEditable(false);
 		GridBagConstraints gbcTextField6 = new GridBagConstraints();
 		gbcTextField6.insets = new Insets(10, 10, 10, 10);
 		gbcTextField6.fill = GridBagConstraints.HORIZONTAL;
@@ -199,7 +195,6 @@ public class FenetreAssurance extends FenetreBase {
 		panelCenter.add(lblTel, gbcLabel7);
 
 		textFieldTelAgence = new JTextField(15);
-		textFieldTelAgence.setEditable(false);
 		GridBagConstraints gbcTextField7 = new GridBagConstraints();
 		gbcTextField7.insets = new Insets(10, 10, 10, 10);
 		gbcTextField7.fill = GridBagConstraints.HORIZONTAL;
@@ -213,21 +208,38 @@ public class FenetreAssurance extends FenetreBase {
 
 		JPanel panelButtons = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 10));
 		JButton btnAjouter = new JButton("Ajouter assurance");
-		btnAjouter.addActionListener(gestionClic);
 		panelButtons.add(btnAjouter);
 
 		JButton btnRetour = new JButton("Retour");
-		btnRetour.addActionListener(gestionClic);
 		panelButtons.add(btnRetour);
 
 		southPanel.add(panelButtons, BorderLayout.NORTH);
+		
+		btnModifier = new JButton("Modifier");
+		panelButtons.add(btnModifier);
 
 		southPanel.add(createFooter(), BorderLayout.SOUTH);
 
 		contentPane.add(southPanel, BorderLayout.SOUTH);
 		setLocationRelativeTo(null);
 		setVisible(true);
+		
+		gestionClic = new GestionFenetreAssurance(this);
+		this.gestionClic.initialize();
 		this.gestionClic.chargerAssuranceBatiment(this.getBat());
+		btnAjouter.addActionListener(gestionClic);
+		btnRetour.addActionListener(gestionClic);
+		btnModifier.addActionListener(this.gestionClic);
+
+
+	}
+
+	public JButton getBtnModifier() {
+		return btnModifier;
+	}
+
+	public void setBtnModifier(JButton btnModifier) {
+		this.btnModifier = btnModifier;
 	}
 
 	public JTextField getTextFieldNumAssurance() {

@@ -46,7 +46,6 @@ public class FenetreAjouterCompteur extends JInternalFrame {
 	public FenetreAjouterCompteur(BienLouable b, GestionFenetreCompteurs parent) {
 		this.b = b;
 		this.parent = parent;
-		gestionClic = new GestionFenetreAjouterCompteur(this, b, parent);
 		setResizable(false);
 		setClosable(true);
 		setIconifiable(true);
@@ -206,19 +205,22 @@ public class FenetreAjouterCompteur extends JInternalFrame {
 		JPanel panelFooter = new JPanel();
 
 		JButton btnRetour = new JButton("Retour");
-		btnRetour.addActionListener(this.gestionClic);
 
 		JButton btnAjouter = new JButton("Ajouter");
-		btnAjouter.addActionListener(this.gestionClic);
 		panelFooter.add(btnAjouter);
 
 		JButton btnVider = new JButton("Vider");
-		btnVider.addActionListener(this.gestionClic);
 		panelFooter.add(btnVider);
 
 		panelFooter.add(btnRetour);
 
 		getContentPane().add(panelFooter, BorderLayout.SOUTH);
+
+		gestionClic = new GestionFenetreAjouterCompteur(this, b, parent);
+		btnRetour.addActionListener(this.gestionClic);
+		btnAjouter.addActionListener(this.gestionClic);
+		btnVider.addActionListener(this.gestionClic);
+
 	}
 
 	public JComboBox<String> getComboType() {

@@ -39,7 +39,6 @@ public class FenetreAjouterDiagnostic extends JInternalFrame {
 		setResizable(false);
 		this.b = b;
 		this.parent = parent;
-		this.gestionClic = new GestionFenetreAjouterDiagnostic(this, b, parent);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 500);
 		contentPane = new JPanel();
@@ -126,7 +125,8 @@ public class FenetreAjouterDiagnostic extends JInternalFrame {
 		JButton btnRetour = new JButton("Retour");
 		btnRetour.setBounds(289, 397, 100, 25);
 		contentPane.add(btnRetour);
-
+		
+		this.gestionClic = new GestionFenetreAjouterDiagnostic(this, b, parent);
 		btnChoisir.addActionListener(this.gestionClic);
 		btnVider.addActionListener(this.gestionClic);
 		btnAjouter.addActionListener(this.gestionClic);

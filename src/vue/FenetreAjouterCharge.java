@@ -42,7 +42,6 @@ public class FenetreAjouterCharge extends JInternalFrame {
 	public FenetreAjouterCharge(BienLouable bl, GestionFenetreCharges parent) {
 		this.bl = bl;
 		this.parent = parent;
-		gestionClic = new GestionFenetreAjouterCharge(this, bl, parent);
 		setResizable(false);
 		setClosable(true);
 		setIconifiable(true);
@@ -173,19 +172,21 @@ public class FenetreAjouterCharge extends JInternalFrame {
 		JPanel panelFooter = new JPanel();
 
 		JButton btnVider = new JButton("Vider");
-		btnVider.addActionListener(this.gestionClic);
 
 		JButton btnAjouter = new JButton("Ajouter");
-		btnAjouter.addActionListener(this.gestionClic);
 		panelFooter.add(btnAjouter);
 		panelFooter.add(btnVider);
 
 		getContentPane().add(panelFooter, BorderLayout.SOUTH);
 
 		JButton btnRetour = new JButton("Retour");
-		btnRetour.addActionListener(this.gestionClic);
 
 		panelFooter.add(btnRetour);
+		gestionClic = new GestionFenetreAjouterCharge(this, bl, parent);
+		btnVider.addActionListener(this.gestionClic);
+		btnAjouter.addActionListener(this.gestionClic);
+		btnRetour.addActionListener(this.gestionClic);
+
 	}
 
 	public List<JTextField> getAllChargeTextFields() {

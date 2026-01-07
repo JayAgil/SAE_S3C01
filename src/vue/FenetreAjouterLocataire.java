@@ -226,6 +226,7 @@ public class FenetreAjouterLocataire extends JInternalFrame {
 		textFieldIdGarant = new JTextField();
 		textFieldIdGarant.setBounds(85, 320, 105, 25);
 		contentPane.add(textFieldIdGarant);
+		
 		gestionClic = new GestionFenetreAjouterLocataire(this, gestion, b);
 		btnAjouter.addActionListener(this.gestionClic);
 		btnVider.addActionListener(this.gestionClic);

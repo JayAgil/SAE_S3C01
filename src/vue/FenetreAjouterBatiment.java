@@ -34,7 +34,6 @@ public class FenetreAjouterBatiment extends JInternalFrame {
 	public FenetreAjouterBatiment(GestionFenetrePrincipale parent) {
 		setResizable(false);
 		this.parent = parent;
-		this.gestionClic = new GestionFenetreAjouterBatiment(this, parent);
 		setBounds(100, 100, 450, 500);
 		getContentPane().setLayout(new BorderLayout(0, 0));
 
@@ -64,13 +63,10 @@ public class FenetreAjouterBatiment extends JInternalFrame {
 		panelSouth.add(btnVider);
 
 		JButton btnRetour = new JButton("Retour");
-		btnRetour.addActionListener(this.gestionClic);
 		panelSouth.add(btnRetour);
 
 		Component verticalStrut_1 = Box.createVerticalStrut(100);
 		panelSouth.add(verticalStrut_1);
-		btnVider.addActionListener(this.gestionClic);
-		btnAjouter.addActionListener(this.gestionClic);
 
 		JPanel panelCenter = new JPanel();
 		panel_10.add(panelCenter);
@@ -126,6 +122,11 @@ public class FenetreAjouterBatiment extends JInternalFrame {
 		panel_7.add(textFieldDate);
 		textFieldDate.setColumns(10);
 		textFieldDate.setToolTipText("Format attendu : yyyy-MM-dd");
+
+		this.gestionClic = new GestionFenetreAjouterBatiment(this, parent);
+		btnRetour.addActionListener(this.gestionClic);
+		btnVider.addActionListener(this.gestionClic);
+		btnAjouter.addActionListener(this.gestionClic);
 
 	}
 

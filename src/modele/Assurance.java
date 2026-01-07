@@ -4,6 +4,13 @@ import java.util.Objects;
 
 public class Assurance {
 	
+	@Override
+	public String toString() {
+		return "Assurance [numeroAssurance=" + numeroAssurance + ", prime=" + prime + ", montant=" + montant
+				+ ", typeAssurance=" + typeAssurance + ", batiment=" + batiment + ", agence=" + agence
+				+ ", adresseAgence=" + adresseAgence + ", telAgence=" + telAgence + "]";
+	}
+
 	private String numeroAssurance;
 	private double prime;
 	private double montant;

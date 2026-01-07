@@ -47,7 +47,6 @@ public class FenetreAjouterContratLocation extends JInternalFrame {
 		this.bl = bl;
 		this.parent = parent;
 		setResizable(false);
-		this.gestionClic = new GestionFenetreAjouterContratLocation(this, bl, parent);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, -17, 450, 500);
 		contentPane = new JPanel();
@@ -349,6 +348,7 @@ public class FenetreAjouterContratLocation extends JInternalFrame {
 		JButton btnRetour = new JButton("Retour");
 		buttonPanel.add(btnRetour);
 
+		this.gestionClic = new GestionFenetreAjouterContratLocation(this, bl, parent);
 		btnVider.addActionListener(this.gestionClic);
 		btnAjouter.addActionListener(this.gestionClic);
 		btnRetour.addActionListener(this.gestionClic);

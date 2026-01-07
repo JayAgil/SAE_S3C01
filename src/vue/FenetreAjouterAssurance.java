@@ -35,7 +35,6 @@ public class FenetreAjouterAssurance extends JInternalFrame {
 	public FenetreAjouterAssurance(Batiment b, GestionFenetreAssurance parent) {
 		setResizable(false);
 		this.parent = parent;
-		this.gestionClic = new GestionFenetreAjouterAssurance(this, b, parent);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 500);
 		contentPane = new JPanel();
@@ -126,6 +125,7 @@ public class FenetreAjouterAssurance extends JInternalFrame {
 		btnRetour.setBounds(283, 432, 85, 21);
 		contentPane.add(btnRetour);
 
+		this.gestionClic = new GestionFenetreAjouterAssurance(this, b, parent);
 		btnVider.addActionListener(this.gestionClic);
 		btnAjouter.addActionListener(this.gestionClic);
 		btnRetour.addActionListener(this.gestionClic);
