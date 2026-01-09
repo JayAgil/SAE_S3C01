@@ -128,4 +128,14 @@ public abstract class GestionHeaderEtFooter implements ActionListener {
 
 	protected void gererBoutonSpecifique(String texte) throws SQLException {
 	}
+	
+	protected double parseDoubleSafe(Object value) {
+        if (value == null) {
+        	return 0.0;
+        }
+        String str = value.toString().replaceAll("[^0-9.,]", "");
+        str = str.replace(",", ".");
+        if (str.isEmpty()) return 0.0;
+        return Double.parseDouble(str);
+    }
 }
