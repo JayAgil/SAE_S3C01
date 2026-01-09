@@ -56,6 +56,7 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter implements Mou
 			dP.delete(paiementSelectionne);
 			paiements.remove(paiementSelectionne);
 			this.chargerDonnees();
+			break;
 		case "Quittance loyer":
 			if (paiementSelectionne == null) {
 				return;

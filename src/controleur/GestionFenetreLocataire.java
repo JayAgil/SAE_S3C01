@@ -14,6 +14,7 @@ import modele.ContratLocation;
 import modele.Locataire;
 import modele.Paiement;
 import modele.dao.DaoContratLocation;
+import modele.dao.DaoGarant;
 import modele.dao.DaoLocataire;
 import modele.dao.DaoPaiement;
 import vue.*;
@@ -59,6 +60,8 @@ public class GestionFenetreLocataire extends GestionHeaderEtFooter implements Mo
 				if (confirm == JOptionPane.YES_OPTION) {
 					try {
 						DaoLocataire dao = new DaoLocataire();
+						DaoGarant dG = new DaoGarant();
+						dG.delete(dG.findByLoc(locataireSelectionne.getIdLocataire()));
 						dao.delete(locataireSelectionne);
 						locataires.remove(locataireSelectionne);
 						chargerDonnes();
