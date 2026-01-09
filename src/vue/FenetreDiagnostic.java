@@ -100,10 +100,16 @@ public class FenetreDiagnostic extends FenetreBase {
 
 		table = new JTable();
 		scrollPane.setViewportView(table);
-		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "ID Diagnostic", "Type Diagnostics",
-				"Date R\u00E9alisation", "Date Validit\u00E9", "Fichier", "Bien Associ\u00E9" }) {
-			boolean[] columnEditables = new boolean[] { false, true, true, true, true, true };
-
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"ID Diagnostic", "Type Diagnostics", "Date R\u00E9alisation", "Date Validit\u00E9", "Fichier", "Bien Associ\u00E9"
+			}
+		) {
+			boolean[] columnEditables = new boolean[] {
+				false, true, true, true, true, false
+			};
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
 			}
