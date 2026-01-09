@@ -1,6 +1,7 @@
 package vue;
 
 import controleur.GestionFenetreContratLocation;
+import controleur.GestionHeaderEtFooter;
 import modele.BienLouable;
 import modele.ContratLocation;
 
@@ -367,6 +368,8 @@ public class FenetreContratLocation extends FenetreBase {
 
 		this.gestionClicContratLocation = new GestionFenetreContratLocation(this, this.cl, bl);
 		this.gestionClicContratLocation.initialize();
+	    GestionHeaderEtFooter gh = new GestionHeaderEtFooter(this) {};
+	    gh.initialize();
 		btnAjouter.addActionListener(gestionClicContratLocation);
 		btnRevalLoyer.addActionListener(this.gestionClicContratLocation);
 		btnRevalCharge.addActionListener(this.gestionClicContratLocation);
