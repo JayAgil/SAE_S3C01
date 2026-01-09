@@ -7,7 +7,7 @@ import modele.Paiement;
 public class RequeteUpdatePaiement extends Requete<Paiement>{
     @Override
     public String requete() {
-        return " Update MSF5131A.SAE_PAIEMENT set Montant =  ?, Date_Paiement = ?, Designation_Paiement = ?, fk_Numero_de_contrat = ? Where Id_Paiement = ? ";
+        return " Update MSF5131A.SAE_PAIEMENT SET Montant =  ?, Date_Paiement = ?, Designation_Paiement = ?, fk_Numero_de_contrat = ? Where Id_Paiement = ? ";
 
     }
 

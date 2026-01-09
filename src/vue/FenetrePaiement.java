@@ -2,10 +2,12 @@ package vue;
 
 import java.awt.*;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import controleur.GestionFenetrePaiement;
@@ -14,8 +16,6 @@ import modele.Paiement;
 
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class FenetrePaiement extends FenetreBase {
 
@@ -108,21 +108,20 @@ public class FenetrePaiement extends FenetreBase {
 		btnAjouterPaiement = new JButton("Ajouter paiement");
 		panelButtons.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		panelButtons.add(btnAjouterPaiement);
-		
+
 		JButton btnMAJ = new JButton("Mettre à jour");
 		panelButtons.add(btnMAJ);
 
 		btnQuittance = new JButton("Quittance loyer");
 		panelButtons.add(btnQuittance);
 		btnQuittance.setEnabled(false);
-				
-				JButton btnRetirer = new JButton("Retirer");
 
-				panelButtons.add(btnRetirer);
-		
-				JButton btnRetour = new JButton("Retour");
-				panelButtons.add(btnRetour);
+		JButton btnRetirer = new JButton("Retirer");
 
+		panelButtons.add(btnRetirer);
+
+		JButton btnRetour = new JButton("Retour");
+		panelButtons.add(btnRetour);
 
 		JPanel panel_7 = new JPanel();
 		mainPanel.add(panel_7, BorderLayout.CENTER);
@@ -184,29 +183,36 @@ public class FenetrePaiement extends FenetreBase {
 		table = new JTable();
 		table.setFillsViewportHeight(true);
 		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-			},
-			new String[] {
-				"ID Paiement", "ID Contrat", "Date Paiement", "Montant", "D\u00E9signation"
-			}
-		) {
-			Class[] columnTypes = new Class[] {
-				String.class, String.class, String.class, Double.class, String.class
-			};
-			@Override
-		    public Class getColumnClass(int columnIndex) {
-		        return columnTypes[columnIndex];
-		    }
+				new Object[][] { { null, null, null, null, null }, { null, null, null, null, null },
+						{ null, null, null, null, null }, },
+				new String[] { "ID Paiement", "ID Contrat", "Date Paiement", "Montant", "D\u00E9signation" }) {
+			Class[] columnTypes = new Class[] { String.class, String.class, String.class, Double.class, String.class };
 
+			@Override
+			public Class getColumnClass(int columnIndex) {
+				return columnTypes[columnIndex];
+			}
+
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return column > 1;
+			}
+		});
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+		table.getColumnModel().getColumn(2).setCellRenderer(new DefaultTableCellRenderer() {
 		    @Override
-		    public boolean isCellEditable(int row, int column) {
-		        return column > 1;
+		    public void setValue(Object value) {
+		        if (value instanceof java.util.Date) {
+		            setText(sdf.format((java.util.Date) value));
+		        } else {
+		            setText(value != null ? value.toString() : "");
+		        }
 		    }
 		});
 		scrollPane_1.setViewportView(table);
+		table.setEnabled(true);
 
 		lblTotalPaiementAnnees = new JLabel("3600");
 		lblTotalPaiementAnnees.setFont(new Font("Tahoma", Font.PLAIN, 99));

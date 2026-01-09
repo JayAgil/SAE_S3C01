@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -68,15 +70,35 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter implements Mou
 		case "Mettre à jour" :
 			JTable table = fenetre.getTable();
         	int row = table.getSelectedRow();
+        	
+        	if (table.isEditing()) {
+				table.getCellEditor().stopCellEditing();
+			}
+        	
         	if (row != -1) {
         		Paiement p = this.paiements.get(row);
         		DaoPaiement daoPaiement;
 				try {
 					daoPaiement = new DaoPaiement();
-					p.setDatepaiement(Date.valueOf(table.getValueAt(row, 2).toString()));
+					
+					String dateStr = table.getValueAt(row, 2).toString();
+		            if (!dateStr.isEmpty()) {
+		                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		                LocalDate localDate = LocalDate.parse(dateStr, formatter);
+		                p.setDatepaiement(Date.valueOf(localDate));
+		            } else {
+		                p.setDatepaiement(null);
+		            }
+		            
+		            
 					p.setMontant(Double.parseDouble(table.getValueAt(row, 3).toString()));
 					p.setDesignation(table.getValueAt(row, 4).toString());
 					daoPaiement.update(p);
+					
+					JOptionPane.showMessageDialog(fenetre, "Données mises à jour !", "Mise à jour",
+							JOptionPane.INFORMATION_MESSAGE);
+					
+					System.out.print(p);
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}	
