@@ -10,8 +10,8 @@ public class RequeteDeleteBatiment extends Requete<Batiment> {
 		
 	}
 
-	public void parametres(PreparedStatement prSt, String... id) throws SQLException {
-		prSt.setString(1, id[0]);
+	public void parametres(PreparedStatement prSt, Batiment b) throws SQLException {
+		prSt.setString(1, b.getAdresse());
 	}
 
 

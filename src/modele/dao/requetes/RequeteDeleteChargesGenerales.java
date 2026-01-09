@@ -10,8 +10,8 @@ public class RequeteDeleteChargesGenerales extends Requete<ChargesGenerales>{
 		return " Delete from MSF5131A.SAE_Charges_Generale where Id_Charges_Generale = ? " ;
 	}
 
-	public void parametres(PreparedStatement prSt, String... id) throws SQLException {
-		prSt.setString(1, id[0]);
+	public void parametres(PreparedStatement prSt, ChargesGenerales cg) throws SQLException {
+		prSt.setString(1, cg.getIdChargesGenerales());
 	}
 
 

@@ -1,9 +1,12 @@
+--Permet D'update la table au lancement de l'appli
 CREATE TABLE SAE_DateDernierLancement(
     Id_Lock VARCHAR2(50) DEFAULT '1',
     Date_dernier_lancement DATE,
     constraint PK_T1 PRIMARY KEY (Id_Lock),
     constraint CK_T1_Locked CHECK (Id_Lock='X')
 );
+
+
 
 CREATE TABLE SAE_Garant (
     Id_Garant VARCHAR2(50) PRIMARY KEY,
@@ -76,6 +79,15 @@ CREATE TABLE SAE_Charges_Generale (
     Date_Charge Date, 
     fk_Id_BienLouable VARCHAR2(50),
     CONSTRAINT fk_chg_bien FOREIGN KEY (fk_Id_BienLouable) REFERENCES SAE_BienLouable(Id_BienLouable)
+);
+
+
+
+--Sert a savoir la derniere date d anniversaire pour verifier la difference entre la provision des charges et le cout reel
+CREATE TABLE SAE_DateAnniversaireContrat (
+    fk_Numero_de_contrat VARCHAR2(50) PRIMARY KEY,
+    Date_dernier_anniversaire DATE,
+    CONSTRAINT fk_Numero_de_contrat FOREIGN KEY (fk_Numero_de_contrat) REFERENCES SAE_ContratLocation(Numero_de_contrat)
 );
 
 CREATE TABLE SAE_Diagnostics (

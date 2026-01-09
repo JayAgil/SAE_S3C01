@@ -47,7 +47,7 @@ public class FenetreContratLocation extends FenetreBase {
 	private JLabel lblTitreTable;
 	private BienLouable bl;
 	private JButton btnAjouter;
-	
+
 	public GestionFenetreContratLocation getGestion() {
 		return this.gestionClicContratLocation;
 	}
@@ -100,17 +100,13 @@ public class FenetreContratLocation extends FenetreBase {
 
 		JButton btnReguCharges = new JButton("Regulariser charge");
 		panel_2.add(btnReguCharges);
-		
-		JButton btnMAJ = new JButton("Mettre à jour");
-		panel_2.add(btnMAJ);
-				
-				JButton btnRetirer = new JButton("Retirer");
 
-				panel_2.add(btnRetirer);
-		
-				JButton btnRetour = new JButton("Retour");
-				panel_2.add(btnRetour);
+		JButton btnRetirer = new JButton("Retirer");
 
+		panel_2.add(btnRetirer);
+
+		JButton btnRetour = new JButton("Retour");
+		panel_2.add(btnRetour);
 
 		JPanel panel_3 = new JPanel();
 		panel_1.add(panel_3, BorderLayout.CENTER);
@@ -350,36 +346,27 @@ public class FenetreContratLocation extends FenetreBase {
 		panel_3.add(scrollPane, gbc_scrollPane);
 
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-			},
-			new String[] {
-				"Nom du locataire", "Numero De Contrat", "Date Fin", "Montant Mensuel", "Solde"
-			}
-		) {
-			Class[] columnTypes = new Class[] {
-				String.class, String.class, String.class, String.class, String.class
-			};
+		table.setModel(new DefaultTableModel(new Object[][] { { null, null, null, null, null },
+				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
+				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
+				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
+				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
+				{ null, null, null, null, null }, { null, null, null, null, null }, },
+				new String[] { "Nom du locataire", "Numero De Contrat", "Date Fin", "Montant Mensuel", "Solde" }) {
+			Class[] columnTypes = new Class[] { String.class, String.class, String.class, String.class, String.class };
+
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
+
+			boolean[] columnEditables = new boolean[] { false, false, false, false, false, false };
+
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
 		});
 		scrollPane.setViewportView(table);
+		table.setEnabled(true);
 
 		JPanel panel_5 = new JPanel();
 		GridBagConstraints gbc_panel_5 = new GridBagConstraints();
@@ -390,14 +377,14 @@ public class FenetreContratLocation extends FenetreBase {
 
 		this.gestionClicContratLocation = new GestionFenetreContratLocation(this, this.cl, bl);
 		this.gestionClicContratLocation.initialize();
-	    GestionHeaderEtFooter gh = new GestionHeaderEtFooter(this) {};
-	    gh.initialize();
+		GestionHeaderEtFooter gh = new GestionHeaderEtFooter(this) {
+		};
+		gh.initialize();
 		btnAjouter.addActionListener(gestionClicContratLocation);
 		btnRevalLoyer.addActionListener(this.gestionClicContratLocation);
 		btnRevalCharge.addActionListener(this.gestionClicContratLocation);
 		btnReguCharges.addActionListener(this.gestionClicContratLocation);
 		table.addMouseListener(this.gestionClicContratLocation);
-		btnMAJ.addActionListener(this.gestionClicContratLocation);
 		btnRetirer.addActionListener(this.gestionClicContratLocation);
 		btnRetour.addActionListener(gestionClicContratLocation);
 

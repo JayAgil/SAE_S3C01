@@ -13,7 +13,7 @@ public class RequeteUpdateChargesGenerales extends Requete<ChargesGenerales> {
                 "Montant_Total = ?, " +
                 "Pourcentage = ?, " +
                 "Quotite = ?, " +
-                "Mois = ? " +
+                "Date_Charge = ? " +
                 "WHERE Id_Charges_Generale = ?";
     }
 
