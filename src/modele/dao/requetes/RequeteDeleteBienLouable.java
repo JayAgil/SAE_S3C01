@@ -9,8 +9,8 @@ public class RequeteDeleteBienLouable extends Requete<BienLouable>{
 		
 	}
 
-	public void parametres(PreparedStatement prSt, String... id) throws SQLException {
-		prSt.setString(1, id[0]);
+	public void parametres(PreparedStatement prSt, BienLouable bl) throws SQLException {
+		prSt.setString(1, bl.getIdBienLouable());
 	}
 
 }
