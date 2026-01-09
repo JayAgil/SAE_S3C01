@@ -49,12 +49,12 @@ public class FenetreCompteurs extends FenetreBase {
 	private List<Compteur> cpt;
 	private BienLouable b;
 	private JButton btnAjouterCompteur;
-	
+
 	public GestionFenetreCompteurs getGestion() {
 		return this.gestionClic;
 	}
 
-	public FenetreCompteurs(String fenetreAvant, List<Compteur> cpt, BienLouable b){
+	public FenetreCompteurs(String fenetreAvant, List<Compteur> cpt, BienLouable b) {
 		super();
 		this.b = b;
 		this.fenetreAvant = fenetreAvant;
@@ -92,30 +92,22 @@ public class FenetreCompteurs extends FenetreBase {
 			}
 		};
 
-		tableCompteurs = new JTable(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null},
-			},
-			new String[] {
-				"Type", "Date", "Bien louable", "Index ancien", "Index nouveau", "Consommation", "Partie Variable", "Partie Fixe", "Total"
-			}
-		) {
-			Class[] columnTypes = new Class[] {
-				String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class
-			};
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
-			}
-		});
+		tableCompteurs = new JTable(
+				new DefaultTableModel(new Object[][] {}, new String[] { "Type", "Date", "Bien louable", "Index ancien",
+						"Index nouveau", "Consommation", "Partie Variable", "Partie Fixe", "Total" }) {
+					Class[] columnTypes = new Class[] { String.class, String.class, String.class, String.class,
+							String.class, String.class, String.class, String.class, String.class };
+
+					public Class getColumnClass(int columnIndex) {
+						return columnTypes[columnIndex];
+					}
+
+					boolean[] columnEditables = new boolean[] { true, false, false, false, true, false , true, false, false};
+
+					public boolean isCellEditable(int row, int column) {
+						return columnEditables[column];
+					}
+				});
 
 		scrollPane = new JScrollPane(tableCompteurs);
 		panel.add(scrollPane, BorderLayout.NORTH);
@@ -130,7 +122,7 @@ public class FenetreCompteurs extends FenetreBase {
 
 		JButton btnMAJ = new JButton("Mettre à jour");
 		panel_butons.add(btnMAJ);
-		
+
 		JButton btnRetirer = new JButton("Retirer");
 		panel_butons.add(btnRetirer);
 
@@ -266,8 +258,9 @@ public class FenetreCompteurs extends FenetreBase {
 		panel_4_2.add(lbltotalgaz, gbc_lbltotalgaz);
 
 		this.gestionClic = new GestionFenetreCompteurs(this, cpt);
-	    GestionHeaderEtFooter gh = new GestionHeaderEtFooter(this) {};
-	    gh.initialize();
+		GestionHeaderEtFooter gh = new GestionHeaderEtFooter(this) {
+		};
+		gh.initialize();
 		this.gestionClic.initialize();
 		btnAjouterCompteur.addActionListener(this.gestionClic);
 		btnRetour.addActionListener(this.gestionClic);
