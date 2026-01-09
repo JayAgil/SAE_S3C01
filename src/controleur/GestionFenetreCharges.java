@@ -5,6 +5,8 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.sql.Date;
 
 import javax.swing.JTable;
@@ -12,11 +14,13 @@ import javax.swing.table.DefaultTableModel;
 
 import modele.BienLouable;
 import modele.ChargesGenerales;
+import modele.Facture;
 import modele.dao.DaoBienLouable;
 import modele.dao.DaoChargesGenerales;
+import modele.dao.DaoFacture;
 import vue.*;
 
-public class GestionFenetreCharges extends GestionHeaderEtFooter{
+public class GestionFenetreCharges extends GestionHeaderEtFooter implements MouseListener{
 
     private FenetreCharges fenetre;
     private List<ChargesGenerales> donnees = new ArrayList<>();
@@ -44,7 +48,23 @@ public class GestionFenetreCharges extends GestionHeaderEtFooter{
                 fenetre.getLayeredPane().add(fenAjouterCharge);
                 fenAjouterCharge.setVisible(true);
                 break;
-
+            case "Retirer":
+    			JTable tableCharges = this.fenetre.getTable();
+            	int rowCharges = tableCharges.getSelectedRow();
+            	if (rowCharges != -1) {
+            		ChargesGenerales c = donnees.get(rowCharges);
+            		DaoChargesGenerales dC;
+    				try {
+    					dC = new DaoChargesGenerales();
+    					dC.delete(c);
+    					donnees.remove(c);
+    					this.chargerDonnees();
+    				} catch (SQLException e1) {
+    					e1.printStackTrace();
+    				}
+            		
+            	}
+    			break;
             case "Mettre à jour":
             	JTable table = fenetre.getTable();
             	int row = table.getSelectedRow();
@@ -205,6 +225,41 @@ public class GestionFenetreCharges extends GestionHeaderEtFooter{
             }
         });
     }
+
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 
