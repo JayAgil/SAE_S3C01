@@ -105,6 +105,7 @@ public class GestionFenetreCompteurs extends GestionHeaderEtFooter {
             		c.setIndexNouveau(Double.parseDouble(table.getValueAt(row, 4).toString()));
             		c.setPartieVariable(Double.parseDouble(table.getValueAt(row, 6).toString()));
             		daoCompteur.update(c);
+            		System.out.print(c);
             	}
             	break;
         }
