@@ -6,11 +6,9 @@ import modele.dao.requetes.*;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.tools.Diagnostic;
 
 import modele.BienLouable;
 import modele.Diagnostics;
-import modele.Locataire;
 
 public class DaoDiagnostics extends DaoModele<Diagnostics> implements Dao<Diagnostics> {
 

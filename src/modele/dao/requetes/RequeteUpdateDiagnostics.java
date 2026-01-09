@@ -18,17 +18,13 @@ public class RequeteUpdateDiagnostics extends Requete<Diagnostics> {
     }
 
     @Override
-    public void parametres(PreparedStatement prSt, String... id)
-        throws SQLException {
-    }
-
-    @Override
     public void parametres(PreparedStatement prSt, Diagnostics donnee)
         throws SQLException {
         prSt.setString(1, donnee.getTypeDiagnostics());
         prSt.setDate(2, donnee.getDateRealisation());
         prSt.setDate(3, donnee.getDateValidite());
         prSt.setString(4, donnee.getFichier());
+        prSt.setString(5, donnee.getIdDiagnostics());
     }
 
 }
