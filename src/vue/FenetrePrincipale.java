@@ -299,7 +299,7 @@ public class FenetrePrincipale extends FenetreBase {
 		gestionClic.remplirComboBatiment();
 		gestionClic.remplirTableau();
 		table.addMouseListener(this.gestionClic);
-		btnRetirer.addMouseListener(this.gestionClic);
+		btnRetirer.addActionListener(this.gestionClic);
 		gestionClic.initialize();
 
 	}
