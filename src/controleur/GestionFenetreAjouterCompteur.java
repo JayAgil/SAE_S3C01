@@ -41,15 +41,14 @@ public class GestionFenetreAjouterCompteur extends GestionButtonFenetreAjouter {
 			List<JTextField> donnees = this.getTextFields();
 			String type = (String) this.fenetre.getComboType().getSelectedItem();
 			Compteur c = new Compteur(
-				    donnees.get(0).getText(),
-				    Double.parseDouble(donnees.get(1).getText()),
-				    Double.parseDouble(donnees.get(2).getText()),
-				    Double.parseDouble(donnees.get(3).getText()),
-				    Date.valueOf(donnees.get(4).getText()),
-				    b,
-				    Double.parseDouble(donnees.get(5).getText()),
-				    Double.parseDouble(donnees.get(6).getText()),
-				    type
+					donnees.get(0).getText(),
+	                Double.parseDouble(donnees.get(1).getText()),
+	                Double.parseDouble(donnees.get(2).getText()),
+	                Double.parseDouble(donnees.get(1).getText())
+	                    + Double.parseDouble(donnees.get(2).getText()),
+	                Date.valueOf(donnees.get(3).getText()), b,
+	                Double.parseDouble(donnees.get(4).getText()),
+	                Double.parseDouble(donnees.get(5).getText()), type
 				);
 
 			if (dao.create(c) == 1) {

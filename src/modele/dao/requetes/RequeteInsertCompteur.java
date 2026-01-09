@@ -8,7 +8,7 @@ import modele.Compteur;
 public class RequeteInsertCompteur extends Requete<Compteur> {
 	@Override
 	public String requete() {
-		return "INSERT INTO MSF5131A.SAE_Compteur VALUES (?,?,?,?,?,?,?,?)";
+		return "INSERT INTO MSF5131A.SAE_Compteur VALUES (?,?,?,?,?,?,?,?,?)";
 	}
 	
 	@Override
@@ -21,6 +21,7 @@ public class RequeteInsertCompteur extends Requete<Compteur> {
         ps.setDate(6, c.getDateInstallation());
         ps.setDouble(7, c.getIndexAncien());
         ps.setDouble(8, c.getIndexNouveau());
+        ps.setString(9, c.getBienLouable().getIdBienLouable());
     }
 
 }
