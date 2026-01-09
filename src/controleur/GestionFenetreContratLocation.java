@@ -3,7 +3,6 @@ package controleur;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -176,24 +175,6 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 				this.remplirTable();
 			}
 			break;
-		case "Mettre à jour" :
-			JTable table = fenetre.getTable();
-        	int row = table.getSelectedRow();
-        	if (row != -1) {
-        		ContratLocation cl = this.contrats.get(row);
-        		DaoContratLocation daoContrat;
-				try {
-					daoContrat = new DaoContratLocation();
-					cl.setNumeroDeContrat(table.getValueAt(row, 1).toString());
-					cl.setDateFin(Date.valueOf(table.getValueAt(row, 2).toString()));
-					cl.setMontantMensuel(Double.parseDouble(table.getValueAt(row, 3).toString()));
-					cl.setSolde(Double.parseDouble(table.getValueAt(row, 4).toString()));
-					daoContrat.update(cl);
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				}	
-        	}
-        	break;
 
 		}
 	}
