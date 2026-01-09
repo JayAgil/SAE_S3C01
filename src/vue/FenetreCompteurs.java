@@ -32,6 +32,8 @@ import java.util.List;
 
 import javax.swing.border.TitledBorder;
 import javax.swing.border.MatteBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FenetreCompteurs extends FenetreBase {
 
@@ -135,6 +137,9 @@ public class FenetreCompteurs extends FenetreBase {
 
 		JButton btnMAJ = new JButton("Mettre à jour");
 		panel_butons.add(btnMAJ);
+		
+		JButton btnRetirer = new JButton("Retirer");
+		panel_butons.add(btnRetirer);
 
 		JButton btnRetour = new JButton("Retour");
 		panel_butons.add(btnRetour);
@@ -274,6 +279,7 @@ public class FenetreCompteurs extends FenetreBase {
 		btnAjouterCompteur.addActionListener(this.gestionClic);
 		btnRetour.addActionListener(this.gestionClic);
 		btnMAJ.addActionListener(this.gestionClic);
+		btnRetirer.addActionListener(this.gestionClic);
 
 	}
 

@@ -53,6 +53,8 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter implements Mou
 			}
 			DaoPaiement dP = new DaoPaiement();
 			dP.delete(paiementSelectionne);
+			paiements.remove(paiementSelectionne);
+			this.chargerDonnees();
 		case "Quittance loyer":
 			if (paiementSelectionne == null) {
 				return;
