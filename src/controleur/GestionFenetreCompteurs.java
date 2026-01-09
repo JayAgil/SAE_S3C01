@@ -95,19 +95,29 @@ public class GestionFenetreCompteurs extends GestionHeaderEtFooter {
                 fenetre.getLayeredPane().add(fenAjouterCompteur);
                 fenAjouterCompteur.setVisible(true);
                 break;
-            case "Mettre à jour" :
-            	JTable table = fenetre.getTableCompteurs();
-            	int row = table.getSelectedRow();
-            	if (row != -1) {
-            		Compteur c = this.cpt.get(row);
-            		DaoCompteur daoCompteur = new DaoCompteur();
-            		c.setType(table.getValueAt(row, 0).toString());
-            		c.setIndexNouveau(Double.parseDouble(table.getValueAt(row, 4).toString()));
-            		c.setPartieVariable(Double.parseDouble(table.getValueAt(row, 6).toString()));
-            		daoCompteur.update(c);
-            		System.out.print(c);
-            	}
-            	break;
+            case "Mettre à jour":
+                JTable table = fenetre.getTableCompteurs();
+                int row = table.getSelectedRow();
+
+                if (row != -1) {
+
+                    // 🔴 VERY IMPORTANT
+                    if (table.isEditing()) {
+                        table.getCellEditor().stopCellEditing();
+                    }
+
+                    Compteur c = this.cpt.get(row);
+                    DaoCompteur daoCompteur = new DaoCompteur();
+
+                    c.setType(table.getValueAt(row, 0).toString());
+                    c.setIndexNouveau(Double.parseDouble(table.getValueAt(row, 4).toString()));
+                    c.setPartieVariable(Double.parseDouble(table.getValueAt(row, 6).toString()));
+
+                    daoCompteur.update(c);
+                    System.out.println("Updated in DB: " + c);
+                }
+                break;
+
         }
     }
     
