@@ -9,13 +9,12 @@ public class RequeteUpdateCompteur extends Requete<Compteur> {
 	
 	@Override
     public String requete() {
-        return "Update MSF5131A.SAE_Compteur"
-        		+ "set Date_debut = ?,"
-        		+ "Partie_Fixe = ?, Partie_Variable = ?,"
-        		+ "Total = ?, TypeCompteur = ?,"
-        		+ "Date_Installation = ?, Index_ancien = ?,"
-        		+ "Index_nouveau = ?"
-        		+ "Where Id_Compteur = ?";
+        return "Update MSF5131A.SAE_Compteur "
+        		+ "SET Partie_Fixe = ?, Partie_Variable = ?, "
+        		+ "Total = ?, TypeCompteur = ?, "
+        		+ "Date_Installation = ?, Index_ancien = ?, "
+        		+ "Index_nouveau = ? "
+        		+ "Where Id_Compteur = ? ";
     }
 
     @Override
@@ -33,6 +32,7 @@ public class RequeteUpdateCompteur extends Requete<Compteur> {
         prSt.setDate(5, donnee.getDateInstallation());
         prSt.setDouble(6, donnee.getIndexAncien());
         prSt.setDouble(7, donnee.getIndexNouveau());
+        prSt.setString(8, donnee.getIdCompteur());
     }
 
 

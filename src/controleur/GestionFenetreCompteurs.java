@@ -3,6 +3,7 @@ package controleur;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -101,7 +102,6 @@ public class GestionFenetreCompteurs extends GestionHeaderEtFooter {
 
                 if (row != -1) {
 
-                    // 🔴 VERY IMPORTANT
                     if (table.isEditing()) {
                         table.getCellEditor().stopCellEditing();
                     }
@@ -114,6 +114,13 @@ public class GestionFenetreCompteurs extends GestionHeaderEtFooter {
                     c.setPartieVariable(Double.parseDouble(table.getValueAt(row, 6).toString()));
 
                     daoCompteur.update(c);
+                    
+                    JOptionPane.showMessageDialog(
+                            fenetre,                          
+                            "Données mises à jour !",         
+                            "Mise à jour",                    
+                            JOptionPane.INFORMATION_MESSAGE 
+                        );
                     System.out.println("Updated in DB: " + c);
                 }
                 break;
