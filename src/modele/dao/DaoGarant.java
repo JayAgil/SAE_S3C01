@@ -5,7 +5,9 @@ import modele.dao.requetes.*;
 import java.sql.SQLException;
 import java.util.List;
 
+import modele.Batiment;
 import modele.Garant;
+import modele.Locataire;
 
 public class DaoGarant extends DaoModele<Garant> implements Dao<Garant> {
 
@@ -37,6 +39,10 @@ public class DaoGarant extends DaoModele<Garant> implements Dao<Garant> {
 	@Override
 	public List<Garant> findAll() throws SQLException {
 		return find(new RequeteSelectGarantById());
+	}
+	
+	public Garant findByLoc(String... id) throws SQLException{
+		return this.findById(new RequeteSelectGarantByLoc(), id);
 	}
 
 	@Override
