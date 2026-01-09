@@ -305,8 +305,11 @@ public class FenetrePrincipale extends FenetreBase {
 	}
 
 	public String getChosenBatiment() {
-		return cbBatiment.getSelectedItem().toString();
-	}
+		if (cbBatiment.getSelectedItem() == null) {
+            return cbBatiment.getItemAt(0);
+        }
+        return cbBatiment.getSelectedItem().toString();
+    }
 
 	public JTable getTable() {
 		return this.table;

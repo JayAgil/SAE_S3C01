@@ -387,11 +387,10 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 		}
 	}
 
-	public String getChosenBatiment() {
-        if (this.fenetre.getCbBatiment().getSelectedItem() == null) {
-            return this.fenetre.getCbBatiment().getItemAt(0);
-        }
-        return this.fenetre.getCbBatiment().getSelectedItem().toString();
+	public Batiment getChosenBatiment() throws SQLException {
+		String idBat = (String) this.fenetre.getCbBatiment().getSelectedItem();
+        DaoBatiment dB = new DaoBatiment();
+        return dB.findById(idBat);
     }
 
 	public String getBatimentId() {
