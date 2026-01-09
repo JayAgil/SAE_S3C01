@@ -196,9 +196,15 @@ public class FenetrePaiement extends FenetreBase {
 			Class[] columnTypes = new Class[] {
 				String.class, String.class, String.class, Double.class, String.class
 			};
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
-			}
+			@Override
+		    public Class getColumnClass(int columnIndex) {
+		        return columnTypes[columnIndex];
+		    }
+
+		    @Override
+		    public boolean isCellEditable(int row, int column) {
+		        return column > 1;
+		    }
 		});
 		scrollPane_1.setViewportView(table);
 
