@@ -55,6 +55,11 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter implements Mou
 			fenetre.getLayeredPane().add(fenQuittance);
 			fenQuittance.setVisible(true);
 			break;
+		case "Retirer":
+			if (paiementSelectionne == null) {
+				return;
+			}
+			
 
 		}
 	}

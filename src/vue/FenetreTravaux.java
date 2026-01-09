@@ -69,9 +69,6 @@ public class FenetreTravaux extends FenetreBase {
 		JPanel panel_1 = new JPanel();
 		panel.add(panel_1, BorderLayout.SOUTH);
 
-		JButton btnRetour = new JButton("Retour");
-		panel_1.add(btnRetour);
-
 		btnAjouterTravaux = new JButton("Ajouter travaux");
 		panel_1.add(btnAjouterTravaux);
 
@@ -83,6 +80,14 @@ public class FenetreTravaux extends FenetreBase {
 
 		JButton btnGenFacture = new JButton("Visualiser facture");
 		panel_1.add(btnGenFacture);
+				
+				JButton btnRetirer = new JButton("Retirer");
+
+				panel_1.add(btnRetirer);
+		
+				JButton btnRetour = new JButton("Retour");
+				panel_1.add(btnRetour);
+
 
 		JPanel panel_2 = new JPanel();
 		panel.add(panel_2, BorderLayout.NORTH);
@@ -218,8 +223,9 @@ public class FenetreTravaux extends FenetreBase {
 		comboBox_Mois.addActionListener(this.gestionClic);
 		comboBox_Annee.addActionListener(this.gestionClic);
 		this.gestionClic.initialize();
-		btnRetour.addActionListener(this.gestionClic);
 		btnMAJ.addActionListener(this.gestionClic);
+		btnRetirer.addActionListener(this.gestionClic);
+		btnRetour.addActionListener(this.gestionClic);
 
 	}
 

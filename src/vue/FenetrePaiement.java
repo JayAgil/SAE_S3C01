@@ -14,6 +14,8 @@ import modele.Paiement;
 
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FenetrePaiement extends FenetreBase {
 
@@ -105,14 +107,18 @@ public class FenetrePaiement extends FenetreBase {
 
 		btnAjouterPaiement = new JButton("Ajouter paiement");
 		panelButtons.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-
-		JButton btnRetour = new JButton("Retour");
-		panelButtons.add(btnRetour);
 		panelButtons.add(btnAjouterPaiement);
 
 		btnQuittance = new JButton("Quittance loyer");
 		panelButtons.add(btnQuittance);
 		btnQuittance.setEnabled(false);
+				
+				JButton btnRetirer = new JButton("Retirer");
+
+				panelButtons.add(btnRetirer);
+		
+				JButton btnRetour = new JButton("Retour");
+				panelButtons.add(btnRetour);
 
 		JPanel panel_7 = new JPanel();
 		mainPanel.add(panel_7, BorderLayout.CENTER);
@@ -213,6 +219,7 @@ public class FenetrePaiement extends FenetreBase {
 		btnAjouterPaiement.addActionListener(this.gestionClic);
 		table.addMouseListener(this.gestionClic);
 		btnQuittance.addActionListener(this.gestionClic);
+		btnRetirer.addActionListener(this.gestionClic);
 		btnRetour.addActionListener(gestionClic);
 
 
