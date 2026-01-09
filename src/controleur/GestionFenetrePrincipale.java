@@ -188,7 +188,7 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 			fen.setVisible(true);
 			break;
 		case "Retirer":
-		    String adresseBat = getChosenBatiment();
+		    String adresseBat = getChosenBatiment().getAdresse();
 		    DaoBienLouable daoBL = new DaoBienLouable();
 		    List<BienLouable> biens = daoBL.findByBatiment(adresseBat);
 		    if (biens == null || biens.isEmpty()) {
