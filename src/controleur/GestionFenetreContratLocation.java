@@ -290,7 +290,8 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 		model.setRowCount(0);
 		DaoLocataire dL = new DaoLocataire();
 		for (ContratLocation c : contrats) {
-			String nomLoc = dL.findLocataireByContrat(c.getNumeroDeContrat()).get(0).getNom();
+	        List<Locataire> locataires = dL.findLocataireByContrat(c.getNumeroDeContrat());
+	        String nomLoc = locataires.isEmpty() ? "" : locataires.get(0).getNom(); 
 			model.addRow(new Object[] { nomLoc, c.getNumeroDeContrat(), c.getDateFin(), c.getMontantMensuel(),
 					c.getSolde() });
 		}

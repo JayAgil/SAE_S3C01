@@ -15,8 +15,6 @@ public class RequeteSelectContratLocationByBien extends Requete<ContratLocation>
 		prSt.setString(1, id[0]);
 	}
 
-	public void parametres(PreparedStatement prSt, ContratLocation donnee) {
-		
-	}
+	
 
 }

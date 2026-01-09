@@ -43,10 +43,19 @@ public class GestionFenetreAjouterContratLocation extends GestionButtonFenetreAj
 			DaoContratLocation dao = new DaoContratLocation();
 			DaoBatiment daoBat = new DaoBatiment();
 			List<JTextField> donnees = this.getTextFields();
+			
+			 Date dateDebut = Date.valueOf(donnees.get(1).getText());
+			 Date dateFin = Date.valueOf(donnees.get(2).getText());
+			 
+			 if (!dateFin.after(dateDebut)) { 
+			        JOptionPane.showMessageDialog(null, "La date de fin doit être après la date de début.", "Erreur",
+			                JOptionPane.ERROR_MESSAGE);
+			        return; 
+			    }
 
 			ContratLocation cl = new ContratLocation(donnees.get(0).getText(), // String numeroDeContrat
-					Date.valueOf(donnees.get(1).getText()), // Date dateDebut
-					Date.valueOf(donnees.get(2).getText()), // Date dateFin
+					dateDebut,
+					dateFin,
 					Double.parseDouble(donnees.get(3).getText()), // double montantDeCaution
 					Double.parseDouble(donnees.get(4).getText()), // double provisionCharge
 					Double.parseDouble(donnees.get(5).getText()), // double solde
@@ -62,7 +71,7 @@ public class GestionFenetreAjouterContratLocation extends GestionButtonFenetreAj
 				JOptionPane.showMessageDialog(null, "Contrat location ajoutée avec succès !", "Succès",
 						JOptionPane.INFORMATION_MESSAGE);
 
-				this.parent.setContrats(dao.findByBatiment(daoBat.findBatimentByBien(bl.getIdBienLouable()).getAdresse()));
+				this.parent.setContrats(this.parent.getDonneesContrats());
 				this.parent.remplirTable();;
 				this.fenetre.dispose();
 

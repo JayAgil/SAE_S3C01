@@ -18,9 +18,4 @@ public class RequeteSelectContratLocationByBienLouable
         prSt.setString(1, id[0]);
     }
 
-    @Override
-    public void parametres(PreparedStatement prSt, ContratLocation donnee) {
-
-    }
-
 }
