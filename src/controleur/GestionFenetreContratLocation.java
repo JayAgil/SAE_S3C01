@@ -13,10 +13,12 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import modele.BienLouable;
+import modele.ChargesGenerales;
 import modele.ContratLocation;
 import modele.IRL;
 import modele.Locataire;
 import modele.dao.DaoBienLouable;
+import modele.dao.DaoChargesGenerales;
 import modele.dao.DaoContratLocation;
 import modele.dao.DaoIRL;
 import modele.dao.DaoLocataire;
@@ -167,6 +169,23 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 			fenetre.getLayeredPane().add(fn);
 			fn.setVisible(true);
 			break;
+		case "Mettre à jour" :
+			JTable table = fenetre.getTable();
+        	int row = table.getSelectedRow();
+        	if (row != -1) {
+        		ContratLocation cl = this.contrats.get(row);
+        		DaoContratLocation daoContrat;
+				try {
+					daoContrat = new DaoContratLocation();
+					c.setMontant(Double.parseDouble(table.getValueAt(row, 1).toString()));
+					c.setPourcentage(Float.parseFloat(table.getValueAt(row, 2).toString()));
+					c.setQuotite(Double.parseDouble(table.getValueAt(row, 3).toString()));
+					daoContrat.update(cl);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+        		
+        	}
 
 		}
 	}
