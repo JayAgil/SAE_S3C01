@@ -12,8 +12,8 @@ public class RequeteDeleteAssurance extends Requete<Assurance>{
 		
 	}
 
-	public void parametres(PreparedStatement prSt, String... id) throws SQLException {
-		prSt.setString(1, id[0]);
+	public void parametres(PreparedStatement prSt, Assurance a) throws SQLException {
+		prSt.setString(1, a.getNumeroAssurance());
 	}
 
 
