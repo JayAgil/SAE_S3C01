@@ -142,14 +142,14 @@ public class FenetreCharges extends FenetreBase {
 				return columnTypes[columnIndex];
 			}
 			boolean[] columnEditables = new boolean[] {
-				false, true, true, true, true, false
+				true, true, true, true, false, true
 			};
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
 			}
 		});
 		table.getColumnModel().getColumn(0).setPreferredWidth(92);
-		table.setEnabled(false);
+		table.setEnabled(true);
 
 		JPanel panel = new JPanel();
 		tablePanel.add(panel);
