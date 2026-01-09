@@ -23,6 +23,8 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controleur.GestionFenetrePrincipale;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class FenetrePrincipale extends FenetreBase {
 
@@ -189,6 +191,9 @@ public class FenetrePrincipale extends FenetreBase {
 
 		JButton btnAssurance = new JButton("Assurance");
 		panelSouthEast.add(btnAssurance);
+		
+		JButton btnRetirer = new JButton("Retirer");
+		panelSouthEast.add(btnRetirer);
 
 		btnImporter = new JButton("Importer Un Fichier CSV");
 		panelSouthEast.add(btnImporter);
@@ -294,6 +299,7 @@ public class FenetrePrincipale extends FenetreBase {
 		gestionClic.remplirComboBatiment();
 		gestionClic.remplirTableau();
 		table.addMouseListener(this.gestionClic);
+		btnRetirer.addMouseListener(this.gestionClic);
 		gestionClic.initialize();
 
 	}

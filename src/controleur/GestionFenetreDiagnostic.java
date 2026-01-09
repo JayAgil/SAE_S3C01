@@ -1,37 +1,45 @@
 package controleur;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.io.File;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
-import javax.tools.Diagnostic;
 
 import modele.BienLouable;
-import modele.Compteur;
 import modele.Diagnostics;
-import modele.dao.DaoCompteur;
 import modele.dao.DaoDiagnostics;
 import vue.*;
 
-public class GestionFenetreDiagnostic extends GestionHeaderEtFooter implements MouseListener {
+public class GestionFenetreDiagnostic extends GestionHeaderEtFooter {
 
 	private FenetreDiagnostic fenetre;
 	private BienLouable bL;
+	private List<Diagnostics> diagnostics;
 
 	public GestionFenetreDiagnostic(FenetreDiagnostic fenetre) {
 		super(fenetre);
 		this.fenetre = fenetre;
 		this.bL = fenetre.getBien();
+		DaoDiagnostics daoDiag;
+		try {
+			daoDiag = new DaoDiagnostics();
+			diagnostics = daoDiag.findDiagnosticsByIdBien(bL.getIdBienLouable());
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		this.initialize();
 	}
 
@@ -50,58 +58,75 @@ public class GestionFenetreDiagnostic extends GestionHeaderEtFooter implements M
 			break;
 		case "Mettre à jour":
 			JTable table = fenetre.getTable();
-        	int row = table.getSelectedRow();
-        	if (row != -1) {
-        		String idDiagnostics = fenetre.getTable().getValueAt(row, 0).toString();
-        	    String typeDiagnostics = fenetre.getTable().getValueAt(row, 1).toString();
+			int row = table.getSelectedRow();
+			if (row != -1) {
+				String idDiagnostics = fenetre.getTable().getValueAt(row, 0).toString();
+				String typeDiagnostics = fenetre.getTable().getValueAt(row, 1).toString();
 
-        	    java.sql.Date dateRealisation = java.sql.Date.valueOf(fenetre.getTable().getValueAt(row, 2).toString());
-        	    java.sql.Date dateValidite = java.sql.Date.valueOf(fenetre.getTable().getValueAt(row, 3).toString());
+				Date dateRealisation = Date.valueOf(fenetre.getTable().getValueAt(row, 2).toString());
+				Date dateValidite = Date.valueOf(fenetre.getTable().getValueAt(row, 3).toString());
 
-        	    String fichier = fenetre.getTable().getValueAt(row, 4).toString();
+				String fichier = fenetre.getTable().getValueAt(row, 4).toString();
 
-        	    Diagnostics d = new Diagnostics(idDiagnostics, typeDiagnostics, dateRealisation, dateValidite, fichier, bL);
-        		DaoDiagnostics dao = new DaoDiagnostics();
-        		dao.update(d);
-        	}
+				Diagnostics d = new Diagnostics(idDiagnostics, typeDiagnostics, dateRealisation, dateValidite, fichier,
+						bL);
+				DaoDiagnostics dao = new DaoDiagnostics();
+				dao.update(d);
+
+				diagnostics = dao.findDiagnosticsByIdBien(bL.getIdBienLouable());
+
+				chargerDonnees();
+			}
+		case "Retirer":
+			int ligne = fenetre.getTable().getSelectedRow();
+			if (ligne != -1) {
+				String idDiagnostics = fenetre.getTable().getValueAt(ligne, 0).toString();
+				String typeDiagnostics = fenetre.getTable().getValueAt(ligne, 1).toString();
+
+				Date dateRealisation = Date.valueOf(fenetre.getTable().getValueAt(ligne, 2).toString());
+				Date dateValidite = Date.valueOf(fenetre.getTable().getValueAt(ligne, 3).toString());
+
+				String fichier = fenetre.getTable().getValueAt(ligne, 4).toString();
+
+				Diagnostics diagnostic = new Diagnostics(idDiagnostics, typeDiagnostics, dateRealisation, dateValidite,
+						fichier, bL);
+				DaoDiagnostics dao = new DaoDiagnostics();
+				dao.delete(diagnostic);
+
+				diagnostics = dao.findDiagnosticsByIdBien(bL.getIdBienLouable());
+
+				chargerDonnees();
+			}
+
 		}
-	}
 
-	protected void gererMenuSpecifique(String texte) {
 	}
 
 	public void chargerDonnees() throws SQLException {
 		if (bL == null)
 			return;
 
-		DaoDiagnostics daoDiag = new DaoDiagnostics();
-		try {
-			List<Diagnostics> diagnostics = daoDiag.findDiagnosticsByIdBien(bL.getIdBienLouable());
-			DefaultTableModel model = (DefaultTableModel) fenetre.getTable().getModel();
-			model.setRowCount(0);
+		DefaultTableModel model = (DefaultTableModel) fenetre.getTable().getModel();
+		model.setRowCount(0);
 
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-			for (Diagnostics d : diagnostics) {
-				model.addRow(new Object[] { d.getIdDiagnostics(), d.getTypeDiagnostics(),
-						d.getDateRealisation() != null ? sdf.format(d.getDateRealisation()) : "",
-						d.getDateValidite() != null ? sdf.format(d.getDateValidite()) : "", d.getFichier(),
-						d.getBienLouable() != null ? d.getBienLouable().getIdBienLouable() : "" });
-			}
-
-			int nbValides = (int) diagnostics.stream()
-					.filter(d -> d.getDateValidite() != null && d.getDateValidite().after(new java.util.Date()))
-					.count();
-
-			int nbExpirant = (int) diagnostics.stream()
-					.filter(d -> d.getDateValidite() != null && isExpiringThisMonth(d.getDateValidite())).count();
-
-			fenetre.getLblnbDiag().setText(String.valueOf(nbValides));
-			fenetre.getLblnbDiagExp().setText(String.valueOf(nbExpirant));
-
-		} catch (SQLException e) {
-			e.printStackTrace();
+		for (Diagnostics d : diagnostics) {
+			model.addRow(new Object[] { d.getIdDiagnostics(), d.getTypeDiagnostics(),
+					d.getDateRealisation() != null ? sdf.format(d.getDateRealisation()) : "",
+					d.getDateValidite() != null ? sdf.format(d.getDateValidite()) : "", d.getFichier(),
+					d.getBienLouable() != null ? d.getBienLouable().getIdBienLouable() : "" });
 		}
+
+		int nbValides = (int) diagnostics.stream()
+				.filter(d -> d.getDateValidite() != null && d.getDateValidite().after(new java.util.Date())).count();
+
+		int nbExpirant = (int) diagnostics.stream()
+				.filter(d -> d.getDateValidite() != null && isExpiringThisMonth(d.getDateValidite())).count();
+
+		fenetre.getLblnbDiag().setText(String.valueOf(nbValides));
+		fenetre.getLblnbDiagExp().setText(String.valueOf(nbExpirant));
+
 	}
 
 	private void ouvrirPDF() {
@@ -152,13 +177,6 @@ public class GestionFenetreDiagnostic extends GestionHeaderEtFooter implements M
 		return monthNow == monthDiag && yearNow == yearDiag;
 	}
 
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		if (e.getClickCount() == 2) {
-			ouvrirPDF();
-		}
-	}
-
 	public void ouvrirButtonChoisir() {
 		int selectedRow = fenetre.getTable().getSelectedRow();
 		int selectedColumn = fenetre.getTable().getSelectedColumn();
@@ -172,7 +190,8 @@ public class GestionFenetreDiagnostic extends GestionHeaderEtFooter implements M
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (((JButton) e.getSource()).getText().equals("Choisir")) {
+		if ("Choisir".equals(e.getActionCommand())) {
+
 			JFileChooser chooser = new JFileChooser();
 			chooser.setFileFilter(new FileNameExtensionFilter("PDF Files", "pdf"));
 
@@ -190,57 +209,39 @@ public class GestionFenetreDiagnostic extends GestionHeaderEtFooter implements M
 
 				int selectedRow = fenetre.getTable().getSelectedRow();
 				int selectedColumn = fenetre.getTable().getSelectedColumn();
+
 				if (selectedRow != -1 && selectedColumn != -1) {
 					fenetre.getTable().setValueAt(path, selectedRow, selectedColumn);
-				} else {
-					super.actionPerformed(e);
 				}
-
 			}
+
+		} else {
+			super.actionPerformed(e);
 		}
 	}
-	
+
 	public void initialize() {
 		super.initialize();
 		try {
-			this.fenetre.getTable().addMouseListener(this);
+			this.fenetre.getTable().addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					if (e.getClickCount() == 2) {
+						ouvrirPDF();
+					}
+				}
+			});
 			chargerDonnees();
 			fenetre.getTable().getColumnModel().getSelectionModel().addListSelectionListener(e -> {
-		        if (!e.getValueIsAdjusting()) {
-		            ouvrirButtonChoisir();
-		        }
-		    });
+				if (!e.getValueIsAdjusting()) {
+					ouvrirButtonChoisir();
+				}
+			});
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-	    
-	    
 	}
 
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
 }
