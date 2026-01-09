@@ -91,7 +91,7 @@ public class GestionFenetreTravaux extends GestionHeaderEtFooter implements Mous
         		
 				try {
 					daoFacture = new DaoFacture();
-					f.setMontantDevis(parseDoubleSafe(table.getValueAt(row, 4).toString()));
+					f.setMontantDevis(parseDoubleSafe(table.getValueAt(row, 4)));
 					daoFacture.update(f);
 					
 					JOptionPane.showMessageDialog(

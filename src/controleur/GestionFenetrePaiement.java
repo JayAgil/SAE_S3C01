@@ -90,7 +90,7 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter implements Mou
 		                p.setDatepaiement(null);
 		            }
 		            
-					p.setMontant(parseDoubleSafe(table.getValueAt(row, 3).toString()));
+					p.setMontant(parseDoubleSafe(table.getValueAt(row, 3)));
 					p.setDesignation(table.getValueAt(row, 4).toString());
 					daoPaiement.update(p);
 					

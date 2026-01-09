@@ -76,7 +76,7 @@ public class GestionFenetreCharges extends GestionHeaderEtFooter implements Mous
 				try {
 					daoCharge = new DaoChargesGenerales();
 					c.setTypeCharge(table.getValueAt(row, 0).toString());
-					c.setMontant(parseDoubleSafe(table.getValueAt(row, 1).toString()));
+					c.setMontant(parseDoubleSafe(table.getValueAt(row, 1)));
 					c.setPourcentage(Float.parseFloat(table.getValueAt(row, 2).toString()));
 					c.setQuotite(Double.parseDouble(table.getValueAt(row, 3).toString()));
 					c.setDateCharge(Date.valueOf(table.getValueAt(row, 5).toString()));
