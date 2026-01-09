@@ -84,10 +84,23 @@ public class GestionFenetreTravaux extends GestionHeaderEtFooter implements Mous
         	if (row != -1) {
         		Facture f = this.travaux.get(row);
         		DaoFacture daoFacture;
+        		
+        		if (table.isEditing()) {
+                    table.getCellEditor().stopCellEditing();
+                }
+        		
 				try {
 					daoFacture = new DaoFacture();
 					f.setMontantDevis(Double.parseDouble(table.getValueAt(row, 4).toString()));
 					daoFacture.update(f);
+					
+					JOptionPane.showMessageDialog(
+							fenetreTravaux,                          
+                            "Données mises à jour !",         
+                            "Mise à jour",                    
+                            JOptionPane.INFORMATION_MESSAGE 
+                        );
+                    System.out.println("Updated in DB: " + f);
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}

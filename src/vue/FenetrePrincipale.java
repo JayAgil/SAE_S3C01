@@ -23,8 +23,8 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controleur.GestionFenetrePrincipale;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import modele.Batiment;
+
 
 public class FenetrePrincipale extends FenetreBase {
 

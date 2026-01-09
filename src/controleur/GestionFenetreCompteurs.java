@@ -1,7 +1,5 @@
 package controleur;
 
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -10,11 +8,13 @@ import javax.swing.table.DefaultTableModel;
 
 import modele.BienLouable;
 import modele.Compteur;
+import modele.Facture;
 import modele.dao.DaoBienLouable;
 import modele.dao.DaoCompteur;
+import modele.dao.DaoFacture;
 import vue.*;
 
-public class GestionFenetreCompteurs extends GestionHeaderEtFooter implements MouseListener{
+public class GestionFenetreCompteurs extends GestionHeaderEtFooter {
 
     private FenetreCompteurs fenetre;
     private List<Compteur> cpt;
@@ -159,35 +159,5 @@ public class GestionFenetreCompteurs extends GestionHeaderEtFooter implements Mo
     }
     public void setCpt(List<Compteur> cpt) {
 		this.cpt = cpt;
-	}
-
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 }

@@ -9,11 +9,12 @@ public class RequeteUpdateFacture extends Requete<Facture> {
 	
 	 @Override
 	    public String requete() {
-	        return "Update MSF5131A.SAE_Facture set Montant = ?,"
-	        		+ "Date_de_facture = ?, Compte_Bancaire = ?,"
-	        		+ "Montant_Devis = ?, Date_Paiement = ?"
-	        		+ "Designation_de_travaux = ?"
-	        		+ "Where Numero_Facture = ?";
+	        return "Update MSF5131A.SAE_Facture "
+	        		+ "SET Montant = ?, "
+	        		+ "Date_de_facture = ?, Compte_Bancaire = ?, "
+	        		+ "Montant_Devis = ?, Date_Paiement = ?, "
+	        		+ "Designation_de_travaux = ? "
+	        		+ "Where Numero_Facture = ? ";
 
 	    }
 
@@ -31,6 +32,7 @@ public class RequeteUpdateFacture extends Requete<Facture> {
 	        prSt.setDouble(4, donnee.getMontantDevis());
 	        prSt.setDate(5, donnee.getDatePaiement());
 	        prSt.setString(6, donnee.getDesignationDeTravaux());
+	        prSt.setString(7, donnee.getNumeroFacture());
 	        
 	    }
 
