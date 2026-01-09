@@ -259,6 +259,11 @@ INSERT INTO SAE_Locataire (Id_Locataire, Nom, Prenom, Adresse, Tel, Email, Code_
  TO_DATE('1995-06-07','YYYY-MM-DD'),'Rennes',1950,'Coiffeuse','Celibataire','GAR-013');
 
 
+INSERT INTO SAE_ContratLocation (Numero_de_contrat,Date_debut, Date_Fin, Montant_de_caution, Provision_Charge, Solde, Montant_Mensuel,
+ Date_versement, Index_Compteur_Eau, Index_Compteur_Electricite, Index_Compteur_Gaz, fk_Id_BienLouable)
+ VALUES ('CTR-0015',TO_DATE('2023-03-01','YYYY-MM-DD'),TO_DATE('2026-03-01','YYYY-MM-DD'),950,50,0,950,TO_DATE('0001-01-01','YYYY-MM-DD'),8200,1100,2800,'BIEN-008');
+
+
 
 
 
@@ -333,6 +338,9 @@ INSERT INTO SAE_ContratLocation (Numero_de_contrat,Date_debut, Date_Fin, Montant
  Date_versement, Index_Compteur_Eau, Index_Compteur_Electricite, Index_Compteur_Gaz, fk_Id_BienLouable)
  VALUES ('CTR-013',TO_DATE('2023-03-17','YYYY-MM-DD'),TO_DATE('2026-03-17','YYYY-MM-DD'),700,50,0,800,TO_DATE('0001-01-01','YYYY-MM-DD'),8400,2300,4200,'BIEN-013');
 
+INSERT INTO SAE_ContratLocation (Numero_de_contrat,Date_debut, Date_Fin, Montant_de_caution, Provision_Charge, Solde, Montant_Mensuel,
+ Date_versement, Index_Compteur_Eau, Index_Compteur_Electricite, Index_Compteur_Gaz, fk_Id_BienLouable)
+ VALUES ('CTR-0015',TO_DATE('2023-03-01','YYYY-MM-DD'),TO_DATE('2026-03-01','YYYY-MM-DD'),950,50,0,950,TO_DATE('0001-01-01','YYYY-MM-DD'),8200,1100,2800,'BIEN-008');
 
 
 
