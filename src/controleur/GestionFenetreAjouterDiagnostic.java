@@ -108,6 +108,8 @@ public class GestionFenetreAjouterDiagnostic extends GestionButtonFenetreAjouter
 
                 fenetre.getTextFieldFichier().setText(path);
             }
+    } else {
+    	super.actionPerformed(e);
     }
     }
 

@@ -1,5 +1,6 @@
 package controleur;
 
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
@@ -7,11 +8,18 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.tools.Diagnostic;
 
 import modele.BienLouable;
+import modele.Compteur;
 import modele.Diagnostics;
+import modele.dao.DaoCompteur;
 import modele.dao.DaoDiagnostics;
 import vue.*;
 
@@ -24,7 +32,7 @@ public class GestionFenetreDiagnostic extends GestionHeaderEtFooter implements M
 		super(fenetre);
 		this.fenetre = fenetre;
 		this.bL = fenetre.getBien();
-		this.fenetre.getTable().addMouseListener(this);
+		this.initialize();
 	}
 
 	@Override
@@ -32,6 +40,7 @@ public class GestionFenetreDiagnostic extends GestionHeaderEtFooter implements M
 		switch (texte) {
 		case "Ajouter":
 			FenetreAjouterDiagnostic fenAjouterDiagnostic = new FenetreAjouterDiagnostic(bL, this);
+			this.fenetre.getLayeredPane().add(fenAjouterDiagnostic);
 			fenAjouterDiagnostic.setVisible(true);
 			break;
 		case "Retour":
@@ -39,6 +48,22 @@ public class GestionFenetreDiagnostic extends GestionHeaderEtFooter implements M
 			fenBienLouable.setVisible(true);
 			fenetre.dispose();
 			break;
+		case "Mettre à jour":
+			JTable table = fenetre.getTable();
+        	int row = table.getSelectedRow();
+        	if (row != -1) {
+        		String idDiagnostics = fenetre.getTable().getValueAt(row, 0).toString();
+        	    String typeDiagnostics = fenetre.getTable().getValueAt(row, 1).toString();
+
+        	    java.sql.Date dateRealisation = java.sql.Date.valueOf(fenetre.getTable().getValueAt(row, 2).toString());
+        	    java.sql.Date dateValidite = java.sql.Date.valueOf(fenetre.getTable().getValueAt(row, 3).toString());
+
+        	    String fichier = fenetre.getTable().getValueAt(row, 4).toString();
+
+        	    Diagnostics d = new Diagnostics(idDiagnostics, typeDiagnostics, dateRealisation, dateValidite, fichier, bL);
+        		DaoDiagnostics dao = new DaoDiagnostics();
+        		dao.update(d);
+        	}
 		}
 	}
 
@@ -58,7 +83,7 @@ public class GestionFenetreDiagnostic extends GestionHeaderEtFooter implements M
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 			for (Diagnostics d : diagnostics) {
-				model.addRow(new Object[] { d.getTypeDiagnostics(),
+				model.addRow(new Object[] { d.getIdDiagnostics(), d.getTypeDiagnostics(),
 						d.getDateRealisation() != null ? sdf.format(d.getDateRealisation()) : "",
 						d.getDateValidite() != null ? sdf.format(d.getDateValidite()) : "", d.getFichier(),
 						d.getBienLouable() != null ? d.getBienLouable().getIdBienLouable() : "" });
@@ -86,7 +111,7 @@ public class GestionFenetreDiagnostic extends GestionHeaderEtFooter implements M
 					JOptionPane.WARNING_MESSAGE);
 			return;
 		}
-		String path = (String) fenetre.getTable().getValueAt(selectedRow, 3);
+		String path = (String) fenetre.getTable().getValueAt(selectedRow, 4);
 		if (path == null || path.isEmpty()) {
 			JOptionPane.showMessageDialog(fenetre, "Aucun fichier associé à ce diagnostic.", "Fichier manquant",
 					JOptionPane.WARNING_MESSAGE);
@@ -129,10 +154,71 @@ public class GestionFenetreDiagnostic extends GestionHeaderEtFooter implements M
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if (e.getClickCount() == 1) {
+		if (e.getClickCount() == 2) {
 			ouvrirPDF();
 		}
 	}
+
+	public void ouvrirButtonChoisir() {
+		int selectedRow = fenetre.getTable().getSelectedRow();
+		int selectedColumn = fenetre.getTable().getSelectedColumn();
+
+		if (selectedRow != -1 && selectedColumn == 4) {
+			fenetre.getBtnChoisir().setEnabled(true);
+		} else {
+			fenetre.getBtnChoisir().setEnabled(false);
+		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (((JButton) e.getSource()).getText().equals("Choisir")) {
+			JFileChooser chooser = new JFileChooser();
+			chooser.setFileFilter(new FileNameExtensionFilter("PDF Files", "pdf"));
+
+			if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+				File selectedFile = chooser.getSelectedFile();
+
+				File projectDir = new File(System.getProperty("user.dir"));
+				String path;
+
+				if (selectedFile.toPath().startsWith(projectDir.toPath())) {
+					path = projectDir.toURI().relativize(selectedFile.toURI()).getPath();
+				} else {
+					path = selectedFile.getAbsolutePath();
+				}
+
+				int selectedRow = fenetre.getTable().getSelectedRow();
+				int selectedColumn = fenetre.getTable().getSelectedColumn();
+				if (selectedRow != -1 && selectedColumn != -1) {
+					fenetre.getTable().setValueAt(path, selectedRow, selectedColumn);
+				} else {
+					super.actionPerformed(e);
+				}
+
+			}
+		}
+	}
+	
+	public void initialize() {
+		super.initialize();
+		try {
+			this.fenetre.getTable().addMouseListener(this);
+			chargerDonnees();
+			fenetre.getTable().getColumnModel().getSelectionModel().addListSelectionListener(e -> {
+		        if (!e.getValueIsAdjusting()) {
+		            ouvrirButtonChoisir();
+		        }
+		    });
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	    
+	    
+	}
+
 
 	@Override
 	public void mousePressed(MouseEvent e) {

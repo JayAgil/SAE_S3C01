@@ -84,8 +84,6 @@ public class FenetreAjouterDiagnostic extends JInternalFrame {
 
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		DateFormatter dateFormatter = new DateFormatter(format);
-		dateFormatter.setAllowsInvalid(false);
-
 		textFieldDateRealisation = new JFormattedTextField(dateFormatter);
 		textFieldDateRealisation.setBounds(fieldX, 209, fieldW, fieldH);
 		textFieldDateRealisation.setToolTipText("Format attendu : yyyy-MM-dd");
