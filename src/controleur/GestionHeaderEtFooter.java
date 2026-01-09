@@ -76,7 +76,8 @@ public abstract class GestionHeaderEtFooter implements ActionListener {
 
 		case "Compteurs":
 			DaoCompteur dao = new DaoCompteur();
-			new FenetreCompteurs("FenPrincipale", dao.findAll(),null).setVisible(true);
+			FenetreCompteurs fc = new FenetreCompteurs("FenPrincipale", dao.findAll(),null);
+			fc.setVisible(true);
 			fenetre.dispose();
 			break;
 
@@ -87,7 +88,8 @@ public abstract class GestionHeaderEtFooter implements ActionListener {
 			break;
 
 		case "Contrat location":
-			new FenetreContratLocation("FenPrincipale", null,null).setVisible(true);
+			FenetreContratLocation fCL = new FenetreContratLocation("FenPrincipale", null,null);
+			fCL.setVisible(true);
 			fenetre.dispose();
 			break;
 

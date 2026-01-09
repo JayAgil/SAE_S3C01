@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import controleur.GestionFenetreCompteurs;
+import controleur.GestionHeaderEtFooter;
 import modele.BienLouable;
 import modele.Compteur;
 
@@ -31,6 +32,8 @@ import java.util.List;
 
 import javax.swing.border.TitledBorder;
 import javax.swing.border.MatteBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FenetreCompteurs extends FenetreBase {
 
@@ -46,6 +49,10 @@ public class FenetreCompteurs extends FenetreBase {
 	private List<Compteur> cpt;
 	private BienLouable b;
 	private JButton btnAjouterCompteur;
+	
+	public GestionFenetreCompteurs getGestion() {
+		return this.gestionClic;
+	}
 
 	public FenetreCompteurs(String fenetreAvant, List<Compteur> cpt, BienLouable b){
 		super();
@@ -130,6 +137,9 @@ public class FenetreCompteurs extends FenetreBase {
 
 		JButton btnMAJ = new JButton("Mettre à jour");
 		panel_butons.add(btnMAJ);
+		
+		JButton btnRetirer = new JButton("Retirer");
+		panel_butons.add(btnRetirer);
 
 		JButton btnRetour = new JButton("Retour");
 		panel_butons.add(btnRetour);
@@ -263,10 +273,13 @@ public class FenetreCompteurs extends FenetreBase {
 		panel_4_2.add(lbltotalgaz, gbc_lbltotalgaz);
 
 		this.gestionClic = new GestionFenetreCompteurs(this, cpt);
+	    GestionHeaderEtFooter gh = new GestionHeaderEtFooter(this) {};
+	    gh.initialize();
 		this.gestionClic.initialize();
 		btnAjouterCompteur.addActionListener(this.gestionClic);
 		btnRetour.addActionListener(this.gestionClic);
 		btnMAJ.addActionListener(this.gestionClic);
+		btnRetirer.addActionListener(this.gestionClic);
 
 	}
 

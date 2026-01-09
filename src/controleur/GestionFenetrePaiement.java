@@ -3,6 +3,7 @@ package controleur;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -40,13 +41,21 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter implements Mou
 	}
 
 	@Override
-	protected void gererBoutonSpecifique(String texte) {
+	protected void gererBoutonSpecifique(String texte) throws SQLException {
 		switch (texte) {
 		case "Ajouter paiement":
 			FenetreAjouterPaiement fenAjouterPaiement = new FenetreAjouterPaiement(this,locataireSelectionne);
 			fenetre.getLayeredPane().add(fenAjouterPaiement);
 			fenAjouterPaiement.setVisible(true);
 			break;
+		case "Retirer":
+			if (paiementSelectionne == null) {
+				return;
+			}
+			DaoPaiement dP = new DaoPaiement();
+			dP.delete(paiementSelectionne);
+			paiements.remove(paiementSelectionne);
+			this.chargerDonnees();
 		case "Quittance loyer":
 			if (paiementSelectionne == null) {
 				return;
@@ -55,6 +64,23 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter implements Mou
 			fenetre.getLayeredPane().add(fenQuittance);
 			fenQuittance.setVisible(true);
 			break;
+		case "Mettre à jour" :
+			JTable table = fenetre.getTable();
+        	int row = table.getSelectedRow();
+        	if (row != -1) {
+        		Paiement p = this.paiements.get(row);
+        		DaoPaiement daoPaiement;
+				try {
+					daoPaiement = new DaoPaiement();
+					p.setDatepaiement(Date.valueOf(table.getValueAt(row, 2).toString()));
+					p.setMontant(Double.parseDouble(table.getValueAt(row, 3).toString()));
+					p.setDesignation(table.getValueAt(row, 4).toString());
+					daoPaiement.update(p);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}	
+        	}
+        	break;
 
 		}
 	}

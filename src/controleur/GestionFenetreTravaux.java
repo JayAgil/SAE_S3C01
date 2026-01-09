@@ -61,6 +61,23 @@ public class GestionFenetreTravaux extends GestionHeaderEtFooter implements Mous
 		case "Visualiser facture":
 			visualiserFactureSelectionnee();
 			break;
+		case "Retirer":
+			JTable tablefac = fenetreTravaux.getTable();
+        	int rowfac = tablefac.getSelectedRow();
+        	if (rowfac != -1) {
+        		Facture f = this.travaux.get(rowfac);
+        		DaoFacture daoFacture;
+        		travaux.remove(f);
+				try {
+					daoFacture = new DaoFacture();
+					daoFacture.delete(f);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+        		
+        	}
+        	this.chargerDonnes();
+			break;
 		case "Mettre à jour" :
 			JTable table = fenetreTravaux.getTable();
         	int row = table.getSelectedRow();
