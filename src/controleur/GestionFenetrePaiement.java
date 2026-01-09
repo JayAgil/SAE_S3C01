@@ -41,13 +41,19 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter implements Mou
 	}
 
 	@Override
-	protected void gererBoutonSpecifique(String texte) {
+	protected void gererBoutonSpecifique(String texte) throws SQLException {
 		switch (texte) {
 		case "Ajouter paiement":
 			FenetreAjouterPaiement fenAjouterPaiement = new FenetreAjouterPaiement(this,locataireSelectionne);
 			fenetre.getLayeredPane().add(fenAjouterPaiement);
 			fenAjouterPaiement.setVisible(true);
 			break;
+		case "Retirer":
+			if (paiementSelectionne == null) {
+				return;
+			}
+			DaoPaiement dP = new DaoPaiement();
+			dP.delete(paiementSelectionne);
 		case "Quittance loyer":
 			if (paiementSelectionne == null) {
 				return;
