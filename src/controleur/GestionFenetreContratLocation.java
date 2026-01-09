@@ -168,6 +168,14 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 			fenetre.getLayeredPane().add(fn);
 			fn.setVisible(true);
 			break;
+		case "Retirer":
+			if(!(selected == null)) {
+				DaoContratLocation dCL = new DaoContratLocation();
+				dCL.delete(selected);
+				contrats.remove(selected);
+				this.remplirTable();
+			}
+			break;
 		case "Mettre à jour" :
 			JTable table = fenetre.getTable();
         	int row = table.getSelectedRow();

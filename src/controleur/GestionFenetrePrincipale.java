@@ -187,6 +187,25 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 			fenetre.getLayeredPane().add(fen);
 			fen.setVisible(true);
 			break;
+		case "Retirer":
+			List<BienLouable> biens = this.daoBienLouable.findByBatiment(this.fenetre.getCbBatiment().getSelectedItem().toString());
+			if(biens.isEmpty() || biens ==  null) {
+				DaoBatiment dBat = new DaoBatiment();
+				Batiment bat = dBat.findById(this.fenetre.getCbBatiment().getSelectedItem().toString());
+				dBat.delete(bat);
+				this.remplirTableau();
+				this.remplirComboBatiment();
+				this.remplirStatistiques();
+			}else {
+				JOptionPane.showMessageDialog(
+				    null,
+				    "Ce batiment contient des biens, veuillez supprimer tous les bien avant de supprimer ce batiment!",
+				    "Information",
+				    JOptionPane.INFORMATION_MESSAGE
+				);
+
+			}
+			break;
 		}
 	}
 

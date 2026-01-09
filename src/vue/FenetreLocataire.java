@@ -26,6 +26,8 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.util.List;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class FenetreLocataire extends FenetreBase {
 
@@ -349,11 +351,12 @@ public class FenetreLocataire extends FenetreBase {
 		scrollPane.setViewportView(table);
 
 		this.gestionClic = new GestionFenetreLocataire(this, locataires);
-		this.gestionClic.initialize();
 		btnAjouterLocataire.addActionListener(this.gestionClic);
 		btnPaiement.addActionListener(this.gestionClic);
 		btnRetirerLocataire.addActionListener(this.gestionClic);
 		btnRetour.addActionListener(this.gestionClic);
+		table.addMouseListener(this.gestionClic);
+		this.gestionClic.initialize();
 
 	}
 

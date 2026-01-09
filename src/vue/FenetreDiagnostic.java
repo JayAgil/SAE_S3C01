@@ -32,6 +32,7 @@ public class FenetreDiagnostic extends FenetreBase {
 	private JLabel lblnbDiag;
 	private JLabel lblnbDiagExp;
 	private BienLouable bL;
+	private JButton btnChoisir;
 
 	public FenetreDiagnostic(BienLouable bL) throws SQLException {
 		super();
@@ -57,14 +58,21 @@ public class FenetreDiagnostic extends FenetreBase {
 		JPanel panel_1 = new JPanel();
 		panel.add(panel_1, BorderLayout.SOUTH);
 
-		JButton btnRetour = new JButton("Retour");
-		panel_1.add(btnRetour);
-
 		JButton btnAjouter = new JButton("Ajouter");
 		panel_1.add(btnAjouter);
-		
-		JButton btnModifier = new JButton("Modifier");
+
+		JButton btnModifier = new JButton("Mettre à jour");
 		panel_1.add(btnModifier);
+
+		btnChoisir = new JButton("Choisir");
+		panel_1.add(btnChoisir);
+		btnChoisir.setEnabled(false);
+
+		JButton btnRetirer = new JButton("Retirer");
+		panel_1.add(btnRetirer);
+
+		JButton btnRetour = new JButton("Retour");
+		panel_1.add(btnRetour);
 
 		JPanel panel_2 = new JPanel();
 		panel.add(panel_2, BorderLayout.NORTH);
@@ -92,13 +100,16 @@ public class FenetreDiagnostic extends FenetreBase {
 
 		table = new JTable();
 		scrollPane.setViewportView(table);
-		table.setModel(new DefaultTableModel(
-				new Object[][] { { null, null, null, null, null }, { null, null, null, null, null },
-						{ null, null, null, null, null }, { null, null, null, null, null },
-						{ null, null, null, null, null }, { null, null, null, null, null },
-						{ null, null, null, null, null }, { null, null, null, null, null }, },
-				new String[] { "Type Diagnostics", "Date R\u00E9alisation", "Date Validit\u00E9", "Fichier",
-						"Bien Associ\u00E9" }));
+		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "ID Diagnostic", "Type Diagnostics",
+				"Date R\u00E9alisation", "Date Validit\u00E9", "Fichier", "Bien Associ\u00E9" }) {
+			boolean[] columnEditables = new boolean[] { false, true, true, true, true, true };
+
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
+		table.getColumnModel().getColumn(1).setPreferredWidth(96);
+		table.getColumnModel().getColumn(2).setPreferredWidth(96);
 
 		JPanel panel_4 = new JPanel();
 		GridBagConstraints gbc_panel_4 = new GridBagConstraints();
@@ -128,15 +139,21 @@ public class FenetreDiagnostic extends FenetreBase {
 		lblnbDiagExp = new JLabel("33\r\n");
 		lblnbDiagExp.setFont(new Font("Tahoma", Font.PLAIN, 95));
 		panel_6.add(lblnbDiagExp);
-		table.getColumnModel().getColumn(0).setPreferredWidth(96);
-		table.getColumnModel().getColumn(1).setPreferredWidth(96);
 
 		this.gestionClic = new GestionFenetreDiagnostic(this);
 		this.gestionClic.initialize();
 		this.gestionClic.chargerDonnees();
+		btnChoisir.addActionListener(this.gestionClic);
 		btnRetour.addActionListener(this.gestionClic);
 		btnModifier.addActionListener(this.gestionClic);
+		btnAjouter.addActionListener(this.gestionClic);
+		btnRetirer.addActionListener(gestionClic);
 
+
+	}
+
+	public JButton getBtnChoisir() {
+		return btnChoisir;
 	}
 
 	public JLabel getLblnbDiag() {

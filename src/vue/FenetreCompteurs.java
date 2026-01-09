@@ -32,6 +32,8 @@ import java.util.List;
 
 import javax.swing.border.TitledBorder;
 import javax.swing.border.MatteBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FenetreCompteurs extends FenetreBase {
 
@@ -83,7 +85,7 @@ public class FenetreCompteurs extends FenetreBase {
 				{ null, null, null, null, null, null, null, null }, },
 				new String[] { "Type", "Date", "Index ancien", "Index nouveau", "Consommation", "Partie Variable",
 						"Partie Fixe", "Total" }) {
-			boolean[] columnEditables = new boolean[] { false, false, false, false, false, false, true, false };
+			boolean[] columnEditables = new boolean[] { true, false, false, false, true, false, true, false };
 
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
@@ -113,13 +115,6 @@ public class FenetreCompteurs extends FenetreBase {
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
-			boolean[] columnEditables = new boolean[] {
-				true, false, false, false, false, false, true, false, false
-			};
-
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
 		});
 
 		scrollPane = new JScrollPane(tableCompteurs);
@@ -135,6 +130,9 @@ public class FenetreCompteurs extends FenetreBase {
 
 		JButton btnMAJ = new JButton("Mettre à jour");
 		panel_butons.add(btnMAJ);
+		
+		JButton btnRetirer = new JButton("Retirer");
+		panel_butons.add(btnRetirer);
 
 		JButton btnRetour = new JButton("Retour");
 		panel_butons.add(btnRetour);
@@ -274,6 +272,7 @@ public class FenetreCompteurs extends FenetreBase {
 		btnAjouterCompteur.addActionListener(this.gestionClic);
 		btnRetour.addActionListener(this.gestionClic);
 		btnMAJ.addActionListener(this.gestionClic);
+		btnRetirer.addActionListener(this.gestionClic);
 
 	}
 

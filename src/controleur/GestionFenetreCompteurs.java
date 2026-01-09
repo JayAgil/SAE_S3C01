@@ -8,8 +8,10 @@ import javax.swing.table.DefaultTableModel;
 
 import modele.BienLouable;
 import modele.Compteur;
+import modele.Facture;
 import modele.dao.DaoBienLouable;
 import modele.dao.DaoCompteur;
+import modele.dao.DaoFacture;
 import vue.*;
 
 public class GestionFenetreCompteurs extends GestionHeaderEtFooter {
@@ -93,18 +95,29 @@ public class GestionFenetreCompteurs extends GestionHeaderEtFooter {
                 fenetre.getLayeredPane().add(fenAjouterCompteur);
                 fenAjouterCompteur.setVisible(true);
                 break;
-            case "Mettre à jour" :
-            	JTable table = fenetre.getTableCompteurs();
-            	int row = table.getSelectedRow();
-            	if (row != -1) {
-            		Compteur c = this.cpt.get(row);
-            		DaoCompteur daoCompteur = new DaoCompteur();
-            		c.setType(table.getValueAt(row, 0).toString());
-            		c.setIndexNouveau(Double.parseDouble(table.getValueAt(row, 4).toString()));
-            		c.setPartieVariable(Double.parseDouble(table.getValueAt(row, 6).toString()));
-            		daoCompteur.update(c);
-            	}
-            	break;
+            case "Mettre à jour":
+                JTable table = fenetre.getTableCompteurs();
+                int row = table.getSelectedRow();
+
+                if (row != -1) {
+
+                    // 🔴 VERY IMPORTANT
+                    if (table.isEditing()) {
+                        table.getCellEditor().stopCellEditing();
+                    }
+
+                    Compteur c = this.cpt.get(row);
+                    DaoCompteur daoCompteur = new DaoCompteur();
+
+                    c.setType(table.getValueAt(row, 0).toString());
+                    c.setIndexNouveau(Double.parseDouble(table.getValueAt(row, 4).toString()));
+                    c.setPartieVariable(Double.parseDouble(table.getValueAt(row, 6).toString()));
+
+                    daoCompteur.update(c);
+                    System.out.println("Updated in DB: " + c);
+                }
+                break;
+
         }
     }
     
@@ -124,6 +137,22 @@ public class GestionFenetreCompteurs extends GestionHeaderEtFooter {
     	            FenetreBienLouable fp2 = new FenetreBienLouable("FenPrincipale", data);
     	            fp2.setVisible(true);
     	            break;
+    	        case "Retirer":
+    	        	JTable table = this.fenetre.getTableCompteurs();
+    	        	int row = table.getSelectedRow();
+    	        	if (row != -1) {
+    	        		Compteur compt = this.cpt.get(row);
+    	        		DaoCompteur dC;
+    					try {
+    						dC = new DaoCompteur();
+    						dC.delete(compt);
+    						this.cpt.remove(compt);
+    						this.remplirTableCompteurs();
+    					} catch (SQLException e1) {
+    						e1.printStackTrace();
+    					}
+    	        		
+    	        	}
     	    }
     	}
     		

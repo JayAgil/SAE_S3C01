@@ -67,6 +67,7 @@ public class GestionFenetreTravaux extends GestionHeaderEtFooter implements Mous
         	if (rowfac != -1) {
         		Facture f = this.travaux.get(rowfac);
         		DaoFacture daoFacture;
+        		travaux.remove(f);
 				try {
 					daoFacture = new DaoFacture();
 					daoFacture.delete(f);
@@ -75,6 +76,7 @@ public class GestionFenetreTravaux extends GestionHeaderEtFooter implements Mous
 				}
         		
         	}
+        	this.chargerDonnes();
 			break;
 		case "Mettre à jour" :
 			JTable table = fenetreTravaux.getTable();
