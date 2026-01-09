@@ -128,16 +128,7 @@ public class GestionFenetreCompteurs extends GestionHeaderEtFooter implements Mo
         }
     }
     
-    private double parseDoubleSafe(Object value) {
-        if (value == null) {
-        	return 0.0;
-        }
-        String str = value.toString().replaceAll("[^0-9.,]", "");
-        str = str.replace(",", ".");
-        if (str.isEmpty()) return 0.0;
-        return Double.parseDouble(str);
-    }
-
+    
     
     @Override
     protected void gererBoutonRetour(String texte) throws SQLException {
