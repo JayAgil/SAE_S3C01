@@ -31,6 +31,8 @@ import javax.swing.border.MatteBorder;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FenetreCharges extends FenetreBase {
 
@@ -251,10 +253,14 @@ public class FenetreCharges extends FenetreBase {
 		
 		JButton btnMAJ = new JButton("Mettre à jour");
 		buttonPanel.add(btnMAJ);
+				
+				JButton btnRetirer = new JButton("Retirer");
+
+				buttonPanel.add(btnRetirer);
 		
 				JButton btnRetour = new JButton("Retour");
 				buttonPanel.add(btnRetour);
-				btnRetour.addActionListener(this.gestionClic);
+
 
 		// Footer panel (if needed)
 		JPanel footerPanel = new JPanel(new BorderLayout());
@@ -299,6 +305,8 @@ public class FenetreCharges extends FenetreBase {
 		comboBoxAnnee.addActionListener(this.gestionClic);
 		btnAjouter.addActionListener(this.gestionClic);
 		btnMAJ.addActionListener(this.gestionClic);
+		btnRetirer.addActionListener(this.gestionClic);
+		btnRetour.addActionListener(this.gestionClic);
 
 	}
 

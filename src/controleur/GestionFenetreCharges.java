@@ -12,8 +12,10 @@ import javax.swing.table.DefaultTableModel;
 
 import modele.BienLouable;
 import modele.ChargesGenerales;
+import modele.Facture;
 import modele.dao.DaoBienLouable;
 import modele.dao.DaoChargesGenerales;
+import modele.dao.DaoFacture;
 import vue.*;
 
 public class GestionFenetreCharges extends GestionHeaderEtFooter{
@@ -44,7 +46,23 @@ public class GestionFenetreCharges extends GestionHeaderEtFooter{
                 fenetre.getLayeredPane().add(fenAjouterCharge);
                 fenAjouterCharge.setVisible(true);
                 break;
-
+            case "Retirer":
+    			JTable tableCharges = this.fenetre.getTable();
+            	int rowCharges = tableCharges.getSelectedRow();
+            	if (rowCharges != -1) {
+            		ChargesGenerales c = donnees.get(rowCharges);
+            		DaoChargesGenerales dC;
+    				try {
+    					dC = new DaoChargesGenerales();
+    					dC.delete(c);
+    					donnees.remove(c);
+    					this.chargerDonnees();
+    				} catch (SQLException e1) {
+    					e1.printStackTrace();
+    				}
+            		
+            	}
+    			break;
             case "Mettre à jour":
             	JTable table = fenetre.getTable();
             	int row = table.getSelectedRow();
