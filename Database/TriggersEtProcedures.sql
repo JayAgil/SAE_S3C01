@@ -21,41 +21,35 @@ END;
 
 
 CREATE OR REPLACE PROCEDURE VerifierDateLancement IS
+
+    --Verifie la derniere date de lancement et mes a jour le solde en fonction des 
+    --loyers et charges qui n etaient pas ajoute
     v_date   DATE;
     v_annees NUMBER;
     v_mois   NUMBER;
 BEGIN
-    -- Récupérer la date du dernier lancement (mois civil)
+
     SELECT TRUNC(date_dernier_lancement,'MM')
     INTO v_date
     FROM SAE_DateDernierLancement
     WHERE Id_Lock = 'X';
 
-    -- Calcul des années complètes écoulées
     v_annees := FLOOR(MONTHS_BETWEEN(TRUNC(SYSDATE,'MM'), v_date) / 12);
 
     IF v_annees > 0 THEN
-        -- Mise à jour du solde pour toutes les années
         UPDATE SAE_ContratLocation
-        SET Solde = Solde - (Montant_Mensuel * v_annees * 12);
-
-        -- Avancer la date d'autant d'années
+        SET Solde = Solde - (Montant_Mensuel * v_annees * 12 + Provision_Charge*v_annees*12);
         v_date := ADD_MONTHS(v_date, v_annees * 12);
     END IF;
-
-    -- Calcul des mois restants après les années
     v_mois := MONTHS_BETWEEN(TRUNC(SYSDATE,'MM'), v_date);
 
     IF v_mois > 0 THEN
-        -- Mise à jour du solde pour les mois restants
         UPDATE SAE_ContratLocation
-        SET Solde = Solde - (Montant_Mensuel * v_mois);
-
-        -- Avancer la date d'autant de mois
-        v_date := ADD_MONTHS(v_date, v_mois);
+        SET Solde = Solde - (Montant_Mensuel * v_mois + Provision_Charge*v_mois);
+        
+         v_date := ADD_MONTHS(v_date, v_mois);
     END IF;
 
-    -- Mettre à jour la date dernier lancement
     UPDATE SAE_DateDernierLancement
     SET date_dernier_lancement = v_date
     WHERE Id_Lock = 'X';
@@ -75,21 +69,76 @@ EXECUTE VerifierDateLancement;
 
 
 
---loyer  + provisions charges : 750
---solde : 0
+--Permet de creer une date d anniversaire automatiquement quand on creer un contrat de location
+CREATE OR REPLACE TRIGGER DateAnniversaireAuto
+AFTER INSERT ON SAE_ContratLocation 
+FOR EACH ROW
+BEGIN
+    INSERT INTO SAE_DateAnniversaireContrat (
+        fk_Numero_de_contrat,
+        Date_dernier_anniversaire
+    )
+    VALUES (
+        :NEW.Numero_de_contrat,
+        :NEW.Date_debut
+    );
+END;
+/
 
---solde -750
-
---paiment : 650
-
---solde -100
 
 
---dans bd rajouter une table qui contient la derniere date de lancement de l'appli
---au lancement de l'appli : check le mois actuel et le mois de la derniere date
 
---boucle
-    --tant que annee_mois_bd =< annee_mois_actuel, solde += loyer mensuel
-    --annee_mois_bd = annee_mois_bd+1
---fin boucle
---update date
+
+
+
+    --Verifie la derniere date d anniversaire et si un an s est ecoule soustrait les provisions de charge en fonction des 
+    --charges reeles puis l'ajoute au solde
+    --a 1 ans ou + : solde = loyer + provision -(provision - charges reelles)
+    --a tester avec provision a 200 et charges reelles 160 puis provision a 160 et charges reelles 200   
+CREATE OR REPLACE PROCEDURE VerifierDateAnniversaire IS
+    v_annees        NUMBER;
+    v_date          DATE;
+    v_total_charges NUMBER;
+BEGIN
+
+    --dac = Date Anniversaire Contrat
+    --cl = Contrat Location
+    FOR i IN (
+        SELECT dac.fk_Numero_de_contrat,
+               TRUNC(dac.Date_dernier_anniversaire, 'MM') AS date_anniv,
+               cl.Provision_Charge,
+               cl.fk_Id_BienLouable
+        FROM SAE_DateAnniversaireContrat dac
+        JOIN SAE_ContratLocation cl
+             ON cl.Numero_de_contrat = dac.fk_Numero_de_contrat
+    ) LOOP
+
+        v_date := i.date_anniv;
+
+        v_annees := FLOOR(
+            MONTHS_BETWEEN(TRUNC(SYSDATE, 'MM'), v_date) / 12
+        );
+
+        IF v_annees >= 1 THEN
+
+            SELECT NVL(SUM(Montant_Total), 0)
+            INTO v_total_charges
+            FROM SAE_Charges_Generale
+            WHERE fk_Id_BienLouable = i.fk_Id_BienLouable;
+
+            UPDATE SAE_ContratLocation
+            SET Solde = Solde - ((i.Provision_Charge - v_total_charges) * 12 * v_annees)
+            WHERE Numero_de_contrat = i.fk_Numero_de_contrat;
+
+            v_date := ADD_MONTHS(v_date, v_annees * 12);
+
+            UPDATE SAE_DateAnniversaireContrat
+            SET Date_dernier_anniversaire = v_date
+            WHERE fk_Numero_de_contrat = i.fk_Numero_de_contrat;
+        END IF;
+
+    END LOOP;
+
+    COMMIT;
+END VerifierDateAnniversaire;
+/

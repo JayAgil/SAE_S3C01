@@ -188,24 +188,31 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 			fen.setVisible(true);
 			break;
 		case "Retirer":
-			List<BienLouable> biens = this.daoBienLouable.findByBatiment(this.fenetre.getCbBatiment().getSelectedItem().toString());
-			if(biens.isEmpty() || biens ==  null) {
-				DaoBatiment dBat = new DaoBatiment();
-				Batiment bat = dBat.findById(this.fenetre.getCbBatiment().getSelectedItem().toString());
-				dBat.delete(bat);
-				this.remplirTableau();
-				this.remplirComboBatiment();
-				this.remplirStatistiques();
-			}else {
-				JOptionPane.showMessageDialog(
-				    null,
-				    "Ce batiment contient des biens, veuillez supprimer tous les bien avant de supprimer ce batiment!",
-				    "Information",
-				    JOptionPane.INFORMATION_MESSAGE
-				);
+		    String adresseBat = getChosenBatiment().getAdresse();
+		    DaoBienLouable daoBL = new DaoBienLouable();
+		    List<BienLouable> biens = daoBL.findByBatiment(adresseBat);
+		    if (biens == null || biens.isEmpty()) {
+		        DaoBatiment dBat = new DaoBatiment();
+		        Batiment bat = dBat.findById(adresseBat);
+		        if (bat != null) {
+		            dBat.delete(bat);
+		        }
+		        remplirComboBatiment();
+		        if (fenetre.getCbBatiment().getItemCount() > 0) {
+		            fenetre.getCbBatiment().setSelectedIndex(0);
+		            remplirTableau();
+		        }
+		        remplirStatistiques();
+		    } else {
+		        JOptionPane.showMessageDialog(
+		            fenetre,
+		            "Ce bâtiment contient des biens.\nSupprimez d'abord tous les biens.",
+		            "Suppression impossible",
+		            JOptionPane.WARNING_MESSAGE
+		        );
+		    }
+		    break;
 
-			}
-			break;
 		}
 	}
 
@@ -380,11 +387,10 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 		}
 	}
 
-	public String getChosenBatiment() {
-        if (this.fenetre.getCbBatiment().getSelectedItem() == null) {
-            return this.fenetre.getCbBatiment().getItemAt(0);
-        }
-        return this.fenetre.getCbBatiment().getSelectedItem().toString();
+	public Batiment getChosenBatiment() throws SQLException {
+		String idBat = (String) this.fenetre.getCbBatiment().getSelectedItem();
+        DaoBatiment dB = new DaoBatiment();
+        return dB.findById(idBat);
     }
 
 	public String getBatimentId() {

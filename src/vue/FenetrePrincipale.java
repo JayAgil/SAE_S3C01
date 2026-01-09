@@ -299,14 +299,17 @@ public class FenetrePrincipale extends FenetreBase {
 		gestionClic.remplirComboBatiment();
 		gestionClic.remplirTableau();
 		table.addMouseListener(this.gestionClic);
-		btnRetirer.addMouseListener(this.gestionClic);
+		btnRetirer.addActionListener(this.gestionClic);
 		gestionClic.initialize();
 
 	}
 
 	public String getChosenBatiment() {
-		return cbBatiment.getSelectedItem().toString();
-	}
+		if (cbBatiment.getSelectedItem() == null) {
+            return cbBatiment.getItemAt(0);
+        }
+        return cbBatiment.getSelectedItem().toString();
+    }
 
 	public JTable getTable() {
 		return this.table;
