@@ -85,7 +85,7 @@ public class FenetreCompteurs extends FenetreBase {
 				{ null, null, null, null, null, null, null, null }, },
 				new String[] { "Type", "Date", "Index ancien", "Index nouveau", "Consommation", "Partie Variable",
 						"Partie Fixe", "Total" }) {
-			boolean[] columnEditables = new boolean[] { false, false, false, false, false, false, true, false };
+			boolean[] columnEditables = new boolean[] { true, false, false, false, true, false, true, false };
 
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
@@ -110,17 +110,10 @@ public class FenetreCompteurs extends FenetreBase {
 			}
 		) {
 			Class[] columnTypes = new Class[] {
-				String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class
+				String.class, String.class, String.class, Double.class, Double.class, Double.class, Double.class, Double.class, Double.class
 			};
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
-			}
-			boolean[] columnEditables = new boolean[] {
-				true, false, false, false, false, false, true, false, false
-			};
-
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
 			}
 		});
 

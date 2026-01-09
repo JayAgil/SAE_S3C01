@@ -21,6 +21,8 @@ import java.sql.SQLException;
 
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FenetreDiagnostic extends FenetreBase {
 
@@ -64,12 +66,13 @@ public class FenetreDiagnostic extends FenetreBase {
 
 		btnChoisir = new JButton("Choisir");
 		panel_1.add(btnChoisir);
-		btnChoisir.setEnabled(false);;
-		
+		btnChoisir.setEnabled(false);
+
+		JButton btnRetirer = new JButton("Retirer");
+		panel_1.add(btnRetirer);
 
 		JButton btnRetour = new JButton("Retour");
 		panel_1.add(btnRetour);
-		
 
 		JPanel panel_2 = new JPanel();
 		panel.add(panel_2, BorderLayout.NORTH);
@@ -107,8 +110,6 @@ public class FenetreDiagnostic extends FenetreBase {
 		});
 		table.getColumnModel().getColumn(1).setPreferredWidth(96);
 		table.getColumnModel().getColumn(2).setPreferredWidth(96);
-	
-
 
 		JPanel panel_4 = new JPanel();
 		GridBagConstraints gbc_panel_4 = new GridBagConstraints();
@@ -146,6 +147,8 @@ public class FenetreDiagnostic extends FenetreBase {
 		btnRetour.addActionListener(this.gestionClic);
 		btnModifier.addActionListener(this.gestionClic);
 		btnAjouter.addActionListener(this.gestionClic);
+		btnRetirer.addActionListener(gestionClic);
+
 
 	}
 
