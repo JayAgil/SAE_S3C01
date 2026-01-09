@@ -25,6 +25,8 @@ import java.sql.SQLException;
 
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FenetreBienLouable extends FenetreBase {
 	private GestionFenetreBienLouable gestionClicBienLouable;
@@ -44,6 +46,7 @@ public class FenetreBienLouable extends FenetreBase {
 	private JTextField textFieldDFC;
 	private JTextField textFieldDP;
 	private BienLouable bienLouable;
+	private JScrollPane scrollPane;
 
 	public FenetreBienLouable(String nomFenAvant, BienLouable bienLouables) throws SQLException {
 		super();
@@ -68,9 +71,6 @@ public class FenetreBienLouable extends FenetreBase {
 		JPanel panel = new JPanel();
 		panel_2.add(panel, BorderLayout.SOUTH);
 
-		JButton btnRetour = new JButton("Retour");
-		panel.add(btnRetour);
-
 		JButton btnCompteur = new JButton("Compteur");
 		panel.add(btnCompteur);
 
@@ -92,6 +92,14 @@ public class FenetreBienLouable extends FenetreBase {
 
 		JButton btnAjouter = new JButton("Ajouter");
 		panel.add(btnAjouter);
+		
+		JButton btnRetirer = new JButton("Retirer");
+
+		panel.add(btnRetirer);
+		
+				JButton btnRetour = new JButton("Retour");
+				panel.add(btnRetour);
+
 
 		JPanel panel_3 = new JPanel();
 		panel_2.add(panel_3, BorderLayout.CENTER);
@@ -386,7 +394,7 @@ public class FenetreBienLouable extends FenetreBase {
 		panel_3.add(panel_5, gbc_panel_5);
 		panel_5.setLayout(new BorderLayout(0, 0));
 
-		JScrollPane scrollPane = new JScrollPane();
+		scrollPane = new JScrollPane();
 		panel_5.add(scrollPane);
 
 		table = new JTable();
@@ -428,13 +436,14 @@ public class FenetreBienLouable extends FenetreBase {
 		this.gestionClicBienLouable = new GestionFenetreBienLouable(this, this.bienLouable);
 		this.gestionClicBienLouable.chargerDonnees();
 		btnCompteur.addActionListener(gestionClicBienLouable);
-		btnRetour.addActionListener(gestionClicBienLouable);
 		btnDiagnostic.addActionListener(this.gestionClicBienLouable);
 		btnTravaux.addActionListener(this.gestionClicBienLouable);
 		btnCharge.addActionListener(this.gestionClicBienLouable);
 		btnContrat.addActionListener(this.gestionClicBienLouable);
 		btnAjouter.addActionListener(gestionClicBienLouable);
 		table.addMouseListener(this.gestionClicBienLouable);
+		btnRetirer.addActionListener(this.gestionClicBienLouable);
+		btnRetour.addActionListener(gestionClicBienLouable);
 		this.gestionClicBienLouable.initialize();
 
 
@@ -442,6 +451,14 @@ public class FenetreBienLouable extends FenetreBase {
 			this.gestionClicBienLouable.chargerBienEtRemplirFormulaire(this.bienLouable.getIdBienLouable());
 
 		}
+	}
+
+	public BienLouable getBienLouable() {
+		return bienLouable;
+	}
+
+	public void setBienLouable(BienLouable bienLouable) {
+		this.bienLouable = bienLouable;
 	}
 
 	public JTextField getTextFieldNom() {

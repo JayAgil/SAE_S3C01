@@ -5,6 +5,8 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.sql.Date;
 
 import javax.swing.JTable;
@@ -18,7 +20,7 @@ import modele.dao.DaoChargesGenerales;
 import modele.dao.DaoFacture;
 import vue.*;
 
-public class GestionFenetreCharges extends GestionHeaderEtFooter{
+public class GestionFenetreCharges extends GestionHeaderEtFooter implements MouseListener{
 
     private FenetreCharges fenetre;
     private List<ChargesGenerales> donnees = new ArrayList<>();
@@ -223,6 +225,41 @@ public class GestionFenetreCharges extends GestionHeaderEtFooter{
             }
         });
     }
+
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 
