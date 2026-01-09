@@ -24,7 +24,7 @@ public abstract class GestionButtonFenetreAjouter implements ActionListener {
                 }
                 break;
             case "Retour":
-                 getFrame().dispose();
+                getFrame().dispose();
                 break;
             case "Ajouter":
             	gererAction();
