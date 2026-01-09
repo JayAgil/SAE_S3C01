@@ -49,7 +49,7 @@ public class Batiment {
 
     @Override
     public String toString() {
-        return "Bâtiment [Adresse=" + adresse + ", Date de construction=" + dateConstruction + "]";
+        return this.adresse;
     }
     
     public boolean estValide() {
