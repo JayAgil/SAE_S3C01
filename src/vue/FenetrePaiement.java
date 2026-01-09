@@ -115,10 +115,14 @@ public class FenetrePaiement extends FenetreBase {
 		btnQuittance = new JButton("Quittance loyer");
 		panelButtons.add(btnQuittance);
 		btnQuittance.setEnabled(false);
+				
+				JButton btnRetirer = new JButton("Retirer");
+
+				panelButtons.add(btnRetirer);
 		
 				JButton btnRetour = new JButton("Retour");
 				panelButtons.add(btnRetour);
-				btnRetour.addActionListener(gestionClic);
+
 
 		JPanel panel_7 = new JPanel();
 		mainPanel.add(panel_7, BorderLayout.CENTER);
@@ -178,20 +182,22 @@ public class FenetrePaiement extends FenetreBase {
 				"Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Decembre" }));
 		panel_8.add(comboBoxMois);
 		table = new JTable();
+		table.setFillsViewportHeight(true);
 		table.setModel(new DefaultTableModel(
-				new Object[][] { { null, null, null, null, null }, { null, null, null, null, null },
-						{ null, null, null, null, null }, },
-				new String[] { "ID Paiement", "ID Contrat", "Date Paiement", "Montant", "D\u00E9signation" }) {
-			Class[] columnTypes = new Class[] { Object.class, String.class, String.class, Double.class, String.class };
-
+			new Object[][] {
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+			},
+			new String[] {
+				"ID Paiement", "ID Contrat", "Date Paiement", "Montant", "D\u00E9signation"
+			}
+		) {
+			Class[] columnTypes = new Class[] {
+				String.class, String.class, String.class, Double.class, String.class
+			};
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
-			}
-
-			boolean[] columnEditables = new boolean[] { false, false, false, false, false };
-
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
 			}
 		});
 		scrollPane_1.setViewportView(table);
@@ -220,6 +226,8 @@ public class FenetrePaiement extends FenetreBase {
 		table.addMouseListener(this.gestionClic);
 		btnQuittance.addActionListener(this.gestionClic);
 		btnMAJ.addActionListener(this.gestionClic);
+		btnRetirer.addActionListener(this.gestionClic);
+		btnRetour.addActionListener(gestionClic);
 	}
 
 	public JButton getBtnAjouterPaiement() {
