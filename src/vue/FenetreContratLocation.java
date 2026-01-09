@@ -44,6 +44,10 @@ public class FenetreContratLocation extends FenetreBase {
 	private JLabel lblTitreTable;
 	private BienLouable bl;
 	private JButton btnAjouter;
+	
+	public GestionFenetreContratLocation getGestion() {
+		return this.gestionClicContratLocation;
+	}
 
 	public FenetreContratLocation(String f, ContratLocation cl, BienLouable bl) throws SQLException {
 		super();

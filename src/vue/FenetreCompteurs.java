@@ -46,6 +46,10 @@ public class FenetreCompteurs extends FenetreBase {
 	private List<Compteur> cpt;
 	private BienLouable b;
 	private JButton btnAjouterCompteur;
+	
+	private GestionFenetreCompteurs getGestion() {
+		return this.gestionClic;
+	}
 
 	public FenetreCompteurs(String fenetreAvant, List<Compteur> cpt, BienLouable b){
 		super();
