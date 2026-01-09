@@ -95,15 +95,17 @@ END;
     --charges reeles puis l'ajoute au solde
     --a 1 ans ou + : solde = loyer + provision -(provision - charges reelles)
     --a tester avec provision a 200 et charges reelles 160 puis provision a 160 et charges reelles 200   
+
+            --dac = Date Anniversaire Contrat
+             --cl = Contrat Location
 CREATE OR REPLACE PROCEDURE VerifierDateAnniversaire IS
     v_annees        NUMBER;
     v_date          DATE;
     v_total_charges NUMBER;
 BEGIN
-
-    --dac = Date Anniversaire Contrat
-    --cl = Contrat Location
     FOR i IN (
+        --dac = Date Anniversaire Contrat
+        --cl = Contrat Location
         SELECT dac.fk_Numero_de_contrat,
                TRUNC(dac.Date_dernier_anniversaire, 'MM') AS date_anniv,
                cl.Provision_Charge,
@@ -115,23 +117,32 @@ BEGIN
 
         v_date := i.date_anniv;
 
-        v_annees := FLOOR(
-            MONTHS_BETWEEN(TRUNC(SYSDATE, 'MM'), v_date) / 12
-        );
+        -- Calcul des années pleines
+        v_annees := EXTRACT(YEAR FROM TRUNC(SYSDATE)) - EXTRACT(YEAR FROM v_date);
 
+        -- On reconstitue la date anniversaire de l'année en cours
+        v_date := ADD_MONTHS(v_date, v_annees * 12);
+
+        -- Si la date dépasse aujourd'hui, on recule d'un an
+        IF v_date > TRUNC(SYSDATE) THEN
+            v_annees := v_annees - 1;
+            v_date := ADD_MONTHS(v_date, -12);
+        END IF;
+
+        -- Si au moins 1 anniversaire s'est écoulé
         IF v_annees >= 1 THEN
-
-            SELECT NVL(SUM(Montant_Total), 0)
+            -- Somme des charges pour le bien louable
+            SELECT NVL(SUM(cg.Montant_Total), 0)
             INTO v_total_charges
-            FROM SAE_Charges_Generale
-            WHERE fk_Id_BienLouable = i.fk_Id_BienLouable;
+            FROM SAE_Charges_Generale cg
+            WHERE cg.fk_Id_BienLouable = i.fk_Id_BienLouable;
 
+            -- Mise à jour du solde du contrat
             UPDATE SAE_ContratLocation
             SET Solde = Solde - ((i.Provision_Charge - v_total_charges) * 12 * v_annees)
             WHERE Numero_de_contrat = i.fk_Numero_de_contrat;
 
-            v_date := ADD_MONTHS(v_date, v_annees * 12);
-
+            -- Mise à jour de la date du dernier anniversaire
             UPDATE SAE_DateAnniversaireContrat
             SET Date_dernier_anniversaire = v_date
             WHERE fk_Numero_de_contrat = i.fk_Numero_de_contrat;
@@ -142,3 +153,5 @@ BEGIN
     COMMIT;
 END VerifierDateAnniversaire;
 /
+
+EXECUTE VerifierDateAnniversaire;

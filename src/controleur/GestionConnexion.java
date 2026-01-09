@@ -43,7 +43,9 @@ public class GestionConnexion implements ActionListener{
                     fenLogin.getLblMessage().setText("Connexion réussie !");
                     Connection cn = UtOracleDataSource.getConnectionBD();
                     CallableStatement cs = cn.prepareCall("{call MSF5131A.VerifierDateLancement()}");
+                    CallableStatement cs2 = cn.prepareCall("{call MSF5131A. VerifierDateAnniversaire()}");
                     cs.execute();
+                    cs2.execute();
                     JOptionPane.showMessageDialog(fenLogin,
                         "Bienvenue, M. Millan !");
                     FenetrePrincipale fp = new FenetrePrincipale();

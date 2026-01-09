@@ -76,3 +76,7 @@ UPDATE SAE_Facture SET Designation_de_travaux = 'Rafraichissement complet appart
        WHERE Numero_Facture = 'FAC-018'; 
 
 UPDATE SAE_DIAGNOSTICS SET Fichier = 'Diagnostics/Diagnostics.pdf';
+
+UPDATE SAE_ContratLocation Set Solde = 0 WHERE numero_de_contrat = 'CTR-0015';
+UPDATE SAE_DateAnniversaireContrat SET Date_dernier_anniversaire = TO_DATE('2023-03-17','YYYY-MM-DD')
+       WHERE fk_Numero_de_contrat = 'CTR-0015'; 

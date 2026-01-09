@@ -189,27 +189,36 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 			break;
 		case "Retirer":
 		    String adresseBat = getChosenBatiment().getAdresse();
-		    DaoBienLouable daoBL = new DaoBienLouable();
-		    List<BienLouable> biens = daoBL.findByBatiment(adresseBat);
-		    if (biens == null || biens.isEmpty()) {
-		        DaoBatiment dBat = new DaoBatiment();
-		        Batiment bat = dBat.findById(adresseBat);
-		        if (bat != null) {
+		    DaoBatiment dBat = new DaoBatiment();
+		    Batiment bat = dBat.findById(adresseBat);
+
+		    if (bat != null) {
+		        try {
 		            dBat.delete(bat);
+		            remplirComboBatiment();
+		            if (fenetre.getCbBatiment().getItemCount() > 0) {
+		                fenetre.getCbBatiment().setSelectedIndex(0);
+		                remplirTableau();
+		            }
+		            remplirStatistiques();
+		        } catch (SQLException ex) {
+		            if (ex.getErrorCode() == 2292) { 
+		                JOptionPane.showMessageDialog(
+		                    fenetre,
+		                    "Impossible de supprimer ce bâtiment : il contient des enregistrements enfants (assurances, biens, etc.).\nSupprimez-les d'abord.",
+		                    "Suppression impossible",
+		                    JOptionPane.WARNING_MESSAGE
+		                );
+		            } else {
+		                ex.printStackTrace();
+		                JOptionPane.showMessageDialog(
+		                    fenetre,
+		                    "Erreur lors de la suppression : " + ex.getMessage(),
+		                    "Erreur",
+		                    JOptionPane.ERROR_MESSAGE
+		                );
+		            }
 		        }
-		        remplirComboBatiment();
-		        if (fenetre.getCbBatiment().getItemCount() > 0) {
-		            fenetre.getCbBatiment().setSelectedIndex(0);
-		            remplirTableau();
-		        }
-		        remplirStatistiques();
-		    } else {
-		        JOptionPane.showMessageDialog(
-		            fenetre,
-		            "Ce bâtiment contient des biens.\nSupprimez d'abord tous les biens.",
-		            "Suppression impossible",
-		            JOptionPane.WARNING_MESSAGE
-		        );
 		    }
 		    break;
 
