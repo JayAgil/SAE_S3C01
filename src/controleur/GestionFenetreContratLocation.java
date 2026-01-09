@@ -3,6 +3,7 @@ package controleur;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -13,12 +14,10 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import modele.BienLouable;
-import modele.ChargesGenerales;
 import modele.ContratLocation;
 import modele.IRL;
 import modele.Locataire;
 import modele.dao.DaoBienLouable;
-import modele.dao.DaoChargesGenerales;
 import modele.dao.DaoContratLocation;
 import modele.dao.DaoIRL;
 import modele.dao.DaoLocataire;
@@ -177,15 +176,16 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
         		DaoContratLocation daoContrat;
 				try {
 					daoContrat = new DaoContratLocation();
-					c.setMontant(Double.parseDouble(table.getValueAt(row, 1).toString()));
-					c.setPourcentage(Float.parseFloat(table.getValueAt(row, 2).toString()));
-					c.setQuotite(Double.parseDouble(table.getValueAt(row, 3).toString()));
+					cl.setNumeroDeContrat(table.getValueAt(row, 1).toString());
+					cl.setDateFin(Date.valueOf(table.getValueAt(row, 2).toString()));
+					cl.setMontantMensuel(Double.parseDouble(table.getValueAt(row, 3).toString()));
+					cl.setSolde(Double.parseDouble(table.getValueAt(row, 4).toString()));
 					daoContrat.update(cl);
 				} catch (SQLException e1) {
 					e1.printStackTrace();
-				}
-        		
+				}	
         	}
+        	break;
 
 		}
 	}
