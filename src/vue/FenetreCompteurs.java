@@ -34,6 +34,8 @@ import javax.swing.border.TitledBorder;
 import javax.swing.border.MatteBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class FenetreCompteurs extends FenetreBase {
 
@@ -266,6 +268,8 @@ public class FenetreCompteurs extends FenetreBase {
 		btnRetour.addActionListener(this.gestionClic);
 		btnMAJ.addActionListener(this.gestionClic);
 		btnRetirer.addActionListener(this.gestionClic);
+		tableCompteurs.addMouseListener(this.gestionClic);
+
 
 	}
 
