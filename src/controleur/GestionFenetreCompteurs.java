@@ -111,7 +111,7 @@ public class GestionFenetreCompteurs extends GestionHeaderEtFooter implements Mo
 
                     c.setType(table.getValueAt(row, 0).toString());
                     c.setIndexNouveau(Double.parseDouble(table.getValueAt(row, 4).toString()));
-                    c.setPartieVariable(Double.parseDouble(table.getValueAt(row, 6).toString()));
+                    c.setPartieVariable(parseDoubleSafe(table.getValueAt(row, 6)));
 
                     daoCompteur.update(c);
                     
@@ -127,6 +127,17 @@ public class GestionFenetreCompteurs extends GestionHeaderEtFooter implements Mo
 
         }
     }
+    
+    private double parseDoubleSafe(Object value) {
+        if (value == null) {
+        	return 0.0;
+        }
+        String str = value.toString().replaceAll("[^0-9.,]", "");
+        str = str.replace(",", ".");
+        if (str.isEmpty()) return 0.0;
+        return Double.parseDouble(str);
+    }
+
     
     @Override
     protected void gererBoutonRetour(String texte) throws SQLException {
