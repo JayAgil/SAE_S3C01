@@ -119,7 +119,24 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
             fenetre.getLayeredPane().add(ajout);
             ajout.setVisible(true);
             break;
-
+        
+		case "Retirer":
+			JTable table = this.fenetrebienlouable.getTable();
+        	int idx = table.getSelectedRow();
+        	if (idx != -1) {
+        		BienLouable bien = this.getListBienWithTheBienNow().get(idx);
+        		DaoBienLouable dB;
+				try {
+					dB = new DaoBienLouable();
+					dB.delete(bien);
+					this.chargerDonnees();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+        		
+        	}
+			break;
+        
 		case "Compteur":
 			new FenetreCompteurs("FenetreBienLouable", getDonneesCompteur(),bien).setVisible(true);
 			fenetrebienlouable.dispose();

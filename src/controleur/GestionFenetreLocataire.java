@@ -1,5 +1,7 @@
 package controleur;
 
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -16,7 +18,7 @@ import modele.dao.DaoLocataire;
 import modele.dao.DaoPaiement;
 import vue.*;
 
-public class GestionFenetreLocataire extends GestionHeaderEtFooter {
+public class GestionFenetreLocataire extends GestionHeaderEtFooter implements MouseListener{
 
 	private FenetreLocataire fenetre;
 	private List<Locataire> locataires;
@@ -157,6 +159,36 @@ public class GestionFenetreLocataire extends GestionHeaderEtFooter {
 
 	public void setLocataires(List<Locataire> locataires) {
 		this.locataires = locataires;
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -33,6 +33,8 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class FenetreCharges extends FenetreBase {
 
@@ -108,6 +110,7 @@ public class FenetreCharges extends FenetreBase {
 		tablePanel.add(scrollPane);
 
 		table = new JTable();
+		table.addMouseListener(this.gestionClic);
 		scrollPane.setViewportView(table);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
