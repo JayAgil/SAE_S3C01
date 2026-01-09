@@ -110,7 +110,7 @@ public class FenetreCompteurs extends FenetreBase {
 			}
 		) {
 			Class[] columnTypes = new Class[] {
-				String.class, String.class, String.class, Double.class, Double.class, Double.class, Double.class, Double.class, Double.class
+				String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class
 			};
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
