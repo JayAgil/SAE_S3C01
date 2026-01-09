@@ -29,6 +29,12 @@ public class GestionFenetreAssurance extends GestionHeaderEtFooter {
             case "Ajouter assurance":
         	    ouvrirFenetreAjouterAssurance();
         	    break;
+            case "Retirer":
+            	DaoAssurance dAss = new DaoAssurance();
+            	Assurance ass = dAss.findById((this.fenetre.getTextFieldNumAssurance().getText()));
+            	dAss.delete(ass);
+            	this.gererBoutonRetour("Retour");
+            	break;	
             case "Modifier":
             	DaoAssurance dA = new DaoAssurance();
             	Assurance a = dA.findById(this.fenetre.getTextFieldNumAssurance().getText());
