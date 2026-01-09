@@ -27,16 +27,8 @@ public class GestionFenetreAssurance extends GestionHeaderEtFooter {
     protected void gererBoutonSpecifique(String texte) throws SQLException {
         switch (texte) {
             case "Ajouter assurance":
-			try {
-            	DaoBatiment dao = new DaoBatiment();
-				Batiment b = dao.findById(this.bat);
-				FenetreAjouterAssurance fenAjouterAssurance = new FenetreAjouterAssurance(b,this);
-                fenetre.getLayeredPane().add(fenAjouterAssurance);
-                fenAjouterAssurance.setVisible(true);
-                break;
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+        	    ouvrirFenetreAjouterAssurance();
+        	    break;
             case "Modifier":
             	DaoAssurance dA = new DaoAssurance();
             	Assurance a = dA.findById(this.fenetre.getTextFieldNumAssurance().getText());
@@ -47,6 +39,7 @@ public class GestionFenetreAssurance extends GestionHeaderEtFooter {
             	a.setMontant(Double.parseDouble(this.fenetre.getTxtFieldMontant().getText()));
             	a.setTypeAssurance(this.fenetre.getTxtFieldType().getText());
             	dA.update(a);
+            	chargerAssuranceBatiment(this.bat);
             	JOptionPane.showMessageDialog(
             		    null, 
             		    "Modification succès", 
@@ -71,8 +64,11 @@ public class GestionFenetreAssurance extends GestionHeaderEtFooter {
         DaoBienLouable dB = new DaoBienLouable();
         Assurance assurance = daoAssurance.findByBatiment(batiment);
         int nbBiens = dB.findByIdBat(batiment).size();
-        this.afficherAssuranceBatiment(assurance, nbBiens);
-    }
+        if (assurance == null) {
+            afficherAucuneAssurance(nbBiens);
+        } else {
+            afficherAssuranceBatiment(assurance, nbBiens);
+        }    }
     
 	public void afficherAssuranceBatiment(Assurance assurance, int nbBiens) {
 	    this.fenetre.getTextFieldNumAssurance().setText(assurance.getNumeroAssurance());
@@ -85,6 +81,39 @@ public class GestionFenetreAssurance extends GestionHeaderEtFooter {
 	    this.fenetre.getTxtFieldMontant().setText(String.valueOf(assurance.getMontant()));
 	    this.fenetre.getTextFieldAdresseAgence().setText(assurance.getAdresseAgence());
 	}
+	
+	public void afficherAucuneAssurance(int nbBiens) {
+	    fenetre.getTextFieldNumAssurance().setText("");
+	    fenetre.getTxtFieldPrime().setText("");
+	    fenetre.getTxtFieldType().setText("");
+	    fenetre.getTextFieldAgence().setText("");
+	    fenetre.getTextFieldTelAgence().setText("");
+	    fenetre.getTextFieldAdresseAgence().setText("");
+	    fenetre.getTxtFieldMontant().setText("");
+
+	    fenetre.getLblNbBien().setText(String.valueOf(nbBiens));
+
+	    JOptionPane.showMessageDialog(
+	        fenetre,
+	        "Ce bâtiment n'a pas encore d'assurance.\nVeuillez en ajouter une.",
+	        "Aucune assurance",
+	        JOptionPane.INFORMATION_MESSAGE
+	    );
+	    
+	}
+	
+	private void ouvrirFenetreAjouterAssurance() {
+		try {
+        	DaoBatiment dao = new DaoBatiment();
+			Batiment b = dao.findById(this.bat);
+			FenetreAjouterAssurance fenAjouterAssurance = new FenetreAjouterAssurance(b,this);
+            fenetre.getLayeredPane().add(fenAjouterAssurance);
+            fenAjouterAssurance.setVisible(true);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 
 
 }
