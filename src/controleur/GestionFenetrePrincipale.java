@@ -39,6 +39,7 @@ import modele.dao.DaoContratLocation;
 import modele.dao.DaoLocataire;
 import modele.dao.DaoPaiement;
 import vue.FenetreAjouterBatiment;
+import vue.FenetreAjouterBienLouable;
 import vue.FenetreAjouterIRL;
 import vue.FenetreAjouterPaiement;
 import vue.FenetreAssurance;
@@ -51,6 +52,7 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 
 	private FenetrePrincipale fenetre;
 	private DaoBienLouable daoBienLouable;
+	private Batiment selected;
 
 	public GestionFenetrePrincipale(FenetrePrincipale fenetre) {
 		super(fenetre);
@@ -77,6 +79,13 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 	    if (source == fenetre.getCbBatiment()) {
 	        fenetre.getTableBienLouable().clearSelection();
 	        String selected = (String) fenetre.getCbBatiment().getSelectedItem();
+	        DaoBatiment dB;
+			try {
+				dB = new DaoBatiment();
+		        this.selected = dB.findById(selected);
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 	        try {
 	            DaoBienLouable daoBL = new DaoBienLouable();
 	            List<BienLouable> biens = daoBL.findByBatiment(selected);
@@ -187,6 +196,12 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 			FenetreAjouterBatiment ajout = new FenetreAjouterBatiment(this);
 			fenetre.getLayeredPane().add(ajout);
 			ajout.setVisible(true);
+			break;
+		case "Ajouter Bien":
+			FenetreBienLouable fBL = new FenetreBienLouable("FenPrincipale", null);
+			FenetreAjouterBienLouable fenAB = new FenetreAjouterBienLouable(this.selected, new GestionFenetreBienLouable(fBL, null));
+			fenetre.getLayeredPane().add(fenAB);
+			fenAB.setVisible(true);
 			break;
 		case "Importer Un Fichier CSV":
 			JFileChooser chooser = new JFileChooser();
@@ -370,15 +385,20 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 
 	public void remplirTableau() {
 	    try {
-	        daoBienLouable = new DaoBienLouable();
+	        DaoBienLouable daoBienLouable = new DaoBienLouable();
+	        DaoContratLocation daoContrat = new DaoContratLocation();
 	        String batiment = fenetre.getChosenBatiment();
 	        List<BienLouable> listBienLouable = daoBienLouable.findByBatiment(batiment);
-	        int row = 0; 
-	        for (BienLouable bien : listBienLouable) {
-	            DaoContratLocation daoContrat = new DaoContratLocation();
-	            List<ContratLocation> listContrat = daoContrat.findByBienLouable(bien.getIdBienLouable());
-	            if (listContrat != null && !listContrat.isEmpty()) {
-	                ecrireLigneTableBienLouable(row, bien, listContrat.get(0));
+	        int row = 0;
+	        if (listBienLouable != null) {
+	            for (BienLouable bien : listBienLouable) {
+	                List<ContratLocation> listContrat =
+	                        daoContrat.findByBienLouable(bien.getIdBienLouable());
+	                if (listContrat != null && !listContrat.isEmpty()) {
+	                    ecrireLigneTableBienLouable(row, bien, listContrat.get(0));
+	                } else {
+	                    ecrireLigneTableBienLouableSansContrat(row, bien);
+	                }
 	                row++; 
 	            }
 	        }
@@ -386,6 +406,26 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 	        e.printStackTrace();
 	    }
 	}
+	
+	public void ecrireLigneTableBienLouableSansContrat(int numeroLigne, BienLouable bienLouable)
+			throws SQLException {
+		JTable table = fenetre.getTableBienLouable();
+		DefaultTableModel model = (DefaultTableModel) table.getModel();
+		if (model.getColumnCount() == 0) {
+			model.setColumnIdentifiers(
+					new String[] { "Contrat Location", "Nombre de piece", "Bien Louable", "Locataire Référent" });
+		}
+		while (model.getRowCount() <= numeroLigne) {
+			model.addRow(new Object[] { null, null, null, null });
+		}
+		model.setValueAt("Aucun contrat en cours", numeroLigne, 0);
+		model.setValueAt(bienLouable.getNbPieces(), numeroLigne, 1);
+		model.setValueAt(bienLouable.getTypeBienLouable(), numeroLigne, 2);
+		model.setValueAt("—", numeroLigne, 3);
+	}
+
+
+
 
 
 	public void ecrireLigneTableBienLouable(int numeroLigne, BienLouable bienLouable, ContratLocation contrat)

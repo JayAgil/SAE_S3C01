@@ -3,6 +3,7 @@ package controleur;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -47,15 +48,20 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 	}
 
 	public List<BienLouable> getListBienWithTheBienNow() {
-		try {
-			DaoBienLouable daoBL = new DaoBienLouable();
-			String idBatiment = bien.getBatiment().getAdresse();
-			return daoBL.findByIdBat(idBatiment);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return List.of();
+	    if (bien == null || bien.getBatiment() == null) {
+	        return Collections.emptyList();
+	    }
+
+	    try {
+	        DaoBienLouable daoBL = new DaoBienLouable();
+	        String idBatiment = bien.getBatiment().getAdresse();
+	        return daoBL.findByBatiment(idBatiment);
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        return Collections.emptyList();
+	    }
 	}
+
 	
 	public ContratLocation getDonneesContratByBien() throws SQLException{
 		DaoContratLocation dCL = new DaoContratLocation();
@@ -234,6 +240,14 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 			model.addRow(
 					new Object[] { b.getIdBienLouable(), b.getAdresse(), b.getNbPieces(), b.getTypeBienLouable() });
 		}
+		boolean hasBien = !liste.isEmpty();
+
+		fenetrebienlouable.getBtnContrat().setEnabled(hasBien);
+		fenetrebienlouable.getBtnCharge().setEnabled(hasBien);
+		fenetrebienlouable.getBtnTravaux().setEnabled(hasBien);
+		fenetrebienlouable.getBtnCompteur().setEnabled(hasBien);
+
+
 	}
 
 	public void remplirFormulaire(

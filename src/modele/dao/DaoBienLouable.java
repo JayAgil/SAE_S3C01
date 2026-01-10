@@ -2,6 +2,7 @@ package modele.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 
 import modele.Batiment;
@@ -48,7 +49,11 @@ public class DaoBienLouable extends DaoModele<BienLouable> implements Dao<BienLo
     }
 
     public List<BienLouable> findByIdBat(String... id) throws SQLException {
-        return this.find(new RequeteSelectBienLouableByBat(), id);
+    	List<BienLouable> result =  this.find(new RequeteSelectBienLouableByBat(), id);
+    	if (result == null) {
+    	    return Collections.emptyList();
+    	}
+    	return result;
     }
     
     public BienLouable findByIdLoc(String...id) throws SQLException {

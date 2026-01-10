@@ -47,6 +47,13 @@ public class FenetreBienLouable extends FenetreBase {
 	private JTextField textFieldDP;
 	private BienLouable bienLouable;
 	private JScrollPane scrollPane;
+	private JButton btnDiagnostic;
+	private JButton btnTravaux;
+	private JButton btnCharge;
+	private JButton btnContrat;
+	private JButton btnAjouter;
+	private JButton btnRetirer;
+	private JButton btnCompteur;
 
 	public FenetreBienLouable(String nomFenAvant, BienLouable bienLouables) throws SQLException {
 		super();
@@ -71,29 +78,29 @@ public class FenetreBienLouable extends FenetreBase {
 		JPanel panel = new JPanel();
 		panel_2.add(panel, BorderLayout.SOUTH);
 
-		JButton btnCompteur = new JButton("Compteur");
+		btnCompteur = new JButton("Compteur");
 		panel.add(btnCompteur);
 
 		Component verticalStrut = Box.createVerticalStrut(40);
 		panel.add(verticalStrut);
 
-		JButton btnDiagnostic = new JButton("Diagnostics");
+		btnDiagnostic = new JButton("Diagnostics");
 		panel.add(btnDiagnostic);
 
-		JButton btnTravaux = new JButton("Travaux");
+		btnTravaux = new JButton("Travaux");
 		
 		panel.add(btnTravaux);
 
-		JButton btnCharge = new JButton("Charges");
+		btnCharge = new JButton("Charges");
 		panel.add(btnCharge);
 
-		JButton btnContrat = new JButton("Contrat");
+		btnContrat = new JButton("Contrat");
 		panel.add(btnContrat);
 
-		JButton btnAjouter = new JButton("Ajouter");
+		btnAjouter = new JButton("Ajouter");
 		panel.add(btnAjouter);
 		
-		JButton btnRetirer = new JButton("Retirer");
+		btnRetirer = new JButton("Retirer");
 
 		panel.add(btnRetirer);
 		
@@ -451,6 +458,62 @@ public class FenetreBienLouable extends FenetreBase {
 			this.gestionClicBienLouable.chargerBienEtRemplirFormulaire(this.bienLouable.getIdBienLouable());
 
 		}
+	}
+
+	public JButton getBtnCompteur() {
+		return btnCompteur;
+	}
+
+	public void setBtnCompteur(JButton btnCompteur) {
+		this.btnCompteur = btnCompteur;
+	}
+
+	public JButton getBtnDiagnostic() {
+		return btnDiagnostic;
+	}
+
+	public void setBtnDiagnostic(JButton btnDiagnostic) {
+		this.btnDiagnostic = btnDiagnostic;
+	}
+
+	public JButton getBtnTravaux() {
+		return btnTravaux;
+	}
+
+	public void setBtnTravaux(JButton btnTravaux) {
+		this.btnTravaux = btnTravaux;
+	}
+
+	public JButton getBtnCharge() {
+		return btnCharge;
+	}
+
+	public void setBtnCharge(JButton btnCharge) {
+		this.btnCharge = btnCharge;
+	}
+
+	public JButton getBtnContrat() {
+		return btnContrat;
+	}
+
+	public void setBtnContrat(JButton btnContrat) {
+		this.btnContrat = btnContrat;
+	}
+
+	public JButton getBtnAjouter() {
+		return btnAjouter;
+	}
+
+	public void setBtnAjouter(JButton btnAjouter) {
+		this.btnAjouter = btnAjouter;
+	}
+
+	public JButton getBtnRetirer() {
+		return btnRetirer;
+	}
+
+	public void setBtnRetirer(JButton btnRetirer) {
+		this.btnRetirer = btnRetirer;
 	}
 
 	public BienLouable getBienLouable() {
