@@ -40,6 +40,7 @@ import modele.dao.DaoLocataire;
 import modele.dao.DaoPaiement;
 import vue.FenetreAjouterBatiment;
 import vue.FenetreAjouterBienLouable;
+import vue.FenetreAjouterContratLocation;
 import vue.FenetreAjouterIRL;
 import vue.FenetreAjouterPaiement;
 import vue.FenetreAssurance;
@@ -324,8 +325,25 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 					DaoBienLouable daoBL = new DaoBienLouable();
 					BienLouable bien = daoBL.findByIdContrat(idCtrt);
 					if (bien == null) {
-						JOptionPane.showMessageDialog(null, "Aucun bien louable trouvé pour ce contrat.");
+						Object[] options = { "Ajouter contrat", "Annuler" };
+
+						int choice = JOptionPane.showOptionDialog(
+						        null,
+						        "Aucun bien louable trouvé pour ce contrat.",
+						        "Contrat inexistant",
+						        JOptionPane.YES_NO_OPTION,
+						        JOptionPane.INFORMATION_MESSAGE,
+						        null,
+						        options,
+						        options[0]
+						);
+
+						if (choice == JOptionPane.YES_OPTION) {
+						    //FenetreAjouterContratLocation fenAjout = new FenetreAjouterContratLocation();
+						    //fenAjout.setVisible(true);
+						}
 						return;
+
 					}
 					// pass the bien selected by the user here i have put here
 					// null but there must be a bien that the user clicked
