@@ -73,15 +73,31 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Object source = e.getSource();
-		if (source instanceof JComboBox) {
-			fenetre.getTableBienLouable().clearSelection();
-			viderTable();
-			remplirTableau();
-		} else {
-			super.actionPerformed(e);
-		}
+	    Object source = e.getSource();
+	    if (source == fenetre.getCbBatiment()) {
+	        fenetre.getTableBienLouable().clearSelection();
+	        String selected = (String) fenetre.getCbBatiment().getSelectedItem();
+	        try {
+	            DaoBienLouable daoBL = new DaoBienLouable();
+	            List<BienLouable> biens = daoBL.findByBatiment(selected);
+
+	            if (biens == null || biens.isEmpty()) {
+	                fenetre.getBtnAjouterBien().setVisible(true);
+	            } else {
+	                fenetre.getBtnAjouterBien().setVisible(false);
+	            }
+	        } catch (SQLException ex) {
+	            ex.printStackTrace();
+	        }
+	        viderTable();
+	        remplirTableau();
+	        fenetre.revalidate();
+	        fenetre.repaint();
+	    } else {
+	        super.actionPerformed(e);
+	    }
 	}
+
 
 	private void viderTable() {
 		DefaultTableModel model = (DefaultTableModel) fenetre.getTableBienLouable().getModel();

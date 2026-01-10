@@ -39,9 +39,8 @@ public class GestionFenetreAjouterBatiment extends GestionButtonFenetreAjouter {
 			List<JTextField> donnees = this.getTextFields();
 			Batiment b = new Batiment (donnees.get(0).getText(),Date.valueOf(donnees.get(1).getText()));
 			if (dao.create(b) == 1) {
-				JOptionPane.showMessageDialog(null, "Batiment ajoutée avec succès !", "Succès",
+				JOptionPane.showMessageDialog(null, "Batiment ajoutée avec succès !\nN'oubliez pas d'ajouter des biens pour ce bâtiment.", "Succès",
 						JOptionPane.INFORMATION_MESSAGE);
-				
 				this.parent.remplirComboBatiment();
 				this.fenetre.dispose();
 			} else {

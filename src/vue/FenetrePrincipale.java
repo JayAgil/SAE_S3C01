@@ -24,6 +24,8 @@ import javax.swing.table.DefaultTableModel;
 
 import controleur.GestionFenetrePrincipale;
 import modele.Batiment;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 public class FenetrePrincipale extends FenetreBase {
@@ -42,6 +44,7 @@ public class FenetrePrincipale extends FenetreBase {
 	private JLabel lblPasPaye;
 	private JLabel lblPasPaye_1;
 	private JComboBox<String> cbBatiment;
+	private JButton btnAjouterBien;
 
 	public FenetrePrincipale() {
 		super();
@@ -182,6 +185,10 @@ public class FenetrePrincipale extends FenetreBase {
 		JButton btnAjouterIRL = new JButton("Ajouter IRL");
 
 		panelSouthEast.add(btnAjouterIRL);
+		
+		btnAjouterBien = new JButton("Ajouter Bien");
+		panelSouthEast.add(btnAjouterBien);
+		btnAjouterBien.setVisible(false);
 
 		JButton btnCharges = new JButton("Charges");
 		panelSouthEast.add(btnCharges);
@@ -300,8 +307,17 @@ public class FenetrePrincipale extends FenetreBase {
 		gestionClic.remplirTableau();
 		table.addMouseListener(this.gestionClic);
 		btnRetirer.addActionListener(this.gestionClic);
+		btnAjouterBien.addActionListener(this.gestionClic);
 		gestionClic.initialize();
 
+	}
+
+	public JButton getBtnAjouterBien() {
+		return btnAjouterBien;
+	}
+
+	public void setBtnAjouterBien(JButton btnAjouterBien) {
+		this.btnAjouterBien = btnAjouterBien;
 	}
 
 	public String getChosenBatiment() {
