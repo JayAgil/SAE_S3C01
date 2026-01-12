@@ -15,7 +15,6 @@ import java.util.Calendar;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.time.ZoneId;
 
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
@@ -52,8 +51,8 @@ import vue.FenetrePrincipale;
 public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements MouseListener {
 
 	private FenetrePrincipale fenetre;
-	private DaoBienLouable daoBienLouable;
 	private Batiment selected;
+	private BienLouable bl;
 
 	public GestionFenetrePrincipale(FenetrePrincipale fenetre) {
 		super(fenetre);
@@ -259,7 +258,6 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 
 	private void mAJDeBaseDeDonnees(File file) throws SQLException {
 		DaoContratLocation daoContrat = new DaoContratLocation();
-		DaoPaiement daoPaiement = new DaoPaiement();
 
 		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
 			String line;
@@ -324,6 +322,7 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 					String idCtrt = table.getValueAt(row, 0).toString();
 					DaoBienLouable daoBL = new DaoBienLouable();
 					BienLouable bien = daoBL.findByIdContrat(idCtrt);
+					this.bl = bien;
 					if (bien == null) {
 						Object[] options = { "Ajouter contrat", "Annuler" };
 
@@ -339,8 +338,11 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 						);
 
 						if (choice == JOptionPane.YES_OPTION) {
-						    //FenetreAjouterContratLocation fenAjout = new FenetreAjouterContratLocation();
-						    //fenAjout.setVisible(true);
+							FenetreAjouterContratLocation f =
+							        new FenetreAjouterContratLocation(null, this.bl);
+							GestionFenetreAjouterContratLocation g =
+							        new GestionFenetreAjouterContratLocation(f, this.bl, null);
+							f.setVisible(true);
 						}
 						return;
 

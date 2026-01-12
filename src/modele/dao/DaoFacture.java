@@ -3,6 +3,7 @@ package modele.dao;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 import modele.dao.requetes.*;
 import modele.BienLouable;
@@ -46,7 +47,11 @@ public class DaoFacture extends DaoModele<Facture> implements Dao<Facture> {
 	}
 	
 	public List<Facture> findFactureByBienLouable(String idBien) throws SQLException {
-		return this.find(new RequeteSelectFactureByBien(),idBien);
+		List<Facture> result = this.find(new RequeteSelectFactureByBien(),idBien);
+		if(!(result == null)) {
+			return result;
+		}
+		return Collections.emptyList();
 
 	}
 

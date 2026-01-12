@@ -2,6 +2,7 @@ package modele.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 
 import modele.Entreprise;
@@ -36,7 +37,11 @@ public class DaoEntreprise extends DaoModele<Entreprise> implements Dao<Entrepri
 
 	@Override
 	public List<Entreprise> findAll() throws SQLException {
-		return find(new RequeteSelectEntreprise());
+		List<Entreprise> result = find(new RequeteSelectEntreprise());
+		if(!(result == null)) {
+			return result;
+		}
+		return Collections.emptyList();
 	}
 
 	public Entreprise findEntrepriseByNom(String... id) throws SQLException {

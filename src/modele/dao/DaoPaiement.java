@@ -3,6 +3,7 @@ package modele.dao;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 
 import modele.ContratLocation;
@@ -33,7 +34,11 @@ public class DaoPaiement extends DaoModele<Paiement> implements Dao<Paiement> {
 	}
 
 	public List<Paiement> findAll() throws SQLException {
-		return find(new RequeteSelectPaiement());
+		List<Paiement> result = find(new RequeteSelectPaiement());
+		if(!(result == null)) {
+			return result;
+		}
+		return Collections.emptyList();
 	}
 	
 	public Paiement findDateDernierPaiementByCL(String idCL) throws SQLException {
@@ -41,7 +46,11 @@ public class DaoPaiement extends DaoModele<Paiement> implements Dao<Paiement> {
 	}
 
 	public List<Paiement> findPaiementsByLocataire (String idLoc) throws SQLException {
-		return this.find(new RequeteSelectPaiementsByLoc(), idLoc);
+		List<Paiement> result = this.find(new RequeteSelectPaiementsByLoc(), idLoc);
+		if(!(result == null)) {
+			return result;
+		}
+		return Collections.emptyList();
 	}
 	@Override
 	protected Paiement creerInstance(ResultSet rs) throws SQLException {

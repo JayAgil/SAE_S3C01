@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import modele.dao.requetes.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import modele.BienLouable;
@@ -41,7 +42,11 @@ public class DaoContratLocation extends DaoModele<ContratLocation> implements Da
 
 	@Override
 	public List<ContratLocation> findAll() throws SQLException {
-		return this.find(new RequeteSelectContratLocation());
+		List<ContratLocation> result =  this.find(new RequeteSelectContratLocation());
+		if(!(result == null)) {
+			return result;
+		}
+		return Collections.emptyList();
 	}
 	
 	public ContratLocation findCLByBien(String... id) throws SQLException {
@@ -77,8 +82,8 @@ public class DaoContratLocation extends DaoModele<ContratLocation> implements Da
 	            req.parametres(prSt, id);
 	            res = select(prSt);
 	        }
-	        if (res.size() == 0) {
-	            return null;
+	        if (res.size() == 0 || res == null) {
+	    		return Collections.emptyList();
 	        }
 	        return res;
 	    }
@@ -104,18 +109,30 @@ public class DaoContratLocation extends DaoModele<ContratLocation> implements Da
 
 	
 	public List<ContratLocation> findByBatiment(String... id) throws SQLException {
-        return this.find(new RequeteSelectContratLocationByBatiment(), id);
+		List<ContratLocation> result =  this.find(new RequeteSelectContratLocationByBatiment(), id);
+		if(!(result == null)) {
+			return result;
+		}
+		return Collections.emptyList();
 	}
 	
 	public List<ContratLocation> findByContrat(String... id) throws SQLException {
-		return this.find(new RequeteSelectContratLocationFromOneContratUnderTheBatiment(), id);
+		List<ContratLocation> result = this.find(new RequeteSelectContratLocationFromOneContratUnderTheBatiment(), id);
+		if(!(result == null)) {
+			return result;
+		}
+		return Collections.emptyList();
 	}
 
 	
 	public List<ContratLocation> findByBienLouable(String... id)
 	        throws SQLException {
-	        return this.findByBienLouable(
+		List<ContratLocation> result = this.findByBienLouable(
 	            new RequeteSelectContratLocationByBienLouable(), id);
+		if(!(result == null)) {
+			return result;
+		}
+		return Collections.emptyList();
 	    }
 
 	public ContratLocation findContratLocataionByLocataire(String... id) throws SQLException {

@@ -2,6 +2,7 @@ package modele.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 
 import modele.IRL;
@@ -35,7 +36,11 @@ public class DaoIRL extends DaoModele<IRL> implements Dao<IRL> {
 
     @Override
     public List<IRL> findAll() throws SQLException {
-        return find(new RequeteSelectIRL());
+    	List<IRL> result = find(new RequeteSelectIRL());
+		if(!(result == null)) {
+			return result;
+		}
+		return Collections.emptyList();
     }
     @Override
     protected IRL creerInstance(ResultSet rs) throws SQLException {

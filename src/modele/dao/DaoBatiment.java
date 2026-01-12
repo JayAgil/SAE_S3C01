@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import modele.dao.requetes.*;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 
 import modele.Batiment;
@@ -39,7 +40,11 @@ public class DaoBatiment extends DaoModele<Batiment> implements Dao<Batiment> {
 
 	@Override
 	public List<Batiment> findAll() throws SQLException {
-		return this.find(new RequeteSelectBatiment());
+		List<Batiment> result =  this.find(new RequeteSelectBatiment());
+		if(!(result == null)) {
+			return result;
+		}
+		return Collections.emptyList();
 	}
 	
 	
@@ -48,7 +53,11 @@ public class DaoBatiment extends DaoModele<Batiment> implements Dao<Batiment> {
 	}
 	
 	public List<Batiment> findBatimentByAssurance(String... id) throws SQLException{
-		return this.find(new RequeteSelectBatimentByAssurance(), id);
+		List<Batiment> result =  this.find(new RequeteSelectBatimentByAssurance(), id);
+		if(!(result == null)) {
+			return result;
+		}
+		return Collections.emptyList();
 	}
 
 	@Override
