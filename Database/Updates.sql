@@ -91,3 +91,8 @@ ON DELETE CASCADE;
 
 ALTER TABLE SAE_DateAnniversaireContrat
 DROP CONSTRAINT fk_Numero_de_contrat;
+
+
+
+ALTER TABLE SAE_ContratLocation
+DROP CONSTRAINT fk_;
