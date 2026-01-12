@@ -40,6 +40,9 @@ public class FenetreAjouterPaiement extends JInternalFrame {
 	private GestionFenetrePaiement parent;
 	private Locataire locataireSelectionne;
 
+	/**
+	 * Création de la vue
+	 */
 	public FenetreAjouterPaiement(GestionFenetrePaiement parent, Locataire locataireSelectionne) {
 		this.locataireSelectionne = locataireSelectionne;
 		this.parent = parent;
@@ -139,46 +142,101 @@ public class FenetreAjouterPaiement extends JInternalFrame {
 
 	}
 
+	/**
+	 * Retourne le champ texte contenant la date du paiement.
+	 *
+	 * @return le JTextField de la date
+	 */
 	public JTextField getTextFieldDate() {
 		return champDate;
 	}
 
+	/**
+	 * Définit le champ texte contenant la date du paiement.
+	 *
+	 * @param textFieldDate le champ texte à définir
+	 */
 	public void setTextFieldDate(JTextField textFieldDate) {
 		this.champDate = textFieldDate;
 	}
 
+	/**
+	 * Retourne le champ texte contenant le montant du paiement.
+	 *
+	 * @return le JTextField du montant
+	 */
 	public JTextField getTextFieldMontant() {
 		return textFieldMontant;
 	}
 
+	/**
+	 * Définit le champ texte contenant le montant du paiement.
+	 *
+	 * @param textFieldMontant le champ texte à définir
+	 */
 	public void setTextFieldMontant(JTextField textFieldMontant) {
 		this.textFieldMontant = textFieldMontant;
 	}
 
+	/**
+	 * Retourne le champ texte contenant l'identifiant du paiement.
+	 *
+	 * @return le JTextField de l'identifiant du paiement
+	 */
 	public JTextField getTextFieldIdPaiement() {
 		return textFieldIdPaiement;
 	}
 
+	/**
+	 * Définit le champ texte contenant l'identifiant du paiement.
+	 *
+	 * @param textFieldIdPaiement le champ texte à définir
+	 */
 	public void setTextFieldIdPaiement(JTextField textFieldIdPaiement) {
 		this.textFieldIdPaiement = textFieldIdPaiement;
 	}
 
+	/**
+	 * Retourne le champ texte contenant la désignation du paiement.
+	 *
+	 * @return le JTextField de la désignation
+	 */
 	public JTextField getTextFieldDesignation() {
 		return textFieldDesignation;
 	}
 
+	/**
+	 * Définit le champ texte contenant la désignation du paiement.
+	 *
+	 * @param textFieldDesignation le champ texte à définir
+	 */
 	public void setTextFieldDesignation(JTextField textFieldDesignation) {
 		this.textFieldDesignation = textFieldDesignation;
 	}
 
+	/**
+	 * Définit la ComboBox permettant de sélectionner un contrat de location.
+	 *
+	 * @param comboBox la ComboBox à définir
+	 */
 	public void setComboBox(JComboBox<ContratLocation> comboBox) {
 		this.comboBox = comboBox;
 	}
 
+	/**
+	 * Retourne la ComboBox permettant de sélectionner un contrat de location.
+	 *
+	 * @return la ComboBox des contrats de location
+	 */
 	public JComboBox<ContratLocation> getComboBox() {
 		return comboBox;
 	}
 
+	/**
+	 * Retourne la liste de tous les champs texte liés à un paiement.
+	 *
+	 * @return la liste des JTextField du paiement
+	 */
 	public List<JTextField> getPaiementTextFields() {
 		List<JTextField> fields = new ArrayList<>();
 		fields.add(textFieldIdPaiement);
@@ -187,4 +245,5 @@ public class FenetreAjouterPaiement extends JInternalFrame {
 		fields.add(textFieldDesignation);
 		return fields;
 	}
+
 }

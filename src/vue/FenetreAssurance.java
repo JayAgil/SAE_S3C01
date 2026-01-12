@@ -7,14 +7,11 @@ import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
 import controleur.GestionFenetreAssurance;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class FenetreAssurance extends FenetreBase {
 
 	private static final long serialVersionUID = 1L;
 	private GestionFenetreAssurance gestionClic;
-
 	private JTextField textFieldNumAssurance;
 	private JTextField txtFieldPrime;
 	private JTextField txtFieldMontant;
@@ -27,6 +24,9 @@ public class FenetreAssurance extends FenetreBase {
 	private String bat;
 	private JButton btnModifier;
 
+	/**
+	 * Création de la vue
+	 */
 	public FenetreAssurance(String bat) throws SQLException {
 		super();
 		this.bat = bat;
@@ -214,7 +214,7 @@ public class FenetreAssurance extends FenetreBase {
 		panelButtons.add(btnRetour);
 
 		southPanel.add(panelButtons, BorderLayout.NORTH);
-		
+
 		btnModifier = new JButton("Modifier");
 		panelButtons.add(btnModifier);
 
@@ -223,7 +223,7 @@ public class FenetreAssurance extends FenetreBase {
 		contentPane.add(southPanel, BorderLayout.SOUTH);
 		setLocationRelativeTo(null);
 		setVisible(true);
-		
+
 		gestionClic = new GestionFenetreAssurance(this);
 		this.gestionClic.initialize();
 		this.gestionClic.chargerAssuranceBatiment(this.getBat());
@@ -231,82 +231,177 @@ public class FenetreAssurance extends FenetreBase {
 		btnRetour.addActionListener(gestionClic);
 		btnModifier.addActionListener(this.gestionClic);
 
-
 	}
 
+	/**
+	 * Retourne le bouton permettant de modifier une assurance.
+	 *
+	 * @return le bouton "Modifier"
+	 */
 	public JButton getBtnModifier() {
 		return btnModifier;
 	}
 
+	/**
+	 * Définit le bouton permettant de modifier une assurance.
+	 *
+	 * @param btnModifier le bouton à définir
+	 */
 	public void setBtnModifier(JButton btnModifier) {
 		this.btnModifier = btnModifier;
 	}
 
+	/**
+	 * Retourne le champ texte contenant le numéro d'assurance.
+	 *
+	 * @return le JTextField du numéro d'assurance
+	 */
 	public JTextField getTextFieldNumAssurance() {
 		return textFieldNumAssurance;
 	}
 
+	/**
+	 * Définit le champ texte contenant le numéro d'assurance.
+	 *
+	 * @param textFieldNumAssurance le champ texte à définir
+	 */
 	public void setTextFieldNumAssurance(JTextField textFieldNumAssurance) {
 		this.textFieldNumAssurance = textFieldNumAssurance;
 	}
 
+	/**
+	 * Retourne le champ texte contenant la prime d'assurance.
+	 *
+	 * @return le JTextField de la prime
+	 */
 	public JTextField getTxtFieldPrime() {
 		return txtFieldPrime;
 	}
 
+	/**
+	 * Définit le champ texte contenant la prime d'assurance.
+	 *
+	 * @param txtFieldPrime le champ texte à définir
+	 */
 	public void setTxtFieldPrime(JTextField txtFieldPrime) {
 		this.txtFieldPrime = txtFieldPrime;
 	}
 
+	/**
+	 * Retourne le champ texte contenant le montant de l'assurance.
+	 *
+	 * @return le JTextField du montant
+	 */
 	public JTextField getTxtFieldMontant() {
 		return txtFieldMontant;
 	}
 
+	/**
+	 * Définit le champ texte contenant le montant de l'assurance.
+	 *
+	 * @param txtFieldMontant le champ texte à définir
+	 */
 	public void setTxtFieldMontant(JTextField txtFieldMontant) {
 		this.txtFieldMontant = txtFieldMontant;
 	}
 
+	/**
+	 * Retourne le champ texte contenant le type d'assurance.
+	 *
+	 * @return le JTextField du type d'assurance
+	 */
 	public JTextField getTxtFieldType() {
 		return txtFieldType;
 	}
 
+	/**
+	 * Définit le champ texte contenant le type d'assurance.
+	 *
+	 * @param txtFieldType le champ texte à définir
+	 */
 	public void setTxtFieldType(JTextField txtFieldType) {
 		this.txtFieldType = txtFieldType;
 	}
 
+	/**
+	 * Retourne le champ texte contenant le nom de l'agence.
+	 *
+	 * @return le JTextField de l'agence
+	 */
 	public JTextField getTextFieldAgence() {
 		return textFieldAgence;
 	}
 
+	/**
+	 * Définit le champ texte contenant le nom de l'agence.
+	 *
+	 * @param textFieldAgence le champ texte à définir
+	 */
 	public void setTextFieldAgence(JTextField textFieldAgence) {
 		this.textFieldAgence = textFieldAgence;
 	}
 
+	/**
+	 * Retourne le champ texte contenant l'adresse de l'agence.
+	 *
+	 * @return le JTextField de l'adresse de l'agence
+	 */
 	public JTextField getTextFieldAdresseAgence() {
 		return textFieldAdresseAgence;
 	}
 
+	/**
+	 * Définit le champ texte contenant l'adresse de l'agence.
+	 *
+	 * @param textFieldAdresseAgence le champ texte à définir
+	 */
 	public void setTextFieldAdresseAgence(JTextField textFieldAdresseAgence) {
 		this.textFieldAdresseAgence = textFieldAdresseAgence;
 	}
 
+	/**
+	 * Retourne le champ texte contenant le téléphone de l'agence.
+	 *
+	 * @return le JTextField du téléphone de l'agence
+	 */
 	public JTextField getTextFieldTelAgence() {
 		return textFieldTelAgence;
 	}
 
+	/**
+	 * Définit le champ texte contenant le téléphone de l'agence.
+	 *
+	 * @param textFieldTelAgence le champ texte à définir
+	 */
 	public void setTextFieldTelAgence(JTextField textFieldTelAgence) {
 		this.textFieldTelAgence = textFieldTelAgence;
 	}
 
+	/**
+	 * Retourne le label affichant le nombre de biens assurés.
+	 *
+	 * @return le JLabel du nombre de biens
+	 */
 	public JLabel getLblNbBien() {
 		return lblNbBien;
 	}
 
+	/**
+	 * Définit le label affichant le nombre de biens assurés.
+	 *
+	 * @param lblNbBien le label à définir
+	 */
 	public void setLblNbBien(JLabel lblNbBien) {
 		this.lblNbBien = lblNbBien;
 	}
 
+	/**
+	 * Retourne le bâtiment sélectionné.
+	 *
+	 * @return le nom du bâtiment
+	 */
 	public String getBat() {
 		return this.bat;
 	}
+
 }

@@ -32,9 +32,11 @@ public class FenetreAjouterDiagnostic extends JInternalFrame {
 	private JTextField textFieldFichier;
 	private BienLouable b;
 	private GestionFenetreDiagnostic parent;
-
 	private GestionFenetreAjouterDiagnostic gestionClic;
 
+	/**
+	 * Création de la vue
+	 */
 	public FenetreAjouterDiagnostic(BienLouable b, GestionFenetreDiagnostic parent) {
 		setResizable(false);
 		this.b = b;
@@ -123,7 +125,7 @@ public class FenetreAjouterDiagnostic extends JInternalFrame {
 		JButton btnRetour = new JButton("Retour");
 		btnRetour.setBounds(289, 397, 100, 25);
 		contentPane.add(btnRetour);
-		
+
 		this.gestionClic = new GestionFenetreAjouterDiagnostic(this, b, parent);
 		btnChoisir.addActionListener(this.gestionClic);
 		btnVider.addActionListener(this.gestionClic);
@@ -131,6 +133,11 @@ public class FenetreAjouterDiagnostic extends JInternalFrame {
 		btnRetour.addActionListener(this.gestionClic);
 	}
 
+	/**
+	 * Retourne la liste de tous les champs texte liés à un diagnostic.
+	 *
+	 * @return la liste des JTextField du diagnostic
+	 */
 	public List<JTextField> getAllDiagnosticTextFields() {
 		List<JTextField> fields = new ArrayList<>();
 		fields.add(textFieldIdDiagnostic);
@@ -141,10 +148,20 @@ public class FenetreAjouterDiagnostic extends JInternalFrame {
 		return fields;
 	}
 
+	/**
+	 * Retourne le champ texte contenant le fichier du diagnostic.
+	 *
+	 * @return le JTextField du fichier du diagnostic
+	 */
 	public JTextField getTextFieldFichier() {
 		return textFieldFichier;
 	}
 
+	/**
+	 * Définit le champ texte contenant le fichier du diagnostic.
+	 *
+	 * @param textFieldFichier le champ texte à définir
+	 */
 	public void setTextFieldFichier(JTextField textFieldFichier) {
 		this.textFieldFichier = textFieldFichier;
 	}

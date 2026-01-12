@@ -43,6 +43,9 @@ public class FenetreAjouterContratLocation extends JInternalFrame {
 	private BienLouable bl;
 	private GestionFenetreContratLocation parent;
 
+	/**
+	 * Création de la vue
+	 */
 	public FenetreAjouterContratLocation(GestionFenetreContratLocation parent, BienLouable bl) {
 		this.bl = bl;
 		this.parent = parent;
@@ -354,6 +357,11 @@ public class FenetreAjouterContratLocation extends JInternalFrame {
 		btnRetour.addActionListener(this.gestionClic);
 	}
 
+	/**
+	 * Retourne la liste de tous les champs texte de la fenêtre.
+	 *
+	 * @return la liste des JTextField
+	 */
 	public List<JTextField> getAllContratTextFields() {
 		List<JTextField> fields = new ArrayList<>();
 		fields.add(txtFieldNumContrat);

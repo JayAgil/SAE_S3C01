@@ -35,19 +35,20 @@ public class FenetreAjouterLocataire extends JInternalFrame {
 	private JTextField textFieldSalaire;
 	private JTextField textFieldProfession;
 	private JTextField textFieldSituationFamiliale;
-
 	private JTextField textFieldGarantNom;
 	private JTextField textFieldGarantPrenom;
 	private JTextField textFieldGarantAdresse;
 	private JTextField textFieldGarantTel;
 	private JTextField textIdLoc;
-
 	private GestionFenetreAjouterLocataire gestionClic;
 	private JComboBox<ContratLocation> comboBoxContrat;
 	private JTextField textFieldIdGarant;
 	private GestionFenetreLocataire gestion;
 	private BienLouable b;
-
+	
+	/**
+	 * Création de la vue
+	 */
 	public FenetreAjouterLocataire(GestionFenetreLocataire gestion, BienLouable b) {
 		this.gestion = gestion;
 		this.b = b;
@@ -233,14 +234,23 @@ public class FenetreAjouterLocataire extends JInternalFrame {
 		btnRetour.addActionListener(this.gestionClic);
 
 	}
-
+	
+	/**
+	 * Retourne la ComboBox permettant de sélectionner un contrat de location.
+	 *
+	 * @return la ComboBox des contrats de location
+	 */
 	public JComboBox<ContratLocation> getComboBoxContrat() {
 		return comboBoxContrat;
 	}
-
+	
+	/**
+	 * Retourne la liste de tous les champs texte liés à un locataire et à son garant.
+	 *
+	 * @return la liste des JTextField du locataire
+	 */
 	public List<JTextField> getAllLocataireTextFields() {
 		List<JTextField> fields = new ArrayList<>();
-
 		fields.add(textIdLoc);
 		fields.add(textFieldNom);
 		fields.add(textFieldPrenom);
@@ -254,13 +264,11 @@ public class FenetreAjouterLocataire extends JInternalFrame {
 		fields.add(textFieldSalaire);
 		fields.add(textFieldProfession);
 		fields.add(textFieldSituationFamiliale);
-
 		fields.add(textFieldIdGarant);
 		fields.add(textFieldGarantNom);
 		fields.add(textFieldGarantPrenom);
 		fields.add(textFieldGarantAdresse);
 		fields.add(textFieldGarantTel);
-
 		return fields;
 	}
 }

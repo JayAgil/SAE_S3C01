@@ -31,7 +31,10 @@ public class FenetreAjouterAssurance extends JInternalFrame {
 	private JTextField textFieldTelAgence;
 	private GestionFenetreAjouterAssurance gestionClic;
 	private GestionFenetreAssurance parent;
-
+	
+	/**
+	 * Création de la vue 
+	 */
 	public FenetreAjouterAssurance(Batiment b, GestionFenetreAssurance parent) {
 		setResizable(false);
 		this.parent = parent;
@@ -132,6 +135,11 @@ public class FenetreAjouterAssurance extends JInternalFrame {
 
 	}
 
+	/**
+	 * Retourne la liste de tous les champs texte de la fenêtre.
+	 *
+	 * @return la liste des JTextField
+	 */
 	public List<JTextField> getAllTextFields() {
 		List<JTextField> fields = new ArrayList<>();
 		fields.add(textFieldNumAssurance);
