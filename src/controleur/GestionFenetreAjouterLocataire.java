@@ -3,12 +3,10 @@ package controleur;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
-
 import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-
 import modele.BienLouable;
 import modele.ContratLocation;
 import modele.Garant;
@@ -24,7 +22,8 @@ public class GestionFenetreAjouterLocataire extends GestionButtonFenetreAjouter 
 	private GestionFenetreLocataire gestion;
 	private BienLouable b;
 
-	public GestionFenetreAjouterLocataire(FenetreAjouterLocataire fenetre, GestionFenetreLocataire gestion, BienLouable b) {
+	public GestionFenetreAjouterLocataire(FenetreAjouterLocataire fenetre, GestionFenetreLocataire gestion,
+			BienLouable b) {
 		this.fenetre = fenetre;
 		this.gestion = gestion;
 		this.b = b;
@@ -95,16 +94,15 @@ public class GestionFenetreAjouterLocataire extends GestionButtonFenetreAjouter 
 		DaoContratLocation dao;
 		try {
 			dao = new DaoContratLocation();
-			ContratLocation cl = dao.findCLByBienn(b.getIdBienLouable());
-			for (ContratLocation cl : dao.findAll()) {
-				comboBox.addItem(cl);
+			ContratLocation cl = dao.findCLByBien(b.getIdBienLouable());
+			for (ContratLocation c : dao.findAll()) {
+				comboBox.addItem(c);
 			}
+			comboBox.setSelectedItem(cl);
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-			
-        	comboBox.setSelectedItem(cl);
-
 
 	}
 
