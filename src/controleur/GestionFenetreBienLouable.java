@@ -143,6 +143,12 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 				}
         		
         	}
+			bien = this.getListBienWithTheBienNow().get(0);
+			idBien = this.getListBienWithTheBienNow().get(0).getIdBienLouable();
+			this.chargerBienEtRemplirFormulaire(idBien);
+			JOptionPane.showMessageDialog(fenetre,
+					String.format("Bien Louable retiré avec succès"), "Succès",
+					JOptionPane.INFORMATION_MESSAGE);
 			break;
 		case "Locataire":
 			if(idBien == null || idBien == "") {
