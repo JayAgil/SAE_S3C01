@@ -46,6 +46,10 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 		if (this.fenetre.getFenDavant().equals("FenPrincipale")) {
 			this.fenetre.getBtnAjouter().hide();
 		}
+		
+		if(this.cl == null) {
+			this.afficherContrat(null);
+		}
 	}
 
 	public List<ContratLocation> getDonneesContrats() throws SQLException {
@@ -208,9 +212,7 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 	protected void gererBoutonRetour(String texte) throws SQLException {
 		if ("Retour".equals(texte)) {
 			if (fenetre.getFenDavant().equals("FenBienLouable")) {
-				DaoBienLouable dBL = new DaoBienLouable();
-				BienLouable bL = dBL.findByIdContrat(this.cl.getNumeroDeContrat());
-				FenetreBienLouable fp = new FenetreBienLouable("FenPrincipale", bL);
+				FenetreBienLouable fp = new FenetreBienLouable("FenPrincipale", this.bl);
 				fp.setVisible(true);
 				fenetre.dispose();
 			}
@@ -245,26 +247,18 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-
 	}
 
 	public void initialize() {
@@ -301,34 +295,74 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 	}
 
 	private void afficherContrat(ContratLocation c) {
-		fenetre.getTextFieldNdC().setText(c.getNumeroDeContrat());
-		fenetre.getTextFieldPeriode().setText(c.getDateDebut() + " → " + c.getDateFin());
-		fenetre.getTextFieldMontantC().setText(String.valueOf(c.getMontantDeCaution()));
-		fenetre.getTextFieldProvCharge().setText(String.valueOf(c.getProvisionCharge()));
-		fenetre.getTextFieldLoyerMen().setText(String.valueOf(c.getMontantMensuel()));
-		fenetre.getTextFieldCptEau().setText(String.valueOf(c.getIndexCompteurEau()));
-		fenetre.getTextFieldCptElec().setText(String.valueOf(c.getIndexCompteurElectricite()));
-		fenetre.getTextFieldCptGaz().setText(String.valueOf(c.getIndexCompteurGaz()));
-		if (c.getSolde() >= 0) {
-			fenetre.getTextFieldSolde().setForeground(Color.GREEN);
-		} else {
-			fenetre.getTextFieldSolde().setForeground(Color.RED);
-		}
-		fenetre.getTextFieldSolde().setText(String.valueOf(c.getSolde()));
 
-		try {
-			DaoLocataire dL = new DaoLocataire();
-			List<Locataire> locataires = dL.findLocataireByContrat(c.getNumeroDeContrat());
-			if (!locataires.isEmpty()) {
-				fenetre.getTextFieldNomLoc().setText(locataires.get(0).getNom());
-			} else {
-				fenetre.getTextFieldNomLoc().setText("");
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			fenetre.getTextFieldNomLoc().setText("");
-		}
+	    if (c == null) {
+	        fenetre.getTextFieldNdC().setText("Aucun contrat");
+	        fenetre.getTextFieldPeriode().setText("—");
+	        fenetre.getTextFieldMontantC().setText("—");
+	        fenetre.getTextFieldProvCharge().setText("—");
+	        fenetre.getTextFieldLoyerMen().setText("—");
+	        fenetre.getTextFieldCptEau().setText("—");
+	        fenetre.getTextFieldCptElec().setText("—");
+	        fenetre.getTextFieldCptGaz().setText("—");
+
+	        fenetre.getTextFieldSolde().setForeground(Color.BLACK);
+	        fenetre.getTextFieldSolde().setText("Aucun solde");
+
+	        fenetre.getTextFieldNomLoc().setText("Aucun locataire");
+
+	        return; 
+	    }
+
+	    fenetre.getTextFieldNdC().setText(c.getNumeroDeContrat());
+
+	    fenetre.getTextFieldPeriode()
+	            .setText(c.getDateDebut() + " → " + c.getDateFin());
+
+	    fenetre.getTextFieldMontantC()
+	            .setText(String.format("%.2f €", c.getMontantDeCaution()));
+
+	    fenetre.getTextFieldProvCharge()
+	            .setText(String.format("%.2f €", c.getProvisionCharge()));
+
+	    fenetre.getTextFieldLoyerMen()
+	            .setText(String.format("%.2f €", c.getMontantMensuel()));
+
+	    fenetre.getTextFieldCptEau()
+	            .setText(String.valueOf(c.getIndexCompteurEau()));
+
+	    fenetre.getTextFieldCptElec()
+	            .setText(String.valueOf(c.getIndexCompteurElectricite()));
+
+	    fenetre.getTextFieldCptGaz()
+	            .setText(String.valueOf(c.getIndexCompteurGaz()));
+
+	    if (c.getSolde() >= 0) {
+	        fenetre.getTextFieldSolde().setForeground(Color.GREEN);
+	    } else {
+	        fenetre.getTextFieldSolde().setForeground(Color.RED);
+	    }
+	    fenetre.getTextFieldSolde()
+	            .setText(String.format("%.2f €", c.getSolde()));
+
+	    try {
+	        DaoLocataire dL = new DaoLocataire();
+	        List<Locataire> locataires = dL.findLocataireByContrat(c.getNumeroDeContrat());
+
+	        if (locataires != null && !locataires.isEmpty()) {
+	            fenetre.getTextFieldNomLoc()
+	                    .setText(locataires.get(0).getNom());
+	        } else {
+	            fenetre.getTextFieldNomLoc()
+	                    .setText("Aucun locataire");
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        fenetre.getTextFieldNomLoc()
+	                .setText("Erreur lors du chargement du locataire");
+	    }
 	}
+
 
 	public void setContrats(List<ContratLocation> contrats) {
 		this.contrats = contrats;

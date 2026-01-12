@@ -35,7 +35,7 @@ BEGIN
     WHERE Id_Lock = 'X';
 
     IF v_count = 0 THEN
-        RETURN; -- rien à faire
+        RETURN; -- rien Ã  faire
     END IF;
     SELECT TRUNC(date_dernier_lancement,'MM')
     INTO v_date
@@ -134,19 +134,19 @@ BEGIN
 
         v_date := i.date_anniv;
 
-        -- Calcul des années pleines
+        -- Calcul des annÃ©es pleines
         v_annees := EXTRACT(YEAR FROM TRUNC(SYSDATE)) - EXTRACT(YEAR FROM v_date);
 
-        -- On reconstitue la date anniversaire de l'année en cours
+        -- On reconstitue la date anniversaire de l'annÃ©e en cours
         v_date := ADD_MONTHS(v_date, v_annees * 12);
 
-        -- Si la date dépasse aujourd'hui, on recule d'un an
+        -- Si la date dÃ©passe aujourd'hui, on recule d'un an
         IF v_date > TRUNC(SYSDATE) THEN
             v_annees := v_annees - 1;
             v_date := ADD_MONTHS(v_date, -12);
         END IF;
 
-        -- Si au moins 1 anniversaire s'est écoulé
+        -- Si au moins 1 anniversaire s'est Ã©coulÃ©
         IF v_annees >= 1 THEN
             -- Somme des charges pour le bien louable
             SELECT NVL(SUM(cg.Montant_Total), 0)
@@ -154,12 +154,12 @@ BEGIN
             FROM SAE_Charges_Generale cg
             WHERE cg.fk_Id_BienLouable = i.fk_Id_BienLouable;
 
-            -- Mise à jour du solde du contrat
+            -- Mise Ã  jour du solde du contrat
             UPDATE SAE_ContratLocation
             SET Solde = Solde - ((i.Provision_Charge - v_total_charges) * 12 * v_annees)
             WHERE Numero_de_contrat = i.fk_Numero_de_contrat;
 
-            -- Mise à jour de la date du dernier anniversaire
+            -- Mise Ã  jour de la date du dernier anniversaire
             UPDATE SAE_DateAnniversaireContrat
             SET Date_dernier_anniversaire = v_date
             WHERE fk_Numero_de_contrat = i.fk_Numero_de_contrat;
@@ -206,5 +206,51 @@ BEGIN
             'Suppression interdite : Il y''a toujours un contrat lie a ce locataire'
         );
     END IF;
+END;
+/
+
+
+
+
+--Recupere la plus grande annee et le dernier trimestre de IRL
+-- pour savoir avec quelle valeur il faut multiplier le loyer
+CREATE OR REPLACE FUNCTION get_max_irl RETURN NUMBER IS
+    v_valeur NUMBER;
+BEGIN
+    SELECT IRL
+    INTO v_valeur
+    FROM SAE_IRL
+    WHERE Annee = (SELECT MAX(Annee) FROM SAE_IRL)
+      AND Trimestre = (
+          SELECT MAX(Trimestre)
+          FROM SAE_IRL
+          WHERE Annee = (SELECT MAX(Annee) FROM SAE_IRL)
+      );
+
+    RETURN v_valeur;
+END;
+/
+
+
+
+
+--Permet de mettre a jour le contrat en fonction de la valeur de IRL
+CREATE OR REPLACE PROCEDURE maj_montant_mensuel_irl (
+    p_numero_contrat IN SAE_ContratLocation.Numero_de_contrat%TYPE
+) IS
+    v_max_irl NUMBER;
+BEGIN
+    v_max_irl := get_max_irl;
+    UPDATE SAE_ContratLocation
+    SET Montant_Mensuel = Montant_Mensuel * v_max_irl
+    WHERE Numero_de_contrat = p_numero_contrat;
+    IF SQL%ROWCOUNT = 0 THEN
+        RAISE_APPLICATION_ERROR(
+            -20030,
+            'Aucun contrat trouvé pour le numéro : ' || p_numero_contrat
+        );
+    END IF;
+
+    COMMIT;
 END;
 /
