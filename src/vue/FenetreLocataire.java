@@ -34,7 +34,6 @@ public class FenetreLocataire extends FenetreBase {
 	private JTextField textFieldNom;
 	private JTextField textFieldPrenom;
 	private JTextField textFieldAdresse;
-	private JTextField textFieldTel;
 	private JTextField textFieldEmail;
 	private JTextField textFieldDateNaissance;
 	private JTextField textFieldLieuNaissance;
@@ -48,6 +47,7 @@ public class FenetreLocataire extends FenetreBase {
 	private List<Locataire> liste;
 	private BienLouable bl;
 	private JButton btnAjouterLocataire;
+	private JTextField textFieldTel;
 
 	/**
 	 * Création de la vue
@@ -112,7 +112,7 @@ public class FenetreLocataire extends FenetreBase {
 		GridBagLayout gbl_panel_3 = new GridBagLayout();
 		gbl_panel_3.columnWidths = new int[] { 600 };
 		gbl_panel_3.rowHeights = new int[] { 31, 31, 31, 31, 31, 31, 31, 31, 31, 31 };
-		gbl_panel_3.columnWeights = new double[] { 0.2, 0.8 };
+		gbl_panel_3.columnWeights = new double[] { 0.2, 1.0 };
 		gbl_panel_3.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
 		panel_3.setLayout(gbl_panel_3);
 
@@ -184,17 +184,16 @@ public class FenetreLocataire extends FenetreBase {
 		gbc_lblTel.gridy = 3;
 		gbc_lblTel.weightx = 0.2;
 		panel_3.add(lblTel, gbc_lblTel);
-
+		
 		textFieldTel = new JTextField();
 		textFieldTel.setEditable(false);
-		textFieldTel.setBorder(null);
 		GridBagConstraints gbc_textFieldTel = new GridBagConstraints();
-		gbc_textFieldTel.anchor = GridBagConstraints.WEST;
 		gbc_textFieldTel.insets = new Insets(0, 0, 5, 0);
+		gbc_textFieldTel.fill = GridBagConstraints.BOTH;
 		gbc_textFieldTel.gridx = 1;
 		gbc_textFieldTel.gridy = 3;
-		gbc_textFieldTel.weightx = 0.8;
 		panel_3.add(textFieldTel, gbc_textFieldTel);
+		textFieldTel.setColumns(10);
 
 		JLabel lblEmail = new JLabel("Email :");
 		GridBagConstraints gbc_lblEmail = new GridBagConstraints();
@@ -230,7 +229,7 @@ public class FenetreLocataire extends FenetreBase {
 		textFieldDateNaissance.setEditable(false);
 		GridBagConstraints gbc_textFieldDateNaissance = new GridBagConstraints();
 		gbc_textFieldDateNaissance.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textFieldDateNaissance.insets = insets;
+		gbc_textFieldDateNaissance.insets = new Insets(0, 0, 5, 0);
 		gbc_textFieldDateNaissance.gridx = 1;
 		gbc_textFieldDateNaissance.gridy = 5;
 		gbc_textFieldDateNaissance.weightx = 0.8;
@@ -250,7 +249,7 @@ public class FenetreLocataire extends FenetreBase {
 		textFieldLieuNaissance.setEditable(false);
 		GridBagConstraints gbc_textFieldLieuNaissance = new GridBagConstraints();
 		gbc_textFieldLieuNaissance.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textFieldLieuNaissance.insets = insets;
+		gbc_textFieldLieuNaissance.insets = new Insets(0, 0, 5, 0);
 		gbc_textFieldLieuNaissance.gridx = 1;
 		gbc_textFieldLieuNaissance.gridy = 6;
 		gbc_textFieldLieuNaissance.weightx = 0.8;
@@ -270,7 +269,7 @@ public class FenetreLocataire extends FenetreBase {
 		textFieldSalaire.setEditable(false);
 		GridBagConstraints gbc_textFieldSalaire = new GridBagConstraints();
 		gbc_textFieldSalaire.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textFieldSalaire.insets = insets;
+		gbc_textFieldSalaire.insets = new Insets(0, 0, 5, 0);
 		gbc_textFieldSalaire.gridx = 1;
 		gbc_textFieldSalaire.gridy = 7;
 		gbc_textFieldSalaire.weightx = 0.8;
@@ -290,7 +289,7 @@ public class FenetreLocataire extends FenetreBase {
 		textFieldProfession.setEditable(false);
 		GridBagConstraints gbc_textFieldProfession = new GridBagConstraints();
 		gbc_textFieldProfession.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textFieldProfession.insets = insets;
+		gbc_textFieldProfession.insets = new Insets(0, 0, 5, 0);
 		gbc_textFieldProfession.gridx = 1;
 		gbc_textFieldProfession.gridy = 8;
 		gbc_textFieldProfession.weightx = 0.8;
@@ -299,7 +298,7 @@ public class FenetreLocataire extends FenetreBase {
 		JLabel lblSituationFamiliale = new JLabel("Situation familiale :");
 		GridBagConstraints gbc_lblSituationFamiliale = new GridBagConstraints();
 		gbc_lblSituationFamiliale.anchor = GridBagConstraints.EAST;
-		gbc_lblSituationFamiliale.insets = insets;
+		gbc_lblSituationFamiliale.insets = new Insets(0, 0, 0, 5);
 		gbc_lblSituationFamiliale.gridx = 0;
 		gbc_lblSituationFamiliale.gridy = 9;
 		gbc_lblSituationFamiliale.weightx = 0.2;
@@ -310,7 +309,6 @@ public class FenetreLocataire extends FenetreBase {
 		textFieldSituationFamiliale.setEditable(false);
 		GridBagConstraints gbc_textFieldSituationFamiliale = new GridBagConstraints();
 		gbc_textFieldSituationFamiliale.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textFieldSituationFamiliale.insets = insets;
 		gbc_textFieldSituationFamiliale.gridx = 1;
 		gbc_textFieldSituationFamiliale.gridy = 9;
 		gbc_textFieldSituationFamiliale.weightx = 0.8;
