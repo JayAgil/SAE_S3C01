@@ -214,7 +214,7 @@ VALUES ('LOC-004','Rossi','Marco','18 Avenue du Parc','0600000004','marco@mail.c
 
 INSERT INTO SAE_Locataire (Id_Locataire, Nom, Prenom, Adresse, Tel, Email, Code_Postale, Ville, Date_de_naissance, 
  Lieu_de_naissance, Salaire, Profession, Situation_Familiale,  fk_Id_Garant)
-VALUES ('LOC-005','Lemoine','Sarah','33 Rue des Écoles','0600000005','sarah@mail.com','33000','Bordeaux',
+VALUES ('LOC-005','Lemoine','Sarah','33 Rue des ecoles','0600000005','sarah@mail.com','33000','Bordeaux',
         TO_DATE('1992-01-05','YYYY-MM-DD'),'Bordeaux',2000,'Infirmiere','Celibataire','GAR-005');
 
 INSERT INTO SAE_Locataire (Id_Locataire, Nom, Prenom, Adresse, Tel, Email, Code_Postale, Ville, Date_de_naissance, 
