@@ -50,6 +50,10 @@ public class GestionFenetreAjouterAssurance extends GestionButtonFenetreAjouter 
 		try {
 			DaoAssurance dao = new DaoAssurance();
 			List<JTextField> donnees = this.getTextFields();
+			if (!donnees.get(1).getText().matches("\\d+")) {
+				JOptionPane.showMessageDialog(null, "L'un de votre libelle de montant contient des caractères!!", "Succès",
+						JOptionPane.INFORMATION_MESSAGE);
+			}
 			Assurance a = new Assurance(donnees.get(0).getText(), Double.parseDouble(donnees.get(1).getText()),
 					Double.parseDouble(donnees.get(2).getText()), donnees.get(3).getText(), bat,
 					donnees.get(4).getText(), donnees.get(5).getText(), donnees.get(6).getText());
