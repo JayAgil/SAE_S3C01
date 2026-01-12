@@ -2,19 +2,15 @@ package vue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTable;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
-
 import controleur.GestionFenetreBienLouable;
 import modele.BienLouable;
-
 import javax.swing.JScrollPane;
 import java.awt.BorderLayout;
-
 import java.awt.Font;
 import java.awt.Component;
 import javax.swing.Box;
@@ -22,12 +18,15 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.sql.SQLException;
-
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
+/**
+ * Fenêtre de gestion d'un bien louable. Cette fenêtre permet d'afficher les
+ * informations détaillées d'un bien, de consulter les biens du même bâtiment et
+ * d'accéder aux modules de gestion (contrats, charges, travaux, diagnostics,
+ * compteurs, etc.).
+ */
 public class FenetreBienLouable extends FenetreBase {
 	private GestionFenetreBienLouable gestionClicBienLouable;
 	private static final long serialVersionUID = 1L;
@@ -55,6 +54,14 @@ public class FenetreBienLouable extends FenetreBase {
 	private JButton btnRetirer;
 	private JButton btnCompteur;
 
+	/**
+	 * Construit la fenêtre de gestion d'un bien louable. Si un bien est fourni, ses
+	 * informations sont automatiquement chargées et affichées dans le formulaire.
+	 *
+	 * @param nomFenAvant  le nom de la fenêtre précédente (navigation)
+	 * @param bienLouables le bien louable à afficher
+	 * @throws SQLException si une erreur survient lors du chargement des données
+	 */
 	public FenetreBienLouable(String nomFenAvant, BienLouable bienLouables) throws SQLException {
 		super();
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -84,11 +91,14 @@ public class FenetreBienLouable extends FenetreBase {
 		Component verticalStrut = Box.createVerticalStrut(40);
 		panel.add(verticalStrut);
 
+		JButton btnLoc = new JButton("Locataire");
+		panel.add(btnLoc);
+
 		btnDiagnostic = new JButton("Diagnostics");
 		panel.add(btnDiagnostic);
 
 		btnTravaux = new JButton("Travaux");
-		
+
 		panel.add(btnTravaux);
 
 		btnCharge = new JButton("Charges");
@@ -99,14 +109,13 @@ public class FenetreBienLouable extends FenetreBase {
 
 		btnAjouter = new JButton("Ajouter");
 		panel.add(btnAjouter);
-		
+
 		btnRetirer = new JButton("Retirer");
 
 		panel.add(btnRetirer);
-		
-				JButton btnRetour = new JButton("Retour");
-				panel.add(btnRetour);
 
+		JButton btnRetour = new JButton("Retour");
+		panel.add(btnRetour);
 
 		JPanel panel_3 = new JPanel();
 		panel_2.add(panel_3, BorderLayout.CENTER);
@@ -439,7 +448,7 @@ public class FenetreBienLouable extends FenetreBase {
 		JLabel lblTitre = new JLabel("Bien louable");
 		lblTitre.setFont(new Font("Tahoma", Font.BOLD, 18));
 		panel_1.add(lblTitre);
-		
+
 		this.gestionClicBienLouable = new GestionFenetreBienLouable(this, this.bienLouable);
 		this.gestionClicBienLouable.chargerDonnees();
 		btnCompteur.addActionListener(gestionClicBienLouable);
@@ -451,8 +460,8 @@ public class FenetreBienLouable extends FenetreBase {
 		table.addMouseListener(this.gestionClicBienLouable);
 		btnRetirer.addActionListener(this.gestionClicBienLouable);
 		btnRetour.addActionListener(gestionClicBienLouable);
+		btnLoc.addActionListener(gestionClicBienLouable);
 		this.gestionClicBienLouable.initialize();
-
 
 		if (this.bienLouable != null) {
 			this.gestionClicBienLouable.chargerBienEtRemplirFormulaire(this.bienLouable.getIdBienLouable());
@@ -460,6 +469,11 @@ public class FenetreBienLouable extends FenetreBase {
 		}
 	}
 
+	/**
+	 * Retourne le bouton permettant d'accéder à la gestion des compteurs.
+	 *
+	 * @return le bouton "Compteur"
+	 */
 	public JButton getBtnCompteur() {
 		return btnCompteur;
 	}
@@ -468,6 +482,11 @@ public class FenetreBienLouable extends FenetreBase {
 		this.btnCompteur = btnCompteur;
 	}
 
+	/**
+	 * Retourne le bouton permettant d'accéder aux diagnostics du bien.
+	 *
+	 * @return le bouton "Diagnostics"
+	 */
 	public JButton getBtnDiagnostic() {
 		return btnDiagnostic;
 	}
@@ -476,6 +495,11 @@ public class FenetreBienLouable extends FenetreBase {
 		this.btnDiagnostic = btnDiagnostic;
 	}
 
+	/**
+	 * Retourne le bouton permettant d'accéder aux travaux du bien.
+	 *
+	 * @return le bouton "Travaux"
+	 */
 	public JButton getBtnTravaux() {
 		return btnTravaux;
 	}
@@ -484,6 +508,11 @@ public class FenetreBienLouable extends FenetreBase {
 		this.btnTravaux = btnTravaux;
 	}
 
+	/**
+	 * Retourne le bouton permettant d'accéder aux charges du bien.
+	 *
+	 * @return le bouton "Charges"
+	 */
 	public JButton getBtnCharge() {
 		return btnCharge;
 	}
@@ -492,6 +521,11 @@ public class FenetreBienLouable extends FenetreBase {
 		this.btnCharge = btnCharge;
 	}
 
+	/**
+	 * Retourne le bouton permettant d'accéder aux contrats du bien.
+	 *
+	 * @return le bouton "Contrat"
+	 */
 	public JButton getBtnContrat() {
 		return btnContrat;
 	}
@@ -500,6 +534,11 @@ public class FenetreBienLouable extends FenetreBase {
 		this.btnContrat = btnContrat;
 	}
 
+	/**
+	 * Retourne le bouton permettant d'ajouter un nouveau bien louable.
+	 *
+	 * @return le bouton "Ajouter"
+	 */
 	public JButton getBtnAjouter() {
 		return btnAjouter;
 	}
@@ -508,6 +547,11 @@ public class FenetreBienLouable extends FenetreBase {
 		this.btnAjouter = btnAjouter;
 	}
 
+	/**
+	 * Retourne le bouton permettant de retirer un bien louable.
+	 *
+	 * @return le bouton "Retirer"
+	 */
 	public JButton getBtnRetirer() {
 		return btnRetirer;
 	}
@@ -516,14 +560,29 @@ public class FenetreBienLouable extends FenetreBase {
 		this.btnRetirer = btnRetirer;
 	}
 
+	/**
+	 * Retourne le bien louable actuellement affiché.
+	 *
+	 * @return le bien louable
+	 */
 	public BienLouable getBienLouable() {
 		return bienLouable;
 	}
 
+	/**
+	 * Définit le bien louable actuellement affiché.
+	 *
+	 * @param bienLouable le bien à afficher
+	 */
 	public void setBienLouable(BienLouable bienLouable) {
 		this.bienLouable = bienLouable;
 	}
 
+	/**
+	 * Retourne le champ contenant le nom du locataire.
+	 *
+	 * @return le champ du nom du locataire
+	 */
 	public JTextField getTextFieldNom() {
 		return textFieldNom;
 	}
@@ -532,6 +591,11 @@ public class FenetreBienLouable extends FenetreBase {
 		this.textFieldNom = textFieldNom;
 	}
 
+	/**
+	 * Retourne le champ contenant le loyer mensuel.
+	 *
+	 * @return le champ du loyer
+	 */
 	public JTextField getTextFieldLoyerMen() {
 		return textFieldLoyerMen;
 	}
@@ -540,6 +604,11 @@ public class FenetreBienLouable extends FenetreBase {
 		this.textFieldLoyerMen = textFieldLoyerMen;
 	}
 
+	/**
+	 * Retourne le champ contenant le numéro fiscal du bien.
+	 *
+	 * @return le champ du numéro fiscal
+	 */
 	public JTextField getTextFieldNF() {
 		return textFieldNF;
 	}
@@ -548,6 +617,11 @@ public class FenetreBienLouable extends FenetreBase {
 		this.textFieldNF = textFieldNF;
 	}
 
+	/**
+	 * Retourne le champ contenant l'adresse du bien.
+	 *
+	 * @return le champ de l'adresse
+	 */
 	public JTextField getTextFieldAdresse() {
 		return textFieldAdresse;
 	}
@@ -556,6 +630,11 @@ public class FenetreBienLouable extends FenetreBase {
 		this.textFieldAdresse = textFieldAdresse;
 	}
 
+	/**
+	 * Retourne le champ contenant la surface habitable du bien.
+	 *
+	 * @return le champ de la surface
+	 */
 	public JTextField getTextFieldSurfaceHab() {
 		return textFieldSurfaceHab;
 	}
@@ -564,6 +643,11 @@ public class FenetreBienLouable extends FenetreBase {
 		this.textFieldSurfaceHab = textFieldSurfaceHab;
 	}
 
+	/**
+	 * Retourne le champ contenant le nombre de pièces du bien.
+	 *
+	 * @return le champ du nombre de pièces
+	 */
 	public JTextField getTextFieldNbDPieces() {
 		return textFieldNbDPieces;
 	}
@@ -572,6 +656,11 @@ public class FenetreBienLouable extends FenetreBase {
 		this.textFieldNbDPieces = textFieldNbDPieces;
 	}
 
+	/**
+	 * Retourne le champ contenant le type du bien louable.
+	 *
+	 * @return le champ du type du bien
+	 */
 	public JTextField getTextFieldBienLoauble() {
 		return textFieldBienLoauble;
 	}
@@ -580,6 +669,11 @@ public class FenetreBienLouable extends FenetreBase {
 		this.textFieldBienLoauble = textFieldBienLoauble;
 	}
 
+	/**
+	 * Retourne le champ contenant le bâtiment du bien.
+	 *
+	 * @return le champ du bâtiment
+	 */
 	public JTextField getTextFieldBatiment() {
 		return textFieldBatiment;
 	}
@@ -588,6 +682,11 @@ public class FenetreBienLouable extends FenetreBase {
 		this.textFieldBatiment = textFieldBatiment;
 	}
 
+	/**
+	 * Retourne le champ contenant la date du dernier travaux.
+	 *
+	 * @return le champ de la date des travaux
+	 */
 	public JTextField getTextFieldDT() {
 		return textFieldDT;
 	}
@@ -596,6 +695,11 @@ public class FenetreBienLouable extends FenetreBase {
 		this.textFieldDT = textFieldDT;
 	}
 
+	/**
+	 * Retourne le champ contenant le total des charges.
+	 *
+	 * @return le champ du total des charges
+	 */
 	public JTextField getTextFieldTotalCharges() {
 		return textFieldTotalCharges;
 	}
@@ -604,6 +708,11 @@ public class FenetreBienLouable extends FenetreBase {
 		this.textFieldTotalCharges = textFieldTotalCharges;
 	}
 
+	/**
+	 * Retourne le champ contenant la date de fin du contrat.
+	 *
+	 * @return le champ de la date de fin
+	 */
 	public JTextField getTextFieldDFC() {
 		return textFieldDFC;
 	}
@@ -612,6 +721,11 @@ public class FenetreBienLouable extends FenetreBase {
 		this.textFieldDFC = textFieldDFC;
 	}
 
+	/**
+	 * Retourne le champ contenant la date du dernier paiement.
+	 *
+	 * @return le champ de la date du dernier paiement
+	 */
 	public JTextField getTextFieldDP() {
 		return textFieldDP;
 	}
@@ -620,14 +734,30 @@ public class FenetreBienLouable extends FenetreBase {
 		this.textFieldDP = textFieldDP;
 	}
 
+	/**
+	 * Définit la table des biens.
+	 *
+	 * @param table la JTable à définir
+	 */
 	public void setTable(JTable table) {
 		this.table = table;
 	}
 
+	/**
+	 * Retourne la table contenant les biens du bâtiment.
+	 *
+	 * @return la JTable des biens
+	 */
 	public JTable getTable() {
 		return table;
 	}
 
+	/**
+	 * Retourne l'identifiant du bien sélectionné dans la table.
+	 * Si aucun bien n'est sélectionné, le premier est retourné s'il existe.
+	 *
+	 * @return l'identifiant du bien sélectionné ou une chaîne vide
+	 */
 	public String getChosenBien() {
 		int selectedRow = table.getSelectedRow();
 		if (selectedRow != -1) {
