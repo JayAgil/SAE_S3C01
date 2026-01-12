@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import modele.dao.requetes.*;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -71,23 +70,16 @@ public class DaoContratLocation extends DaoModele<ContratLocation> implements Da
 		BienLouable bl = daoBL.findById(id);
 		return new ContratLocation(numeroDeContrat,dateDebut,dateFin,montantCaution,provisionCharge,solde,montantMensuel,dateVersement,indexCompteurEau,indexCompteurElectricite,indexCompteurGaz,bl);
 	}
-
-
-	private List<ContratLocation> findByBienLouable(
-	        RequeteSelectContratLocationByBienLouable req, String[] id)
-	        throws SQLException {
-	        List<ContratLocation> res = new ArrayList<>();
-	        try (PreparedStatement prSt = connexion
-	            .prepareStatement(req.requete())) {
-	            req.parametres(prSt, id);
-	            res = select(prSt);
-	        }
-	        if (res.size() == 0 || res == null) {
-	    		return Collections.emptyList();
-	        }
-	        return res;
-	    }
 	
+	public List<ContratLocation> findByBienLouable(String... id)
+	        throws SQLException {
+		List<ContratLocation> result = this.find(
+	            new RequeteSelectContratLocationByBienLouable(), id);
+		if(!(result == null)) {
+			return result;
+		}
+		return Collections.emptyList();
+	    }
 
     public float RegularisationCharges(ContratLocation t, int annee)
         throws SQLException {
@@ -125,15 +117,7 @@ public class DaoContratLocation extends DaoModele<ContratLocation> implements Da
 	}
 
 	
-	public List<ContratLocation> findByBienLouable(String... id)
-	        throws SQLException {
-		List<ContratLocation> result = this.findByBienLouable(
-	            new RequeteSelectContratLocationByBienLouable(), id);
-		if(!(result == null)) {
-			return result;
-		}
-		return Collections.emptyList();
-	    }
+
 
 	public ContratLocation findContratLocataionByLocataire(String... id) throws SQLException {
 		return this.findById(new RequeteSelectContratLocationByLoc(), id);

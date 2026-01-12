@@ -95,12 +95,16 @@ public class GestionFenetreAjouterLocataire extends GestionButtonFenetreAjouter 
 		DaoContratLocation dao;
 		try {
 			dao = new DaoContratLocation();
+			ContratLocation cl = dao.findCLByBienn(b.getIdBienLouable());
 			for (ContratLocation cl : dao.findAll()) {
 				comboBox.addItem(cl);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+			
+        	comboBox.setSelectedItem(cl);
+
 
 	}
 
