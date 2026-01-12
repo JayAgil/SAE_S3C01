@@ -25,16 +25,26 @@ public class GestionFenetreAjouterAssurance extends GestionButtonFenetreAjouter 
 		this.parent = parent;
 	}
 
+	/**
+	 * Récupère tous les champs texte de la fenêtre.
+	 */
 	@Override
 	protected List<JTextField> getTextFields() {
 		return fenetre.getAllTextFields();
 	}
 
+	/**
+	 * Retourne la fenêtre gérée par ce contrôleur.
+	 */
 	@Override
 	protected JInternalFrame getFrame() {
 		return fenetre;
 	}
 
+	/**
+	 * Action exécutée lors du clic sur le bouton "Ajouter". Crée une nouvelle
+	 * assurance et met à jour la fenêtre parent.
+	 */
 	@Override
 	protected void gererAction() {
 		try {
@@ -47,15 +57,15 @@ public class GestionFenetreAjouterAssurance extends GestionButtonFenetreAjouter 
 				JOptionPane.showMessageDialog(null, "Assurance ajoutée avec succès !", "Succès",
 						JOptionPane.INFORMATION_MESSAGE);
 				DaoBienLouable dB = new DaoBienLouable();
-			    int nbBiens = dB.findByIdBat(bat.getAdresse()).size();
-			    this.parent.hideBtnAjouter();
+				int nbBiens = dB.findByIdBat(bat.getAdresse()).size();
+				this.parent.hideBtnAjouter();
 				this.parent.afficherAssuranceBatiment(a, nbBiens);
 				this.fenetre.dispose();
 			} else {
-				JOptionPane.showMessageDialog(null, "Échec de l'ajout de l'assurance.", "Erreur", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Échec de l'ajout de l'assurance.", "Erreur",
+						JOptionPane.ERROR_MESSAGE);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			if (e.getErrorCode() == 1) {
 				JOptionPane.showMessageDialog(null, "Cet assurance existe déjà (clé primaire).", "Doublon",
@@ -67,7 +77,5 @@ public class GestionFenetreAjouterAssurance extends GestionButtonFenetreAjouter 
 
 		}
 	}
-	
-	
 
 }

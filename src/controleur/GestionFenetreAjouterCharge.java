@@ -25,16 +25,26 @@ public class GestionFenetreAjouterCharge extends GestionButtonFenetreAjouter {
 		this.parent = parent;
 	}
 
+	/**
+	 * Récupère tous les champs texte de la fenêtre pour la charge.
+	 */
 	@Override
 	protected List<JTextField> getTextFields() {
 		return fenetre.getAllChargeTextFields();
 	}
 
+	/**
+	 * Retourne la fenêtre gérée par ce contrôleur.
+	 */
 	@Override
 	protected JInternalFrame getFrame() {
 		return fenetre;
 	}
 
+	/**
+	 * Action exécutée lors du clic sur le bouton "Ajouter". Récupère les données,
+	 * crée une nouvelle charge et met à jour la fenêtre parente.
+	 */
 	@Override
 	protected void gererAction() {
 		try {
@@ -56,7 +66,6 @@ public class GestionFenetreAjouterCharge extends GestionButtonFenetreAjouter {
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			if (e.getErrorCode() == 1) {
 				JOptionPane.showMessageDialog(null, "Cette charge existe déjà (clé primaire).", "Doublon",
