@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION calcul_solde_tout_compte_locataire (
+create or replace FUNCTION calcul_solde_tout_compte_locataire (
     p_id_locataire        IN VARCHAR2,
     p_montant_etat_lieux  IN NUMBER
 ) RETURN NUMBER
