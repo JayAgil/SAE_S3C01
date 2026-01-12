@@ -14,60 +14,69 @@ public class DaoCompteur extends DaoModele<Compteur> implements Dao<Compteur> {
 
 	public DaoCompteur() throws SQLException {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
+	/** Ajoute un compteur dans la base de données. */
 	@Override
 	public int create(Compteur t) throws SQLException {
-		return miseAJour(new RequeteInsertCompteur(), t);	
+		return miseAJour(new RequeteInsertCompteur(), t);
 	}
-	
+
+	/** Met à jour un compteur existant dans la base de données. */
 	@Override
 	public int update(Compteur t) throws SQLException {
 		return miseAJour(new RequeteUpdateCompteur(), t);
 	}
 
-
+	/** Supprime un compteur de la base de données. */
 	@Override
 	public int delete(Compteur t) throws SQLException {
 		return miseAJour(new RequeteDeleteCompteur(), t);
-		
 	}
 
+	/** Cherche un compteur par son identifiant unique. */
 	@Override
 	public Compteur findById(String... id) throws SQLException {
 		return this.findById(new RequeteSelectCompteurById(), id);
 	}
-	
+
+	/** Récupère tous les compteurs associés à un bâtiment spécifique. */
 	public List<Compteur> findByIdBatiment(String... id) throws SQLException {
-		List<Compteur> result =  this.find(new RequeteSelectCompteurByBatiment(), id);
-		if(!(result == null)) {
+		List<Compteur> result = this.find(new RequeteSelectCompteurByBatiment(), id);
+		if (result != null) {
 			return result;
 		}
 		return Collections.emptyList();
 	}
-	
+
+	/** Récupère tous les compteurs associés à un bien louable spécifique. */
 	public List<Compteur> findByIdBien(String... id) throws SQLException {
 		List<Compteur> result = this.find(new RequeteSelectCompteurByBien(), id);
-		if(!(result == null)) {
+		if (result != null) {
 			return result;
 		}
 		return Collections.emptyList();
 	}
 
+	/** Récupère tous les compteurs de la base de données. */
 	@Override
 	public List<Compteur> findAll() throws SQLException {
-		List<Compteur> result =  this.find(new RequeteSelectCompteur());
-		if(!(result == null)) {
+		List<Compteur> result = this.find(new RequeteSelectCompteur());
+		if (result != null) {
 			return result;
 		}
 		return Collections.emptyList();
 	}
-	
 
+	/**
+	 * Crée une instance de Compteur à partir d'un ResultSet.
+	 * 
+	 * @param curseur le curseur du résultat de la requête
+	 * @return une instance de Compteur
+	 * @throws SQLException
+	 */
 	@Override
 	protected Compteur creerInstance(ResultSet curseur) throws SQLException {
-		// TODO Auto-generated method stub
 		String id_Compteur = curseur.getString(1);
 		double partie_fixe = curseur.getDouble(2);
 		double partie_variable = curseur.getDouble(3);
@@ -79,7 +88,8 @@ public class DaoCompteur extends DaoModele<Compteur> implements Dao<Compteur> {
 		String id = curseur.getString(9);
 		DaoBienLouable daoBL = new DaoBienLouable();
 		BienLouable bl = daoBL.findById(id);
-		return new Compteur(id_Compteur,partie_fixe,partie_variable,total,d,bl,index_ancien,index_nouveau,type);
+
+		return new Compteur(id_Compteur, partie_fixe, partie_variable, total, d, bl, index_ancien, index_nouveau, type);
 	}
 
 }

@@ -17,41 +17,109 @@ public class DaoContratLocation extends DaoModele<ContratLocation> implements Da
 		super();
 	}
 
+	/** Ajoute un contrat de location dans la base de données. */
 	@Override
 	public int create(ContratLocation t) throws SQLException {
-		return miseAJour(new RequeteInsertContratLocation(), t);	
+		return miseAJour(new RequeteInsertContratLocation(), t);
 	}
-	
+
+	/** Met à jour un contrat existant dans la base de données. */
 	@Override
 	public int update(ContratLocation t) throws SQLException {
 		return miseAJour(new RequeteUpdateContratLocation(), t);
 	}
 
+	/** Supprime un contrat de location de la base de données. */
 	@Override
 	public int delete(ContratLocation t) throws SQLException {
 		return miseAJour(new RequeteDeleteContratLocation(), t);
-		
 	}
 
+	/** Cherche un contrat par son identifiant unique. */
 	@Override
 	public ContratLocation findById(String... id) throws SQLException {
 		return this.findById(new RequeteSelectContratLocationById(), id);
-
 	}
 
+	/** Récupère tous les contrats de location de la base de données. */
 	@Override
 	public List<ContratLocation> findAll() throws SQLException {
-		List<ContratLocation> result =  this.find(new RequeteSelectContratLocation());
-		if(!(result == null)) {
+		List<ContratLocation> result = this.find(new RequeteSelectContratLocation());
+		if (result != null) {
 			return result;
 		}
 		return Collections.emptyList();
 	}
-	
+
+	/** Cherche un contrat de location associé à un bien spécifique. */
 	public ContratLocation findCLByBien(String... id) throws SQLException {
 		return this.findById(new RequeteSelectContratLocationByBien(), id);
 	}
 
+	/** Cherche tous les contrats liés à un bien louable spécifique. */
+	public List<ContratLocation> findByBienLouable(String... id) throws SQLException {
+		List<ContratLocation> result = this.find(new RequeteSelectContratLocationByBienLouable(), id);
+		if (result != null) {
+			return result;
+		}
+		return Collections.emptyList();
+	}
+
+	/**
+	 * Calcule la régularisation des charges pour un contrat donné et une année
+	 * spécifique.
+	 */
+	public float RegularisationCharges(ContratLocation t, int annee) throws SQLException {
+		RequeteRegularisationCharge req = new RequeteRegularisationCharge();
+		try (PreparedStatement prSt = connexion.prepareStatement(req.requete())) {
+			req.parametres(prSt, t, annee);
+			try (ResultSet rs = prSt.executeQuery()) {
+				while (rs.next()) {
+					float element = rs.getFloat(1);
+					System.out.println(element);
+					return element;
+				}
+			}
+		}
+		System.out.println("NAN");
+		return 0;
+	}
+
+	/** Cherche tous les contrats associés à un bâtiment spécifique. */
+	public List<ContratLocation> findByBatiment(String... id) throws SQLException {
+		List<ContratLocation> result = this.find(new RequeteSelectContratLocationByBatiment(), id);
+		if (result != null) {
+			return result;
+		}
+		return Collections.emptyList();
+	}
+
+	/** Cherche tous les contrats sous un contrat principal d’un bâtiment donné. */
+	public List<ContratLocation> findByContrat(String... id) throws SQLException {
+		List<ContratLocation> result = this.find(new RequeteSelectContratLocationFromOneContratUnderTheBatiment(), id);
+		if (result != null) {
+			return result;
+		}
+		return Collections.emptyList();
+	}
+
+	/** Cherche un contrat associé à un locataire spécifique. */
+	public ContratLocation findContratLocataionByLocataire(String... id) throws SQLException {
+		return this.findById(new RequeteSelectContratLocationByLoc(), id);
+	}
+
+	/** Cherche un contrat spécifique lié à un locataire et un bien donné. */
+	public ContratLocation findContratByLocataireAndBien(String... id) throws SQLException {
+		return this.findById(new RequeteSelectContratFromBienAndLoc(), id);
+	}
+
+	/**
+	 * Crée une instance de ContratLocation à partir d'un ResultSet.
+	 * 
+	 * @param curseur le curseur du résultat de la requête
+	 * @return une instance de ContratLocation
+	 * @throws SQLException
+	 */
 	@Override
 	protected ContratLocation creerInstance(ResultSet curseur) throws SQLException {
 		String numeroDeContrat = curseur.getString(1);
@@ -68,62 +136,8 @@ public class DaoContratLocation extends DaoModele<ContratLocation> implements Da
 		String id = curseur.getString(12);
 		DaoBienLouable daoBL = new DaoBienLouable();
 		BienLouable bl = daoBL.findById(id);
-		return new ContratLocation(numeroDeContrat,dateDebut,dateFin,montantCaution,provisionCharge,solde,montantMensuel,dateVersement,indexCompteurEau,indexCompteurElectricite,indexCompteurGaz,bl);
-	}
-	
-	public List<ContratLocation> findByBienLouable(String... id)
-	        throws SQLException {
-		List<ContratLocation> result = this.find(
-	            new RequeteSelectContratLocationByBienLouable(), id);
-		if(!(result == null)) {
-			return result;
-		}
-		return Collections.emptyList();
-	    }
 
-    public float RegularisationCharges(ContratLocation t, int annee)
-        throws SQLException {
-        RequeteRegularisationCharge req = new RequeteRegularisationCharge();
-        try (PreparedStatement prSt = connexion
-            .prepareStatement(req.requete())) {
-            req.parametres(prSt, t, annee);
-            try (ResultSet rs = prSt.executeQuery()) {
-                while (rs.next()) {
-                    float element = rs.getFloat(1);
-                    System.out.println(element);
-                    return element;
-                }
-            }
-        }
-        System.out.println("NAN");
-        return 0;
-    }
-
-	
-	public List<ContratLocation> findByBatiment(String... id) throws SQLException {
-		List<ContratLocation> result =  this.find(new RequeteSelectContratLocationByBatiment(), id);
-		if(!(result == null)) {
-			return result;
-		}
-		return Collections.emptyList();
-	}
-	
-	public List<ContratLocation> findByContrat(String... id) throws SQLException {
-		List<ContratLocation> result = this.find(new RequeteSelectContratLocationFromOneContratUnderTheBatiment(), id);
-		if(!(result == null)) {
-			return result;
-		}
-		return Collections.emptyList();
-	}
-
-	
-
-
-	public ContratLocation findContratLocataionByLocataire(String... id) throws SQLException {
-		return this.findById(new RequeteSelectContratLocationByLoc(), id);
-	}
-	
-	public ContratLocation findContratByLocataireAndBien(String... id) throws SQLException {
-		return this.findById(new RequeteSelectContratFromBienAndLoc(), id);
+		return new ContratLocation(numeroDeContrat, dateDebut, dateFin, montantCaution, provisionCharge, solde,
+				montantMensuel, dateVersement, indexCompteurEau, indexCompteurElectricite, indexCompteurGaz, bl);
 	}
 }

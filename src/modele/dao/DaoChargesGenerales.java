@@ -10,60 +10,71 @@ import java.util.List;
 import modele.BienLouable;
 import modele.ChargesGenerales;
 
-public class DaoChargesGenerales extends DaoModele<ChargesGenerales>implements Dao<ChargesGenerales> {
+public class DaoChargesGenerales extends DaoModele<ChargesGenerales> implements Dao<ChargesGenerales> {
 
 	public DaoChargesGenerales() throws SQLException {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
+	/** Ajoute une charge générale dans la base de données. */
 	@Override
 	public int create(ChargesGenerales t) throws SQLException {
 		return miseAJour(new RequeteInsertChargeGenerale(), t);
-		
 	}
 
+	/** Met à jour une charge générale existante dans la base de données. */
 	@Override
 	public int update(ChargesGenerales t) throws SQLException {
 		return miseAJour(new RequeteUpdateChargesGenerales(), t);
 	}
 
+	/** Supprime une charge générale de la base de données. */
 	@Override
 	public int delete(ChargesGenerales t) throws SQLException {
 		return miseAJour(new RequeteDeleteChargesGenerales(), t);
-		
 	}
 
+	/** Cherche une charge générale par son identifiant unique. */
 	@Override
 	public ChargesGenerales findById(String... id) throws SQLException {
-		return this.findById(new RequeteSelectChargesGeneralesById(),id);
+		return this.findById(new RequeteSelectChargesGeneralesById(), id);
 	}
-	
+
+	/** Récupère toutes les charges associées à un bâtiment spécifique. */
 	public List<ChargesGenerales> findByIdBatiment(String... id) throws SQLException {
-		List<ChargesGenerales> result =  this.find(new RequeteSelectChargesByBatiment(),id);
-		if(!(result == null)) {
+		List<ChargesGenerales> result = this.find(new RequeteSelectChargesByBatiment(), id);
+		if (result != null) {
 			return result;
 		}
 		return Collections.emptyList();
 	}
-	
+
+	/** Récupère toutes les charges associées à un bien louable spécifique. */
 	public List<ChargesGenerales> findByIdBien(String... id) throws SQLException {
-		List<ChargesGenerales> result = this.find(new RequeteSelectChargesByBien(),id);
-		if(!(result == null)) {
+		List<ChargesGenerales> result = this.find(new RequeteSelectChargesByBien(), id);
+		if (result != null) {
 			return result;
 		}
 		return Collections.emptyList();
 	}
-	
+
+	/** Récupère toutes les charges générales de la base de données. */
 	@Override
 	public List<ChargesGenerales> findAll() throws SQLException {
 		List<ChargesGenerales> result = this.find(new RequeteSelectChargesGenerales());
-		if(!(result == null)) {
+		if (result != null) {
 			return result;
 		}
 		return Collections.emptyList();
 	}
 
+	/**
+	 * Crée une instance de ChargesGenerales à partir d'un ResultSet.
+	 * 
+	 * @param curseur le curseur du résultat de la requête
+	 * @return une instance de ChargesGenerales
+	 * @throws SQLException
+	 */
 	@Override
 	protected ChargesGenerales creerInstance(ResultSet curseur) throws SQLException {
 		String id_ChargesGenerale = curseur.getString(1);
@@ -75,7 +86,7 @@ public class DaoChargesGenerales extends DaoModele<ChargesGenerales>implements D
 		String id = curseur.getString(7);
 		DaoBienLouable daoBL = new DaoBienLouable();
 		BienLouable bl = daoBL.findById(id);
-		return new ChargesGenerales(id_ChargesGenerale,type,montant,pourcentage,quotite,dateCharge,bl);
-	}
 
+		return new ChargesGenerales(id_ChargesGenerale, type, montant, pourcentage, quotite, dateCharge, bl);
+	}
 }
