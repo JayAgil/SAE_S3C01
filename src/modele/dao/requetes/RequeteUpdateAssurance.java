@@ -6,12 +6,27 @@ import java.sql.SQLException;
 import modele.Assurance;
 
 public class RequeteUpdateAssurance extends Requete<Assurance> {
+	
+	/**
+     * Retourne la requête SQL pour mettre à jour une assurance.
+     * Les valeurs à modifier sont fournies via un objet Assurance.
+     *
+     * @return String contenant la requête SQL
+     */
 	@Override
 	public String requete() {
 		return "UPDATE MSF5131A.SAE_ASSURANCE " + "SET Prime = ?, " + "Montant = ?, " + "Type_assurance = ?, "
 				+ "Agence = ?, " + "Adresse_agence = ?, " + "Tel_agence = ? " + "WHERE Numero_d_assurance = ?";
 	}
-
+	
+	/**
+     * Paramètre le PreparedStatement avec les valeurs de l'objet Assurance fourni.
+     * L'ordre des paramètres correspond à celui défini dans la requête SQL.
+     *
+     * @param prSt PreparedStatement à paramétrer
+     * @param a    Assurance contenant les nouvelles valeurs
+     * @throws SQLException en cas d'erreur SQL
+     */
 	@Override
 	public void parametres(PreparedStatement prSt, Assurance a) throws SQLException {
 		prSt.setDouble(1, a.getPrime());
