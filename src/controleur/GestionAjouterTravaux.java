@@ -72,6 +72,7 @@ public class GestionAjouterTravaux extends GestionButtonFenetreAjouter {
 			    );
 			    this.parent.setListe(daoFac.findFactureByBienLouable(this.bl.getIdBienLouable()));
 			    this.parent.chargerDonnes();
+			    this.parent.majDonnees();
 				this.fenetreAjouterTravaux.dispose();
 
 			} else {
