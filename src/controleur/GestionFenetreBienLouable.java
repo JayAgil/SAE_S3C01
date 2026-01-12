@@ -106,9 +106,15 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 			DaoContratLocation dCl = new DaoContratLocation();
 			DaoBienLouable daob = new DaoBienLouable();
 			this.bien = daob.findById(this.idBien);
-			ContratLocation cl = dCl.findCLByBien(this.idBien);
-			new FenetreContratLocation("FenBienLouable", cl,this.bien).setVisible(true);
-			fenetrebienlouable.dispose();
+			if(this.bien == null) {
+				JOptionPane.showMessageDialog(fenetre,
+						String.format("Veuillez selectionner un bien louable avant d'ouvrir le contrat"), "Information",
+						JOptionPane.INFORMATION_MESSAGE);
+			}else {
+				ContratLocation cl = dCl.findCLByBien(this.idBien);
+				new FenetreContratLocation("FenBienLouable", cl,this.bien).setVisible(true);
+				fenetrebienlouable.dispose();
+			}
 			break;
 
 		case "Charges":
