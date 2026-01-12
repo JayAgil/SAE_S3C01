@@ -117,7 +117,9 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 					JOptionPane.showMessageDialog(null,
 							String.format("Loyer mis à jour avec succès : %.2f €", loyerNouveau), "Succès",
 							JOptionPane.INFORMATION_MESSAGE);
+					this.fenetre.getTextFieldLoyerMen().setText(String.valueOf(loyerNouveau));
 				}
+				
 			}
 			break;
 
