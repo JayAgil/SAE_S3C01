@@ -1,5 +1,4 @@
 package vue;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -7,8 +6,6 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.Toolkit;
-
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -21,12 +18,7 @@ import javax.swing.JTable;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
-
 import controleur.GestionFenetrePrincipale;
-import modele.Batiment;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
 
 public class FenetrePrincipale extends FenetreBase {
 
@@ -46,18 +38,18 @@ public class FenetrePrincipale extends FenetreBase {
 	private JComboBox<String> cbBatiment;
 	private JButton btnAjouterBien;
 
+	/**
+	 * Création de la vue 
+	 */
 	public FenetrePrincipale() {
 		super();
-		setIconImage(
-				Toolkit.getDefaultToolkit().getImage("C:\\Users\\anees\\Documents\\GitHub\\SAE_S3C01\\img\\bat.png"));
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		contentPane = new JPanel();
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 
-		JPanel panelContent = new JPanel();
-		contentPane.add(panelContent, BorderLayout.CENTER);
+		JPanel panelContent = new JPanel(); contentPane.add(panelContent, BorderLayout.CENTER);
 		panelContent.setLayout(new BorderLayout(0, 0));
 
 		JPanel panelNorth = new JPanel();
@@ -108,9 +100,6 @@ public class FenetrePrincipale extends FenetreBase {
 
 		Component verticalStrut = Box.createVerticalStrut(20);
 		verticalStrut.setPreferredSize(new Dimension(0, 10));
-
-		Component verticalStrut1 = Box.createVerticalStrut(10);
-		panelNorth.add(verticalStrut, BorderLayout.NORTH);
 
 		JPanel panel = new JPanel();
 		panelNorth.add(panel, BorderLayout.SOUTH);
@@ -165,7 +154,6 @@ public class FenetrePrincipale extends FenetreBase {
 		Component verticalStrut_2 = Box.createVerticalStrut(50);
 		verticalStrut_2.setPreferredSize(new Dimension(0, 10));
 
-		Component verticalStrut_3 = Box.createVerticalStrut(10);
 		verticalStrut_2.setPreferredSize(new Dimension(0, 15));
 		panel.add(verticalStrut_2, BorderLayout.SOUTH);
 
@@ -185,7 +173,7 @@ public class FenetrePrincipale extends FenetreBase {
 		JButton btnAjouterIRL = new JButton("Ajouter IRL");
 
 		panelSouthEast.add(btnAjouterIRL);
-		
+
 		btnAjouterBien = new JButton("Ajouter Bien");
 		panelSouthEast.add(btnAjouterBien);
 		btnAjouterBien.setVisible(false);
@@ -198,7 +186,7 @@ public class FenetrePrincipale extends FenetreBase {
 
 		JButton btnAssurance = new JButton("Assurance");
 		panelSouthEast.add(btnAssurance);
-		
+
 		JButton btnRetirer = new JButton("Retirer");
 		panelSouthEast.add(btnRetirer);
 
@@ -217,25 +205,18 @@ public class FenetrePrincipale extends FenetreBase {
 		panelCenterCenter.add(scrollPane, BorderLayout.CENTER);
 
 		table = new JTable();
-		// getTable().addMouseListener(this);
 		getTableBienLouable().setModel(new DefaultTableModel(
-				new Object[][] { { null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, },
-				new String[] { "Contrat Location", "Nombre de piece", "Bien Louable", "Locataire Référent" }) {
-			Class[] columnTypes = new Class[] { String.class, String.class, String.class, String.class };
-
-			@Override
+			new Object[][] {
+			},
+			new String[] {
+				"Contrat Location", "Nombre de piece", "Bien Louable", "Locataire R\u00E9f\u00E9rent"
+			}
+		) {
+			Class[] columnTypes = new Class[] {
+				String.class, String.class, String.class, String.class
+			};
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
-			}
-
-			boolean[] columnEditables = new boolean[] { false, false, false, false };
-
-			@Override
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
 			}
 		});
 		table.getColumnModel().getColumn(0).setResizable(false);
@@ -250,10 +231,6 @@ public class FenetrePrincipale extends FenetreBase {
 
 		cbBatiment = new JComboBox<String>();
 		cbBatiment.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		/**
-		 * cbBatiment.setModel( new DefaultComboBoxModel(new String[] { "20 Chemin La
-		 * Fayette", "31 Rue de la Paix", "7 Rue de la Croix" }));
-		 */
 		panelCenterNorth.add(cbBatiment);
 
 		JButton btnAjouterBatiment = new JButton("Ajouter");
@@ -267,7 +244,7 @@ public class FenetrePrincipale extends FenetreBase {
 		contentPane.add(panelMenuBar, BorderLayout.NORTH);
 		panelMenuBar.setLayout(new GridLayout(0, 1, 0, 0));
 
-		// header
+		// Création du header
 		this.setJMenuBar(createHeader());
 		JPanel panelFooter = new JPanel();
 		contentPane.add(panelFooter, BorderLayout.SOUTH);
@@ -312,95 +289,207 @@ public class FenetrePrincipale extends FenetreBase {
 
 	}
 
+	/**
+	 * Retourne le bouton permettant d'ajouter un bien louable.
+	 *
+	 * @return le bouton "Ajouter Bien"
+	 */
 	public JButton getBtnAjouterBien() {
-		return btnAjouterBien;
+	    return btnAjouterBien;
 	}
 
+	/**
+	 * Définit le bouton permettant d'ajouter un bien louable.
+	 *
+	 * @param btnAjouterBien le bouton à définir
+	 */
 	public void setBtnAjouterBien(JButton btnAjouterBien) {
-		this.btnAjouterBien = btnAjouterBien;
+	    this.btnAjouterBien = btnAjouterBien;
 	}
 
+	/**
+	 * Retourne le bâtiment sélectionné dans la ComboBox.
+	 * Si aucun élément n'est sélectionné, le premier élément est retourné.
+	 *
+	 * @return le nom du bâtiment sélectionné
+	 */
 	public String getChosenBatiment() {
-		if (cbBatiment.getSelectedItem() == null) {
-            return cbBatiment.getItemAt(0);
-        }
-        return cbBatiment.getSelectedItem().toString();
-    }
+	    if (cbBatiment.getSelectedItem() == null) {
+	        return cbBatiment.getItemAt(0);
+	    }
+	    return cbBatiment.getSelectedItem().toString();
+	}
 
+	/**
+	 * Retourne la table principale affichant les données.
+	 *
+	 * @return la JTable principale
+	 */
 	public JTable getTable() {
-		return this.table;
+	    return this.table;
 	}
 
+	/**
+	 * Retourne le menu "Bien Louable".
+	 *
+	 * @return le menu des biens louables
+	 */
 	public JMenu getMnBienLouable() {
-		return mnBienLouable;
+	    return mnBienLouable;
 	}
 
+	/**
+	 * Retourne le panneau affichant les revenus.
+	 *
+	 * @return le panel des revenus
+	 */
 	public JPanel getPanelRevenu() {
-		return this.panelRevenu;
+	    return this.panelRevenu;
 	}
 
+	/**
+	 * Retourne le panneau affichant le nombre de loyers non payés.
+	 *
+	 * @return le panel des loyers non payés
+	 */
 	public JPanel getPanelNbLoyerPasPaye() {
-		return this.panelNbLoyePasPaye;
+	    return this.panelNbLoyePasPaye;
 	}
 
+	/**
+	 * Retourne le panneau affichant le solde non payé.
+	 *
+	 * @return le panel du solde non payé
+	 */
 	public JPanel getPanelRevenu_1() {
-		return this.panelSoldeNonPaye;
+	    return this.panelSoldeNonPaye;
 	}
 
+	/**
+	 * Retourne le panneau affichant le nombre de loyers non payés (version secondaire).
+	 *
+	 * @return le panel correspondant
+	 */
 	public JPanel getPanelNbLoyePasPaye_1() {
-		return this.panelNbLoyePasPaye_1;
+	    return this.panelNbLoyePasPaye_1;
 	}
 
+	/**
+	 * Retourne la table des biens louables.
+	 *
+	 * @return la JTable des biens louables
+	 */
 	public JTable getTableBienLouable() {
-		return table;
+	    return table;
 	}
 
+	/**
+	 * Retourne le label affichant le revenu.
+	 *
+	 * @return le label du revenu
+	 */
 	public JLabel getLblRevenu() {
-		return lblRevenu;
+	    return lblRevenu;
 	}
 
+	/**
+	 * Définit le label du revenu.
+	 *
+	 * @param lblRevenu le label à définir
+	 */
 	public void setLblRevenu(JLabel lblRevenu) {
-		this.lblRevenu = lblRevenu;
+	    this.lblRevenu = lblRevenu;
 	}
 
+	/**
+	 * Retourne le label affichant le solde.
+	 *
+	 * @return le label du solde
+	 */
 	public JLabel getLblRevenu_1() {
-		return lblSolde;
+	    return lblSolde;
 	}
 
+	/**
+	 * Définit le label du solde.
+	 *
+	 * @param lblRevenu_1 le label à définir
+	 */
 	public void setLblRevenu_1(JLabel lblRevenu_1) {
-		this.lblSolde = lblRevenu_1;
+	    this.lblSolde = lblRevenu_1;
 	}
 
+	/**
+	 * Retourne le label du solde.
+	 *
+	 * @return le label du solde
+	 */
 	public JLabel getLblSolde() {
-		return lblSolde;
+	    return lblSolde;
 	}
 
+	/**
+	 * Définit le label du solde.
+	 *
+	 * @param lblSolde le label à définir
+	 */
 	public void setLblSolde(JLabel lblSolde) {
-		this.lblSolde = lblSolde;
+	    this.lblSolde = lblSolde;
 	}
 
+	/**
+	 * Retourne le label indiquant le montant non payé.
+	 *
+	 * @return le label "pas payé"
+	 */
 	public JLabel getLblPasPaye() {
-		return lblPasPaye;
+	    return lblPasPaye;
 	}
 
+	/**
+	 * Définit le label indiquant le montant non payé.
+	 *
+	 * @param lblPasPaye le label à définir
+	 */
 	public void setLblPasPaye(JLabel lblPasPaye) {
-		this.lblPasPaye = lblPasPaye;
+	    this.lblPasPaye = lblPasPaye;
 	}
 
+	/**
+	 * Retourne le label indiquant le montant non payé (version secondaire).
+	 *
+	 * @return le label correspondant
+	 */
 	public JLabel getLblPasPaye_1() {
-		return lblPasPaye_1;
+	    return lblPasPaye_1;
 	}
 
+	/**
+	 * Définit le label indiquant le montant non payé (version secondaire).
+	 *
+	 * @param lblPasPaye_1 le label à définir
+	 */
 	public void setLblPasPaye_1(JLabel lblPasPaye_1) {
-		this.lblPasPaye_1 = lblPasPaye_1;
+	    this.lblPasPaye_1 = lblPasPaye_1;
 	}
 
+	/**
+	 * Définit la table principale.
+	 *
+	 * @param table la JTable à définir
+	 */
 	public void setTable(JTable table) {
-		this.table = table;
+	    this.table = table;
 	}
 
+	/**
+	 * Retourne la ComboBox permettant de sélectionner un bâtiment.
+	 *
+	 * @return la ComboBox des bâtiments
+	 */
 	public JComboBox<String> getCbBatiment() {
-		return cbBatiment;
+	    return cbBatiment;
 	}
+
 
 }
