@@ -46,6 +46,7 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 		super(fenetre);
 		this.fenetrebienlouable = fenetre;
 		this.bien = bien;
+		System.out.print(bien);
 	}
 
 	public List<BienLouable> getListBienWithTheBienNow() {
@@ -104,7 +105,7 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 
 		case "Contrat":
 			DaoContratLocation dCl = new DaoContratLocation();
-			System.out.print(this.bien.getIdBienLouable());
+			System.out.println(this.bien.getIdBienLouable());
 			ContratLocation cl = dCl.findCLByBien(this.bien.getIdBienLouable());
 			new FenetreContratLocation("FenBienLouable", cl,this.bien).setVisible(true);
 			fenetrebienlouable.dispose();
