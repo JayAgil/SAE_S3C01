@@ -104,6 +104,7 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 
 		case "Contrat":
 			DaoContratLocation dCl = new DaoContratLocation();
+			System.out.print(this.bien.getIdBienLouable());
 			ContratLocation cl = dCl.findCLByBien(this.bien.getIdBienLouable());
 			new FenetreContratLocation("FenBienLouable", cl,this.bien).setVisible(true);
 			fenetrebienlouable.dispose();
