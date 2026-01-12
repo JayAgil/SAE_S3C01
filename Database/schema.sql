@@ -173,6 +173,14 @@ CREATE TABLE SAE_Contrat_Locataire (
     CONSTRAINT fk_cl_con FOREIGN KEY (Numero_de_contrat) REFERENCES SAE_ContratLocation(Numero_de_contrat)
 );
 
+CREATE TABLE SAE_Revalorisation_Loyer(
+    fk_Numero_de_contrat VARCHAR2(50) PRIMARY KEY,
+    Derniere_Date_Revalorisation DATE,
+    Loyer_Base NUMBER,
+    CONSTRAINT fk_rvl_con FOREIGN KEY (fk_Numero_de_contrat) 
+    REFERENCES SAE_ContratLocation(Numero_de_contrat)
+);
+
 
 SET AUTOCOMMIT ON;
 SHOW AUTOCOMMIT;

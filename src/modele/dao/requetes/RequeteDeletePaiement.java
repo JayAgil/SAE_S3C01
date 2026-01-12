@@ -2,14 +2,12 @@ package modele.dao.requetes;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
-import modele.Diagnostics;
 import modele.Paiement;
 
 public class RequeteDeletePaiement extends Requete<Paiement>{
 	@Override
 	public String requete() {
-		return "DELETE FROM MSF5131A.SAE_PAIEMENT where Id_Paiement = ? ";
+		return "DELETE FROM MSF5131A.SAE_PAIEMENT where Id_Paiement = ?";
 	}
 	
 	@Override

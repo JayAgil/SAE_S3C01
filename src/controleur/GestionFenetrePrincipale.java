@@ -204,6 +204,16 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 			FenetreAjouterBienLouable fenAB = new FenetreAjouterBienLouable(this.selected, new GestionFenetreBienLouable(fBL, null));
 			fenetre.getLayeredPane().add(fenAB);
 			fenAB.setVisible(true);
+			
+			DaoBienLouable dao = new DaoBienLouable();
+	        List<BienLouable> biens = dao.findByBatiment(selected.getAdresse());
+	        if (biens == null || biens.isEmpty()) {
+	            fenetre.getBtnAjouterBien().setVisible(true);
+	            this.remplirTableau();
+	        } else {
+	            fenetre.getBtnAjouterBien().setVisible(false);
+	            this.remplirTableau();
+	        }
 			break;
 		case "Importer Un Fichier CSV":
 			JFileChooser chooser = new JFileChooser();
@@ -258,6 +268,7 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 		}
 	}
 
+	// on ne récupère que les informations pour la tables paiement
 	private void mAJDeBaseDeDonnees(File file) throws SQLException {
 		DaoContratLocation daoContrat = new DaoContratLocation();
 
@@ -324,40 +335,9 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 					String idCtrt = table.getValueAt(row, 0).toString();
 					DaoBienLouable daoBL = new DaoBienLouable();
 					BienLouable bien = daoBL.findByIdContrat(idCtrt);
-					if (bien == null) {
-						Object[] options = { "Ajouter contrat", "Annuler" };
-
-						int choice = JOptionPane.showOptionDialog(
-						        null,
-						        "Aucun bien louable trouvé pour ce contrat.",
-						        "Contrat inexistant",
-						        JOptionPane.YES_NO_OPTION,
-						        JOptionPane.INFORMATION_MESSAGE,
-						        null,
-						        options,
-						        options[0]
-						);
-
-						if (choice == JOptionPane.YES_OPTION) {
-							DaoBienLouable dBL = new DaoBienLouable();
-					        String batiment = fenetre.getChosenBatiment();
-					        List<BienLouable> listBienLouable = dBL.findByBatiment(batiment);
-							this.bl = dBL.findById(listBienLouable.get(0).getIdBienLouable());
-							FenetreAjouterContratLocation f =
-							        new FenetreAjouterContratLocation(null, this.bl);
-							GestionFenetreAjouterContratLocation g =
-							        new GestionFenetreAjouterContratLocation(f, this.bl, null);
-							f.setVisible(true);
-							this.fenetre.getLayeredPane().add(f);
-						}
-						return;
-
-					}
-					// pass the bien selected by the user here i have put here
-					// null but there must be a bien that the user clicked
-					FenetreBienLouable fen = new FenetreBienLouable("FenetrePrincipale", bien);
-					fen.setVisible(true);
-					fenetre.dispose();
+				    FenetreBienLouable fen = new FenetreBienLouable("FenetrePrincipale", bien);
+				    fen.setVisible(true);
+				    fenetre.dispose();
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}

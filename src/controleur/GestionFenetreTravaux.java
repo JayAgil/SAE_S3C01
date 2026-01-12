@@ -199,7 +199,7 @@ public class GestionFenetreTravaux extends GestionHeaderEtFooter implements Mous
 		for (Facture f : travaux) {
 			java.util.Calendar cal = java.util.Calendar.getInstance();
 			cal.setTime(f.getDateDeFacture());
-			int moisFacture = cal.get(java.util.Calendar.MONTH) + 1; // January = 0
+			int moisFacture = cal.get(java.util.Calendar.MONTH) + 1; // Janvier = 0
 			int anneeFacture = cal.get(java.util.Calendar.YEAR);
 
 			boolean match = true;
