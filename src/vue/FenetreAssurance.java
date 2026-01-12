@@ -23,6 +23,7 @@ public class FenetreAssurance extends FenetreBase {
 	private JLabel lblNbBien;
 	private String bat;
 	private JButton btnModifier;
+	private JButton btnAjouter;
 
 	/**
 	 * Création de la vue
@@ -207,7 +208,7 @@ public class FenetreAssurance extends FenetreBase {
 		JPanel southPanel = new JPanel(new BorderLayout());
 
 		JPanel panelButtons = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 10));
-		JButton btnAjouter = new JButton("Ajouter assurance");
+		btnAjouter = new JButton("Ajouter assurance");
 		panelButtons.add(btnAjouter);
 
 		JButton btnRetour = new JButton("Retour");
@@ -231,6 +232,15 @@ public class FenetreAssurance extends FenetreBase {
 		btnRetour.addActionListener(gestionClic);
 		btnModifier.addActionListener(this.gestionClic);
 
+	}
+
+	/**
+	 * Retourne le bouton permettant d'ajouter une assurance.
+	 *
+	 * @return le bouton "Modifier"
+	 */
+	public JButton getBtnAjouter() {
+		return btnAjouter;
 	}
 
 	/**
