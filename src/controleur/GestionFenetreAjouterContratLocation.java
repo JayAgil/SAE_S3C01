@@ -26,35 +26,43 @@ public class GestionFenetreAjouterContratLocation extends GestionButtonFenetreAj
 		this.parent = parent;
 	}
 
+	/**
+	 * Récupère tous les champs texte de la fenêtre pour le contrat.
+	 */
 	@Override
 	protected List<JTextField> getTextFields() {
 		return fenetre.getAllContratTextFields();
 	}
 
+	/**
+	 * Retourne la fenêtre gérée par ce contrôleur.
+	 */
 	@Override
 	protected JInternalFrame getFrame() {
 		return fenetre;
 	}
 
+	/**
+	 * Action exécutée lors du clic sur le bouton "Ajouter". Récupère les données,
+	 * crée un nouveau contrat et met à jour la fenêtre parente.
+	 */
 	@Override
 	protected void gererAction() {
 		try {
 			DaoContratLocation dao = new DaoContratLocation();
 			List<JTextField> donnees = this.getTextFields();
-			
-			 Date dateDebut = Date.valueOf(donnees.get(1).getText());
-			 Date dateFin = Date.valueOf(donnees.get(2).getText());
-			 
-			 if (!dateFin.after(dateDebut)) { 
-			        JOptionPane.showMessageDialog(null, "La date de fin doit être après la date de début.", "Erreur",
-			                JOptionPane.ERROR_MESSAGE);
-			        return; 
-			    }
+
+			Date dateDebut = Date.valueOf(donnees.get(1).getText());
+			Date dateFin = Date.valueOf(donnees.get(2).getText());
+
+			if (!dateFin.after(dateDebut)) {
+				JOptionPane.showMessageDialog(null, "La date de fin doit être après la date de début.", "Erreur",
+						JOptionPane.ERROR_MESSAGE);
+				return;
+			}
 
 			ContratLocation cl = new ContratLocation(donnees.get(0).getText(), // String numeroDeContrat
-					dateDebut,
-					dateFin,
-					Double.parseDouble(donnees.get(3).getText()), // double montantDeCaution
+					dateDebut, dateFin, Double.parseDouble(donnees.get(3).getText()), // double montantDeCaution
 					Double.parseDouble(donnees.get(4).getText()), // double provisionCharge
 					Double.parseDouble(donnees.get(5).getText()), // double solde
 					Double.parseDouble(donnees.get(6).getText()), // double montantMensuel
@@ -70,8 +78,8 @@ public class GestionFenetreAjouterContratLocation extends GestionButtonFenetreAj
 						JOptionPane.INFORMATION_MESSAGE);
 
 				if (parent != null) {
-				    parent.setContrats(parent.getDonneesContrats());
-				    parent.remplirTable();
+					parent.setContrats(parent.getDonneesContrats());
+					parent.remplirTable();
 				}
 				this.fenetre.dispose();
 

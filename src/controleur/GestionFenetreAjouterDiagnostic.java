@@ -20,98 +20,95 @@ import vue.FenetreAjouterDiagnostic;
 
 public class GestionFenetreAjouterDiagnostic extends GestionButtonFenetreAjouter {
 
-    private FenetreAjouterDiagnostic fenetre;
-    private BienLouable b;
-    private GestionFenetreDiagnostic parent;
+	private FenetreAjouterDiagnostic fenetre;
+	private BienLouable b;
+	private GestionFenetreDiagnostic parent;
 
-    public GestionFenetreAjouterDiagnostic(FenetreAjouterDiagnostic fenetre, BienLouable b, GestionFenetreDiagnostic parent) {
-        this.fenetre = fenetre;
-        this.b = b;
-        this.parent = parent;
-    }
-    
-    @Override
-    protected List<JTextField> getTextFields() {
-        return fenetre.getAllDiagnosticTextFields();
-    }
-    
-    @Override
-    protected JInternalFrame getFrame() {
-        return fenetre;
-    }
-    
-    @Override
+	public GestionFenetreAjouterDiagnostic(FenetreAjouterDiagnostic fenetre, BienLouable b,
+			GestionFenetreDiagnostic parent) {
+		this.fenetre = fenetre;
+		this.b = b;
+		this.parent = parent;
+	}
+
+	/**
+	 * Récupère tous les champs texte de la fenêtre pour le diagnostic.
+	 */
+	@Override
+	protected List<JTextField> getTextFields() {
+		return fenetre.getAllDiagnosticTextFields();
+	}
+
+	/**
+	 * Retourne la fenêtre gérée par ce contrôleur.
+	 */
+	@Override
+	protected JInternalFrame getFrame() {
+		return fenetre;
+	}
+
+	/**
+	 * Action exécutée lors du clic sur le bouton "Ajouter". Récupère les données,
+	 * crée un nouveau diagnostic et met à jour la fenêtre parente.
+	 */
+	@Override
 	protected void gererAction() {
-    	try {
+		try {
 			DaoDiagnostics dao = new DaoDiagnostics();
 			List<JTextField> donnees = this.getTextFields();
-			Diagnostics d = new Diagnostics (donnees.get(0).getText(),donnees.get(1).getText(),	    
-					Date.valueOf(donnees.get(2).getText()),Date.valueOf(donnees.get(3).getText()),donnees.get(4).getText(),b);
-			
+			Diagnostics d = new Diagnostics(donnees.get(0).getText(), donnees.get(1).getText(),
+					Date.valueOf(donnees.get(2).getText()), Date.valueOf(donnees.get(3).getText()),
+					donnees.get(4).getText(), b);
+
 			if (dao.create(d) == 1) {
-			    JOptionPane.showMessageDialog(
-			        null, 
-			        "Diagnostic ajoutée avec succès !", 
-			        "Succès", 
-			        JOptionPane.INFORMATION_MESSAGE
-			    );
-			    this.parent.setDiagnostics(dao.findDiagnosticsByIdBien(b.getIdBienLouable()));
-			    this.parent.chargerDonnees();;
+				JOptionPane.showMessageDialog(null, "Diagnostic ajoutée avec succès !", "Succès",
+						JOptionPane.INFORMATION_MESSAGE);
+				this.parent.setDiagnostics(dao.findDiagnosticsByIdBien(b.getIdBienLouable()));
+				this.parent.chargerDonnees();
+				;
 				this.fenetre.dispose();
 
 			} else {
-			    JOptionPane.showMessageDialog(
-			        null, 
-			        "Échec de l'ajout du diagnostic.", 
-			        "Erreur", 
-			        JOptionPane.ERROR_MESSAGE
-			    );
+				JOptionPane.showMessageDialog(null, "Échec de l'ajout du diagnostic.", "Erreur",
+						JOptionPane.ERROR_MESSAGE);
 			}
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			if (e.getErrorCode() == 1) { 
-		        JOptionPane.showMessageDialog(
-		            null,
-		            "Ce diagnostic existe déjà (clé primaire).",
-		            "Doublon",
-		            JOptionPane.WARNING_MESSAGE
-		        );
-		    } else {
-		        JOptionPane.showMessageDialog(
-		            null,
-		            "Erreur SQL : " + e.getMessage(),
-		            "Erreur base de données",
-		            JOptionPane.ERROR_MESSAGE
-		        );
-		    }
+			if (e.getErrorCode() == 1) {
+				JOptionPane.showMessageDialog(null, "Ce diagnostic existe déjà (clé primaire).", "Doublon",
+						JOptionPane.WARNING_MESSAGE);
+			} else {
+				JOptionPane.showMessageDialog(null, "Erreur SQL : " + e.getMessage(), "Erreur base de données",
+						JOptionPane.ERROR_MESSAGE);
+			}
 		}
-    }
+	}
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-    	if (((JButton) e.getSource()).getText().equals("Choisir")) {
-            JFileChooser chooser = new JFileChooser();
-            chooser.setFileFilter(new FileNameExtensionFilter("PDF Files", "pdf"));
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (((JButton) e.getSource()).getText().equals("Choisir")) {
+			JFileChooser chooser = new JFileChooser();
+			chooser.setFileFilter(new FileNameExtensionFilter("PDF Files", "pdf"));
 
-            if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-                File selectedFile = chooser.getSelectedFile();
+			if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+				File selectedFile = chooser.getSelectedFile();
 
-                File projectDir = new File(System.getProperty("user.dir"));
-                String path;
+				File projectDir = new File(System.getProperty("user.dir"));
+				String path;
 
-                if (selectedFile.toPath().startsWith(projectDir.toPath())) {
-                    path = projectDir.toURI().relativize(selectedFile.toURI()).getPath();
-                } else {
-                    path = selectedFile.getAbsolutePath(); 
-                }
+				if (selectedFile.toPath().startsWith(projectDir.toPath())) {
+					path = projectDir.toURI().relativize(selectedFile.toURI()).getPath();
+				} else {
+					path = selectedFile.getAbsolutePath();
+				}
 
-                fenetre.getTextFieldFichier().setText(path);
-            }
-    } else {
-    	super.actionPerformed(e);
-    }
-    }
+				fenetre.getTextFieldFichier().setText(path);
+			}
+		} else {
+			super.actionPerformed(e);
+		}
+	}
 
 }

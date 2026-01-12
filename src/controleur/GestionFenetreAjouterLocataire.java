@@ -30,16 +30,26 @@ public class GestionFenetreAjouterLocataire extends GestionButtonFenetreAjouter 
 		chargerComboBoxContrat();
 	}
 
+	/**
+	 * Récupère tous les champs texte de la fenêtre.
+	 */
 	@Override
 	protected List<JTextField> getTextFields() {
 		return fenetre.getAllLocataireTextFields();
 	}
 
+	/**
+	 * Retourne la fenêtre gérée par ce contrôleur.
+	 */
 	@Override
 	protected JInternalFrame getFrame() {
 		return fenetre;
 	}
 
+	/**
+	 * Action exécutée lors du clic sur le bouton "Ajouter". Crée le garant et le
+	 * locataire, puis les associe éventuellement à un contrat.
+	 */
 	@Override
 	protected void gererAction() {
 
@@ -88,6 +98,10 @@ public class GestionFenetreAjouterLocataire extends GestionButtonFenetreAjouter 
 		}
 	}
 
+	/**
+	 * Remplit la comboBox avec tous les contrats existants et sélectionne celui du
+	 * bien si existant.
+	 */
 	public void chargerComboBoxContrat() {
 		JComboBox<ContratLocation> comboBox = this.fenetre.getComboBoxContrat();
 		comboBox.removeAllItems();

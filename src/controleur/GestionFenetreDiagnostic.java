@@ -34,9 +34,7 @@ public class GestionFenetreDiagnostic extends GestionHeaderEtFooter {
 		try {
 			daoDiag = new DaoDiagnostics();
 			diagnostics = daoDiag.findDiagnosticsByIdBien(bL.getIdBienLouable());
-
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -242,7 +240,6 @@ public class GestionFenetreDiagnostic extends GestionHeaderEtFooter {
 				}
 			});
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

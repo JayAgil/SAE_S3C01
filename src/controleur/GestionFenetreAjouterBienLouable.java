@@ -19,23 +19,34 @@ public class GestionFenetreAjouterBienLouable extends GestionButtonFenetreAjoute
 	private Batiment b;
 	private GestionFenetreBienLouable parent;
 
-	public GestionFenetreAjouterBienLouable(FenetreAjouterBienLouable fenetre, Batiment b, GestionFenetreBienLouable parent) {
+	public GestionFenetreAjouterBienLouable(FenetreAjouterBienLouable fenetre, Batiment b,
+			GestionFenetreBienLouable parent) {
 		this.fenetre = fenetre;
 		this.b = b;
 		this.parent = parent;
 		chargerComboBoxBienLouable();
 	}
 
+	/**
+	 * Récupère tous les champs texte de la fenêtre pour le bien louable.
+	 */
 	@Override
 	protected List<JTextField> getTextFields() {
 		return fenetre.getAllBienLouableTextFields();
 	}
 
+	/**
+	 * Retourne la fenêtre gérée par ce contrôleur.
+	 */
 	@Override
 	protected JInternalFrame getFrame() {
 		return fenetre;
 	}
 
+	/**
+	 * Action exécutée lors du clic sur le bouton "Ajouter". Récupère les données,
+	 * crée un nouveau bien et met à jour la fenêtre parente.
+	 */
 	@Override
 	protected void gererAction() {
 		try {
@@ -46,7 +57,7 @@ public class GestionFenetreAjouterBienLouable extends GestionButtonFenetreAjoute
 			BienLouable bl = null;
 
 			if (idBienLie != null) {
-			    bl = dao.findById(idBienLie);
+				bl = dao.findById(idBienLie);
 			}
 			BienLouable bNouveau = new BienLouable(donnees.get(0).getText(), donnees.get(1).getText(),
 					donnees.get(2).getText(), Double.parseDouble(donnees.get(3).getText()),
@@ -63,7 +74,6 @@ public class GestionFenetreAjouterBienLouable extends GestionButtonFenetreAjoute
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			if (e.getErrorCode() == 1) {
 				JOptionPane.showMessageDialog(null, "Ce bien existe déjà (clé primaire).", "Doublon",
@@ -77,6 +87,9 @@ public class GestionFenetreAjouterBienLouable extends GestionButtonFenetreAjoute
 
 	}
 
+	/**
+	 * Remplit le comboBox avec les biens existants du bâtiment pour lier un bien.
+	 */
 	public void chargerComboBoxBienLouable() {
 		JComboBox<String> comboBox = this.fenetre.getComboBoxBienLouable();
 		comboBox.removeAllItems();

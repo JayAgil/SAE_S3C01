@@ -18,79 +18,68 @@ public class GestionFenetreAjouterCompteur extends GestionButtonFenetreAjouter {
 	private BienLouable b;
 	private GestionFenetreCompteurs parent;
 
-	public GestionFenetreAjouterCompteur(FenetreAjouterCompteur fenetre, BienLouable b, GestionFenetreCompteurs parent ) {;
+	public GestionFenetreAjouterCompteur(FenetreAjouterCompteur fenetre, BienLouable b,
+			GestionFenetreCompteurs parent) {
+		;
 		this.fenetre = fenetre;
 		this.b = b;
 		this.parent = parent;
 	}
-	
+
+	/**
+	 * Récupère tous les champs texte de la fenêtre pour le compteur.
+	 */
 	@Override
-    protected List<JTextField> getTextFields() {
-        return fenetre.getAllCompteurTextFields();
-    }
-    
-    @Override
-    protected JInternalFrame getFrame() {
-        return fenetre;
-    }
-    
-    @Override
+	protected List<JTextField> getTextFields() {
+		return fenetre.getAllCompteurTextFields();
+	}
+
+	/**
+	 * Retourne la fenêtre gérée par ce contrôleur.
+	 */
+	@Override
+	protected JInternalFrame getFrame() {
+		return fenetre;
+	}
+
+	/**
+	 * Action exécutée lors du clic sur le bouton "Ajouter". Récupère les données,
+	 * crée un nouveau compteur et met à jour la fenêtre parente.
+	 */
+	@Override
 	protected void gererAction() {
-    	try {
+		try {
 			DaoCompteur dao = new DaoCompteur();
 			List<JTextField> donnees = this.getTextFields();
 			String type = (String) this.fenetre.getComboType().getSelectedItem();
-			Compteur c = new Compteur(
-					donnees.get(0).getText(),
-	                Double.parseDouble(donnees.get(1).getText()),
-	                Double.parseDouble(donnees.get(2).getText()),
-	                Double.parseDouble(donnees.get(1).getText())
-	                    + Double.parseDouble(donnees.get(2).getText()),
-	                Date.valueOf(donnees.get(3).getText()), b,
-	                Double.parseDouble(donnees.get(4).getText()),
-	                Double.parseDouble(donnees.get(5).getText()), type
-				);
+			Compteur c = new Compteur(donnees.get(0).getText(), Double.parseDouble(donnees.get(1).getText()),
+					Double.parseDouble(donnees.get(2).getText()),
+					Double.parseDouble(donnees.get(1).getText()) + Double.parseDouble(donnees.get(2).getText()),
+					Date.valueOf(donnees.get(3).getText()), b, Double.parseDouble(donnees.get(4).getText()),
+					Double.parseDouble(donnees.get(5).getText()), type);
 
 			if (dao.create(c) == 1) {
-			    JOptionPane.showMessageDialog(
-			        null, 
-			        "Compteur ajoutée avec succès !", 
-			        "Succès", 
-			        JOptionPane.INFORMATION_MESSAGE
-			    );
-			    this.parent.setCpt(dao.findByIdBien(this.b.getIdBienLouable()));
-			    this.parent.remplirTableCompteurs();
+				JOptionPane.showMessageDialog(null, "Compteur ajoutée avec succès !", "Succès",
+						JOptionPane.INFORMATION_MESSAGE);
+				this.parent.setCpt(dao.findByIdBien(this.b.getIdBienLouable()));
+				this.parent.remplirTableCompteurs();
 				this.fenetre.dispose();
 
 			} else {
-			    JOptionPane.showMessageDialog(
-			        null, 
-			        "Échec de l'ajout du compteur.", 
-			        "Erreur", 
-			        JOptionPane.ERROR_MESSAGE
-			    );
+				JOptionPane.showMessageDialog(null, "Échec de l'ajout du compteur.", "Erreur",
+						JOptionPane.ERROR_MESSAGE);
 			}
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			if (e.getErrorCode() == 1) { 
-		        JOptionPane.showMessageDialog(
-		            null,
-		            "Ce compteur existe déjà (clé primaire).",
-		            "Doublon",
-		            JOptionPane.WARNING_MESSAGE
-		        );
-		    } else {
-		        JOptionPane.showMessageDialog(
-		            null,
-		            "Erreur SQL : " + e.getMessage(),
-		            "Erreur base de données",
-		            JOptionPane.ERROR_MESSAGE
-		        );
-		    }
+			if (e.getErrorCode() == 1) {
+				JOptionPane.showMessageDialog(null, "Ce compteur existe déjà (clé primaire).", "Doublon",
+						JOptionPane.WARNING_MESSAGE);
+			} else {
+				JOptionPane.showMessageDialog(null, "Erreur SQL : " + e.getMessage(), "Erreur base de données",
+						JOptionPane.ERROR_MESSAGE);
+			}
 		}
-    }
+	}
 }
-	
-

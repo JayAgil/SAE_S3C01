@@ -64,6 +64,8 @@ public class GestionFenetreLocataire extends GestionHeaderEtFooter implements Mo
 								.findContratLocataionByLocataire(locataireSelectionne.getIdLocataire());
 						double solde = contrat.getSolde();
 
+						// On ne retire pas de locataire si le contrat possede un solde nul
+						// afin de pouvoir d'abord régler son solde
 						if (solde != 0.0) {
 							JOptionPane.showMessageDialog(fenetre,
 									"Impossible de supprimer ce locataire : un contrat possède un solde non nul ("

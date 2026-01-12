@@ -14,40 +14,51 @@ import vue.FenetreAjouterBatiment;
 
 public class GestionFenetreAjouterBatiment extends GestionButtonFenetreAjouter {
 
-    private FenetreAjouterBatiment fenetre;
-    private GestionFenetrePrincipale parent;
+	private FenetreAjouterBatiment fenetre;
+	private GestionFenetrePrincipale parent;
 
-    public GestionFenetreAjouterBatiment(FenetreAjouterBatiment fenetre, GestionFenetrePrincipale parent) {
-        this.fenetre = fenetre;
-        this.parent = parent;
-    }
+	public GestionFenetreAjouterBatiment(FenetreAjouterBatiment fenetre, GestionFenetrePrincipale parent) {
+		this.fenetre = fenetre;
+		this.parent = parent;
+	}
 
-    @Override
-    protected List<JTextField> getTextFields() {
-        return fenetre.getAllTextFields();
-    }
-    
-    @Override
-    protected JInternalFrame getFrame() {
-        return fenetre;
-    }
-    
-    @Override
+	/**
+	 * Récupère tous les champs texte de la fenêtre.
+	 */
+	@Override
+	protected List<JTextField> getTextFields() {
+		return fenetre.getAllTextFields();
+	}
+
+	/**
+	 * Retourne la fenêtre gérée par ce contrôleur.
+	 */
+	@Override
+	protected JInternalFrame getFrame() {
+		return fenetre;
+	}
+
+	/**
+	 * Action exécutée lors du clic sur le bouton "Ajouter". Crée un nouveau
+	 * bâtiment et met à jour la fenêtre principale.
+	 */
+	@Override
 	protected void gererAction() {
-    	try {
+		try {
 			DaoBatiment dao = new DaoBatiment();
 			List<JTextField> donnees = this.getTextFields();
-			Batiment b = new Batiment (donnees.get(0).getText(),Date.valueOf(donnees.get(1).getText()));
+			Batiment b = new Batiment(donnees.get(0).getText(), Date.valueOf(donnees.get(1).getText()));
 			if (dao.create(b) == 1) {
-				JOptionPane.showMessageDialog(null, "Batiment ajoutée avec succès !\nN'oubliez pas d'ajouter des biens pour ce bâtiment.", "Succès",
+				JOptionPane.showMessageDialog(null,
+						"Batiment ajoutée avec succès !\nN'oubliez pas d'ajouter des biens pour ce bâtiment.", "Succès",
 						JOptionPane.INFORMATION_MESSAGE);
 				this.parent.remplirComboBatiment();
 				this.fenetre.dispose();
 			} else {
-				JOptionPane.showMessageDialog(null, "Échec de l'ajout du batiment.", "Erreur", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Échec de l'ajout du batiment.", "Erreur",
+						JOptionPane.ERROR_MESSAGE);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			if (e.getErrorCode() == 1) {
 				JOptionPane.showMessageDialog(null, "Ce batiment existe déjà (clé primaire).", "Doublon",
@@ -57,9 +68,7 @@ public class GestionFenetreAjouterBatiment extends GestionButtonFenetreAjouter {
 						JOptionPane.ERROR_MESSAGE);
 			}
 		}
-		
 
-    	
-    }
+	}
 
 }
