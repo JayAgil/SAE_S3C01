@@ -3,52 +3,71 @@ package modele;
 import java.util.Objects;
 
 public class IRL {
-    private int annee;
-    private int trimestre; 
-    private double valeur; 
+	private int annee;
+	private int trimestre;
+	private double valeur;
 
-    public IRL(int annee, int trimestre, double valeur) {
-        this.annee = annee;
-        this.trimestre = trimestre;
-        this.valeur = valeur;
-    }
+	/**
+	 * Constructeur complet pour un IRL.
+	 *
+	 * @param annee     année de l'IRL
+	 * @param trimestre trimestre de l'année (1 à 4)
+	 * @param valeur    valeur de l'IRL
+	 */
+	public IRL(int annee, int trimestre, double valeur) {
+		this.annee = annee;
+		this.trimestre = trimestre;
+		this.valeur = valeur;
+	}
 
-    public int getAnnee() {
-        return annee;
-    }
+	/** Retourne l'année de l'IRL. */
+	public int getAnnee() {
+		return annee;
+	}
 
-    public void setAnnee(int annee) {
-        this.annee = annee;
-    }
+	/** Définit l'année de l'IRL. */
+	public void setAnnee(int annee) {
+		this.annee = annee;
+	}
 
-    public int getTrimestre() {
-        return trimestre;
-    }
+	/** Retourne le trimestre de l'IRL. */
+	public int getTrimestre() {
+		return trimestre;
+	}
 
-    public void setTrimestre(int trimestre) {
-        this.trimestre = trimestre;
-    }
+	/** Définit le trimestre de l'IRL. */
+	public void setTrimestre(int trimestre) {
+		this.trimestre = trimestre;
+	}
 
-    public void setIRL(double valeur) {
-        this.valeur = valeur;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(annee, trimestre, valeur);
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof IRL)) return false;
-        IRL other = (IRL) obj;
-        return annee == other.annee &&
-               trimestre == other.trimestre &&
-               Double.doubleToLongBits(valeur) == Double.doubleToLongBits(other.valeur);
-    }
-
+	/** Retourne la valeur de l'IRL. */
 	public double getIRL() {
 		return valeur;
+	}
+
+	/** Définit la valeur de l'IRL. */
+	public void setIRL(double valeur) {
+		this.valeur = valeur;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(annee, trimestre, valeur);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof IRL))
+			return false;
+		IRL other = (IRL) obj;
+		return annee == other.annee && trimestre == other.trimestre
+				&& Double.doubleToLongBits(valeur) == Double.doubleToLongBits(other.valeur);
+	}
+
+	@Override
+	public String toString() {
+		return "IRL [annee=" + annee + ", trimestre=" + trimestre + ", valeur=" + valeur + "]";
 	}
 }
