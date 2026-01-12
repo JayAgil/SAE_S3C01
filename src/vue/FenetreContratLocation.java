@@ -24,6 +24,8 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTextField;
 import java.sql.SQLException;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FenetreContratLocation extends FenetreBase {
 	private GestionFenetreContratLocation gestionClicContratLocation;
@@ -98,6 +100,9 @@ public class FenetreContratLocation extends FenetreBase {
 
 		JButton btnReguCharges = new JButton("Regulariser charge");
 		panel_2.add(btnReguCharges);
+		
+		JButton btnChangementSolde = new JButton("Modifier solde");
+		panel_2.add(btnChangementSolde);
 
 		JButton btnRetirer = new JButton("Retirer");
 
@@ -385,6 +390,7 @@ public class FenetreContratLocation extends FenetreBase {
 		table.addMouseListener(this.gestionClicContratLocation);
 		btnRetirer.addActionListener(this.gestionClicContratLocation);
 		btnRetour.addActionListener(gestionClicContratLocation);
+		btnChangementSolde.addActionListener(this.gestionClicContratLocation);
 
 	}
 

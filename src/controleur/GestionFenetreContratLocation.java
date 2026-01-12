@@ -166,6 +166,44 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 					String.format("Provision de charges mise à jour : %.2f €", nouvelleCharge), "Succès",
 					JOptionPane.INFORMATION_MESSAGE);
 			break;
+		case "Modifier solde":
+            if (selected == null) {
+                JOptionPane.showMessageDialog(fenetre,
+                    "Veuillez sélectionner un contrat", "Erreur",
+                    JOptionPane.ERROR_MESSAGE);
+                break;
+            }
+            double soldeActuel = selected.getSolde();
+            String inputSolde = JOptionPane.showInputDialog(fenetre,
+                String.format(
+                    "Solde actuelle : %.2f €\nEntrez le nouveau solde :",
+                    soldeActuel),
+                "Solde", JOptionPane.QUESTION_MESSAGE);
+
+            if (inputSolde == null || inputSolde.trim().isEmpty()) {
+                break;
+            }
+
+            double nouveauxSolde;
+            try {
+                nouveauxSolde = Double.parseDouble(inputSolde);
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(fenetre,
+                    "Entrée invalide. Veuillez entrer un nombre.", "Erreur",
+                    JOptionPane.ERROR_MESSAGE);
+                break;
+            }
+
+            selected.setSolde(nouveauxSolde);
+            DaoContratLocation daoCLSolde = new DaoContratLocation();
+            System.out.print(selected);
+            daoCLSolde.update(selected);
+            fenetre.getTextFieldProvCharge()
+                .setText(String.valueOf(nouveauxSolde));
+            JOptionPane.showMessageDialog(fenetre,
+                String.format("Solde mise à jour : %.2f €", nouveauxSolde),
+                "Succès", JOptionPane.INFORMATION_MESSAGE);
+            break;
 		case "Regulariser charge":
 			DaoContratLocation dao = new DaoContratLocation();
 			float element = dao.RegularisationCharges(selected, 2025);
