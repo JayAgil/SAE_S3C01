@@ -317,18 +317,38 @@ public class FenetrePaiement extends FenetreBase {
 		return lblDateDernierPaiement;
 	}
 
+	/**
+	 * Définit la table des paiements.
+	 *
+	 * @param table la JTable à définir
+	 */
 	public void setTable(JTable table) {
 		this.table = table;
 	}
 
+	/**
+	 * Retourne le label affichant la date du paiement sélectionné.
+	 *
+	 * @return le label de la date du paiement
+	 */
 	public JLabel getLblValDate() {
 		return lblValDate;
 	}
 
+	/**
+	 * Retourne le label affichant le montant du paiement sélectionné.
+	 *
+	 * @return le label du montant du paiement
+	 */
 	public JLabel getLblValPaiement() {
 		return lblValPaiement;
 	}
 
+	/**
+	 * Retourne le nom de la fenêtre précédente.
+	 *
+	 * @return le nom de la fenêtre précédente
+	 */
 	public String getNomFenAvant() {
 		return nomFenAvant;
 	}

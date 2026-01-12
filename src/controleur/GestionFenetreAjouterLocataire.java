@@ -70,6 +70,7 @@ public class GestionFenetreAjouterLocataire extends GestionButtonFenetreAjouter 
 			JOptionPane.showMessageDialog(null, "Garant et locataire ajoutés avec succès !", "Succès",
 					JOptionPane.INFORMATION_MESSAGE);
 			this.gestion.setLocataires(daoLocataire.findLocataireByBienLouable(b.getIdBienLouable()));
+			this.gestion.chargerDonnes();
 			this.fenetre.dispose();
 
 		} catch (SQLException e) {
