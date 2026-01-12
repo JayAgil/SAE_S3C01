@@ -176,7 +176,7 @@ public class GestionFenetreTravaux extends GestionHeaderEtFooter implements Mous
 
 	}
 
-	private void majDonnees() {
+	public void majDonnees() {
 		double somme = 0;
 		for (Facture f : travaux) {
 			somme += f.getMontant();

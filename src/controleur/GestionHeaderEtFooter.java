@@ -75,7 +75,7 @@ public abstract class GestionHeaderEtFooter implements ActionListener {
 			break;
 
 			/**
-			 * En mettant null comme parametre de bien louable, on affiche tous les éléments d'un batiment
+			 * En mettant null comme bien louable en parametre de chaque methode, on affiche tous les éléments lié au batiment plutot qu'a un bien
 			 */
 			
 		case "Compteurs":
