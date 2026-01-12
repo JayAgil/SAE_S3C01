@@ -24,7 +24,6 @@ import modele.BienLouable;
 import java.awt.Component;
 import javax.swing.Box;
 import javax.swing.DefaultComboBoxModel;
-import java.awt.Color;
 import javax.swing.JComboBox;
 
 public class FenetreAjouterCompteur extends JInternalFrame {
@@ -42,6 +41,9 @@ public class FenetreAjouterCompteur extends JInternalFrame {
 	private BienLouable b;
 	private GestionFenetreCompteurs parent;
 
+	/**
+	 * Création de la vue
+	 */
 	public FenetreAjouterCompteur(BienLouable b, GestionFenetreCompteurs parent) {
 		this.b = b;
 		this.parent = parent;
@@ -116,76 +118,76 @@ public class FenetreAjouterCompteur extends JInternalFrame {
 		panelCenter.add(txtPartieVariable, gbc_txtPartieVariable);
 
 		String[] types = { "Eau", "Électricité", "Gaz", "Chauffage" };
-		
-				GridBagConstraints gbc_lblType = new GridBagConstraints();
-				gbc_lblType.insets = pad;
-				gbc_lblType.anchor = GridBagConstraints.LINE_END;
-				gbc_lblType.gridx = 0;
-				gbc_lblType.gridy = 3;
-				JLabel lblType = new JLabel("Type : ");
-				panelCenter.add(lblType, gbc_lblType);
-		
-				GridBagConstraints gbc_comboType = new GridBagConstraints();
-				gbc_comboType.insets = pad;
-				gbc_comboType.anchor = GridBagConstraints.LINE_START;
-				gbc_comboType.gridx = 1;
-				gbc_comboType.gridy = 3;
-				comboType = new javax.swing.JComboBox<>(types);
-				comboType.setModel(new DefaultComboBoxModel(new String[] { "Eau", "Électricité", "Gaz" }));
-				panelCenter.add(comboType, gbc_comboType);
+
+		GridBagConstraints gbc_lblType = new GridBagConstraints();
+		gbc_lblType.insets = pad;
+		gbc_lblType.anchor = GridBagConstraints.LINE_END;
+		gbc_lblType.gridx = 0;
+		gbc_lblType.gridy = 3;
+		JLabel lblType = new JLabel("Type : ");
+		panelCenter.add(lblType, gbc_lblType);
+
+		GridBagConstraints gbc_comboType = new GridBagConstraints();
+		gbc_comboType.insets = pad;
+		gbc_comboType.anchor = GridBagConstraints.LINE_START;
+		gbc_comboType.gridx = 1;
+		gbc_comboType.gridy = 3;
+		comboType = new javax.swing.JComboBox<>(types);
+		comboType.setModel(new DefaultComboBoxModel(new String[] { "Eau", "Électricité", "Gaz" }));
+		panelCenter.add(comboType, gbc_comboType);
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		DateFormatter dateFormatter = new DateFormatter(format);
-		
-				GridBagConstraints c7 = new GridBagConstraints();
-				c7.insets = pad;
-				c7.anchor = GridBagConstraints.LINE_END;
-				c7.gridx = 0;
-				c7.gridy = 4;
-				JLabel label_1 = new JLabel("Date installation :");
-				panelCenter.add(label_1, c7);
-		
-				GridBagConstraints gbc_txtDate = new GridBagConstraints();
-				gbc_txtDate.insets = pad;
-				gbc_txtDate.anchor = GridBagConstraints.LINE_START;
-				gbc_txtDate.gridx = 1;
-				gbc_txtDate.gridy = 4;
-				txtDate = new JFormattedTextField(dateFormatter);
-				txtDate.setColumns(15);
-				txtDate.setToolTipText("Format attendu : yyyy-MM-dd");
-				
-						panelCenter.add(txtDate, gbc_txtDate);
-		
-				GridBagConstraints c9 = new GridBagConstraints();
-				c9.insets = pad;
-				c9.anchor = GridBagConstraints.LINE_END;
-				c9.gridx = 0;
-				c9.gridy = 5;
-				JLabel label_2 = new JLabel("Index ancien :");
-				panelCenter.add(label_2, c9);
-		
-				GridBagConstraints gbc_txtIndexAncien = new GridBagConstraints();
-				gbc_txtIndexAncien.insets = pad;
-				gbc_txtIndexAncien.anchor = GridBagConstraints.LINE_START;
-				gbc_txtIndexAncien.gridx = 1;
-				gbc_txtIndexAncien.gridy = 5;
-				txtIndexAncien = new JTextField(15);
-				panelCenter.add(txtIndexAncien, gbc_txtIndexAncien);
-		
-				GridBagConstraints c11 = new GridBagConstraints();
-				c11.insets = pad;
-				c11.anchor = GridBagConstraints.LINE_END;
-				c11.gridx = 0;
-				c11.gridy = 6;
-				JLabel label_3 = new JLabel("Index nouveau :");
-				panelCenter.add(label_3, c11);
-		
-				GridBagConstraints gbc_txtIndexNouveau = new GridBagConstraints();
-				gbc_txtIndexNouveau.insets = pad;
-				gbc_txtIndexNouveau.anchor = GridBagConstraints.LINE_START;
-				gbc_txtIndexNouveau.gridx = 1;
-				gbc_txtIndexNouveau.gridy = 6;
-				txtIndexNouveau = new JTextField(15);
-				panelCenter.add(txtIndexNouveau, gbc_txtIndexNouveau);
+
+		GridBagConstraints c7 = new GridBagConstraints();
+		c7.insets = pad;
+		c7.anchor = GridBagConstraints.LINE_END;
+		c7.gridx = 0;
+		c7.gridy = 4;
+		JLabel label_1 = new JLabel("Date installation :");
+		panelCenter.add(label_1, c7);
+
+		GridBagConstraints gbc_txtDate = new GridBagConstraints();
+		gbc_txtDate.insets = pad;
+		gbc_txtDate.anchor = GridBagConstraints.LINE_START;
+		gbc_txtDate.gridx = 1;
+		gbc_txtDate.gridy = 4;
+		txtDate = new JFormattedTextField(dateFormatter);
+		txtDate.setColumns(15);
+		txtDate.setToolTipText("Format attendu : yyyy-MM-dd");
+
+		panelCenter.add(txtDate, gbc_txtDate);
+
+		GridBagConstraints c9 = new GridBagConstraints();
+		c9.insets = pad;
+		c9.anchor = GridBagConstraints.LINE_END;
+		c9.gridx = 0;
+		c9.gridy = 5;
+		JLabel label_2 = new JLabel("Index ancien :");
+		panelCenter.add(label_2, c9);
+
+		GridBagConstraints gbc_txtIndexAncien = new GridBagConstraints();
+		gbc_txtIndexAncien.insets = pad;
+		gbc_txtIndexAncien.anchor = GridBagConstraints.LINE_START;
+		gbc_txtIndexAncien.gridx = 1;
+		gbc_txtIndexAncien.gridy = 5;
+		txtIndexAncien = new JTextField(15);
+		panelCenter.add(txtIndexAncien, gbc_txtIndexAncien);
+
+		GridBagConstraints c11 = new GridBagConstraints();
+		c11.insets = pad;
+		c11.anchor = GridBagConstraints.LINE_END;
+		c11.gridx = 0;
+		c11.gridy = 6;
+		JLabel label_3 = new JLabel("Index nouveau :");
+		panelCenter.add(label_3, c11);
+
+		GridBagConstraints gbc_txtIndexNouveau = new GridBagConstraints();
+		gbc_txtIndexNouveau.insets = pad;
+		gbc_txtIndexNouveau.anchor = GridBagConstraints.LINE_START;
+		gbc_txtIndexNouveau.gridx = 1;
+		gbc_txtIndexNouveau.gridy = 6;
+		txtIndexNouveau = new JTextField(15);
+		panelCenter.add(txtIndexNouveau, gbc_txtIndexNouveau);
 
 		JPanel panelFooter = new JPanel();
 
@@ -208,10 +210,20 @@ public class FenetreAjouterCompteur extends JInternalFrame {
 
 	}
 
+	/**
+	 * Retourne la ComboBox permettant de sélectionner le type de compteur.
+	 *
+	 * @return la ComboBox des types de compteur
+	 */
 	public JComboBox<String> getComboType() {
 		return comboType;
 	}
 
+	/**
+	 * Retourne la liste de tous les champs texte de la fenêtre.
+	 *
+	 * @return la liste des JTextField
+	 */
 	public List<JTextField> getAllCompteurTextFields() {
 		List<JTextField> fields = new ArrayList<>();
 		fields.add(txtIdCompteur);

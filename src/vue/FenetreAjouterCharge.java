@@ -36,9 +36,11 @@ public class FenetreAjouterCharge extends JInternalFrame {
 	private JTextField txtIdCharge;
 	private BienLouable bl;
 	private GestionFenetreCharges parent;
-
 	private JTextField textFieldDateCharge;
 
+	/**
+	 * Création de la vue
+	 */
 	public FenetreAjouterCharge(BienLouable bl, GestionFenetreCharges parent) {
 		this.bl = bl;
 		this.parent = parent;
@@ -189,6 +191,11 @@ public class FenetreAjouterCharge extends JInternalFrame {
 
 	}
 
+	/**
+	 * Retourne la liste de tous les champs texte de la fenêtre.
+	 *
+	 * @return la liste des JTextField
+	 */
 	public List<JTextField> getAllChargeTextFields() {
 		List<JTextField> fields = new ArrayList<>();
 		fields.add(txtIdCharge);

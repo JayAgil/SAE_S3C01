@@ -19,7 +19,7 @@ import modele.dao.DaoLocataire;
 import modele.dao.DaoPaiement;
 import vue.*;
 
-public class GestionFenetreLocataire extends GestionHeaderEtFooter implements MouseListener{
+public class GestionFenetreLocataire extends GestionHeaderEtFooter implements MouseListener {
 
 	private FenetreLocataire fenetre;
 	private List<Locataire> locataires;
@@ -59,16 +59,36 @@ public class GestionFenetreLocataire extends GestionHeaderEtFooter implements Mo
 						"Confirmation", JOptionPane.YES_NO_OPTION);
 				if (confirm == JOptionPane.YES_OPTION) {
 					try {
+						DaoContratLocation daoContrat = new DaoContratLocation();
+						ContratLocation contrat = daoContrat
+								.findContratLocataionByLocataire(locataireSelectionne.getIdLocataire());
+						double solde = contrat.getSolde();
+
+						if (solde != 0.0) {
+							JOptionPane.showMessageDialog(fenetre,
+									"Impossible de supprimer ce locataire : un contrat possède un solde non nul ("
+											+ solde + ").");
+							break;
+						}
+
 						DaoLocataire dao = new DaoLocataire();
 						DaoGarant dG = new DaoGarant();
+
 						dG.delete(dG.findByLoc(locataireSelectionne.getIdLocataire()));
 						dao.delete(locataireSelectionne);
+
 						locataires.remove(locataireSelectionne);
 						chargerDonnes();
 						locataireSelectionne = null;
 					} catch (SQLException ex) {
-						ex.printStackTrace();
-						JOptionPane.showMessageDialog(fenetre, "Erreur lors de la suppression du locataire !");
+						if (ex.getErrorCode() == -20012) {
+							JOptionPane.showMessageDialog(fenetre,
+									"Impossible de supprimer ce locataire : un contrat associé possède un solde non nul.");
+
+						} else {
+							JOptionPane.showMessageDialog(fenetre, "Erreur lors de la suppression du locataire !");
+						}
+
 					}
 				}
 			} else {
@@ -167,31 +187,31 @@ public class GestionFenetreLocataire extends GestionHeaderEtFooter implements Mo
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
