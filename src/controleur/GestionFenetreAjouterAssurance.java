@@ -48,6 +48,7 @@ public class GestionFenetreAjouterAssurance extends GestionButtonFenetreAjouter 
 						JOptionPane.INFORMATION_MESSAGE);
 				DaoBienLouable dB = new DaoBienLouable();
 			    int nbBiens = dB.findByIdBat(bat.getAdresse()).size();
+			    this.parent.hideBtnAjouter();
 				this.parent.afficherAssuranceBatiment(a, nbBiens);
 				this.fenetre.dispose();
 			} else {
@@ -66,5 +67,7 @@ public class GestionFenetreAjouterAssurance extends GestionButtonFenetreAjouter 
 
 		}
 	}
+	
+	
 
 }

@@ -21,6 +21,7 @@ public class GestionFenetreAssurance extends GestionHeaderEtFooter {
     	super(fenetre);
         this.fenetre = fenetre;
         this.bat = this.fenetre.getBat();
+        hideBtnAjouter();
     }
     
     @Override
@@ -120,6 +121,21 @@ public class GestionFenetreAssurance extends GestionHeaderEtFooter {
 		}
 	}
 
-
+	@SuppressWarnings("deprecation")
+	public void hideBtnAjouter() {
+		DaoBatiment daoBat;
+		try {
+			daoBat = new DaoBatiment();
+			Batiment b = daoBat.findById(bat);
+			DaoAssurance dao = new DaoAssurance();
+			if (dao.findByBatiment(b.getAdresse()) != null) {
+				this.fenetre.getBtnAjouter().hide();;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 
 }

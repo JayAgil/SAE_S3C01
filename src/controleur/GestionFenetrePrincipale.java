@@ -30,6 +30,7 @@ import modele.ContratLocation;
 import modele.Locataire;
 import modele.Paiement;
 import modele.UtOracleDataSource;
+import modele.dao.DaoAssurance;
 import modele.dao.DaoBatiment;
 import modele.dao.DaoBienLouable;
 import modele.dao.DaoChargesGenerales;
@@ -168,6 +169,7 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 		return totalSolde;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void gererBoutonSpecifique(String texte) throws SQLException {
 		switch (texte) {
