@@ -8,11 +8,9 @@ import javax.swing.JTable;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
-
 import controleur.GestionFenetreTravaux;
 import modele.BienLouable;
 import modele.Facture;
-
 import javax.swing.JScrollPane;
 import java.awt.Font;
 import java.awt.FlowLayout;
@@ -21,14 +19,11 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.util.List;
-
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class FenetreTravaux extends FenetreBase {
 
@@ -46,6 +41,14 @@ public class FenetreTravaux extends FenetreBase {
 	private String fenetreAvant;
 	private JButton btnAjouterTravaux;
 
+	/**
+	 * Construit la fenêtre des travaux pour un bien louable. Cette fenêtre permet
+	 * d'afficher, filtrer et gérer les factures de travaux associées à un bien.
+	 *
+	 * @param fenAvant le nom de la fenêtre précédente (pour la navigation)
+	 * @param liste    la liste des factures de travaux associées au bien
+	 * @param bien     le bien louable concerné
+	 */
 	public FenetreTravaux(String fenAvant, List<Facture> liste, BienLouable bien) {
 		super();
 		this.fenetreAvant = fenAvant;
@@ -74,20 +77,19 @@ public class FenetreTravaux extends FenetreBase {
 
 		JButton btnAjouterEntreprise = new JButton("Ajouter entreprise");
 		panel_1.add(btnAjouterEntreprise);
-		
+
 		JButton btnMAJ = new JButton("Mettre à jour");
 		panel_1.add(btnMAJ);
 
 		JButton btnGenFacture = new JButton("Visualiser facture");
 		panel_1.add(btnGenFacture);
-				
-				JButton btnRetirer = new JButton("Retirer");
 
-				panel_1.add(btnRetirer);
-		
-				JButton btnRetour = new JButton("Retour");
-				panel_1.add(btnRetour);
+		JButton btnRetirer = new JButton("Retirer");
 
+		panel_1.add(btnRetirer);
+
+		JButton btnRetour = new JButton("Retour");
+		panel_1.add(btnRetour);
 
 		JPanel panel_2 = new JPanel();
 		panel.add(panel_2, BorderLayout.NORTH);
@@ -101,44 +103,29 @@ public class FenetreTravaux extends FenetreBase {
 		panel.add(panel_3, BorderLayout.CENTER);
 		scrollPane = new JScrollPane();
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-			},
-			new String[] {
-				"Num\u00E9ro facture", "Montant", "Date de facture", "Compte bancaire", "Montant devis", "Date de paiement", "D\u00E9signation travaux", "Entreprise"
-			}
-		) {
-			Class[] columnTypes = new Class[] {
-				String.class, String.class, String.class, String.class, Float.class, String.class, String.class, String.class
-			};
+		table.setModel(new DefaultTableModel(new Object[][] { { null, null, null, null, null, null, null, null },
+				{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
+				{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
+				{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
+				{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
+				{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
+				{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
+				{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
+				{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
+				{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
+				{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
+				{ null, null, null, null, null, null, null, null }, },
+				new String[] { "Num\u00E9ro facture", "Montant", "Date de facture", "Compte bancaire", "Montant devis",
+						"Date de paiement", "D\u00E9signation travaux", "Entreprise" }) {
+			Class[] columnTypes = new Class[] { String.class, String.class, String.class, String.class, Float.class,
+					String.class, String.class, String.class };
+
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
-			boolean[] columnEditables = new boolean[] {
-				false, false, false, false, true, false, false, false
-			};
+
+			boolean[] columnEditables = new boolean[] { false, false, false, false, true, false, false, false };
+
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
 			}
@@ -229,65 +216,130 @@ public class FenetreTravaux extends FenetreBase {
 
 	}
 
+	/**
+	 * Retourne le bouton permettant d'ajouter un nouveau travail.
+	 *
+	 * @return le bouton "Ajouter travaux"
+	 */
 	public JButton getBtnAjouterTravaux() {
 		return btnAjouterTravaux;
 	}
 
+	/**
+	 * Retourne la ComboBox permettant de filtrer les travaux par mois.
+	 *
+	 * @return la ComboBox des mois
+	 */
 	public JComboBox getComboBox_Mois() {
 		return comboBox_Mois;
 	}
 
+	/**
+	 * Définit la ComboBox utilisée pour le filtrage par mois.
+	 *
+	 * @param comboBox_Mois la ComboBox des mois à définir
+	 */
 	public void setComboBox_Mois(JComboBox comboBox_Mois) {
 		this.comboBox_Mois = comboBox_Mois;
 	}
 
+	/**
+	 * Retourne la ComboBox permettant de filtrer les travaux par année.
+	 *
+	 * @return la ComboBox des années
+	 */
 	public JComboBox getComboBox_Annee() {
 		return comboBox_Annee;
 	}
 
+	/**
+	 * Définit la ComboBox utilisée pour le filtrage par année.
+	 *
+	 * @param comboBox_Annee la ComboBox des années à définir
+	 */
 	public void setComboBox_Annee(JComboBox comboBox_Annee) {
 		this.comboBox_Annee = comboBox_Annee;
 	}
 
-	public void disableMenuItems(boolean actif) {
-		this.mnBatiment.setEnabled(actif);
-		this.mnPaiement.setEnabled(actif);
-		this.mntmTravaux.setEnabled(actif);
-	}
-
+	/**
+	 * Retourne la table affichant les factures de travaux.
+	 *
+	 * @return la JTable des travaux
+	 */
 	public JTable getTable() {
 		return table;
 	}
 
+	/**
+	 * Retourne le label affichant le montant total des travaux.
+	 *
+	 * @return le label du montant total
+	 */
 	public JLabel getLblMontantTotal() {
 		return lblMontantTotal;
 	}
 
+	/**
+	 * Définit le label affichant le montant total des travaux.
+	 *
+	 * @param lblMontantTotal le label à définir
+	 */
 	public void setLblMontantTotal(JLabel lblMontantTotal) {
 		this.lblMontantTotal = lblMontantTotal;
 	}
 
+	/**
+	 * Retourne le label affichant le nombre total de travaux.
+	 *
+	 * @return le label du nombre de travaux
+	 */
 	public JLabel getLblNbTravaux() {
 		return lblNbTravaux;
 	}
 
+	/**
+	 * Définit le label affichant le nombre de travaux.
+	 *
+	 * @param lblNewLabel le label à définir
+	 */
 	public void setLblNbTravaux(JLabel lblNewLabel) {
 		this.lblNbTravaux = lblNewLabel;
 	}
 
+	/**
+	 * Définit la table des travaux.
+	 *
+	 * @param table la JTable à définir
+	 */
 	public void setTable(JTable table) {
 		this.table = table;
 	}
 
+	/**
+	 * Retourne la liste des factures de travaux.
+	 *
+	 * @return la liste des factures
+	 */
 	public List<Facture> getFactures() {
 		return factures;
 	}
 
+	/**
+	 * Retourne le bien louable concerné par les travaux.
+	 *
+	 * @return le bien louable
+	 */
 	public BienLouable getBien() {
 		return bien;
 	}
 
+	/**
+	 * Retourne le nom de la fenêtre précédente.
+	 *
+	 * @return le nom de la fenêtre précédente
+	 */
 	public String getFenetreAvant() {
 		return fenetreAvant;
 	}
+
 }

@@ -4,19 +4,22 @@ import java.awt.*;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.List;
-
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-
 import controleur.GestionFenetrePaiement;
 import modele.Locataire;
 import modele.Paiement;
-
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
 
+
+/**
+ * Fenêtre de gestion des paiements d'un locataire.
+ * Cette fenêtre permet de consulter, filtrer, ajouter, supprimer
+ * et visualiser les paiements ainsi que générer des quittances de loyer.
+ */
 public class FenetrePaiement extends FenetreBase {
 
 	private static final long serialVersionUID = 1L;
@@ -36,6 +39,15 @@ public class FenetrePaiement extends FenetreBase {
 	private Locataire locataireSelectionne;
 	private JButton btnAjouterPaiement;
 
+	/**
+	 * Construit la fenêtre de gestion des paiements pour un locataire.
+	 *
+	 * @param nomFenAvant le nom de la fenêtre précédente (pour la navigation)
+	 * @param liste la liste des paiements du locataire
+	 * @param idLoc l'identifiant du locataire
+	 * @param locataireSelectionne le locataire sélectionné
+	 * @throws SQLException si une erreur survient lors de l'accès aux données
+	 */
 	public FenetrePaiement(String nomFenAvant, List<Paiement> liste, String idLoc, Locataire locataireSelectionne)
 			throws SQLException {
 		super();
@@ -242,30 +254,65 @@ public class FenetrePaiement extends FenetreBase {
 		btnRetour.addActionListener(gestionClic);
 	}
 
+	/**
+	 * Retourne le bouton permettant d'ajouter un nouveau paiement.
+	 *
+	 * @return le bouton "Ajouter paiement"
+	 */
 	public JButton getBtnAjouterPaiement() {
-		return btnAjouterPaiement;
+	    return btnAjouterPaiement;
 	}
 
+	/**
+	 * Retourne la ComboBox permettant de filtrer les paiements par année.
+	 *
+	 * @return la ComboBox des années
+	 */
 	public JComboBox getComboBoxAnnee() {
-		return comboBoxAnnee;
+	    return comboBoxAnnee;
 	}
 
+	/**
+	 * Retourne la ComboBox permettant de filtrer les paiements par mois.
+	 *
+	 * @return la ComboBox des mois
+	 */
 	public JComboBox getComboBoxMois() {
-		return comboBoxMois;
+	    return comboBoxMois;
 	}
 
+	/**
+	 * Retourne la table affichant la liste des paiements.
+	 *
+	 * @return la JTable des paiements
+	 */
 	public JTable getTable() {
 		return table;
 	}
 
+	/**
+	 * Retourne le bouton permettant de générer une quittance de loyer.
+	 *
+	 * @return le bouton "Quittance loyer"
+	 */
 	public JButton getButtonQuittance() {
 		return btnQuittance;
 	}
 
+	/**
+	 * Retourne le label affichant le total des paiements de l'année.
+	 *
+	 * @return le label du total annuel
+	 */
 	public JLabel getLblTotalPaiementAnnees() {
 		return lblTotalPaiementAnnees;
 	}
 
+	/**
+	 * Retourne le label affichant la date du dernier paiement.
+	 *
+	 * @return le label de la date du dernier paiement
+	 */
 	public JLabel getLblDateDernierPaiement() {
 		return lblDateDernierPaiement;
 	}

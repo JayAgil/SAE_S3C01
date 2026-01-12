@@ -3,10 +3,14 @@ package vue;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
-
 import modele.Paiement;
 import modele.ContratLocation;
 
+/**
+ * Fenêtre d'affichage d'une quittance de loyer.
+ * Cette fenêtre permet de visualiser les informations d'un paiement
+ * (période, bien loué, montants, charges et date de paiement).
+ */
 public class FenetreQuittance extends JInternalFrame {
 
     private static final long serialVersionUID = 1L;
