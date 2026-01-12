@@ -144,6 +144,14 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
         	}
 			break;
 		case "Locataire":
+			if(idBien == null || idBien == "") {
+				JOptionPane.showMessageDialog(
+					    null,
+					    "Attention! Choisissez un bien avant d'aller à la fenêtre locaraire!",
+					    "Information",
+					    JOptionPane.INFORMATION_MESSAGE
+					);
+			}
 			ouvrirFenetreLocataire(idBien);
 			break;
 		case "Compteur":
