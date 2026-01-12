@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import modele.dao.requetes.*;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 
 import modele.BienLouable;
@@ -39,16 +40,28 @@ public class DaoCompteur extends DaoModele<Compteur> implements Dao<Compteur> {
 	}
 	
 	public List<Compteur> findByIdBatiment(String... id) throws SQLException {
-		return this.find(new RequeteSelectCompteurByBatiment(), id);
+		List<Compteur> result =  this.find(new RequeteSelectCompteurByBatiment(), id);
+		if(!(result == null)) {
+			return result;
+		}
+		return Collections.emptyList();
 	}
 	
 	public List<Compteur> findByIdBien(String... id) throws SQLException {
-		return this.find(new RequeteSelectCompteurByBien(), id);
+		List<Compteur> result = this.find(new RequeteSelectCompteurByBien(), id);
+		if(!(result == null)) {
+			return result;
+		}
+		return Collections.emptyList();
 	}
 
 	@Override
 	public List<Compteur> findAll() throws SQLException {
-		return this.find(new RequeteSelectCompteur());
+		List<Compteur> result =  this.find(new RequeteSelectCompteur());
+		if(!(result == null)) {
+			return result;
+		}
+		return Collections.emptyList();
 	}
 	
 

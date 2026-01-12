@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import modele.dao.requetes.*;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 
 import modele.BienLouable;
@@ -39,16 +40,28 @@ public class DaoChargesGenerales extends DaoModele<ChargesGenerales>implements D
 	}
 	
 	public List<ChargesGenerales> findByIdBatiment(String... id) throws SQLException {
-		return this.find(new RequeteSelectChargesByBatiment(),id);
+		List<ChargesGenerales> result =  this.find(new RequeteSelectChargesByBatiment(),id);
+		if(!(result == null)) {
+			return result;
+		}
+		return Collections.emptyList();
 	}
 	
 	public List<ChargesGenerales> findByIdBien(String... id) throws SQLException {
-		return this.find(new RequeteSelectChargesByBien(),id);
+		List<ChargesGenerales> result = this.find(new RequeteSelectChargesByBien(),id);
+		if(!(result == null)) {
+			return result;
+		}
+		return Collections.emptyList();
 	}
 	
 	@Override
 	public List<ChargesGenerales> findAll() throws SQLException {
-		return this.find(new RequeteSelectChargesGenerales());
+		List<ChargesGenerales> result = this.find(new RequeteSelectChargesGenerales());
+		if(!(result == null)) {
+			return result;
+		}
+		return Collections.emptyList();
 	}
 
 	@Override

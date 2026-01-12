@@ -41,11 +41,19 @@ public class DaoBienLouable extends DaoModele<BienLouable> implements Dao<BienLo
 
     @Override
     public List<BienLouable> findAll() throws SQLException {
-        return this.find(new RequeteSelectBienLouable());
+    	List<BienLouable> result =  this.find(new RequeteSelectBienLouable());
+    	if (result == null) {
+    	    return Collections.emptyList();
+    	}
+    	return result;
     }
 
     public List<BienLouable> findByBatiment(String... id) throws SQLException {
-        return this.find(new RequeteSelectBienLouableByBat(), id);
+    	List<BienLouable> result = this.find(new RequeteSelectBienLouableByBat(), id);
+    	if (result == null) {
+    	    return Collections.emptyList();
+    	}
+    	return result;
     }
 
     public List<BienLouable> findByIdBat(String... id) throws SQLException {

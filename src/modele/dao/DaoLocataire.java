@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 
 import modele.ContratLocation;
@@ -41,19 +42,35 @@ public class DaoLocataire extends DaoModele<Locataire> implements Dao<Locataire>
 
 	@Override
 	public List<Locataire> findAll() throws SQLException {
-		return find(new RequeteSelectLocataire());
+		List<Locataire> result = find(new RequeteSelectLocataire());
+		if(!(result == null)) {
+			return result;
+		}
+		return Collections.emptyList();
 	}
 
 	public List<Locataire> findLocataireByBienLouable(String... id) throws SQLException {
-		return find(new RequeteSelectLocataireByBienLouable(), id);
+		List<Locataire> result = find(new RequeteSelectLocataireByBienLouable(), id);
+		if(!(result == null)) {
+			return result;
+		}
+		return Collections.emptyList();
 	}
 
 	public List<Locataire> findLocataireByContrat(String... id) throws SQLException {
-		return find(new RequeteSelectLocataireByContrat(), id);
+		List<Locataire> result = find(new RequeteSelectLocataireByContrat(), id);
+		if(!(result == null)) {
+			return result;
+		}
+		return Collections.emptyList();
 	}
 
 	public List<Locataire> findLocatairesMemeBien(String idLoc) throws SQLException {
-		return this.find(new RequeteSelectLocatairesMemeBien(), idLoc);
+		List<Locataire> result = this.find(new RequeteSelectLocatairesMemeBien(), idLoc);
+		if(!(result == null)) {
+			return result;
+		}
+		return Collections.emptyList();
 	}
 
 	public int createContratLocataire(Locataire loc, ContratLocation cl) throws SQLException {
