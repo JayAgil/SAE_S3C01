@@ -16,7 +16,7 @@ UPDATE SAE_Paiement SET Designation_Paiement = 'Charges'
        OR Id_Paiement='PAY-039'
        ;
 
-UPDATE SAE_ContratLocation SET Solde = 0 - Montant_Mensuel;
+UPDATE SAE_ContratLocation SET Solde = 0 WHERE numero_de_contrat = 'CTR-0015';
 UPDATE SAE_DateDernierLancement SET date_dernier_lancement = TO_DATE('2024-09-15','YYYY-MM-DD');
 
 
@@ -80,3 +80,14 @@ UPDATE SAE_DIAGNOSTICS SET Fichier = 'Diagnostics/Diagnostics.pdf';
 UPDATE SAE_ContratLocation Set Solde = 0 WHERE numero_de_contrat = 'CTR-0015';
 UPDATE SAE_DateAnniversaireContrat SET Date_dernier_anniversaire = TO_DATE('2023-03-17','YYYY-MM-DD')
        WHERE fk_Numero_de_contrat = 'CTR-0015'; 
+       
+       
+ALTER TABLE SAE_DateAnniversaireContrat
+ADD CONSTRAINT fk_anniv_contrat
+FOREIGN KEY (fk_Numero_de_contrat)
+REFERENCES SAE_ContratLocation(Numero_de_contrat)
+ON DELETE CASCADE;
+
+
+ALTER TABLE SAE_DateAnniversaireContrat
+DROP CONSTRAINT fk_Numero_de_contrat;
