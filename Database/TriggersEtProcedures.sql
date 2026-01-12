@@ -27,8 +27,16 @@ CREATE OR REPLACE PROCEDURE VerifierDateLancement IS
     v_date   DATE;
     v_annees NUMBER;
     v_mois   NUMBER;
+    v_count NUMBER;
 BEGIN
+    SELECT COUNT(*)
+    INTO v_count
+    FROM SAE_DateDernierLancement
+    WHERE Id_Lock = 'X';
 
+    IF v_count = 0 THEN
+        RETURN; -- rien à faire
+    END IF;
     SELECT TRUNC(date_dernier_lancement,'MM')
     INTO v_date
     FROM SAE_DateDernierLancement
@@ -102,7 +110,16 @@ CREATE OR REPLACE PROCEDURE VerifierDateAnniversaire IS
     v_annees        NUMBER;
     v_date          DATE;
     v_total_charges NUMBER;
+    v_dummy NUMBER;
 BEGIN
+    SELECT COUNT(*)
+    INTO v_count
+    FROM SAE_DateAnniversaireContrat;
+
+    IF v_count = 0 THEN
+        RETURN;
+    END IF;
+
     FOR i IN (
         --dac = Date Anniversaire Contrat
         --cl = Contrat Location
@@ -164,6 +181,30 @@ FOR EACH ROW
 BEGIN
     IF :OLD.Solde != 0 THEN
         RAISE_APPLICATION_ERROR(-20012, 'Il reste un solde!');
+    END IF;
+END;
+/
+
+
+
+CREATE OR REPLACE TRIGGER InterdictionSuppressionLocataireContrat
+BEFORE DELETE ON SAE_Locataire
+FOR EACH ROW
+DECLARE
+    v_count NUMBER;
+BEGIN
+    SELECT COUNT(*)
+    INTO v_count
+    FROM SAE_Contrat_Locataire
+    JOIN SAE_ContratLocation ON SAE_ContratLocation.Numero_de_contrat = SAE_Contrat_Locataire.Numero_de_contrat
+    WHERE SAE_Contrat_Locataire.Id_Locataire = :OLD.Id_Locataire
+      AND SAE_ContratLocation.solde IS NOT NULL;
+
+    IF v_count > 0 THEN
+        RAISE_APPLICATION_ERROR(
+            -20010,
+            'Suppression interdite : Il y''a toujours un contrat lie a ce locataire'
+        );
     END IF;
 END;
 /
