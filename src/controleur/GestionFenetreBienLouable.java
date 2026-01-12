@@ -145,7 +145,7 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 			break;
 		case "Locataire":
 			ouvrirFenetreLocataire(idBien);
-        
+			break;
 		case "Compteur":
 			new FenetreCompteurs("FenetreBienLouable", getDonneesCompteur(),bien).setVisible(true);
 			fenetrebienlouable.dispose();
@@ -211,6 +211,8 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 		try {
 			DaoLocataire daoLocataire = new DaoLocataire();
 			List<Locataire> locataires = daoLocataire.findLocataireByBienLouable(idBien);
+			System.out.println(idBien);
+			System.out.println(locataires);
 			if(locataires == null) {
 				JOptionPane.showMessageDialog(
 					    null,
