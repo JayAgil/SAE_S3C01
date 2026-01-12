@@ -28,12 +28,23 @@ public class GestionAjouterTravaux extends GestionButtonFenetreAjouter {
 		this.bl = bl;
 		chargerComboBoxEntreprise();
 	}
-
+	
+	/**
+     * Retourne la fenêtre interne associée.
+     */
 	@Override
 	protected JInternalFrame getFrame() {
 		return this.fenetreAjouterTravaux;
 	}
-
+	
+	/**
+     * Gère l'action de création d'une facture/travaux.
+     * - Récupère les données saisies dans les champs texte et combo box
+     * - Crée un objet Facture
+     * - Tente l'insertion en base via DaoFacture
+     * - Affiche un message de succès ou d'erreur
+     * - Met à jour la liste des factures du parent
+     */
 	@Override
 	protected void gererAction() {
 		try {
@@ -93,7 +104,10 @@ public class GestionAjouterTravaux extends GestionButtonFenetreAjouter {
 		}
 		
 	}
-
+	
+	/**
+     * Charge les entreprises disponibles dans la combo box de la fenêtre.
+     */
 	public void chargerComboBoxEntreprise() {
 		JComboBox<Entreprise> comboBox = this.fenetreAjouterTravaux.getComboBoxEntreprise();
 		comboBox.removeAllItems();
@@ -108,7 +122,10 @@ public class GestionAjouterTravaux extends GestionButtonFenetreAjouter {
 		}
 
 	}
-
+	
+	/**
+     * Récupère tous les JTextFields de la fenêtre pour lire les données saisies.
+     */
 	@Override
 	protected List<JTextField> getTextFields() {
 		return this.fenetreAjouterTravaux.getTravauxTextFields();

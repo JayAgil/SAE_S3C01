@@ -55,6 +55,7 @@ public class GestionFenetreAjouterDiagnostic extends GestionButtonFenetreAjouter
 			        "Succès", 
 			        JOptionPane.INFORMATION_MESSAGE
 			    );
+			    this.parent.setDiagnostics(dao.findDiagnosticsByIdBien(b.getIdBienLouable()));
 			    this.parent.chargerDonnees();;
 				this.fenetre.dispose();
 

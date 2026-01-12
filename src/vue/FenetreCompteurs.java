@@ -225,7 +225,7 @@ public class FenetreCompteurs extends FenetreBase {
 		lblNewLabel.setIcon(new ImageIcon(imgEau));
 		lblNewLabel.setHorizontalAlignment(JLabel.RIGHT);
 
-		lbltotaleau = new JLabel("860");
+		lbltotaleau = new JLabel("0");
 		lbltotaleau.setFont(new Font("Tahoma", Font.PLAIN, 95));
 		GridBagConstraints gbc_lbltotaleau = new GridBagConstraints();
 		gbc_lbltotaleau.gridx = 0;
@@ -237,7 +237,7 @@ public class FenetreCompteurs extends FenetreBase {
 		lblNewLabel_1.setIcon(new ImageIcon(imgElec));
 		lblNewLabel_1.setHorizontalAlignment(JLabel.RIGHT);
 
-		lnltotalelec = new JLabel("900");
+		lnltotalelec = new JLabel("0");
 		lnltotalelec.setFont(new Font("Tahoma", Font.PLAIN, 95));
 		GridBagConstraints gbc_lnltotalelec = new GridBagConstraints();
 		gbc_lnltotalelec.gridx = 0;
@@ -249,7 +249,7 @@ public class FenetreCompteurs extends FenetreBase {
 		lblNewLabel_2.setIcon(new ImageIcon(imgGaz));
 		lblNewLabel_2.setHorizontalAlignment(JLabel.RIGHT);
 
-		lbltotalgaz = new JLabel("123");
+		lbltotalgaz = new JLabel("0");
 		lbltotalgaz.setFont(new Font("Tahoma", Font.PLAIN, 95));
 		GridBagConstraints gbc_lbltotalgaz = new GridBagConstraints();
 		gbc_lbltotalgaz.gridx = 0;

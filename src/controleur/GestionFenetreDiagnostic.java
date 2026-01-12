@@ -129,6 +129,10 @@ public class GestionFenetreDiagnostic extends GestionHeaderEtFooter {
 
 	}
 
+	public void setDiagnostics(List<Diagnostics> diagnostics) {
+		this.diagnostics = diagnostics;
+	}
+
 	private void ouvrirPDF() {
 		int selectedRow = fenetre.getTable().getSelectedRow();
 		if (selectedRow == -1) {
