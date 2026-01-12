@@ -46,7 +46,6 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 		super(fenetre);
 		this.fenetrebienlouable = fenetre;
 		this.bien = bien;
-		System.out.print(bien);
 	}
 
 	public List<BienLouable> getListBienWithTheBienNow() {
@@ -105,8 +104,9 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 
 		case "Contrat":
 			DaoContratLocation dCl = new DaoContratLocation();
-			System.out.println(this.bien.getIdBienLouable());
-			ContratLocation cl = dCl.findCLByBien(this.bien.getIdBienLouable());
+			DaoBienLouable daob = new DaoBienLouable();
+			this.bien = daob.findById(this.idBien);
+			ContratLocation cl = dCl.findCLByBien(this.idBien);
 			new FenetreContratLocation("FenBienLouable", cl,this.bien).setVisible(true);
 			fenetrebienlouable.dispose();
 			break;
@@ -134,9 +134,8 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
         	int idx = table.getSelectedRow();
         	if (idx != -1) {
         		BienLouable bien = this.getListBienWithTheBienNow().get(idx);
-        		DaoBienLouable dB;
 				try {
-					dB = new DaoBienLouable();
+	        		DaoBienLouable dB = new DaoBienLouable();
 					dB.delete(bien);
 					this.chargerDonnees();
 				} catch (SQLException e1) {
@@ -188,33 +187,53 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 	    try {
 	        DaoBienLouable daoBien = new DaoBienLouable();
 	        BienLouable bienSelectionne = daoBien.findById(idBien);
-	        if (bienSelectionne == null) return;
 
+	        if (bienSelectionne == null) {
+	            return;
+	        }
 	        DaoContratLocation daoCL = new DaoContratLocation();
 	        ContratLocation contrat = daoCL.findCLByBien(idBien);
 
+	        List<Locataire> locataires = Collections.emptyList();
+	        Paiement dernierPaiement = null;
+
+	        if (contrat != null) {
+	            DaoLocataire daoLoc = new DaoLocataire();
+	            locataires = daoLoc.findLocataireByContrat(contrat.getNumeroDeContrat());
+
+	            DaoPaiement daoPaiement = new DaoPaiement();
+	            dernierPaiement = daoPaiement.findDateDernierPaiementByCL(contrat.getNumeroDeContrat());
+	        }
+
 	        DaoChargesGenerales daoCharge = new DaoChargesGenerales();
 	        List<ChargesGenerales> charges = daoCharge.findByIdBien(idBien);
-	        double totalCharge = charges.stream()
-	                                    .mapToDouble(ChargesGenerales::getMontant)
-	                                    .sum();
-	        
-	        DaoLocataire daoLoc = new DaoLocataire();
-	        List<Locataire> locataires = daoLoc.findLocataireByContrat(contrat.getNumeroDeContrat());
+
+	        double totalCharge = 0.0;
+	        if (charges != null && !charges.isEmpty()) {
+	            totalCharge = charges.stream()
+	                                 .mapToDouble(ChargesGenerales::getMontant)
+	                                 .sum();
+	        }
 
 	        DaoFacture daoFacture = new DaoFacture();
 	        Facture facture = daoFacture.findDateDernierTravauxByBien(idBien);
 
-	        DaoPaiement daoPaiement = new DaoPaiement();
-	        Paiement dernierPaiement = daoPaiement.findDateDernierPaiementByCL(contrat.getNumeroDeContrat());
-
 	        this.bien = bienSelectionne;
-	        remplirFormulaire(bienSelectionne, contrat, totalCharge, locataires, facture, dernierPaiement);
+
+	        remplirFormulaire(
+	            bienSelectionne,
+	            contrat,
+	            totalCharge,
+	            locataires,
+	            facture,
+	            dernierPaiement
+	        );
 
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    }
 	}
+
 
 
 	private void ouvrirFenetreLocataire(String idBien) {
@@ -270,54 +289,88 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 	        List<Locataire> loc,
 	        Facture fac,
 	        Paiement date) {
+
 	    if (loc != null && !loc.isEmpty()) {
-	        fenetrebienlouable.getTextFieldNom().setText(loc.get(0).getNom());
+	        fenetrebienlouable.getTextFieldNom()
+	                .setText(loc.get(0).getNom());
 	    } else {
-	        fenetrebienlouable.getTextFieldNom().setText("");
+	        fenetrebienlouable.getTextFieldNom()
+	                .setText("Aucun locataire");
 	    }
 
-	    fenetrebienlouable.getTextFieldLoyerMen()
-	            .setText(cl != null ? String.valueOf(cl.getMontantMensuel()) : "");
-
-	    fenetrebienlouable.getTextFieldNF()
-	            .setText(bien.getNumeroFiscale());
-
-	    fenetrebienlouable.getTextFieldAdresse()
-	            .setText(bien.getAdresse());
-
-	    fenetrebienlouable.getTextFieldSurfaceHab()
-	            .setText(String.valueOf(bien.getSurfaceHabituable()));
-
-	    fenetrebienlouable.getTextFieldNbDPieces()
-	            .setText(String.valueOf(bien.getNbPieces()));
-
-	    fenetrebienlouable.getTextFieldBienLoauble()
-	            .setText(bien.getTypeBienLouable());
-
-	    if (bien.getBatiment() != null) {
-	        fenetrebienlouable.getTextFieldBatiment()
-	                .setText(bien.getBatiment().getAdresse());
+	    if (cl != null) {
+	        fenetrebienlouable.getTextFieldLoyerMen()
+	                .setText(String.format("%.2f €", cl.getMontantMensuel()));
 	    } else {
-	        fenetrebienlouable.getTextFieldBatiment().setText("");
+	        fenetrebienlouable.getTextFieldLoyerMen()
+	                .setText("Pas de contrat");
 	    }
-	    fenetrebienlouable.getTextFieldDFC()
-	            .setText(cl != null ? String.valueOf(cl.getDateFin()) : "");
+
+	    if (bien != null) {
+	        fenetrebienlouable.getTextFieldNF()
+	                .setText(bien.getNumeroFiscale());
+
+	        fenetrebienlouable.getTextFieldAdresse()
+	                .setText(bien.getAdresse());
+
+	        fenetrebienlouable.getTextFieldSurfaceHab()
+	                .setText(String.valueOf(bien.getSurfaceHabituable()));
+
+	        fenetrebienlouable.getTextFieldNbDPieces()
+	                .setText(String.valueOf(bien.getNbPieces()));
+
+	        fenetrebienlouable.getTextFieldBienLoauble()
+	                .setText(bien.getTypeBienLouable());
+
+	        if (bien.getBatiment() != null) {
+	            fenetrebienlouable.getTextFieldBatiment()
+	                    .setText(bien.getBatiment().getAdresse());
+	        } else {
+	            fenetrebienlouable.getTextFieldBatiment()
+	                    .setText("Aucun bâtiment");
+	        }
+	    } else {
+	        fenetrebienlouable.getTextFieldNF().setText("—");
+	        fenetrebienlouable.getTextFieldAdresse().setText("—");
+	        fenetrebienlouable.getTextFieldSurfaceHab().setText("—");
+	        fenetrebienlouable.getTextFieldNbDPieces().setText("—");
+	        fenetrebienlouable.getTextFieldBienLoauble().setText("—");
+	        fenetrebienlouable.getTextFieldBatiment().setText("—");
+	    }
+
+	    if (cl != null && cl.getDateFin() != null) {
+	        fenetrebienlouable.getTextFieldDFC()
+	                .setText(cl.getDateFin().toString());
+	    } else {
+	        fenetrebienlouable.getTextFieldDFC()
+	                .setText("Pas de contrat actif");
+	    }
+
 	    if (fac != null && fac.getDateDeFacture() != null) {
 	        fenetrebienlouable.getTextFieldDT()
 	                .setText(fac.getDateDeFacture().toString());
 	    } else {
-	        fenetrebienlouable.getTextFieldDT().setText("Pas de travaux jusqu'à ce jour");
+	        fenetrebienlouable.getTextFieldDT()
+	                .setText("Aucun travaux enregistré");
 	    }
 
-	    fenetrebienlouable.getTextFieldTotalCharges()
-	            .setText(String.valueOf(charge));
+	    if (charge > 0) {
+	        fenetrebienlouable.getTextFieldTotalCharges()
+	                .setText(String.format("%.2f €", charge));
+	    } else {
+	        fenetrebienlouable.getTextFieldTotalCharges()
+	                .setText("Aucune charge");
+	    }
+
 	    if (date != null && date.getDatepaiement() != null) {
 	        fenetrebienlouable.getTextFieldDP()
 	                .setText(date.getDatepaiement().toString());
 	    } else {
-	        fenetrebienlouable.getTextFieldDP().setText("Pas de paiement encore, ajoutez un!");
+	        fenetrebienlouable.getTextFieldDP()
+	                .setText("Aucun paiement enregistré");
 	    }
 	}
+
 
 
 	@Override
