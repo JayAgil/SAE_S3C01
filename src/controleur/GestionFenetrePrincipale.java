@@ -322,7 +322,6 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 					String idCtrt = table.getValueAt(row, 0).toString();
 					DaoBienLouable daoBL = new DaoBienLouable();
 					BienLouable bien = daoBL.findByIdContrat(idCtrt);
-					this.bl = bien;
 					if (bien == null) {
 						Object[] options = { "Ajouter contrat", "Annuler" };
 
@@ -338,11 +337,16 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 						);
 
 						if (choice == JOptionPane.YES_OPTION) {
+							DaoBienLouable dBL = new DaoBienLouable();
+					        String batiment = fenetre.getChosenBatiment();
+					        List<BienLouable> listBienLouable = dBL.findByBatiment(batiment);
+							this.bl = dBL.findById(listBienLouable.get(0).getIdBienLouable());
 							FenetreAjouterContratLocation f =
 							        new FenetreAjouterContratLocation(null, this.bl);
 							GestionFenetreAjouterContratLocation g =
 							        new GestionFenetreAjouterContratLocation(f, this.bl, null);
 							f.setVisible(true);
+							this.fenetre.getLayeredPane().add(f);
 						}
 						return;
 

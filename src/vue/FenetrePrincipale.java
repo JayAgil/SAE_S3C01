@@ -207,6 +207,7 @@ public class FenetrePrincipale extends FenetreBase {
 		table = new JTable();
 		getTableBienLouable().setModel(new DefaultTableModel(
 			new Object[][] {
+				{null, null, null, null},
 			},
 			new String[] {
 				"Contrat Location", "Nombre de piece", "Bien Louable", "Locataire R\u00E9f\u00E9rent"
@@ -217,6 +218,12 @@ public class FenetrePrincipale extends FenetreBase {
 			};
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
+			}
+			boolean[] columnEditables = new boolean[] {
+				false, false, false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
 			}
 		});
 		table.getColumnModel().getColumn(0).setResizable(false);

@@ -93,7 +93,7 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 			double max = min * (valCourant / valPrecedent);
 
 			String input = JOptionPane.showInputDialog(null,
-					String.format("Veuillez entrer le loyer entre %.2f et %.2f €", min, max), "Revalorisation du loyer",
+					String.format("Veuillez entrer le loyer entre %.2f et %.2f € (IRL1 : %.2f, IRL2 : %.2f)", min, max, irlCourant, irlPrecedent), "Revalorisation du loyer",
 					JOptionPane.QUESTION_MESSAGE);
 
 			if (input != null && !input.trim().isEmpty()) {

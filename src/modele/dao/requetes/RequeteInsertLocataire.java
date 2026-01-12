@@ -32,10 +32,9 @@ public class RequeteInsertLocataire extends Requete<Locataire> {
         ps.setDouble(11, l.getSalaire());
         ps.setString(12, l.getProfession());
         ps.setString(13, l.getSituationFamiliale());
-
         if (l.getGarant() != null)
-            ps.setString(15, l.getGarant().getIdGarant());
+            ps.setString(14, l.getGarant().getIdGarant());
         else
-            ps.setNull(15, java.sql.Types.VARCHAR);
+            ps.setNull(14, java.sql.Types.VARCHAR);
     }
 }
