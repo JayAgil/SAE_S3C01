@@ -213,7 +213,7 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 			List<Locataire> locataires = daoLocataire.findLocataireByBienLouable(idBien);
 			System.out.println(idBien);
 			System.out.println(locataires);
-			if (locataires == null || locataires.isEmpty()){
+			if (locataires == null){
 				JOptionPane.showMessageDialog(
 					    null,
 					    "Ce bien n'a pas de locataire",
