@@ -16,7 +16,10 @@ import modele.Facture;
 public class FenetreFacture extends JFrame {
 
     private static final long serialVersionUID = 1L;
-
+    
+    /**
+	 * Création de la vue
+	 */
     public FenetreFacture(Facture facture) {
 
         Entreprise entreprise = facture.getEntreprise();
@@ -41,7 +44,14 @@ public class FenetreFacture extends JFrame {
         add(panelEntreprise, BorderLayout.NORTH);
         add(new JScrollPane(areaFacture), BorderLayout.CENTER);
     }
-
+    
+    /**
+     * Crée un champ texte non modifiable affichant une étiquette et une valeur.
+     *
+     * @param label l'étiquette à afficher avant la valeur
+     * @param value la valeur à afficher après l'étiquette
+     * @return le JTextArea créé avec le format "label : value"
+     */
     private JTextArea createField(String label, String value) {
         JTextArea area = new JTextArea(label + " : " + value);
         area.setEditable(false);

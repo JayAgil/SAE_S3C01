@@ -26,8 +26,6 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.util.List;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class FenetreLocataire extends FenetreBase {
 
@@ -51,6 +49,9 @@ public class FenetreLocataire extends FenetreBase {
 	private BienLouable bl;
 	private JButton btnAjouterLocataire;
 
+	/**
+	 * Création de la vue
+	 */
 	public FenetreLocataire(String nomFenAvant, List<Locataire> locataires, BienLouable bl) {
 		super();
 		this.nomFenAvant = nomFenAvant;
@@ -60,7 +61,6 @@ public class FenetreLocataire extends FenetreBase {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1200, 800);
 
-		// header
 		this.setJMenuBar(createHeader());
 
 		contentPane = new JPanel();
@@ -70,8 +70,6 @@ public class FenetreLocataire extends FenetreBase {
 		contentPane.setLayout(new BorderLayout(0, 0));
 
 		JPanel bottomContainer = new JPanel(new BorderLayout());
-
-		// === BUTTONS PANEL ===
 		JPanel panelButtons = new JPanel();
 		panelButtons.setBorder(new EmptyBorder(10, 10, 10, 10));
 		btnAjouterLocataire = new JButton("Ajouter locataire");
@@ -83,16 +81,11 @@ public class FenetreLocataire extends FenetreBase {
 		panelButtons.add(btnPaiement);
 		panelButtons.add(btnAjouterLocataire);
 
-		// Add buttons to top
 		bottomContainer.add(panelButtons, BorderLayout.NORTH);
-
 		JButton btnRetirerLocataire = new JButton("Retirer locataire");
 		panelButtons.add(btnRetirerLocataire);
 
-		// === FOOTER PANEL ===
 		bottomContainer.add(createFooter(), BorderLayout.SOUTH);
-
-		// === ADD BOTH TO THE FRAME ===
 		getContentPane().add(bottomContainer, BorderLayout.SOUTH);
 
 		JPanel panel = new JPanel();
@@ -117,14 +110,12 @@ public class FenetreLocataire extends FenetreBase {
 		JPanel panel_3 = new JPanel();
 		panel_2.add(panel_3, BorderLayout.CENTER);
 		GridBagLayout gbl_panel_3 = new GridBagLayout();
-		// set column widths and row heights (rowHeights can remain as is)
 		gbl_panel_3.columnWidths = new int[] { 600 };
 		gbl_panel_3.rowHeights = new int[] { 31, 31, 31, 31, 31, 31, 31, 31, 31, 31 };
-		gbl_panel_3.columnWeights = new double[] { 0.2, 0.8 }; // 20% for labels, 80% for text fields
+		gbl_panel_3.columnWeights = new double[] { 0.2, 0.8 };
 		gbl_panel_3.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
 		panel_3.setLayout(gbl_panel_3);
 
-		// Row 0
 		JLabel lblNom = new JLabel("Nom :");
 		GridBagConstraints gbc_lblNom = new GridBagConstraints();
 		gbc_lblNom.anchor = GridBagConstraints.EAST;
@@ -145,7 +136,6 @@ public class FenetreLocataire extends FenetreBase {
 		gbc_textFieldNom.weightx = 0.8;
 		panel_3.add(textFieldNom, gbc_textFieldNom);
 
-		// Row 1
 		JLabel lblPrenom = new JLabel("Prénom :");
 		GridBagConstraints gbc_lblPrenom = new GridBagConstraints();
 		gbc_lblPrenom.anchor = GridBagConstraints.EAST;
@@ -166,7 +156,6 @@ public class FenetreLocataire extends FenetreBase {
 		gbc_textFieldPrenom.weightx = 0.8;
 		panel_3.add(textFieldPrenom, gbc_textFieldPrenom);
 
-		// Row 2
 		JLabel lblAdresse = new JLabel("Adresse :");
 		GridBagConstraints gbc_lblAdresse = new GridBagConstraints();
 		gbc_lblAdresse.anchor = GridBagConstraints.EAST;
@@ -187,8 +176,6 @@ public class FenetreLocataire extends FenetreBase {
 		gbc_textFieldAdresse.weightx = 0.8;
 		panel_3.add(textFieldAdresse, gbc_textFieldAdresse);
 
-		// Repeat the same pattern for the remaining rows
-		// Tél
 		JLabel lblTel = new JLabel("Tél :");
 		GridBagConstraints gbc_lblTel = new GridBagConstraints();
 		gbc_lblTel.anchor = GridBagConstraints.EAST;
@@ -209,7 +196,6 @@ public class FenetreLocataire extends FenetreBase {
 		gbc_textFieldTel.weightx = 0.8;
 		panel_3.add(textFieldTel, gbc_textFieldTel);
 
-		// Email
 		JLabel lblEmail = new JLabel("Email :");
 		GridBagConstraints gbc_lblEmail = new GridBagConstraints();
 		gbc_lblEmail.anchor = GridBagConstraints.EAST;
@@ -230,7 +216,6 @@ public class FenetreLocataire extends FenetreBase {
 		gbc_textFieldEmail.weightx = 0.8;
 		panel_3.add(textFieldEmail, gbc_textFieldEmail);
 
-		// Date de naissance
 		JLabel lblDateNaissance = new JLabel("Date de naissance :");
 		GridBagConstraints gbc_lblDateNaissance = new GridBagConstraints();
 		gbc_lblDateNaissance.anchor = GridBagConstraints.EAST;
@@ -251,7 +236,6 @@ public class FenetreLocataire extends FenetreBase {
 		gbc_textFieldDateNaissance.weightx = 0.8;
 		panel_3.add(textFieldDateNaissance, gbc_textFieldDateNaissance);
 
-		// Lieu de naissance
 		JLabel lblLieuNaissance = new JLabel("Lieu de naissance :");
 		GridBagConstraints gbc_lblLieuNaissance = new GridBagConstraints();
 		gbc_lblLieuNaissance.anchor = GridBagConstraints.EAST;
@@ -272,7 +256,6 @@ public class FenetreLocataire extends FenetreBase {
 		gbc_textFieldLieuNaissance.weightx = 0.8;
 		panel_3.add(textFieldLieuNaissance, gbc_textFieldLieuNaissance);
 
-		// Salaire
 		JLabel lblSalaire = new JLabel("Salaire :");
 		GridBagConstraints gbc_lblSalaire = new GridBagConstraints();
 		gbc_lblSalaire.anchor = GridBagConstraints.EAST;
@@ -293,7 +276,6 @@ public class FenetreLocataire extends FenetreBase {
 		gbc_textFieldSalaire.weightx = 0.8;
 		panel_3.add(textFieldSalaire, gbc_textFieldSalaire);
 
-		// Profession
 		JLabel lblProfession = new JLabel("Profession :");
 		GridBagConstraints gbc_lblProfession = new GridBagConstraints();
 		gbc_lblProfession.anchor = GridBagConstraints.EAST;
@@ -314,7 +296,6 @@ public class FenetreLocataire extends FenetreBase {
 		gbc_textFieldProfession.weightx = 0.8;
 		panel_3.add(textFieldProfession, gbc_textFieldProfession);
 
-		// Situation familiale
 		JLabel lblSituationFamiliale = new JLabel("Situation familiale :");
 		GridBagConstraints gbc_lblSituationFamiliale = new GridBagConstraints();
 		gbc_lblSituationFamiliale.anchor = GridBagConstraints.EAST;
@@ -351,120 +332,256 @@ public class FenetreLocataire extends FenetreBase {
 		scrollPane.setViewportView(table);
 
 		this.gestionClic = new GestionFenetreLocataire(this, locataires);
+		this.gestionClic.initialize();
 		btnAjouterLocataire.addActionListener(this.gestionClic);
 		btnPaiement.addActionListener(this.gestionClic);
 		btnRetirerLocataire.addActionListener(this.gestionClic);
 		btnRetour.addActionListener(this.gestionClic);
 		table.addMouseListener(this.gestionClic);
-		this.gestionClic.initialize();
 
 	}
 
+	/**
+	 * Retourne le bouton permettant d'ajouter un locataire.
+	 *
+	 * @return le bouton "Ajouter Locataire"
+	 */
 	public JButton getBtnAjouterLocataire() {
 		return btnAjouterLocataire;
 	}
 
+	/**
+	 * Retourne la liste des locataires.
+	 *
+	 * @return la liste des objets Locataire
+	 */
 	public List<Locataire> getListe() {
 		return liste;
 	}
 
+	/**
+	 * Définit la liste des locataires.
+	 *
+	 * @param liste la liste des Locataire à définir
+	 */
 	public void setListe(List<Locataire> liste) {
 		this.liste = liste;
 	}
 
+	/**
+	 * Retourne le champ texte du nom du locataire.
+	 *
+	 * @return le JTextField du nom
+	 */
 	public JTextField getTextFieldNom() {
 		return textFieldNom;
 	}
 
+	/**
+	 * Définit le champ texte du nom du locataire.
+	 *
+	 * @param textFieldNom le JTextField à définir
+	 */
 	public void setTextFieldNom(JTextField textFieldNom) {
 		this.textFieldNom = textFieldNom;
 	}
 
+	/**
+	 * Retourne le champ texte du prénom du locataire.
+	 *
+	 * @return le JTextField du prénom
+	 */
 	public JTextField getTextFieldPrenom() {
 		return textFieldPrenom;
 	}
 
+	/**
+	 * Définit le champ texte du prénom du locataire.
+	 *
+	 * @param textFieldPrenom le JTextField à définir
+	 */
 	public void setTextFieldPrenom(JTextField textFieldPrenom) {
 		this.textFieldPrenom = textFieldPrenom;
 	}
 
+	/**
+	 * Retourne le champ texte de l'adresse du locataire.
+	 *
+	 * @return le JTextField de l'adresse
+	 */
 	public JTextField getTextFieldAdresse() {
 		return textFieldAdresse;
 	}
 
+	/**
+	 * Définit le champ texte de l'adresse du locataire.
+	 *
+	 * @param textField le JTextField à définir
+	 */
 	public void setTextFieldAdresse(JTextField textField) {
 		this.textFieldAdresse = textField;
 	}
 
+	/**
+	 * Retourne le champ texte du téléphone du locataire.
+	 *
+	 * @return le JTextField du téléphone
+	 */
 	public JTextField getTextFieldTel() {
 		return textFieldTel;
 	}
 
+	/**
+	 * Définit le champ texte du téléphone du locataire.
+	 *
+	 * @param textFieldTel le JTextField à définir
+	 */
 	public void setTextFieldTel(JTextField textFieldTel) {
 		this.textFieldTel = textFieldTel;
 	}
 
+	/**
+	 * Retourne le champ texte de l'email du locataire.
+	 *
+	 * @return le JTextField de l'email
+	 */
 	public JTextField getTextFieldEmail() {
 		return textFieldEmail;
 	}
 
+	/**
+	 * Définit le champ texte de l'email du locataire.
+	 *
+	 * @param textFieldEmail le JTextField à définir
+	 */
 	public void setTextFieldEmail(JTextField textFieldEmail) {
 		this.textFieldEmail = textFieldEmail;
 	}
 
+	/**
+	 * Retourne le champ texte de la date de naissance du locataire.
+	 *
+	 * @return le JTextField de la date de naissance
+	 */
 	public JTextField getTextFieldDateNaissance() {
 		return textFieldDateNaissance;
 	}
 
+	/**
+	 * Définit le champ texte de la date de naissance du locataire.
+	 *
+	 * @param textFieldDateNaissance le JTextField à définir
+	 */
 	public void setTextFieldDateNaissance(JTextField textFieldDateNaissance) {
 		this.textFieldDateNaissance = textFieldDateNaissance;
 	}
 
+	/**
+	 * Retourne le champ texte du lieu de naissance du locataire.
+	 *
+	 * @return le JTextField du lieu de naissance
+	 */
 	public JTextField getTextFieldLieuNaissance() {
 		return textFieldLieuNaissance;
 	}
 
+	/**
+	 * Définit le champ texte du lieu de naissance du locataire.
+	 *
+	 * @param textFieldLieuNaissance le JTextField à définir
+	 */
 	public void setTextFieldLieuNaissance(JTextField textFieldLieuNaissance) {
 		this.textFieldLieuNaissance = textFieldLieuNaissance;
 	}
 
+	/**
+	 * Retourne le champ texte du salaire du locataire.
+	 *
+	 * @return le JTextField du salaire
+	 */
 	public JTextField getTextFieldSalaire() {
 		return textFieldSalaire;
 	}
 
+	/**
+	 * Définit le champ texte du salaire du locataire.
+	 *
+	 * @param textFieldSalaire le JTextField à définir
+	 */
 	public void setTextFieldSalaire(JTextField textFieldSalaire) {
 		this.textFieldSalaire = textFieldSalaire;
 	}
 
+	/**
+	 * Retourne le champ texte de la profession du locataire.
+	 *
+	 * @return le JTextField de la profession
+	 */
 	public JTextField getTextFieldProfession() {
 		return textFieldProfession;
 	}
 
+	/**
+	 * Définit le champ texte de la profession du locataire.
+	 *
+	 * @param textFieldProfession le JTextField à définir
+	 */
 	public void setTextFieldProfession(JTextField textFieldProfession) {
 		this.textFieldProfession = textFieldProfession;
 	}
 
+	/**
+	 * Retourne le champ texte de la situation familiale du locataire.
+	 *
+	 * @return le JTextField de la situation familiale
+	 */
 	public JTextField getTextFieldSituationFamiliale() {
 		return textFieldSituationFamiliale;
 	}
 
+	/**
+	 * Définit le champ texte de la situation familiale du locataire.
+	 *
+	 * @param textFieldSituationFamiliale le JTextField à définir
+	 */
 	public void setTextFieldSituationFamiliale(JTextField textFieldSituationFamiliale) {
 		this.textFieldSituationFamiliale = textFieldSituationFamiliale;
 	}
 
+	/**
+	 * Retourne la table affichant les locataires.
+	 *
+	 * @return la JTable des locataires
+	 */
 	public JTable getTable() {
 		return table;
 	}
 
+	/**
+	 * Définit la table affichant les locataires.
+	 *
+	 * @param table la JTable à définir
+	 */
 	public void setTable(JTable table) {
 		this.table = table;
 	}
 
+	/**
+	 * Retourne le nom de la fenêtre précédente.
+	 *
+	 * @return le nom de la fenêtre avant
+	 */
 	public String getNomFenAvant() {
 		return this.nomFenAvant;
 	}
 
+	/**
+	 * Retourne le bien louable associé à cette fenêtre.
+	 *
+	 * @return le BienLouable associé
+	 */
 	public BienLouable getBl() {
 		return bl;
 	}
+
 }

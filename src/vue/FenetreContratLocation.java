@@ -24,8 +24,6 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTextField;
 import java.sql.SQLException;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class FenetreContratLocation extends FenetreBase {
 	private GestionFenetreContratLocation gestionClicContratLocation;
@@ -51,7 +49,10 @@ public class FenetreContratLocation extends FenetreBase {
 	public GestionFenetreContratLocation getGestion() {
 		return this.gestionClicContratLocation;
 	}
-
+	
+	/**
+	 * Création de la vue
+	 */
 	public FenetreContratLocation(String f, ContratLocation cl, BienLouable bl) throws SQLException {
 		super();
 		this.fenDavant = f;
@@ -59,7 +60,6 @@ public class FenetreContratLocation extends FenetreBase {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.cl = cl;
 
-		// header
 		this.setJMenuBar(createHeader());
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -71,8 +71,6 @@ public class FenetreContratLocation extends FenetreBase {
 
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.SOUTH);
-
-		// footer
 		getContentPane().add(createFooter(), BorderLayout.SOUTH);
 
 		JPanel panel_1 = new JPanel();
@@ -390,106 +388,236 @@ public class FenetreContratLocation extends FenetreBase {
 
 	}
 
+	/**
+	 * Retourne le bouton permettant d'ajouter un élément.
+	 *
+	 * @return le bouton "Ajouter"
+	 */
 	public JButton getBtnAjouter() {
 		return btnAjouter;
 	}
 
+	/**
+	 * Retourne le champ texte du nom du locataire.
+	 *
+	 * @return le JTextField du nom du locataire
+	 */
 	public JTextField getTextFieldNomLoc() {
 		return textFieldNomLoc;
 	}
 
+	/**
+	 * Définit le champ texte du nom du locataire.
+	 *
+	 * @param textFieldNomLoc le JTextField à définir
+	 */
 	public void setTextFieldNomLoc(JTextField textFieldNomLoc) {
 		this.textFieldNomLoc = textFieldNomLoc;
 	}
 
+	/**
+	 * Retourne le champ texte du numéro de contrat.
+	 *
+	 * @return le JTextField du numéro de contrat
+	 */
 	public JTextField getTextFieldNdC() {
 		return textFieldNdC;
 	}
 
+	/**
+	 * Définit le champ texte du numéro de contrat.
+	 *
+	 * @param textFieldNdC le JTextField à définir
+	 */
 	public void setTextFieldNdC(JTextField textFieldNdC) {
 		this.textFieldNdC = textFieldNdC;
 	}
 
+	/**
+	 * Retourne le champ texte de la période.
+	 *
+	 * @return le JTextField de la période
+	 */
 	public JTextField getTextFieldPeriode() {
 		return textFieldPeriode;
 	}
 
+	/**
+	 * Définit le champ texte de la période.
+	 *
+	 * @param textFieldPeriode le JTextField à définir
+	 */
 	public void setTextFieldPeriode(JTextField textFieldPeriode) {
 		this.textFieldPeriode = textFieldPeriode;
 	}
 
+	/**
+	 * Retourne le champ texte du montant du contrat.
+	 *
+	 * @return le JTextField du montant du contrat
+	 */
 	public JTextField getTextFieldMontantC() {
 		return textFieldMontantC;
 	}
 
+	/**
+	 * Définit le champ texte du montant du contrat.
+	 *
+	 * @param textFieldMontantC le JTextField à définir
+	 */
 	public void setTextFieldMontantC(JTextField textFieldMontantC) {
 		this.textFieldMontantC = textFieldMontantC;
 	}
 
+	/**
+	 * Retourne le champ texte de la provision pour charges.
+	 *
+	 * @return le JTextField de la provision pour charges
+	 */
 	public JTextField getTextFieldProvCharge() {
 		return textFieldProvCharge;
 	}
 
+	/**
+	 * Définit le champ texte de la provision pour charges.
+	 *
+	 * @param textFieldProvCharge le JTextField à définir
+	 */
 	public void setTextFieldProvCharge(JTextField textFieldProvCharge) {
 		this.textFieldProvCharge = textFieldProvCharge;
 	}
 
+	/**
+	 * Retourne le champ texte du loyer mensuel.
+	 *
+	 * @return le JTextField du loyer mensuel
+	 */
 	public JTextField getTextFieldLoyerMen() {
 		return textFieldLoyerMen;
 	}
 
+	/**
+	 * Définit le champ texte du loyer mensuel.
+	 *
+	 * @param textFieldLoyerMen le JTextField à définir
+	 */
 	public void setTextFieldLoyerMen(JTextField textFieldLoyerMen) {
 		this.textFieldLoyerMen = textFieldLoyerMen;
 	}
 
+	/**
+	 * Retourne le champ texte du compteur d'eau.
+	 *
+	 * @return le JTextField du compteur d'eau
+	 */
 	public JTextField getTextFieldCptEau() {
 		return textFieldCptEau;
 	}
 
+	/**
+	 * Définit le champ texte du compteur d'eau.
+	 *
+	 * @param textFieldCptEau le JTextField à définir
+	 */
 	public void setTextFieldCptEau(JTextField textFieldCptEau) {
 		this.textFieldCptEau = textFieldCptEau;
 	}
 
+	/**
+	 * Retourne le champ texte du compteur d'électricité.
+	 *
+	 * @return le JTextField du compteur d'électricité
+	 */
 	public JTextField getTextFieldCptElec() {
 		return textFieldCptElec;
 	}
 
+	/**
+	 * Définit le champ texte du compteur d'électricité.
+	 *
+	 * @param textFieldCptElec le JTextField à définir
+	 */
 	public void setTextFieldCptElec(JTextField textFieldCptElec) {
 		this.textFieldCptElec = textFieldCptElec;
 	}
 
+	/**
+	 * Retourne le champ texte du compteur de gaz.
+	 *
+	 * @return le JTextField du compteur de gaz
+	 */
 	public JTextField getTextFieldCptGaz() {
 		return textFieldCptGaz;
 	}
 
+	/**
+	 * Définit le champ texte du compteur de gaz.
+	 *
+	 * @param textFieldCptGaz le JTextField à définir
+	 */
 	public void setTextFieldCptGaz(JTextField textFieldCptGaz) {
 		this.textFieldCptGaz = textFieldCptGaz;
 	}
 
+	/**
+	 * Retourne le champ texte du solde.
+	 *
+	 * @return le JTextField du solde
+	 */
 	public JTextField getTextFieldSolde() {
 		return textFieldSolde;
 	}
 
+	/**
+	 * Définit le champ texte du solde.
+	 *
+	 * @param textFieldSolde le JTextField à définir
+	 */
 	public void setTextFieldSolde(JTextField textFieldSolde) {
 		this.textFieldSolde = textFieldSolde;
 	}
 
+	/**
+	 * Retourne le label du titre de la table.
+	 *
+	 * @return le JLabel du titre de la table
+	 */
 	public JLabel getTitreTable() {
 		return lblTitreTable;
 	}
 
+	/**
+	 * Définit la table affichant les données.
+	 *
+	 * @param table la JTable à définir
+	 */
 	public void setTable(JTable table) {
 		this.table = table;
 	}
 
+	/**
+	 * Définit le nom de la fenêtre précédente.
+	 *
+	 * @param fenDavant le nom de la fenêtre avant
+	 */
 	public void setFenDavant(String fenDavant) {
 		this.fenDavant = fenDavant;
 	}
 
+	/**
+	 * Retourne le nom de la fenêtre précédente.
+	 *
+	 * @return le nom de la fenêtre avant
+	 */
 	public String getFenDavant() {
 		return this.fenDavant;
 	}
 
+	/**
+	 * Retourne la table affichant les données.
+	 *
+	 * @return la JTable principale
+	 */
 	public JTable getTable() {
 		return this.table;
 	}
