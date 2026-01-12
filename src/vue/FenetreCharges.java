@@ -31,10 +31,6 @@ import javax.swing.border.MatteBorder;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class FenetreCharges extends FenetreBase {
 
@@ -55,13 +51,15 @@ public class FenetreCharges extends FenetreBase {
 	private BienLouable bl;
 	private JButton btnAjouter;
 
+	/**
+	 * Création de la vue
+	 */
 	public FenetreCharges(String FenetreAvant, List<ChargesGenerales> list, BienLouable bl) throws SQLException {
 		super();
 		this.bl = bl;
 		this.fenetreAvant = FenetreAvant;
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 
-		// Header
 		this.setJMenuBar(createHeader());
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -71,11 +69,8 @@ public class FenetreCharges extends FenetreBase {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 
-		// Main panel with BorderLayout
 		JPanel mainPanel = new JPanel(new BorderLayout(0, 0));
 		contentPane.add(mainPanel, BorderLayout.CENTER);
-
-		// Top panel (e.g., title or summary)
 		JPanel topPanel = new JPanel();
 		topPanel.setLayout(new GridLayout(2, 1, 0, 0));
 		mainPanel.add(topPanel, BorderLayout.NORTH);
@@ -100,12 +95,10 @@ public class FenetreCharges extends FenetreBase {
 				new String[] { "Année", "2022", "2023", "2024", "2025", "                 " }));
 		panel_11.add(comboBoxAnnee);
 
-		// Center panel to hold the table and scroll pane
 		JPanel tablePanel = new JPanel();
 		mainPanel.add(tablePanel, BorderLayout.CENTER);
 		tablePanel.setLayout(new GridLayout(2, 1, 0, 0));
 
-		// Scroll pane and table
 		JScrollPane scrollPane = new JScrollPane();
 		tablePanel.add(scrollPane);
 
@@ -113,37 +106,24 @@ public class FenetreCharges extends FenetreBase {
 		table.addMouseListener(this.gestionClic);
 		scrollPane.setViewportView(table);
 		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-			},
-			new String[] {
-				"Types charges", "Montant Total", "Pourcentage", "Quotite", "Montant", "Date"
-			}
-		) {
-			Class[] columnTypes = new Class[] {
-				String.class, Float.class, Float.class, String.class, String.class, Object.class
-			};
+				new Object[][] { { null, null, null, null, null, null }, { null, null, null, null, null, null },
+						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
+						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
+						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
+						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
+						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
+						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
+						{ null, null, null, null, null, null }, { null, null, null, null, null, null }, },
+				new String[] { "Types charges", "Montant Total", "Pourcentage", "Quotite", "Montant", "Date" }) {
+			Class[] columnTypes = new Class[] { String.class, Float.class, Float.class, String.class, String.class,
+					Object.class };
+
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
-			boolean[] columnEditables = new boolean[] {
-				true, true, true, true, false, true
-			};
+
+			boolean[] columnEditables = new boolean[] { true, true, true, true, false, true };
+
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
 			}
@@ -247,25 +227,22 @@ public class FenetreCharges extends FenetreBase {
 		lblchargesmoyen.setFont(new Font("Tahoma", Font.PLAIN, 99));
 		panel_3.add(lblchargesmoyen, BorderLayout.CENTER);
 
-		// Bottom panel for buttons
 		JPanel buttonPanel = new JPanel();
 		mainPanel.add(buttonPanel, BorderLayout.SOUTH);
 
 		btnAjouter = new JButton("Ajouter charge");
 		buttonPanel.add(btnAjouter);
-		
+
 		JButton btnMAJ = new JButton("Mettre à jour");
 		buttonPanel.add(btnMAJ);
-				
-				JButton btnRetirer = new JButton("Retirer");
 
-				buttonPanel.add(btnRetirer);
-		
-				JButton btnRetour = new JButton("Retour");
-				buttonPanel.add(btnRetour);
+		JButton btnRetirer = new JButton("Retirer");
 
+		buttonPanel.add(btnRetirer);
 
-		// Footer panel (if needed)
+		JButton btnRetour = new JButton("Retour");
+		buttonPanel.add(btnRetour);
+
 		JPanel footerPanel = new JPanel(new BorderLayout());
 		contentPane.add(footerPanel, BorderLayout.SOUTH);
 		footerPanel.add(createFooter(), BorderLayout.NORTH);
@@ -313,95 +290,211 @@ public class FenetreCharges extends FenetreBase {
 
 	}
 
+	/**
+	 * Retourne le bouton permettant d'ajouter un nouvel élément.
+	 *
+	 * @return le bouton "Ajouter"
+	 */
 	public JButton getBtnAjouter() {
 		return btnAjouter;
 	}
 
+	/**
+	 * Retourne la ComboBox permettant de sélectionner un mois.
+	 *
+	 * @return la JComboBox des mois
+	 */
 	public JComboBox getComboBoxMois() {
 		return comboBoxMois;
 	}
 
+	/**
+	 * Définit la ComboBox permettant de sélectionner un mois.
+	 *
+	 * @param comboBoxMois la JComboBox des mois à définir
+	 */
 	public void setComboBoxMois(JComboBox comboBoxMois) {
 		this.comboBoxMois = comboBoxMois;
 	}
 
+	/**
+	 * Retourne la ComboBox permettant de sélectionner une année.
+	 *
+	 * @return la JComboBox des années
+	 */
 	public JComboBox getComboBoxAnnee() {
 		return comboBoxAnnee;
 	}
 
+	/**
+	 * Définit la ComboBox permettant de sélectionner une année.
+	 *
+	 * @param comboBoxAnnee la JComboBox des années à définir
+	 */
 	public void setComboBoxAnnee(JComboBox comboBoxAnnee) {
 		this.comboBoxAnnee = comboBoxAnnee;
 	}
 
+	/**
+	 * Retourne le nom de la fenêtre précédente.
+	 *
+	 * @return le nom de la fenêtre avant
+	 */
 	public String getFenetreAvant() {
 		return fenetreAvant;
 	}
 
+	/**
+	 * Retourne la table affichant les données.
+	 *
+	 * @return la JTable principale
+	 */
 	public JTable getTable() {
 		return table;
 	}
 
+	/**
+	 * Définit la table affichant les données.
+	 *
+	 * @param table la JTable à définir
+	 */
 	public void setTable(JTable table) {
 		this.table = table;
 	}
 
+	/**
+	 * Retourne le label affichant le total des charges d'entretien.
+	 *
+	 * @return le JLabel du total entretien
+	 */
 	public JLabel getLbltotalentretien() {
 		return lbltotalentretien;
 	}
 
+	/**
+	 * Définit le label affichant le total des charges d'entretien.
+	 *
+	 * @param lbltotalentretien le JLabel à définir
+	 */
 	public void setLbltotalentretien(JLabel lbltotalentretien) {
 		this.lbltotalentretien = lbltotalentretien;
 	}
 
+	/**
+	 * Retourne le label affichant le total des charges d'ordures ménagères.
+	 *
+	 * @return le JLabel du total ordures ménagères
+	 */
 	public JLabel getLbltotalorduremenageres() {
 		return lbltotalorduremenageres;
 	}
 
+	/**
+	 * Définit le label affichant le total des charges d'ordures ménagères.
+	 *
+	 * @param lbltotalorduremenageres le JLabel à définir
+	 */
 	public void setLbltotalorduremenageres(JLabel lbltotalorduremenageres) {
 		this.lbltotalorduremenageres = lbltotalorduremenageres;
 	}
 
+	/**
+	 * Retourne le label affichant le total des charges d'ascenseur.
+	 *
+	 * @return le JLabel du total ascenseur
+	 */
 	public JLabel getLbltotalascenceur() {
 		return lbltotalascenceur;
 	}
 
+	/**
+	 * Définit le label affichant le total des charges d'ascenseur.
+	 *
+	 * @param lbltotalascenceur le JLabel à définir
+	 */
 	public void setLbltotalascenceur(JLabel lbltotalascenceur) {
 		this.lbltotalascenceur = lbltotalascenceur;
 	}
 
+	/**
+	 * Retourne le label affichant le montant ou valeur du 1er étage.
+	 *
+	 * @return le JLabel du 1er étage
+	 */
 	public JLabel getLbl1er() {
 		return lbl1er;
 	}
 
+	/**
+	 * Définit le label affichant le montant ou valeur du 1er étage.
+	 *
+	 * @param lbl1er le JLabel à définir
+	 */
 	public void setLbl1er(JLabel lbl1er) {
 		this.lbl1er = lbl1er;
 	}
 
+	/**
+	 * Retourne le label affichant le montant ou valeur du 2nde étage.
+	 *
+	 * @return le JLabel du 2nde étage
+	 */
 	public JLabel getLbl2nde() {
 		return lbl2nde;
 	}
 
+	/**
+	 * Définit le label affichant le montant ou valeur du 2nde étage.
+	 *
+	 * @param lbl2nde le JLabel à définir
+	 */
 	public void setLbl2nde(JLabel lbl2nde) {
 		this.lbl2nde = lbl2nde;
 	}
 
+	/**
+	 * Retourne le label affichant le montant ou valeur du 3ème étage.
+	 *
+	 * @return le JLabel du 3ème étage
+	 */
 	public JLabel getLbl3eme() {
 		return lbl3eme;
 	}
 
+	/**
+	 * Définit le label affichant le montant ou valeur du 3ème étage.
+	 *
+	 * @param lbl3eme le JLabel à définir
+	 */
 	public void setLbl3eme(JLabel lbl3eme) {
 		this.lbl3eme = lbl3eme;
 	}
 
+	/**
+	 * Retourne le label affichant le montant moyen des charges.
+	 *
+	 * @return le JLabel des charges moyennes
+	 */
 	public JLabel getLblchargesmoyen() {
 		return lblchargesmoyen;
 	}
 
+	/**
+	 * Définit le label affichant le montant moyen des charges.
+	 *
+	 * @param lblchargesmoyen le JLabel à définir
+	 */
 	public void setLblchargesmoyen(JLabel lblchargesmoyen) {
 		this.lblchargesmoyen = lblchargesmoyen;
 	}
 
+	/**
+	 * Retourne le bien louable associé à cette vue.
+	 *
+	 * @return le bien louable
+	 */
 	public BienLouable getBl() {
 		return bl;
 	}
+
 }

@@ -27,18 +27,21 @@ public class FenetreLogin extends JFrame {
 	private JPasswordField txtPassword;
 	private JLabel lblMessage;
 	private GestionConnexion gestionClic;
-	
-	public static void main(String[] args) {
-        EventQueue.invokeLater(()-> {
-            try {
-                FenetreLogin frame = new FenetreLogin();
-                frame.setVisible(true);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-    }
 
+	public static void main(String[] args) {
+		EventQueue.invokeLater(() -> {
+			try {
+				FenetreLogin frame = new FenetreLogin();
+				frame.setVisible(true);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
+	}
+
+	/**
+	 * Création de la vue
+	 */
 	public FenetreLogin() {
 		this.gestionClic = new GestionConnexion(this);
 		setTitle("Connexion");
@@ -129,15 +132,31 @@ public class FenetreLogin extends JFrame {
 		getRootPane().setDefaultButton(btnLogin);
 	}
 
+	/**
+	 * Retourne le label affichant les messages (erreurs, notifications, etc.).
+	 *
+	 * @return le JLabel des messages
+	 */
 	public JLabel getLblMessage() {
 		return lblMessage;
 	}
 
+	/**
+	 * Retourne le champ texte pour le nom d'utilisateur.
+	 *
+	 * @return le JTextField du nom d'utilisateur
+	 */
 	public JTextField getTxtUsername() {
 		return txtUsername;
 	}
 
+	/**
+	 * Retourne le champ texte pour le mot de passe.
+	 *
+	 * @return le JPasswordField du mot de passe
+	 */
 	public JPasswordField getTxtPassword() {
 		return txtPassword;
 	}
+
 }

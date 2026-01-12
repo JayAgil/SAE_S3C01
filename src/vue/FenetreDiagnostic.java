@@ -21,8 +21,6 @@ import java.sql.SQLException;
 
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class FenetreDiagnostic extends FenetreBase {
 
@@ -34,6 +32,9 @@ public class FenetreDiagnostic extends FenetreBase {
 	private BienLouable bL;
 	private JButton btnChoisir;
 
+	/**
+	 * Création de la vue
+	 */
 	public FenetreDiagnostic(BienLouable bL) throws SQLException {
 		super();
 		this.bL = bL;
@@ -42,7 +43,6 @@ public class FenetreDiagnostic extends FenetreBase {
 		setBounds(100, 100, 1200, 800);
 		getContentPane().setLayout(new BorderLayout(0, 0));
 
-		// header
 		this.setJMenuBar(createHeader());
 
 		JPanel panelFooter = new JPanel();
@@ -100,16 +100,10 @@ public class FenetreDiagnostic extends FenetreBase {
 
 		table = new JTable();
 		scrollPane.setViewportView(table);
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"ID Diagnostic", "Type Diagnostics", "Date R\u00E9alisation", "Date Validit\u00E9", "Fichier", "Bien Associ\u00E9"
-			}
-		) {
-			boolean[] columnEditables = new boolean[] {
-				false, true, true, true, true, false
-			};
+		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "ID Diagnostic", "Type Diagnostics",
+				"Date R\u00E9alisation", "Date Validit\u00E9", "Fichier", "Bien Associ\u00E9" }) {
+			boolean[] columnEditables = new boolean[] { false, true, true, true, true, false };
+
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
 			}
@@ -155,49 +149,103 @@ public class FenetreDiagnostic extends FenetreBase {
 		btnAjouter.addActionListener(this.gestionClic);
 		btnRetirer.addActionListener(gestionClic);
 
-
 	}
 
+	/**
+	 * Retourne le bouton permettant de choisir un élément.
+	 *
+	 * @return le bouton "Choisir"
+	 */
 	public JButton getBtnChoisir() {
 		return btnChoisir;
 	}
 
+	/**
+	 * Retourne le label affichant le nombre de diagnostics.
+	 *
+	 * @return le JLabel du nombre de diagnostics
+	 */
 	public JLabel getLblnbDiag() {
 		return lblnbDiag;
 	}
 
+	/**
+	 * Définit le label affichant le nombre de diagnostics.
+	 *
+	 * @param lblnbDiag le JLabel à définir
+	 */
 	public void setLblnbDiag(JLabel lblnbDiag) {
 		this.lblnbDiag = lblnbDiag;
 	}
 
+	/**
+	 * Retourne le label affichant le nombre de diagnostics expirés.
+	 *
+	 * @return le JLabel du nombre de diagnostics expirés
+	 */
 	public JLabel getLblnbDiagExp() {
 		return lblnbDiagExp;
 	}
 
+	/**
+	 * Définit le label affichant le nombre de diagnostics expirés.
+	 *
+	 * @param lblnbDiagExp le JLabel à définir
+	 */
 	public void setLblnbDiagExp(JLabel lblnbDiagExp) {
 		this.lblnbDiagExp = lblnbDiagExp;
 	}
 
+	/**
+	 * Retourne le gestionnaire des clics pour cette fenêtre.
+	 *
+	 * @return l'objet GestionFenetreDiagnostic associé
+	 */
 	public GestionFenetreDiagnostic getGestionClic() {
 		return gestionClic;
 	}
 
+	/**
+	 * Définit le gestionnaire des clics pour cette fenêtre.
+	 *
+	 * @param gestionClic l'objet GestionFenetreDiagnostic à définir
+	 */
 	public void setGestionClic(GestionFenetreDiagnostic gestionClic) {
 		this.gestionClic = gestionClic;
 	}
 
+	/**
+	 * Retourne la table affichant les diagnostics.
+	 *
+	 * @return la JTable des diagnostics
+	 */
 	public JTable getTable() {
 		return table;
 	}
 
+	/**
+	 * Définit la table affichant les diagnostics.
+	 *
+	 * @param table la JTable à définir
+	 */
 	public void setTable(JTable table) {
 		this.table = table;
 	}
 
+	/**
+	 * Retourne l'identifiant de version de la classe pour la sérialisation.
+	 *
+	 * @return la valeur de serialVersionUID
+	 */
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
+	/**
+	 * Retourne le bien louable associé à cette fenêtre.
+	 *
+	 * @return le BienLouable associé
+	 */
 	public BienLouable getBien() {
 		return this.bL;
 	}

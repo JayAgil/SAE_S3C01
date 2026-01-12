@@ -32,10 +32,6 @@ import java.util.List;
 
 import javax.swing.border.TitledBorder;
 import javax.swing.border.MatteBorder;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class FenetreCompteurs extends FenetreBase {
 
@@ -56,6 +52,9 @@ public class FenetreCompteurs extends FenetreBase {
 		return this.gestionClic;
 	}
 
+	/**
+	 * Création de la vue
+	 */
 	public FenetreCompteurs(String fenetreAvant, List<Compteur> cpt, BienLouable b) {
 		super();
 		this.b = b;
@@ -65,7 +64,6 @@ public class FenetreCompteurs extends FenetreBase {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1200, 800);
 
-		// header
 		this.setJMenuBar(createHeader());
 
 		contentPane = new JPanel();
@@ -74,7 +72,6 @@ public class FenetreCompteurs extends FenetreBase {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 
-		// footer
 		getContentPane().add(createFooter(), BorderLayout.SOUTH);
 
 		JPanel panel = new JPanel();
@@ -104,7 +101,8 @@ public class FenetreCompteurs extends FenetreBase {
 						return columnTypes[columnIndex];
 					}
 
-					boolean[] columnEditables = new boolean[] { true, false, false, false, true, false , true, false, false};
+					boolean[] columnEditables = new boolean[] { true, false, false, false, true, false, true, false,
+							false };
 
 					public boolean isCellEditable(int row, int column) {
 						return columnEditables[column];
@@ -222,7 +220,6 @@ public class FenetreCompteurs extends FenetreBase {
 		lblTitre.setFont(new Font("Tahoma", Font.BOLD, 18));
 		panel_1.add(lblTitre);
 
-		// icons
 		ImageIcon eauIcon = new ImageIcon("img/water.png");
 		Image imgEau = eauIcon.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
 		lblNewLabel.setIcon(new ImageIcon(imgEau));
@@ -270,49 +267,103 @@ public class FenetreCompteurs extends FenetreBase {
 		btnRetirer.addActionListener(this.gestionClic);
 		tableCompteurs.addMouseListener(this.gestionClic);
 
-
 	}
 
+	/**
+	 * Retourne le bouton permettant d'ajouter un compteur.
+	 *
+	 * @return le bouton "Ajouter Compteur"
+	 */
 	public JButton getBtnAjouterCompteur() {
 		return btnAjouterCompteur;
 	}
 
+	/**
+	 * Retourne la table affichant les compteurs.
+	 *
+	 * @return la JTable des compteurs
+	 */
 	public JTable getTableCompteurs() {
 		return tableCompteurs;
 	}
 
+	/**
+	 * Définit la table affichant les compteurs.
+	 *
+	 * @param tableCompteurs la JTable à définir
+	 */
 	public void setTableCompteurs(JTable tableCompteurs) {
 		this.tableCompteurs = tableCompteurs;
 	}
 
+	/**
+	 * Retourne le label affichant le total de la consommation d'eau.
+	 *
+	 * @return le JLabel du total eau
+	 */
 	public JLabel getLbltotaleau() {
 		return lbltotaleau;
 	}
 
+	/**
+	 * Définit le label affichant le total de la consommation d'eau.
+	 *
+	 * @param lbltotaleau le JLabel à définir
+	 */
 	public void setLbltotaleau(JLabel lbltotaleau) {
 		this.lbltotaleau = lbltotaleau;
 	}
 
+	/**
+	 * Retourne le label affichant le total de la consommation d'électricité.
+	 *
+	 * @return le JLabel du total électricité
+	 */
 	public JLabel getLnltotalelec() {
 		return lnltotalelec;
 	}
 
+	/**
+	 * Définit le label affichant le total de la consommation d'électricité.
+	 *
+	 * @param lnltotalelec le JLabel à définir
+	 */
 	public void setLnltotalelec(JLabel lnltotalelec) {
 		this.lnltotalelec = lnltotalelec;
 	}
 
+	/**
+	 * Retourne le label affichant le total de la consommation de gaz.
+	 *
+	 * @return le JLabel du total gaz
+	 */
 	public JLabel getLbltotalgaz() {
 		return lbltotalgaz;
 	}
 
+	/**
+	 * Définit le label affichant le total de la consommation de gaz.
+	 *
+	 * @param lbltotalgaz le JLabel à définir
+	 */
 	public void setLbltotalgaz(JLabel lbltotalgaz) {
 		this.lbltotalgaz = lbltotalgaz;
 	}
 
+	/**
+	 * Retourne le nom de la fenêtre précédente.
+	 *
+	 * @return le nom de la fenêtre avant
+	 */
 	public String getFenetreAvant() {
 		return fenetreAvant;
 	}
 
+	/**
+	 * Retourne le bien louable associé à cette vue.
+	 *
+	 * @return le bien louable
+	 */
 	public BienLouable getB() {
 		return b;
 	}
