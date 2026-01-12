@@ -4,10 +4,7 @@ import java.sql.ResultSet;
 import modele.dao.requetes.*;
 import java.sql.SQLException;
 import java.util.List;
-
-import modele.Batiment;
 import modele.Garant;
-import modele.Locataire;
 
 public class DaoGarant extends DaoModele<Garant> implements Dao<Garant> {
 

@@ -10,7 +10,6 @@ import javax.swing.JTextField;
 
 import modele.BienLouable;
 import modele.ContratLocation;
-import modele.dao.DaoBatiment;
 import modele.dao.DaoContratLocation;
 import vue.FenetreAjouterContratLocation;
 
@@ -41,7 +40,6 @@ public class GestionFenetreAjouterContratLocation extends GestionButtonFenetreAj
 	protected void gererAction() {
 		try {
 			DaoContratLocation dao = new DaoContratLocation();
-			DaoBatiment daoBat = new DaoBatiment();
 			List<JTextField> donnees = this.getTextFields();
 			
 			 Date dateDebut = Date.valueOf(donnees.get(1).getText());
@@ -71,8 +69,10 @@ public class GestionFenetreAjouterContratLocation extends GestionButtonFenetreAj
 				JOptionPane.showMessageDialog(null, "Contrat location ajoutée avec succès !", "Succès",
 						JOptionPane.INFORMATION_MESSAGE);
 
-				this.parent.setContrats(this.parent.getDonneesContrats());
-				this.parent.remplirTable();;
+				if (parent != null) {
+				    parent.setContrats(parent.getDonneesContrats());
+				    parent.remplirTable();
+				}
 				this.fenetre.dispose();
 
 			} else {
