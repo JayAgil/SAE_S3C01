@@ -14,9 +14,7 @@ IS
     v_loyers_impayes   NUMBER := 0;
     v_prorata          NUMBER := 0;
 BEGIN
-    ------------------------------------------------------------------
-    -- 1. Récupération du contrat du locataire
-    ------------------------------------------------------------------
+
     SELECT cl.Numero_de_contrat,
            cl.Montant_Mensuel,
            cl.Montant_de_caution,
@@ -32,14 +30,8 @@ BEGIN
 
     v_annee := EXTRACT(YEAR FROM v_date_fin);
 
-    ------------------------------------------------------------------
-    -- 2. Régularisation des charges (année en cours)
-    ------------------------------------------------------------------
     v_charges := calcul_regularisation_contrat(v_annee, v_contrat);
 
-    ------------------------------------------------------------------
-    -- 3. Loyers impayés (année en cours)
-    ------------------------------------------------------------------
     SELECT NVL(SUM(p.Montant), 0)
     INTO   v_total_paye
     FROM   SAE_Paiement p
@@ -54,17 +46,11 @@ BEGIN
         v_loyers_impayes := 0;
     END IF;
 
-    ------------------------------------------------------------------
-    -- 4. Prorata du dernier mois
-    ------------------------------------------------------------------
     v_prorata :=
         (v_loyer_mensuel
          / EXTRACT(DAY FROM LAST_DAY(v_date_fin)))
         * EXTRACT(DAY FROM v_date_fin);
 
-    ------------------------------------------------------------------
-    -- 5. Solde final
-    ------------------------------------------------------------------
     RETURN
           NVL(v_loyers_impayes, 0)
         + NVL(v_prorata, 0)
