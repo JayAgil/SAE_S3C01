@@ -313,7 +313,7 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 	        fenetrebienlouable.getTextFieldDP()
 	                .setText(date.getDatepaiement().toString());
 	    } else {
-	        fenetrebienlouable.getTextFieldDP().setText("");
+	        fenetrebienlouable.getTextFieldDP().setText("Pas de paiement encore, ajoutez un!");
 	    }
 	}
 

@@ -28,21 +28,22 @@ public class DaoIRL extends DaoModele<IRL> implements Dao<IRL> {
 		return 0;
 	}
 
+
+
 	/**
 	 * Recherche un IRL selon l'année et éventuellement le trimestre.
 	 * 
 	 * @param id tableau contenant : - id[0] = année - id[1] = trimestre (optionnel)
 	 * @return l'IRL correspondant ou null si non trouvé
 	 */
-	@Override
-	public IRL findById(String... id) throws SQLException {
-		if (id.length == 1) {
-			return findById(new RequeteSelectIRL(), id[0], "1");
-		} else if (id.length == 2) {
-			return findById(new RequeteSelectIRL(), id[0], id[1]);
-		}
-		return null;
-	}
+    @Override
+    public IRL findById(String... id) throws SQLException {
+        if (id.length == 2) {
+            return findById(new RequeteSelectIRLById(), id[0], id[1]);
+        }
+        return null;
+    }
+
 
 	/**
 	 * Retourne la liste de tous les IRL.

@@ -34,6 +34,10 @@ public class GestionAjouterIRL extends GestionButtonFenetreAjouter {
 		try {
 			DaoIRL dao = new DaoIRL();
 			List<JTextField> donnees = this.getTextFields();
+			if(Double.parseDouble(donnees.get(1).getText())>4 || Double.parseDouble(donnees.get(1).getText())<0) {
+				JOptionPane.showMessageDialog(null, "La valeur de trimestre doit être compris entre 1 et 4 !", "Erreur",
+						JOptionPane.ERROR_MESSAGE);
+			}
 			IRL irl = new IRL(Integer.parseInt(donnees.get(0).getText()), Integer.parseInt(donnees.get(1).getText()), Double.parseDouble(donnees.get(2).getText()));
 			if (dao.create(irl) == 1) {
 				JOptionPane.showMessageDialog(null, "IRL ajoutée avec succès !", "Succès",

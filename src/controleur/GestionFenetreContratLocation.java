@@ -79,21 +79,21 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 
 			IRL irlCourant = daoIRL.findById(String.valueOf(annne1), String.valueOf(trimester));
 			IRL irlPrecedent = daoIRL.findById(String.valueOf(annee2), String.valueOf(trimester));
-
+			System.out.print(irlCourant);
+			System.out.print(irlPrecedent);
 			if (irlCourant == null || irlPrecedent == null) {
 				JOptionPane.showMessageDialog(null,
 						"IRL non trouvée pour le trimestre correspondant. Ajouter IRL avant de revaloriser", "Erreur",
 						JOptionPane.ERROR_MESSAGE);
 				break;
 			}
-
 			double valCourant = irlCourant.getIRL();
 			double valPrecedent = irlPrecedent.getIRL();
 			double min = selected.getMontantMensuel();
 			double max = min * (valCourant / valPrecedent);
 
 			String input = JOptionPane.showInputDialog(null,
-					String.format("Veuillez entrer le loyer entre %.2f et %.2f € (IRL1 : %.2f, IRL2 : %.2f)", min, max, irlCourant, irlPrecedent), "Revalorisation du loyer",
+					String.format("Veuillez entrer le loyer entre %.2f et %.2f € (IRL1 : %.2f, IRL2 : %.2f)", min, max, valCourant, valPrecedent), "Revalorisation du loyer",
 					JOptionPane.QUESTION_MESSAGE);
 
 			if (input != null && !input.trim().isEmpty()) {
