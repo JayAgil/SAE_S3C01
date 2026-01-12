@@ -155,3 +155,15 @@ END VerifierDateAnniversaire;
 /
 
 EXECUTE VerifierDateAnniversaire;
+
+
+--Empeche la suppression d un contrat si il reste un solde
+CREATE OR REPLACE TRIGGER SoldeImpaye
+BEFORE DELETE ON SAE_ContratLocation
+FOR EACH ROW
+BEGIN
+    IF :OLD.Solde != 0 THEN
+        RAISE_APPLICATION_ERROR(-20012, 'Il reste un solde!');
+    END IF;
+END;
+/
