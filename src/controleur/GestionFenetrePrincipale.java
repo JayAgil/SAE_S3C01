@@ -258,6 +258,7 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 		}
 	}
 
+	// on ne récupère que les informations pour la tables paiement
 	private void mAJDeBaseDeDonnees(File file) throws SQLException {
 		DaoContratLocation daoContrat = new DaoContratLocation();
 
@@ -353,8 +354,6 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 						return;
 
 					}
-					// pass the bien selected by the user here i have put here
-					// null but there must be a bien that the user clicked
 					FenetreBienLouable fen = new FenetreBienLouable("FenetrePrincipale", bien);
 					fen.setVisible(true);
 					fenetre.dispose();

@@ -74,6 +74,10 @@ public abstract class GestionHeaderEtFooter implements ActionListener {
 			fenetre.dispose();
 			break;
 
+			/**
+			 * En mettant null comme parametre de bien louable, on affiche tous les éléments d'un batiment
+			 */
+			
 		case "Compteurs":
 			DaoCompteur dao = new DaoCompteur();
 			FenetreCompteurs fc = new FenetreCompteurs("FenPrincipale", dao.findAll(),null);
@@ -120,6 +124,10 @@ public abstract class GestionHeaderEtFooter implements ActionListener {
 		}
 	}
 
+	/**
+	 *  Les different actionListener sont souvant séparé dans les pages afin de mieu séparé les morceaux de code
+	 *  et de pouvoir gérée les cas ou deux bouton on le même nom
+	 */
 	protected void gererBoutonCommun(String texte) throws SQLException {
 	}
 
@@ -129,6 +137,7 @@ public abstract class GestionHeaderEtFooter implements ActionListener {
 	protected void gererBoutonSpecifique(String texte) throws SQLException {
 	}
 	
+	// nous permet de nous assurer qu'un élément est bien en double
 	protected double parseDoubleSafe(Object value) {
         if (value == null) {
         	return 0.0;
