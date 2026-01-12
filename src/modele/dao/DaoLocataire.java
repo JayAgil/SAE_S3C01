@@ -51,7 +51,7 @@ public class DaoLocataire extends DaoModele<Locataire> implements Dao<Locataire>
 
 	public List<Locataire> findLocataireByBienLouable(String... id) throws SQLException {
 		List<Locataire> result = find(new RequeteSelectLocataireByBienLouable(), id);
-		if(!(result == null)) {
+		if(result != null) {
 			return result;
 		}
 		return Collections.emptyList();

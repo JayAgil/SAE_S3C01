@@ -132,24 +132,40 @@ public class GestionFenetreLocataire extends GestionHeaderEtFooter implements Mo
 	}
 
 	public void chargerDonnes() {
-		DaoContratLocation dao;
-		try {
-			dao = new DaoContratLocation();
-			JTable table = fenetre.getTable();
-			DefaultTableModel model = (DefaultTableModel) table.getModel();
-			model.setRowCount(0);
-			for (Locataire loc : locataires) {
-				ContratLocation cl = dao.findContratLocataionByLocataire(loc.getIdLocataire());
-				Object[] ligne = { loc.getIdLocataire(), loc.getNom(), loc.getPrenom(), loc.getAdresse(), loc.getTel(),
-						loc.getEmail(), cl.getDateDebut(), cl.getDateFin() };
-				model.addRow(ligne);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	    try {
+	        DaoLocataire daoLoc = new DaoLocataire();
+	        List<Locataire> locs = daoLoc.findLocataireByBienLouable(
+	            fenetre.getBl().getIdBienLouable()
+	        );
 
+	        this.locataires = locs;
+
+	        JTable table = fenetre.getTable();
+	        DefaultTableModel model = (DefaultTableModel) table.getModel();
+	        model.setRowCount(0);
+
+	        DaoContratLocation daoCL = new DaoContratLocation();
+
+	        for (Locataire loc : locs) {
+	            ContratLocation cl = daoCL.findContratLocataionByLocataire(loc.getIdLocataire());
+
+	            model.addRow(new Object[] {
+	                loc.getIdLocataire(),
+	                loc.getNom(),
+	                loc.getPrenom(),
+	                loc.getAdresse(),
+	                loc.getTel(),
+	                loc.getEmail(),
+	                cl != null ? cl.getDateDebut() : null,
+	                cl != null ? cl.getDateFin() : null
+	            });
+	        }
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
 	}
+
 
 	private void afficherTextFields() {
 		JTable table = fenetre.getTable();
