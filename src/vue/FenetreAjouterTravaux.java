@@ -37,6 +37,9 @@ public class FenetreAjouterTravaux extends JInternalFrame {
 	private BienLouable bl;
 	private GestionFenetreTravaux fen;
 
+	/**
+	 * Création de la vue
+	 */
 	public FenetreAjouterTravaux(GestionFenetreTravaux fen, BienLouable bl) {
 		this.bl = bl;
 		this.fen = fen;
@@ -146,42 +149,92 @@ public class FenetreAjouterTravaux extends JInternalFrame {
 
 	}
 
+	/**
+	 * Retourne la ComboBox permettant de sélectionner une entreprise.
+	 *
+	 * @return la ComboBox des entreprises
+	 */
 	public JComboBox<Entreprise> getComboBoxEntreprise() {
 		return comboBoxEntreprise;
 	}
 
+	/**
+	 * Retourne le champ texte contenant le numéro de facture.
+	 *
+	 * @return le JTextField du numéro de facture
+	 */
 	public JTextField getChampNumFac() {
 		return champNumFac;
 	}
 
+	/**
+	 * Retourne le champ texte contenant le montant de la facture.
+	 *
+	 * @return le JTextField du montant
+	 */
 	public JTextField getChampMontant() {
 		return champMontant;
 	}
 
+	/**
+	 * Retourne le champ texte contenant la date de la facture.
+	 *
+	 * @return le JTextField de la date de facture
+	 */
 	public JTextField getChampDateFac() {
 		return champDateFac;
 	}
 
+	/**
+	 * Retourne le champ texte contenant le mode de paiement (CB).
+	 *
+	 * @return le JTextField du mode de paiement
+	 */
 	public JTextField getChampCB() {
 		return champCB;
 	}
 
+	/**
+	 * Retourne le champ texte contenant le devis associé aux travaux.
+	 *
+	 * @return le JTextField du devis
+	 */
 	public JTextField getChampDevis() {
 		return champDevis;
 	}
 
+	/**
+	 * Retourne le champ texte contenant la date de paiement.
+	 *
+	 * @return le JTextField de la date de paiement
+	 */
 	public JTextField getChampDatePaiement() {
 		return champDatePaiement;
 	}
 
+	/**
+	 * Retourne le champ texte contenant la désignation des travaux.
+	 *
+	 * @return le JTextField de la désignation des travaux
+	 */
 	public JTextField getChampDesignationTravaux() {
 		return champDesignationTravaux;
 	}
 
+	/**
+	 * Retourne le bien louable associé aux travaux.
+	 *
+	 * @return le bien louable
+	 */
 	public BienLouable getBl() {
 		return bl;
 	}
 
+	/**
+	 * Retourne la liste de tous les champs texte liés aux travaux.
+	 *
+	 * @return la liste des JTextField des travaux
+	 */
 	public List<JTextField> getTravauxTextFields() {
 		List<JTextField> fields = new ArrayList<>();
 		fields.add(champNumFac);

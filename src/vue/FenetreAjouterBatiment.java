@@ -30,7 +30,10 @@ public class FenetreAjouterBatiment extends JInternalFrame {
 	private JTextField textFieldDate;
 	private GestionFenetreAjouterBatiment gestionClic;
 	private GestionFenetrePrincipale parent;
-
+	
+	/**
+	 * Création de la vue 
+	 */
 	public FenetreAjouterBatiment(GestionFenetrePrincipale parent) {
 		setResizable(false);
 		this.parent = parent;
@@ -129,7 +132,12 @@ public class FenetreAjouterBatiment extends JInternalFrame {
 		btnAjouter.addActionListener(this.gestionClic);
 
 	}
-
+	
+	/**
+	 * Retourne la liste de tous les champs texte de la fenêtre.
+	 *
+	 * @return la liste des JTextField
+	 */
 	public List<JTextField> getAllTextFields() {
 		List<JTextField> fields = new ArrayList<>();
 		fields.add(textFieldAdresse);

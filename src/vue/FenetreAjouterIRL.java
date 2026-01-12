@@ -25,6 +25,9 @@ public class FenetreAjouterIRL extends JInternalFrame {
 	private GestionAjouterIRL gestionClic;
 	private JTextField textFieldTrimestre;
 
+	/**
+	 * Création de la vue
+	 */
 	public FenetreAjouterIRL() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -87,12 +90,16 @@ public class FenetreAjouterIRL extends JInternalFrame {
 
 	}
 
+	/**
+	 * Retourne la liste de tous les champs texte liés à un IRL.
+	 *
+	 * @return la liste des JTextField du diagnostic
+	 */
 	public List<JTextField> getAllTextFields() {
 		List<JTextField> fields = new ArrayList<>();
 		fields.add(textFieldAnnee);
 		fields.add(textFieldTrimestre);
 		fields.add(textFieldVal);
-
 		return fields;
 	}
 }

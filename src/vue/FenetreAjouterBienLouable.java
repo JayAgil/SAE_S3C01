@@ -33,6 +33,9 @@ public class FenetreAjouterBienLouable extends JInternalFrame {
 	private JComboBox<String> comboBoxBienLouable;
 	private GestionFenetreBienLouable parent;
 
+	/**
+	 * Création de la vue
+	 */
 	public FenetreAjouterBienLouable(Batiment b, GestionFenetreBienLouable parent) {
 		setResizable(false);
 		this.parent = parent;
@@ -135,10 +138,20 @@ public class FenetreAjouterBienLouable extends JInternalFrame {
 
 	}
 
+	/**
+	 * Retourne la ComboBox permettant de sélectionner un bien louable.
+	 *
+	 * @return la ComboBox des biens louables
+	 */
 	public JComboBox<String> getComboBoxBienLouable() {
 		return comboBoxBienLouable;
 	}
 
+	/**
+	 * Retourne la liste de tous les champs texte de la fenêtre.
+	 *
+	 * @return la liste des JTextField
+	 */
 	public List<JTextField> getAllBienLouableTextFields() {
 		List<JTextField> fields = new ArrayList<>();
 		fields.add(txtFieldBienLouable);

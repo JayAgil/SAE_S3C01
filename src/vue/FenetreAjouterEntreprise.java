@@ -27,6 +27,9 @@ public class FenetreAjouterEntreprise extends JInternalFrame {
 	private JTextField textFieldTel;
 	private JTextField textFieldSpecialite;
 
+	/**
+	 * Création de la vue
+	 */
 	public FenetreAjouterEntreprise() {
 		setResizable(false);
 		setClosable(true);
@@ -114,7 +117,7 @@ public class FenetreAjouterEntreprise extends JInternalFrame {
 		JButton btnRetour = new JButton("Retour");
 		btnRetour.setBounds(294, 390, 100, 30);
 		contentPane.add(btnRetour);
-		
+
 		GestionFenetreAjouterEntreprise gestionClic = new GestionFenetreAjouterEntreprise(this);
 		btnVider.addActionListener(gestionClic);
 		btnAjouter.addActionListener(gestionClic);
@@ -122,6 +125,11 @@ public class FenetreAjouterEntreprise extends JInternalFrame {
 
 	}
 
+	/**
+	 * Retourne la liste de tous les champs texte liés à une entreprise.
+	 *
+	 * @return la liste des JTextField du diagnostic
+	 */
 	public List<JTextField> getAllEntrepriseTextFields() {
 		List<JTextField> fields = new ArrayList<>();
 		fields.add(textFieldSiret);
