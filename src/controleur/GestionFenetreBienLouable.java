@@ -39,7 +39,8 @@ import vue.FenetreTravaux;
 public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements MouseListener {
 
 	private FenetreBienLouable fenetrebienlouable;
-	private BienLouable bien; 
+	private BienLouable bien;
+	private String idBien; 
 
 	public GestionFenetreBienLouable(FenetreBienLouable fenetre, BienLouable bien) {
 		super(fenetre);
@@ -142,6 +143,8 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
         		
         	}
 			break;
+		case "Locataire":
+			ouvrirFenetreLocataire(idBien);
         
 		case "Compteur":
 			new FenetreCompteurs("FenetreBienLouable", getDonneesCompteur(),bien).setVisible(true);
@@ -163,7 +166,7 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements 
 			return;
 
 		int modelRow = table.convertRowIndexToModel(row);
-		String idBien = table.getModel().getValueAt(modelRow, 0).toString();
+		idBien = table.getModel().getValueAt(modelRow, 0).toString();
 		if (e.getClickCount() == 2) {
 			ouvrirFenetreLocataire(idBien);
 			return;

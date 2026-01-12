@@ -83,6 +83,9 @@ public class FenetreBienLouable extends FenetreBase {
 
 		Component verticalStrut = Box.createVerticalStrut(40);
 		panel.add(verticalStrut);
+		
+		JButton btnLoc = new JButton("Locataire");
+		panel.add(btnLoc);
 
 		btnDiagnostic = new JButton("Diagnostics");
 		panel.add(btnDiagnostic);
@@ -451,6 +454,7 @@ public class FenetreBienLouable extends FenetreBase {
 		table.addMouseListener(this.gestionClicBienLouable);
 		btnRetirer.addActionListener(this.gestionClicBienLouable);
 		btnRetour.addActionListener(gestionClicBienLouable);
+		btnLoc.addActionListener(gestionClicBienLouable);
 		this.gestionClicBienLouable.initialize();
 
 
