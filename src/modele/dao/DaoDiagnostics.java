@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import modele.dao.requetes.*;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -40,11 +41,19 @@ public class DaoDiagnostics extends DaoModele<Diagnostics> implements Dao<Diagno
 
 	@Override
 	public List<Diagnostics> findAll() throws SQLException {
-		return find(new RequeteSelectDiagnostics());
+		List<Diagnostics> result =  find(new RequeteSelectDiagnostics());
+		if(!(result == null)) {
+			return result;
+		}
+		return Collections.emptyList();
 	}
 	
 	public List<Diagnostics> findDiagnosticsByIdBien(String idBien) throws SQLException {
-	    return this.find(new RequeteSelectDiagnosticFromBien(), idBien);
+		List<Diagnostics> result = this.find(new RequeteSelectDiagnosticFromBien(), idBien);
+		if(!(result == null)) {
+			return result;
+		}
+		return Collections.emptyList();
 	}
 
 	@Override

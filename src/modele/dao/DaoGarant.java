@@ -3,6 +3,7 @@ package modele.dao;
 import java.sql.ResultSet;
 import modele.dao.requetes.*;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 import modele.Garant;
 
@@ -35,7 +36,11 @@ public class DaoGarant extends DaoModele<Garant> implements Dao<Garant> {
 
 	@Override
 	public List<Garant> findAll() throws SQLException {
-		return find(new RequeteSelectGarantById());
+		List<Garant> result =  find(new RequeteSelectGarantById());
+		if(!(result == null)) {
+			return result;
+		}
+		return Collections.emptyList();
 	}
 	
 	public Garant findByLoc(String... id) throws SQLException{
