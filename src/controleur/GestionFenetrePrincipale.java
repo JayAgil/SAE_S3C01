@@ -351,25 +351,56 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if (e.getClickCount() == 2 && e.getSource() instanceof JTable) {
-			JTable table = (JTable) e.getSource();
-			int row = table.rowAtPoint(e.getPoint());
-			int column = table.columnAtPoint(e.getPoint());
-			if (row != -1 && (column == 0 || column == 1 || column == 2 || column == 3)) {
-				try {
-					String idCtrt = table.getValueAt(row, 0).toString();
-					DaoBienLouable daoBL = new DaoBienLouable();
-					BienLouable bien = daoBL.findByIdContrat(idCtrt);
-				    FenetreBienLouable fen = new FenetreBienLouable("FenetrePrincipale", bien);
-				    fen.setVisible(true);
-				    fenetre.dispose();
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				}
-			}
-		}
+	    if (e.getClickCount() == 2 && e.getSource() instanceof JTable) {
+	        JTable table = (JTable) e.getSource();
+	        int row = table.rowAtPoint(e.getPoint());
+	        int column = table.columnAtPoint(e.getPoint());
 
+	        if (row != -1 && (column == 0 || column == 1 || column == 2 || column == 3)) {
+	            try {
+	                Object contratIdObj = table.getValueAt(row, 0);
+
+	                DaoBienLouable daoBL = new DaoBienLouable();
+	                BienLouable bien;
+
+	                if (contratIdObj != null && !contratIdObj.toString().equals("Aucun contrat en cours")) {
+	                    String idCtrt = contratIdObj.toString();
+	                    bien = daoBL.findByIdContrat(idCtrt);
+	                } else {
+	                    String typeBien = table.getValueAt(row, 2).toString();
+	                    int nbPieces = Integer.parseInt(table.getValueAt(row, 1).toString());
+
+	                    String batimentId = getBatimentId();
+	                    List<BienLouable> biens = daoBL.findByBatiment(batimentId);
+
+	                    bien = biens.stream()
+	                                .filter(b -> b.getTypeBienLouable().equals(typeBien)
+	                                          && b.getNbPieces() == nbPieces)
+	                                .findFirst()
+	                                .orElse(null);
+
+	                    if (bien == null) {
+	                        JOptionPane.showMessageDialog(
+	                            fenetre,
+	                            "Impossible de retrouver le bien louable sélectionné.",
+	                            "Erreur",
+	                            JOptionPane.ERROR_MESSAGE
+	                        );
+	                        return;
+	                    }
+	                }
+
+	                FenetreBienLouable fen = new FenetreBienLouable("FenetrePrincipale", bien);
+	                fen.setVisible(true);
+	                fenetre.dispose();
+
+	            } catch (SQLException ex) {
+	                ex.printStackTrace();
+	            }
+	        }
+	    }
 	}
+
 
 	/**
 	 * Fill all the info panels on the main window
