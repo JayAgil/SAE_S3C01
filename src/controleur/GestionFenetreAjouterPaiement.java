@@ -69,7 +69,6 @@ public class GestionFenetreAjouterPaiement extends GestionButtonFenetreAjouter {
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			if (e.getErrorCode() == 1) { 
 		        JOptionPane.showMessageDialog(

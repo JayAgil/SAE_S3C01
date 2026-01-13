@@ -59,7 +59,8 @@ public class Compteur {
 
 	/** Définit la partie fixe du compteur. */
 	public void setPartieFixe(double partieFixe) {
-		this.partieFixe = partieFixe;
+	    this.partieFixe = partieFixe;
+	    this.total = this.partieFixe + this.partieVariable; // recalc total
 	}
 
 	/** Retourne la partie variable du compteur. */
@@ -69,7 +70,8 @@ public class Compteur {
 
 	/** Définit la partie variable du compteur. */
 	public void setPartieVariable(double partieVariable) {
-		this.partieVariable = partieVariable;
+	    this.partieVariable = partieVariable;
+	    this.total = this.partieFixe + this.partieVariable; // recalc total
 	}
 
 	/** Retourne le total du compteur. */

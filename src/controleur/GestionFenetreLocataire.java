@@ -134,40 +134,33 @@ public class GestionFenetreLocataire extends GestionHeaderEtFooter implements Mo
 	}
 
 	public void chargerDonnes() {
-	    try {
-	        DaoLocataire daoLoc = new DaoLocataire();
-	        List<Locataire> locs = daoLoc.findLocataireByBienLouable(
-	            fenetre.getBl().getIdBienLouable()
-	        );
+		try {
+			DaoLocataire daoLoc = new DaoLocataire();
+			if (this.fenetre.getNomFenAvant().equals("FenPrincipale")) {
+				this.locataires = daoLoc.findAll();
+			} else {
+				List<Locataire> locs = daoLoc.findLocataireByBienLouable(fenetre.getBl().getIdBienLouable());
+				this.locataires = locs;
+			}
 
-	        this.locataires = locs;
+			JTable table = fenetre.getTable();
+			DefaultTableModel model = (DefaultTableModel) table.getModel();
+			model.setRowCount(0);
 
-	        JTable table = fenetre.getTable();
-	        DefaultTableModel model = (DefaultTableModel) table.getModel();
-	        model.setRowCount(0);
+			DaoContratLocation daoCL = new DaoContratLocation();
 
-	        DaoContratLocation daoCL = new DaoContratLocation();
+			for (Locataire loc : this.locataires) {
+				ContratLocation cl = daoCL.findContratLocataionByLocataire(loc.getIdLocataire());
 
-	        for (Locataire loc : locs) {
-	            ContratLocation cl = daoCL.findContratLocataionByLocataire(loc.getIdLocataire());
+				model.addRow(new Object[] { loc.getIdLocataire(), loc.getNom(), loc.getPrenom(), loc.getAdresse(),
+						loc.getTel(), loc.getEmail(), cl != null ? cl.getDateDebut() : null,
+						cl != null ? cl.getDateFin() : null });
+			}
 
-	            model.addRow(new Object[] {
-	                loc.getIdLocataire(),
-	                loc.getNom(),
-	                loc.getPrenom(),
-	                loc.getAdresse(),
-	                loc.getTel(),
-	                loc.getEmail(),
-	                cl != null ? cl.getDateDebut() : null,
-	                cl != null ? cl.getDateFin() : null
-	            });
-	        }
-
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    }
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
-
 
 	private void afficherTextFields() {
 		JTable table = fenetre.getTable();

@@ -164,6 +164,7 @@ public class GestionFenetreTravaux extends GestionHeaderEtFooter implements Mous
 		}
 	}
 
+	// Sert a remplir le tableau avec les données de la BD
 	public void chargerDonnes() {
 		JTable table = this.fenetreTravaux.getTable();
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -173,10 +174,10 @@ public class GestionFenetreTravaux extends GestionHeaderEtFooter implements Mous
 					f.getMontantDevis(), f.getDatePaiement(), f.getDesignationDeTravaux(), f.getEntreprise().getNom() };
 			model.addRow(ligne);
 		}
-
 	}
 
-	private void majDonnees() {
+	// Sert a mettre a jours en direct les données
+	public void majDonnees() {
 		double somme = 0;
 		for (Facture f : travaux) {
 			somme += f.getMontant();
@@ -201,7 +202,8 @@ public class GestionFenetreTravaux extends GestionHeaderEtFooter implements Mous
 			cal.setTime(f.getDateDeFacture());
 			int moisFacture = cal.get(java.util.Calendar.MONTH) + 1; // Janvier = 0
 			int anneeFacture = cal.get(java.util.Calendar.YEAR);
-
+			// On prefere utilise Calendar pour pour simplifie l'utilisation des mois et années
+			//
 			boolean match = true;
 
 			if (!"Tous".equals(moisSelectionne)) {
