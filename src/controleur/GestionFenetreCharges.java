@@ -80,8 +80,8 @@ public class GestionFenetreCharges extends GestionHeaderEtFooter implements Mous
 					c.setPourcentage(Float.parseFloat(table.getValueAt(row, 2).toString()));
 					c.setQuotite(Double.parseDouble(table.getValueAt(row, 3).toString()));
 					c.setDateCharge(Date.valueOf(table.getValueAt(row, 5).toString()));
-					daoCharge.update(c);
-
+					daoCharge.update(c);		
+					this.chargerDonnees();
 					JOptionPane.showMessageDialog(fenetre, "Données mises à jour !", "Mise à jour",
 							JOptionPane.INFORMATION_MESSAGE);
 					
