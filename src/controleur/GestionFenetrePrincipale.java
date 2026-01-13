@@ -270,30 +270,55 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 
 	// on ne récupère que les informations pour la tables paiement
 	private void mAJDeBaseDeDonnees(File file) throws SQLException {
-		DaoContratLocation daoContrat = new DaoContratLocation();
+	    DaoContratLocation daoContrat = new DaoContratLocation();
 
-		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-			String line;
-			while ((line = br.readLine()) != null) {
-				if (line.trim().isEmpty())
-					continue;
-				String[] data = line.split(";");
-				String idBien = data[0].trim();
-				String idLocataire = data[1].trim();
-				String moisAnnee = data[2].trim();
-				String dateDePaiement = this.getDateDePaiementInFormat(moisAnnee);
-				double montantLoyer = Double.parseDouble(data[3].trim());
-				double provisionCharge = Double.parseDouble(data[4].trim());
-				ContratLocation contrat = daoContrat.findContratByLocataireAndBien(idLocataire, idBien);
-				if (contrat == null)
-					continue;
-				prefillPaiement(dateDePaiement, montantLoyer, "Loyer", contrat.getNumeroDeContrat());
-				prefillPaiement(dateDePaiement, provisionCharge, "Provision charge", contrat.getNumeroDeContrat());
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	    try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+	        String line;
+	        while ((line = br.readLine()) != null) {
+	            if (line.trim().isEmpty())
+	                continue;
+	            String[] data = line.split(";");
+	            String idBien = data[0].trim();
+	            String idLocataire = data[1].trim();
+	            String moisAnnee = data[2].trim();
+	            String dateDePaiement = this.getDateDePaiementInFormat(moisAnnee);
+	            double montantLoyer = Double.parseDouble(data[3].trim());
+	            double provisionCharge = Double.parseDouble(data[4].trim());
+
+	            ContratLocation contrat =
+	                daoContrat.findContratByLocataireAndBien(idLocataire, idBien);
+	            if (contrat == null) {
+	                JOptionPane.showMessageDialog(
+	                    this.fenetre,
+	                    "ATTENTION !\n\n"
+	                    + "Aucun contrat n'existe pour :\n"
+	                    + "- Bien : " + idBien + "\n"
+	                    + "- Locataire : " + idLocataire + "\n"
+	                    + "- Période : " + moisAnnee,
+	                    "Contrat introuvable",
+	                    JOptionPane.WARNING_MESSAGE
+	                );
+	                continue;
+	            }
+	            prefillPaiement(
+	                dateDePaiement,
+	                montantLoyer,
+	                "Loyer",
+	                contrat.getNumeroDeContrat()
+	            );
+
+	            prefillPaiement(
+	                dateDePaiement,
+	                provisionCharge,
+	                "Provision charge",
+	                contrat.getNumeroDeContrat()
+	            );
+	        }
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
 	}
+
 
 	public void prefillPaiement(String date, double montant, String designation, String idContrat) {
 		FenetreAjouterPaiement fap = new FenetreAjouterPaiement(null, null);
