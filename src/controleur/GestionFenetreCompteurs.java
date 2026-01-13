@@ -112,8 +112,11 @@ public class GestionFenetreCompteurs extends GestionHeaderEtFooter implements Mo
                     c.setType(table.getValueAt(row, 0).toString());
                     c.setIndexNouveau(Double.parseDouble(table.getValueAt(row, 4).toString()));
                     c.setPartieVariable(parseDoubleSafe(table.getValueAt(row, 6)));
-
+                    c.setPartieFixe(parseDoubleSafe(table.getValueAt(row, 7)));
+                    
                     daoCompteur.update(c);
+                    this.remplirTableCompteurs();
+                    this.calculerTotaux();
                     
                     JOptionPane.showMessageDialog(
                             fenetre,                          
@@ -123,6 +126,7 @@ public class GestionFenetreCompteurs extends GestionHeaderEtFooter implements Mo
                         );
                     System.out.println("Updated in DB: " + c);
                 }
+                
                 break;
 
         }
