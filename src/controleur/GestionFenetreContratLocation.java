@@ -14,10 +14,12 @@ import javax.swing.table.DefaultTableModel;
 
 import modele.BienLouable;
 import modele.ContratLocation;
+import modele.Facture;
 import modele.IRL;
 import modele.Locataire;
 import modele.dao.DaoBienLouable;
 import modele.dao.DaoContratLocation;
+import modele.dao.DaoFacture;
 import modele.dao.DaoIRL;
 import modele.dao.DaoLocataire;
 import vue.*;
@@ -323,6 +325,8 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 		DefaultTableModel model = (DefaultTableModel) this.fenetre.getTable().getModel();
 		model.setRowCount(0);
 		DaoLocataire dL = new DaoLocataire();
+		DaoFacture dao = new DaoFacture();
+		List<Facture> liste = dao.findFactureByBienLouable(this.bl.getIdBienLouable());
 		for (ContratLocation c : contrats) {
 	        List<Locataire> locataires = dL.findLocataireByContrat(c.getNumeroDeContrat());
 	        String nomLoc = locataires.isEmpty() ? "" : locataires.get(0).getNom(); 
