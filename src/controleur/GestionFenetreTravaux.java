@@ -30,7 +30,7 @@ public class GestionFenetreTravaux extends GestionHeaderEtFooter implements Mous
 		super(fenetreTravaux);
 		this.fenetreTravaux = fenetreTravaux;
 		this.travaux = liste;
-		chargerDonnes();
+		remplirTable();
 		majDonnees();
 		if (this.fenetreTravaux.getFenetreAvant() == "FenPrincipale") {
 			this.fenetreTravaux.getBtnAjouterTravaux().hide();
@@ -63,49 +63,46 @@ public class GestionFenetreTravaux extends GestionHeaderEtFooter implements Mous
 			break;
 		case "Retirer":
 			JTable tablefac = fenetreTravaux.getTable();
-        	int rowfac = tablefac.getSelectedRow();
-        	if (rowfac != -1) {
-        		Facture f = this.travaux.get(rowfac);
-        		DaoFacture daoFacture;
-        		travaux.remove(f);
+			int rowfac = tablefac.getSelectedRow();
+			if (rowfac != -1) {
+				Facture f = this.travaux.get(rowfac);
+				DaoFacture daoFacture;
+				travaux.remove(f);
 				try {
 					daoFacture = new DaoFacture();
 					daoFacture.delete(f);
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
-        		
-        	}
-        	this.chargerDonnes();
+
+			}
+			this.remplirTable();
 			break;
-		case "Mettre à jour" :
+		case "Mettre à jour":
 			JTable table = fenetreTravaux.getTable();
-        	int row = table.getSelectedRow();
-        	if (row != -1) {
-        		Facture f = this.travaux.get(row);
-        		DaoFacture daoFacture;
-        		
-        		if (table.isEditing()) {
-                    table.getCellEditor().stopCellEditing();
-                }
-        		
+			int row = table.getSelectedRow();
+			if (row != -1) {
+				Facture f = this.travaux.get(row);
+				DaoFacture daoFacture;
+
+				if (table.isEditing()) {
+					table.getCellEditor().stopCellEditing();
+				}
+
 				try {
 					daoFacture = new DaoFacture();
+					f.setMontant(parseDoubleSafe(table.getValueAt(row, 1)));
 					f.setMontantDevis(parseDoubleSafe(table.getValueAt(row, 4)));
 					daoFacture.update(f);
-					
-					JOptionPane.showMessageDialog(
-							fenetreTravaux,                          
-                            "Données mises à jour !",         
-                            "Mise à jour",                    
-                            JOptionPane.INFORMATION_MESSAGE 
-                        );
-                    System.out.println("Updated in DB: " + f);
+					this.remplirTable();
+					JOptionPane.showMessageDialog(fenetreTravaux, "Données mises à jour !", "Mise à jour",
+							JOptionPane.INFORMATION_MESSAGE);
+
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
-        		
-        	}
+
+			}
 			break;
 		}
 	}
@@ -164,18 +161,6 @@ public class GestionFenetreTravaux extends GestionHeaderEtFooter implements Mous
 		}
 	}
 
-	// Sert a remplir le tableau avec les données de la BD
-	public void chargerDonnes() {
-		JTable table = this.fenetreTravaux.getTable();
-		DefaultTableModel model = (DefaultTableModel) table.getModel();
-		model.setRowCount(0);
-		for (Facture f : travaux) {
-			Object[] ligne = { f.getNumeroFacture(), f.getMontant(), f.getDateDeFacture(), f.getCompteBancaire(),
-					f.getMontantDevis(), f.getDatePaiement(), f.getDesignationDeTravaux(), f.getEntreprise().getNom() };
-			model.addRow(ligne);
-		}
-	}
-
 	// Sert a mettre a jours en direct les données
 	public void majDonnees() {
 		double somme = 0;
@@ -202,7 +187,8 @@ public class GestionFenetreTravaux extends GestionHeaderEtFooter implements Mous
 			cal.setTime(f.getDateDeFacture());
 			int moisFacture = cal.get(java.util.Calendar.MONTH) + 1; // Janvier = 0
 			int anneeFacture = cal.get(java.util.Calendar.YEAR);
-			// On prefere utilise Calendar pour pour simplifie l'utilisation des mois et années
+			// On prefere utilise Calendar pour pour simplifie l'utilisation des mois et
+			// années
 			//
 			boolean match = true;
 
@@ -264,13 +250,13 @@ public class GestionFenetreTravaux extends GestionHeaderEtFooter implements Mous
 	public void setListe(List<Facture> liste) {
 		this.travaux = liste;
 	}
-	
+
 	public void setFactures(List<Facture> factures) {
 		this.travaux = factures;
 		remplirTable();
 	}
 
-	private void remplirTable() {
+	public void remplirTable() {
 		DefaultTableModel model = (DefaultTableModel) fenetreTravaux.getTable().getModel();
 		model.setRowCount(0);
 		for (Facture f : this.travaux) {
