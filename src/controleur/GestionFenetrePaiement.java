@@ -200,6 +200,9 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter implements Mou
 				int anneeInt = Integer.parseInt(annee);
 				anneeValide = date.getYear() == anneeInt;
 			}
+			
+			
+			
 
 			if (moisValide && anneeValide) {
 				Object[] ligne = { p.getId_paiement(), p.getContratLocation().getNumeroDeContrat(),
