@@ -1,3 +1,6 @@
+
+--Calcul la difference entre les charges rÃ©els et les provisions de charges
+-- Ã  utiliser Ã  la fin d'un contrat
 create or replace FUNCTION calcul_regularisation_contrat (
     p_annee     IN NUMBER,
     p_contrat   IN VARCHAR2
@@ -53,8 +56,8 @@ BEGIN
     RETURN v_total_charges - v_total_provisions;
     
     -- Solde_Regularisation > 0  -> le locataire doit payer
-    -- Solde_Regularisation < 0  -> le propriétaire rembourse
-    -- Solde_Regularisation = 0  -> équilibre
+    -- Solde_Regularisation < 0  -> le propriï¿½taire rembourse
+    -- Solde_Regularisation = 0  -> ï¿½quilibre
 
 EXCEPTION
     WHEN NO_DATA_FOUND THEN
