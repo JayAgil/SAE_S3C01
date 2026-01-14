@@ -169,8 +169,8 @@ CREATE TABLE SAE_Contrat_Locataire (
     Id_Locataire VARCHAR2(50),
     Numero_de_contrat VARCHAR2(50),
     PRIMARY KEY (Id_Locataire, Numero_de_contrat),
-    CONSTRAINT fk_cl_loc FOREIGN KEY (Id_Locataire) REFERENCES SAE_Locataire(Id_Locataire),
-    CONSTRAINT fk_cl_con FOREIGN KEY (Numero_de_contrat) REFERENCES SAE_ContratLocation(Numero_de_contrat)
+    CONSTRAINT fk_cl_loc FOREIGN KEY (Id_Locataire) REFERENCES SAE_Locataire(Id_Locataire) ON DELETE CASCADE,
+    CONSTRAINT fk_cl_con FOREIGN KEY (Numero_de_contrat) REFERENCES SAE_ContratLocation(Numero_de_contrat) ON DELETE CASCADE
 );
 
 CREATE TABLE SAE_Revalorisation_Loyer(
@@ -184,3 +184,6 @@ CREATE TABLE SAE_Revalorisation_Loyer(
 
 SET AUTOCOMMIT ON;
 SHOW AUTOCOMMIT;
+
+
+SAE_BienLouable
