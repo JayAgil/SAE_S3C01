@@ -117,4 +117,6 @@ public class DaoPaiement extends DaoModele<Paiement> implements Dao<Paiement> {
 		String designation = rs.getString(5);
 		return new Paiement(idpaiement, montant, datePaiement, designation, cl);
 	}
+	
+	
 }

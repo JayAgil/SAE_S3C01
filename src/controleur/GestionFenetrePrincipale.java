@@ -270,30 +270,55 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 
 	// on ne récupère que les informations pour la tables paiement
 	private void mAJDeBaseDeDonnees(File file) throws SQLException {
-		DaoContratLocation daoContrat = new DaoContratLocation();
+	    DaoContratLocation daoContrat = new DaoContratLocation();
 
-		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-			String line;
-			while ((line = br.readLine()) != null) {
-				if (line.trim().isEmpty())
-					continue;
-				String[] data = line.split(";");
-				String idBien = data[0].trim();
-				String idLocataire = data[1].trim();
-				String moisAnnee = data[2].trim();
-				String dateDePaiement = this.getDateDePaiementInFormat(moisAnnee);
-				double montantLoyer = Double.parseDouble(data[3].trim());
-				double provisionCharge = Double.parseDouble(data[4].trim());
-				ContratLocation contrat = daoContrat.findContratByLocataireAndBien(idLocataire, idBien);
-				if (contrat == null)
-					continue;
-				prefillPaiement(dateDePaiement, montantLoyer, "Loyer", contrat.getNumeroDeContrat());
-				prefillPaiement(dateDePaiement, provisionCharge, "Provision charge", contrat.getNumeroDeContrat());
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	    try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+	        String line;
+	        while ((line = br.readLine()) != null) {
+	            if (line.trim().isEmpty())
+	                continue;
+	            String[] data = line.split(";");
+	            String idBien = data[0].trim();
+	            String idLocataire = data[1].trim();
+	            String moisAnnee = data[2].trim();
+	            String dateDePaiement = this.getDateDePaiementInFormat(moisAnnee);
+	            double montantLoyer = Double.parseDouble(data[3].trim());
+	            double provisionCharge = Double.parseDouble(data[4].trim());
+
+	            ContratLocation contrat =
+	                daoContrat.findContratByLocataireAndBien(idLocataire, idBien);
+	            if (contrat == null) {
+	                JOptionPane.showMessageDialog(
+	                    this.fenetre,
+	                    "ATTENTION !\n\n"
+	                    + "Aucun contrat n'existe pour :\n"
+	                    + "- Bien : " + idBien + "\n"
+	                    + "- Locataire : " + idLocataire + "\n"
+	                    + "- Période : " + moisAnnee,
+	                    "Contrat introuvable",
+	                    JOptionPane.WARNING_MESSAGE
+	                );
+	                continue;
+	            }
+	            prefillPaiement(
+	                dateDePaiement,
+	                montantLoyer,
+	                "Loyer",
+	                contrat.getNumeroDeContrat()
+	            );
+
+	            prefillPaiement(
+	                dateDePaiement,
+	                provisionCharge,
+	                "Provision charge",
+	                contrat.getNumeroDeContrat()
+	            );
+	        }
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
 	}
+
 
 	public void prefillPaiement(String date, double montant, String designation, String idContrat) {
 		FenetreAjouterPaiement fap = new FenetreAjouterPaiement(null, null);
@@ -326,25 +351,56 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if (e.getClickCount() == 2 && e.getSource() instanceof JTable) {
-			JTable table = (JTable) e.getSource();
-			int row = table.rowAtPoint(e.getPoint());
-			int column = table.columnAtPoint(e.getPoint());
-			if (row != -1 && (column == 0 || column == 1 || column == 2 || column == 3)) {
-				try {
-					String idCtrt = table.getValueAt(row, 0).toString();
-					DaoBienLouable daoBL = new DaoBienLouable();
-					BienLouable bien = daoBL.findByIdContrat(idCtrt);
-				    FenetreBienLouable fen = new FenetreBienLouable("FenetrePrincipale", bien);
-				    fen.setVisible(true);
-				    fenetre.dispose();
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				}
-			}
-		}
+	    if (e.getClickCount() == 2 && e.getSource() instanceof JTable) {
+	        JTable table = (JTable) e.getSource();
+	        int row = table.rowAtPoint(e.getPoint());
+	        int column = table.columnAtPoint(e.getPoint());
 
+	        if (row != -1 && (column == 0 || column == 1 || column == 2 || column == 3)) {
+	            try {
+	                Object contratIdObj = table.getValueAt(row, 0);
+
+	                DaoBienLouable daoBL = new DaoBienLouable();
+	                BienLouable bien;
+
+	                if (contratIdObj != null && !contratIdObj.toString().equals("Aucun contrat en cours")) {
+	                    String idCtrt = contratIdObj.toString();
+	                    bien = daoBL.findByIdContrat(idCtrt);
+	                } else {
+	                    String typeBien = table.getValueAt(row, 2).toString();
+	                    int nbPieces = Integer.parseInt(table.getValueAt(row, 1).toString());
+
+	                    String batimentId = getBatimentId();
+	                    List<BienLouable> biens = daoBL.findByBatiment(batimentId);
+
+	                    bien = biens.stream()
+	                                .filter(b -> b.getTypeBienLouable().equals(typeBien)
+	                                          && b.getNbPieces() == nbPieces)
+	                                .findFirst()
+	                                .orElse(null);
+
+	                    if (bien == null) {
+	                        JOptionPane.showMessageDialog(
+	                            fenetre,
+	                            "Impossible de retrouver le bien louable sélectionné.",
+	                            "Erreur",
+	                            JOptionPane.ERROR_MESSAGE
+	                        );
+	                        return;
+	                    }
+	                }
+
+	                FenetreBienLouable fen = new FenetreBienLouable("FenetrePrincipale", bien);
+	                fen.setVisible(true);
+	                fenetre.dispose();
+
+	            } catch (SQLException ex) {
+	                ex.printStackTrace();
+	            }
+	        }
+	    }
 	}
+
 
 	/**
 	 * Fill all the info panels on the main window

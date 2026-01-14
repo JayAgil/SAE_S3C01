@@ -134,7 +134,7 @@ public class GestionFenetreCharges extends GestionHeaderEtFooter implements Mous
 					case "Entretien":
 						totalEntretien += c.getMontant();
 						break;
-					case "Nettoyage":
+					case "Ordures Menageres":
 						totalOrdures += c.getMontant();
 						break;
 					case "Ascenseur":

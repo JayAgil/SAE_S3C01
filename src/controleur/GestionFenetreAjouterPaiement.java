@@ -90,22 +90,21 @@ public class GestionFenetreAjouterPaiement extends GestionButtonFenetreAjouter {
 	}
 
 	public void chargerComboBoxContratLocation() {
-		JComboBox<ContratLocation> comboBox = this.fenetre.getComboBox();
-		comboBox.removeAllItems();
-		DaoContratLocation dao;
-		try {
-			dao = new DaoContratLocation();
-			ContratLocation cl = dao.findContratLocataionByLocataire(locataireSelectionne.getIdLocataire());
-			for (ContratLocation c : dao.findAll()) {
-				comboBox.addItem(c);
-			}
-			 if (cl != null) {
-			        comboBox.setSelectedItem(cl);
-			    }
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
+	    JComboBox<ContratLocation> comboBox = this.fenetre.getComboBox();
+	    comboBox.removeAllItems();
+	    try {
+	        DaoContratLocation dao = new DaoContratLocation();
+	        for (ContratLocation c : dao.findAll()) {
+	            comboBox.addItem(c);
+	        }
+	        if (locataireSelectionne != null) {
+	            ContratLocation cl = dao.findContratLocataionByLocataire(locataireSelectionne.getIdLocataire());
+	            if (cl != null) comboBox.setSelectedItem(cl);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
 	}
+
 
 }
