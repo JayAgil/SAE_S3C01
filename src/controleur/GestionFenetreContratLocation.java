@@ -3,6 +3,7 @@ package controleur;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -29,6 +30,7 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 	private List<ContratLocation> contrats;
 	private BienLouable bl;
 	private ContratLocation selected;
+	private int row;
 
 	@SuppressWarnings("deprecation")
 	public GestionFenetreContratLocation(FenetreContratLocation fenetre, ContratLocation cl, BienLouable bl)
@@ -211,12 +213,13 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 			fenetre.getLayeredPane().add(fn);
 			fn.setVisible(true);
 			break;
-		case "Retirer":
+		case "Modifier":
 			if(!(selected == null)) {
 				DaoContratLocation dCL = new DaoContratLocation();
-				dCL.delete(selected);
-				contrats.remove(selected);
+				selected.setDateFin(Date.valueOf(this.fenetre.getTable().getValueAt(this.row, 2).toString()));
+				dCL.update(selected);
 				this.remplirTable();
+				this.afficherContrat(selected);
 			}
 			break;
 
@@ -271,6 +274,7 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 		if (e.getSource() instanceof JTable) {
 			JTable table = (JTable) e.getSource();
 			int row = table.getSelectedRow();
+			this.row = table.getSelectedRow();
 			if (row >= 0 && row < contrats.size()) {
 				ContratLocation contratSelectionne = contrats.get(row);
 				this.selected = contrats.get(row);

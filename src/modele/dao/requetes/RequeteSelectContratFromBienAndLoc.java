@@ -20,13 +20,13 @@ public class RequeteSelectContratFromBienAndLoc extends Requete<ContratLocation>
      */
     @Override
 	public String requete() {
-		return "SELECT cl.* "
-				+ "FROM MSF5131A.SAE_ContratLocation cl "
-				+ "JOIN MSF5131A.SAE_Contrat_Locataire cll "
-				+ "ON cll.Numero_de_contrat = cl.Numero_de_contrat "
-				+ "WHERE cll.Id_Locataire = ? "
-				+ "AND cl.fk_Id_BienLouable = ? "
-				+ "Order by Date_debut DESC";
+    	return "SELECT cl.* "
+    		    + "FROM MSF5131A.SAE_ContratLocation cl "
+    		    + "JOIN MSF5131A.SAE_Contrat_Locataire cll ON cll.Numero_de_contrat = cl.Numero_de_contrat "
+    		    + "JOIN MSF5131A.SAE_Locataire l ON l.Id_Locataire = cll.Id_Locataire " 
+    		    + "WHERE l.Nom = ? "
+    		    + "AND cl.fk_Id_BienLouable = ? "
+    		    + "ORDER BY cl.Date_debut DESC";
 	}
 
     /**

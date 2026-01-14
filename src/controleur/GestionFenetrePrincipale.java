@@ -282,6 +282,7 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 	            String idLocataire = data[1].trim();
 	            String moisAnnee = data[2].trim();
 	            String dateDePaiement = this.getDateDePaiementInFormat(moisAnnee);
+	            System.out.println("Loc : " + idLocataire + " , Bien : " + idBien);
 	            double montantLoyer = Double.parseDouble(data[3].trim());
 	            double provisionCharge = Double.parseDouble(data[4].trim());
 
