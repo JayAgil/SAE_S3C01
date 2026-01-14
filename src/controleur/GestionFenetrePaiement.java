@@ -296,19 +296,15 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter implements Mou
 	    if (row == -1) {
 	    	return;
 	    }
-
 	    String designation = table.getValueAt(row, 4).toString();
-
-	    if ("Loyer".equals(designation)) {
-	        fenetre.getButtonQuittance().setEnabled(true);
-	        try {
-	            String idPaiement = table.getValueAt(row, 0).toString();
-	            DaoPaiement daoPaiement = new DaoPaiement();
-	            paiementSelectionne = daoPaiement.findById(idPaiement);
-	        } catch (SQLException ex) {
-	            ex.printStackTrace();
-	        }
-	    }
+        fenetre.getButtonQuittance().setEnabled(true);
+        try {
+            String idPaiement = table.getValueAt(row, 0).toString();
+            DaoPaiement daoPaiement = new DaoPaiement();
+            paiementSelectionne = daoPaiement.findById(idPaiement);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
 	}
 
 
