@@ -15,25 +15,49 @@ import javax.swing.table.DefaultTableModel;
 
 import modele.BienLouable;
 import modele.ContratLocation;
-import modele.Facture;
 import modele.IRL;
 import modele.Locataire;
 import modele.dao.DaoBienLouable;
 import modele.dao.DaoContratLocation;
-import modele.dao.DaoFacture;
 import modele.dao.DaoIRL;
 import modele.dao.DaoLocataire;
 import vue.*;
 
+/**
+ * Contrôleur de la fenêtre de gestion des contrats de location.
+ * Cette classe permet d'afficher, ajouter, mettre à jour et gérer les
+ * contrats de location pour un bien louable donné ou pour tous les biens.
+ * Elle gère également la sélection de contrats, la revalorisation des loyers
+ * et charges, ainsi que l'affichage des locataires liés.
+ */
 public class GestionFenetreContratLocation extends GestionHeaderEtFooter implements MouseListener {
 
-	private FenetreContratLocation fenetre;
-	private ContratLocation cl;
-	private List<ContratLocation> contrats;
-	private BienLouable bl;
-	private ContratLocation selected;
-	private int row;
+	/** Fenêtre graphique associée aux contrats de location */
+    private FenetreContratLocation fenetre;
 
+    /** Contrat sélectionné lors de l'ouverture de la fenêtre */
+    private ContratLocation cl;
+
+    /** Liste des contrats affichés dans la fenêtre */
+    private List<ContratLocation> contrats;
+
+    /** Bien louable concerné par les contrats */
+    private BienLouable bl;
+
+    /** Contrat actuellement sélectionné */
+    private ContratLocation selected;
+
+    /** Index de la ligne sélectionnée dans la table */
+    private int row;
+
+    /**
+     * Constructeur du contrôleur.
+     *
+     * @param fenetre FenetreContratLocation à gérer
+     * @param cl      Contrat sélectionné (peut être null)
+     * @param bl      Bien louable concerné (peut être null pour tous les biens)
+     * @throws SQLException en cas d'erreur SQL
+     */
 	@SuppressWarnings("deprecation")
 	public GestionFenetreContratLocation(FenetreContratLocation fenetre, ContratLocation cl, BienLouable bl)
 			throws SQLException {
@@ -41,31 +65,53 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 		this.fenetre = fenetre;
 		this.cl = cl;
 		this.bl = bl;
+		
+        // Récupération des contrats : tous les contrats ou ceux d’un bien spécifique
 		if (this.bl == null) {
 			this.contrats = new ArrayList<>(this.getAllContrats());
 		} else {
 			this.contrats = new ArrayList<>(this.getDonneesContrats());
 		}
 		
+        // Masquer le bouton ajouter si on vient de la fenêtre principale
 		if (this.fenetre.getFenDavant().equals("FenPrincipale")) {
 			this.fenetre.getBtnAjouter().hide();
 		}
 		
+        // Si aucun contrat sélectionné, afficher un état vide
 		if(this.cl == null) {
 			this.afficherContrat(null);
 		}
 	}
 
+     /**
+      * Récupère tous les contrats pour un bien donné.
+      *
+      * @return liste des contrats
+      * @throws SQLException en cas d'erreur SQL
+      */
 	public List<ContratLocation> getDonneesContrats() throws SQLException {
 		DaoContratLocation dCl = new DaoContratLocation();
 		return dCl.findByBienLouable(bl.getIdBienLouable());
 	}
 	
+	 /**
+     * Récupère tous les contrats de tous les biens.
+     *
+     * @return liste de tous les contrats
+     * @throws SQLException en cas d'erreur SQL
+     */
 	public List<ContratLocation> getAllContrats() throws SQLException {
 		DaoContratLocation dCl = new DaoContratLocation();
 		return dCl.findAll();
 	}
 
+	/**
+     * Gère les actions spécifiques des boutons pour les contrats.
+     *
+     * @param texte texte du bouton cliqué
+     * @throws SQLException en cas d'erreur SQL
+     */
 	@Override
 	protected void gererBoutonSpecifique(String texte) throws SQLException {
 		switch (texte) {
@@ -228,6 +274,11 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 		}
 	}
 
+	 /**
+     * Ouvre la fenêtre des locataires liés à un bien donné.
+     *
+     * @param idBien identifiant du bien
+     */
 	private void ouvrirFenetreLocataire(String idBien) {
 		try {
 			DaoLocataire daoLocataire = new DaoLocataire();
@@ -247,10 +298,12 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 		}
 	}
 
-	@Override
-	protected void gererMenuSpecifique(String texte) {
-	}
-
+	/**
+     * Gère le bouton retour pour revenir à la fenêtre précédente.
+     *
+     * @param texte texte du bouton retour
+     * @throws SQLException en cas d'erreur SQL
+     */
 	@Override
 	protected void gererBoutonRetour(String texte) throws SQLException {
 		if ("Retour".equals(texte)) {
@@ -267,10 +320,19 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 		}
 	}
 
+	/**
+     * Met à jour le titre de la table des contrats.
+     *
+     * @param bien bien louable dont les contrats sont affichés
+     */
 	public void updateTitreContrat(BienLouable bien) {
 		this.fenetre.getTitreTable().setText("Tous les contrats sous le bien " + bien.getIdBienLouable());
 	}
 
+	/**
+     * Méthode appelée lors d'un clic sur la table.
+     * Sélectionne le contrat et double-clic pour ouvrir la fenêtre des locataires.
+     */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if (e.getSource() instanceof JTable) {
@@ -289,22 +351,9 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 		}
 	}
 
-	@Override
-	public void mousePressed(MouseEvent e) {
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-	}
-
+	/**
+     * Initialise la fenêtre : remplit la table et sélectionne le premier contrat.
+     */
 	public void initialize() {
 		try {
 			remplirTable();
@@ -325,12 +374,15 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 		fenetre.getTable().addMouseListener(this);
 	}
 
+	 /**
+     * Remplit la table avec les contrats et leurs locataires principaux.
+     *
+     * @throws SQLException en cas d'erreur SQL
+     */
 	public void remplirTable() throws SQLException {
 		DefaultTableModel model = (DefaultTableModel) this.fenetre.getTable().getModel();
 		model.setRowCount(0);
 		DaoLocataire dL = new DaoLocataire();
-		DaoFacture dao = new DaoFacture();
-		List<Facture> liste = dao.findFactureByBienLouable(this.bl.getIdBienLouable());
 		for (ContratLocation c : contrats) {
 	        List<Locataire> locataires = dL.findLocataireByContrat(c.getNumeroDeContrat());
 	        String nomLoc = locataires.isEmpty() ? "" : locataires.get(0).getNom(); 
@@ -340,6 +392,11 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 		fenetre.getTable().addMouseListener(this);
 	}
 
+	/**
+     * Affiche les informations détaillées d'un contrat dans les champs de texte.
+     *
+     * @param c contrat à afficher
+     */
 	private void afficherContrat(ContratLocation c) {
 
 	    if (c == null) {
@@ -409,9 +466,29 @@ public class GestionFenetreContratLocation extends GestionHeaderEtFooter impleme
 	    }
 	}
 
-
+	/**
+     * Définit la liste des contrats.
+     *
+     * @param contrats nouvelle liste
+     */
 	public void setContrats(List<ContratLocation> contrats) {
 		this.contrats = contrats;
+	}
+	
+	@Override
+	public void mousePressed(MouseEvent e) {
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
 	}
 
 }

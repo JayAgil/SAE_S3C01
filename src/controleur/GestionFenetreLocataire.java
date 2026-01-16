@@ -1,7 +1,5 @@
 package controleur;
 
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -19,30 +17,58 @@ import modele.dao.DaoLocataire;
 import modele.dao.DaoPaiement;
 import vue.*;
 
-public class GestionFenetreLocataire extends GestionHeaderEtFooter implements MouseListener {
+/**
+ * Contrôleur de la fenêtre d'affichage et de gestion des locataires.
+ * Permet de gérer l'affichage, l'ajout, la suppression et les paiements des locataires.
+ * Gère également la sélection et l'affichage des informations détaillées d'un locataire.
+ */
+public class GestionFenetreLocataire extends GestionHeaderEtFooter {
 
-	private FenetreLocataire fenetre;
-	private List<Locataire> locataires;
-	private Locataire locataireSelectionne;
+	/** Fenêtre graphique associée aux locataires */
+    private FenetreLocataire fenetre;
 
+    /** Liste des locataires affichés dans la fenêtre */
+    private List<Locataire> locataires;
+
+    /** Locataire actuellement sélectionné */
+    private Locataire locataireSelectionne;
+
+    /**
+     * Constructeur du contrôleur.
+     *
+     * @param fenetre   FenetreLocataire à gérer
+     * @param locataires Liste des locataires à afficher (peut être null)
+     */
 	@SuppressWarnings("deprecation")
 	public GestionFenetreLocataire(FenetreLocataire fenetre, List<Locataire> locataires) {
 		super(fenetre);
 		this.fenetre = fenetre;
 		this.locataires = locataires;
+		
+        // Charger les locataires dans la table
 		chargerDonnes();
+        // Afficher les champs de texte pour les détails
 		afficherTextFields();
 
+        // Si des locataires existent, sélectionner le premier
 		if (locataires != null && !locataires.isEmpty()) {
 			locataireSelectionne = locataires.get(0);
 			fenetre.getTable().setRowSelectionInterval(0, 0);
 			afficherDetails(locataireSelectionne);
 		}
+		
+        // Masquer le bouton d'ajout si la fenêtre précédente est la fenêtre principale
 		if (this.fenetre.getNomFenAvant() == "FenPrincipale") {
 			this.fenetre.getBtnAjouterLocataire().hide();
 		}
 	}
 
+	/**
+     * Gère les actions spécifiques des boutons.
+     * 
+     * @param texte texte du bouton cliqué
+     * @throws SQLException en cas d'erreur SQL
+     */
 	@Override
 	protected void gererBoutonSpecifique(String texte) throws SQLException {
 
@@ -112,6 +138,12 @@ public class GestionFenetreLocataire extends GestionHeaderEtFooter implements Mo
 		}
 	}
 
+	/**
+     * Gère les actions spécifiques des boutons.
+     * 
+     * @param texte texte du bouton cliqué
+     * @throws SQLException en cas d'erreur SQL
+     */
 	@Override
 	protected void gererBoutonRetour(String texte) throws SQLException {
 		if ("Retour".equals(texte)) {
@@ -133,6 +165,9 @@ public class GestionFenetreLocataire extends GestionHeaderEtFooter implements Mo
 
 	}
 
+	/**
+     * Charge les données des locataires dans la table.
+     */
 	public void chargerDonnes() {
 		try {
 			DaoLocataire daoLoc = new DaoLocataire();
@@ -162,6 +197,9 @@ public class GestionFenetreLocataire extends GestionHeaderEtFooter implements Mo
 		}
 	}
 
+	 /**
+     * Configure les champs de texte pour afficher les détails du locataire sélectionné.
+     */
 	private void afficherTextFields() {
 		JTable table = fenetre.getTable();
 		table.getSelectionModel().addListSelectionListener(e -> {
@@ -177,6 +215,11 @@ public class GestionFenetreLocataire extends GestionHeaderEtFooter implements Mo
 
 	}
 
+	/**
+     * Affiche les détails du locataire sélectionné dans les champs de texte.
+     * 
+     * @param loc locataire à afficher
+     */
 	private void afficherDetails(Locataire loc) {
 		fenetre.getTextFieldNom().setText(loc.getNom());
 		fenetre.getTextFieldPrenom().setText(loc.getPrenom());
@@ -191,38 +234,14 @@ public class GestionFenetreLocataire extends GestionHeaderEtFooter implements Mo
 		fenetre.getTextFieldAdresse().setText(loc.getAdresse());
 	}
 
+	 /**
+     * Définit la liste des locataires.
+     * 
+     * @param locataires nouvelle liste de locataires
+     */
 	public void setLocataires(List<Locataire> locataires) {
 		this.locataires = locataires;
 	}
 
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
 
 }

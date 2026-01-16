@@ -20,12 +20,29 @@ import modele.Diagnostics;
 import modele.dao.DaoDiagnostics;
 import vue.*;
 
+/**
+ * Contrôleur pour la fenêtre de gestion des diagnostics d'un bien louable.
+ * Cette classe permet d'afficher, ajouter, mettre à jour, retirer et consulter
+ * les diagnostics associés à un bien. Elle gère également l'ouverture des
+ * fichiers PDF liés aux diagnostics et l'interaction avec la table des
+ * diagnostics.
+ */
 public class GestionFenetreDiagnostic extends GestionHeaderEtFooter {
 
+	/** Fenêtre graphique associée aux diagnostics */
 	private FenetreDiagnostic fenetre;
+
+	/** Bien louable concerné par les diagnostics */
 	private BienLouable bL;
+
+	/** Liste des diagnostics associés au bien */
 	private List<Diagnostics> diagnostics;
 
+	/**
+	 * Constructeur du contrôleur des diagnostics.
+	 *
+	 * @param fenetre FenetreDiagnostic à gérer
+	 */
 	public GestionFenetreDiagnostic(FenetreDiagnostic fenetre) {
 		super(fenetre);
 		this.fenetre = fenetre;
@@ -41,6 +58,12 @@ public class GestionFenetreDiagnostic extends GestionHeaderEtFooter {
 		this.initialize();
 	}
 
+	/**
+	 * Gère les actions spécifiques des boutons dans la fenêtre des diagnostics.
+	 *
+	 * @param texte texte du bouton cliqué
+	 * @throws SQLException en cas d'erreur SQL
+	 */
 	@Override
 	protected void gererBoutonSpecifique(String texte) throws SQLException {
 		switch (texte) {
@@ -100,6 +123,11 @@ public class GestionFenetreDiagnostic extends GestionHeaderEtFooter {
 
 	}
 
+	/**
+	 * Remplit la table avec les diagnostics du bien et met à jour les compteurs.
+	 *
+	 * @throws SQLException en cas d'erreur SQL
+	 */
 	public void chargerDonnees() throws SQLException {
 		if (bL == null)
 			return;
@@ -127,10 +155,18 @@ public class GestionFenetreDiagnostic extends GestionHeaderEtFooter {
 
 	}
 
+	/**
+	 * Définit la liste des diagnostics.
+	 *
+	 * @param diagnostics nouvelle liste
+	 */
 	public void setDiagnostics(List<Diagnostics> diagnostics) {
 		this.diagnostics = diagnostics;
 	}
 
+	/**
+	 * Ouvre le PDF associé au diagnostic sélectionné.
+	 */
 	private void ouvrirPDF() {
 		int selectedRow = fenetre.getTable().getSelectedRow();
 		if (selectedRow == -1) {
@@ -167,6 +203,12 @@ public class GestionFenetreDiagnostic extends GestionHeaderEtFooter {
 
 	}
 
+	/**
+	 * Vérifie si une date de validité expire ce mois-ci.
+	 *
+	 * @param date date à vérifier
+	 * @return true si la date est dans le mois courant
+	 */
 	private boolean isExpiringThisMonth(java.util.Date date) {
 		java.util.Calendar cal = java.util.Calendar.getInstance();
 		int monthNow = cal.get(java.util.Calendar.MONTH);
@@ -179,6 +221,9 @@ public class GestionFenetreDiagnostic extends GestionHeaderEtFooter {
 		return monthNow == monthDiag && yearNow == yearDiag;
 	}
 
+	/**
+	 * Active ou désactive le bouton "Choisir" selon la colonne sélectionnée.
+	 */
 	public void ouvrirButtonChoisir() {
 		int selectedRow = fenetre.getTable().getSelectedRow();
 		int selectedColumn = fenetre.getTable().getSelectedColumn();
@@ -190,6 +235,10 @@ public class GestionFenetreDiagnostic extends GestionHeaderEtFooter {
 		}
 	}
 
+	/**
+	 * Gestionnaire d'action pour le bouton "Choisir" permettant de sélectionner un
+	 * PDF.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if ("Choisir".equals(e.getActionCommand())) {
@@ -222,6 +271,9 @@ public class GestionFenetreDiagnostic extends GestionHeaderEtFooter {
 		}
 	}
 
+	/**
+	 * Initialise la fenêtre : ajoute les listeners et charge les diagnostics.
+	 */
 	public void initialize() {
 		super.initialize();
 		try {
