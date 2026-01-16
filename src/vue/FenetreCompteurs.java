@@ -265,7 +265,6 @@ public class FenetreCompteurs extends FenetreBase {
 		btnRetour.addActionListener(this.gestionClic);
 		btnMAJ.addActionListener(this.gestionClic);
 		btnRetirer.addActionListener(this.gestionClic);
-		tableCompteurs.addMouseListener(this.gestionClic);
 
 	}
 

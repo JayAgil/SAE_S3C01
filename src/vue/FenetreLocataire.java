@@ -335,7 +335,6 @@ public class FenetreLocataire extends FenetreBase {
 		btnPaiement.addActionListener(this.gestionClic);
 		btnRetirerLocataire.addActionListener(this.gestionClic);
 		btnRetour.addActionListener(this.gestionClic);
-		table.addMouseListener(this.gestionClic);
 
 	}
 
