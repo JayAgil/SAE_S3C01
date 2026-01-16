@@ -28,8 +28,18 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter implements Mou
 	private Paiement paiementSelectionne;
 	private Locataire locataireSelectionne;
 
+	/**
+	 * Constructeur du contrôleur.
+	 * 
+	 * @param fenetre              fenêtre de paiement
+	 * @param liste                liste des paiements
+	 * @param idLoc                identifiant du locataire
+	 * @param locataireSelectionne locataire sélectionné
+	 * @throws SQLException en cas d’erreur d’accès à la base de données
+	 */
 	@SuppressWarnings("deprecation")
-	public GestionFenetrePaiement(FenetrePaiement fenetre, List<Paiement> liste, String idLoc, Locataire locataireSelectionne) throws SQLException {
+	public GestionFenetrePaiement(FenetrePaiement fenetre, List<Paiement> liste, String idLoc,
+			Locataire locataireSelectionne) throws SQLException {
 		super(fenetre);
 		this.fenetre = fenetre;
 		this.idLoc = idLoc;
@@ -42,11 +52,17 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter implements Mou
 		}
 	}
 
+	/**
+	 * Gère les actions des boutons spécifiques à la fenêtre.
+	 *
+	 * @param texte texte du bouton cliqué
+	 * @throws SQLException en cas d’erreur SQL
+	 */
 	@Override
 	protected void gererBoutonSpecifique(String texte) throws SQLException {
 		switch (texte) {
 		case "Ajouter paiement":
-			FenetreAjouterPaiement fenAjouterPaiement = new FenetreAjouterPaiement(this,locataireSelectionne);
+			FenetreAjouterPaiement fenAjouterPaiement = new FenetreAjouterPaiement(this, locataireSelectionne);
 			fenetre.getLayeredPane().add(fenAjouterPaiement);
 			fenAjouterPaiement.setVisible(true);
 			break;
@@ -67,46 +83,52 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter implements Mou
 			fenetre.getLayeredPane().add(fenQuittance);
 			fenQuittance.setVisible(true);
 			break;
-		case "Mettre à jour" :
+		case "Mettre à jour":
 			JTable table = fenetre.getTable();
-        	int row = table.getSelectedRow();
-        	
-        	if (table.isEditing()) {
+			int row = table.getSelectedRow();
+
+			if (table.isEditing()) {
 				table.getCellEditor().stopCellEditing();
 			}
-        	
-        	if (row != -1) {
-        		Paiement p = this.paiements.get(row);
-        		DaoPaiement daoPaiement;
+
+			if (row != -1) {
+				Paiement p = this.paiements.get(row);
+				DaoPaiement daoPaiement;
 				try {
 					daoPaiement = new DaoPaiement();
-					
+
 					String dateStr = table.getValueAt(row, 2).toString();
-		            if (!dateStr.isEmpty()) {
-		                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		                LocalDate localDate = LocalDate.parse(dateStr, formatter);
-		                p.setDatepaiement(Date.valueOf(localDate));
-		            } else {
-		                p.setDatepaiement(null);
-		            }
-		            
+					if (!dateStr.isEmpty()) {
+						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+						LocalDate localDate = LocalDate.parse(dateStr, formatter);
+						p.setDatepaiement(Date.valueOf(localDate));
+					} else {
+						p.setDatepaiement(null);
+					}
+
 					p.setMontant(parseDoubleSafe(table.getValueAt(row, 3)));
 					p.setDesignation(table.getValueAt(row, 4).toString());
 					daoPaiement.update(p);
-					
+
 					JOptionPane.showMessageDialog(fenetre, "Données mises à jour !", "Mise à jour",
 							JOptionPane.INFORMATION_MESSAGE);
-					
+
 					System.out.print(p);
 				} catch (SQLException e1) {
 					e1.printStackTrace();
-				}	
-        	}
-        	break;
+				}
+			}
+			break;
 
 		}
 	}
 
+	/**
+	 * Gère l’action du bouton Retour selon la fenêtre précédente.
+	 *
+	 * @param texte texte du bouton cliqué
+	 * @throws SQLException en cas d’erreur SQL
+	 */
 	@Override
 	protected void gererBoutonRetour(String texte) throws SQLException {
 
@@ -131,9 +153,11 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter implements Mou
 		}
 
 	}
-	
 
-
+	/**
+	 * Charge les paiements dans le tableau et met à jour les informations
+	 * récapitulatives (dernier paiement, total).
+	 */
 	public void chargerDonnees() {
 		DefaultTableModel model = (DefaultTableModel) fenetre.getTable().getModel();
 		model.setRowCount(0);
@@ -141,7 +165,7 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter implements Mou
 		for (Paiement p : paiements) {
 			String dateFormatee = p.getDatepaiement().toLocalDate().format(formatter);
 			Object[] ligne = { p.getId_paiement(), p.getContratLocation().getNumeroDeContrat(), dateFormatee,
-					p.getMontant(),p.getDesignation() };
+					p.getMontant(), p.getDesignation() };
 			model.addRow(ligne);
 		}
 
@@ -153,6 +177,9 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter implements Mou
 						(String) fenetre.getComboBoxAnnee().getSelectedItem())));
 	}
 
+	/**
+	 * Affiche les détails du paiement sélectionné dans les labels.
+	 */
 	private void afficherDetailsPaiement() {
 		JTable table = fenetre.getTable();
 		table.getSelectionModel().addListSelectionListener(e -> {
@@ -168,6 +195,11 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter implements Mou
 		});
 	}
 
+	/**
+	 * Retourne la date du dernier paiement effectué.
+	 *
+	 * @return date du dernier paiement ou null si aucun paiement
+	 */
 	private LocalDate getDateDernierPaiement() {
 		LocalDate dernier = null;
 		for (Paiement p : paiements) {
@@ -179,6 +211,12 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter implements Mou
 		return dernier;
 	}
 
+	/**
+	 * Filtre les paiements selon le mois et l’année sélectionnés.
+	 *
+	 * @param mois  mois sélectionné
+	 * @param annee année sélectionnée
+	 */
 	private void filterPaiements(String mois, String annee) {
 
 		DefaultTableModel model = (DefaultTableModel) fenetre.getTable().getModel();
@@ -200,13 +238,10 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter implements Mou
 				int anneeInt = Integer.parseInt(annee);
 				anneeValide = date.getYear() == anneeInt;
 			}
-			
-			
-			
 
 			if (moisValide && anneeValide) {
 				Object[] ligne = { p.getId_paiement(), p.getContratLocation().getNumeroDeContrat(),
-						date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")), p.getMontant(),p.getDesignation() };
+						date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")), p.getMontant(), p.getDesignation() };
 				model.addRow(ligne);
 			}
 		}
@@ -215,6 +250,12 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter implements Mou
 
 	}
 
+	/**
+	 * Convertit le nom du mois en numéro.
+	 *
+	 * @param mois nom du mois
+	 * @return numéro du mois (1 à 12)
+	 */
 	private int convertirMoisEnInt(String mois) {
 		switch (mois) {
 		case "Janvier":
@@ -246,6 +287,13 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter implements Mou
 		}
 	}
 
+	/**
+	 * Calcule le montant total des paiements filtrés.
+	 *
+	 * @param mois  mois sélectionné
+	 * @param annee année sélectionnée
+	 * @return montant total
+	 */
 	private double getMontantTotalFiltre(String mois, String annee) {
 
 		double total = 0;
@@ -278,6 +326,9 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter implements Mou
 		this.paiements = paiements;
 	}
 
+	/**
+	 * Gère les actions sur les composants (comboBox mois / année).
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		super.actionPerformed(e);
@@ -291,26 +342,27 @@ public class GestionFenetrePaiement extends GestionHeaderEtFooter implements Mou
 		}
 	}
 
+	/**
+	 * Gère le clic sur une ligne du tableau de paiements.
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
-	    JTable table = fenetre.getTable();
-	    int row = table.getSelectedRow();
+		JTable table = fenetre.getTable();
+		int row = table.getSelectedRow();
 
-	    if (row == -1) {
-	    	return;
-	    }
-	    String designation = table.getValueAt(row, 4).toString();
-        fenetre.getButtonQuittance().setEnabled(true);
-        try {
-            String idPaiement = table.getValueAt(row, 0).toString();
-            DaoPaiement daoPaiement = new DaoPaiement();
-            paiementSelectionne = daoPaiement.findById(idPaiement);
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
+		if (row == -1) {
+			return;
+		}
+		String designation = table.getValueAt(row, 4).toString();
+		fenetre.getButtonQuittance().setEnabled(true);
+		try {
+			String idPaiement = table.getValueAt(row, 0).toString();
+			DaoPaiement daoPaiement = new DaoPaiement();
+			paiementSelectionne = daoPaiement.findById(idPaiement);
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
 	}
-
-
 
 	@Override
 	public void mousePressed(MouseEvent e) {

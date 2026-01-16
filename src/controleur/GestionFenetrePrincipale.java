@@ -30,7 +30,6 @@ import modele.ContratLocation;
 import modele.Locataire;
 import modele.Paiement;
 import modele.UtOracleDataSource;
-import modele.dao.DaoAssurance;
 import modele.dao.DaoBatiment;
 import modele.dao.DaoBienLouable;
 import modele.dao.DaoChargesGenerales;
@@ -40,7 +39,6 @@ import modele.dao.DaoLocataire;
 import modele.dao.DaoPaiement;
 import vue.FenetreAjouterBatiment;
 import vue.FenetreAjouterBienLouable;
-import vue.FenetreAjouterContratLocation;
 import vue.FenetreAjouterIRL;
 import vue.FenetreAjouterPaiement;
 import vue.FenetreAssurance;
@@ -55,11 +53,22 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 	private Batiment selected;
 	private BienLouable bl;
 
+	/**
+	 * Constructeur du contrôleur principal.
+	 * 
+	 * @param fenetre fenêtre principale
+	 */
 	public GestionFenetrePrincipale(FenetrePrincipale fenetre) {
 		super(fenetre);
 		this.fenetre = fenetre;
 	}
 
+	/**
+	 * Récupère les charges générales associées au bâtiment sélectionné.
+	 * 
+	 * @return liste des charges générales
+	 * @throws SQLException en cas d’erreur SQL
+	 */
 	public List<ChargesGenerales> getDonneesChargesGenerale() throws SQLException {
 		DaoChargesGenerales dao = new DaoChargesGenerales();
 		String[] id = new String[1];
@@ -67,6 +76,12 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 		return dao.findByIdBatiment(id);
 	}
 
+	/**
+	 * Récupère les compteurs associés au bâtiment sélectionné.
+	 * 
+	 * @return liste des compteurs
+	 * @throws SQLException en cas d’erreur SQL
+	 */
 	public List<Compteur> getDonneesCompteur() throws SQLException {
 		DaoCompteur dao = new DaoCompteur();
 		String[] id = new String[1];
@@ -74,46 +89,57 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 		return dao.findByIdBatiment(id);
 	}
 
+	/**
+	 * Gère les actions utilisateur provenant des composants graphiques.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-	    Object source = e.getSource();
-	    if (source == fenetre.getCbBatiment()) {
-	        fenetre.getTableBienLouable().clearSelection();
-	        String selected = (String) fenetre.getCbBatiment().getSelectedItem();
-	        DaoBatiment dB;
+		Object source = e.getSource();
+		if (source == fenetre.getCbBatiment()) {
+			fenetre.getTableBienLouable().clearSelection();
+			String selected = (String) fenetre.getCbBatiment().getSelectedItem();
+			DaoBatiment dB;
 			try {
 				dB = new DaoBatiment();
-		        this.selected = dB.findById(selected);
+				this.selected = dB.findById(selected);
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
-	        try {
-	            DaoBienLouable daoBL = new DaoBienLouable();
-	            List<BienLouable> biens = daoBL.findByBatiment(selected);
+			try {
+				DaoBienLouable daoBL = new DaoBienLouable();
+				List<BienLouable> biens = daoBL.findByBatiment(selected);
 
-	            if (biens == null || biens.isEmpty()) {
-	                fenetre.getBtnAjouterBien().setVisible(true);
-	            } else {
-	                fenetre.getBtnAjouterBien().setVisible(false);
-	            }
-	        } catch (SQLException ex) {
-	            ex.printStackTrace();
-	        }
-	        viderTable();
-	        remplirTableau();
-	        fenetre.revalidate();
-	        fenetre.repaint();
-	    } else {
-	        super.actionPerformed(e);
-	    }
+				if (biens == null || biens.isEmpty()) {
+					fenetre.getBtnAjouterBien().setVisible(true);
+				} else {
+					fenetre.getBtnAjouterBien().setVisible(false);
+				}
+			} catch (SQLException ex) {
+				ex.printStackTrace();
+			}
+			viderTable();
+			remplirTableau();
+			fenetre.revalidate();
+			fenetre.repaint();
+		} else {
+			super.actionPerformed(e);
+		}
 	}
 
-
+	/**
+	 * Vide le tableau des biens louables.
+	 */
 	private void viderTable() {
 		DefaultTableModel model = (DefaultTableModel) fenetre.getTableBienLouable().getModel();
 		model.setRowCount(0);
 	}
 
+	/**
+	 * Calcule le taux d’occupation global des biens louables.
+	 * 
+	 * @return taux d’occupation en pourcentage
+	 * @throws SQLException en cas d’erreur SQL
+	 */
 	public double calculerTauxOccupation() throws SQLException {
 		DaoBienLouable bienLouableDAO = new DaoBienLouable();
 		DaoContratLocation contratLocationDAO = new DaoContratLocation();
@@ -131,6 +157,9 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 		return Math.round(taux * 100.0) / 100.0;
 	}
 
+	/**
+	 * Calcule le bénéfice total à partir de tous les paiements.
+	 */
 	public double calculerBeneficeTotal() throws SQLException {
 		DaoPaiement paiementDAO = new DaoPaiement();
 		List<Paiement> paiements = paiementDAO.findAll();
@@ -141,6 +170,9 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 		return Math.round(total * 100.0) / 100.0;
 	}
 
+	/**
+	 * Compte le nombre de contrats expirant au mois courant.
+	 */
 	public int nombreContratsExpirantCeMois() throws SQLException {
 		DaoContratLocation contratLocationDAO = new DaoContratLocation();
 		List<ContratLocation> contrats = contratLocationDAO.findAll();
@@ -159,6 +191,9 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 		return count;
 	}
 
+	/**
+	 * Calcule le solde total non payé de tous les contrats.
+	 */
 	public double totalSoldeNonPayé() throws SQLException {
 		DaoContratLocation dao = new DaoContratLocation();
 		List<ContratLocation> contrats = dao.findAll();
@@ -169,6 +204,9 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 		return totalSolde;
 	}
 
+	/**
+	 * Gère les boutons spécifiques de la fenêtre principale.
+	 */
 	@SuppressWarnings("deprecation")
 	@Override
 	protected void gererBoutonSpecifique(String texte) throws SQLException {
@@ -201,19 +239,20 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 			break;
 		case "Ajouter Bien":
 			FenetreBienLouable fBL = new FenetreBienLouable("FenPrincipale", null);
-			FenetreAjouterBienLouable fenAB = new FenetreAjouterBienLouable(this.selected, new GestionFenetreBienLouable(fBL, null));
+			FenetreAjouterBienLouable fenAB = new FenetreAjouterBienLouable(this.selected,
+					new GestionFenetreBienLouable(fBL, null));
 			fenetre.getLayeredPane().add(fenAB);
 			fenAB.setVisible(true);
-			
+
 			DaoBienLouable dao = new DaoBienLouable();
-	        List<BienLouable> biens = dao.findByBatiment(selected.getAdresse());
-	        if (biens == null || biens.isEmpty()) {
-	            fenetre.getBtnAjouterBien().setVisible(true);
-	            this.remplirTableau();
-	        } else {
-	            fenetre.getBtnAjouterBien().setVisible(false);
-	            this.remplirTableau();
-	        }
+			List<BienLouable> biens = dao.findByBatiment(selected.getAdresse());
+			if (biens == null || biens.isEmpty()) {
+				fenetre.getBtnAjouterBien().setVisible(true);
+				this.remplirTableau();
+			} else {
+				fenetre.getBtnAjouterBien().setVisible(false);
+				this.remplirTableau();
+			}
 			break;
 		case "Importer Un Fichier CSV":
 			JFileChooser chooser = new JFileChooser();
@@ -231,96 +270,86 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 			fen.setVisible(true);
 			break;
 		case "Retirer":
-		    String adresseBat = getChosenBatiment().getAdresse();
-		    DaoBatiment dBat = new DaoBatiment();
-		    Batiment bat = dBat.findById(adresseBat);
+			String adresseBat = getChosenBatiment().getAdresse();
+			DaoBatiment dBat = new DaoBatiment();
+			Batiment bat = dBat.findById(adresseBat);
 
-		    if (bat != null) {
-		        try {
-		            dBat.delete(bat);
-		            remplirComboBatiment();
-		            if (fenetre.getCbBatiment().getItemCount() > 0) {
-		                fenetre.getCbBatiment().setSelectedIndex(0);
-		                remplirTableau();
-		            }
-		            remplirStatistiques();
-		        } catch (SQLException ex) {
-		            if (ex.getErrorCode() == 2292) { 
-		                JOptionPane.showMessageDialog(
-		                    fenetre,
-		                    "Impossible de supprimer ce bâtiment : il contient des enregistrements enfants (assurances, biens, etc.).\nSupprimez-les d'abord.",
-		                    "Suppression impossible",
-		                    JOptionPane.WARNING_MESSAGE
-		                );
-		            } else {
-		                ex.printStackTrace();
-		                JOptionPane.showMessageDialog(
-		                    fenetre,
-		                    "Erreur lors de la suppression : " + ex.getMessage(),
-		                    "Erreur",
-		                    JOptionPane.ERROR_MESSAGE
-		                );
-		            }
-		        }
-		    }
-		    break;
+			if (bat != null) {
+				try {
+					dBat.delete(bat);
+					remplirComboBatiment();
+					if (fenetre.getCbBatiment().getItemCount() > 0) {
+						fenetre.getCbBatiment().setSelectedIndex(0);
+						remplirTableau();
+					}
+					remplirStatistiques();
+				} catch (SQLException ex) {
+					if (ex.getErrorCode() == 2292) {
+						JOptionPane.showMessageDialog(fenetre,
+								"Impossible de supprimer ce bâtiment : il contient des enregistrements enfants (assurances, biens, etc.).\nSupprimez-les d'abord.",
+								"Suppression impossible", JOptionPane.WARNING_MESSAGE);
+					} else {
+						ex.printStackTrace();
+						JOptionPane.showMessageDialog(fenetre, "Erreur lors de la suppression : " + ex.getMessage(),
+								"Erreur", JOptionPane.ERROR_MESSAGE);
+					}
+				}
+			}
+			break;
 
 		}
 	}
 
-	// on ne récupère que les informations pour la tables paiement
+	/**
+	 * Met à jour la base de données avec les informations d'un fichier CSV. Chaque
+	 * ligne du fichier doit contenir : idBien; idLocataire; mois/année;
+	 * montantLoyer; provisionCharge
+	 * 
+	 * @param file fichier CSV contenant les paiements
+	 * @throws SQLException si une erreur SQL survient
+	 */
 	private void mAJDeBaseDeDonnees(File file) throws SQLException {
-	    DaoContratLocation daoContrat = new DaoContratLocation();
+		DaoContratLocation daoContrat = new DaoContratLocation();
 
-	    try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-	        String line;
-	        while ((line = br.readLine()) != null) {
-	            if (line.trim().isEmpty())
-	                continue;
-	            String[] data = line.split(";");
-	            String idBien = data[0].trim();
-	            String idLocataire = data[1].trim();
-	            String moisAnnee = data[2].trim();
-	            String dateDePaiement = this.getDateDePaiementInFormat(moisAnnee);
-	            System.out.println("Loc : " + idLocataire + " , Bien : " + idBien);
-	            double montantLoyer = Double.parseDouble(data[3].trim());
-	            double provisionCharge = Double.parseDouble(data[4].trim());
+		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+			String line;
+			while ((line = br.readLine()) != null) {
+				if (line.trim().isEmpty())
+					continue;
+				String[] data = line.split(";");
+				String idBien = data[0].trim();
+				String idLocataire = data[1].trim();
+				String moisAnnee = data[2].trim();
+				String dateDePaiement = this.getDateDePaiementInFormat(moisAnnee);
+				System.out.println("Loc : " + idLocataire + " , Bien : " + idBien);
+				double montantLoyer = Double.parseDouble(data[3].trim());
+				double provisionCharge = Double.parseDouble(data[4].trim());
 
-	            ContratLocation contrat =
-	                daoContrat.findContratByLocataireAndBien(idLocataire, idBien);
-	            if (contrat == null) {
-	                JOptionPane.showMessageDialog(
-	                    this.fenetre,
-	                    "ATTENTION !\n\n"
-	                    + "Aucun contrat n'existe pour :\n"
-	                    + "- Bien : " + idBien + "\n"
-	                    + "- Locataire : " + idLocataire + "\n"
-	                    + "- Période : " + moisAnnee,
-	                    "Contrat introuvable",
-	                    JOptionPane.WARNING_MESSAGE
-	                );
-	                continue;
-	            }
-	            prefillPaiement(
-	                dateDePaiement,
-	                montantLoyer,
-	                "Loyer",
-	                contrat.getNumeroDeContrat()
-	            );
+				ContratLocation contrat = daoContrat.findContratByLocataireAndBien(idLocataire, idBien);
+				if (contrat == null) {
+					JOptionPane.showMessageDialog(this.fenetre,
+							"ATTENTION !\n\n" + "Aucun contrat n'existe pour :\n" + "- Bien : " + idBien + "\n"
+									+ "- Locataire : " + idLocataire + "\n" + "- Période : " + moisAnnee,
+							"Contrat introuvable", JOptionPane.WARNING_MESSAGE);
+					continue;
+				}
+				prefillPaiement(dateDePaiement, montantLoyer, "Loyer", contrat.getNumeroDeContrat());
 
-	            prefillPaiement(
-	                dateDePaiement,
-	                provisionCharge,
-	                "Provision charge",
-	                contrat.getNumeroDeContrat()
-	            );
-	        }
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	    }
+				prefillPaiement(dateDePaiement, provisionCharge, "Provision charge", contrat.getNumeroDeContrat());
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
-
+	/**
+	 * Pré-remplit la fenêtre d'ajout de paiement avec les informations fournies.
+	 * 
+	 * @param date        date du paiement
+	 * @param montant     montant à payer
+	 * @param designation type du paiement (ex: "Loyer")
+	 * @param idContrat   identifiant du contrat concerné
+	 */
 	public void prefillPaiement(String date, double montant, String designation, String idContrat) {
 		FenetreAjouterPaiement fap = new FenetreAjouterPaiement(null, null);
 		fap.getTextFieldDate().setText(date);
@@ -336,10 +365,17 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 		fap.setVisible(true);
 	}
 
+	/**
+	 * Transforme une date sous format "MM/yy" en une date complète "yyyy-MM-dd" en
+	 * utilisant le jour actuel.
+	 * 
+	 * @param moisAnnee mois/année sous format MM/yy
+	 * @return date complète sous format yyyy-MM-dd
+	 */
 	private String getDateDePaiementInFormat(String moisAnnee) {
 		String[] parts = moisAnnee.split("/");
 		int mois = Integer.parseInt(parts[0]);
-		int annee = 2000 + Integer.parseInt(parts[1]); // 23 → 2023
+		int annee = 2000 + Integer.parseInt(parts[1]);
 		Calendar cal = Calendar.getInstance();
 		int jour = cal.get(Calendar.DAY_OF_MONTH);
 		String dateStr = String.format("%04d-%02d-%02d", annee, mois, jour);
@@ -350,61 +386,60 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 	protected void gererMenuSpecifique(String texte) {
 	}
 
+	/**
+	 * Gestion du double-clic sur une ligne du tableau des biens louables.
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
-	    if (e.getClickCount() == 2 && e.getSource() instanceof JTable) {
-	        JTable table = (JTable) e.getSource();
-	        int row = table.rowAtPoint(e.getPoint());
-	        int column = table.columnAtPoint(e.getPoint());
+		if (e.getClickCount() == 2 && e.getSource() instanceof JTable) {
+			JTable table = (JTable) e.getSource();
+			int row = table.rowAtPoint(e.getPoint());
+			int column = table.columnAtPoint(e.getPoint());
 
-	        if (row != -1 && (column == 0 || column == 1 || column == 2 || column == 3)) {
-	            try {
-	                Object contratIdObj = table.getValueAt(row, 0);
+			if (row != -1 && (column == 0 || column == 1 || column == 2 || column == 3)) {
+				try {
+					Object contratIdObj = table.getValueAt(row, 0);
 
-	                DaoBienLouable daoBL = new DaoBienLouable();
-	                BienLouable bien;
+					DaoBienLouable daoBL = new DaoBienLouable();
+					BienLouable bien;
 
-	                if (contratIdObj != null && !contratIdObj.toString().equals("Aucun contrat en cours")) {
-	                    String idCtrt = contratIdObj.toString();
-	                    bien = daoBL.findByIdContrat(idCtrt);
-	                } else {
-	                    String typeBien = table.getValueAt(row, 2).toString();
-	                    int nbPieces = Integer.parseInt(table.getValueAt(row, 1).toString());
+					if (contratIdObj != null && !contratIdObj.toString().equals("Aucun contrat en cours")) {
+						String idCtrt = contratIdObj.toString();
+						bien = daoBL.findByIdContrat(idCtrt);
+					} else {
+						String typeBien = table.getValueAt(row, 2).toString();
+						int nbPieces = Integer.parseInt(table.getValueAt(row, 1).toString());
 
-	                    String batimentId = getBatimentId();
-	                    List<BienLouable> biens = daoBL.findByBatiment(batimentId);
+						String batimentId = getBatimentId();
+						List<BienLouable> biens = daoBL.findByBatiment(batimentId);
 
-	                    bien = biens.stream()
-	                                .filter(b -> b.getTypeBienLouable().equals(typeBien)
-	                                          && b.getNbPieces() == nbPieces)
-	                                .findFirst()
-	                                .orElse(null);
+						bien = biens.stream()
+								.filter(b -> b.getTypeBienLouable().equals(typeBien) && b.getNbPieces() == nbPieces)
+								.findFirst().orElse(null);
 
-	                    if (bien == null) {
-	                        JOptionPane.showMessageDialog(
-	                            fenetre,
-	                            "Impossible de retrouver le bien louable sélectionné.",
-	                            "Erreur",
-	                            JOptionPane.ERROR_MESSAGE
-	                        );
-	                        return;
-	                    }
-	                }
+						if (bien == null) {
+							JOptionPane.showMessageDialog(fenetre,
+									"Impossible de retrouver le bien louable sélectionné.", "Erreur",
+									JOptionPane.ERROR_MESSAGE);
+							return;
+						}
+					}
 
-	                FenetreBienLouable fen = new FenetreBienLouable("FenetrePrincipale", bien);
-	                fen.setVisible(true);
-	                fenetre.dispose();
+					FenetreBienLouable fen = new FenetreBienLouable("FenetrePrincipale", bien);
+					fen.setVisible(true);
+					fenetre.dispose();
 
-	            } catch (SQLException ex) {
-	                ex.printStackTrace();
-	            }
-	        }
-	    }
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			}
+		}
 	}
 
-
 	/**
-	 * Fill all the info panels on the main window
+	 * Remplit les panneaux d'information de la fenêtre principale avec les
+	 * statistiques. Affiche le bénéfice total, le taux d'occupation, le solde non
+	 * payé et le nombre de contrats expirant ce mois.
 	 */
 	public void remplirStatistiques() {
 		try {
@@ -415,9 +450,9 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 			fenetre.getLblPasPaye().setText(String.format("%.2f %%", tauxOccupation));
 
 			double soldeNonPaye = totalSoldeNonPayé();
-			if(soldeNonPaye>=0) {
+			if (soldeNonPaye >= 0) {
 				fenetre.getLblSolde().setForeground(Color.GREEN);
-			}else {
+			} else {
 				fenetre.getLblSolde().setForeground(Color.RED);
 			}
 			fenetre.getLblSolde().setText(String.format("%.2f €", soldeNonPaye));
@@ -429,6 +464,9 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 		}
 	}
 
+	/**
+	 * Remplit le combo box des bâtiments avec toutes les adresses disponibles.
+	 */
 	public void remplirComboBatiment() {
 		try {
 			DaoBatiment daoBatiment = new DaoBatiment();
@@ -446,32 +484,42 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 		}
 	}
 
+	/**
+	 * Remplit le tableau des biens louables avec leurs informations et contrats. Si
+	 * un bien n'a pas de contrat, il affichera "Aucun contrat en cours".
+	 */
 	public void remplirTableau() {
-	    try {
-	        DaoBienLouable daoBienLouable = new DaoBienLouable();
-	        DaoContratLocation daoContrat = new DaoContratLocation();
-	        String batiment = fenetre.getChosenBatiment();
-	        List<BienLouable> listBienLouable = daoBienLouable.findByBatiment(batiment);
-	        int row = 0;
-	        if (listBienLouable != null) {
-	            for (BienLouable bien : listBienLouable) {
-	                List<ContratLocation> listContrat =
-	                        daoContrat.findByBienLouable(bien.getIdBienLouable());
-	                if (listContrat != null && !listContrat.isEmpty()) {
-	                    ecrireLigneTableBienLouable(row, bien, listContrat.get(0));
-	                } else {
-	                    ecrireLigneTableBienLouableSansContrat(row, bien);
-	                }
-	                row++; 
-	            }
-	        }
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    }
+		try {
+			DaoBienLouable daoBienLouable = new DaoBienLouable();
+			DaoContratLocation daoContrat = new DaoContratLocation();
+			String batiment = fenetre.getChosenBatiment();
+			List<BienLouable> listBienLouable = daoBienLouable.findByBatiment(batiment);
+			int row = 0;
+			if (listBienLouable != null) {
+				for (BienLouable bien : listBienLouable) {
+					List<ContratLocation> listContrat = daoContrat.findByBienLouable(bien.getIdBienLouable());
+					if (listContrat != null && !listContrat.isEmpty()) {
+						ecrireLigneTableBienLouable(row, bien, listContrat.get(0));
+					} else {
+						ecrireLigneTableBienLouableSansContrat(row, bien);
+					}
+					row++;
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
-	
-	public void ecrireLigneTableBienLouableSansContrat(int numeroLigne, BienLouable bienLouable)
-			throws SQLException {
+
+	/**
+	 * Écrit une ligne dans le tableau pour un bien louable sans contrat. Affiche
+	 * "Aucun contrat en cours" et les informations du bien.
+	 *
+	 * @param numeroLigne index de la ligne dans le tableau
+	 * @param bienLouable bien louable à afficher
+	 * @throws SQLException si une erreur SQL survient
+	 */
+	public void ecrireLigneTableBienLouableSansContrat(int numeroLigne, BienLouable bienLouable) throws SQLException {
 		JTable table = fenetre.getTableBienLouable();
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
 		if (model.getColumnCount() == 0) {
@@ -487,10 +535,15 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 		model.setValueAt("—", numeroLigne, 3);
 	}
 
-
-
-
-
+	/**
+	 * Écrit une ligne dans le tableau pour un bien louable avec un contrat
+	 * existant. Affiche également le locataire référent si disponible.
+	 *
+	 * @param numeroLigne index de la ligne dans le tableau
+	 * @param bienLouable bien louable à afficher
+	 * @param contrat     contrat associé au bien
+	 * @throws SQLException si une erreur SQL survient
+	 */
 	public void ecrireLigneTableBienLouable(int numeroLigne, BienLouable bienLouable, ContratLocation contrat)
 			throws SQLException {
 		DaoLocataire daoLocataire = new DaoLocataire();
@@ -515,12 +568,23 @@ public class GestionFenetrePrincipale extends GestionHeaderEtFooter implements M
 		}
 	}
 
+	/**
+	 * Retourne le bâtiment sélectionné dans le combo box.
+	 *
+	 * @return bâtiment sélectionné
+	 * @throws SQLException si une erreur SQL survient
+	 */
 	public Batiment getChosenBatiment() throws SQLException {
 		String idBat = (String) this.fenetre.getCbBatiment().getSelectedItem();
-        DaoBatiment dB = new DaoBatiment();
-        return dB.findById(idBat);
-    }
+		DaoBatiment dB = new DaoBatiment();
+		return dB.findById(idBat);
+	}
 
+	/**
+	 * Retourne l'identifiant (adresse) du bâtiment sélectionné.
+	 *
+	 * @return adresse du bâtiment
+	 */
 	public String getBatimentId() {
 		return (String) this.fenetre.getCbBatiment().getSelectedItem();
 	}
