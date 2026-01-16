@@ -1,3 +1,4 @@
+package TestModele;
 import static org.junit.Assert.*;
 import org.junit.Test;
 import modele.BienLouable;

@@ -104,9 +104,9 @@ public class FenetreContratLocation extends FenetreBase {
 		JButton btnChangementSolde = new JButton("Modifier solde");
 		panel_2.add(btnChangementSolde);
 
-		JButton btnRetirer = new JButton("Retirer");
+		JButton btnModifier = new JButton("Modifier");
 
-		panel_2.add(btnRetirer);
+		panel_2.add(btnModifier);
 
 		JButton btnRetour = new JButton("Retour");
 		panel_2.add(btnRetour);
@@ -349,23 +349,33 @@ public class FenetreContratLocation extends FenetreBase {
 		panel_3.add(scrollPane, gbc_scrollPane);
 
 		table = new JTable();
-		table.setModel(new DefaultTableModel(new Object[][] { { null, null, null, null, null },
-				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
-				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
-				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
-				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
-				{ null, null, null, null, null }, { null, null, null, null, null }, },
-				new String[] { "Nom du locataire", "Numero De Contrat", "Date Fin", "Montant Mensuel", "Solde" }) {
-			Class[] columnTypes = new Class[] { String.class, String.class, String.class, String.class, String.class };
-
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+			},
+			new String[] {
+				"Nom du locataire", "Numero De Contrat", "Date Fin", "Montant Mensuel", "Solde"
+			}
+		) {
+			Class[] columnTypes = new Class[] {
+				String.class, String.class, String.class, String.class, String.class
+			};
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
-			}
-
-			boolean[] columnEditables = new boolean[] { false, false, false, false, false, false };
-
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
 			}
 		});
 		scrollPane.setViewportView(table);
@@ -388,7 +398,7 @@ public class FenetreContratLocation extends FenetreBase {
 		btnRevalCharge.addActionListener(this.gestionClicContratLocation);
 		btnReguCharges.addActionListener(this.gestionClicContratLocation);
 		table.addMouseListener(this.gestionClicContratLocation);
-		btnRetirer.addActionListener(this.gestionClicContratLocation);
+		btnModifier.addActionListener(this.gestionClicContratLocation);
 		btnRetour.addActionListener(gestionClicContratLocation);
 		btnChangementSolde.addActionListener(this.gestionClicContratLocation);
 

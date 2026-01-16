@@ -10,8 +10,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import modele.BienLouable;
+import modele.ContratLocation;
 import modele.Entreprise;
 import modele.Facture;
+import modele.dao.DaoContratLocation;
 import modele.dao.DaoEntreprise;
 import modele.dao.DaoFacture;
 import vue.FenetreAjouterTravaux;
@@ -59,7 +61,16 @@ public class GestionAjouterTravaux extends GestionButtonFenetreAjouter {
 				JOptionPane.showMessageDialog(null, "Facture ajoutée avec succès !", "Succès",
 						JOptionPane.INFORMATION_MESSAGE);
 				this.parent.setListe(daoFac.findFactureByBienLouable(this.bl.getIdBienLouable()));
-				this.parent.chargerDonnes();
+				this.parent.remplirTable();
+				DaoContratLocation dao = new DaoContratLocation();
+				ContratLocation cl = dao.findCLByBien(this.bl.getIdBienLouable());
+				List<Facture> liste = daoFac.findFactureByBienLouable(this.bl.getIdBienLouable());
+				int somme = 0;
+				for (Facture fac : liste) {
+					somme += fac.getMontant();
+				}
+				cl.setSolde(cl.getSolde()-somme);
+				dao.update(cl);
 				this.fenetreAjouterTravaux.dispose();
 
 			} else {

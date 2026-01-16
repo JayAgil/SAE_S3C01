@@ -185,7 +185,7 @@ public class FenetrePaiement extends FenetreBase {
 		panel_11.add(lblDateDernierPaiement);
 
 		comboBoxAnnee = new JComboBox();
-		comboBoxAnnee.setModel(new DefaultComboBoxModel(new String[] { "Année", "2023", "2024", "2025", "2026" }));
+		comboBoxAnnee.setModel(new DefaultComboBoxModel(new String[] {"Année", "2022", "2023", "2024", "2025", "2026"}));
 		panel_8.add(comboBoxAnnee);
 
 		comboBoxMois = new JComboBox();
@@ -252,7 +252,9 @@ public class FenetrePaiement extends FenetreBase {
 		btnMAJ.addActionListener(this.gestionClic);
 		btnRetirer.addActionListener(this.gestionClic);
 		btnRetour.addActionListener(gestionClic);
+		
 	}
+
 
 	/**
 	 * Retourne le bouton permettant d'ajouter un nouveau paiement.

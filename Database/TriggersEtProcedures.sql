@@ -35,7 +35,7 @@ BEGIN
     WHERE Id_Lock = 'X';
 
     IF v_count = 0 THEN
-        RETURN; -- rien Ã  faire
+        RETURN; -- rien ÃƒÂ  faire
     END IF;
     SELECT TRUNC(date_dernier_lancement,'MM')
     INTO v_date
@@ -104,13 +104,13 @@ END;
     --a 1 ans ou + : solde = loyer + provision -(provision - charges reelles)
     --a tester avec provision a 200 et charges reelles 160 puis provision a 160 et charges reelles 200   
 
-            --dac = Date Anniversaire Contrat
-             --cl = Contrat Location
+            
 CREATE OR REPLACE PROCEDURE VerifierDateAnniversaire IS
     v_annees        NUMBER;
     v_date          DATE;
     v_total_charges NUMBER;
     v_dummy NUMBER;
+    v_count NUMBER;
 BEGIN
     SELECT COUNT(*)
     INTO v_count
@@ -121,8 +121,8 @@ BEGIN
     END IF;
 
     FOR i IN (
-        --dac = Date Anniversaire Contrat
-        --cl = Contrat Location
+            --dac = Date Anniversaire Contrat
+             --cl = Contrat Location
         SELECT dac.fk_Numero_de_contrat,
                TRUNC(dac.Date_dernier_anniversaire, 'MM') AS date_anniv,
                cl.Provision_Charge,
@@ -134,32 +134,31 @@ BEGIN
 
         v_date := i.date_anniv;
 
-        -- Calcul des annÃ©es pleines
+
         v_annees := EXTRACT(YEAR FROM TRUNC(SYSDATE)) - EXTRACT(YEAR FROM v_date);
 
-        -- On reconstitue la date anniversaire de l'annÃ©e en cours
+
         v_date := ADD_MONTHS(v_date, v_annees * 12);
 
-        -- Si la date dÃ©passe aujourd'hui, on recule d'un an
         IF v_date > TRUNC(SYSDATE) THEN
             v_annees := v_annees - 1;
             v_date := ADD_MONTHS(v_date, -12);
         END IF;
 
-        -- Si au moins 1 anniversaire s'est Ã©coulÃ©
+
         IF v_annees >= 1 THEN
-            -- Somme des charges pour le bien louable
+
             SELECT NVL(SUM(cg.Montant_Total), 0)
             INTO v_total_charges
             FROM SAE_Charges_Generale cg
             WHERE cg.fk_Id_BienLouable = i.fk_Id_BienLouable;
 
-            -- Mise Ã  jour du solde du contrat
+
             UPDATE SAE_ContratLocation
             SET Solde = Solde - ((i.Provision_Charge - v_total_charges) * 12 * v_annees)
             WHERE Numero_de_contrat = i.fk_Numero_de_contrat;
 
-            -- Mise Ã  jour de la date du dernier anniversaire
+
             UPDATE SAE_DateAnniversaireContrat
             SET Date_dernier_anniversaire = v_date
             WHERE fk_Numero_de_contrat = i.fk_Numero_de_contrat;
@@ -171,7 +170,7 @@ BEGIN
 END VerifierDateAnniversaire;
 /
 
-EXECUTE VerifierDateAnniversaire;
+
 
 
 --Empeche la suppression d un contrat si il reste un solde
@@ -186,7 +185,7 @@ END;
 /
 
 
-
+--Empeche la suppression d un locataire sous contrat
 CREATE OR REPLACE TRIGGER InterdictionSuppressionLocataireContrat
 BEFORE DELETE ON SAE_Locataire
 FOR EACH ROW
@@ -239,7 +238,24 @@ CREATE OR REPLACE PROCEDURE maj_montant_mensuel_irl (
     p_numero_contrat IN SAE_ContratLocation.Numero_de_contrat%TYPE
 ) IS
     v_max_irl NUMBER;
+    v_derniere_date DATE;
 BEGIN
+
+
+    SELECT Derniere_Date_Revalorisation
+    INTO v_derniere_date
+    FROM SAE_Revalorisation_Loyer
+    WHERE fk_Numero_de_contrat = p_numero_contrat;
+    IF ADD_MONTHS(TRUNC(v_derniere_date), 12) > TRUNC(SYSDATE) THEN
+        RAISE_APPLICATION_ERROR(
+            -20040,
+            'Revalorisation impossible : moins d''un an depuis la derniere mise Ã  jour'
+        );
+    END IF;
+
+
+
+
     v_max_irl := get_max_irl;
     UPDATE SAE_ContratLocation
     SET Montant_Mensuel = Montant_Mensuel * v_max_irl
@@ -247,10 +263,115 @@ BEGIN
     IF SQL%ROWCOUNT = 0 THEN
         RAISE_APPLICATION_ERROR(
             -20030,
-            'Aucun contrat trouvé pour le numéro : ' || p_numero_contrat
+            'Aucun contrat trouve pour le numero : ' || p_numero_contrat
         );
     END IF;
 
+
+    UPDATE SAE_Revalorisation_Loyer
+    SET Derniere_Date_Revalorisation = TRUNC(SYSDATE),
+        Loyer_Base = (
+            SELECT Montant_Mensuel
+            FROM SAE_ContratLocation
+            WHERE Numero_de_contrat = p_numero_contrat
+        )
+    WHERE fk_Numero_de_contrat = p_numero_contrat;
     COMMIT;
+END;
+/
+
+
+
+--Creer une date d anniversaire automatiquement quand on creer un contrat
+CREATE OR REPLACE TRIGGER AnniversaireBaseContrat
+AFTER INSERT ON SAE_CONTRATLOCATION
+FOR EACH ROW
+DECLARE
+
+BEGIN
+   INSERT INTO SAE_Revalorisation_Loyer 
+   ( fk_Numero_de_contrat, Derniere_Date_Revalorisation, Loyer_Base)
+    VALUES 
+    (:NEW.Numero_de_contrat, :NEW.Date_debut, :NEW.Montant_Mensuel);
+END;
+/
+
+
+
+CREATE OR REPLACE TRIGGER ChangeFinContratSuppressionBien
+AFTER DELETE ON SAE_Contrat_Locataire
+FOR EACH ROW
+BEGIN
+   DELETE FROM SAE_ContratLocation cl
+   WHERE cl.Numero_de_contrat = :OLD.Numero_de_contrat
+     AND NOT EXISTS (
+         SELECT 1
+         FROM SAE_Contrat_Locataire clt
+         WHERE clt.Numero_de_contrat = :OLD.Numero_de_contrat
+     );
+END;
+/
+
+
+CREATE OR REPLACE TRIGGER TRG_DEL_BIENLOUABLE_CASCADE
+BEFORE DELETE ON SAE_BienLouable
+FOR EACH ROW
+BEGIN
+    ------------------------------------------------------------------
+    -- 1) Delete data linked to contracts of this Bien
+    ------------------------------------------------------------------
+
+    -- Date anniversaire
+    DELETE FROM SAE_DateAnniversaireContrat
+    WHERE fk_Numero_de_contrat IN (
+        SELECT Numero_de_contrat
+        FROM SAE_ContratLocation
+        WHERE fk_Id_BienLouable = :OLD.Id_BienLouable
+    );
+
+    -- Revalorisation loyer
+    DELETE FROM SAE_Revalorisation_Loyer
+    WHERE fk_Numero_de_contrat IN (
+        SELECT Numero_de_contrat
+        FROM SAE_ContratLocation
+        WHERE fk_Id_BienLouable = :OLD.Id_BienLouable
+    );
+
+    -- Paiements
+    DELETE FROM SAE_Paiement
+    WHERE fk_Numero_de_contrat IN (
+        SELECT Numero_de_contrat
+        FROM SAE_ContratLocation
+        WHERE fk_Id_BienLouable = :OLD.Id_BienLouable
+    );
+
+    -- Locataire–Contrat links
+    DELETE FROM SAE_Contrat_Locataire
+    WHERE Numero_de_contrat IN (
+        SELECT Numero_de_contrat
+        FROM SAE_ContratLocation
+        WHERE fk_Id_BienLouable = :OLD.Id_BienLouable
+    );
+
+    -- Contracts
+    DELETE FROM SAE_ContratLocation
+    WHERE fk_Id_BienLouable = :OLD.Id_BienLouable;
+
+    ------------------------------------------------------------------
+    -- 2) Delete direct children of BienLouable
+    ------------------------------------------------------------------
+
+    DELETE FROM SAE_Charges_Generale
+    WHERE fk_Id_BienLouable = :OLD.Id_BienLouable;
+
+    DELETE FROM SAE_Diagnostics
+    WHERE fk_Id_BienLouable = :OLD.Id_BienLouable;
+
+    DELETE FROM SAE_Compteur
+    WHERE fk_Id_BienLouable = :OLD.Id_BienLouable;
+
+    DELETE FROM SAE_Facture
+    WHERE fk_Id_BienLouable = :OLD.Id_BienLouable;
+
 END;
 /

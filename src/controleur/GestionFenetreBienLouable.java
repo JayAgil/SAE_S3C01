@@ -1,407 +1,189 @@
 package controleur;
 
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import java.util.Collections;
 import java.util.List;
-
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import modele.*;
+import modele.dao.*;
+import vue.*;
 
-import modele.Batiment;
-import modele.BienLouable;
-import modele.ChargesGenerales;
-import modele.Compteur;
-import modele.ContratLocation;
-import modele.Facture;
-import modele.Locataire;
-import modele.Paiement;
-import modele.dao.DaoBatiment;
-import modele.dao.DaoBienLouable;
-import modele.dao.DaoChargesGenerales;
-import modele.dao.DaoCompteur;
-import modele.dao.DaoContratLocation;
-import modele.dao.DaoFacture;
-import modele.dao.DaoLocataire;
-import modele.dao.DaoPaiement;
-import vue.FenetreAjouterBienLouable;
-import vue.FenetreBienLouable;
-import vue.FenetreCharges;
-import vue.FenetreCompteurs;
-import vue.FenetreContratLocation;
-import vue.FenetreDiagnostic;
-import vue.FenetreLocataire;
-import vue.FenetrePrincipale;
-import vue.FenetreTravaux;
+/**
+ * Contrôleur de la fenêtre de gestion des biens louables. Cette classe permet :
+ * <li>d'afficher les biens louables d’un bâtiment</li>
+ * <li>de sélectionner un bien et afficher ses informations détaillées</li>
+ * <li>de gérer les contrats, charges, travaux, compteurs et locataires</li>
+ * <li>d'assurer la navigation entre les différentes fenêtres associées</li>
+ */
+public class GestionFenetreBienLouable extends GestionHeaderEtFooter {
 
-public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements MouseListener {
+    private FenetreBienLouable fenetre;
+    private BienLouable bien;
+    private String idBien;
 
-	private FenetreBienLouable fenetrebienlouable;
-	private BienLouable bien;
-	private String idBien; 
+    /**
+     * Constructeur du contrôleur de la fenêtre Bien Louable.
+     *
+     * @param fenetre fenêtre Bien Louable associée
+     * @param bien    bien louable sélectionné
+     */
+    public GestionFenetreBienLouable(FenetreBienLouable fenetre, BienLouable bien) {
+        super(fenetre);
+        this.fenetre = fenetre;
+        this.bien = bien;
 
-	public GestionFenetreBienLouable(FenetreBienLouable fenetre, BienLouable bien) {
-		super(fenetre);
-		this.fenetrebienlouable = fenetre;
-		this.bien = bien;
-	}
+        // Gestion de la sélection d’un bien dans le tableau
+        fenetre.getTable().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                JTable table = (JTable) e.getSource();
+                int row = table.rowAtPoint(e.getPoint());
+                if (row == -1) return;
 
-	public List<BienLouable> getListBienWithTheBienNow() {
-	    if (bien == null || bien.getBatiment() == null) {
-	        return Collections.emptyList();
-	    }
+                idBien = table.getModel().getValueAt(table.convertRowIndexToModel(row), 0).toString();
+                if (e.getClickCount() == 2) ouvrirFenetreLocataire(idBien);
+                else chargerBienEtRemplirFormulaire(idBien);
+            }
+        });
+    }
 
-	    try {
-	        DaoBienLouable daoBL = new DaoBienLouable();
-	        String idBatiment = bien.getBatiment().getAdresse();
-	        return daoBL.findByBatiment(idBatiment);
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	        return Collections.emptyList();
-	    }
-	}
+    // --- DAO Helpers simplifiés ---
+    private List<BienLouable> getBiensDuBatiment() {
+        if (bien == null || bien.getBatiment() == null) return Collections.emptyList();
+        try { return new DaoBienLouable().findByBatiment(bien.getBatiment().getAdresse()); }
+        catch (SQLException e) { e.printStackTrace(); return Collections.emptyList(); }
+    }
 
-	
-	public ContratLocation getDonneesContratByBien() throws SQLException{
-		DaoContratLocation dCL = new DaoContratLocation();
-		String idBien = this.fenetrebienlouable.getChosenBien();
-		return dCL.findCLByBien(idBien);
-	}
+    private ContratLocation getContrat(String id) throws SQLException { return new DaoContratLocation().findCLByBien(id); }
+    private List<ChargesGenerales> getCharges(String id) throws SQLException { return new DaoChargesGenerales().findByIdBien(id); }
+    private List<Compteur> getCompteurs(String id) throws SQLException { return new DaoCompteur().findByIdBien(id); }
+    private Facture getDernierTravaux(String id) throws SQLException { return new DaoFacture().findDateDernierTravauxByBien(id); }
+    private List<Locataire> getLocataires(String idContrat) throws SQLException { return new DaoLocataire().findLocataireByContrat(idContrat); }
+    private Paiement getDernierPaiement(String idContrat) throws SQLException { return new DaoPaiement().findDateDernierPaiementByCL(idContrat); }
 
-	public List<ChargesGenerales> getDonneesChargesGeneraleByBien() throws SQLException {
-		DaoChargesGenerales dao = new DaoChargesGenerales();
-		return dao.findByIdBien(bien.getIdBienLouable());
-	}
-	
-	public List<Compteur> getDonneesCompteur() throws SQLException {
-		DaoCompteur dao = new DaoCompteur();
-		String idBien = this.fenetrebienlouable.getChosenBien();
-		return dao.findByIdBien(idBien);
-	}
-	
-	public List<Facture> getDonneesTravauxByBien() throws SQLException {
-		DaoFacture dao = new DaoFacture();
-		return dao.findFactureByBienLouable(this.bien.getIdBienLouable());
-		
-	}
+    public BienLouable getBien() { return bien; }
 
-	public BienLouable getBien() {
-		return bien;
-	}
+    // --- Gestion des boutons ---
+    @Override
+    protected void gererBoutonSpecifique(String texte) throws SQLException {
+        switch (texte) {
+            case "Diagnostics" -> {
+                BienLouable bL = new DaoBienLouable().findById(fenetre.getChosenBien());
+                new FenetreDiagnostic(bL).setVisible(true);
+                fenetre.dispose();
+            }
+            case "Contrat" -> {
+                if (idBien == null || idBien.isEmpty()) {
+                    JOptionPane.showMessageDialog(fenetre, "Veuillez sélectionner un bien louable avant d'ouvrir le contrat", "Information", JOptionPane.INFORMATION_MESSAGE);
+                    return;
+                }
+                bien = new DaoBienLouable().findById(idBien);
+                ContratLocation cl = getContrat(idBien);
+                new FenetreContratLocation("FenBienLouable", cl, bien).setVisible(true);
+                fenetre.dispose();
+            }
+            case "Charges" -> { new FenetreCharges("FenetreBienLouable", getCharges(bien.getIdBienLouable()), bien).setVisible(true); fenetre.dispose(); }
+            case "Travaux" -> { new FenetreTravaux("FenetreBienLouable", Collections.singletonList(getDernierTravaux(bien.getIdBienLouable())), bien).setVisible(true); fenetre.dispose(); }
+            case "Ajouter" -> {
+                Batiment bat = new DaoBatiment().findBatimentByBien(bien.getIdBienLouable());
+                FenetreAjouterBienLouable ajout = new FenetreAjouterBienLouable(bat, this);
+                fenetre.getLayeredPane().add(ajout); ajout.setVisible(true);
+            }
+            case "Retirer" -> {
+                int idx = fenetre.getTable().getSelectedRow();
+                if (idx != -1) {
+                    BienLouable toDelete = getBiensDuBatiment().get(idx);
+                    new DaoBienLouable().delete(toDelete);
+                    chargerDonnees();
+                }
+                if (!getBiensDuBatiment().isEmpty()) {
+                    bien = getBiensDuBatiment().get(0);
+                    idBien = bien.getIdBienLouable();
+                    chargerBienEtRemplirFormulaire(idBien);
+                }
+                JOptionPane.showMessageDialog(fenetre, "Bien Louable retiré avec succès", "Succès", JOptionPane.INFORMATION_MESSAGE);
+            }
+            case "Locataire" -> {
+                if (idBien == null || idBien.isEmpty()) {
+                    JOptionPane.showMessageDialog(fenetre, "Choisissez un bien avant d'aller à la fenêtre locataire!", "Information", JOptionPane.INFORMATION_MESSAGE);
+                } else ouvrirFenetreLocataire(idBien);
+            }
+            case "Compteur" -> { new FenetreCompteurs("FenetreBienLouable", getCompteurs(fenetre.getChosenBien()), bien).setVisible(true); fenetre.dispose(); }
+        }
+    }
 
-	@Override
-	protected void gererBoutonSpecifique(String texte) throws SQLException {
-		switch (texte) {
+    // --- Chargement des données d’un bien ---
+    public void chargerBienEtRemplirFormulaire(String idBien) {
+        try {
+            bien = new DaoBienLouable().findById(idBien);
+            ContratLocation cl = getContrat(idBien);
 
-		case "Diagnostics":
-			DaoBienLouable dBL = new DaoBienLouable();
-			BienLouable bL = dBL.findById(this.fenetrebienlouable.getChosenBien());
-			new FenetreDiagnostic(bL).setVisible(true);
-			fenetrebienlouable.dispose();
-			break;
+            List<Locataire> loc = (cl != null) ? getLocataires(cl.getNumeroDeContrat()) : Collections.emptyList();
+            Paiement dernierPaiement = (cl != null) ? getDernierPaiement(cl.getNumeroDeContrat()) : null;
+            double totalCharge = getCharges(idBien).stream().mapToDouble(ChargesGenerales::getMontant).sum();
+            Facture facture = getDernierTravaux(idBien);
 
-		case "Contrat":
-			DaoContratLocation dCl = new DaoContratLocation();
-			DaoBienLouable daob = new DaoBienLouable();
-			this.bien = daob.findById(this.idBien);
-			if(this.bien == null) {
-				JOptionPane.showMessageDialog(fenetre,
-						String.format("Veuillez selectionner un bien louable avant d'ouvrir le contrat"), "Information",
-						JOptionPane.INFORMATION_MESSAGE);
-			}else {
-				ContratLocation cl = dCl.findCLByBien(this.idBien);
-				new FenetreContratLocation("FenBienLouable", cl,this.bien).setVisible(true);
-				fenetrebienlouable.dispose();
-			}
-			break;
+            remplirFormulaire(bien, cl, totalCharge, loc, facture, dernierPaiement);
+        } catch (SQLException e) { e.printStackTrace(); }
+    }
 
-		case "Charges":
-			new FenetreCharges("FenetreBienLouable", getDonneesChargesGeneraleByBien(),bien).setVisible(true);
-			fenetrebienlouable.dispose();
-			break;
+    // --- Ouvrir la fenêtre locataire ---
+    private void ouvrirFenetreLocataire(String idBien) {
+        try {
+            List<Locataire> locataires = new DaoLocataire().findLocataireByBienLouable(idBien);
+            if (locataires == null || locataires.isEmpty()) {
+                JOptionPane.showMessageDialog(fenetre, "Ce bien n'a pas de locataire", "Information", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+            bien = new DaoBienLouable().findById(idBien);
+            new FenetreLocataire("FenetreBienLouable", locataires, bien).setVisible(true);
+            fenetre.dispose();
+        } catch (SQLException e) { e.printStackTrace(); }
+    }
 
-		case "Travaux":
-			new FenetreTravaux("FenetreBienLouable",getDonneesTravauxByBien(),bien).setVisible(true);
-			fenetrebienlouable.dispose();
-			break;
-			
-		case "Ajouter":
-			DaoBatiment dao = new DaoBatiment();
-			Batiment b = dao.findBatimentByBien(bien.getIdBienLouable());
-            FenetreAjouterBienLouable ajout = new FenetreAjouterBienLouable(b,this);
-            fenetre.getLayeredPane().add(ajout);
-            ajout.setVisible(true);
-            break;
-        
-		case "Retirer":
-			JTable table = this.fenetrebienlouable.getTable();
-        	int idx = table.getSelectedRow();
-        	if (idx != -1) {
-        		BienLouable bien = this.getListBienWithTheBienNow().get(idx);
-				try {
-	        		DaoBienLouable dB = new DaoBienLouable();
-					dB.delete(bien);
-					this.chargerDonnees();
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				}
-        		
-        	}
-			bien = this.getListBienWithTheBienNow().get(0);
-			idBien = this.getListBienWithTheBienNow().get(0).getIdBienLouable();
-			this.chargerBienEtRemplirFormulaire(idBien);
-			JOptionPane.showMessageDialog(fenetre,
-					String.format("Bien Louable retiré avec succès"), "Succès",
-					JOptionPane.INFORMATION_MESSAGE);
-			break;
-		case "Locataire":
-			if(idBien == null || idBien == "") {
-				JOptionPane.showMessageDialog(
-					    null,
-					    "Attention! Choisissez un bien avant d'aller à la fenêtre locaraire!",
-					    "Information",
-					    JOptionPane.INFORMATION_MESSAGE
-					);
-			}
-			ouvrirFenetreLocataire(idBien);
-			break;
-		case "Compteur":
-			new FenetreCompteurs("FenetreBienLouable", getDonneesCompteur(),bien).setVisible(true);
-			fenetrebienlouable.dispose();
-			break;
+    // --- Charger tous les biens dans le tableau ---
+    public void chargerDonnees() {
+        DefaultTableModel model = (DefaultTableModel) fenetre.getTable().getModel();
+        model.setRowCount(0);
+        List<BienLouable> liste = getBiensDuBatiment();
+        liste.forEach(b -> model.addRow(new Object[]{b.getIdBienLouable(), b.getAdresse(), b.getNbPieces(), b.getTypeBienLouable()}));
 
+        boolean hasBien = !liste.isEmpty();
+        fenetre.getBtnContrat().setEnabled(hasBien);
+        fenetre.getBtnCharge().setEnabled(hasBien);
+        fenetre.getBtnTravaux().setEnabled(hasBien);
+        fenetre.getBtnCompteur().setEnabled(hasBien);
+    }
 
-		}
-	}
+    /**
+     * Remplit le formulaire avec les données du bien sélectionné.
+     */
+    public void remplirFormulaire(BienLouable bien, ContratLocation cl, double charge, List<Locataire> loc, Facture fac, Paiement date) {
+        fenetre.getTextFieldNom().setText(!loc.isEmpty() ? loc.get(0).getNom() : "Aucun locataire");
+        fenetre.getTextFieldLoyerMen().setText(cl != null ? String.format("%.2f €", cl.getMontantMensuel()) : "Pas de contrat");
 
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		if (!(e.getSource() instanceof JTable))
-			return;
+        fenetre.getTextFieldNF().setText(bien != null ? bien.getNumeroFiscale() : "—");
+        fenetre.getTextFieldAdresse().setText(bien != null ? bien.getAdresse() : "—");
+        fenetre.getTextFieldSurfaceHab().setText(bien != null ? String.valueOf(bien.getSurfaceHabituable()) : "—");
+        fenetre.getTextFieldNbDPieces().setText(bien != null ? String.valueOf(bien.getNbPieces()) : "—");
+        fenetre.getTextFieldBienLoauble().setText(bien != null ? bien.getTypeBienLouable() : "—");
+        fenetre.getTextFieldBatiment().setText(bien != null && bien.getBatiment() != null ? bien.getBatiment().getAdresse() : "Aucun bâtiment");
 
-		JTable table = (JTable) e.getSource();
-		int row = table.rowAtPoint(e.getPoint());
-		if (row == -1)
-			return;
+        fenetre.getTextFieldDFC().setText(cl != null && cl.getDateFin() != null ? cl.getDateFin().toString() : "Pas de contrat actif");
+        fenetre.getTextFieldDT().setText(fac != null && fac.getDateDeFacture() != null ? fac.getDateDeFacture().toString() : "Aucun travaux enregistré");
+        fenetre.getTextFieldTotalCharges().setText(charge > 0 ? String.format("%.2f €", charge) : "Aucune charge");
+        fenetre.getTextFieldDP().setText(date != null && date.getDatepaiement() != null ? date.getDatepaiement().toString() : "Aucun paiement enregistré");
+    }
 
-		int modelRow = table.convertRowIndexToModel(row);
-		idBien = table.getModel().getValueAt(modelRow, 0).toString();
-		if (e.getClickCount() == 2) {
-			ouvrirFenetreLocataire(idBien);
-			return;
-		}
-		chargerBienEtRemplirFormulaire(idBien);
-	}
-
-	public void chargerBienEtRemplirFormulaire(String idBien) {
-	    try {
-	        DaoBienLouable daoBien = new DaoBienLouable();
-	        BienLouable bienSelectionne = daoBien.findById(idBien);
-
-	        if (bienSelectionne == null) {
-	            return;
-	        }
-	        DaoContratLocation daoCL = new DaoContratLocation();
-	        ContratLocation contrat = daoCL.findCLByBien(idBien);
-
-	        List<Locataire> locataires = Collections.emptyList();
-	        Paiement dernierPaiement = null;
-
-	        if (contrat != null) {
-	            DaoLocataire daoLoc = new DaoLocataire();
-	            locataires = daoLoc.findLocataireByContrat(contrat.getNumeroDeContrat());
-
-	            DaoPaiement daoPaiement = new DaoPaiement();
-	            dernierPaiement = daoPaiement.findDateDernierPaiementByCL(contrat.getNumeroDeContrat());
-	        }
-
-	        DaoChargesGenerales daoCharge = new DaoChargesGenerales();
-	        List<ChargesGenerales> charges = daoCharge.findByIdBien(idBien);
-
-	        double totalCharge = 0.0;
-	        if (charges != null && !charges.isEmpty()) {
-	            totalCharge = charges.stream()
-	                                 .mapToDouble(ChargesGenerales::getMontant)
-	                                 .sum();
-	        }
-
-	        DaoFacture daoFacture = new DaoFacture();
-	        Facture facture = daoFacture.findDateDernierTravauxByBien(idBien);
-
-	        this.bien = bienSelectionne;
-
-	        remplirFormulaire(
-	            bienSelectionne,
-	            contrat,
-	            totalCharge,
-	            locataires,
-	            facture,
-	            dernierPaiement
-	        );
-
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    }
-	}
-
-
-
-	private void ouvrirFenetreLocataire(String idBien) {
-		try {
-			DaoLocataire daoLocataire = new DaoLocataire();
-			List<Locataire> locataires = daoLocataire.findLocataireByBienLouable(idBien);
-			if (locataires == null){
-				JOptionPane.showMessageDialog(
-					    null,
-					    "Ce bien n'a pas de locataire",
-					    "Information",
-					    JOptionPane.INFORMATION_MESSAGE
-					);
-			}else {
-				DaoBienLouable db = new DaoBienLouable();
-				BienLouable bien = db.findById(idBien);
-				FenetreLocataire fen = new FenetreLocataire("FenetreBienLouable", locataires, bien);
-				fen.setVisible(true);
-				fenetre.dispose();
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-
-	
-	
-	public void chargerDonnees() throws SQLException {
-
-		List<BienLouable> liste = getListBienWithTheBienNow();
-		DefaultTableModel model = (DefaultTableModel) fenetrebienlouable.getTable().getModel();
-
-		model.setRowCount(0);
-
-		for (BienLouable b : liste) {
-			model.addRow(
-					new Object[] { b.getIdBienLouable(), b.getAdresse(), b.getNbPieces(), b.getTypeBienLouable() });
-		}
-		boolean hasBien = !liste.isEmpty();
-
-		fenetrebienlouable.getBtnContrat().setEnabled(hasBien);
-		fenetrebienlouable.getBtnCharge().setEnabled(hasBien);
-		fenetrebienlouable.getBtnTravaux().setEnabled(hasBien);
-		fenetrebienlouable.getBtnCompteur().setEnabled(hasBien);
-
-
-	}
-
-	public void remplirFormulaire(
-	        BienLouable bien,
-	        ContratLocation cl,
-	        double charge,
-	        List<Locataire> loc,
-	        Facture fac,
-	        Paiement date) {
-
-	    if (loc != null && !loc.isEmpty()) {
-	        fenetrebienlouable.getTextFieldNom()
-	                .setText(loc.get(0).getNom());
-	    } else {
-	        fenetrebienlouable.getTextFieldNom()
-	                .setText("Aucun locataire");
-	    }
-
-	    if (cl != null) {
-	        fenetrebienlouable.getTextFieldLoyerMen()
-	                .setText(String.format("%.2f €", cl.getMontantMensuel()));
-	    } else {
-	        fenetrebienlouable.getTextFieldLoyerMen()
-	                .setText("Pas de contrat");
-	    }
-
-	    if (bien != null) {
-	        fenetrebienlouable.getTextFieldNF()
-	                .setText(bien.getNumeroFiscale());
-
-	        fenetrebienlouable.getTextFieldAdresse()
-	                .setText(bien.getAdresse());
-
-	        fenetrebienlouable.getTextFieldSurfaceHab()
-	                .setText(String.valueOf(bien.getSurfaceHabituable()));
-
-	        fenetrebienlouable.getTextFieldNbDPieces()
-	                .setText(String.valueOf(bien.getNbPieces()));
-
-	        fenetrebienlouable.getTextFieldBienLoauble()
-	                .setText(bien.getTypeBienLouable());
-
-	        if (bien.getBatiment() != null) {
-	            fenetrebienlouable.getTextFieldBatiment()
-	                    .setText(bien.getBatiment().getAdresse());
-	        } else {
-	            fenetrebienlouable.getTextFieldBatiment()
-	                    .setText("Aucun bâtiment");
-	        }
-	    } else {
-	        fenetrebienlouable.getTextFieldNF().setText("—");
-	        fenetrebienlouable.getTextFieldAdresse().setText("—");
-	        fenetrebienlouable.getTextFieldSurfaceHab().setText("—");
-	        fenetrebienlouable.getTextFieldNbDPieces().setText("—");
-	        fenetrebienlouable.getTextFieldBienLoauble().setText("—");
-	        fenetrebienlouable.getTextFieldBatiment().setText("—");
-	    }
-
-	    if (cl != null && cl.getDateFin() != null) {
-	        fenetrebienlouable.getTextFieldDFC()
-	                .setText(cl.getDateFin().toString());
-	    } else {
-	        fenetrebienlouable.getTextFieldDFC()
-	                .setText("Pas de contrat actif");
-	    }
-
-	    if (fac != null && fac.getDateDeFacture() != null) {
-	        fenetrebienlouable.getTextFieldDT()
-	                .setText(fac.getDateDeFacture().toString());
-	    } else {
-	        fenetrebienlouable.getTextFieldDT()
-	                .setText("Aucun travaux enregistré");
-	    }
-
-	    if (charge > 0) {
-	        fenetrebienlouable.getTextFieldTotalCharges()
-	                .setText(String.format("%.2f €", charge));
-	    } else {
-	        fenetrebienlouable.getTextFieldTotalCharges()
-	                .setText("Aucune charge");
-	    }
-
-	    if (date != null && date.getDatepaiement() != null) {
-	        fenetrebienlouable.getTextFieldDP()
-	                .setText(date.getDatepaiement().toString());
-	    } else {
-	        fenetrebienlouable.getTextFieldDP()
-	                .setText("Aucun paiement enregistré");
-	    }
-	}
-
-
-
-	@Override
-	protected void gererBoutonRetour(String texte) {
-		if ("Retour".equals(texte)) {
-			fenetre.dispose();
-			new FenetrePrincipale().setVisible(true);
-		}
-	}
-
-	public void mousePressed(MouseEvent e) {
-	}
-
-	public void mouseReleased(MouseEvent e) {
-	}
-
-	public void mouseEntered(MouseEvent e) {
-	}
-
-	public void mouseExited(MouseEvent e) {
-	}
+    @Override
+    protected void gererBoutonRetour(String texte) {
+        if ("Retour".equals(texte)) {
+            fenetre.dispose();
+            new FenetrePrincipale().setVisible(true);
+        }
+    }
 }

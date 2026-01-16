@@ -16,7 +16,7 @@ UPDATE SAE_Paiement SET Designation_Paiement = 'Charges'
        OR Id_Paiement='PAY-039'
        ;
 
-UPDATE SAE_ContratLocation SET Solde = 0 WHERE numero_de_contrat = 'CTR-0015';
+UPDATE SAE_ContratLocation SET Solde = 0;
 UPDATE SAE_DateDernierLancement SET date_dernier_lancement = TO_DATE('2024-09-15','YYYY-MM-DD');
 
 
@@ -89,10 +89,110 @@ REFERENCES SAE_ContratLocation(Numero_de_contrat)
 ON DELETE CASCADE;
 
 
-ALTER TABLE SAE_DateAnniversaireContrat
-DROP CONSTRAINT fk_Numero_de_contrat;
+
+
+
+
+ALTER TABLE SAE_BienLouable
+DROP CONSTRAINT fk_bien_bat;
+
+
+
+ALTER TABLE SAE_Assurance
+DROP CONSTRAINT fk_assur_bat;
+
+ALTER TABLE SAE_BienLouable
+ADD CONSTRAINT fk_bien_bat
+FOREIGN KEY (fk_Adresse_Bat)
+REFERENCES SAE_Batiment(Adresse)
+ON DELETE CASCADE;
+
+
+
+ALTER TABLE SAE_Assurance
+ADD CONSTRAINT fk_assur_bat
+FOREIGN KEY (fk_Adresse)
+REFERENCES SAE_Batiment(Adresse)
+ON DELETE CASCADE;
+
+
+ALTER TABLE SAE_Charges_Generale
+DROP CONSTRAINT fk_chg_bien;
+
+
+ALTER TABLE SAE_Compteur
+DROP CONSTRAINT fk_comp_bien;
+
+
+
+ALTER TABLE SAE_Charges_Generale
+ADD CONSTRAINT fk_chg_bien
+FOREIGN KEY (fk_Id_BienLouable)
+REFERENCES SAE_BienLouable(Id_BienLouable)
+;
+
+
+ALTER TABLE SAE_Compteur
+ADD CONSTRAINT fk_comp_bien
+FOREIGN KEY (fk_Id_BienLouable)
+REFERENCES SAE_BienLouable(Id_BienLouable)
+;
+
 
 
 
 ALTER TABLE SAE_ContratLocation
-DROP CONSTRAINT fk_;
+DROP CONSTRAINT fk_contrat_bien;
+
+
+ALTER TABLE SAE_Paiement
+DROP CONSTRAINT fk_paiement_contrat;
+
+
+
+ALTER TABLE SAE_ContratLocation
+ADD CONSTRAINT fk_contrat_bien
+FOREIGN KEY (fk_Id_BienLouable)
+REFERENCES SAE_BienLouable(Id_BienLouable)
+ON DELETE CASCADE;
+
+
+ALTER TABLE SAE_Paiement
+ADD CONSTRAINT fk_paiement_contrat
+FOREIGN KEY (fk_Numero_de_contrat)
+REFERENCES SAE_ContratLocation(Numero_de_contrat)
+ON DELETE CASCADE;
+
+
+
+
+ALTER TABLE SAE_DateAnniversaireContrat
+DROP CONSTRAINT fk_Numero_de_contrat;
+
+ALTER TABLE SAE_Revalorisation_Loyer
+DROP CONSTRAINT fk_rvl_con;
+
+ALTER TABLE SAE_Contrat_Locataire
+DROP CONSTRAINT fk_cl_con;
+
+
+
+ALTER TABLE SAE_DateAnniversaireContrat
+ADD CONSTRAINT fk_Numero_de_contrat
+FOREIGN KEY (fk_Numero_de_contrat)
+REFERENCES SAE_ContratLocation(Numero_de_contrat)
+ON DELETE CASCADE;
+
+
+ALTER TABLE SAE_Revalorisation_Loyer
+ADD CONSTRAINT fk_rvl_con
+FOREIGN KEY (fk_Numero_de_contrat)
+REFERENCES SAE_ContratLocation(Numero_de_contrat)
+ON DELETE CASCADE;
+
+
+ALTER TABLE SAE_Contrat_Locataire
+ADD CONSTRAINT fk_cl_con
+FOREIGN KEY (Numero_de_contrat)
+REFERENCES SAE_ContratLocation(Numero_de_contrat)
+ON DELETE CASCADE;

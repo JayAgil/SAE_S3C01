@@ -52,6 +52,7 @@ public class UtOracleDataSource extends OracleDataSource {
 	 *
 	 * @throws SQLException si la fermeture échoue
 	 */
+	
 	public static void Deconnecter() throws SQLException {
 		if (connection != null) {
 			connection.close();

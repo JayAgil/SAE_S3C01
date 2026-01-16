@@ -103,31 +103,40 @@ public class FenetreTravaux extends FenetreBase {
 		panel.add(panel_3, BorderLayout.CENTER);
 		scrollPane = new JScrollPane();
 		table = new JTable();
-		table.setModel(new DefaultTableModel(new Object[][] { { null, null, null, null, null, null, null, null },
-				{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
-				{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
-				{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
-				{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
-				{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
-				{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
-				{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
-				{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
-				{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
-				{ null, null, null, null, null, null, null, null }, { null, null, null, null, null, null, null, null },
-				{ null, null, null, null, null, null, null, null }, },
-				new String[] { "Num\u00E9ro facture", "Montant", "Date de facture", "Compte bancaire", "Montant devis",
-						"Date de paiement", "D\u00E9signation travaux", "Entreprise" }) {
-			Class[] columnTypes = new Class[] { String.class, String.class, String.class, String.class, Float.class,
-					String.class, String.class, String.class };
-
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
+			},
+			new String[] {
+				"Num\u00E9ro facture", "Montant", "Date de facture", "Compte bancaire", "Montant devis", "Date de paiement", "D\u00E9signation travaux", "Entreprise"
+			}
+		) {
+			Class[] columnTypes = new Class[] {
+				String.class, String.class, String.class, String.class, Float.class, String.class, String.class, String.class
+			};
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
-			}
-
-			boolean[] columnEditables = new boolean[] { false, false, false, false, true, false, false, false };
-
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
 			}
 		});
 		table.getColumnModel().getColumn(1).setPreferredWidth(58);
@@ -200,7 +209,7 @@ public class FenetreTravaux extends FenetreBase {
 		panel_7.add(lblAnnee);
 
 		comboBox_Annee = new JComboBox();
-		comboBox_Annee.setModel(new DefaultComboBoxModel(new String[] { "Tous", "2023", "2024", "2025", "2026" }));
+		comboBox_Annee.setModel(new DefaultComboBoxModel(new String[] {"Tous", "2021", "2022", "2023", "2024", "2025", "2026"}));
 		panel_7.add(comboBox_Annee);
 
 		this.gestionClic = new GestionFenetreTravaux(this, this.factures);
