@@ -1,4 +1,4 @@
-----Rajouter un trigger qui retire du solde quand on ajoute un paiement
+----retire du solde quand on ajoute un paiement
 
 CREATE OR REPLACE TRIGGER AjoutPaiementSolde
 AFTER INSERT ON SAE_PAIEMENT
@@ -12,18 +12,11 @@ END;
 
 
 
-
-
-
-
-
-
-
-
 CREATE OR REPLACE PROCEDURE VerifierDateLancement IS
 
-    --Verifie la derniere date de lancement et mes a jour le solde en fonction des 
+    --Verifie la derniere date de lancement et mets a jour le solde en fonction des 
     --loyers et charges qui n etaient pas ajoute
+    --les charges sont calcules independemment 
     v_date   DATE;
     v_annees NUMBER;
     v_mois   NUMBER;
@@ -35,7 +28,7 @@ BEGIN
     WHERE Id_Lock = 'X';
 
     IF v_count = 0 THEN
-        RETURN; -- rien ÃƒÂ  faire
+        RETURN; 
     END IF;
     SELECT TRUNC(date_dernier_lancement,'MM')
     INTO v_date
@@ -67,13 +60,6 @@ END VerifierDateLancement;
 /
 
 
-EXECUTE VerifierDateLancement;
-----TestTriggers
---INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat,Designation_Paiement)
---    VALUES ('PAY-040',900,TO_DATE('2024-03-01','YYYY-MM-DD'),'CTR-001','Charges');
---INSERT INTO SAE_Paiement (Id_Paiement, Montant, Date_Paiement, fk_Numero_de_contrat,Designation_Paiement)
---    VALUES ('PAY-041',-900,TO_DATE('2024-03-01','YYYY-MM-DD'),'CTR-001','Charges');
-
 
 
 
@@ -94,17 +80,78 @@ END;
 /
 
 
+--Calcul la difference entre les charges réels et les provisions de charges
+-- à utiliser à la fin d'un contrat contrairement a VerifierDateAnniversaire
+create or replace FUNCTION calcul_regularisation_contrat (
+    p_annee     IN NUMBER,
+    p_contrat   IN VARCHAR2
+) RETURN NUMBER
+IS
+    v_total_provisions      NUMBER := 0;
+    v_total_charges         NUMBER := 0;
+BEGIN
 
+    SELECT NVL(COUNT(p.Id_Paiement) * cl.Provision_Charge, 0)
+    INTO v_total_provisions
+    FROM MSF5131A.SAE_Paiement p,
+         MSF5131A.SAE_ContratLocation cl
+    WHERE p.fk_Numero_de_contrat = cl.Numero_de_contrat
+      AND cl.Numero_de_contrat = p_contrat
+      AND EXTRACT(YEAR FROM p.Date_Paiement) = p_annee
+    GROUP BY cl.Provision_Charge;
+
+    SELECT
+        NVL(cg.Total_Charges_Generales, 0)
+      + NVL(c.Total_Compteurs, 0)
+      + NVL(f.Total_Factures, 0)
+    INTO v_total_charges
+    FROM
+        MSF5131A.SAE_ContratLocation cl,
+        MSF5131A.SAE_BienLouable b,
+        (
+            SELECT fk_Id_BienLouable,
+                   SUM(Montant_Total) AS Total_Charges_Generales
+            FROM MSF5131A.SAE_Charges_Generale
+            WHERE EXTRACT(YEAR FROM Date_Charge) = p_annee
+            GROUP BY fk_Id_BienLouable
+        ) cg,
+        (
+            SELECT fk_Id_BienLouable,
+                   SUM(Total) AS Total_Compteurs
+            FROM MSF5131A.SAE_Compteur
+            GROUP BY fk_Id_BienLouable
+        ) c,
+        (
+            SELECT fk_Id_BienLouable,
+                   SUM(Montant) AS Total_Factures
+            FROM MSF5131A.SAE_Facture
+            WHERE EXTRACT(YEAR FROM Date_de_facture) = p_annee
+            GROUP BY fk_Id_BienLouable
+        ) f
+    WHERE cl.Numero_de_contrat = p_contrat
+      AND cl.fk_Id_BienLouable = b.Id_BienLouable
+      AND b.Id_BienLouable = cg.fk_Id_BienLouable(+)
+      AND b.Id_BienLouable = c.fk_Id_BienLouable(+)
+      AND b.Id_BienLouable = f.fk_Id_BienLouable(+);
+
+    RETURN v_total_charges - v_total_provisions;
+    
+    -- Solde_Regularisation > 0  -> le locataire doit payer
+    -- Solde_Regularisation < 0  -> le proprietaire rembourse
+    -- Solde_Regularisation = 0  -> aucun probleme
+
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        RETURN 0;
+END;
 
 
 
 
     --Verifie la derniere date d anniversaire et si un an s est ecoule soustrait les provisions de charge en fonction des 
     --charges reeles puis l'ajoute au solde
-    --a 1 ans ou + : solde = loyer + provision -(provision - charges reelles)
-    --a tester avec provision a 200 et charges reelles 160 puis provision a 160 et charges reelles 200   
-
-            
+    --Met a jour la date d anniversaire
+    --On a creer cette procedure car on ne pouvait pas creer un schedule
 CREATE OR REPLACE PROCEDURE VerifierDateAnniversaire IS
     v_annees        NUMBER;
     v_date          DATE;
@@ -249,7 +296,7 @@ BEGIN
     IF ADD_MONTHS(TRUNC(v_derniere_date), 12) > TRUNC(SYSDATE) THEN
         RAISE_APPLICATION_ERROR(
             -20040,
-            'Revalorisation impossible : moins d''un an depuis la derniere mise Ã  jour'
+            'Revalorisation impossible : moins d''un an depuis la derniere mise a jour'
         );
     END IF;
 
@@ -297,7 +344,7 @@ END;
 /
 
 
-
+-- A la suppression d'un bien louable, on modifie la date de fin du contrat
 CREATE OR REPLACE TRIGGER ChangeFinContratSuppressionBien
 AFTER DELETE ON SAE_Contrat_Locataire
 FOR EACH ROW
@@ -313,65 +360,81 @@ END;
 /
 
 
-CREATE OR REPLACE TRIGGER TRG_DEL_BIENLOUABLE_CASCADE
-BEFORE DELETE ON SAE_BienLouable
-FOR EACH ROW
+CREATE OR REPLACE FUNCTION calcul_solde_tout_compte_locataire (
+    p_id_locataire        IN VARCHAR2,
+    p_montant_etat_lieux  IN NUMBER -- on demande le montant estimé de l'état des lieux car on ne le stocke pas dans la BD
+) RETURN NUMBER
+IS
+    v_contrat          MSF5131A.SAE_ContratLocation.Numero_de_contrat%TYPE;
+    v_loyer_mensuel    MSF5131A.SAE_ContratLocation.Montant_Mensuel%TYPE;
+    v_caution          MSF5131A.SAE_ContratLocation.Montant_de_caution%TYPE;
+
+    v_date_calcul      DATE := SYSDATE;
+    v_debut_annee      DATE;
+    v_fin_annee        DATE;
+
+    v_charges          NUMBER := 0;
+    v_total_paye       NUMBER := 0;
+    v_loyers_impayes   NUMBER := 0;
+    v_prorata          NUMBER := 0;
+    v_nb_mois          NUMBER := 0;
 BEGIN
-    ------------------------------------------------------------------
-    -- 1) Delete data linked to contracts of this Bien
-    ------------------------------------------------------------------
 
-    -- Date anniversaire
-    DELETE FROM SAE_DateAnniversaireContrat
-    WHERE fk_Numero_de_contrat IN (
-        SELECT Numero_de_contrat
-        FROM SAE_ContratLocation
-        WHERE fk_Id_BienLouable = :OLD.Id_BienLouable
-    );
+    SELECT cl.Numero_de_contrat,
+           cl.Montant_Mensuel,
+           cl.Montant_de_caution
+    INTO   v_contrat,
+           v_loyer_mensuel,
+           v_caution
+    FROM   MSF5131A.SAE_ContratLocation cl,
+           MSF5131A.SAE_Contrat_Locataire cll
+    WHERE  cl.Numero_de_contrat = cll.Numero_de_contrat
+      AND  cll.Id_Locataire = p_id_locataire;
 
-    -- Revalorisation loyer
-    DELETE FROM SAE_Revalorisation_Loyer
-    WHERE fk_Numero_de_contrat IN (
-        SELECT Numero_de_contrat
-        FROM SAE_ContratLocation
-        WHERE fk_Id_BienLouable = :OLD.Id_BienLouable
-    );
+    v_debut_annee := TRUNC(v_date_calcul, 'YYYY');
+    v_fin_annee   := ADD_MONTHS(v_debut_annee, 12) - 1;
 
-    -- Paiements
-    DELETE FROM SAE_Paiement
-    WHERE fk_Numero_de_contrat IN (
-        SELECT Numero_de_contrat
-        FROM SAE_ContratLocation
-        WHERE fk_Id_BienLouable = :OLD.Id_BienLouable
-    );
+    v_charges := calcul_regularisation_contrat(
+                     TO_NUMBER(TO_CHAR(v_date_calcul, 'YYYY')),
+                     v_contrat
+                 );
 
-    -- Locataire–Contrat links
-    DELETE FROM SAE_Contrat_Locataire
-    WHERE Numero_de_contrat IN (
-        SELECT Numero_de_contrat
-        FROM SAE_ContratLocation
-        WHERE fk_Id_BienLouable = :OLD.Id_BienLouable
-    );
+    SELECT NVL(SUM(p.Montant), 0)
+    INTO   v_total_paye
+    FROM   MSF5131A.SAE_Paiement p
+    WHERE  p.fk_Numero_de_contrat = v_contrat
+      AND  p.Date_Paiement BETWEEN v_debut_annee AND v_fin_annee;
 
-    -- Contracts
-    DELETE FROM SAE_ContratLocation
-    WHERE fk_Id_BienLouable = :OLD.Id_BienLouable;
+    v_nb_mois :=
+        MONTHS_BETWEEN(
+            TRUNC(v_date_calcul, 'MM') + INTERVAL '1' MONTH,
+            v_debut_annee
+        );
 
-    ------------------------------------------------------------------
-    -- 2) Delete direct children of BienLouable
-    ------------------------------------------------------------------
+    v_loyers_impayes :=
+        (v_nb_mois * v_loyer_mensuel) - v_total_paye;
 
-    DELETE FROM SAE_Charges_Generale
-    WHERE fk_Id_BienLouable = :OLD.Id_BienLouable;
+    -- Si le locataire a trop payé, on considère qu'il na pas d’impayés
+    IF v_loyers_impayes < 0 THEN
+        v_loyers_impayes := 0;
+    END IF;
 
-    DELETE FROM SAE_Diagnostics
-    WHERE fk_Id_BienLouable = :OLD.Id_BienLouable;
+    v_prorata :=
+        (v_loyer_mensuel
+         / (LAST_DAY(v_date_calcul) - TRUNC(v_date_calcul, 'MM') + 1))
+        * (v_date_calcul - TRUNC(v_date_calcul, 'MM') + 1);
 
-    DELETE FROM SAE_Compteur
-    WHERE fk_Id_BienLouable = :OLD.Id_BienLouable;
+    RETURN
+          NVL(v_loyers_impayes, 0)
+        + NVL(v_prorata, 0)
+        + NVL(v_charges, 0)
+        + NVL(p_montant_etat_lieux, 0)
+        - NVL(v_caution, 0);
 
-    DELETE FROM SAE_Facture
-    WHERE fk_Id_BienLouable = :OLD.Id_BienLouable;
+    -- > 0 : le locataire doit payer
+    -- < 0 : le propri?taire rembourse
 
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        RETURN 0;
 END;
-/

@@ -32,6 +32,7 @@ CREATE TABLE SAE_BienLouable (
     Id_BienLouable_2 VARCHAR2(50),
     fk_Adresse_Bat VARCHAR2(50),
     CONSTRAINT fk_bien_bat FOREIGN KEY (fk_Adresse_Bat) REFERENCES SAE_Batiment(Adresse)
+    ON DELETE CASCADE;
 );
 
 
@@ -88,6 +89,7 @@ CREATE TABLE SAE_DateAnniversaireContrat (
     fk_Numero_de_contrat VARCHAR2(50) PRIMARY KEY,
     Date_dernier_anniversaire DATE,
     CONSTRAINT fk_Numero_de_contrat FOREIGN KEY (fk_Numero_de_contrat) REFERENCES SAE_ContratLocation(Numero_de_contrat)
+    ON DELETE CASCADE;
 );
 
 CREATE TABLE SAE_Diagnostics (
@@ -114,6 +116,7 @@ CREATE TABLE SAE_Paiement (
     fk_Numero_de_contrat VARCHAR2(50),
     Designation_Paiement VARCHAR2(50),
     CONSTRAINT fk_paiement_contrat FOREIGN KEY (fk_Numero_de_contrat) REFERENCES SAE_ContratLocation(Numero_de_contrat)
+    ON DELETE CASCADE;
 );
 
 CREATE TABLE SAE_Entreprise (
@@ -136,6 +139,7 @@ CREATE TABLE SAE_Assurance (
     Tel_agence VARCHAR2(50),
     fk_Adresse VARCHAR2(50),
     CONSTRAINT fk_assur_bat FOREIGN KEY (fk_Adresse) REFERENCES SAE_Batiment(Adresse)
+    ON DELETE CASCADE;
 );
 
 CREATE TABLE SAE_Compteur (
@@ -149,6 +153,7 @@ CREATE TABLE SAE_Compteur (
     Index_nouveau NUMBER,
     fk_Id_BienLouable VARCHAR2(50),
     CONSTRAINT fk_comp_bien FOREIGN KEY (fk_Id_BienLouable) REFERENCES SAE_BienLouable(Id_BienLouable)
+    ON DELETE CASCADE;
 );
 
 CREATE TABLE SAE_Facture (
@@ -163,6 +168,7 @@ CREATE TABLE SAE_Facture (
     fk_Numero_Siret VARCHAR2(50),
     CONSTRAINT fk_fact_bien FOREIGN KEY (fk_Id_BienLouable) REFERENCES SAE_BienLouable(Id_BienLouable),
     CONSTRAINT fk_fact_ent FOREIGN KEY (fk_Numero_Siret) REFERENCES SAE_Entreprise(Numero_Siret)
+    ON DELETE CASCADE;
 );
 
 CREATE TABLE SAE_Contrat_Locataire (
@@ -179,6 +185,7 @@ CREATE TABLE SAE_Revalorisation_Loyer(
     Loyer_Base NUMBER,
     CONSTRAINT fk_rvl_con FOREIGN KEY (fk_Numero_de_contrat) 
     REFERENCES SAE_ContratLocation(Numero_de_contrat)
+    ON DELETE CASCADE;
 );
 
 
