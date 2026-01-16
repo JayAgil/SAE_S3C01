@@ -12,6 +12,8 @@ public class Assurance {
 	private String agence;
 	private String adresseAgence;
 	private String telAgence;
+	private static final String TYPE_PROPRIETAIRE = "propriétaire";
+	private static final String TYPE_AIDE_JURIDIQUE = "aide juridique";
 
 	/**
 	 * Crée une nouvelle instance d'Assurance.
@@ -127,22 +129,22 @@ public class Assurance {
 	}
 
 	/**
+	 * Vérifie si le type d'assurance est valide.
+	 *
+	 * @return true si le type est "propriétaire" ou "aide juridique"
+	 */
+	public boolean typeAssuranceValide() {
+		return TYPE_PROPRIETAIRE.equalsIgnoreCase(typeAssurance) || TYPE_AIDE_JURIDIQUE.equalsIgnoreCase(typeAssurance);
+	}
+
+	/**
 	 * Vérifie si les informations de l'assurance sont valides.
 	 *
 	 * @return true si le numéro, la prime, le montant et le type sont valides
 	 */
 	public boolean estValide() {
 		return numeroAssurance != null && !numeroAssurance.isEmpty() && prime >= 0 && montant >= 0
-				&& typeAssurance != null;
-	}
-
-	/**
-	 * Vérifie si le type d'assurance est valide.
-	 *
-	 * @return true si le type est "propriétaire" ou "aide juridique"
-	 */
-	public boolean typeAssuranceValide() {
-		return "propriétaire".equalsIgnoreCase(typeAssurance) || "aide juridique".equalsIgnoreCase(typeAssurance);
+				&& typeAssuranceValide();
 	}
 
 	/**

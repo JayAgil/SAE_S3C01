@@ -152,10 +152,8 @@ public class Facture {
 		sb.append("Numéro facture : ").append(numeroFacture).append("\n");
 		sb.append("Date facture : ").append(dateDeFacture).append("\n");
 		sb.append("Travaux : ").append(designationDeTravaux).append("\n\n");
-
 		sb.append("Entreprise : ").append(entreprise.getNom()).append("\n");
 		sb.append("Compte bancaire : ").append(compteBancaire).append("\n\n");
-
 		sb.append("Montant devis : ").append(String.format("%.2f €", montantDevis)).append("\n");
 		sb.append("Montant facture : ").append(String.format("%.2f €", montant)).append("\n");
 		sb.append("Écart : ").append(String.format("%.2f €", ecartMontant())).append("\n");

@@ -69,7 +69,7 @@ public class Batiment {
 	 * @return true si le bâtiment est valide
 	 */
 	public boolean estValide() {
-		return adresse != null && !adresse.isEmpty() && dateConstruction != null;
+	    return adresse != null && !adresse.isBlank() && dateConstruction != null;
 	}
 
 	/**
