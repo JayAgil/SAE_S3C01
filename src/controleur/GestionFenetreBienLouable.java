@@ -1,7 +1,7 @@
 package controleur;
 
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import java.util.Collections;
 import java.util.List;
@@ -19,7 +19,7 @@ import vue.*;
  * <li>de gérer les contrats, charges, travaux, compteurs et locataires</li>
  * <li>d'assurer la navigation entre les différentes fenêtres associées</li>
  */
-public class GestionFenetreBienLouable extends GestionHeaderEtFooter {
+public class GestionFenetreBienLouable extends GestionHeaderEtFooter implements MouseListener {
 
     private FenetreBienLouable fenetre;
     private BienLouable bien;
@@ -36,19 +36,8 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter {
         this.fenetre = fenetre;
         this.bien = bien;
 
-        // Gestion de la sélection d’un bien dans le tableau
-        fenetre.getTable().addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                JTable table = (JTable) e.getSource();
-                int row = table.rowAtPoint(e.getPoint());
-                if (row == -1) return;
-
-                idBien = table.getModel().getValueAt(table.convertRowIndexToModel(row), 0).toString();
-                if (e.getClickCount() == 2) ouvrirFenetreLocataire(idBien);
-                else chargerBienEtRemplirFormulaire(idBien);
-            }
-        });
+        // Ajout du MouseListener sur le tableau
+        fenetre.getTable().addMouseListener(this);
     }
 
     // --- DAO Helpers simplifiés ---
@@ -186,4 +175,23 @@ public class GestionFenetreBienLouable extends GestionHeaderEtFooter {
             new FenetrePrincipale().setVisible(true);
         }
     }
+
+    // --- MouseListener methods ---
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        if (e.getSource() instanceof JTable) {
+            JTable table = (JTable) e.getSource();
+            int row = table.rowAtPoint(e.getPoint());
+            if (row == -1) return;
+
+            idBien = table.getModel().getValueAt(table.convertRowIndexToModel(row), 0).toString();
+            if (e.getClickCount() == 2) ouvrirFenetreLocataire(idBien);
+            else chargerBienEtRemplirFormulaire(idBien);
+        }
+    }
+
+    @Override public void mousePressed(MouseEvent e) {}
+    @Override public void mouseReleased(MouseEvent e) {}
+    @Override public void mouseEntered(MouseEvent e) {}
+    @Override public void mouseExited(MouseEvent e) {}
 }
