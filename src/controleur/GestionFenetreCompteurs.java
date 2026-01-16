@@ -13,7 +13,7 @@ import modele.dao.DaoBienLouable;
 import modele.dao.DaoCompteur;
 import vue.*;
 
-/**
+/*
  * Contrôleur de la fenêtre des compteurs. Cette classe gère l'affichage,
  * l'ajout, la mise à jour et la suppression des compteurs associés aux biens
  * louables. Elle calcule également les totaux par type de compteur (eau,
@@ -117,25 +117,19 @@ public class GestionFenetreCompteurs extends GestionHeaderEtFooter  {
 		case "Mettre à jour":
 			JTable table = fenetre.getTableCompteurs();
 			int row = table.getSelectedRow();
-
 			if (row != -1) {
-
 				if (table.isEditing()) {
 					table.getCellEditor().stopCellEditing();
 				}
-
 				Compteur c = this.cpt.get(row);
 				DaoCompteur daoCompteur = new DaoCompteur();
-
 				c.setType(table.getValueAt(row, 0).toString());
 				c.setIndexNouveau(Double.parseDouble(table.getValueAt(row, 4).toString()));
 				c.setPartieVariable(parseDoubleSafe(table.getValueAt(row, 6)));
 				c.setPartieFixe(parseDoubleSafe(table.getValueAt(row, 7)));
-
 				daoCompteur.update(c);
 				this.remplirTableCompteurs();
 				this.calculerTotaux();
-
 				JOptionPane.showMessageDialog(fenetre, "Données mises à jour !", "Mise à jour",
 						JOptionPane.INFORMATION_MESSAGE);
 				System.out.println("Updated in DB: " + c);
@@ -186,9 +180,8 @@ public class GestionFenetreCompteurs extends GestionHeaderEtFooter  {
 				}
 			}
 		}
-
 	}
-
+	
 	/**
 	 * Met à jour la liste des compteurs.
 	 *

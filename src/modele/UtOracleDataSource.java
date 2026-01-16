@@ -19,7 +19,7 @@ public class UtOracleDataSource extends OracleDataSource {
 	 * @throws SQLException si une erreur de connexion survient
 	 */
 	private UtOracleDataSource(String login, String mdp) throws SQLException {
-		this.setURL("jdbc:oracle:thin:@telline.univ-tlse3.fr" + ":1521:etupre");
+		this.setURL("jdbc:oracle:thin:@telline.univ-tlse3.fr:1521:etupre");
 		this.setUser(login);
 		this.setPassword(mdp);
 	}

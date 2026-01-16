@@ -10,6 +10,7 @@ IS
     v_total_charges         NUMBER := 0;
 BEGIN
 
+    -- Calcul du total des provisions de charges payées par le locataire
     SELECT NVL(COUNT(p.Id_Paiement) * cl.Provision_Charge, 0)
     INTO v_total_provisions
     FROM MSF5131A.SAE_Paiement p,
@@ -19,6 +20,7 @@ BEGIN
       AND EXTRACT(YEAR FROM p.Date_Paiement) = p_annee
     GROUP BY cl.Provision_Charge;
 
+    -- Calcul du total des charges réelles pour le bien loué :
     SELECT
         NVL(cg.Total_Charges_Generales, 0)
       + NVL(c.Total_Compteurs, 0)

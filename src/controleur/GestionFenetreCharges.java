@@ -6,6 +6,8 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.sql.Date;
 
 import javax.swing.JOptionPane;
@@ -18,21 +20,11 @@ import modele.dao.DaoBienLouable;
 import modele.dao.DaoChargesGenerales;
 import vue.*;
 
-public class GestionFenetreCharges extends GestionHeaderEtFooter {
+public class GestionFenetreCharges extends GestionHeaderEtFooter implements MouseListener {
 
-	/** Fenêtre des charges associée à ce contrôleur */
 	private FenetreCharges fenetre;
-
-	/** Fenêtre des charges associée à ce contrôleur */
 	private List<ChargesGenerales> donnees = new ArrayList<>();
 
-	/**
-	 * Constructeur du contrôleur de la fenêtre des charges.
-	 *
-	 * @param fenetre fenêtre des charges
-	 * @param list    liste des charges à afficher
-	 * @throws SQLException en cas d'erreur SQL
-	 */
 	@SuppressWarnings("deprecation")
 	public GestionFenetreCharges(FenetreCharges fenetre, List<ChargesGenerales> list) throws SQLException {
 		super(fenetre);
@@ -43,11 +35,6 @@ public class GestionFenetreCharges extends GestionHeaderEtFooter {
 		}
 	}
 
-	/**
-	 * Gère les actions spécifiques déclenchées par les boutons de la fenêtre.
-	 *
-	 * @param texte libellé du bouton cliqué
-	 */
 	@Override
 	protected void gererBoutonSpecifique(String texte) {
 
@@ -93,11 +80,11 @@ public class GestionFenetreCharges extends GestionHeaderEtFooter {
 					c.setPourcentage(Float.parseFloat(table.getValueAt(row, 2).toString()));
 					c.setQuotite(Double.parseDouble(table.getValueAt(row, 3).toString()));
 					c.setDateCharge(Date.valueOf(table.getValueAt(row, 5).toString()));
-					daoCharge.update(c);
+					daoCharge.update(c);		
 					this.chargerDonnees();
 					JOptionPane.showMessageDialog(fenetre, "Données mises à jour !", "Mise à jour",
 							JOptionPane.INFORMATION_MESSAGE);
-
+					
 					System.out.print(c);
 
 				} catch (SQLException e1) {
@@ -109,13 +96,6 @@ public class GestionFenetreCharges extends GestionHeaderEtFooter {
 		}
 	}
 
-	/**
-	 * Charge et affiche les données dans la table en fonction des filtres
-	 * sélectionnés (mois et année). Calcule également les totaux et statistiques
-	 * affichés dans la fenêtre.
-	 *
-	 * @throws SQLException en cas d'erreur SQL
-	 */
 	public void chargerDonnees() throws SQLException {
 		List<ChargesGenerales> liste = this.donnees;
 		DefaultTableModel model = (DefaultTableModel) fenetre.getTable().getModel();
@@ -190,12 +170,6 @@ public class GestionFenetreCharges extends GestionHeaderEtFooter {
 		fenetre.getLblchargesmoyen().setText(String.format("%.2f €", moyenne));
 	}
 
-	/**
-	 * Gère le bouton retour et ouvre la fenêtre précédente correspondante.
-	 *
-	 * @param texte libellé du bouton
-	 * @throws SQLException en cas d'erreur SQL
-	 */
 	@Override
 	protected void gererBoutonRetour(String texte) throws SQLException {
 		if ("Retour".equals(texte)) {
@@ -227,18 +201,10 @@ public class GestionFenetreCharges extends GestionHeaderEtFooter {
 		}
 	}
 
-	/**
-	 * Met à jour la liste des charges.
-	 *
-	 * @param donnees nouvelle liste de charges
-	 */
 	public void setDonnees(List<ChargesGenerales> donnees) {
 		this.donnees = donnees;
 	}
 
-	/**
-	 * Initialise les écouteurs de filtrage (mois et année).
-	 */
 	public void initialiserFiltrage() {
 		fenetre.getComboBoxMois().addActionListener(e -> {
 			try {
@@ -255,6 +221,26 @@ public class GestionFenetreCharges extends GestionHeaderEtFooter {
 				ex.printStackTrace();
 			}
 		});
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
 	}
 
 }

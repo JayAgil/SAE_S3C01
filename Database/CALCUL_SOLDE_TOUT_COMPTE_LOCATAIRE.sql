@@ -1,6 +1,6 @@
 CREATE OR REPLACE FUNCTION calcul_solde_tout_compte_locataire (
     p_id_locataire        IN VARCHAR2,
-    p_montant_etat_lieux  IN NUMBER
+    p_montant_etat_lieux  IN NUMBER -- on demande le montant estimé de l'état des lieux car on ne le stocke pas dans la BD
 ) RETURN NUMBER
 IS
     v_contrat          MSF5131A.SAE_ContratLocation.Numero_de_contrat%TYPE;
@@ -52,6 +52,7 @@ BEGIN
     v_loyers_impayes :=
         (v_nb_mois * v_loyer_mensuel) - v_total_paye;
 
+    -- Si le locataire a trop payé, on considère qu'il na pas d’impayés
     IF v_loyers_impayes < 0 THEN
         v_loyers_impayes := 0;
     END IF;
